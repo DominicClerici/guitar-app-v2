@@ -4,26 +4,26 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import './styles/variant-2.css';
 
-const ON_ACCENT = '#1a0d09';
+const ON_CLARET = '#f8efe0';
 
-// Live room-level meter — deterministic bar heights (px). The tallest read as
-// the warm stage light, the mids as cool gel, the rest sit in shadow.
-const LEVELS = [
-  7, 12, 9, 16, 22, 14, 19, 28, 20, 13, 24, 34, 26, 17, 30, 21, 12, 18, 25, 15, 9, 20, 11, 7,
+// Engraved G-major chord chart. Six strings (low E → high e), four fret spaces.
+// Markers sit above the nut; open strings read "o". Root notes (G) are inked,
+// the third (B) takes the claret accent.
+const MARKERS = ['', '', 'o', 'o', 'o', ''];
+const DOTS: Record<string, 'root' | 'note'> = {
+  '2-0': 'root',
+  '1-1': 'note',
+  '2-5': 'root',
+};
+const FRET_ROWS = [0, 1, 2, 3];
+const STRINGS = [0, 1, 2, 3, 4, 5];
+
+const PROGRAMME = [
+  { roman: 'I', title: 'Prelude in G', meta: 'BACH · CELLO SUITE · ARR.', time: '3:52' },
+  { roman: 'II', title: 'Lágrima', meta: 'TÁRREGA · KEY OF E', time: '2:41' },
+  { roman: 'III', title: 'Cavatina', meta: 'MYERS · POS. VII', time: '4:16' },
+  { roman: 'IV', title: 'Asturias', meta: 'ALBÉNIZ · A MINOR', time: '6:08' },
 ];
-
-const SETLIST = [
-  { title: 'Blackbird', meta: 'THE BEATLES · KEY OF G', time: '3:52' },
-  { title: 'Wish You Were Here', meta: 'PINK FLOYD · CAPO 0', time: '5:34' },
-  { title: 'Tears in Heaven', meta: 'ERIC CLAPTON · KEY OF A', time: '4:16' },
-];
-
-function barClass(h: number) {
-  if (h >= 30) return 'v2-bar v2-bar-hot';
-  if (h >= 22) return 'v2-bar v2-bar-on';
-  if (h >= 16) return 'v2-bar v2-bar-cool';
-  return 'v2-bar';
-}
 
 export default function Variant2() {
   const insets = useSafeAreaInsets();
@@ -31,74 +31,113 @@ export default function Variant2() {
   return (
     <ScrollView
       className="v2-root flex-1"
-      contentContainerStyle={{ paddingTop: insets.top + 14, paddingBottom: insets.bottom + 96 }}
+      contentContainerStyle={{ paddingTop: insets.top + 18, paddingBottom: insets.bottom + 96 }}
       showsVerticalScrollIndicator={false}
     >
       <View className="v2-scroll">
-        {/* top bar */}
-        <View className="flex-row items-start justify-between">
+        {/* masthead */}
+        <View className="v2-masthead">
           <View>
-            <Text className="v2-greeting">Doors 21:00 · last set</Text>
+            <Text className="v2-kicker">The practice programme</Text>
             <Text className="v2-wordmark">
-              After<Text className="v2-wordmark-accent"> hours</Text>
+              Cadenza<Text className="v2-wordmark-accent">.</Text>
             </Text>
-            <View className="v2-live">
-              <View className="v2-live-dot" />
-              <Text className="v2-live-text">On air</Text>
+          </View>
+          <View className="v2-folio">
+            <Text className="v2-folio-no">No. II</Text>
+            <Text className="v2-folio-label">Summer</Text>
+          </View>
+        </View>
+        <View className="v2-rule" />
+        <View className="v2-rule-hair" />
+
+        {/* hero — now studying */}
+        <View className="v2-mat-tray">
+          <View className="v2-mat">
+            <Text className="v2-feature-eyebrow">Now studying</Text>
+            <Text className="v2-feature-title">Prelude in G</Text>
+            <Text className="v2-feature-sub">
+              Bach, arranged for six strings · an unhurried study in voice-leading
+            </Text>
+
+            <View className="v2-progress-head">
+              <Text className="v2-progress-label">Bar 24 / 38</Text>
+              <Text className="v2-progress-pct">64%</Text>
             </View>
+            <View className="v2-progress-track">
+              <View className="v2-progress-fill" />
+            </View>
+            <Text className="v2-readout">72 BPM · 3/4 · POS. II · TUNING E A D G B E</Text>
+
+            <Pressable className="v2-btn v2-btn-primary">
+              <Text className="v2-btn-primary-text">Resume the study</Text>
+              <View className="v2-btn-icon">
+                <SymbolView name="arrow.right" size={12} tintColor={ON_CLARET} weight="medium" />
+              </View>
+            </Pressable>
           </View>
         </View>
 
-        {/* hero — on stage now */}
-        <View className="v2-feature">
-          <View className="v2-feature-pill">
-            <SymbolView name="waveform" size={11} tintColor="#ff6a4d" />
-            <Text className="v2-feature-pill-text">Now on stage</Text>
-          </View>
-          <Text className="v2-feature-title">Blackbird</Text>
-          <Text className="v2-feature-sub">The Beatles · a fingerstyle study in G</Text>
-
-          <View className="v2-progress-track">
-            <View className="v2-progress-fill" />
-          </View>
-          <Text className="v2-readout">BAR 24 / 38 · 92 BPM · CAPO 3 · −4¢</Text>
-
-          <Pressable className="v2-btn v2-btn-primary">
-            <SymbolView name="play.fill" size={15} tintColor={ON_ACCENT} />
-            <Text className="v2-btn-primary-text">Take the stage</Text>
-          </Pressable>
-        </View>
-
-        {/* signature — room level meter */}
+        {/* signature — engraved chord chart */}
         <View className="v2-section">
-          <Text className="v2-eyebrow">Live</Text>
-          <Text className="v2-section-title">Room level</Text>
-          <View className="v2-meter">
-            <View className="v2-meter-head">
-              <Text className="v2-meter-label">Input · 6th string</Text>
-              <Text className="v2-meter-peak">−3.2 dB</Text>
-            </View>
-            <View className="v2-meter-row">
-              {LEVELS.map((h, i) => (
-                <View key={i} className={barClass(h)} style={{ height: h }} />
+          <Text className="v2-eyebrow">Voicing</Text>
+          <Text className="v2-section-title">
+            The open <Text className="v2-section-title-accent">G</Text>
+          </Text>
+          <View className="v2-chord">
+            <View className="v2-chord-diagram">
+              <View className="v2-chord-markers">
+                {MARKERS.map((m, c) => (
+                  <View key={c} className="v2-chord-mark">
+                    <Text className="v2-chord-mark-text">{m}</Text>
+                  </View>
+                ))}
+              </View>
+              <View className="v2-chord-nut" />
+              {FRET_ROWS.map((r) => (
+                <View key={r} className="v2-fret-row">
+                  {STRINGS.map((c) => {
+                    const dot = DOTS[`${r}-${c}`];
+                    return (
+                      <View
+                        key={c}
+                        className={c === 0 ? 'v2-fret-cell v2-fret-cell-first' : 'v2-fret-cell'}
+                      >
+                        {dot ? (
+                          <View className={dot === 'root' ? 'v2-dot v2-dot-root' : 'v2-dot'} />
+                        ) : null}
+                      </View>
+                    );
+                  })}
+                </View>
               ))}
             </View>
+            <View className="v2-chord-legend">
+              <Text className="v2-chord-name">
+                G<Text className="v2-chord-name-sup"> maj</Text>
+              </Text>
+              <Text className="v2-chord-desc">
+                Root on the sixth, doubled on the first — the warm, ringing shape the whole prelude
+                leans on.
+              </Text>
+              <Text className="v2-chord-fingering">3 2 0 0 0 3</Text>
+            </View>
           </View>
         </View>
 
-        {/* setlist — ticket stubs */}
+        {/* programme list */}
         <View className="v2-section">
           <Text className="v2-eyebrow">Tonight</Text>
-          <Text className="v2-section-title">The setlist</Text>
-          <View style={{ marginTop: 6 }}>
-            {SETLIST.map((s) => (
-              <View key={s.title} className="v2-row">
-                <View className="v2-stub-tick" />
+          <Text className="v2-section-title">The programme</Text>
+          <View style={{ marginTop: 8 }}>
+            {PROGRAMME.map((p) => (
+              <View key={p.roman} className="v2-row">
+                <Text className="v2-row-roman">{p.roman}</Text>
                 <View className="flex-1">
-                  <Text className="v2-row-title">{s.title}</Text>
-                  <Text className="v2-row-meta">{s.meta}</Text>
+                  <Text className="v2-row-title">{p.title}</Text>
+                  <Text className="v2-row-meta">{p.meta}</Text>
                 </View>
-                <Text className="v2-row-time">{s.time}</Text>
+                <Text className="v2-row-time">{p.time}</Text>
               </View>
             ))}
           </View>
@@ -107,46 +146,40 @@ export default function Variant2() {
         {/* type specimen */}
         <View className="v2-section">
           <Text className="v2-eyebrow">Type system</Text>
-          <Text className="v2-section-title">A late, unhurried voice</Text>
-          <View className="v2-spec">
-            <Text className="v2-spec-display">
-              Encore<Text className="v2-spec-accent">.</Text>
-            </Text>
-            <Text className="v2-spec-body">
-              An italic serif does the singing — warm, close, a little smoky — while monospace keeps
-              the tempo, the tuning and the set times honest. One turned up under a single warm light;
-              everything else waits in the dark.
-            </Text>
-            <View className="v2-spec-divider" />
-            <Text className="v2-spec-mono">92 BPM · 4/4 · CAPO 3 · −3.2 dB</Text>
+          <Text className="v2-section-title">A serif that sings</Text>
+          <View className="v2-mat-tray">
+            <View className="v2-mat">
+              <Text className="v2-spec-display">
+                Encore<Text className="v2-spec-accent">.</Text>
+              </Text>
+              <Text className="v2-spec-body">
+                A high-contrast italic serif carries the romance of the piece — its name, its
+                movements, its voice. A quiet sans keeps the prose readable, and monospace holds the
+                tempos and tunings dead level, so the numbers never argue with the melody.
+              </Text>
+              <View className="v2-spec-divider" />
+              <Text className="v2-spec-mono">72 BPM · 3/4 · POS. II · CAPO 0</Text>
+            </View>
           </View>
         </View>
 
         {/* palette */}
         <View className="v2-section">
           <Text className="v2-eyebrow">Palette</Text>
-          <Text className="v2-section-title">Ink &amp; sodium light</Text>
+          <Text className="v2-section-title">Paper, ink &amp; claret</Text>
           <View className="v2-swatch-row">
-            <View className="flex-1">
-              <View className="v2-swatch v2-sw-bg" />
-              <Text className="v2-swatch-label">Ink</Text>
-            </View>
-            <View className="flex-1">
-              <View className="v2-swatch v2-sw-surface" />
-              <Text className="v2-swatch-label">Raised</Text>
-            </View>
-            <View className="flex-1">
-              <View className="v2-swatch v2-sw-accent" />
-              <Text className="v2-swatch-label">Sodium</Text>
-            </View>
-            <View className="flex-1">
-              <View className="v2-swatch v2-sw-cool" />
-              <Text className="v2-swatch-label">Gel</Text>
-            </View>
-            <View className="flex-1">
-              <View className="v2-swatch v2-sw-gold" />
-              <Text className="v2-swatch-label">Brass</Text>
-            </View>
+            {[
+              { cls: 'v2-sw-paper', label: 'Paper' },
+              { cls: 'v2-sw-ink', label: 'Ink' },
+              { cls: 'v2-sw-claret', label: 'Claret' },
+              { cls: 'v2-sw-brass', label: 'Brass' },
+              { cls: 'v2-sw-line', label: 'Rule' },
+            ].map((s) => (
+              <View key={s.label} className="flex-1">
+                <View className={`v2-swatch ${s.cls}`} />
+                <Text className="v2-swatch-label">{s.label}</Text>
+              </View>
+            ))}
           </View>
         </View>
       </View>

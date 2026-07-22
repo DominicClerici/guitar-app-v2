@@ -1,16 +1,33 @@
+import { SymbolView } from 'expo-symbols';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import './styles/variant-4.css';
 
-const PIECES = [
-  { n: '01', title: 'Blackbird', meta: 'FINGERSTYLE · THE BEATLES', key: 'G' },
-  { n: '02', title: 'Wish You Were Here', meta: 'ACOUSTIC · PINK FLOYD', key: 'G' },
-  { n: '03', title: 'Tears in Heaven', meta: 'FINGERSTYLE · CLAPTON', key: 'A' },
-  { n: '04', title: 'Dust in the Wind', meta: 'TRAVIS PICKING · KANSAS', key: 'C' },
+const ON_CHAMP = '#1a1408';
+const GHOST_ICON = '#a4a199';
+
+// Precision tuner scale — 25 graduations. The centre reads in tune (champagne),
+// every fifth tick is a major graduation, the rest are fine.
+const TICKS = Array.from({ length: 25 }, (_, i) => i);
+const CENTER = 12;
+function tickClass(i: number) {
+  if (i === CENTER) return 'v4-tick-center';
+  if (i % 5 === 0) return 'v4-tick v4-tick-major';
+  return 'v4-tick';
+}
+
+const TILES = [
+  { num: '14', label: 'Streak', accent: false },
+  { num: '92%', label: 'Accuracy', accent: true },
+  { num: '3.2h', label: 'This week', accent: false },
 ];
 
-const LANES = ['All', 'Fingerstyle', 'Blues', 'Folk'];
+const SETLIST = [
+  { n: '01', title: 'Blackbird', meta: 'THE BEATLES · FINGERSTYLE', key: 'G' },
+  { n: '02', title: 'Wish You Were Here', meta: 'PINK FLOYD · ACOUSTIC', key: 'G' },
+  { n: '03', title: 'Tears in Heaven', meta: 'CLAPTON · FINGERSTYLE', key: 'A' },
+];
 
 export default function Variant4() {
   const insets = useSafeAreaInsets();
@@ -21,112 +38,151 @@ export default function Variant4() {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
           paddingTop: insets.top + 20,
-          paddingBottom: insets.bottom + 88,
+          paddingBottom: insets.bottom + 96,
           paddingHorizontal: 22,
-          gap: 26,
         }}
       >
-        {/* masthead */}
-        <View>
-          <View className="flex-row items-start justify-between">
-            <Text className="v4-kicker">Pressed — a practice zine</Text>
-            <View className="v4-stamp" style={{ transform: [{ rotate: '-5deg' }] }}>
-              <Text className="v4-stamp-text">No. 04</Text>
-            </View>
-          </View>
-          <View className="v4-rule-thick" />
-          <View className="v4-mast-wrap">
-            <View style={{ position: 'relative' }}>
-              <Text className="v4-mast-shadow">OPEN{'\n'}MIC.</Text>
-              <Text className="v4-mast">OPEN{'\n'}MIC.</Text>
-            </View>
-          </View>
-        </View>
-
-        {/* feature poster */}
-        <View className="v4-poster gap-5">
-          <View className="flex-row items-center justify-between">
-            <View className="flex-1 pr-4">
-              <Text className="v4-poster-kicker">Tonight&apos;s pressing</Text>
-              <Text className="v4-poster-title">Blackbird</Text>
-              <Text className="v4-poster-sub">The Beatles · study in G · 6 min left</Text>
-            </View>
-            <Pressable className="v4-poster-play">
-              <Text className="v4-poster-play-glyph">▶</Text>
-            </Pressable>
-          </View>
-          <View className="gap-2">
-            <View className="v4-poster-track">
-              <View className="v4-poster-track-fill" style={{ width: '68%' }} />
-            </View>
-            <View className="flex-row justify-between">
-              <Text className="v4-poster-meta">BAR 24 / 38</Text>
-              <Text className="v4-poster-meta">68%</Text>
-            </View>
-          </View>
-        </View>
-
-        {/* stat blocks */}
-        <View className="flex-row gap-3">
-          <View className="v4-stat">
-            <Text className="v4-stat-num">14</Text>
-            <Text className="v4-stat-label">Day streak</Text>
-          </View>
-          <View className="v4-stat">
-            <Text className="v4-stat-num">3.2h</Text>
-            <Text className="v4-stat-label">This week</Text>
-          </View>
-          <View className="v4-stat">
-            <Text className="v4-stat-num">28</Text>
-            <Text className="v4-stat-label">Pieces</Text>
-          </View>
-        </View>
-
-        {/* repertoire */}
-        <View className="gap-1">
-          <View className="v4-section-head">
-            <Text className="v4-section">Repertoire</Text>
-            <Text className="v4-section-meta">04 CUTS</Text>
-          </View>
+        {/* header */}
+        <View className="flex-row items-center justify-between">
           <View>
-            {PIECES.map((p) => (
-              <View key={p.n} className="v4-row">
-                <Text className="v4-row-index">{p.n}</Text>
+            <Text className="v4-device">Practice unit</Text>
+            <Text className="v4-brand">
+              Noctur<Text className="v4-brand-accent">ne</Text>
+            </Text>
+          </View>
+          <View className="v4-opus">
+            <Text className="v4-opus-no">04</Text>
+            <Text className="v4-opus-label">Opus</Text>
+          </View>
+        </View>
+
+        {/* machined hero */}
+        <View className="v4-tray" style={{ marginTop: 24 }}>
+          <View className="v4-face">
+            <View className="v4-face-topline">
+              <Text className="v4-eyebrow">Now playing</Text>
+              <Text className="v4-face-index">01 / 03</Text>
+            </View>
+            <Text className="v4-face-title">Blackbird</Text>
+            <Text className="v4-face-sub">The Beatles · a fingerstyle study in G</Text>
+            <View className="v4-readout">
+              <Text className="v4-readout-time">03:12</Text>
+              <Text className="v4-readout-meta">92 BPM · 4/4 · CAPO 3</Text>
+            </View>
+
+            <View className="v4-transport">
+              <Pressable className="v4-btn-primary">
+                <SymbolView name="play.fill" size={14} tintColor={ON_CHAMP} />
+                <Text className="v4-btn-primary-text">Resume</Text>
+              </Pressable>
+              <Pressable className="v4-btn-ghost">
+                <SymbolView name="metronome" size={18} tintColor={GHOST_ICON} />
+              </Pressable>
+            </View>
+          </View>
+        </View>
+
+        {/* signature — tuner scale */}
+        <View className="v4-section">
+          <View className="v4-section-head">
+            <Text className="v4-section-title">Tuner</Text>
+            <Text className="v4-section-meta">440 Hz · standard</Text>
+          </View>
+          <View className="v4-tuner">
+            <View className="v4-tuner-head">
+              <Text className="v4-tuner-note">
+                A<Text className="v4-tuner-note-sub"> · 110.0 Hz</Text>
+              </Text>
+              <Text className="v4-tuner-cents">−0.4 ¢</Text>
+            </View>
+            <View className="v4-tuner-scale">
+              {TICKS.map((i) => (
+                <View key={i} className={tickClass(i)} />
+              ))}
+            </View>
+            <View className="v4-tuner-baseline" />
+            <View className="v4-tuner-labels">
+              <Text className="v4-tuner-label">−50</Text>
+              <Text className="v4-tuner-label">IN TUNE</Text>
+              <Text className="v4-tuner-label">+50</Text>
+            </View>
+          </View>
+        </View>
+
+        {/* machined stat tiles */}
+        <View className="v4-tiles">
+          {TILES.map((t) => (
+            <View key={t.label} className="v4-tile">
+              <Text className={t.accent ? 'v4-tile-num v4-tile-num-accent' : 'v4-tile-num'}>
+                {t.num}
+              </Text>
+              <Text className="v4-tile-label">{t.label}</Text>
+            </View>
+          ))}
+        </View>
+
+        {/* setlist */}
+        <View className="v4-section">
+          <View className="v4-section-head">
+            <Text className="v4-section-title">Setlist</Text>
+            <Text className="v4-section-meta">03 CUTS</Text>
+          </View>
+          <View style={{ marginTop: 4 }}>
+            {SETLIST.map((s) => (
+              <View key={s.n} className="v4-slot">
+                <Text className="v4-slot-index">{s.n}</Text>
                 <View className="flex-1">
-                  <Text className="v4-row-title">{p.title}</Text>
-                  <Text className="v4-row-meta">{p.meta}</Text>
+                  <Text className="v4-slot-title">{s.title}</Text>
+                  <Text className="v4-slot-meta">{s.meta}</Text>
                 </View>
-                <Text className="v4-row-key">{p.key}</Text>
+                <View className="v4-slot-key">
+                  <Text className="v4-slot-key-text">{s.key}</Text>
+                </View>
               </View>
             ))}
           </View>
         </View>
 
-        {/* tear-off tabs */}
-        <View className="v4-tearoff">
-          <Text className="v4-tearoff-caption">✂ tear off a lane</Text>
-          <View className="flex-row flex-wrap gap-2">
-            {LANES.map((l, i) => (
-              <View
-                key={l}
-                className={`v4-tab ${i === 0 ? 'v4-tab-active' : ''}`}
-                style={i === 2 ? { transform: [{ rotate: '-2deg' }] } : undefined}
-              >
-                <Text className="v4-tab-label">{l}</Text>
-              </View>
-            ))}
+        {/* type specimen */}
+        <View className="v4-section">
+          <View className="v4-section-head">
+            <Text className="v4-section-title">Type</Text>
+            <Text className="v4-section-meta">GROTESK / MONO</Text>
+          </View>
+          <View className="v4-spec">
+            <Text className="v4-spec-display">
+              Precise<Text className="v4-spec-accent">.</Text>
+            </Text>
+            <Text className="v4-spec-body">
+              A tight grotesk holds the titles at low contrast; monospace runs every reading — time,
+              tempo, cents — so the numbers align like an instrument face. One warm metal against
+              cool graphite. Nothing lit that doesn&apos;t need to be.
+            </Text>
+            <View className="v4-spec-divider" />
+            <Text className="v4-spec-mono">92 BPM · 4/4 · CAPO 3 · −0.4 ¢</Text>
           </View>
         </View>
 
-        {/* coupon CTA */}
-        <View className="gap-3">
-          <Pressable className="v4-coupon">
-            <Text className="v4-coupon-label">Begin today&apos;s session</Text>
-            <Text className="v4-coupon-sub">Admit one</Text>
-          </Pressable>
-          <Pressable className="v4-ghost">
-            <Text className="v4-ghost-label">Open the tuner</Text>
-          </Pressable>
+        {/* palette */}
+        <View className="v4-section">
+          <View className="v4-section-head">
+            <Text className="v4-section-title">Palette</Text>
+            <Text className="v4-section-meta">05 TOKENS</Text>
+          </View>
+          <View className="v4-swatch-row">
+            {[
+              { cls: 'v4-sw-bg', label: 'Graphite' },
+              { cls: 'v4-sw-surface', label: 'Raised' },
+              { cls: 'v4-sw-champ', label: 'Champagne' },
+              { cls: 'v4-sw-bright', label: 'Highlight' },
+              { cls: 'v4-sw-line', label: 'Line' },
+            ].map((s) => (
+              <View key={s.label} className="flex-1">
+                <View className={`v4-swatch ${s.cls}`} />
+                <Text className="v4-swatch-label">{s.label}</Text>
+              </View>
+            ))}
+          </View>
         </View>
       </ScrollView>
     </View>
