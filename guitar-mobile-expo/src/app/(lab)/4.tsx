@@ -4,13 +4,13 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import './styles/variant-4.css';
 
 const PIECES = [
-  { n: '01', title: 'Blackbird', meta: 'Fingerstyle · The Beatles', key: 'G' },
-  { n: '02', title: 'Wish You Were Here', meta: 'Acoustic · Pink Floyd', key: 'G' },
-  { n: '03', title: 'Tears in Heaven', meta: 'Fingerstyle · Clapton', key: 'A' },
-  { n: '04', title: 'Dust in the Wind', meta: 'Travis picking · Kansas', key: 'C' },
+  { n: '01', title: 'Blackbird', meta: 'FINGERSTYLE · THE BEATLES', key: 'G' },
+  { n: '02', title: 'Wish You Were Here', meta: 'ACOUSTIC · PINK FLOYD', key: 'G' },
+  { n: '03', title: 'Tears in Heaven', meta: 'FINGERSTYLE · CLAPTON', key: 'A' },
+  { n: '04', title: 'Dust in the Wind', meta: 'TRAVIS PICKING · KANSAS', key: 'C' },
 ];
 
-const GENRES = ['Fingerstyle', 'Blues', 'Folk', 'Classical'];
+const LANES = ['All', 'Fingerstyle', 'Blues', 'Folk'];
 
 export default function Variant4() {
   const insets = useSafeAreaInsets();
@@ -26,42 +26,47 @@ export default function Variant4() {
           gap: 26,
         }}
       >
-        <View className="flex-row items-start justify-between">
-          <View className="gap-2">
-            <Text className="v4-eyebrow">Good evening</Text>
-            <Text className="v4-title">The Practice{'\n'}Room</Text>
+        {/* masthead */}
+        <View>
+          <View className="flex-row items-start justify-between">
+            <Text className="v4-kicker">Pressed — a practice zine</Text>
+            <View className="v4-stamp" style={{ transform: [{ rotate: '-5deg' }] }}>
+              <Text className="v4-stamp-text">No. 04</Text>
+            </View>
           </View>
-          <View className="v4-avatar">
-            <Text className="v4-display" style={{ color: '#dda659', fontSize: 18 }}>
-              ♪
-            </Text>
+          <View className="v4-rule-thick" />
+          <View className="v4-mast-wrap">
+            <View style={{ position: 'relative' }}>
+              <Text className="v4-mast-shadow">OPEN{'\n'}MIC.</Text>
+              <Text className="v4-mast">OPEN{'\n'}MIC.</Text>
+            </View>
           </View>
         </View>
 
-        <View className="v4-hero gap-5">
+        {/* feature poster */}
+        <View className="v4-poster gap-5">
           <View className="flex-row items-center justify-between">
-            <View className="gap-1 flex-1 pr-4">
-              <Text className="v4-hero-kicker">Continue</Text>
-              <Text className="v4-hero-title">Nocturne in E minor</Text>
-              <Text className="v4-hero-sub">Sor · Study No. 12 · 6 min left</Text>
+            <View className="flex-1 pr-4">
+              <Text className="v4-poster-kicker">Tonight&apos;s pressing</Text>
+              <Text className="v4-poster-title">Blackbird</Text>
+              <Text className="v4-poster-sub">The Beatles · study in G · 6 min left</Text>
             </View>
-            <Pressable className="v4-play">
-              <Text className="v4-play-glyph">▶</Text>
+            <Pressable className="v4-poster-play">
+              <Text className="v4-poster-play-glyph">▶</Text>
             </Pressable>
           </View>
           <View className="gap-2">
-            <View className="v4-track">
-              <View className="v4-track-fill" style={{ width: '68%' }} />
+            <View className="v4-poster-track">
+              <View className="v4-poster-track-fill" style={{ width: '68%' }} />
             </View>
             <View className="flex-row justify-between">
-              <Text className="v4-hero-sub" style={{ fontSize: 12 }}>
-                Measure 24 of 36
-              </Text>
-              <Text className="v4-row-key">68%</Text>
+              <Text className="v4-poster-meta">BAR 24 / 38</Text>
+              <Text className="v4-poster-meta">68%</Text>
             </View>
           </View>
         </View>
 
+        {/* stat blocks */}
         <View className="flex-row gap-3">
           <View className="v4-stat">
             <Text className="v4-stat-num">14</Text>
@@ -77,10 +82,11 @@ export default function Variant4() {
           </View>
         </View>
 
+        {/* repertoire */}
         <View className="gap-1">
-          <View className="flex-row items-center justify-between">
-            <Text className="v4-section">Your repertoire</Text>
-            <Text className="v4-section-link">See all</Text>
+          <View className="v4-section-head">
+            <Text className="v4-section">Repertoire</Text>
+            <Text className="v4-section-meta">04 CUTS</Text>
           </View>
           <View>
             {PIECES.map((p) => (
@@ -96,17 +102,27 @@ export default function Variant4() {
           </View>
         </View>
 
-        <View className="flex-row flex-wrap gap-2">
-          {GENRES.map((g, i) => (
-            <View key={g} className={`v4-chip ${i === 0 ? 'v4-chip-active' : ''}`}>
-              <Text className={`v4-chip-label ${i === 0 ? 'v4-chip-label-active' : ''}`}>{g}</Text>
-            </View>
-          ))}
+        {/* tear-off tabs */}
+        <View className="v4-tearoff">
+          <Text className="v4-tearoff-caption">✂ tear off a lane</Text>
+          <View className="flex-row flex-wrap gap-2">
+            {LANES.map((l, i) => (
+              <View
+                key={l}
+                className={`v4-tab ${i === 0 ? 'v4-tab-active' : ''}`}
+                style={i === 2 ? { transform: [{ rotate: '-2deg' }] } : undefined}
+              >
+                <Text className="v4-tab-label">{l}</Text>
+              </View>
+            ))}
+          </View>
         </View>
 
+        {/* coupon CTA */}
         <View className="gap-3">
-          <Pressable className="v4-cta">
-            <Text className="v4-cta-label">Begin today&apos;s session</Text>
+          <Pressable className="v4-coupon">
+            <Text className="v4-coupon-label">Begin today&apos;s session</Text>
+            <Text className="v4-coupon-sub">Admit one</Text>
           </Pressable>
           <Pressable className="v4-ghost">
             <Text className="v4-ghost-label">Open the tuner</Text>

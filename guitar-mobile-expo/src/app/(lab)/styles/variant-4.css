@@ -1,241 +1,322 @@
-/* Variant 4 — "Amber Luthier"
-   Warm dark, editorial. Aged espresso body, honey-maple accent, parchment
-   type. A serif display against a quiet sans evokes a vintage instrument
-   catalog: crafted, unhurried, refined. */
+/* =========================================================================
+   VARIANT 4 — "PRESSED"
+   Risograph gig-poster · zine · hand-printed
+   Newsprint bone stock printed in three inks — warm black, fluoro pink and
+   ultramarine blue — with the deliberate registration shift of a two-colour
+   press. Hard offset shadows (no blur) read as ink laid slightly off. Heavy
+   condensed caps do the shouting; monospace handles the small print and the
+   tear-off tabs. Loud, but disciplined: three inks, one grid, big margins.
+   ========================================================================= */
 
+/* Tokens at :root for uniwind's global theme store; all `--v4-` prefixed so
+   the six variants never collide. */
 :root {
-  --v4-bg: #171009;
-  --v4-surface: #211710;
-  --v4-surface-2: #2b2016;
-  --v4-border: #3a2b1e;
-  --v4-border-strong: #4c3826;
-
-  --v4-fg: #f3ecdf;
-  --v4-muted: #bca993;
-  --v4-faint: #8a7860;
-
-  --v4-accent: #dda659;
-  --v4-accent-deep: #c07f3b;
-  --v4-accent-soft: #3a2a16;
-  --v4-on-accent: #1a1108;
-
-  --v4-display: Georgia, 'Times New Roman', serif;
-  --v4-body: 'Spline Sans', Inter, ui-sans-serif, system-ui, sans-serif;
+  --v4-paper: #efe6d3; /* newsprint bone stock */
+  --v4-paper-2: #e4d9c0; /* recessed panel */
+  --v4-ink: #17130f; /* warm press black */
+  --v4-ink-soft: #4c4438; /* body */
+  --v4-faint: #8b8067; /* small print */
+  --v4-pink: #ff466f; /* fluoro pink ink */
+  --v4-blue: #2540e6; /* ultramarine ink */
+  --v4-purple: #7b2fae; /* pink + blue overprint */
+  --v4-cream: #f7f1e4; /* knocked-out text on ink */
 }
 
 .variant-4-root {
-  background-color: var(--v4-bg);
+  background-color: var(--v4-paper);
 }
 
-.v4-display {
-  font-family: var(--v4-display);
-}
-.v4-body {
-  font-family: var(--v4-body);
-}
-
-.v4-eyebrow {
-  font-family: var(--v4-body);
-  color: var(--v4-accent);
+/* ---- masthead ---- */
+.v4-kicker {
+  font-family: ui-monospace;
   font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   text-transform: uppercase;
-}
-
-.v4-title {
-  font-family: var(--v4-display);
-  color: var(--v4-fg);
-  font-size: 34px;
-  line-height: 40px;
+  color: var(--v4-ink);
   font-weight: 600;
 }
+.v4-rule-thick {
+  height: 3px;
+  background-color: var(--v4-ink);
+  margin-top: 10px;
+}
+/* overprint masthead — front knock-out over an offset colour copy */
+.v4-mast-wrap {
+  margin-top: 14px;
+}
+.v4-mast-shadow {
+  position: absolute;
+  left: 3px;
+  top: 4px;
+  font-size: 52px;
+  line-height: 50px;
+  font-weight: 900;
+  letter-spacing: -2px;
+  color: var(--v4-pink);
+}
+.v4-mast {
+  font-size: 52px;
+  line-height: 50px;
+  font-weight: 900;
+  letter-spacing: -2px;
+  color: var(--v4-ink);
+}
+.v4-stamp {
+  align-self: flex-start;
+  border-width: 2px;
+  border-color: var(--v4-blue);
+  border-radius: 4px;
+  padding-left: 9px;
+  padding-right: 9px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+.v4-stamp-text {
+  font-family: ui-monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--v4-blue);
+  font-weight: 700;
+}
 
-.v4-avatar {
-  width: 44px;
-  height: 44px;
-  border-radius: 22px;
-  background-color: var(--v4-surface-2);
-  border-width: 1px;
-  border-color: var(--v4-border-strong);
+/* ---- feature poster ---- */
+.v4-poster {
+  background-color: var(--v4-blue);
+  border-width: 2px;
+  border-color: var(--v4-ink);
+  border-radius: 3px;
+  padding: 22px;
+  box-shadow: 7px 8px 0px 0px var(--v4-pink);
+}
+.v4-poster-kicker {
+  font-family: ui-monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--v4-cream);
+  font-weight: 600;
+}
+.v4-poster-title {
+  font-size: 30px;
+  line-height: 32px;
+  font-weight: 900;
+  letter-spacing: -0.6px;
+  color: var(--v4-cream);
+  margin-top: 8px;
+}
+.v4-poster-sub {
+  font-family: ui-monospace;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  color: var(--v4-cream);
+  margin-top: 8px;
+  opacity: 0.85;
+}
+.v4-poster-play {
+  width: 54px;
+  height: 54px;
+  border-radius: 27px;
+  background-color: var(--v4-pink);
+  border-width: 2px;
+  border-color: var(--v4-ink);
   align-items: center;
   justify-content: center;
 }
-
-.v4-hero {
-  background-color: var(--v4-surface);
-  border-radius: 18px;
-  border-width: 1px;
-  border-color: var(--v4-border);
-  padding: 22px;
+.v4-poster-play-glyph {
+  color: var(--v4-ink);
+  font-size: 20px;
+  margin-left: 3px;
+  font-weight: 900;
 }
-
-.v4-hero-kicker {
-  font-family: var(--v4-body);
-  color: var(--v4-faint);
-  font-size: 12px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-.v4-hero-title {
-  font-family: var(--v4-display);
-  color: var(--v4-fg);
-  font-size: 24px;
-  line-height: 30px;
-  font-weight: 600;
-}
-
-.v4-hero-sub {
-  font-family: var(--v4-body);
-  color: var(--v4-muted);
-  font-size: 14px;
-}
-
-.v4-track {
-  height: 5px;
-  border-radius: 3px;
-  background-color: var(--v4-surface-2);
+.v4-poster-track {
+  height: 8px;
+  border-width: 2px;
+  border-color: var(--v4-ink);
+  border-radius: 2px;
+  background-color: var(--v4-cream);
   overflow: hidden;
 }
-.v4-track-fill {
-  height: 5px;
-  border-radius: 3px;
-  background-color: var(--v4-accent);
+.v4-poster-track-fill {
+  height: 4px;
+  background-color: var(--v4-pink);
+}
+.v4-poster-meta {
+  font-family: ui-monospace;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  color: var(--v4-cream);
 }
 
-.v4-play {
-  width: 52px;
-  height: 52px;
-  border-radius: 26px;
-  background-color: var(--v4-accent);
-  align-items: center;
-  justify-content: center;
-}
-.v4-play-glyph {
-  color: var(--v4-on-accent);
-  font-size: 18px;
-  margin-left: 2px;
-}
-
+/* ---- stat blocks ---- */
 .v4-stat {
   flex: 1;
-  background-color: var(--v4-surface);
-  border-width: 1px;
-  border-color: var(--v4-border);
-  border-radius: 14px;
+  background-color: var(--v4-paper);
+  border-width: 2px;
+  border-color: var(--v4-ink);
+  border-radius: 3px;
   padding: 14px;
+  box-shadow: 4px 4px 0px 0px var(--v4-ink);
 }
 .v4-stat-num {
-  font-family: var(--v4-display);
-  color: var(--v4-fg);
-  font-size: 22px;
-  font-weight: 600;
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: -1px;
+  color: var(--v4-ink);
 }
 .v4-stat-label {
-  font-family: var(--v4-body);
-  color: var(--v4-faint);
-  font-size: 11px;
+  font-family: ui-monospace;
+  font-size: 10px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  margin-top: 2px;
+  color: var(--v4-ink-soft);
+  margin-top: 4px;
 }
 
+/* ---- section head ---- */
+.v4-section-head {
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+  border-bottom-width: 3px;
+  border-bottom-color: var(--v4-ink);
+  padding-bottom: 6px;
+}
 .v4-section {
-  font-family: var(--v4-display);
-  color: var(--v4-fg);
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 19px;
+  font-weight: 900;
+  letter-spacing: -0.3px;
+  text-transform: uppercase;
+  color: var(--v4-ink);
 }
-.v4-section-link {
-  font-family: var(--v4-body);
-  color: var(--v4-accent);
-  font-size: 13px;
-  font-weight: 600;
+.v4-section-meta {
+  font-family: ui-monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--v4-faint);
 }
 
+/* ---- repertoire rows ---- */
 .v4-row {
   flex-direction: row;
   align-items: center;
+  gap: 14px;
   padding-top: 14px;
   padding-bottom: 14px;
   border-bottom-width: 1px;
-  border-bottom-color: var(--v4-border);
+  border-bottom-color: var(--v4-ink);
 }
 .v4-row-index {
-  font-family: var(--v4-display);
-  color: var(--v4-faint);
-  font-size: 15px;
-  width: 26px;
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: -1px;
+  color: var(--v4-pink);
+  width: 40px;
 }
 .v4-row-title {
-  font-family: var(--v4-body);
-  color: var(--v4-fg);
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  text-transform: uppercase;
+  color: var(--v4-ink);
 }
 .v4-row-meta {
-  font-family: var(--v4-body);
-  color: var(--v4-muted);
-  font-size: 12.5px;
-  margin-top: 1px;
+  font-family: ui-monospace;
+  font-size: 11px;
+  letter-spacing: 0.4px;
+  color: var(--v4-ink-soft);
+  margin-top: 3px;
 }
 .v4-row-key {
-  font-family: var(--v4-body);
-  color: var(--v4-accent);
+  border-width: 2px;
+  border-color: var(--v4-ink);
+  border-radius: 3px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  font-family: ui-monospace;
   font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 1px;
+  font-weight: 700;
+  color: var(--v4-ink);
 }
 
-.v4-cta {
-  background-color: var(--v4-accent);
-  border-radius: 14px;
-  padding-top: 16px;
-  padding-bottom: 16px;
-  align-items: center;
+/* ---- tear-off tabs (filters) ---- */
+.v4-tearoff {
+  margin-top: 4px;
+  border-top-width: 2px;
+  border-top-color: var(--v4-ink);
+  border-style: dashed;
+  padding-top: 12px;
 }
-.v4-cta-label {
-  font-family: var(--v4-body);
-  color: var(--v4-on-accent);
-  font-size: 15px;
-  font-weight: 700;
+.v4-tearoff-caption {
+  font-family: ui-monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--v4-faint);
+  margin-bottom: 10px;
+}
+.v4-tab {
+  border-width: 2px;
+  border-color: var(--v4-ink);
+  border-radius: 3px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background-color: var(--v4-paper);
+}
+.v4-tab-active {
+  background-color: var(--v4-pink);
+}
+.v4-tab-label {
+  font-family: ui-monospace;
+  font-size: 12px;
   letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--v4-ink);
+  font-weight: 700;
+}
+
+/* ---- coupon CTA ---- */
+.v4-coupon {
+  background-color: var(--v4-ink);
+  border-radius: 3px;
+  padding-top: 17px;
+  padding-bottom: 17px;
+  align-items: center;
+  box-shadow: 5px 5px 0px 0px var(--v4-blue);
+}
+.v4-coupon-label {
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--v4-cream);
+}
+.v4-coupon-sub {
+  font-family: ui-monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--v4-pink);
+  margin-top: 3px;
 }
 .v4-ghost {
-  border-radius: 14px;
-  padding-top: 16px;
-  padding-bottom: 16px;
+  border-width: 2px;
+  border-color: var(--v4-ink);
+  border-radius: 3px;
+  border-style: dashed;
+  padding-top: 15px;
+  padding-bottom: 15px;
   align-items: center;
-  border-width: 1px;
-  border-color: var(--v4-border-strong);
 }
 .v4-ghost-label {
-  font-family: var(--v4-body);
-  color: var(--v4-fg);
-  font-size: 15px;
-  font-weight: 600;
-}
-
-.v4-chip {
-  border-width: 1px;
-  border-color: var(--v4-border-strong);
-  border-radius: 20px;
-  padding-top: 7px;
-  padding-bottom: 7px;
-  padding-left: 14px;
-  padding-right: 14px;
-}
-.v4-chip-active {
-  background-color: var(--v4-accent-soft);
-  border-color: var(--v4-accent);
-}
-.v4-chip-label {
-  font-family: var(--v4-body);
-  color: var(--v4-muted);
+  font-family: ui-monospace;
   font-size: 13px;
-  font-weight: 500;
-}
-.v4-chip-label-active {
-  color: var(--v4-accent);
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--v4-ink);
 }

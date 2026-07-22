@@ -1,15 +1,33 @@
+import { SymbolView, type SymbolViewProps } from 'expo-symbols';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import './styles/variant-6.css';
 
-const LESSONS = [
-  { icon: '♫', title: 'Your First Chords', meta: 'Beginner · 8 lessons', dur: '4 min' },
-  { icon: '◈', title: 'Strumming Patterns', meta: 'Rhythm · 6 lessons', dur: '6 min' },
-  { icon: '❤', title: 'Fingerpicking Basics', meta: 'Technique · 5 lessons', dur: '5 min' },
+const ON_KEY = '#f7f4ea';
+
+const KEYS: { sym: SymbolViewProps['name']; label: string; cls: string }[] = [
+  { sym: 'tuningfork', label: 'Tune', cls: 'v6-key-orange' },
+  { sym: 'metronome', label: 'Tempo', cls: 'v6-key-blue' },
+  { sym: 'waveform', label: 'Rec', cls: 'v6-key-red' },
+  { sym: 'repeat', label: 'Loop', cls: 'v6-key-green' },
 ];
 
-const MOODS = ['For you', 'Chill', 'Warm-up', 'Theory'];
+// VU meter: 12 segments, lit up to LEVEL. Green body, amber shoulder, red peak.
+const VU_TOTAL = 12;
+const VU_LEVEL = 9;
+function vuSegClass(i: number) {
+  if (i >= VU_LEVEL) return 'v6-vu-seg';
+  if (i >= 10) return 'v6-vu-seg v6-vu-red';
+  if (i >= 8) return 'v6-vu-seg v6-vu-amber';
+  return 'v6-vu-seg v6-vu-green';
+}
+
+const PATCHES = [
+  { led: '#ef6a3d', title: 'Pentatonic runs', meta: 'LEAD · BOX 1', bpm: '120' },
+  { led: '#3f81d8', title: 'Barre transitions', meta: 'RHYTHM · DRILL 04', bpm: '84' },
+  { led: '#4fae6d', title: 'Alternate picking', meta: 'TECHNIQUE · LADDER', bpm: '96' },
+];
 
 export default function Variant6() {
   const insets = useSafeAreaInsets();
@@ -22,83 +40,103 @@ export default function Variant6() {
           paddingTop: insets.top + 20,
           paddingBottom: insets.bottom + 88,
           paddingHorizontal: 20,
-          gap: 24,
+          gap: 20,
         }}
       >
+        {/* device header */}
         <View className="flex-row items-center justify-between">
-          <View className="gap-1.5">
-            <Text className="v6-eyebrow">Welcome back, Sam</Text>
-            <Text className="v6-title">Let&apos;s play</Text>
+          <View>
+            <Text className="v6-device">OP·6 — practice unit</Text>
+            <Text className="v6-brand">woodshed</Text>
           </View>
-          <View className="v6-avatar">
-            <Text className="v6-avatar-glyph">S</Text>
+          <View className="v6-power">
+            <View className="v6-led" />
+            <Text className="v6-power-text">On</Text>
           </View>
         </View>
 
-        <View className="v6-hero gap-6">
-          <View className="flex-row items-center justify-between">
-            <View className="gap-1 flex-1 pr-4">
-              <Text className="v6-hero-kicker">Pick up where you left off</Text>
-              <Text className="v6-hero-title">The G–C–D Song</Text>
-              <Text className="v6-hero-sub">Chord changes · Lesson 3 of 8</Text>
+        {/* LCD hero */}
+        <View className="v6-lcd">
+          <View className="v6-lcd-topline">
+            <Text className="v6-lcd-tag">▶ Now playing</Text>
+            <Text className="v6-lcd-rec">● REC</Text>
+          </View>
+          <Text className="v6-lcd-title">Pentatonic runs</Text>
+          <Text className="v6-lcd-sub">Lead technique · box 1 · A minor</Text>
+          <View className="v6-lcd-readout">
+            <Text className="v6-lcd-time">03:12</Text>
+            <Text className="v6-lcd-bpm">120 BPM · 4/4</Text>
+          </View>
+        </View>
+
+        {/* function keys */}
+        <View className="v6-keys">
+          {KEYS.map((k) => (
+            <View key={k.label} className="v6-key">
+              <View className={`v6-key-cap ${k.cls}`}>
+                <SymbolView name={k.sym} size={22} tintColor={ON_KEY} />
+              </View>
+              <Text className="v6-key-label">{k.label}</Text>
             </View>
-            <Pressable className="v6-play">
-              <Text className="v6-play-glyph">▶</Text>
-            </Pressable>
+          ))}
+        </View>
+
+        {/* control panel — knobs + VU */}
+        <View className="v6-panel">
+          <View className="v6-knob-cell">
+            <View className="v6-knob" style={{ transform: [{ rotate: '-48deg' }] }}>
+              <View className="v6-knob-tick" />
+            </View>
+            <Text className="v6-knob-num">14</Text>
+            <Text className="v6-knob-label">Streak</Text>
           </View>
-          <View className="v6-hero-track">
-            <View className="v6-hero-track-fill" style={{ width: '45%' }} />
+          <View className="v6-knob-cell">
+            <View className="v6-knob" style={{ transform: [{ rotate: '62deg' }] }}>
+              <View className="v6-knob-tick" />
+            </View>
+            <Text className="v6-knob-num">92%</Text>
+            <Text className="v6-knob-label">Accuracy</Text>
+          </View>
+          <View className="v6-vu-cell">
+            <Text className="v6-vu-label">Input</Text>
+            <View className="v6-vu-row">
+              {Array.from({ length: VU_TOTAL }).map((_, i) => (
+                <View key={i} className={vuSegClass(i)} />
+              ))}
+            </View>
+            <View className="v6-vu-scale">
+              <Text className="v6-vu-tick">−20</Text>
+              <Text className="v6-vu-tick">0</Text>
+              <Text className="v6-vu-tick">+3</Text>
+            </View>
           </View>
         </View>
 
-        <View className="flex-row gap-3">
-          <View className="v6-stat">
-            <Text className="v6-stat-num v6-stat-accent">7</Text>
-            <Text className="v6-stat-label">Day streak</Text>
-          </View>
-          <View className="v6-stat">
-            <Text className="v6-stat-num">45m</Text>
-            <Text className="v6-stat-label">This week</Text>
-          </View>
-          <View className="v6-stat">
-            <Text className="v6-stat-num">12</Text>
-            <Text className="v6-stat-label">Chords learned</Text>
-          </View>
-        </View>
-
+        {/* patch list */}
         <View className="gap-3">
           <View className="flex-row items-center justify-between">
-            <Text className="v6-section">Keep learning</Text>
-            <Text className="v6-section-link">Browse</Text>
+            <Text className="v6-section">Patch bank</Text>
+            <Text className="v6-count">03 / 12</Text>
           </View>
-          {LESSONS.map((l) => (
-            <View key={l.title} className="v6-row">
-              <View className="v6-cover">
-                <Text className="v6-cover-glyph">{l.icon}</Text>
-              </View>
+          {PATCHES.map((p) => (
+            <View key={p.title} className="v6-slot">
+              <View className="v6-slot-led" style={{ backgroundColor: p.led }} />
               <View className="flex-1">
-                <Text className="v6-row-title">{l.title}</Text>
-                <Text className="v6-row-meta">{l.meta}</Text>
+                <Text className="v6-slot-title">{p.title}</Text>
+                <Text className="v6-slot-meta">{p.meta}</Text>
               </View>
-              <Text className="v6-row-dur">{l.dur}</Text>
+              <Text className="v6-slot-bpm">{p.bpm} BPM</Text>
             </View>
           ))}
         </View>
 
-        <View className="flex-row flex-wrap gap-2.5">
-          {MOODS.map((m, i) => (
-            <View key={m} className={`v6-chip ${i === 0 ? 'v6-chip-active' : ''}`}>
-              <Text className={`v6-chip-label ${i === 0 ? 'v6-chip-label-active' : ''}`}>{m}</Text>
-            </View>
-          ))}
-        </View>
-
+        {/* transport */}
         <View className="gap-3">
-          <Pressable className="v6-cta">
-            <Text className="v6-cta-label">Continue lesson</Text>
+          <Pressable className="v6-transport">
+            <Text className="v6-transport-label">▶ Start session</Text>
           </Pressable>
-          <Pressable className="v6-ghost">
-            <Text className="v6-ghost-label">Practice freestyle</Text>
+          <Pressable className="v6-transport-ghost">
+            <Text className="v6-transport-ghost-label">● Log a take</Text>
           </Pressable>
         </View>
       </ScrollView>

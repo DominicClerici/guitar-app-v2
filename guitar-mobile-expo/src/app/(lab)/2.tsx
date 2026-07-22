@@ -1,23 +1,29 @@
-import { SymbolView, type SymbolViewProps } from 'expo-symbols';
+import { SymbolView } from 'expo-symbols';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import './styles/variant-2.css';
 
-const ACCENT = '#2fe3b6';
+const ON_ACCENT = '#1a0d09';
 
-const TILES: { icon: SymbolViewProps['name']; label: string }[] = [
-  { icon: 'tuningfork', label: 'Tuner' },
-  { icon: 'metronome', label: 'Tempo' },
-  { icon: 'waveform', label: 'Record' },
-  { icon: 'guitars', label: 'Chords' },
+// Live room-level meter — deterministic bar heights (px). The tallest read as
+// the warm stage light, the mids as cool gel, the rest sit in shadow.
+const LEVELS = [
+  7, 12, 9, 16, 22, 14, 19, 28, 20, 13, 24, 34, 26, 17, 30, 21, 12, 18, 25, 15, 9, 20, 11, 7,
 ];
 
-const SESSIONS = [
-  { title: 'Sweep Picking', meta: 'Technique · 4 exercises', dur: '18:00', icon: 'bolt.fill' },
-  { title: 'Minor Pentatonic', meta: 'Scales · Position 1', dur: '12:30', icon: 'circle.grid.3x3.fill' },
-  { title: 'Ear Training', meta: 'Intervals · Level 3', dur: '09:15', icon: 'ear.fill' },
-] as const;
+const SETLIST = [
+  { title: 'Blackbird', meta: 'THE BEATLES · KEY OF G', time: '3:52' },
+  { title: 'Wish You Were Here', meta: 'PINK FLOYD · CAPO 0', time: '5:34' },
+  { title: 'Tears in Heaven', meta: 'ERIC CLAPTON · KEY OF A', time: '4:16' },
+];
+
+function barClass(h: number) {
+  if (h >= 30) return 'v2-bar v2-bar-hot';
+  if (h >= 22) return 'v2-bar v2-bar-on';
+  if (h >= 16) return 'v2-bar v2-bar-cool';
+  return 'v2-bar';
+}
 
 export default function Variant2() {
   const insets = useSafeAreaInsets();
@@ -30,76 +36,69 @@ export default function Variant2() {
     >
       <View className="v2-scroll">
         {/* top bar */}
-        <View className="flex-row items-center justify-between">
+        <View className="flex-row items-start justify-between">
           <View>
-            <Text className="v2-greeting">Ready to play</Text>
+            <Text className="v2-greeting">Doors 21:00 · last set</Text>
             <Text className="v2-wordmark">
-              amp<Text className="v2-wordmark-accent">stack</Text>
+              After<Text className="v2-wordmark-accent"> hours</Text>
             </Text>
-          </View>
-          <View className="v2-avatar">
-            <Text className="v2-avatar-text">DC</Text>
-          </View>
-        </View>
-
-        {/* feature card */}
-        <View className="v2-section">
-          <View className="v2-feature">
-            <View className="v2-feature-pill">
-              <SymbolView name="flame.fill" size={12} tintColor={ACCENT} />
-              <Text className="v2-feature-pill-text">7 day streak</Text>
+            <View className="v2-live">
+              <View className="v2-live-dot" />
+              <Text className="v2-live-text">On air</Text>
             </View>
-            <Text className="v2-feature-title">Today&apos;s set</Text>
-            <Text className="v2-feature-sub">3 focused drills · roughly 40 minutes</Text>
+          </View>
+        </View>
 
-            <View className="v2-ring-row">
-              <View className="v2-ring">
-                <Text className="v2-ring-text">72%</Text>
-              </View>
-              <View className="flex-1">
-                <Text className="v2-stat-label">This week</Text>
-                <Text className="v2-stat-value">4h 12m practiced</Text>
-              </View>
+        {/* hero — on stage now */}
+        <View className="v2-feature">
+          <View className="v2-feature-pill">
+            <SymbolView name="waveform" size={11} tintColor="#ff6a4d" />
+            <Text className="v2-feature-pill-text">Now on stage</Text>
+          </View>
+          <Text className="v2-feature-title">Blackbird</Text>
+          <Text className="v2-feature-sub">The Beatles · a fingerstyle study in G</Text>
+
+          <View className="v2-progress-track">
+            <View className="v2-progress-fill" />
+          </View>
+          <Text className="v2-readout">BAR 24 / 38 · 92 BPM · CAPO 3 · −4¢</Text>
+
+          <Pressable className="v2-btn v2-btn-primary">
+            <SymbolView name="play.fill" size={15} tintColor={ON_ACCENT} />
+            <Text className="v2-btn-primary-text">Take the stage</Text>
+          </Pressable>
+        </View>
+
+        {/* signature — room level meter */}
+        <View className="v2-section">
+          <Text className="v2-eyebrow">Live</Text>
+          <Text className="v2-section-title">Room level</Text>
+          <View className="v2-meter">
+            <View className="v2-meter-head">
+              <Text className="v2-meter-label">Input · 6th string</Text>
+              <Text className="v2-meter-peak">−3.2 dB</Text>
             </View>
-
-            <Pressable className="v2-btn v2-btn-primary">
-              <SymbolView name="play.fill" size={15} tintColor="#04241c" />
-              <Text className="v2-btn-primary-text">Start warm-up</Text>
-            </Pressable>
+            <View className="v2-meter-row">
+              {LEVELS.map((h, i) => (
+                <View key={i} className={barClass(h)} style={{ height: h }} />
+              ))}
+            </View>
           </View>
         </View>
 
-        {/* quick actions */}
+        {/* setlist — ticket stubs */}
         <View className="v2-section">
-          <Text className="v2-eyebrow">Tools</Text>
-          <Text className="v2-section-title">Jump in</Text>
-          <View className="v2-tile-row" style={{ marginTop: 16 }}>
-            {TILES.map((t) => (
-              <View key={t.label} className="v2-tile">
-                <View className="v2-tile-badge">
-                  <SymbolView name={t.icon} size={20} tintColor={ACCENT} />
-                </View>
-                <Text className="v2-tile-label">{t.label}</Text>
-              </View>
-            ))}
-          </View>
-        </View>
-
-        {/* sessions */}
-        <View className="v2-section">
-          <Text className="v2-eyebrow">Queued</Text>
-          <Text className="v2-section-title">Your session</Text>
+          <Text className="v2-eyebrow">Tonight</Text>
+          <Text className="v2-section-title">The setlist</Text>
           <View style={{ marginTop: 6 }}>
-            {SESSIONS.map((s) => (
+            {SETLIST.map((s) => (
               <View key={s.title} className="v2-row">
-                <View className="v2-row-art">
-                  <SymbolView name={s.icon} size={20} tintColor={ACCENT} />
-                </View>
+                <View className="v2-stub-tick" />
                 <View className="flex-1">
                   <Text className="v2-row-title">{s.title}</Text>
                   <Text className="v2-row-meta">{s.meta}</Text>
                 </View>
-                <Text className="v2-row-dur">{s.dur}</Text>
+                <Text className="v2-row-time">{s.time}</Text>
               </View>
             ))}
           </View>
@@ -108,44 +107,45 @@ export default function Variant2() {
         {/* type specimen */}
         <View className="v2-section">
           <Text className="v2-eyebrow">Type system</Text>
-          <Text className="v2-section-title">Bold &amp; kinetic</Text>
-          <View className="v2-spec" style={{ marginTop: 16 }}>
+          <Text className="v2-section-title">A late, unhurried voice</Text>
+          <View className="v2-spec">
             <Text className="v2-spec-display">
-              Play<Text className="v2-spec-accent">.</Text>
+              Encore<Text className="v2-spec-accent">.</Text>
             </Text>
             <Text className="v2-spec-body">
-              A rounded geometric display carries energy and confidence, softened just enough to feel
-              approachable. Monospace numerals lock timing, tempo and levels into a tidy grid.
+              An italic serif does the singing — warm, close, a little smoky — while monospace keeps
+              the tempo, the tuning and the set times honest. One turned up under a single warm light;
+              everything else waits in the dark.
             </Text>
             <View className="v2-spec-divider" />
-            <Text className="v2-spec-mono">-6.0 dB · 128 BPM · GAIN 0.72</Text>
+            <Text className="v2-spec-mono">92 BPM · 4/4 · CAPO 3 · −3.2 dB</Text>
           </View>
         </View>
 
-        {/* swatches */}
+        {/* palette */}
         <View className="v2-section">
           <Text className="v2-eyebrow">Palette</Text>
-          <Text className="v2-section-title">Midnight &amp; mint</Text>
-          <View className="v2-swatch-row" style={{ marginTop: 16 }}>
-            <View>
+          <Text className="v2-section-title">Ink &amp; sodium light</Text>
+          <View className="v2-swatch-row">
+            <View className="flex-1">
               <View className="v2-swatch v2-sw-bg" />
-              <Text className="v2-swatch-label">Base</Text>
+              <Text className="v2-swatch-label">Ink</Text>
             </View>
-            <View>
+            <View className="flex-1">
               <View className="v2-swatch v2-sw-surface" />
               <Text className="v2-swatch-label">Raised</Text>
             </View>
-            <View>
+            <View className="flex-1">
               <View className="v2-swatch v2-sw-accent" />
-              <Text className="v2-swatch-label">Mint</Text>
+              <Text className="v2-swatch-label">Sodium</Text>
             </View>
-            <View>
-              <View className="v2-swatch v2-sw-violet" />
-              <Text className="v2-swatch-label">Violet</Text>
+            <View className="flex-1">
+              <View className="v2-swatch v2-sw-cool" />
+              <Text className="v2-swatch-label">Gel</Text>
             </View>
-            <View>
-              <View className="v2-swatch v2-sw-text" />
-              <Text className="v2-swatch-label">Text</Text>
+            <View className="flex-1">
+              <View className="v2-swatch v2-sw-gold" />
+              <Text className="v2-swatch-label">Brass</Text>
             </View>
           </View>
         </View>
