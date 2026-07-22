@@ -1,5 +1,344 @@
-.variant-2-root {
-  --lab-bg: #0d1117;
-  --lab-fg: #e6edf3;
-  --lab-accent: #58a6ff;
+/* =========================================================================
+   VARIANT 2 — "STAGE"
+   Sleek dark · electric-mint accent · rounded-modern
+   Near-black blue-charcoal with a single vivid mint accent, generous radii,
+   soft ambient glows and elevated surfaces. Rounded display type gives it a
+   friendly, premium pro-audio feel — think a tastefully lit amp, not RGB.
+   ========================================================================= */
+
+/* Palette lives at :root so uniwind registers it in the GLOBAL theme variable
+   store. Custom properties defined on an ordinary class (e.g. `.v2-root`) are
+   applied only to that element and do NOT cascade to descendants — uniwind
+   resolves var() against a global per-theme registry, not the view tree. All
+   tokens are `--v2-` prefixed so the six variants never collide. */
+:root {
+  --v2-bg: #0e0f14; /* near-black */
+  --v2-surface: #171922; /* card */
+  --v2-elevated: #1e212c; /* raised */
+  --v2-border: #282c39; /* hairline on dark */
+  --v2-border-soft: #21242f;
+  --v2-text: #f2f4f8; /* primary */
+  --v2-muted: #969db0; /* secondary */
+  --v2-faint: #626a7d; /* captions */
+  --v2-accent: #2fe3b6; /* electric mint */
+  --v2-accent-dim: #1fb593; /* pressed / deep */
+  --v2-accent-wash: rgba(47, 227, 182, 0.12);
+  --v2-violet: #8b7bff; /* secondary spark */
+  --v2-on-accent: #04241c; /* text on mint */
+}
+
+.v2-root {
+  background-color: var(--v2-bg);
+}
+
+/* ---- scaffolding ---- */
+.v2-scroll {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.v2-section {
+  margin-top: 30px;
+}
+.v2-eyebrow {
+  font-family: ui-monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--v2-accent);
+  font-weight: 600;
+}
+.v2-section-title {
+  font-family: ui-rounded;
+  font-size: 22px;
+  color: var(--v2-text);
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  margin-top: 6px;
+}
+
+/* ---- top bar ---- */
+.v2-greeting {
+  font-size: 13px;
+  color: var(--v2-muted);
+  font-weight: 500;
+}
+.v2-wordmark {
+  font-family: ui-rounded;
+  font-size: 30px;
+  color: var(--v2-text);
+  font-weight: 800;
+  letter-spacing: -0.6px;
+  margin-top: 3px;
+}
+.v2-wordmark-accent {
+  color: var(--v2-accent);
+}
+.v2-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 23px;
+  background-color: var(--v2-elevated);
+  border-width: 1px;
+  border-color: var(--v2-border);
+  align-items: center;
+  justify-content: center;
+}
+.v2-avatar-text {
+  font-family: ui-rounded;
+  font-size: 16px;
+  color: var(--v2-accent);
+  font-weight: 700;
+}
+
+/* ---- feature card ---- */
+.v2-feature {
+  background-color: var(--v2-surface);
+  border-radius: 22px;
+  border-width: 1px;
+  border-color: var(--v2-border);
+  padding: 22px;
+  box-shadow: 0px 18px 44px rgba(0, 0, 0, 0.5);
+}
+.v2-feature-pill {
+  align-self: flex-start;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--v2-accent-wash);
+  border-radius: 999px;
+  padding-left: 11px;
+  padding-right: 12px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.v2-feature-pill-text {
+  font-family: ui-monospace;
+  font-size: 10.5px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--v2-accent);
+  font-weight: 600;
+}
+.v2-feature-title {
+  font-family: ui-rounded;
+  font-size: 30px;
+  line-height: 34px;
+  color: var(--v2-text);
+  font-weight: 800;
+  letter-spacing: -0.6px;
+  margin-top: 16px;
+}
+.v2-feature-sub {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--v2-muted);
+  margin-top: 6px;
+}
+.v2-ring-row {
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+.v2-ring {
+  width: 58px;
+  height: 58px;
+  border-radius: 29px;
+  border-width: 4px;
+  border-color: var(--v2-accent);
+  border-left-color: var(--v2-border);
+  border-bottom-color: var(--v2-border);
+  align-items: center;
+  justify-content: center;
+}
+.v2-ring-text {
+  font-family: ui-rounded;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--v2-text);
+}
+.v2-stat-label {
+  font-size: 12px;
+  color: var(--v2-faint);
+}
+.v2-stat-value {
+  font-family: ui-rounded;
+  font-size: 17px;
+  color: var(--v2-text);
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+/* ---- buttons ---- */
+.v2-btn {
+  height: 52px;
+  border-radius: 15px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 8px;
+  margin-top: 20px;
+}
+.v2-btn-primary {
+  background-color: var(--v2-accent);
+  box-shadow: 0px 8px 24px rgba(47, 227, 182, 0.28);
+}
+.v2-btn-primary-text {
+  color: var(--v2-on-accent);
+  font-family: ui-rounded;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+.v2-btn-ghost {
+  background-color: var(--v2-elevated);
+  border-width: 1px;
+  border-color: var(--v2-border);
+}
+.v2-btn-ghost-text {
+  color: var(--v2-text);
+  font-family: ui-rounded;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+/* ---- quick action tiles ---- */
+.v2-tile-row {
+  flex-direction: row;
+  gap: 12px;
+}
+.v2-tile {
+  flex: 1;
+  background-color: var(--v2-surface);
+  border-radius: 18px;
+  border-width: 1px;
+  border-color: var(--v2-border-soft);
+  padding-top: 18px;
+  padding-bottom: 16px;
+  align-items: center;
+  gap: 11px;
+}
+.v2-tile-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background-color: var(--v2-accent-wash);
+  align-items: center;
+  justify-content: center;
+}
+.v2-tile-label {
+  font-size: 12.5px;
+  color: var(--v2-muted);
+  font-weight: 600;
+}
+
+/* ---- session / library rows ---- */
+.v2-row {
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+  background-color: var(--v2-surface);
+  border-radius: 16px;
+  border-width: 1px;
+  border-color: var(--v2-border-soft);
+  padding: 14px;
+  margin-top: 10px;
+}
+.v2-row-art {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background-color: var(--v2-elevated);
+  align-items: center;
+  justify-content: center;
+}
+.v2-row-title {
+  font-family: ui-rounded;
+  font-size: 15.5px;
+  color: var(--v2-text);
+  font-weight: 700;
+}
+.v2-row-meta {
+  font-size: 12.5px;
+  color: var(--v2-faint);
+  margin-top: 3px;
+}
+.v2-row-dur {
+  font-family: ui-monospace;
+  font-size: 12px;
+  color: var(--v2-muted);
+}
+
+/* ---- type specimen ---- */
+.v2-spec {
+  background-color: var(--v2-surface);
+  border-radius: 20px;
+  border-width: 1px;
+  border-color: var(--v2-border);
+  padding: 22px;
+}
+.v2-spec-display {
+  font-family: ui-rounded;
+  font-size: 46px;
+  line-height: 48px;
+  color: var(--v2-text);
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+.v2-spec-accent {
+  color: var(--v2-accent);
+}
+.v2-spec-body {
+  font-size: 14.5px;
+  line-height: 22px;
+  color: var(--v2-muted);
+  margin-top: 14px;
+}
+.v2-spec-divider {
+  height: 1px;
+  background-color: var(--v2-border);
+  margin-top: 18px;
+  margin-bottom: 18px;
+}
+.v2-spec-mono {
+  font-family: ui-monospace;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  color: var(--v2-accent);
+}
+
+/* ---- swatches ---- */
+.v2-swatch-row {
+  flex-direction: row;
+  gap: 10px;
+}
+.v2-swatch {
+  flex: 1;
+  height: 56px;
+  border-radius: 12px;
+  border-width: 1px;
+  border-color: rgba(255, 255, 255, 0.06);
+}
+.v2-sw-bg {
+  background-color: var(--v2-bg);
+}
+.v2-sw-surface {
+  background-color: var(--v2-elevated);
+}
+.v2-sw-accent {
+  background-color: var(--v2-accent);
+}
+.v2-sw-violet {
+  background-color: var(--v2-violet);
+}
+.v2-sw-text {
+  background-color: var(--v2-text);
+}
+.v2-swatch-label {
+  font-family: ui-monospace;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  color: var(--v2-faint);
+  margin-top: 6px;
+  text-align: center;
 }

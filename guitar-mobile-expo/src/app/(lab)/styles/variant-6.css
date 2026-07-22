@@ -1,5 +1,240 @@
+/* Variant 6 — "Twilight Fret"
+   Cool dark, modern, rounded. Midnight slate-blue with a soft periwinkle
+   accent and a mint highlight. Large radii, pill shapes, and a rounded
+   typeface make it approachable and friendly — a consumer feel, kept elegant
+   by restraint and generous space. */
+
+:root {
+  --v6-bg: #12141d;
+  --v6-surface: #1b1e2b;
+  --v6-surface-2: #242838;
+  --v6-border: #2c3145;
+  --v6-border-strong: #3a4058;
+
+  --v6-fg: #eef0f8;
+  --v6-muted: #a4a9c1;
+  --v6-faint: #6a708a;
+
+  --v6-accent: #8b8cf6;
+  --v6-accent-soft: #23244a;
+  --v6-mint: #5fd6c3;
+  --v6-on-accent: #14152099;
+
+  --v6-round: 'SF Pro Rounded', 'Hiragino Maru Gothic ProN', ui-rounded, system-ui, sans-serif;
+}
+
 .variant-6-root {
-  --lab-bg: #000000;
-  --lab-fg: #39ff14;
-  --lab-accent: #ff00ff;
+  background-color: var(--v6-bg);
+}
+
+.v6-round {
+  font-family: var(--v6-round);
+}
+
+.v6-eyebrow {
+  font-family: var(--v6-round);
+  color: var(--v6-mint);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.v6-title {
+  font-family: var(--v6-round);
+  color: var(--v6-fg);
+  font-size: 32px;
+  line-height: 37px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.v6-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 23px;
+  background-color: var(--v6-accent-soft);
+  align-items: center;
+  justify-content: center;
+}
+.v6-avatar-glyph {
+  font-family: var(--v6-round);
+  color: var(--v6-accent);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.v6-hero {
+  background-color: var(--v6-accent);
+  border-radius: 26px;
+  padding: 24px;
+}
+.v6-hero-kicker {
+  font-family: var(--v6-round);
+  color: #14152099;
+  font-size: 13px;
+  font-weight: 600;
+}
+.v6-hero-title {
+  font-family: var(--v6-round);
+  color: #14161f;
+  font-size: 25px;
+  line-height: 30px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+.v6-hero-sub {
+  font-family: var(--v6-round);
+  color: #2b2d52;
+  font-size: 14px;
+  font-weight: 500;
+}
+.v6-play {
+  width: 58px;
+  height: 58px;
+  border-radius: 29px;
+  background-color: #14161f;
+  align-items: center;
+  justify-content: center;
+}
+.v6-play-glyph {
+  color: var(--v6-accent);
+  font-size: 20px;
+  margin-left: 3px;
+}
+.v6-hero-track {
+  height: 8px;
+  border-radius: 4px;
+  background-color: #14161f33;
+  overflow: hidden;
+}
+.v6-hero-track-fill {
+  height: 8px;
+  border-radius: 4px;
+  background-color: #14161f;
+}
+
+.v6-stat {
+  flex: 1;
+  background-color: var(--v6-surface);
+  border-radius: 20px;
+  padding: 16px;
+}
+.v6-stat-num {
+  font-family: var(--v6-round);
+  color: var(--v6-fg);
+  font-size: 24px;
+  font-weight: 700;
+}
+.v6-stat-label {
+  font-family: var(--v6-round);
+  color: var(--v6-faint);
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 2px;
+}
+.v6-stat-accent {
+  color: var(--v6-mint);
+}
+
+.v6-section {
+  font-family: var(--v6-round);
+  color: var(--v6-fg);
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+.v6-section-link {
+  font-family: var(--v6-round);
+  color: var(--v6-accent);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.v6-row {
+  flex-direction: row;
+  align-items: center;
+  background-color: var(--v6-surface);
+  border-radius: 20px;
+  padding: 14px;
+  gap: 14px;
+}
+.v6-cover {
+  width: 48px;
+  height: 48px;
+  border-radius: 15px;
+  background-color: var(--v6-surface-2);
+  align-items: center;
+  justify-content: center;
+}
+.v6-cover-glyph {
+  font-family: var(--v6-round);
+  color: var(--v6-accent);
+  font-size: 19px;
+  font-weight: 700;
+}
+.v6-row-title {
+  font-family: var(--v6-round);
+  color: var(--v6-fg);
+  font-size: 16px;
+  font-weight: 600;
+}
+.v6-row-meta {
+  font-family: var(--v6-round);
+  color: var(--v6-muted);
+  font-size: 13px;
+  margin-top: 1px;
+}
+.v6-row-dur {
+  font-family: var(--v6-round);
+  color: var(--v6-faint);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.v6-cta {
+  background-color: var(--v6-accent);
+  border-radius: 22px;
+  padding-top: 17px;
+  padding-bottom: 17px;
+  align-items: center;
+}
+.v6-cta-label {
+  font-family: var(--v6-round);
+  color: #14161f;
+  font-size: 16px;
+  font-weight: 700;
+}
+.v6-ghost {
+  background-color: var(--v6-surface);
+  border-radius: 22px;
+  padding-top: 17px;
+  padding-bottom: 17px;
+  align-items: center;
+}
+.v6-ghost-label {
+  font-family: var(--v6-round);
+  color: var(--v6-fg);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.v6-chip {
+  border-radius: 18px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  padding-left: 16px;
+  padding-right: 16px;
+  background-color: var(--v6-surface);
+}
+.v6-chip-active {
+  background-color: var(--v6-accent-soft);
+}
+.v6-chip-label {
+  font-family: var(--v6-round);
+  color: var(--v6-muted);
+  font-size: 14px;
+  font-weight: 500;
+}
+.v6-chip-label-active {
+  color: var(--v6-accent);
+  font-weight: 600;
 }

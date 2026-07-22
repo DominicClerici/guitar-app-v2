@@ -1,5 +1,344 @@
-.variant-3-root {
-  --lab-bg: #fdf6e3;
-  --lab-fg: #073642;
-  --lab-accent: #cb4b16;
+/* =========================================================================
+   VARIANT 3 — "SCORE"
+   Swiss modernist · light · monochrome + vermilion
+   A precise, architectural grid system. Near-white cool paper, near-black ink,
+   one confident vermilion accent. Tight grotesk headings, uppercase monospace
+   micro-labels, sharp corners and hairline rules. Feels exact, editorial,
+   engineered — like a well-set score.
+   ========================================================================= */
+
+/* Palette lives at :root so uniwind registers it in the GLOBAL theme variable
+   store. Custom properties defined on an ordinary class (e.g. `.v3-root`) are
+   applied only to that element and do NOT cascade to descendants — uniwind
+   resolves var() against a global per-theme registry, not the view tree. All
+   tokens are `--v3-` prefixed so the six variants never collide. */
+:root {
+  --v3-bg: #f4f4f1; /* cool paper */
+  --v3-surface: #ffffff; /* card */
+  --v3-ink: #17171b; /* near-black */
+  --v3-ink-soft: #55565d; /* secondary */
+  --v3-faint: #9a9aa1; /* captions */
+  --v3-line: #e3e3df; /* hairline */
+  --v3-line-strong: #cfcfc9;
+  --v3-accent: #e5402b; /* vermilion */
+  --v3-accent-ink: #c22f1c; /* pressed */
+  --v3-accent-wash: #fbe4df;
+}
+
+.v3-root {
+  background-color: var(--v3-bg);
+}
+
+/* ---- scaffolding ---- */
+.v3-scroll {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.v3-section {
+  margin-top: 32px;
+}
+.v3-section-head {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  border-bottom-width: 1.5px;
+  border-bottom-color: var(--v3-ink);
+  padding-bottom: 8px;
+}
+.v3-index {
+  font-family: ui-monospace;
+  font-size: 11px;
+  color: var(--v3-accent);
+  font-weight: 700;
+}
+.v3-section-title {
+  flex: 1;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--v3-ink);
+  font-weight: 700;
+}
+.v3-section-meta {
+  font-family: ui-monospace;
+  font-size: 11px;
+  color: var(--v3-faint);
+}
+
+/* ---- top bar ---- */
+.v3-topbar {
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.v3-kicker {
+  font-family: ui-monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--v3-faint);
+}
+.v3-wordmark {
+  font-size: 38px;
+  color: var(--v3-ink);
+  font-weight: 800;
+  letter-spacing: -1.6px;
+  margin-top: 6px;
+}
+.v3-wordmark-accent {
+  color: var(--v3-accent);
+}
+.v3-daychip {
+  border-width: 1.5px;
+  border-color: var(--v3-ink);
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+.v3-daychip-text {
+  font-family: ui-monospace;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  color: var(--v3-ink);
+  font-weight: 600;
+}
+
+/* ---- feature / hero ---- */
+.v3-feature {
+  background-color: var(--v3-surface);
+  border-width: 1.5px;
+  border-color: var(--v3-ink);
+  padding: 20px;
+  margin-top: 16px;
+}
+.v3-feature-top {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.v3-feature-label {
+  font-family: ui-monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--v3-accent);
+  font-weight: 700;
+}
+.v3-feature-num {
+  font-family: ui-monospace;
+  font-size: 11px;
+  color: var(--v3-faint);
+}
+.v3-feature-title {
+  font-size: 34px;
+  line-height: 36px;
+  color: var(--v3-ink);
+  font-weight: 800;
+  letter-spacing: -1.2px;
+  margin-top: 14px;
+}
+.v3-feature-sub {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--v3-ink-soft);
+  margin-top: 8px;
+}
+/* segmented progress */
+.v3-seg-row {
+  flex-direction: row;
+  gap: 4px;
+  margin-top: 20px;
+}
+.v3-seg {
+  flex: 1;
+  height: 8px;
+  background-color: var(--v3-line);
+}
+.v3-seg-on {
+  background-color: var(--v3-accent);
+}
+.v3-seg-meta {
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.v3-mono-label {
+  font-family: ui-monospace;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  color: var(--v3-faint);
+}
+
+/* ---- buttons ---- */
+.v3-btn {
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 8px;
+  margin-top: 20px;
+}
+.v3-btn-primary {
+  background-color: var(--v3-accent);
+}
+.v3-btn-primary-text {
+  color: #ffffff;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.v3-btn-ghost {
+  background-color: transparent;
+  border-width: 1.5px;
+  border-color: var(--v3-ink);
+}
+.v3-btn-ghost-text {
+  color: var(--v3-ink);
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+/* ---- metric grid ---- */
+.v3-grid {
+  flex-direction: row;
+  border-width: 1.5px;
+  border-color: var(--v3-ink);
+  margin-top: 16px;
+}
+.v3-cell {
+  flex: 1;
+  padding: 14px;
+}
+.v3-cell-div {
+  border-left-width: 1px;
+  border-left-color: var(--v3-line-strong);
+}
+.v3-cell-num {
+  font-size: 30px;
+  color: var(--v3-ink);
+  font-weight: 800;
+  letter-spacing: -1.5px;
+}
+.v3-cell-num-accent {
+  color: var(--v3-accent);
+}
+.v3-cell-label {
+  font-family: ui-monospace;
+  font-size: 10px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--v3-faint);
+  margin-top: 6px;
+}
+
+/* ---- catalogue rows ---- */
+.v3-row {
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-bottom-width: 1px;
+  border-bottom-color: var(--v3-line);
+}
+.v3-row-num {
+  font-family: ui-monospace;
+  font-size: 12px;
+  color: var(--v3-accent);
+  font-weight: 700;
+  width: 28px;
+}
+.v3-row-title {
+  font-size: 16px;
+  color: var(--v3-ink);
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+.v3-row-meta {
+  font-family: ui-monospace;
+  font-size: 11px;
+  letter-spacing: 0.4px;
+  color: var(--v3-faint);
+  margin-top: 3px;
+}
+.v3-row-bpm {
+  font-family: ui-monospace;
+  font-size: 12px;
+  color: var(--v3-ink-soft);
+}
+
+/* ---- type specimen ---- */
+.v3-spec {
+  background-color: var(--v3-surface);
+  border-width: 1.5px;
+  border-color: var(--v3-ink);
+  padding: 20px;
+  margin-top: 16px;
+}
+.v3-spec-display {
+  font-size: 56px;
+  line-height: 56px;
+  color: var(--v3-ink);
+  font-weight: 800;
+  letter-spacing: -2.5px;
+}
+.v3-spec-accent {
+  color: var(--v3-accent);
+}
+.v3-spec-body {
+  font-size: 14.5px;
+  line-height: 22px;
+  color: var(--v3-ink-soft);
+  margin-top: 14px;
+}
+.v3-spec-divider {
+  height: 1px;
+  background-color: var(--v3-line);
+  margin-top: 18px;
+  margin-bottom: 18px;
+}
+.v3-spec-mono {
+  font-family: ui-monospace;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  color: var(--v3-accent-ink);
+}
+
+/* ---- swatches ---- */
+.v3-swatch-row {
+  flex-direction: row;
+  gap: 8px;
+  margin-top: 16px;
+}
+.v3-swatch {
+  flex: 1;
+  height: 56px;
+  border-width: 1px;
+  border-color: rgba(0, 0, 0, 0.08);
+}
+.v3-sw-bg {
+  background-color: var(--v3-bg);
+}
+.v3-sw-ink {
+  background-color: var(--v3-ink);
+}
+.v3-sw-accent {
+  background-color: var(--v3-accent);
+}
+.v3-sw-wash {
+  background-color: var(--v3-accent-wash);
+}
+.v3-sw-line {
+  background-color: var(--v3-line-strong);
+}
+.v3-swatch-label {
+  font-family: ui-monospace;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  color: var(--v3-faint);
+  margin-top: 6px;
 }
