@@ -15,12 +15,22 @@ interface TabBarProps {
   // Settled page, used only to trigger auto-scroll of the bar.
   activeIndex: number;
   onTabPress: (index: number) => void;
+  // Tap crossfade: when tapActive is 1, the bar ignores scrollX and blends the
+  // tapFrom label out / tapTo label in as tapProgress runs 0 → 1.
+  tapActive: SharedValue<number>;
+  tapFrom: SharedValue<number>;
+  tapTo: SharedValue<number>;
+  tapProgress: SharedValue<number>;
 }
 
 interface TabLabelProps {
   index: number;
   label: string;
   scrollX: SharedValue<number>;
+  tapActive: SharedValue<number>;
+  tapFrom: SharedValue<number>;
+  tapTo: SharedValue<number>;
+  tapProgress: SharedValue<number>;
   activeColor: string;
   inactiveColor: string;
   onPress: () => void;
@@ -31,21 +41,33 @@ function TabLabel({
   index,
   label,
   scrollX,
+  tapActive,
+  tapFrom,
+  tapTo,
+  tapProgress,
   activeColor,
   inactiveColor,
   onPress,
   onLayout,
 }: TabLabelProps) {
-  // Blend faint → aqua as the pager crosses this tab, so both the leaving and
-  // arriving labels animate together mid-swipe. interpolateColor clamps outside
-  // the range, so tabs further than one page away stay faint.
-  const animatedStyle = useAnimatedStyle(() => ({
-    color: interpolateColor(
-      scrollX.value,
-      [index - 1, index, index + 1],
-      [inactiveColor, activeColor, inactiveColor],
-    ),
-  }));
+  // focus = how active this tab is, in [0,1]. During a tap only the source and
+  // target tabs move (a single crossfade, intermediates stay faint); otherwise
+  // the tab tracks the swiping pager — clamp(1 - |scrollX - index|) is exactly
+  // the old interpolateColor([index-1, index, index+1]) behaviour, so both the
+  // leaving and arriving labels still blend together mid-swipe.
+  const animatedStyle = useAnimatedStyle(() => {
+    let focus: number;
+    if (tapActive.value === 1) {
+      if (index === tapTo.value) focus = tapProgress.value;
+      else if (index === tapFrom.value) focus = 1 - tapProgress.value;
+      else focus = 0;
+    } else {
+      focus = Math.max(0, 1 - Math.abs(scrollX.value - index));
+    }
+    return {
+      color: interpolateColor(focus, [0, 1], [inactiveColor, activeColor]),
+    };
+  });
 
   return (
     <Pressable onPress={onPress} onLayout={onLayout} hitSlop={10}>
@@ -56,7 +78,15 @@ function TabLabel({
   );
 }
 
-export function TabBar({ scrollX, activeIndex, onTabPress }: TabBarProps) {
+export function TabBar({
+  scrollX,
+  activeIndex,
+  onTabPress,
+  tapActive,
+  tapFrom,
+  tapTo,
+  tapProgress,
+}: TabBarProps) {
   const scrollRef = useRef<ScrollView>(null);
   const layouts = useRef<{ x: number; width: number }[]>([]);
   const { width: windowWidth } = useWindowDimensions();
@@ -87,6 +117,10 @@ export function TabBar({ scrollX, activeIndex, onTabPress }: TabBarProps) {
           index={index}
           label={tab.label}
           scrollX={scrollX}
+          tapActive={tapActive}
+          tapFrom={tapFrom}
+          tapTo={tapTo}
+          tapProgress={tapProgress}
           activeColor={activeColor}
           inactiveColor={inactiveColor}
           onPress={() => onTabPress(index)}
