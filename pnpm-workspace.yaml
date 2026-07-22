@@ -1,0 +1,6 @@
+packages:
+  - 'guitar-mobile-expo'
+  - 'lambda-backend'
+  - 'packages/*'
+allowBuilds:
+  unrs-resolver: true

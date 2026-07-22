@@ -1,0 +1,7 @@
+node_modules
+pnpm-lock.yaml
+**/.expo
+**/dist
+**/web-build
+**/expo-env.d.ts
+**/uniwind-env.d.ts

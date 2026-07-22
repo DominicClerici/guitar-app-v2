@@ -1,0 +1,14 @@
+# dependencies
+node_modules/
+
+# macOS
+.DS_Store
+
+# env
+.env
+.env.*.local
+
+# editor
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
