@@ -1,8 +1,14 @@
 @import 'tailwindcss';
 @import 'uniwind';
-/* disposable design-lab route group — remove this line when ripping it out */
-@import './app/(lab)/styles/index.css';
 
+/* Screen/component styles. uniwind only compiles CSS reachable from this
+   entry file, so every stylesheet must be @imported here. */
+@import './app/styles/home.css';
+
+/* =========================================================================
+   Aurora design system — tokens. See DESIGN.md for the full language.
+   Reference as var(--token) in components; never hardcode hex.
+   ========================================================================= */
 :root {
   --font-display:
     Spline Sans, Inter, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji,
@@ -11,4 +17,31 @@
     ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   --font-rounded: 'SF Pro Rounded', 'Hiragino Maru Gothic ProN', Meiryo, 'MS PGothic', sans-serif;
   --font-serif: Georgia, 'Times New Roman', serif;
+
+  /* ─ surfaces & structure ─ */
+  --bg: #0c0d10; /* app background — cool near-black */
+  --tray: #131418; /* outer machined tray */
+  --surface: #181a1f; /* default card face */
+  --surface-raised: #20232a; /* raised chips / ghost buttons */
+  --edge-top: rgba(255, 255, 255, 0.08); /* bevel highlight */
+  --edge-bottom: rgba(0, 0, 0, 0.52); /* bevel shadow */
+  --line: #2a2e36; /* hairline */
+  --line-soft: #23262d; /* softer hairline / side borders */
+
+  /* ─ ink ─ */
+  --ink: #eef0f4;
+  --ink-muted: #9aa0aa;
+  --ink-faint: #62666e;
+
+  /* ─ accent: aqua, the one primary ─ */
+  --accent: #5ec8c2;
+  --accent-bright: #86e0da;
+  --accent-wash: rgba(94, 200, 194, 0.12);
+  --on-accent: #04211f;
+
+  /* ─ key-coded jewel hues ─ */
+  --aqua: #5ec8c2;
+  --amber: #e0a84e;
+  --rose: #e0788f;
+  --violet: #9b8cf0;
 }

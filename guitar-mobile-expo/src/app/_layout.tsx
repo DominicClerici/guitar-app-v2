@@ -1,20 +1,15 @@
-import { DarkTheme, DefaultTheme, Slot, ThemeProvider } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useColorScheme } from 'react-native';
+import '@/global.css';
 
-import { DESIGN_LAB_MODE } from '@/app/(lab)/_flag';
-import { AnimatedSplashOverlay } from '@/components/animated-icon';
-import AppTabs from '@/components/app-tabs';
+import { DarkTheme, Stack, ThemeProvider } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
 
-SplashScreen.preventAutoHideAsync();
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+export default function RootLayout() {
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <AnimatedSplashOverlay />
-      {/* disposable design-lab override — remove this ternary (and the import above) when ripping it out */}
-      {DESIGN_LAB_MODE ? <Slot /> : <AppTabs />}
+    <ThemeProvider value={DarkTheme}>
+      <StatusBar style="light" />
+      <Stack
+        screenOptions={{ headerShown: false, contentStyle: { backgroundColor: '#0c0d10' } }}
+      />
     </ThemeProvider>
   );
 }
