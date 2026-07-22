@@ -4,6 +4,7 @@
 /* Screen/component styles. uniwind only compiles CSS reachable from this
    entry file, so every stylesheet must be @imported here. */
 @import './app/styles/home.css';
+@import './app/styles/tabs.css';
 
 /* =========================================================================
    Aurora design system — tokens. See DESIGN.md for the full language.

@@ -149,3 +149,29 @@ This document grows with the app. When you add a screen:
 3. **Match the depth recipe** rather than inventing new shadow/border treatments.
 4. **Document new patterns** (a new component archetype, a new interaction) in a section
    below so the next screen stays coherent.
+
+---
+
+## Patterns
+
+### Top-tab navigation
+
+The app's primary navigation is a **thin, horizontally-scrolling label bar** pinned under
+the status bar, above a swipeable content area. Lives in
+`src/components/navigation/` (`TopTabs` orchestrator, `TabBar`, `tabs.ts` config); each
+tab's body is a screen in `src/screens/`.
+
+- **Bar.** 46px tall, `--bg` background, a single `--line-soft` bottom hairline. Labels are
+  mono, 12px, uppercase, `+2px` tracking — reading like instrument channel labels, not
+  buttons. No indicator bar or pill.
+- **Active state = ink brighten.** The active label is `--accent` (aqua), inactive labels
+  `--ink-faint`. The colour is *animated*, interpolated against the pager's live position
+  so leaving/arriving labels blend mid-swipe. Because the colour is animated in JS,
+  `.tab-label` sets no `color`; the two endpoint hues are read from tokens via uniwind's
+  `useCSSVariable`, never hardcoded.
+- **Swipe = native pager.** Content uses `react-native-pager-view` (native
+  `UIPageViewController` / `ViewPager2`) for the gesture. The pager is the single source of
+  truth: taps call `setPage`, swipes move it natively, and both feed `onPageScroll`, which
+  drives the bar — so tap and swipe can never diverge.
+- **Safe area.** The `TopTabs` root owns the top inset; tab screens must **not** re-add it
+  (they start their padding from just below the bar) and own only their bottom inset.
