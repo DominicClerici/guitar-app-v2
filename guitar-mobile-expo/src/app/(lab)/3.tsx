@@ -4,106 +4,139 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import './styles/variant-3.css';
 
-const CHEVRON = '#9fa199';
-const ON_INK = '#fdfdfc';
+const ON_ACCENT = '#14161a';
+const GHOST_ICON = '#9ca0a8';
 
-const STATS = [
-  { num: '4:12', label: 'Hours', accent: false },
-  { num: '72', label: 'Accuracy', accent: true },
-  { num: '07', label: 'Streak', accent: false },
+// Precision tuner scale — 25 graduations. The centre reads in tune (silver),
+// every fifth tick is a major graduation, the rest are fine.
+const TICKS = Array.from({ length: 25 }, (_, i) => i);
+const CENTER = 12;
+function tickClass(i: number) {
+  if (i === CENTER) return 'v3-tick-center';
+  if (i % 5 === 0) return 'v3-tick v3-tick-major';
+  return 'v3-tick';
+}
+
+const TILES = [
+  { num: '14', label: 'Streak', accent: false },
+  { num: '92%', label: 'Accuracy', accent: true },
+  { num: '3.2h', label: 'This week', accent: false },
 ];
 
-const SESSIONS = [
-  { n: '01', title: 'Legato runs', meta: 'A minor · 6/8', tempo: '96 BPM' },
-  { n: '02', title: 'String skipping', meta: 'C major · 4/4', tempo: '120 BPM' },
-  { n: '03', title: 'Hybrid picking', meta: 'D dorian · 4/4', tempo: '84 BPM' },
+const SETLIST = [
+  { n: '01', title: 'Blackbird', meta: 'THE BEATLES · FINGERSTYLE', key: 'G' },
+  { n: '02', title: 'Wish You Were Here', meta: 'PINK FLOYD · ACOUSTIC', key: 'G' },
+  { n: '03', title: 'Tears in Heaven', meta: 'CLAPTON · FINGERSTYLE', key: 'A' },
 ];
 
 export default function Variant3() {
   const insets = useSafeAreaInsets();
 
   return (
-    <ScrollView
-      className="v3-root flex-1"
-      contentContainerStyle={{ paddingTop: insets.top + 18, paddingBottom: insets.bottom + 96 }}
-      showsVerticalScrollIndicator={false}
-    >
-      <View className="v3-scroll">
+    <View className="variant-3-root flex-1">
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{
+          paddingTop: insets.top + 20,
+          paddingBottom: insets.bottom + 96,
+          paddingHorizontal: 22,
+        }}
+      >
         {/* header */}
-        <View className="v3-header">
+        <View className="flex-row items-center justify-between">
           <View>
-            <Text className="v3-kicker">Monday · practice</Text>
-            <Text className="v3-wordmark">
-              Ateli<Text className="v3-wordmark-bold">er</Text>
+            <Text className="v3-device">Practice unit</Text>
+            <Text className="v3-brand">
+              Tac<Text className="v3-brand-accent">et</Text>
             </Text>
           </View>
-          <View className="v3-avatar">
-            <Text className="v3-avatar-text">DC</Text>
+          <View className="v3-opus">
+            <Text className="v3-opus-no">03</Text>
+            <Text className="v3-opus-label">Study</Text>
           </View>
         </View>
 
-        {/* hero — floating focus card */}
-        <View className="v3-hero">
-          <Text className="v3-hero-eyebrow">Today&apos;s focus</Text>
-          <Text className="v3-hero-title">Alternate picking</Text>
-          <Text className="v3-hero-sub">
-            Even down-up strokes across the strings · target 120 BPM
-          </Text>
-
-          <View className="v3-gauge">
-            <View className="v3-gauge-head">
-              <Text className="v3-gauge-big">
-                68<Text className="v3-gauge-big-unit">%</Text>
-              </Text>
-              <Text className="v3-gauge-caption">24 of 38 bars</Text>
+        {/* machined hero */}
+        <View className="v3-tray" style={{ marginTop: 24 }}>
+          <View className="v3-face">
+            <View className="v3-face-topline">
+              <Text className="v3-eyebrow">Now playing</Text>
+              <Text className="v3-face-index">01 / 03</Text>
             </View>
-            <View className="v3-gauge-track">
-              <View className="v3-gauge-fill" />
-              <View className="v3-gauge-thumb" />
+            <Text className="v3-face-title">Blackbird</Text>
+            <Text className="v3-face-sub">The Beatles · a fingerstyle study in G</Text>
+            <View className="v3-readout">
+              <Text className="v3-readout-time">03:12</Text>
+              <Text className="v3-readout-meta">92 BPM · 4/4 · CAPO 3</Text>
+            </View>
+
+            <View className="v3-transport">
+              <Pressable className="v3-btn-primary">
+                <SymbolView name="play.fill" size={14} tintColor={ON_ACCENT} />
+                <Text className="v3-btn-primary-text">Resume</Text>
+              </Pressable>
+              <Pressable className="v3-btn-ghost">
+                <SymbolView name="metronome" size={18} tintColor={GHOST_ICON} />
+              </Pressable>
             </View>
           </View>
-
-          <Pressable className="v3-hero-btn">
-            <Text className="v3-hero-btn-text">Begin session</Text>
-            <View className="v3-hero-btn-icon">
-              <SymbolView name="arrow.right" size={12} tintColor={ON_INK} weight="medium" />
-            </View>
-          </Pressable>
         </View>
 
-        {/* floating stat trio */}
-        <View className="v3-stats">
-          {STATS.map((s) => (
-            <View key={s.label} className="v3-stat">
-              <Text className={s.accent ? 'v3-stat-num v3-stat-num-accent' : 'v3-stat-num'}>
-                {s.num}
+        {/* signature — tuner scale */}
+        <View className="v3-section">
+          <View className="v3-section-head">
+            <Text className="v3-section-title">Tuner</Text>
+            <Text className="v3-section-meta">440 Hz · standard</Text>
+          </View>
+          <View className="v3-tuner">
+            <View className="v3-tuner-head">
+              <Text className="v3-tuner-note">
+                A<Text className="v3-tuner-note-sub"> · 110.0 Hz</Text>
               </Text>
-              <Text className="v3-stat-label">{s.label}</Text>
+              <Text className="v3-tuner-cents">−0.4 ¢</Text>
+            </View>
+            <View className="v3-tuner-scale">
+              {TICKS.map((i) => (
+                <View key={i} className={tickClass(i)} />
+              ))}
+            </View>
+            <View className="v3-tuner-baseline" />
+            <View className="v3-tuner-labels">
+              <Text className="v3-tuner-label">−50</Text>
+              <Text className="v3-tuner-label">IN TUNE</Text>
+              <Text className="v3-tuner-label">+50</Text>
+            </View>
+          </View>
+        </View>
+
+        {/* machined stat tiles */}
+        <View className="v3-tiles">
+          {TILES.map((t) => (
+            <View key={t.label} className="v3-tile">
+              <Text className={t.accent ? 'v3-tile-num v3-tile-num-accent' : 'v3-tile-num'}>
+                {t.num}
+              </Text>
+              <Text className="v3-tile-label">{t.label}</Text>
             </View>
           ))}
         </View>
 
-        {/* sessions */}
+        {/* setlist */}
         <View className="v3-section">
-          <View className="v3-eyebrow">
-            <View className="v3-eyebrow-dot" />
-            <Text className="v3-eyebrow-text">This week</Text>
+          <View className="v3-section-head">
+            <Text className="v3-section-title">Setlist</Text>
+            <Text className="v3-section-meta">03 CUTS</Text>
           </View>
-          <Text className="v3-section-title">Studio sessions</Text>
-          <View className="v3-list-card">
-            {SESSIONS.map((s, i) => (
-              <View
-                key={s.n}
-                className={i === SESSIONS.length - 1 ? 'v3-row v3-row-last' : 'v3-row'}
-              >
-                <Text className="v3-row-index">{s.n}</Text>
+          <View style={{ marginTop: 4 }}>
+            {SETLIST.map((s) => (
+              <View key={s.n} className="v3-slot">
+                <Text className="v3-slot-index">{s.n}</Text>
                 <View className="flex-1">
-                  <Text className="v3-row-title">{s.title}</Text>
-                  <Text className="v3-row-meta">{s.meta}</Text>
+                  <Text className="v3-slot-title">{s.title}</Text>
+                  <Text className="v3-slot-meta">{s.meta}</Text>
                 </View>
-                <Text className="v3-row-tempo">{s.tempo}</Text>
-                <View className="v3-row-chevron">
-                  <SymbolView name="chevron.right" size={11} tintColor={CHEVRON} weight="semibold" />
+                <View className="v3-slot-key">
+                  <Text className="v3-slot-key-text">{s.key}</Text>
                 </View>
               </View>
             ))}
@@ -112,38 +145,36 @@ export default function Variant3() {
 
         {/* type specimen */}
         <View className="v3-section">
-          <View className="v3-eyebrow">
-            <View className="v3-eyebrow-dot" />
-            <Text className="v3-eyebrow-text">Type system</Text>
+          <View className="v3-section-head">
+            <Text className="v3-section-title">Type</Text>
+            <Text className="v3-section-meta">GROTESK / MONO</Text>
           </View>
-          <Text className="v3-section-title">Air &amp; structure</Text>
           <View className="v3-spec">
             <Text className="v3-spec-display">
-              Poise<Text className="v3-spec-accent">.</Text>
+              Silver<Text className="v3-spec-accent">.</Text>
             </Text>
             <Text className="v3-spec-body">
-              One family carries every role. Weight and scale do the work that a second typeface
-              usually would — a hairline 200 for display, a calm 400 for reading — so the interface
-              stays quiet while the hierarchy stays unmistakable.
+              A tight grotesk holds the titles at low contrast; monospace runs every reading — time,
+              tempo, cents — so the numbers align like an instrument face. No colour at all: only
+              graphite and the cold light it catches.
             </Text>
             <View className="v3-spec-divider" />
-            <Text className="v3-spec-mono">120 BPM · 4/4 · POS. V · +2 semitones</Text>
+            <Text className="v3-spec-mono">92 BPM · 4/4 · CAPO 3 · −0.4 ¢</Text>
           </View>
         </View>
 
         {/* palette */}
         <View className="v3-section">
-          <View className="v3-eyebrow">
-            <View className="v3-eyebrow-dot" />
-            <Text className="v3-eyebrow-text">Palette</Text>
+          <View className="v3-section-head">
+            <Text className="v3-section-title">Palette</Text>
+            <Text className="v3-section-meta">05 TOKENS</Text>
           </View>
-          <Text className="v3-section-title">Bone, ink &amp; verdigris</Text>
           <View className="v3-swatch-row">
             {[
-              { cls: 'v3-sw-bone', label: 'Bone' },
-              { cls: 'v3-sw-ink', label: 'Ink' },
-              { cls: 'v3-sw-verd', label: 'Verdigris' },
-              { cls: 'v3-sw-surface', label: 'Surface' },
+              { cls: 'v3-sw-bg', label: 'Graphite' },
+              { cls: 'v3-sw-surface', label: 'Raised' },
+              { cls: 'v3-sw-silver', label: 'Silver' },
+              { cls: 'v3-sw-bright', label: 'Highlight' },
               { cls: 'v3-sw-line', label: 'Line' },
             ].map((s) => (
               <View key={s.label} className="flex-1">
@@ -153,7 +184,7 @@ export default function Variant3() {
             ))}
           </View>
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 }

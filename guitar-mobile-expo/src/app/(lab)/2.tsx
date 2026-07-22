@@ -4,140 +4,140 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import './styles/variant-2.css';
 
-const ON_CLARET = '#f8efe0';
+const ON_ACCENT = '#f7f4ee';
+const GHOST_ICON = '#6e685c';
 
-// Engraved G-major chord chart. Six strings (low E → high e), four fret spaces.
-// Markers sit above the nut; open strings read "o". Root notes (G) are inked,
-// the third (B) takes the claret accent.
-const MARKERS = ['', '', 'o', 'o', 'o', ''];
-const DOTS: Record<string, 'root' | 'note'> = {
-  '2-0': 'root',
-  '1-1': 'note',
-  '2-5': 'root',
-};
-const FRET_ROWS = [0, 1, 2, 3];
-const STRINGS = [0, 1, 2, 3, 4, 5];
+// Precision tuner scale — 25 graduations. The centre reads in tune (indigo),
+// every fifth tick is a major graduation, the rest are fine.
+const TICKS = Array.from({ length: 25 }, (_, i) => i);
+const CENTER = 12;
+function tickClass(i: number) {
+  if (i === CENTER) return 'v2-tick-center';
+  if (i % 5 === 0) return 'v2-tick v2-tick-major';
+  return 'v2-tick';
+}
 
-const PROGRAMME = [
-  { roman: 'I', title: 'Prelude in G', meta: 'BACH · CELLO SUITE · ARR.', time: '3:52' },
-  { roman: 'II', title: 'Lágrima', meta: 'TÁRREGA · KEY OF E', time: '2:41' },
-  { roman: 'III', title: 'Cavatina', meta: 'MYERS · POS. VII', time: '4:16' },
-  { roman: 'IV', title: 'Asturias', meta: 'ALBÉNIZ · A MINOR', time: '6:08' },
+// Colour carries information here: each stat and each key gets its own hue,
+// so the palette is legible at a glance instead of decorative.
+const TILES = [
+  { num: '14', label: 'Streak', hue: 'teal' },
+  { num: '92%', label: 'Accuracy', hue: 'rose' },
+  { num: '3.2h', label: 'This week', hue: 'plum' },
+];
+
+const SETLIST = [
+  { n: '01', title: 'Blackbird', meta: 'THE BEATLES · FINGERSTYLE', key: 'G', hue: 'teal' },
+  { n: '02', title: 'Georgia on My Mind', meta: 'RAY CHARLES · JAZZ', key: 'F', hue: 'amber' },
+  { n: '03', title: 'Tears in Heaven', meta: 'CLAPTON · FINGERSTYLE', key: 'A', hue: 'rose' },
 ];
 
 export default function Variant2() {
   const insets = useSafeAreaInsets();
 
   return (
-    <ScrollView
-      className="v2-root flex-1"
-      contentContainerStyle={{ paddingTop: insets.top + 18, paddingBottom: insets.bottom + 96 }}
-      showsVerticalScrollIndicator={false}
-    >
-      <View className="v2-scroll">
-        {/* masthead */}
-        <View className="v2-masthead">
+    <View className="variant-2-root flex-1">
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{
+          paddingTop: insets.top + 20,
+          paddingBottom: insets.bottom + 96,
+          paddingHorizontal: 22,
+        }}
+      >
+        {/* header */}
+        <View className="flex-row items-center justify-between">
           <View>
-            <Text className="v2-kicker">The practice programme</Text>
-            <Text className="v2-wordmark">
-              Cadenza<Text className="v2-wordmark-accent">.</Text>
+            <Text className="v2-device">Practice unit</Text>
+            <Text className="v2-brand">
+              Solf<Text className="v2-brand-accent">ège</Text>
             </Text>
           </View>
-          <View className="v2-folio">
-            <Text className="v2-folio-no">No. II</Text>
-            <Text className="v2-folio-label">Summer</Text>
-          </View>
-        </View>
-        <View className="v2-rule" />
-        <View className="v2-rule-hair" />
-
-        {/* hero — now studying */}
-        <View className="v2-mat-tray">
-          <View className="v2-mat">
-            <Text className="v2-feature-eyebrow">Now studying</Text>
-            <Text className="v2-feature-title">Prelude in G</Text>
-            <Text className="v2-feature-sub">
-              Bach, arranged for six strings · an unhurried study in voice-leading
-            </Text>
-
-            <View className="v2-progress-head">
-              <Text className="v2-progress-label">Bar 24 / 38</Text>
-              <Text className="v2-progress-pct">64%</Text>
-            </View>
-            <View className="v2-progress-track">
-              <View className="v2-progress-fill" />
-            </View>
-            <Text className="v2-readout">72 BPM · 3/4 · POS. II · TUNING E A D G B E</Text>
-
-            <Pressable className="v2-btn v2-btn-primary">
-              <Text className="v2-btn-primary-text">Resume the study</Text>
-              <View className="v2-btn-icon">
-                <SymbolView name="arrow.right" size={12} tintColor={ON_CLARET} weight="medium" />
-              </View>
-            </Pressable>
+          <View className="v2-opus">
+            <Text className="v2-opus-no">02</Text>
+            <Text className="v2-opus-label">Study</Text>
           </View>
         </View>
 
-        {/* signature — engraved chord chart */}
+        {/* machined hero */}
+        <View className="v2-tray" style={{ marginTop: 24 }}>
+          <View className="v2-face">
+            <View className="v2-face-topline">
+              <Text className="v2-eyebrow">Now playing</Text>
+              <Text className="v2-face-index">01 / 03</Text>
+            </View>
+            <Text className="v2-face-title">Blackbird</Text>
+            <Text className="v2-face-sub">The Beatles · a fingerstyle study in G</Text>
+            <View className="v2-readout">
+              <Text className="v2-readout-time">03:12</Text>
+              <Text className="v2-readout-meta">92 BPM · 4/4 · CAPO 3</Text>
+            </View>
+
+            <View className="v2-transport">
+              <Pressable className="v2-btn-primary">
+                <SymbolView name="play.fill" size={14} tintColor={ON_ACCENT} />
+                <Text className="v2-btn-primary-text">Resume</Text>
+              </Pressable>
+              <Pressable className="v2-btn-ghost">
+                <SymbolView name="metronome" size={18} tintColor={GHOST_ICON} />
+              </Pressable>
+            </View>
+          </View>
+        </View>
+
+        {/* signature — tuner scale */}
         <View className="v2-section">
-          <Text className="v2-eyebrow">Voicing</Text>
-          <Text className="v2-section-title">
-            The open <Text className="v2-section-title-accent">G</Text>
-          </Text>
-          <View className="v2-chord">
-            <View className="v2-chord-diagram">
-              <View className="v2-chord-markers">
-                {MARKERS.map((m, c) => (
-                  <View key={c} className="v2-chord-mark">
-                    <Text className="v2-chord-mark-text">{m}</Text>
-                  </View>
-                ))}
-              </View>
-              <View className="v2-chord-nut" />
-              {FRET_ROWS.map((r) => (
-                <View key={r} className="v2-fret-row">
-                  {STRINGS.map((c) => {
-                    const dot = DOTS[`${r}-${c}`];
-                    return (
-                      <View
-                        key={c}
-                        className={c === 0 ? 'v2-fret-cell v2-fret-cell-first' : 'v2-fret-cell'}
-                      >
-                        {dot ? (
-                          <View className={dot === 'root' ? 'v2-dot v2-dot-root' : 'v2-dot'} />
-                        ) : null}
-                      </View>
-                    );
-                  })}
-                </View>
+          <View className="v2-section-head">
+            <Text className="v2-section-title">Tuner</Text>
+            <Text className="v2-section-meta">440 Hz · standard</Text>
+          </View>
+          <View className="v2-tuner">
+            <View className="v2-tuner-head">
+              <Text className="v2-tuner-note">
+                A<Text className="v2-tuner-note-sub"> · 110.0 Hz</Text>
+              </Text>
+              <Text className="v2-tuner-cents">−0.4 ¢</Text>
+            </View>
+            <View className="v2-tuner-scale">
+              {TICKS.map((i) => (
+                <View key={i} className={tickClass(i)} />
               ))}
             </View>
-            <View className="v2-chord-legend">
-              <Text className="v2-chord-name">
-                G<Text className="v2-chord-name-sup"> maj</Text>
-              </Text>
-              <Text className="v2-chord-desc">
-                Root on the sixth, doubled on the first — the warm, ringing shape the whole prelude
-                leans on.
-              </Text>
-              <Text className="v2-chord-fingering">3 2 0 0 0 3</Text>
+            <View className="v2-tuner-baseline" />
+            <View className="v2-tuner-labels">
+              <Text className="v2-tuner-label">−50</Text>
+              <Text className="v2-tuner-label">IN TUNE</Text>
+              <Text className="v2-tuner-label">+50</Text>
             </View>
           </View>
         </View>
 
-        {/* programme list */}
+        {/* machined stat tiles */}
+        <View className="v2-tiles">
+          {TILES.map((t) => (
+            <View key={t.label} className="v2-tile">
+              <Text className={`v2-tile-num v2-tile-num-${t.hue}`}>{t.num}</Text>
+              <Text className="v2-tile-label">{t.label}</Text>
+            </View>
+          ))}
+        </View>
+
+        {/* setlist */}
         <View className="v2-section">
-          <Text className="v2-eyebrow">Tonight</Text>
-          <Text className="v2-section-title">The programme</Text>
-          <View style={{ marginTop: 8 }}>
-            {PROGRAMME.map((p) => (
-              <View key={p.roman} className="v2-row">
-                <Text className="v2-row-roman">{p.roman}</Text>
+          <View className="v2-section-head">
+            <Text className="v2-section-title">Setlist</Text>
+            <Text className="v2-section-meta">HUE = KEY</Text>
+          </View>
+          <View style={{ marginTop: 4 }}>
+            {SETLIST.map((s) => (
+              <View key={s.n} className="v2-slot">
+                <Text className={`v2-slot-index v2-ink-${s.hue}`}>{s.n}</Text>
                 <View className="flex-1">
-                  <Text className="v2-row-title">{p.title}</Text>
-                  <Text className="v2-row-meta">{p.meta}</Text>
+                  <Text className="v2-slot-title">{s.title}</Text>
+                  <Text className="v2-slot-meta">{s.meta}</Text>
                 </View>
-                <Text className="v2-row-time">{p.time}</Text>
+                <View className={`v2-slot-key v2-key-${s.hue}`}>
+                  <Text className={`v2-slot-key-text v2-ink-${s.hue}`}>{s.key}</Text>
+                </View>
               </View>
             ))}
           </View>
@@ -145,35 +145,37 @@ export default function Variant2() {
 
         {/* type specimen */}
         <View className="v2-section">
-          <Text className="v2-eyebrow">Type system</Text>
-          <Text className="v2-section-title">A serif that sings</Text>
-          <View className="v2-mat-tray">
-            <View className="v2-mat">
-              <Text className="v2-spec-display">
-                Encore<Text className="v2-spec-accent">.</Text>
-              </Text>
-              <Text className="v2-spec-body">
-                A high-contrast italic serif carries the romance of the piece — its name, its
-                movements, its voice. A quiet sans keeps the prose readable, and monospace holds the
-                tempos and tunings dead level, so the numbers never argue with the melody.
-              </Text>
-              <View className="v2-spec-divider" />
-              <Text className="v2-spec-mono">72 BPM · 3/4 · POS. II · CAPO 0</Text>
-            </View>
+          <View className="v2-section-head">
+            <Text className="v2-section-title">Type</Text>
+            <Text className="v2-section-meta">GROTESK / MONO</Text>
+          </View>
+          <View className="v2-spec">
+            <Text className="v2-spec-display">
+              Chromatic<Text className="v2-spec-accent">.</Text>
+            </Text>
+            <Text className="v2-spec-body">
+              A tight grotesk holds the titles; monospace runs every reading — time, tempo, cents.
+              Colour is never decoration: each hue is bound to a key, so the setlist reads like a
+              score before a single word is parsed.
+            </Text>
+            <View className="v2-spec-divider" />
+            <Text className="v2-spec-mono">92 BPM · 4/4 · CAPO 3 · −0.4 ¢</Text>
           </View>
         </View>
 
         {/* palette */}
         <View className="v2-section">
-          <Text className="v2-eyebrow">Palette</Text>
-          <Text className="v2-section-title">Paper, ink &amp; claret</Text>
+          <View className="v2-section-head">
+            <Text className="v2-section-title">Palette</Text>
+            <Text className="v2-section-meta">05 TOKENS</Text>
+          </View>
           <View className="v2-swatch-row">
             {[
-              { cls: 'v2-sw-paper', label: 'Paper' },
-              { cls: 'v2-sw-ink', label: 'Ink' },
-              { cls: 'v2-sw-claret', label: 'Claret' },
-              { cls: 'v2-sw-brass', label: 'Brass' },
-              { cls: 'v2-sw-line', label: 'Rule' },
+              { cls: 'v2-sw-bg', label: 'Paper' },
+              { cls: 'v2-sw-indigo', label: 'Indigo' },
+              { cls: 'v2-sw-teal', label: 'Teal' },
+              { cls: 'v2-sw-amber', label: 'Amber' },
+              { cls: 'v2-sw-rose', label: 'Rose' },
             ].map((s) => (
               <View key={s.label} className="flex-1">
                 <View className={`v2-swatch ${s.cls}`} />
@@ -182,7 +184,7 @@ export default function Variant2() {
             ))}
           </View>
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 }
