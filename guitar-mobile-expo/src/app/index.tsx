@@ -1,7 +1,9 @@
 import * as Device from 'expo-device';
+import { Redirect } from 'expo-router';
 import { Platform, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { DESIGN_LAB_MODE } from '@/app/(lab)/_flag';
 import { AnimatedIcon } from '@/components/animated-icon';
 import { HintRow } from '@/components/hint-row';
 import { ThemedText } from '@/components/themed-text';
@@ -29,6 +31,11 @@ function getDevMenuHint() {
 }
 
 export default function HomeScreen() {
+  // disposable design-lab redirect — remove this block (and the import above) when ripping it out
+  if (DESIGN_LAB_MODE) {
+    return <Redirect href="/1" />;
+  }
+
   return (
     <ThemedView style={styles.container}>
       <SafeAreaView style={styles.safeArea}>

@@ -1,5 +1,7 @@
 @import 'tailwindcss';
 @import 'uniwind';
+/* disposable design-lab route group — remove this line when ripping it out */
+@import './app/(lab)/styles/index.css';
 
 :root {
   --font-display:
