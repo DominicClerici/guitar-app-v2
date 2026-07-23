@@ -110,7 +110,7 @@ export function TopTabs() {
   const IncomingPage = incomingIndex !== null ? PAGES[TABS[incomingIndex].key] : null;
 
   return (
-    <View className="tabs-root" style={{ flex: 1, paddingTop: insets.top }}>
+    <View className="flex-1 bg-bg" style={{ paddingTop: insets.top }}>
       <TabBar
         scrollX={scrollX}
         activeIndex={activeIndex}
@@ -120,7 +120,7 @@ export function TopTabs() {
         tapTo={tapTo}
         tapProgress={tapProgress}
       />
-      <View style={{ flex: 1, overflow: 'hidden' }}>
+      <View className="flex-1 overflow-hidden">
         <Animated.View style={[{ flex: 1 }, pagerAnimStyle]}>
           <PagerView
             ref={pagerRef}
@@ -133,7 +133,7 @@ export function TopTabs() {
             {TABS.map((tab) => {
               const Page = PAGES[tab.key];
               return (
-                <View key={tab.key} style={{ flex: 1 }} collapsable={false}>
+                <View key={tab.key} className="flex-1" collapsable={false}>
                   <Page />
                 </View>
               );

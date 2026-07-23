@@ -71,7 +71,10 @@ function TabLabel({
 
   return (
     <Pressable onPress={onPress} onLayout={onLayout} hitSlop={10}>
-      <Animated.Text className="tab-label" style={animatedStyle}>
+      <Animated.Text
+        className="font-mono text-[12px] font-semibold uppercase tracking-[2px]"
+        style={animatedStyle}
+      >
         {label}
       </Animated.Text>
     </Pressable>
@@ -108,8 +111,8 @@ export function TabBar({
       ref={scrollRef}
       horizontal
       showsHorizontalScrollIndicator={false}
-      className="tabbar-root"
-      contentContainerClassName="tabbar-content"
+      className="grow-0 border-b border-b-line-soft bg-bg"
+      contentContainerClassName="h-[46px] items-center gap-[26px] px-[22px]"
     >
       {TABS.map((tab, index) => (
         <TabLabel

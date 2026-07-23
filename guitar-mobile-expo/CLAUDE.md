@@ -2,7 +2,17 @@
 
 Expo 57 app using React 19 with the React Compiler enabled. Routing via `expo-router`.
 
-Styling via uniwind (Tailwind CSS v4) — use Tailwind utility classes, not `StyleSheet`.
+## Styling
+
+Style **exclusively** with uniwind using Tailwind CSS v4 syntax — apply utility classes via
+`className`. Do not:
+
+- use `StyleSheet.create`, inline `style={{...}}` objects, or any other stylesheet mechanism
+- author CSS classes (in `src/global.css` or elsewhere) unless a style is genuinely impossible to
+  express with utilities — and only after confirming there is no utility-based way to do it
+
+Prefer composing utility classes directly on the element. The only expected additions to
+`src/global.css` are design tokens (see Design below), not component classes.
 
 ## Design
 

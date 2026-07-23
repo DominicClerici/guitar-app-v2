@@ -1,11 +1,6 @@
 @import 'tailwindcss';
 @import 'uniwind';
 
-/* Screen/component styles. uniwind only compiles CSS reachable from this
-   entry file, so every stylesheet must be @imported here. */
-@import './app/styles/home.css';
-@import './app/styles/tabs.css';
-
 /* =========================================================================
    Aurora design system — tokens. See DESIGN.md for the full language.
    Reference as var(--token) in components; never hardcode hex.
@@ -45,4 +40,29 @@
   --amber: #e0a84e;
   --rose: #e0788f;
   --violet: #9b8cf0;
+}
+
+/* Bridge the Aurora tokens above into Tailwind colour utilities (bg-surface,
+   text-ink, border-line, …) without duplicating their values: `inline` makes
+   each utility reference the :root var directly, so var(--token) and
+   useCSSVariable keep working off the same single source. */
+@theme inline {
+  --font-mono: ui-monospace;
+
+  --color-bg: var(--bg);
+  --color-tray: var(--tray);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-edge-top: var(--edge-top);
+  --color-edge-bottom: var(--edge-bottom);
+  --color-line: var(--line);
+  --color-line-soft: var(--line-soft);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-aqua: var(--aqua);
+  --color-rose: var(--rose);
+  --color-violet: var(--violet);
 }
