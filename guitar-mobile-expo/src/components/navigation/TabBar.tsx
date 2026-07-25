@@ -112,7 +112,7 @@ export function TabBar({
       horizontal
       showsHorizontalScrollIndicator={false}
       className="grow-0 border-b border-b-line-soft bg-bg"
-      contentContainerClassName="h-[46px] items-center gap-[26px] px-[22px]"
+      contentContainerClassName="h-[46px] items-center gap-[26px] px-[18px]"
     >
       {TABS.map((tab, index) => (
         <TabLabel
