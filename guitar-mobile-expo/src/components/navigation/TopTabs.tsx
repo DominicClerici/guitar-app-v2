@@ -113,7 +113,6 @@ export function TopTabs() {
     <View className="flex-1 bg-bg" style={{ paddingTop: insets.top }}>
       <TabBar
         scrollX={scrollX}
-        activeIndex={activeIndex}
         onTabPress={goToPage}
         tapActive={tapActive}
         tapFrom={tapFrom}
