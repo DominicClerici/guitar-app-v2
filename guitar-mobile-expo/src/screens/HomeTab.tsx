@@ -3,16 +3,7 @@ import { Pressable, ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useCSSVariable } from 'uniwind';
 
-// Precision tuner scale — 25 graduations. The centre reads in tune (aqua),
-// every fifth tick is a major graduation, the rest are fine.
-const TICKS = Array.from({ length: 25 }, (_, i) => i);
-const CENTER = 12;
-function tickClass(i: number) {
-  if (i === CENTER)
-    return 'w-[2px] h-[34px] bg-accent shadow-[0px_0px_8px_rgba(94,200,194,0.65)]';
-  if (i % 5 === 0) return 'w-px h-[22px] bg-ink-faint';
-  return 'w-px h-[12px] bg-line';
-}
+import { InlineTunerCard } from '@/features/tuner/InlineTunerCard';
 
 const ARTICLES: { icon: SFSymbol; title: string; subtitle: string }[] = [
   { icon: 'text.book.closed', title: 'Reading Tab Notation', subtitle: '5 min read' },
@@ -134,24 +125,8 @@ export function HomeTab() {
         {/* signature — tuner scale */}
         <View className="mt-[38px]">
           <SectionHeader title="Tuner" />
-          <View className="mt-[12px] rounded-[13px] border border-t-edge-top border-x-line-soft border-b-edge-bottom p-[20px] bg-surface">
-            <View className="flex-row items-baseline justify-between">
-              <Text className="text-[30px] font-semibold tracking-[-0.5px] text-ink">
-                A<Text className="font-mono text-[13px] text-accent"> · 110.0 Hz</Text>
-              </Text>
-              <Text className="font-mono text-[13px] tracking-[0.5px] text-ink-muted">−0.4 ¢</Text>
-            </View>
-            <View className="mt-[20px] h-[40px] flex-row items-end justify-between">
-              {TICKS.map((i) => (
-                <View key={i} className={tickClass(i)} />
-              ))}
-            </View>
-            <View className="mt-[12px] h-px bg-line" />
-            <View className="mt-[8px] flex-row justify-between">
-              <Text className="font-mono text-[9.5px] tracking-[1px] text-ink-faint">−50</Text>
-              <Text className="font-mono text-[9.5px] tracking-[1px] text-ink-faint">IN TUNE</Text>
-              <Text className="font-mono text-[9.5px] tracking-[1px] text-ink-faint">+50</Text>
-            </View>
+          <View className="mt-[12px]">
+            <InlineTunerCard />
           </View>
         </View>
 

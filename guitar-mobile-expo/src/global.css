@@ -63,6 +63,7 @@
   --color-accent: var(--accent);
   --color-on-accent: var(--on-accent);
   --color-aqua: var(--aqua);
+  --color-amber: var(--amber);
   --color-rose: var(--rose);
   --color-violet: var(--violet);
 }
