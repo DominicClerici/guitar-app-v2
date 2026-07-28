@@ -1,0 +1,1 @@
+export { InlineChordDetector } from './InlineChordDetector';

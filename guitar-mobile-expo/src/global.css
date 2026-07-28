@@ -33,6 +33,7 @@
   --accent: #5ec8c2;
   --accent-bright: #86e0da;
   --accent-wash: rgba(94, 200, 194, 0.12);
+  --accent-line: rgba(94, 200, 194, 0.5); /* accent hairline / outlined control */
   --on-accent: #04211f;
 
   /* ─ key-coded jewel hues ─ */
@@ -61,6 +62,8 @@
   --color-ink-muted: var(--ink-muted);
   --color-ink-faint: var(--ink-faint);
   --color-accent: var(--accent);
+  --color-accent-line: var(--accent-line);
+  --color-accent-wash: var(--accent-wash);
   --color-on-accent: var(--on-accent);
   --color-aqua: var(--aqua);
   --color-amber: var(--amber);

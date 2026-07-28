@@ -1,9 +1,10 @@
 import { SymbolView, type SFSymbol } from 'expo-symbols';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useCSSVariable } from 'uniwind';
 
+import { InlineChordDetector } from '@/features/chord-detection';
 import { InlineTunerCard } from '@/features/tuner/InlineTunerCard';
+import { useToken } from '@/lib/tokens';
 
 const ARTICLES: { icon: SFSymbol; title: string; subtitle: string }[] = [
   { icon: 'text.book.closed', title: 'Reading Tab Notation', subtitle: '5 min read' },
@@ -16,11 +17,6 @@ const PLAY: { icon: SFSymbol; title: string; subtitle: string }[] = [
   { icon: 'ear', title: 'Ear Training', subtitle: 'Name the interval you hear' },
   { icon: 'square.grid.3x3', title: 'Fretboard Quiz', subtitle: 'Find every note, one string up' },
 ];
-
-function useToken(name: string, fallback: string) {
-  const vars = useCSSVariable([name]);
-  return (vars[0] as string | undefined) ?? fallback;
-}
 
 // Tappable section title. The chevron is the affordance — it is what tells the
 // user the whole header row opens a fuller view.
@@ -127,6 +123,14 @@ export function HomeTab() {
           <SectionHeader title="Tuner" />
           <View className="mt-[12px]">
             <InlineTunerCard />
+          </View>
+        </View>
+
+        {/* chord detection — the neck itself is the control, unenclosed like the hero */}
+        <View className="mt-[34px]">
+          <SectionHeader title="Chord Detection" />
+          <View className="mt-[10px]">
+            <InlineChordDetector />
           </View>
         </View>
 
