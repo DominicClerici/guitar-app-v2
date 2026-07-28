@@ -1,9 +1,10 @@
 import { useRouter } from 'expo-router';
 import { SymbolView } from 'expo-symbols';
-import { useState } from 'react';
+import { useState, type ComponentProps } from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { FadingHScroll } from '@/components/FadingHScroll';
 import { Fretboard } from '@/features/chord-detection/Fretboard';
 import { KeyReadout } from '@/features/key-detection/KeyReadout';
 import { ProgressionChips } from '@/features/key-detection/ProgressionChips';
@@ -16,6 +17,8 @@ import {
 import { toAccidentalGlyphs } from '@/lib/accidentals';
 import type { ProgressionChord } from '@/lib/key-analysis';
 import { useToken } from '@/lib/tokens';
+
+type Symbol = ComponentProps<typeof SymbolView>['name'];
 
 const EM_DASH = '—';
 const MIN_NOTES = 3;
@@ -34,14 +37,15 @@ function SectionLabel({ label, trailing }: { label: string; trailing?: string })
   );
 }
 
-interface ActionProps {
+interface PrimaryProps {
   label: string;
+  symbol: Symbol;
   disabled: boolean;
   onPress: () => void;
 }
 
-/** Filled accent CTA. Sinks to a dead surface when there is nothing to add. */
-function PrimaryAction({ label, disabled, onPress }: ActionProps) {
+/** Filled accent CTA. Sinks to a dead surface when there is nothing to commit. */
+function PrimaryAction({ label, symbol, disabled, onPress }: PrimaryProps) {
   const onAccent = useToken('--on-accent', '#04211f');
   const faint = useToken('--ink-faint', '#62666e');
 
@@ -58,7 +62,7 @@ function PrimaryAction({ label, disabled, onPress }: ActionProps) {
           : 'border-t-[rgba(255,255,255,0.4)] border-x-transparent border-b-[rgba(0,0,0,0.28)] bg-accent'
       }`}
     >
-      <SymbolView name="plus" size={13} weight="bold" tintColor={disabled ? faint : onAccent} />
+      <SymbolView name={symbol} size={13} weight="bold" tintColor={disabled ? faint : onAccent} />
       <Text
         className={`text-[15px] font-bold tracking-[0.3px] ${
           disabled ? 'text-ink-faint' : 'text-on-accent'
@@ -70,24 +74,46 @@ function PrimaryAction({ label, disabled, onPress }: ActionProps) {
   );
 }
 
-/** Quiet counterpart to the CTA — a raised chip rather than a filled key. */
-function SecondaryAction({ label, disabled, onPress }: ActionProps) {
+interface IconProps {
+  symbol: Symbol;
+  label: string;
+  disabled?: boolean;
+  /** Lit, for a control that toggles a mode the screen is currently in. */
+  on?: boolean;
+  destructive?: boolean;
+  onPress: () => void;
+}
+
+/** Square counterpart to the CTA — a raised key carrying only its glyph. */
+function IconAction({
+  symbol,
+  label,
+  disabled = false,
+  on = false,
+  destructive,
+  onPress,
+}: IconProps) {
+  const ink = useToken('--ink', '#eef0f4');
+  const faint = useToken('--ink-faint', '#62666e');
+  const accent = useToken('--accent', '#5ec8c2');
+  const rose = useToken('--rose', '#e0788f');
+
+  const tint = disabled ? faint : on ? accent : destructive ? rose : ink;
+
   return (
     <Pressable
       onPress={onPress}
       disabled={disabled}
       accessibilityRole="button"
-      accessibilityState={{ disabled }}
+      accessibilityState={{ disabled, selected: on }}
       accessibilityLabel={label}
-      className="h-[50px] flex-1 items-center justify-center rounded-[10px] border border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface-raised active:opacity-70"
+      className={`h-[50px] w-[50px] items-center justify-center rounded-[10px] border active:opacity-70 ${
+        on
+          ? 'border-accent-line bg-accent-wash'
+          : 'border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface-raised'
+      }`}
     >
-      <Text
-        className={`text-[15px] font-semibold tracking-[-0.2px] ${
-          disabled ? 'text-ink-faint' : 'text-ink'
-        }`}
-      >
-        {label}
-      </Text>
+      <SymbolView name={symbol} size={17} weight="semibold" tintColor={tint} />
     </Pressable>
   );
 }
@@ -123,34 +149,53 @@ export function KeyDetectorScreen() {
     setKeyChoice,
     isFull,
     add,
+    replace,
     remove,
+    reorder,
     clear: clearProgression,
   } = useKeyDetection();
 
-  // Which stored chord the neck is currently showing, so its chip reads as the
-  // source of what's on the board. Any edit to the voicing ends that.
-  const [shownId, setShownId] = useState<string | null>(null);
+  // The board has two jobs: composing a new chord, or standing in for one already
+  // in the progression. `editId` is which, and it decides the whole action row.
+  const [editId, setEditId] = useState<string | null>(null);
+  const [reordering, setReordering] = useState(false);
 
-  const onToggle = (string: number, fret: number) => {
-    setShownId(null);
-    toggle(string, fret);
-  };
+  const editing = editId !== null;
+  const canReorder = chords.length >= 2 && !editing;
+  // Dragging has no meaning once there is one chord left or the board is busy
+  // editing, so the mode drops itself rather than waiting to be dismissed.
+  if (reordering && !canReorder) setReordering(false);
 
-  const onClearBoard = () => {
-    setShownId(null);
+  const endEdit = () => {
+    setEditId(null);
     clearBoard();
   };
 
   const onAdd = () => {
     if (!chord || isFull) return;
     add(buildProgressionChord(chord.name, placed, chord));
-    setShownId(null);
     clearBoard();
   };
 
-  const onShowChord = (stored: ProgressionChord) => {
-    setShownId(stored.id);
+  const onSave = () => {
+    if (!chord || !editId) return;
+    replace(editId, buildProgressionChord(chord.name, placed, chord));
+    endEdit();
+  };
+
+  const onDelete = () => {
+    if (editId) remove(editId);
+    endEdit();
+  };
+
+  const onEditChord = (stored: ProgressionChord) => {
+    setEditId(stored.id);
     load(stored.voicing, stored.feature.rootPc);
+  };
+
+  const onResetProgression = () => {
+    clearProgression();
+    if (editing) endEdit();
   };
 
   const hasBorrowed = labels.some((label) => !label.isDiatonic);
@@ -170,7 +215,7 @@ export function KeyDetectorScreen() {
         </Pressable>
 
         <Pressable
-          onPress={clearProgression}
+          onPress={onResetProgression}
           disabled={chords.length === 0}
           hitSlop={10}
           accessibilityRole="button"
@@ -189,6 +234,9 @@ export function KeyDetectorScreen() {
 
       <ScrollView
         showsVerticalScrollIndicator={false}
+        // A vertical drag in reorder mode belongs to the chip under the finger,
+        // not to the page.
+        scrollEnabled={!reordering}
         contentContainerClassName="px-[18px] pt-[10px]"
         contentContainerStyle={{ paddingBottom: insets.bottom + 40 }}
       >
@@ -199,69 +247,95 @@ export function KeyDetectorScreen() {
             placed={placed}
             rootPitchClass={rootPitchClass}
             nameForPitchClass={nameForPitchClass}
-            onToggle={onToggle}
+            onToggle={toggle}
           />
         </View>
 
-        <View className="mt-[16px] flex-row items-baseline gap-[12px]">
+        {/* The name takes only the width it needs; whatever is left is the shelf
+            for the alternate readings of the same shape. Whichever reading is
+            chosen is what the key engine scores, so an Am7 heard as C6 moves the
+            estimate. */}
+        <View className="mt-[16px] flex-row items-center gap-[14px]">
           <Text
-            className={`text-[34px] leading-[37px] font-semibold tracking-[-0.9px] ${
+            className={`shrink text-[34px] leading-[37px] font-semibold tracking-[-0.9px] ${
               chord ? 'text-ink' : 'text-ink-faint'
             }`}
             numberOfLines={1}
           >
             {chord ? toAccidentalGlyphs(chord.name) : EM_DASH}
           </Text>
-          {chord ? null : (
-            <Text className="font-mono text-[10px] uppercase tracking-[2px] text-ink-faint">
-              {placed.length === 0
-                ? `Tap ${MIN_NOTES} notes`
-                : `${placed.length} of ${MIN_NOTES} notes`}
-            </Text>
-          )}
+
+          <View className="min-w-0 flex-1">
+            {readings.length > 1 ? (
+              <FadingHScroll
+                contentClassName="flex-row gap-[8px] pr-[4px]"
+                fadeClassName="w-[26px]"
+                fadeTravel={22}
+              >
+                {readings.map((reading, i) => {
+                  const on = i === selectedIndex;
+                  return (
+                    <Pressable
+                      key={`${reading.name}-${i}`}
+                      onPress={() => select(i)}
+                      accessibilityRole="button"
+                      accessibilityState={{ selected: on }}
+                      accessibilityLabel={`Read as ${reading.name}`}
+                      className={`rounded-full border px-[13px] py-[7px] active:opacity-70 ${
+                        on ? 'border-accent-line bg-accent-wash' : 'border-line-soft bg-surface'
+                      }`}
+                    >
+                      <Text
+                        className={`text-[13px] font-medium tracking-[-0.1px] ${
+                          on ? 'text-accent' : 'text-ink-muted'
+                        }`}
+                      >
+                        {toAccidentalGlyphs(reading.name)}
+                      </Text>
+                    </Pressable>
+                  );
+                })}
+              </FadingHScroll>
+            ) : chord ? null : (
+              <Text className="font-mono text-[10px] uppercase tracking-[2px] text-ink-faint">
+                {placed.length === 0
+                  ? `Tap ${MIN_NOTES} notes`
+                  : `${placed.length} of ${MIN_NOTES} notes`}
+              </Text>
+            )}
+          </View>
         </View>
 
-        {/* Alternate readings of the same shape. Whichever is chosen is what the
-            key engine scores, so an Am7 heard as C6 changes the estimate. */}
-        {readings.length > 1 ? (
-          <View className="mt-[14px] flex-row flex-wrap gap-[8px]">
-            {readings.map((reading, i) => {
-              const on = i === selectedIndex;
-              return (
-                <Pressable
-                  key={`${reading.name}-${i}`}
-                  onPress={() => select(i)}
-                  accessibilityRole="button"
-                  accessibilityState={{ selected: on }}
-                  accessibilityLabel={`Read as ${reading.name}`}
-                  className={`rounded-full border px-[13px] py-[7px] active:opacity-70 ${
-                    on ? 'border-accent-line bg-accent-wash' : 'border-line-soft bg-surface'
-                  }`}
-                >
-                  <Text
-                    className={`text-[13px] font-medium tracking-[-0.1px] ${
-                      on ? 'text-accent' : 'text-ink-muted'
-                    }`}
-                  >
-                    {toAccidentalGlyphs(reading.name)}
-                  </Text>
-                </Pressable>
-              );
-            })}
-          </View>
-        ) : null}
-
         <View className="mt-[20px] flex-row gap-[10px]">
-          <SecondaryAction
-            label="Clear board"
-            disabled={placed.length === 0}
-            onPress={onClearBoard}
-          />
-          <PrimaryAction
-            label={isFull ? 'Full' : 'Add chord'}
-            disabled={!chord || isFull}
-            onPress={onAdd}
-          />
+          {editing ? (
+            <>
+              <IconAction symbol="trash" label="Delete chord" destructive onPress={onDelete} />
+              <IconAction symbol="xmark" label="Cancel edit" onPress={endEdit} />
+              <PrimaryAction label="Save" symbol="checkmark" disabled={!chord} onPress={onSave} />
+            </>
+          ) : (
+            <>
+              <IconAction
+                symbol="arrow.counterclockwise"
+                label="Clear board"
+                disabled={placed.length === 0}
+                onPress={clearBoard}
+              />
+              <IconAction
+                symbol={reordering ? 'checkmark' : 'arrow.left.arrow.right'}
+                label={reordering ? 'Done reordering' : 'Reorder chords'}
+                disabled={!canReorder}
+                on={reordering}
+                onPress={() => setReordering(!reordering)}
+              />
+              <PrimaryAction
+                label={isFull ? 'Full' : 'Add chord'}
+                symbol="plus"
+                disabled={!chord || isFull}
+                onPress={onAdd}
+              />
+            </>
+          )}
         </View>
 
         <View className="mt-[32px]">
@@ -269,18 +343,27 @@ export function KeyDetectorScreen() {
 
           {chords.length === 0 ? (
             <Text className="mt-[14px] text-[12.5px] leading-[18px] text-ink-muted">
-              Chords you add show up here in order. Tap one to put its shape back on the neck.
+              Chords you add show up here in order. Tap one to put it back on the neck and edit
+              it.
             </Text>
           ) : (
             <View className="mt-[14px]">
               <ProgressionChips
                 chords={chords}
                 labels={labels}
-                activeId={shownId}
-                onSelect={onShowChord}
-                onRemove={remove}
+                activeId={editId}
+                reordering={reordering}
+                canReorder={canReorder}
+                onSelect={onEditChord}
+                onReorder={reorder}
+                onBeginReorder={() => setReordering(true)}
               />
-              {hasBorrowed ? (
+
+              {reordering ? (
+                <Text className="mt-[14px] font-mono text-[9.5px] uppercase tracking-[1.5px] text-accent">
+                  Drag a chord to move it
+                </Text>
+              ) : hasBorrowed ? (
                 <Text className="mt-[14px] font-mono text-[9.5px] uppercase tracking-[1.5px] text-amber">
                   Amber · borrowed from outside the key
                 </Text>

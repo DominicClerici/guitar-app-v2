@@ -13,6 +13,7 @@ export interface ProgressionState {
 
 export type ProgressionAction =
   | { type: 'add'; chord: ProgressionChord }
+  | { type: 'replace'; id: string; chord: ProgressionChord }
   | { type: 'remove'; id: string }
   | { type: 'reorder'; from: number; to: number }
   | { type: 'clear' };
@@ -25,6 +26,15 @@ export function progressionReducer(
     case 'add':
       if (state.chords.length >= MAX_CHORDS) return state;
       return { chords: [...state.chords, action.chord] };
+    case 'replace': {
+      const i = state.chords.findIndex((c) => c.id === action.id);
+      if (i === -1) return state;
+      const next = [...state.chords];
+      // Keep the original id: the chip is the same entry being edited, and its
+      // identity is what carries the drag and layout animations across the swap.
+      next[i] = { ...action.chord, id: action.id };
+      return { chords: next };
+    }
     case 'remove':
       return { chords: state.chords.filter((c) => c.id !== action.id) };
     case 'reorder': {
@@ -97,6 +107,10 @@ export function useKeyDetection() {
   );
 
   const add = useCallback((chord: ProgressionChord) => dispatch({ type: 'add', chord }), []);
+  const replace = useCallback(
+    (id: string, chord: ProgressionChord) => dispatch({ type: 'replace', id, chord }),
+    [],
+  );
   const remove = useCallback((id: string) => dispatch({ type: 'remove', id }), []);
   const reorder = useCallback(
     (from: number, to: number) => dispatch({ type: 'reorder', from, to }),
@@ -113,6 +127,7 @@ export function useKeyDetection() {
     setKeyChoice,
     isFull: state.chords.length >= MAX_CHORDS,
     add,
+    replace,
     remove,
     reorder,
     clear,
