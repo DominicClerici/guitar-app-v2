@@ -9,11 +9,7 @@ import { Fretboard } from '@/features/chord-detection/Fretboard';
 import { KeyReadout } from '@/features/key-detection/KeyReadout';
 import { ProgressionChips } from '@/features/key-detection/ProgressionChips';
 import { useChordBuilder } from '@/features/key-detection/useChordBuilder';
-import {
-  buildProgressionChord,
-  MAX_CHORDS,
-  useKeyDetection,
-} from '@/features/key-detection/useKeyDetection';
+import { buildProgressionChord, useKeyDetection } from '@/features/key-detection/useKeyDetection';
 import { toAccidentalGlyphs } from '@/lib/accidentals';
 import type { ProgressionChord } from '@/lib/key-analysis';
 import { useToken } from '@/lib/tokens';
@@ -21,21 +17,6 @@ import { useToken } from '@/lib/tokens';
 type Symbol = ComponentProps<typeof SymbolView>['name'];
 
 const EM_DASH = '—';
-const MIN_NOTES = 3;
-
-function SectionLabel({ label, trailing }: { label: string; trailing?: string }) {
-  return (
-    <View className="flex-row items-center gap-[12px]">
-      <Text className="font-mono text-[10px] font-semibold uppercase tracking-[2.5px] text-ink-faint">
-        {label}
-      </Text>
-      <View className="h-px flex-1 bg-line-soft" />
-      {trailing ? (
-        <Text className="font-mono text-[10px] tracking-[1.5px] text-ink-faint">{trailing}</Text>
-      ) : null}
-    </View>
-  );
-}
 
 interface PrimaryProps {
   label: string;
@@ -237,25 +218,51 @@ export function KeyDetectorScreen() {
         // A vertical drag in reorder mode belongs to the chip under the finger,
         // not to the page.
         scrollEnabled={!reordering}
-        contentContainerClassName="px-[18px] pt-[10px]"
-        contentContainerStyle={{ paddingBottom: insets.bottom + 40 }}
+        // The verdict sits at the top and the instrument at the bottom, so a tall
+        // screen opens a gap between them rather than stranding the board in the
+        // middle. `grow` lets the spacer below claim whatever is left over.
+        contentContainerClassName="grow px-[18px] pt-[10px]"
+        contentContainerStyle={{ paddingBottom: insets.bottom + 24 }}
       >
-        {/* Full-bleed: cancels the page padding so the neck runs to both screen
-            edges. The board's own scroll padding puts fret 0 back on the margin. */}
-        <View className="-mx-[18px]">
-          <Fretboard
-            placed={placed}
-            rootPitchClass={rootPitchClass}
-            nameForPitchClass={nameForPitchClass}
-            onToggle={toggle}
-          />
-        </View>
+        <KeyReadout estimate={estimate} keyChoice={keyChoice} onSelectKey={setKeyChoice} />
+
+        <View className="min-h-[28px] grow" />
+
+        {chords.length === 0 ? (
+          <Text className="text-[12.5px] leading-[18px] text-ink-muted">
+            Chords you add show up here in order. Tap one to put it back on the neck and edit it.
+          </Text>
+        ) : (
+          <View>
+            <ProgressionChips
+              chords={chords}
+              labels={labels}
+              activeId={editId}
+              reordering={reordering}
+              canReorder={canReorder}
+              onSelect={onEditChord}
+              onReorder={reorder}
+              onBeginReorder={() => setReordering(true)}
+              onEndReorder={() => setReordering(false)}
+            />
+
+            {reordering ? (
+              <Text className="mt-[12px] font-mono text-[9.5px] uppercase tracking-[1.5px] text-accent">
+                Drag a chord to move it
+              </Text>
+            ) : hasBorrowed ? (
+              <Text className="mt-[12px] font-mono text-[9.5px] uppercase tracking-[1.5px] text-amber">
+                Amber · borrowed from outside the key
+              </Text>
+            ) : null}
+          </View>
+        )}
 
         {/* The name takes only the width it needs; whatever is left is the shelf
             for the alternate readings of the same shape. Whichever reading is
             chosen is what the key engine scores, so an Am7 heard as C6 moves the
             estimate. */}
-        <View className="mt-[16px] flex-row items-center gap-[14px]">
+        <View className="mt-[24px] flex-row items-center gap-[14px]">
           <Text
             className={`shrink text-[34px] leading-[37px] font-semibold tracking-[-0.9px] ${
               chord ? 'text-ink' : 'text-ink-faint'
@@ -297,16 +304,27 @@ export function KeyDetectorScreen() {
                 })}
               </FadingHScroll>
             ) : chord ? null : (
-              <Text className="font-mono text-[10px] uppercase tracking-[2px] text-ink-faint">
-                {placed.length === 0
-                  ? `Tap ${MIN_NOTES} notes`
-                  : `${placed.length} of ${MIN_NOTES} notes`}
+              // Sized as a reading would be, so the shelf keeps its height and the
+              // row does not shift when the first real label lands in it.
+              <Text className="text-[13px] font-medium tracking-[-0.1px] text-ink-faint">
+                {EM_DASH}
               </Text>
             )}
           </View>
         </View>
 
-        <View className="mt-[20px] flex-row gap-[10px]">
+        {/* Full-bleed: cancels the page padding so the neck runs to both screen
+            edges. The board's own scroll padding puts fret 0 back on the margin. */}
+        <View className="-mx-[18px] mt-[16px]">
+          <Fretboard
+            placed={placed}
+            rootPitchClass={rootPitchClass}
+            nameForPitchClass={nameForPitchClass}
+            onToggle={toggle}
+          />
+        </View>
+
+        <View className="mt-[18px] flex-row gap-[10px]">
           {editing ? (
             <>
               <IconAction symbol="trash" label="Delete chord" destructive onPress={onDelete} />
@@ -336,44 +354,6 @@ export function KeyDetectorScreen() {
               />
             </>
           )}
-        </View>
-
-        <View className="mt-[32px]">
-          <SectionLabel label="Progression" trailing={`${chords.length} / ${MAX_CHORDS}`} />
-
-          {chords.length === 0 ? (
-            <Text className="mt-[14px] text-[12.5px] leading-[18px] text-ink-muted">
-              Chords you add show up here in order. Tap one to put it back on the neck and edit
-              it.
-            </Text>
-          ) : (
-            <View className="mt-[14px]">
-              <ProgressionChips
-                chords={chords}
-                labels={labels}
-                activeId={editId}
-                reordering={reordering}
-                canReorder={canReorder}
-                onSelect={onEditChord}
-                onReorder={reorder}
-                onBeginReorder={() => setReordering(true)}
-              />
-
-              {reordering ? (
-                <Text className="mt-[14px] font-mono text-[9.5px] uppercase tracking-[1.5px] text-accent">
-                  Drag a chord to move it
-                </Text>
-              ) : hasBorrowed ? (
-                <Text className="mt-[14px] font-mono text-[9.5px] uppercase tracking-[1.5px] text-amber">
-                  Amber · borrowed from outside the key
-                </Text>
-              ) : null}
-            </View>
-          )}
-        </View>
-
-        <View className="mt-[28px]">
-          <KeyReadout estimate={estimate} keyChoice={keyChoice} onSelectKey={setKeyChoice} />
         </View>
       </ScrollView>
     </View>
