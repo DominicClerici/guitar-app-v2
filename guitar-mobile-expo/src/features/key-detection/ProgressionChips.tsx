@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { Text, View, type LayoutChangeEvent } from 'react-native';
+import { Pressable, Text, View, type LayoutChangeEvent } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import {
   LinearTransition,
@@ -7,7 +7,6 @@ import {
   useAnimatedStyle,
   useSharedValue,
   withTiming,
-  type SharedValue,
 } from 'react-native-reanimated';
 
 import { AnimatedView } from '@/components/AnimatedView';
@@ -23,13 +22,19 @@ interface Rect {
 
 const LONG_PRESS_MS = 250;
 const LIFT_SCALE = 1.06;
+const SETTLE = { duration: 200 };
+/** How far into a gutter still counts as being over the neighbouring slot. */
+const HOVER_SLACK = 20;
 
-/**
- * Which slot the finger is over. Slots are position-indexed rather than
- * chord-indexed, so they stay valid while the chips shuffle underneath. A finger
- * in the gutter between rows falls back to the nearest slot centre.
- */
-function slotAt(rects: Rect[], count: number, x: number, y: number): number {
+function distanceToRect(r: Rect, x: number, y: number): number {
+  'worklet';
+  const dx = Math.max(r.x - x, 0, x - (r.x + r.w));
+  const dy = Math.max(r.y - y, 0, y - (r.y + r.h));
+  return Math.sqrt(dx * dx + dy * dy);
+}
+
+/** Nearest slot to a point, or -1 if the point is further away than `slack`. */
+function slotNear(rects: Rect[], count: number, x: number, y: number, slack: number): number {
   'worklet';
   let nearest = -1;
   let best = Infinity;
@@ -37,18 +42,14 @@ function slotAt(rects: Rect[], count: number, x: number, y: number): number {
   for (let i = 0; i < count; i += 1) {
     const r = rects[i];
     if (!r) continue;
-    if (x >= r.x && x <= r.x + r.w && y >= r.y && y <= r.y + r.h) return i;
-
-    const dx = x - (r.x + r.w / 2);
-    const dy = y - (r.y + r.h / 2);
-    const d = dx * dx + dy * dy;
+    const d = distanceToRect(r, x, y);
     if (d < best) {
       best = d;
       nearest = i;
     }
   }
 
-  return nearest;
+  return best <= slack ? nearest : -1;
 }
 
 interface Props {
@@ -69,6 +70,11 @@ interface Props {
  * key — amber when the chord is borrowed from outside it. Tapping a chip loads it
  * onto the neck to edit; holding one hands the row over to dragging, where the
  * numerals give way to positions because order is the only thing that matters.
+ *
+ * The drag lives here rather than on each chip: one pan over the whole row can be
+ * hit-tested against the measured slots, and the chip riding the finger can be
+ * drawn as an overlay in the row's own coordinates — which is what keeps it off
+ * the layout's timeline. See `pan` below.
  */
 export function ProgressionChips({
   chords,
@@ -80,40 +86,148 @@ export function ProgressionChips({
   onReorder,
   onBeginReorder,
 }: Props) {
-  // Layout of every slot, mirrored into a shared value so the drag can hit-test
-  // against it on the UI thread.
+  // Where every slot sits, mirrored into a shared value so the drag can hit-test
+  // against it on the UI thread. `base` is a copy frozen at drag start.
   const measured = useRef<Rect[]>([]);
   const rects = useSharedValue<Rect[]>([]);
+  const base = useSharedValue<Rect[]>([]);
+
+  const slot = useSharedValue(-1); // slot the dragged chip currently occupies
+  const lift = useSharedValue(0); // 0 parked, 1 fully in hand
+  const dragX = useSharedValue(0); // overlay's top-left, in row coordinates
+  const dragY = useSharedValue(0);
+  const grabX = useSharedValue(0); // where inside the chip the finger took hold
+  const grabY = useSharedValue(0);
+
   const [dragId, setDragId] = useState<string | null>(null);
+  const count = chords.length;
 
   const measure = (index: number, rect: Rect) => {
     measured.current[index] = rect;
     rects.value = [...measured.current];
   };
 
+  const beginDragAt = (index: number) => {
+    const chord = chords[index];
+    if (chord) setDragId(chord.id);
+  };
+
+  const endDrag = () => setDragId(null);
+
+  // Callbacks only become worklets if they hang off an unbroken chain from
+  // `Gesture.Pan()` — the babel plugin matches on the syntax, not the value. Break
+  // it and the whole drag quietly moves to the JS thread.
+  const pan = Gesture.Pan()
+    .enabled(canReorder)
+    .onStart((e) => {
+      const i = slotNear(rects.value, count, e.x, e.y, 0);
+      // Started on a gutter rather than a chip — sit this one out.
+      if (i < 0) {
+        slot.value = -1;
+        return;
+      }
+
+      const r = rects.value[i];
+      slot.value = i;
+      base.value = rects.value;
+      grabX.value = e.x - r.x;
+      grabY.value = e.y - r.y;
+      dragX.value = r.x;
+      dragY.value = r.y;
+      lift.value = withTiming(1, { duration: 130 });
+
+      if (!reordering) runOnJS(onBeginReorder)();
+      runOnJS(beginDragAt)(i);
+    })
+    .onUpdate((e) => {
+      if (slot.value < 0) return;
+      dragX.value = e.x - grabX.value;
+      dragY.value = e.y - grabY.value;
+
+      // Read the target from the layout as it was when the drag began. Hit-testing
+      // the live layout feeds each reorder into the geometry that decides the next
+      // one: a narrow chip swapped past a wide one leaves the finger back over the
+      // slot it just left, and the row oscillates. The frozen copy can't do that,
+      // and splicing from the current slot to a target expressed in the original
+      // frame still lands the chip where the finger is pointing.
+      const target = slotNear(base.value, count, e.x, e.y, HOVER_SLACK);
+      if (target >= 0 && target !== slot.value) {
+        runOnJS(onReorder)(slot.value, target);
+        slot.value = target;
+      }
+    })
+    .onFinalize(() => {
+      if (slot.value < 0) {
+        lift.value = 0;
+        return;
+      }
+      // `slot` deliberately keeps its value here. The overlay reads it to find the
+      // rect it is settling into, and it stays mounted for a commit or two after
+      // this fires; clearing it now would lose the home rect and snap the chip
+      // back to the finger on its last frame. The next `onStart` sets it anyway.
+      lift.value = withTiming(0, SETTLE, (finished) => {
+        if (finished) runOnJS(endDrag)();
+      });
+    });
+
+  // Out of reorder mode a chip has to be held before it will drag, so a plain
+  // swipe still scrolls the page. Inside it, movement alone is enough.
+  if (!reordering) pan.activateAfterLongPress(LONG_PRESS_MS);
+
+  // The overlay is positioned by the finger alone, so nothing about it waits on a
+  // layout pass. `lift` doubles as the blend back to the chip's slot: as it decays
+  // the overlay glides home, and because the home rect is read every frame a late
+  // measurement adjusts the target mid-glide instead of jumping.
+  const overlayStyle = useAnimatedStyle(() => {
+    const home = rects.value[slot.value];
+    const t = lift.value;
+
+    return {
+      transform: [
+        { translateX: home ? dragX.value * t + home.x * (1 - t) : dragX.value },
+        { translateY: home ? dragY.value * t + home.y * (1 - t) : dragY.value },
+        { scale: 1 + t * (LIFT_SCALE - 1) },
+      ],
+    };
+  });
+
+  const dragIndex = dragId === null ? -1 : chords.findIndex((c) => c.id === dragId);
+  const dragged = dragIndex < 0 ? null : chords[dragIndex];
+
   return (
-    <View className="flex-row flex-wrap gap-[8px]">
-      {chords.map((chord, i) => (
-        <Chip
-          key={chord.id}
-          chord={chord}
-          label={labels[i]}
-          index={i}
-          count={chords.length}
-          active={chord.id === activeId}
-          dragging={chord.id === dragId}
-          reordering={reordering}
-          canReorder={canReorder}
-          rects={rects}
-          onMeasure={measure}
-          onSelect={onSelect}
-          onReorder={onReorder}
-          onBeginReorder={onBeginReorder}
-          onDragStart={setDragId}
-          onDragEnd={setDragId}
-        />
-      ))}
-    </View>
+    <GestureDetector gesture={pan}>
+      <View className="flex-row flex-wrap gap-[8px]">
+        {chords.map((chord, i) => (
+          <Chip
+            key={chord.id}
+            chord={chord}
+            label={labels[i]}
+            index={i}
+            count={count}
+            active={chord.id === activeId}
+            reordering={reordering}
+            hidden={chord.id === dragId}
+            onMeasure={measure}
+            onSelect={onSelect}
+          />
+        ))}
+
+        {dragged ? (
+          <AnimatedView
+            className="pointer-events-none absolute left-0 top-0 z-20"
+            style={overlayStyle}
+          >
+            <ChipFace
+              chord={dragged}
+              label={labels[dragIndex]}
+              position={dragIndex + 1}
+              reordering
+              active={dragged.id === activeId}
+            />
+          </AnimatedView>
+        ) : null}
+      </View>
+    </GestureDetector>
   );
 }
 
@@ -123,131 +237,42 @@ interface ChipProps {
   index: number;
   count: number;
   active: boolean;
-  dragging: boolean;
   reordering: boolean;
-  canReorder: boolean;
-  rects: SharedValue<Rect[]>;
+  hidden: boolean;
   onMeasure: (index: number, rect: Rect) => void;
   onSelect: (chord: ProgressionChord) => void;
-  onReorder: (from: number, to: number) => void;
-  onBeginReorder: () => void;
-  onDragStart: (id: string) => void;
-  onDragEnd: (id: null) => void;
 }
 
+/**
+ * A chip in the flow. While its chord is in hand this goes invisible and the
+ * overlay stands in for it, so the slot keeps reserving exactly the right space
+ * and its neighbours glide around it. Hiding is driven by the same state that
+ * mounts the overlay, so the two swap in one commit with no frame showing both
+ * or neither.
+ */
 function Chip({
   chord,
   label,
   index,
   count,
   active,
-  dragging,
   reordering,
-  canReorder,
-  rects,
+  hidden,
   onMeasure,
   onSelect,
-  onReorder,
-  onBeginReorder,
-  onDragStart,
-  onDragEnd,
 }: ChipProps) {
-  const press = useSharedValue(0);
-  const lift = useSharedValue(0);
-  // Where the finger is, in the container's coordinates. Only the chip under it
-  // cares, so it lives here rather than being shared across the row.
-  const fingerX = useSharedValue(0);
-  const fingerY = useSharedValue(0);
-  // Where the chip sat when the drag began, and which slot it now occupies. The
-  // slot is tracked here rather than read from `index`, whose prop update lands a
-  // render behind the reorder that caused it.
-  const originX = useSharedValue(0);
-  const originY = useSharedValue(0);
-  const slot = useSharedValue(index);
-
-  const tap = Gesture.Tap()
-    .enabled(!reordering)
-    .onBegin(() => {
-      press.value = withTiming(1, { duration: 80 });
-    })
-    .onEnd((_e, success) => {
-      if (success) runOnJS(onSelect)(chord);
-    })
-    .onFinalize(() => {
-      press.value = withTiming(0, { duration: 160 });
-    });
-
-  // Callbacks only become worklets if they hang off an unbroken chain from
-  // `Gesture.Pan()` — the babel plugin matches on the syntax, not the value. Break
-  // it and the whole drag quietly moves to the JS thread.
-  const pan = Gesture.Pan()
-    .enabled(canReorder)
-    .onStart(() => {
-      const r = rects.value[index];
-      // Nothing measured yet — sit the drag out rather than hit-testing against
-      // an empty row and shuffling the progression behind the user's back.
-      if (!r) {
-        slot.value = -1;
-        return;
-      }
-      originX.value = r.x + r.w / 2;
-      originY.value = r.y + r.h / 2;
-      fingerX.value = originX.value;
-      fingerY.value = originY.value;
-      slot.value = index;
-      lift.value = withTiming(1, { duration: 130 });
-      if (!reordering) runOnJS(onBeginReorder)();
-      runOnJS(onDragStart)(chord.id);
-    })
-    .onUpdate((e) => {
-      if (slot.value < 0) return;
-      fingerX.value = originX.value + e.translationX;
-      fingerY.value = originY.value + e.translationY;
-
-      const target = slotAt(rects.value, count, fingerX.value, fingerY.value);
-      if (target !== -1 && target !== slot.value) {
-        runOnJS(onReorder)(slot.value, target);
-        slot.value = target;
-      }
-    })
-    .onFinalize(() => {
-      lift.value = withTiming(0, { duration: 160 });
-      runOnJS(onDragEnd)(null);
-    });
-
-  // Out of reorder mode a chip has to be held before it will drag, so a plain
-  // swipe still scrolls the page. Inside it, movement alone is enough.
-  if (!reordering) pan.activateAfterLongPress(LONG_PRESS_MS);
-
-  // The chip rides the finger by cancelling out its own slot position, so it stays
-  // put while the slot changes under it. `lift` scales that offset, so releasing
-  // eases the chip home rather than snapping it — which is why the offset is gated
-  // on `lift` and not on `dragging`, whose flag drops the instant the finger goes.
-  const style = useAnimatedStyle(() => {
-    const r = rects.value[index];
-
-    return {
-      zIndex: lift.value > 0 ? 20 : 0,
-      opacity: 1 - press.value * 0.3,
-      transform: [
-        { translateX: r ? (fingerX.value - (r.x + r.w / 2)) * lift.value : 0 },
-        { translateY: r ? (fingerY.value - (r.y + r.h / 2)) * lift.value : 0 },
-        { scale: 1 + lift.value * (LIFT_SCALE - 1) },
-      ],
-    };
-  });
-
-  const borrowed = label ? !label.isDiatonic : false;
-
   return (
-    <GestureDetector gesture={Gesture.Race(pan, tap)}>
-      <AnimatedView
-        layout={dragging ? undefined : LinearTransition.duration(190)}
-        style={style}
-        onLayout={(e: LayoutChangeEvent) => {
-          const { x, y, width, height } = e.nativeEvent.layout;
-          onMeasure(index, { x, y, w: width, h: height });
-        }}
+    <AnimatedView
+      layout={LinearTransition.duration(190)}
+      className={hidden ? 'opacity-0' : undefined}
+      onLayout={(e: LayoutChangeEvent) => {
+        const { x, y, width, height } = e.nativeEvent.layout;
+        onMeasure(index, { x, y, w: width, h: height });
+      }}
+    >
+      <Pressable
+        onPress={() => onSelect(chord)}
+        disabled={reordering}
         accessibilityRole="button"
         accessibilityState={{ selected: active }}
         accessibilityLabel={
@@ -255,31 +280,58 @@ function Chip({
             ? `${chord.name}, position ${index + 1} of ${count}, drag to move`
             : `${chord.name}, edit on fretboard`
         }
-        className={`items-center rounded-[11px] border px-[13px] py-[8px] ${
-          active
-            ? 'border-accent-line bg-accent-wash'
-            : reordering
-              ? 'border-line bg-surface-raised'
-              : 'border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface'
-        }`}
+        className="active:opacity-70"
       >
-        <Text className="text-[15px] font-semibold tracking-[-0.2px] text-ink">
-          {toAccidentalGlyphs(chord.name)}
+        <ChipFace
+          chord={chord}
+          label={label}
+          position={index + 1}
+          reordering={reordering}
+          active={active}
+        />
+      </Pressable>
+    </AnimatedView>
+  );
+}
+
+interface FaceProps {
+  chord: ProgressionChord;
+  label: RomanLabel | undefined;
+  position: number;
+  reordering: boolean;
+  active: boolean;
+}
+
+/** The chip itself, drawn twice: once in the flow, once riding the finger. */
+function ChipFace({ chord, label, position, reordering, active }: FaceProps) {
+  const borrowed = label ? !label.isDiatonic : false;
+
+  return (
+    <View
+      className={`items-center rounded-[11px] border px-[13px] py-[8px] ${
+        active
+          ? 'border-accent-line bg-accent-wash'
+          : reordering
+            ? 'border-line bg-surface-raised'
+            : 'border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface'
+      }`}
+    >
+      <Text className="text-[15px] font-semibold tracking-[-0.2px] text-ink">
+        {toAccidentalGlyphs(chord.name)}
+      </Text>
+      {reordering ? (
+        <Text className="mt-[3px] font-mono text-[9.5px] tracking-[1.2px] text-accent">
+          {position}
         </Text>
-        {reordering ? (
-          <Text className="mt-[3px] font-mono text-[9.5px] tracking-[1.2px] text-accent">
-            {index + 1}
-          </Text>
-        ) : label ? (
-          <Text
-            className={`mt-[3px] font-mono text-[9.5px] tracking-[1.2px] ${
-              borrowed ? 'text-amber' : 'text-ink-muted'
-            }`}
-          >
-            {label.roman}
-          </Text>
-        ) : null}
-      </AnimatedView>
-    </GestureDetector>
+      ) : label ? (
+        <Text
+          className={`mt-[3px] font-mono text-[9.5px] tracking-[1.2px] ${
+            borrowed ? 'text-amber' : 'text-ink-muted'
+          }`}
+        >
+          {label.roman}
+        </Text>
+      ) : null}
+    </View>
   );
 }
