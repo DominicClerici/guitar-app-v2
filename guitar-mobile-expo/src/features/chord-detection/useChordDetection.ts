@@ -1,42 +1,16 @@
 import { useCallback, useMemo, useState } from 'react';
 
-import { analyzeChord, noteToSemitone, type ChordResult, type FretboardNote } from '@/lib/chord-analysis';
+import { analyzeChord, noteToSemitone, type FretboardNote } from '@/lib/chord-analysis';
 
-import { chromaticName } from './tuning';
-
-// Spelling the engine resolves enharmonics with. There is no user preference in
-// this app yet; flats are the convention chord symbols are usually written in.
-const ACCIDENTAL = 'flat' as const;
+import { ACCIDENTAL, nameForPitchClassFrom } from './spelling';
 
 export type PlacedNote = FretboardNote;
 
 /**
- * Pitch class → spelled note, taken from the reading's own chord tones so the
- * fretboard dots use the spelling the engine chose (Bb, not A#, under a Bb root).
- * Anything the reading doesn't cover falls back to a neutral chromatic name.
- */
-function nameForPitchClassFrom(reading: ChordResult | undefined): (pc: number) => string {
-  const map = new Map<number, string>();
-
-  if (reading) {
-    const tones = reading.chordTones;
-    const add = (name: string | null) => {
-      if (name) map.set(noteToSemitone(name), name);
-    };
-    add(tones.root);
-    add(tones.bass);
-    for (const row of [tones.triad, tones.seventh, tones.extensions]) {
-      for (const slot of row) add(slot.note);
-    }
-  }
-
-  return (pc: number) => map.get(pc) ?? chromaticName(pc, ACCIDENTAL);
-}
-
-/**
  * A voicing being built on the fretboard and the engine's best reading of it.
  * Only the top-ranked name is surfaced — alternate readings, the interval grid
- * and the engine's warnings stay unused here.
+ * and the engine's warnings stay unused here. The key detector builds on
+ * useChordBuilder instead, which keeps the full ranked list.
  */
 export function useChordDetection() {
   const [placed, setPlaced] = useState<PlacedNote[]>([]);

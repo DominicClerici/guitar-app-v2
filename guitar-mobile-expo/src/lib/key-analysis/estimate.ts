@@ -1,0 +1,295 @@
+import { qualityOf } from './extract';
+import {
+  KS_MAJOR_PROFILE,
+  KS_MINOR_PROFILE,
+  MAJOR_BORROWED_OFFSETS,
+  MINOR_BORROWED_OFFSETS,
+  degreeMap,
+  degreeQualities,
+  toleranceSet,
+} from './scales';
+import type { KeyCandidate, KeyEstimate, Mode, ProgressionChord, Quality } from './types';
+
+const W_CHORD_FIT = 1.0;
+const W_KS = 0.6;
+const W_POSITION = 0.5;
+
+const REWARD_FULL = 1.0;
+const REWARD_SEVENTH_BONUS = 0.3;
+const REWARD_PARTIAL = 0.4;
+const REWARD_BORROWED = 0.15;
+const PENALTY_ACCIDENTAL = 0.1;
+
+const BONUS_FIRST_TONIC = 0.3;
+const BONUS_LAST_TONIC = 0.3;
+const BONUS_CADENCE = 0.4;
+
+// Chord roots carry extra harmonic weight in the pitch-class histogram, on top
+// of their membership in pitchClasses (so a root totals this + 1).
+const ROOT_HISTOGRAM_BONUS = 2;
+
+const SOFTMAX_TEMPERATURE = 0.3;
+const AMBIGUITY_EPSILON = 0.18;
+
+const SEVENTH_QUALITIES = new Set<Quality>([
+  'dom7',
+  'maj7',
+  'min7',
+  'min7b5',
+  'dim7',
+  'minMaj7',
+]);
+
+// Blues and blues-derived rock put a dominant 7th on I and IV as tonic colour,
+// not as a functional dominant: a 12-bar in C is C7–F7–G7 and never leaves C.
+// Scored functionally, each of those I7/IV7 chords reads as a flawless V7 of the
+// subdominant, so every blues lands a fourth too high (C blues → F major).
+//
+// The allowance can't be unconditional — an isolated I7 in functional harmony
+// really is V/IV (C–C7–F). It's gated instead on the progression as a whole
+// reading as a dominant idiom, which is what actually distinguishes the two:
+// blues saturates every degree with dom7, functional harmony uses it on one or
+// two roots at most.
+const BLUES_DOM7_RATIO = 0.5;
+// Degree 1 and degree 4 — the two blues-idiomatic homes for a dom7 besides V.
+const BLUES_DOM7_OFFSETS = new Set([0, 5]);
+// Parity with a functional V7 (REWARD_FULL + REWARD_SEVENTH_BONUS): inside the
+// idiom a I7 is as idiomatic as a V7, and the key is then decided by the chord
+// that only fits one of the candidates — the actual V.
+const REWARD_BLUES_DOM7 = REWARD_FULL + REWARD_SEVENTH_BONUS;
+
+function mod12(n: number): number {
+  return ((n % 12) + 12) % 12;
+}
+
+// Conventional key names (fewest accidentals in the key signature) for each
+// tonic pitch class, indexed [0..11]. Because the spelling of an enharmonic key
+// depends on the mode, major and minor need separate tables:
+//   - Major C♯(7♯) vs D♭(5♭) → D♭; G♯(8♯) vs A♭(4♭) → A♭, etc.
+//   - Minor C♯(4♯) vs D♭(8♭) → C♯; G♯(5♯) vs A♭(7♭) → G♯, etc.
+// Each table has exactly one genuinely-tied tonic (equal accidental counts),
+// left empty here and resolved by the caller's accidental preference below:
+// F♯/G♭ major (pc 6) and D♯/E♭ minor (pc 3).
+const MAJOR_TIE_PC = 6;
+const MINOR_TIE_PC = 3;
+const MAJOR_KEY_NAMES = ['C', 'D♭', 'D', 'E♭', 'E', 'F', '', 'G', 'A♭', 'A', 'B♭', 'B'] as const;
+const MINOR_KEY_NAMES = ['C', 'C♯', 'D', '', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'B♭', 'B'] as const;
+
+function keyDisplayName(tonicPc: number, mode: Mode, preference: 'sharp' | 'flat'): string {
+  let base: string;
+  if (mode === 'major') {
+    base =
+      tonicPc === MAJOR_TIE_PC
+        ? preference === 'flat'
+          ? 'G♭'
+          : 'F♯'
+        : MAJOR_KEY_NAMES[tonicPc];
+  } else {
+    base =
+      tonicPc === MINOR_TIE_PC
+        ? preference === 'flat'
+          ? 'E♭'
+          : 'D♯'
+        : MINOR_KEY_NAMES[tonicPc];
+  }
+  return `${base} ${mode}`;
+}
+
+// True when dominant 7ths saturate the progression rather than marking one or
+// two functional dominants — see BLUES_DOM7_RATIO.
+function isDominantIdiom(chords: ProgressionChord[]): boolean {
+  const dom7 = chords.filter((c) => qualityOf(c.feature) === 'dom7').length;
+  return dom7 / chords.length >= BLUES_DOM7_RATIO;
+}
+
+function isTonicChord(
+  chord: ProgressionChord,
+  tonicPc: number,
+  mode: Mode,
+  blues: boolean,
+): boolean {
+  if (mod12(chord.feature.rootPc - tonicPc) !== 0) return false;
+  const q = qualityOf(chord.feature);
+  return mode === 'major'
+    ? // Inside the idiom the I7 *is* the tonic arrival; without this the position
+      // term keeps voting for the subdominant even once chord-fit is corrected.
+      q === 'maj' || q === 'maj7' || (blues && q === 'dom7')
+    : q === 'min' || q === 'min7' || q === 'minMaj7';
+}
+
+function chordFitScore(
+  chord: ProgressionChord,
+  tonicPc: number,
+  mode: Mode,
+  blues: boolean,
+): number {
+  const offset = mod12(chord.feature.rootPc - tonicPc);
+  const slot = degreeMap(mode)[offset];
+  const quality = qualityOf(chord.feature);
+  const inKey = toleranceSet(mode);
+  const bluesDom7 =
+    blues && mode === 'major' && quality === 'dom7' && BLUES_DOM7_OFFSETS.has(offset);
+
+  // Penalize every pitch class outside the key's tolerance set, regardless of
+  // whether the chord's root is diatonic — chromatic tones from secondary
+  // dominants / borrowed chords still count as evidence against this key.
+  // Exception: the ♭7 an idiomatic I7/IV7 carries is a blue note, not evidence
+  // of another key. (On I that ♭7 is scale-degree ♭7; on IV it is ♭3.)
+  const bluesNote = mod12(chord.feature.rootPc + 10);
+  let penalty = 0;
+  for (const pc of chord.feature.pitchClasses) {
+    if (bluesDom7 && pc === bluesNote) continue;
+    if (!inKey.has(mod12(pc - tonicPc))) penalty += PENALTY_ACCIDENTAL;
+  }
+
+  let reward: number;
+  if (slot.accidental === '') {
+    const expected = degreeQualities(mode)[slot.degree - 1];
+    if (expected.has(quality)) {
+      reward = REWARD_FULL + (SEVENTH_QUALITIES.has(quality) ? REWARD_SEVENTH_BONUS : 0);
+    } else if (bluesDom7) {
+      reward = REWARD_BLUES_DOM7;
+    } else {
+      reward = REWARD_PARTIAL;
+    }
+  } else {
+    const borrowed = mode === 'major' ? MAJOR_BORROWED_OFFSETS : MINOR_BORROWED_OFFSETS;
+    reward = borrowed.has(offset) ? REWARD_BORROWED : 0;
+  }
+
+  return reward - penalty;
+}
+
+function pearson(a: readonly number[], b: readonly number[]): number {
+  const n = a.length;
+  const mean = (xs: readonly number[]) => xs.reduce((s, x) => s + x, 0) / xs.length;
+  const ma = mean(a);
+  const mb = mean(b);
+  let num = 0;
+  let da = 0;
+  let db = 0;
+  for (let i = 0; i < n; i += 1) {
+    const xa = a[i] - ma;
+    const xb = b[i] - mb;
+    num += xa * xb;
+    da += xa * xa;
+    db += xb * xb;
+  }
+  const denom = Math.sqrt(da * db);
+  return denom === 0 ? 0 : num / denom;
+}
+
+function ksCorrelation(chords: ProgressionChord[], tonicPc: number, mode: Mode): number {
+  const hist = new Array(12).fill(0);
+  for (const c of chords) {
+    for (const pc of c.feature.pitchClasses) {
+      hist[mod12(pc - tonicPc)] += 1;
+    }
+    // Root appears once via pitchClasses above; this adds its extra weight.
+    hist[mod12(c.feature.rootPc - tonicPc)] += ROOT_HISTOGRAM_BONUS;
+  }
+  const profile = mode === 'major' ? KS_MAJOR_PROFILE : KS_MINOR_PROFILE;
+  return pearson(hist, profile);
+}
+
+function positionBonus(
+  chords: ProgressionChord[],
+  tonicPc: number,
+  mode: Mode,
+  blues: boolean,
+): number {
+  let bonus = 0;
+  if (isTonicChord(chords[0], tonicPc, mode, blues)) bonus += BONUS_FIRST_TONIC;
+  if (isTonicChord(chords[chords.length - 1], tonicPc, mode, blues)) bonus += BONUS_LAST_TONIC;
+  let cadences = 0;
+  for (let i = 0; i < chords.length - 1; i += 1) {
+    const a = mod12(chords[i].feature.rootPc - tonicPc);
+    const b = mod12(chords[i + 1].feature.rootPc - tonicPc);
+    const aq = qualityOf(chords[i].feature);
+    const dominant = a === 7 && (aq === 'maj' || aq === 'dom7');
+    // Inside the dominant idiom, dom7→dom7 by descending fifth is the ordinary
+    // I7→IV7 move, not an authentic cadence — and it is indistinguishable from
+    // a real V7→I7 turnaround locally. Awarding it hands the subdominant two
+    // spurious cadences in a stock 12-bar (bars 1→2 and 4→5). Chord fit and the
+    // first/last-tonic bonus carry the key instead.
+    const idiomatic = blues && qualityOf(chords[i + 1].feature) === 'dom7';
+    if (dominant && b === 0 && !idiomatic) cadences += 1;
+  }
+  // Saturating rather than cumulative. chordFitScore is averaged over the
+  // progression and the KS correlation is scale-free, so an uncapped sum here
+  // was the score's only length-dependent term: looping a vamp multiplied its
+  // cadence evidence without diluting it, and confidence grew on repetition
+  // alone (C–Am–F–G looped 1x/2x/3x scored gaps of 0.231 / 0.455 / 0.647 for
+  // identical music). Hearing V–I six times is the same evidence six times over,
+  // not six independent pieces of it.
+  //
+  // Saturating at a cadence every other transition, rather than dividing by the
+  // transition count outright: plain density inverts the bug instead of fixing
+  // it, thinning a repeated V–I vamp until D–G–D–G–D–G reads *less* certain than
+  // D–G. Below the saturation point cadences still accrue, so a lone V–I in a
+  // long progression stays weaker than one in a short progression — which is
+  // what keeps C–C7–F–Fm–C in C major instead of hearing the C7–F as a cadence
+  // into F.
+  const saturationPoint = Math.max(1, (chords.length - 1) / 2);
+  return bonus + BONUS_CADENCE * Math.min(1, cadences / saturationPoint);
+}
+
+function softmax(scores: number[], temperature: number): number[] {
+  const max = Math.max(...scores);
+  const exps = scores.map((s) => Math.exp((s - max) / temperature));
+  const sum = exps.reduce((a, b) => a + b, 0);
+  return exps.map((e) => e / sum);
+}
+
+/**
+ * Rank all 24 keys (12 major + 12 minor) against a progression. Hybrid of
+ * diatonic chord fit, a Krumhansl–Schmuckler pitch-class correlation (which is
+ * what breaks relative-major/minor ties), and cadence/position bonuses. Weights
+ * are heuristic constants tuned against known progressions.
+ */
+export function estimateKey(
+  chords: ProgressionChord[],
+  accidentalPreference: 'sharp' | 'flat' = 'flat',
+): KeyEstimate {
+  if (chords.length < 2) {
+    return { best: null, candidates: [], status: 'insufficient' };
+  }
+
+  const blues = isDominantIdiom(chords);
+
+  const raw: KeyCandidate[] = [];
+  for (let tonicPc = 0; tonicPc < 12; tonicPc += 1) {
+    for (const mode of ['major', 'minor'] as Mode[]) {
+      const fit =
+        chords.reduce((s, c) => s + chordFitScore(c, tonicPc, mode, blues), 0) / chords.length;
+      const ks = ksCorrelation(chords, tonicPc, mode);
+      const pos = positionBonus(chords, tonicPc, mode, blues);
+      const score = W_CHORD_FIT * fit + W_KS * ks + W_POSITION * pos;
+      raw.push({
+        tonicPc,
+        mode,
+        name: keyDisplayName(tonicPc, mode, accidentalPreference),
+        score,
+        confidence: 0,
+      });
+    }
+  }
+
+  raw.sort((a, b) => b.score - a.score);
+  const confidences = softmax(
+    raw.map((c) => c.score),
+    SOFTMAX_TEMPERATURE,
+  );
+  raw.forEach((c, i) => {
+    c.confidence = confidences[i];
+  });
+
+  const candidates = raw.slice(0, 4);
+  const best = candidates[0];
+  const status =
+    candidates[0].confidence - candidates[1].confidence < AMBIGUITY_EPSILON
+      ? 'ambiguous'
+      : 'confident';
+
+  return { best, candidates, status };
+}

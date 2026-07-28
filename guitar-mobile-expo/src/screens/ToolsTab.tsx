@@ -1,3 +1,4 @@
+import { useRouter, type Href } from 'expo-router';
 import { SymbolView, type SFSymbol } from 'expo-symbols';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -102,12 +103,6 @@ const SECTIONS: Section[] = [
         subtitle: 'Names the chord you play',
       },
       {
-        id: 'key-detector',
-        icon: 'music.note.list',
-        title: 'Key Detector',
-        subtitle: 'Works out the key from a progression',
-      },
-      {
         id: 'intonation',
         icon: 'ruler',
         title: 'Intonation Checker',
@@ -124,6 +119,12 @@ const SECTIONS: Section[] = [
   {
     label: 'Reference',
     tools: [
+      {
+        id: 'key-detector',
+        icon: 'music.note.list',
+        title: 'Key Detector',
+        subtitle: 'Names the key of a progression you build',
+      },
       {
         id: 'drone',
         icon: 'speaker.wave.2',
@@ -222,12 +223,19 @@ function ToolRow({
   );
 }
 
+// Tools that have a screen of their own to push. The rest open in a sheet or
+// are not built yet.
+const ROUTES: Partial<Record<ToolId, Href>> = {
+  'key-detector': '/key-detector',
+};
+
 export function ToolsTab() {
   const insets = useSafeAreaInsets();
+  const router = useRouter();
 
-  // Each tool opens in a sheet or pushes a screen; wired up once they exist.
   const openTool = (id: ToolId) => {
-    console.log('open tool', id);
+    const route = ROUTES[id];
+    if (route) router.push(route);
   };
 
   return (
