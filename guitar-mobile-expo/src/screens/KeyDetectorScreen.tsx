@@ -99,6 +99,24 @@ function IconAction({
   );
 }
 
+interface Hint {
+  text: string;
+  dot: string;
+  tone: string;
+}
+
+/** A coloured dot and its line, matching the colour a chip carries on the board. */
+function HintRow({ hint }: { hint: Hint }) {
+  return (
+    <View className="flex-row items-center gap-[8px]">
+      <View className={`h-[7px] w-[7px] rounded-full ${hint.dot}`} />
+      <Text className={`font-mono text-[9.5px] uppercase tracking-[1.5px] ${hint.tone}`}>
+        {hint.text}
+      </Text>
+    </View>
+  );
+}
+
 /**
  * Build a progression chord by chord on the neck and the engine names the key it
  * sits in. The board is the input, the chip row is the progression, and the
@@ -181,9 +199,14 @@ export function KeyDetectorScreen() {
 
   const hasBorrowed = labels.some((label) => !label.isDiatonic);
 
+  const hints: Hint[] = [];
+  if (hasBorrowed) {
+    hints.push({ text: 'Borrowed from outside the key', dot: 'bg-amber', tone: 'text-amber' });
+  }
+
   return (
-    <View className="flex-1 bg-bg" style={{ paddingTop: insets.top }}>
-      <View className="h-[52px] flex-row items-center justify-between px-[18px]">
+    <View className="flex-1 bg-bg" style={{ paddingTop: Math.max(insets.top - 6, 0) }}>
+      <View className="h-[42px] flex-row items-center justify-between px-[18px]">
         <Pressable
           onPress={() => router.back()}
           hitSlop={10}
@@ -221,50 +244,52 @@ export function KeyDetectorScreen() {
         // The verdict sits at the top and the instrument at the bottom, so a tall
         // screen opens a gap between them rather than stranding the board in the
         // middle. `grow` lets the spacer below claim whatever is left over.
-        contentContainerClassName="grow px-[18px] pt-[10px]"
+        contentContainerClassName="grow px-[18px] pt-[2px]"
         contentContainerStyle={{ paddingBottom: insets.bottom + 24 }}
       >
         <KeyReadout estimate={estimate} keyChoice={keyChoice} onSelectKey={setKeyChoice} />
 
-        <View className="min-h-[28px] grow" />
+        {/* Hangs off the card rather than the chip row, so a hint reads as a note
+            on the verdict and does not drift down the page with the board. */}
+        {hints.length > 0 ? (
+          <View className="mt-[8px] gap-[6px] px-[2px]">
+            {hints.map((hint) => (
+              <HintRow key={hint.text} hint={hint} />
+            ))}
+          </View>
+        ) : null}
+
+        <View className="min-h-[20px] grow" />
 
         {chords.length === 0 ? (
           <Text className="text-[12.5px] leading-[18px] text-ink-muted">
             Chords you add show up here in order. Tap one to put it back on the neck and edit it.
           </Text>
         ) : (
-          <View>
-            <ProgressionChips
-              chords={chords}
-              labels={labels}
-              activeId={editId}
-              reordering={reordering}
-              canReorder={canReorder}
-              onSelect={onEditChord}
-              onReorder={reorder}
-              onBeginReorder={() => setReordering(true)}
-              onEndReorder={() => setReordering(false)}
-            />
-
-            {reordering ? (
-              <Text className="mt-[12px] font-mono text-[9.5px] uppercase tracking-[1.5px] text-accent">
-                Drag a chord to move it
-              </Text>
-            ) : hasBorrowed ? (
-              <Text className="mt-[12px] font-mono text-[9.5px] uppercase tracking-[1.5px] text-amber">
-                Amber · borrowed from outside the key
-              </Text>
-            ) : null}
-          </View>
+          <ProgressionChips
+            chords={chords}
+            labels={labels}
+            activeId={editId}
+            reordering={reordering}
+            canReorder={canReorder}
+            onSelect={onEditChord}
+            onReorder={reorder}
+            onBeginReorder={() => setReordering(true)}
+            onEndReorder={() => setReordering(false)}
+          />
         )}
 
         {/* The name takes only the width it needs; whatever is left is the shelf
             for the alternate readings of the same shape. Whichever reading is
             chosen is what the key engine scores, so an Am7 heard as C6 moves the
-            estimate. */}
-        <View className="mt-[24px] flex-row items-center gap-[14px]">
+            estimate.
+
+            Fixed height: the reading pills are the tallest thing that can land in
+            here, so without it the row grows by their overshoot the moment the
+            board names a chord. Everything inside is sized to this height. */}
+        <View className="mt-[24px] h-[30px] flex-row items-center gap-[14px]">
           <Text
-            className={`shrink text-[34px] leading-[37px] font-semibold tracking-[-0.9px] ${
+            className={`shrink text-[27px] leading-[30px] font-semibold tracking-[-0.7px] ${
               chord ? 'text-ink' : 'text-ink-faint'
             }`}
             numberOfLines={1}
@@ -288,7 +313,7 @@ export function KeyDetectorScreen() {
                       accessibilityRole="button"
                       accessibilityState={{ selected: on }}
                       accessibilityLabel={`Read as ${reading.name}`}
-                      className={`rounded-full border px-[13px] py-[7px] active:opacity-70 ${
+                      className={`h-[30px] items-center justify-center rounded-full border px-[13px] active:opacity-70 ${
                         on ? 'border-accent-line bg-accent-wash' : 'border-line-soft bg-surface'
                       }`}
                     >
@@ -304,8 +329,7 @@ export function KeyDetectorScreen() {
                 })}
               </FadingHScroll>
             ) : chord ? null : (
-              // Sized as a reading would be, so the shelf keeps its height and the
-              // row does not shift when the first real label lands in it.
+              // Stands in for a reading, so the empty shelf still reads as one.
               <Text className="text-[13px] font-medium tracking-[-0.1px] text-ink-faint">
                 {EM_DASH}
               </Text>
