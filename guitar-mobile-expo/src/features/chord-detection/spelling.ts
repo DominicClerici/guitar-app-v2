@@ -1,4 +1,5 @@
-import { noteToSemitone, type ChordResult } from '@/lib/chord-analysis';
+import type { ChordResult } from '@/lib/chord-analysis';
+import { noteToSemitone } from '@/lib/theory';
 
 import { chromaticName } from './tuning';
 

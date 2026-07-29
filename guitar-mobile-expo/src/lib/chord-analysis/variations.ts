@@ -4,9 +4,7 @@
 // per distinct input note, in chromatic order from the bass.
 
 import { getChordInfo } from './chord-info'
-import { notesFlat, notesSharp } from './constants'
-import { getHalfSteps } from './half-steps'
-import { getNotesFromIntervals } from './notes-from-intervals'
+import { getHalfSteps, getNotesFromIntervals, notesFlat, notesSharp } from '../theory'
 import type { Variation } from './types'
 
 export function noteToEnharmonic(note: string): string {

@@ -6,11 +6,12 @@ voicings. It's a self-contained, dependency-free TypeScript module (pure
 string/number math — no React, no native modules, safe to call from anywhere
 including a worklet or a plain function).
 
-Import everything from the folder index:
+Import from the folder index; the shared primitives come from `@/lib/theory`:
 
 ```ts
-import { analyzeChord, noteToSemitone, OPEN_PITCHES } from '@/lib/chord-analysis'
+import { analyzeChord } from '@/lib/chord-analysis'
 import type { ChordAnalysis, ChordTones } from '@/lib/chord-analysis'
+import { noteToSemitone, OPEN_PITCHES } from '@/lib/theory'
 ```
 
 ## What it does (and doesn't)
@@ -18,21 +19,23 @@ import type { ChordAnalysis, ChordTones } from '@/lib/chord-analysis'
 - **Chord identification** — given the notes of one voicing, name the chord(s),
   show the intervals, and flag anything unusual. This is what `analyzeChord`
   does and it's ready to use.
-- **Key / progression analysis** — _not implemented here yet._ This module
-  identifies a single chord; it has no key-detection algorithm. When we build
-  the progression → key feature it will reuse the primitives below
-  (`noteToSemitone`, `OPEN_PITCHES`, the chromatic tables) plus new code.
+- **Chord construction** — the opposite direction (a chord identity → its
+  tones) lives in `@/lib/chord-library`. Both modules share the spelling core
+  in `@/lib/theory`, so `Gb7` reads `Gb Bb Db Fb` in either tool.
+- **Key / progression analysis** — lives in `@/lib/key-analysis`, which
+  consumes the `ChordResult`s this module produces.
 
 ## Public API
 
 | Export | What it is |
 |--------|------------|
 | `analyzeChord(notes: FretboardNote[]): ChordAnalysis \| null` | The entry point. Returns `null` for fewer than 3 notes. |
-| `noteToSemitone(note: string): number` | Spelled note (`"C"`, `"F#"`, `"Bb"`, `"B##"`…) → pitch class `0–11`. Use it to turn a spelled root back into a pitch class. |
-| `OPEN_PITCHES` | Open-string pitch class per string index. `[4, 11, 7, 2, 9, 4]` = high‑e, B, G, D, A, low‑E. |
-| `OPEN_PITCHES_MIDI` | Same ordering as MIDI pitches at fret 0. `[64, 59, 55, 50, 45, 40]`. |
-| `notesFlat` / `notesSharp` | Chromatic name tables indexed by pitch class (C = 0), flat- and sharp-side. |
+| `EMPTY_CHORD_TONES` | The blank `ChordTones` grid, for drawing the slot panel before a chord exists. |
 | types | `ChordAnalysis`, `ChordResult`, `ChordTones`, `IntervalSlot`, `FretboardNote`, `Warning`. |
+
+The chromatic tables (`notesFlat`, `notesSharp`), `noteToSemitone`, and the
+tuning constants (`OPEN_PITCHES`, `OPEN_PITCHES_MIDI`) used to be re-exported
+here. They now live in `@/lib/theory` — import them from there.
 
 ### Input — `FretboardNote`
 
@@ -167,25 +170,22 @@ modules:
 
 | File | Job |
 |------|-----|
-| `half-steps.ts` | Note name ↔ pitch class; build the half-step array relative to a root. |
 | `chord-info.ts` | The core: half-steps → triad quality, extension, sus, tensions, per-semitone interval labels, and a slash-chord reading. |
-| `notes-from-intervals.ts` | Spell interval labels into note names from the mixolydian skeleton; decides `F#` vs `Gb`. |
 | `chord-symbol.ts` | Format the printed chord symbol. |
 | `variations.ts` | For each input pitch class, run identification + spelling and pick flat/sharp side. |
 | `ranking.ts` | Score variations and pick the primary (see above). |
 | `warnings.ts` | 25 rules flagging unusual voicings. |
 | `adapter.ts` | Map the primary reading into the `ChordTones` grid. |
-| `constants.ts` | Chromatic tables, mixolydian skeleton, open-string pitch classes. |
 | `index.ts` | `analyzeChord` + the public surface. |
+
+The pieces this module builds on — `constants.ts` (chromatic tables, mixolydian
+skeleton, tuning), `half-steps.ts` (note name ↔ pitch class), and
+`notes-from-intervals.ts` (interval label → spelled note, the `F#`-vs-`Gb`
+decision) — live in `@/lib/theory` and are shared with `chord-library`.
 
 ## Tests
 
-`__tests__/` runs under the app's Jest setup:
-
-```
-pnpm jest src/lib/chord-analysis
-```
-
-`golden-vectors` and `adapter` cover identification/spelling/formatting;
-`ranking` covers primary selection and slash rendering; `power-chord` covers the
-two-pitch-class case.
+There is no test runner in this project. Verification is `pnpm lint`
+(`tsc --noEmit` + `expo lint`). `scripts/verify-chord-library.ts` exercises the
+shared spelling core through the chord-library catalogue, which covers
+`notes-from-intervals.ts` across all 17 roots.

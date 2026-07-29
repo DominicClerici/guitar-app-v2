@@ -11,7 +11,7 @@
 // which is the strongest signal; structural complexity and a bass-rooted
 // tiebreak refine the rest.
 
-import { noteToSemitone } from './half-steps'
+import { noteToSemitone } from '../theory'
 import type { Variation } from './types'
 import { chordWarnings } from './warnings'
 

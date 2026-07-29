@@ -13,8 +13,7 @@
 
 import { buildChordTones } from './adapter'
 import { chordSymbol, chordSymbolObjectToArray } from './chord-symbol'
-import { OPEN_PITCHES, OPEN_PITCHES_MIDI } from './constants'
-import { noteToSemitone } from './half-steps'
+import { noteToSemitone, OPEN_PITCHES, OPEN_PITCHES_MIDI } from '../theory'
 import { rankVariations } from './ranking'
 import type { ChordAnalysis, ChordResult, FretboardNote } from './types'
 import { createVariations } from './variations'
@@ -104,13 +103,12 @@ export function analyzeChord(
 }
 
 // ─── Public surface ────────────────────────────────────────────────────────
-// analyzeChord (above) is the primary entry point. The rest is what the UI
-// needs to map fretboard positions to pitch classes and label notes; the
-// lower-level building blocks stay internal to their modules.
+// analyzeChord (above) is the primary entry point, and EMPTY_CHORD_TONES is the
+// blank grid a UI draws before there is a chord to fill it. The chromatic
+// tables, note ↔ pitch-class maps and tuning constants now live in
+// @/lib/theory — import them from there, not through this module.
 
 export { EMPTY_CHORD_TONES } from './adapter'
-export { notesFlat, notesSharp, OPEN_PITCHES, OPEN_PITCHES_MIDI } from './constants'
-export { noteToSemitone } from './half-steps'
 export type {
     ChordAnalysis,
     ChordResult,

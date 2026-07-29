@@ -1,6 +1,7 @@
 import { useCallback, useMemo, useState } from 'react';
 
-import { analyzeChord, noteToSemitone } from '@/lib/chord-analysis';
+import { analyzeChord } from '@/lib/chord-analysis';
+import { noteToSemitone } from '@/lib/theory';
 
 import { ACCIDENTAL, nameForPitchClassFrom } from './spelling';
 import type { PlacedNote } from './useChordDetection';

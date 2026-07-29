@@ -1,4 +1,5 @@
-import { noteToSemitone, type ChordResult, type IntervalSlot } from '@/lib/chord-analysis';
+import type { ChordResult, IntervalSlot } from '@/lib/chord-analysis';
+import { noteToSemitone } from '@/lib/theory';
 
 import type { ChordFeature, Quality, SeventhQuality, TriadQuality } from './types';
 

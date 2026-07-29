@@ -1,4 +1,4 @@
-import { notesFlat, notesSharp, OPEN_PITCHES } from '@/lib/chord-analysis';
+import { notesFlat, notesSharp, OPEN_PITCHES } from '@/lib/theory';
 
 export const STRING_COUNT = 6;
 export const FRET_COUNT = 15; // playable frets beyond the nut

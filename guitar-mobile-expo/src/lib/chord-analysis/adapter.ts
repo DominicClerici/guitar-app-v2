@@ -2,8 +2,7 @@
 // three rows (triad / seventh / extensions), each slot holding the spelled
 // note when that interval is present, or null when it isn't.
 
-import { notesFlat, notesSharp } from './constants'
-import { noteToSemitone } from './half-steps'
+import { noteToSemitone, notesFlat, notesSharp } from '../theory'
 import type { ChordTones, IntervalSlot, Variation } from './types'
 
 const TRIAD_SLOTS = ['sus2', 'm3', '3', 'sus4', 'b5', '5', '#5'] as const
