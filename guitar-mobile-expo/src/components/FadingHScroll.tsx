@@ -1,5 +1,5 @@
-import { useId, useState, type ReactNode } from 'react';
-import { View, type LayoutChangeEvent } from 'react-native';
+import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
+import { View, type LayoutChangeEvent, type ScrollView } from 'react-native';
 import Animated, {
   Extrapolation,
   interpolate,
@@ -23,6 +23,12 @@ interface Props {
   fadeTravel?: number;
   /** Colour token the veil fades from — whatever the row is actually sitting on. */
   veilToken?: string;
+  /**
+   * Content x to bring to the middle of the view, clamped to the scrollable
+   * range. Scrolls whenever the value changes, so a caller can hand it whatever
+   * it wants looked at rather than working out an offset.
+   */
+  centerOnX?: number | null;
 }
 
 /**
@@ -36,13 +42,21 @@ export function FadingHScroll({
   fadeClassName = 'w-[30px]',
   fadeTravel = 40,
   veilToken = '--bg',
+  centerOnX = null,
 }: Props) {
   const [containerW, setContainerW] = useState(0);
   const [contentW, setContentW] = useState(0);
   const scrollX = useSharedValue(0);
   const veilId = useId().replace(/:/g, '');
+  const scroller = useRef<ScrollView>(null);
 
   const maxScroll = Math.max(0, contentW - containerW);
+
+  useEffect(() => {
+    if (centerOnX === null || containerW === 0) return;
+    const x = Math.max(0, Math.min(maxScroll, centerOnX - containerW / 2));
+    scroller.current?.scrollTo({ x, animated: true });
+  }, [centerOnX, containerW, maxScroll]);
 
   const onScroll = useAnimatedScrollHandler((e) => {
     scrollX.value = e.contentOffset.x;
@@ -67,6 +81,7 @@ export function FadingHScroll({
   return (
     <View onLayout={(e: LayoutChangeEvent) => setContainerW(e.nativeEvent.layout.width)}>
       <Animated.ScrollView
+        ref={scroller}
         horizontal
         showsHorizontalScrollIndicator={false}
         scrollEventThrottle={16}

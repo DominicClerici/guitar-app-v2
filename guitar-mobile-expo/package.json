@@ -40,7 +40,8 @@
     "@types/react": "~19.2.2",
     "eslint": "^9.39.5",
     "eslint-config-expo": "~57.0.0",
-    "typescript": "~6.0.3"
+    "typescript": "~6.0.3",
+    "vitest": "^4.1.10"
   },
   "scripts": {
     "start": "expo start",
@@ -50,7 +51,8 @@
     "ios": "expo run:ios --device",
     "web": "expo start --web",
     "typecheck": "tsc --noEmit",
-    "lint": "pnpm typecheck && expo lint",
+    "test": "vitest run",
+    "lint": "pnpm typecheck && expo lint && pnpm test",
     "build": "expo export"
   },
   "private": true

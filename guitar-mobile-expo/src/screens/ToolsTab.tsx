@@ -235,6 +235,7 @@ const ROUTES: Partial<Record<ToolId, Href>> = {
   intonation: '/intonation',
   metronome: '/metronome',
   drone: '/drone',
+  'scale-visualizer': '/scale-visualizer',
 };
 
 export function ToolsTab() {
