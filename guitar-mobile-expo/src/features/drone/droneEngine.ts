@@ -30,12 +30,13 @@ const PAN_WIDTH = 0.6;
 const CUTOFF_FLOOR = 220;
 const CUTOFF_CEILING = 11000;
 
+/** The drone always sounds at full output; the per-note weighting keeps it in bounds. */
+const MASTER_GAIN = 1;
+
 export interface DroneSnapshot {
   running: boolean;
   voiceId: string;
   intonation: Intonation;
-  /** 0–1, as the user set it. The curve into actual gain is applied here, not there. */
-  level: number;
   /** MIDI pitches currently assigned to the drone, sounding or not. */
   pitches: number[];
 }
@@ -56,7 +57,6 @@ let reverb: ConvolverNode | null = null;
 let running = false;
 let voice: DroneVoice = DEFAULT_VOICE;
 let intonation: Intonation = 'equal';
-let level = 0.75;
 let pitches: number[] = [];
 let rootMidi = 40;
 
@@ -68,7 +68,6 @@ let snapshot: DroneSnapshot = {
   running: false,
   voiceId: voice.id,
   intonation,
-  level,
   pitches,
 };
 
@@ -88,17 +87,12 @@ function emit(next: Partial<DroneSnapshot>) {
   listeners.forEach((listener) => listener());
 }
 
-/** Perceptual rather than linear: the bottom of the rail has to be usably quiet. */
-function masterGain(): number {
-  return level ** 1.7;
-}
-
 function ensureContext(): AudioContext {
   if (!ctx) {
     ctx = new AudioContext();
 
     master = ctx.createGain();
-    master.gain.value = masterGain();
+    master.gain.value = MASTER_GAIN;
     master.connect(ctx.destination);
 
     reverb = ctx.createConvolver();
@@ -318,7 +312,7 @@ async function begin() {
 
   const now = context.currentTime;
   out.gain.cancelScheduledValues(now);
-  out.gain.setValueAtTime(masterGain(), now);
+  out.gain.setValueAtTime(MASTER_GAIN, now);
 
   const at = now + LEAD_IN;
   const count = pitches.length;
@@ -393,19 +387,6 @@ export function setIntonation(mode: Intonation): void {
   intonation = mode;
   emit({ intonation: mode });
   applyPitches(true, SWAP_ATTACK, SWAP_RELEASE);
-}
-
-export function setLevel(next: number): void {
-  const value = Math.max(0, Math.min(1, next));
-  if (value === level) return;
-  level = value;
-  emit({ level: value });
-
-  if (ctx && master) {
-    const now = ctx.currentTime;
-    master.gain.cancelScheduledValues(now);
-    master.gain.setTargetAtTime(masterGain(), now, 0.03);
-  }
 }
 
 /** Stops and hands the audio session back. Called when the screen goes away. */

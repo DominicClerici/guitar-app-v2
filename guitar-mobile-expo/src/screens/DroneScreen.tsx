@@ -10,7 +10,6 @@ import { Fretboard } from '@/features/chord-detection/Fretboard';
 import {
   ControlShelf,
   DroneReadout,
-  LevelRail,
   QualityPicker,
   RootRail,
   useDrone,
@@ -26,9 +25,9 @@ const MODES: { id: DroneMode; label: string }[] = [
 
 /**
  * A pitch held for as long as you want it. The screen reads top-down — what is
- * sounding, where the notes come from, how they should sound — with the level
- * and the transport pinned at the bottom, because those are the two things you
- * reach for while playing rather than while setting up.
+ * sounding, where the notes come from, how they should sound — with the
+ * transport pinned at the bottom, because that is the one thing you reach for
+ * while playing rather than while setting up.
  */
 export function DroneScreen() {
   const insets = useSafeAreaInsets();
@@ -140,12 +139,9 @@ export function DroneScreen() {
       ) : null}
 
       <View
-        className="items-center gap-[12px] border-t border-t-line-soft bg-bg pt-[12px]"
+        className="items-center border-t border-t-line-soft bg-bg pt-[12px]"
         style={{ paddingBottom: insets.bottom + 12 }}
       >
-        <View className="w-full">
-          <LevelRail level={drone.level} onChange={drone.setLevel} />
-        </View>
         <TransportButton
           running={drone.running}
           what="drone"

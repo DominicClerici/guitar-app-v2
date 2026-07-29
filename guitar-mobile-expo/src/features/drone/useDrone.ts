@@ -9,7 +9,6 @@ import {
   getSnapshot,
   release,
   setIntonation,
-  setLevel,
   setPitches,
   setVoiceId,
   stop,
@@ -79,7 +78,6 @@ export type UseDroneResult = DroneSnapshot & {
   setOctave: (octave: number) => void;
   setVoiceId: (id: string) => void;
   setIntonation: (mode: Intonation) => void;
-  setLevel: (level: number) => void;
   toggle: () => void;
 };
 
@@ -185,7 +183,6 @@ export function useDrone(): UseDroneResult {
     setOctave: changeOctave,
     setVoiceId,
     setIntonation,
-    setLevel,
     toggle,
   };
 }
