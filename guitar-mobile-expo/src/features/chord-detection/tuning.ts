@@ -1,12 +1,9 @@
-import { notesFlat, notesSharp, OPEN_PITCHES } from '@/lib/theory';
+import { notesFlat, notesSharp } from '@/lib/theory';
 
-export const STRING_COUNT = 6;
-export const FRET_COUNT = 15; // playable frets beyond the nut
-
-/** Pitch class (0–11, C = 0) sounding at a position. String 0 = high e, 5 = low E; fret 0 = open. */
-export function pitchClassAt(string: number, fret: number): number {
-  return (OPEN_PITCHES[string] + fret) % 12;
-}
+// Neck geometry moved down into @/lib/theory, where the tuning constants already
+// lived and where the voicing generator can reach it too. Re-exported here so
+// the detector's components keep importing their neck from one place.
+export { FRET_COUNT, pitchClassAt, STRING_COUNT } from '@/lib/theory';
 
 /**
  * Neutral chromatic spelling, used as a fallback before a chord reading exists.

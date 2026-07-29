@@ -19,5 +19,6 @@ export {
     OPEN_PITCHES_MIDI
 } from './constants';
 export { ALTERED_DEGREES, DEGREE_SEMITONES, degreeSemitones, type Degree } from './degrees';
+export { FRET_COUNT, midiAt, pitchClassAt, STRING_COUNT } from './fretboard';
 export { getHalfSteps, noteToSemitone } from './half-steps';
 export { getNotesFromIntervals } from './notes-from-intervals';

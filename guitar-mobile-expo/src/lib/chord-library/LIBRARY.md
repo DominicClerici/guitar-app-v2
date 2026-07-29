@@ -85,7 +85,9 @@ essentialTones(buildChord('C', 'min13'), 4).map((t) => t.note)  // C Eb Bb A
 
 This is theory, not layout: it's why a `Cmaj9` on guitar is normally played
 without its fifth. A voicing generator decides where the notes go; this decides
-which notes have to be there.
+which notes have to be there. That generator is `@/lib/guitar-voicings` — see
+`VOICINGS.md`, which consumes `dropOrder` through `essentialTones` and owns
+everything about hands and necks.
 
 ## Two chords that aren't naive stacks
 

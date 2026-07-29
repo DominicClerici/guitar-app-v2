@@ -7,11 +7,11 @@ import { IconAction } from '@/components/IconAction';
 import { Segmented } from '@/components/Segmented';
 import { TransportButton } from '@/components/TransportButton';
 import { Fretboard } from '@/features/chord-detection/Fretboard';
+import { QualityPicker, RootRail, type ExtraGroup } from '@/features/chord-picker';
 import {
   ControlShelf,
   DroneReadout,
-  QualityPicker,
-  RootRail,
+  SINGLE_NOTE,
   useDrone,
   voiceById,
   type DroneMode,
@@ -22,6 +22,13 @@ const MODES: { id: DroneMode; label: string }[] = [
   { id: 'chords', label: 'Chords' },
   { id: 'neck', label: 'Neck' },
 ];
+
+/** Only the drone can hold a bare pitch, so only the drone offers this group. */
+const NOTE_GROUP: ExtraGroup = {
+  id: SINGLE_NOTE,
+  label: 'Note',
+  description: 'The root on its own — the steadiest thing to play against.',
+};
 
 /**
  * A pitch held for as long as you want it. The screen reads top-down — what is
@@ -107,7 +114,11 @@ export function DroneScreen() {
         {drone.mode === 'chords' ? (
           <View className="gap-[12px]">
             <RootRail root={drone.root} onChange={drone.setRoot} />
-            <QualityPicker quality={drone.quality} onChange={drone.setQuality} />
+            <QualityPicker
+              quality={drone.quality}
+              onChange={drone.setQuality}
+              extraGroup={NOTE_GROUP}
+            />
           </View>
         ) : null}
 

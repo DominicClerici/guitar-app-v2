@@ -10,21 +10,22 @@ import {
   type ChordFamily,
 } from '@/lib/chord-library';
 
-import { SINGLE_NOTE } from './useDrone';
-
-/** The bare root sits where a family sits, because that is how you reach for it. */
-type Group = ChordFamily | typeof SINGLE_NOTE;
-
-const GROUPS: Group[] = [SINGLE_NOTE, ...FAMILY_ORDER];
-
-const GROUP_LABELS: Record<Group, string> = {
-  [SINGLE_NOTE]: 'Note',
-  ...FAMILY_LABELS,
-};
+/**
+ * A group the picker can offer that is not a chord family. The drone has one —
+ * a bare root, which sits where a family sits because that is how you reach for
+ * it — and the picker itself knows nothing about what it means.
+ */
+export interface ExtraGroup {
+  id: string;
+  label: string;
+  /** Shown in place of the quality chips while the group is open. */
+  description: string;
+}
 
 interface Props {
   quality: string;
   onChange: (id: string) => void;
+  extraGroup?: ExtraGroup;
 }
 
 /**
@@ -32,25 +33,32 @@ interface Props {
  * qualities in one list is a wall — grouped, the one you want is where you
  * would have looked for it.
  */
-export function QualityPicker({ quality, onChange }: Props) {
+export function QualityPicker({ quality, onChange, extraGroup }: Props) {
+  const groups: string[] = extraGroup ? [extraGroup.id, ...FAMILY_ORDER] : [...FAMILY_ORDER];
+
+  const labelFor = (id: string) =>
+    extraGroup && id === extraGroup.id ? extraGroup.label : FAMILY_LABELS[id as ChordFamily];
+
   // Derived rather than held: the open family is always the one the current
   // quality belongs to, so arriving from anywhere shows the right shelf.
-  const group: Group =
-    quality === SINGLE_NOTE ? SINGLE_NOTE : (chordTypeById(quality)?.family ?? 'triad');
+  const group =
+    extraGroup && quality === extraGroup.id
+      ? extraGroup.id
+      : (chordTypeById(quality)?.family ?? 'triad');
 
-  const openGroup = (next: Group) => {
-    if (next === SINGLE_NOTE) {
-      onChange(SINGLE_NOTE);
+  const openGroup = (next: string) => {
+    if (extraGroup && next === extraGroup.id) {
+      onChange(extraGroup.id);
       return;
     }
-    const first = chordTypesByFamily(next)[0];
+    const first = chordTypesByFamily(next as ChordFamily)[0];
     if (first) onChange(first.id);
   };
 
   return (
     <View>
       <FadingHScroll contentClassName="flex-row gap-[6px] px-[18px]">
-        {GROUPS.map((id) => {
+        {groups.map((id) => {
           const selected = id === group;
           return (
             <Pressable
@@ -65,7 +73,7 @@ export function QualityPicker({ quality, onChange }: Props) {
                   selected ? 'text-accent' : 'text-ink-faint'
                 }`}
               >
-                {GROUP_LABELS[id]}
+                {labelFor(id)}
               </Text>
             </Pressable>
           );
@@ -73,15 +81,15 @@ export function QualityPicker({ quality, onChange }: Props) {
       </FadingHScroll>
 
       <View className="mt-[10px] px-[18px]">
-        {group === SINGLE_NOTE ? (
+        {extraGroup && group === extraGroup.id ? (
           <View className="h-[42px] justify-center rounded-[11px] border border-line-soft bg-surface px-[14px]">
             <Text className="text-[12.5px] leading-[17px] text-ink-muted">
-              The root on its own — the steadiest thing to play against.
+              {extraGroup.description}
             </Text>
           </View>
         ) : (
           <View className="flex-row flex-wrap gap-[6px]">
-            {chordTypesByFamily(group).map((type) => {
+            {chordTypesByFamily(group as ChordFamily).map((type) => {
               const selected = type.id === quality;
               return (
                 <Pressable
