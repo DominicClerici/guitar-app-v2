@@ -37,8 +37,23 @@ export const presenceSV = makeMutable(0);
 // off `centsSV`, so it keeps scrolling through a silence that holds cents at 0.
 export const frameSV = makeMutable(0);
 
+/**
+ * One gated reading, delivered at the native frame rate (~30ms) rather than at the
+ * snapshot's 100ms throttle. `frequency` is the raw detected pitch after the octave
+ * guard — what a measurement should average, as opposed to `note.cents`, which is
+ * smoothed for the display.
+ */
+export type TunerFrame = {
+  frequency: number;
+  clarity: number;
+  rms: number;
+  note: NoteInfo | null;
+  timestamp: number;
+};
+
 const gate = new TunerGate({ holdMs: HOLD_MS, emaAlpha: EMA_ALPHA });
 const listeners = new Set<() => void>();
+const frameListeners = new Set<(frame: TunerFrame) => void>();
 
 // `leases` is the desired state: how many mounted consumers want the mic on. `running`
 // is the actual native state. Everything funnels through reconcile(), which drives one
@@ -64,6 +79,17 @@ export function subscribe(listener: () => void): () => void {
   listeners.add(listener);
   return () => {
     listeners.delete(listener);
+  };
+}
+
+/**
+ * Every gated frame, unthrottled. For consumers that measure rather than display —
+ * the intonation checker averages a three-second window and needs all of it.
+ */
+export function subscribeFrames(listener: (frame: TunerFrame) => void): () => void {
+  frameListeners.add(listener);
+  return () => {
+    frameListeners.delete(listener);
   };
 }
 
@@ -97,6 +123,17 @@ if (isAvailable) {
     centsSV.value = out.cents;
     presenceSV.value = out.note === null ? 0 : 1;
     frameSV.value += 1;
+
+    if (frameListeners.size > 0) {
+      const frame: TunerFrame = {
+        frequency: out.frequency,
+        clarity: out.clarity,
+        rms: out.rms,
+        note: out.note,
+        timestamp: e.timestamp,
+      };
+      frameListeners.forEach((l) => l(frame));
+    }
 
     if (out.note === null) {
       lastTextAt = 0;

@@ -103,7 +103,7 @@ const SECTIONS: Section[] = [
         id: 'intonation',
         icon: 'ruler',
         title: 'Intonation Checker',
-        subtitle: 'Compares each open string to its 12th fret',
+        subtitle: 'Checks each string against its 12th-fret harmonic',
       },
       {
         id: 'bpm-finder',
@@ -231,6 +231,7 @@ function ToolRow({
 const ROUTES: Partial<Record<ToolId, Href>> = {
   'chord-detector': '/chord-detector',
   'key-detector': '/key-detector',
+  intonation: '/intonation',
 };
 
 export function ToolsTab() {

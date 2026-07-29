@@ -28,6 +28,12 @@ const A4_MIDI = 69;
 
 export const IN_TUNE_CENTS = 5;
 
+/** Name a MIDI pitch without needing a frequency to have been detected. */
+export function midiToNoteName(midi: number): string {
+  const name = NOTE_NAMES[((midi % 12) + 12) % 12];
+  return `${name}${Math.floor(midi / 12) - 1}`;
+}
+
 export function freqToNote(f: number): NoteInfo {
   const midiF = A4_MIDI + 12 * Math.log2(f / A4_HZ);
   const midi = Math.round(midiF);
