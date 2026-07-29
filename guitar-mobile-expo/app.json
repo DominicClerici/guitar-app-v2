@@ -35,7 +35,8 @@
         }
       ],
       "expo-web-browser",
-      "./modules/expo-pitch-detector/plugin/build.js"
+      "./modules/expo-pitch-detector/plugin/build.js",
+      "react-native-audio-api"
     ],
     "experiments": {
       "typedRoutes": true,

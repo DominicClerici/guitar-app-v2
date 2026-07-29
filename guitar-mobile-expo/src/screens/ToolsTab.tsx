@@ -232,6 +232,7 @@ const ROUTES: Partial<Record<ToolId, Href>> = {
   'chord-detector': '/chord-detector',
   'key-detector': '/key-detector',
   intonation: '/intonation',
+  metronome: '/metronome',
 };
 
 export function ToolsTab() {
