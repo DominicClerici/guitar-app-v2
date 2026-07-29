@@ -58,7 +58,8 @@ interface ChordAnalysis {
 interface ChordResult {
   name: string                // e.g. "Cm7", "C/G", "Cmaj9"
   primary: boolean            // true for chordNames[0]
-  warnings: string[]          // short English tags, e.g. "Likely an inversion"
+  warnings: Warning[]         // fired rules for this reading — see Warnings below
+  chordTones: ChordTones      // interval grid for this reading, not just the primary
 }
 ```
 
@@ -129,10 +130,24 @@ bass surfaces as `C/G` rather than the literal bass-rooted `G6sus`.
 
 ## Warnings
 
-`ChordResult.warnings` is a list of short English tags describing why a voicing
-is unusual or ambiguous — e.g. *"Likely an inversion"*, *"Has both 5 and b5"*,
+`ChordResult.warnings` is a list of fired rules describing why a voicing is
+unusual or ambiguous — e.g. *"Likely an inversion"*, *"Has both 5 and b5"*,
 *"No third"*, cluster/dissonance flags. Surface them next to the chord name (the
 primary chord is usually warning-free; alternates carry most of them).
+
+```ts
+interface Warning {
+  id: string       // rule id, e.g. "sus2b5"
+  cat?: 'omitted' | 'cluster' | 'double' | 'inversion' | 'fragment'
+      | 'uncommon' | 'enharmonic' | 'dissonance' | ''
+  short: string    // tag, e.g. "Likely an inversion"
+  long: string     // the explanation behind the tag
+  assumedRoot?: string
+}
+```
+
+Use `short` for the tag and `long` for the expanded explanation; `cat` groups
+rules by the kind of oddity, which is what a colour-coded list keys on.
 
 ## Formatting conventions (fixed)
 

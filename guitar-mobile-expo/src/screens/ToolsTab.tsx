@@ -100,12 +100,6 @@ const SECTIONS: Section[] = [
     label: 'Listen',
     tools: [
       {
-        id: 'chord-detector',
-        icon: 'waveform',
-        title: 'Chord Detector',
-        subtitle: 'Names the chord you play',
-      },
-      {
         id: 'intonation',
         icon: 'ruler',
         title: 'Intonation Checker',
@@ -122,6 +116,12 @@ const SECTIONS: Section[] = [
   {
     label: 'Reference',
     tools: [
+      {
+        id: 'chord-detector',
+        icon: 'magnifyingglass',
+        title: 'Chord Detector',
+        subtitle: 'Names any shape you build on the neck',
+      },
       {
         id: 'key-detector',
         icon: 'music.note.list',
@@ -229,6 +229,7 @@ function ToolRow({
 // Tools that have a screen of their own to push. The rest open in a sheet or
 // are not built yet.
 const ROUTES: Partial<Record<ToolId, Href>> = {
+  'chord-detector': '/chord-detector',
   'key-detector': '/key-detector',
 };
 

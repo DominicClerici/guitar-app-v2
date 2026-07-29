@@ -37,6 +37,8 @@ type Props = {
   rootPitchClass: number | null;
   nameForPitchClass: (pc: number) => string;
   onToggle: (string: number, fret: number) => void;
+  /** Colour token the board is sitting on, so its edge veils match. */
+  veilToken?: string;
 };
 
 /**
@@ -44,11 +46,17 @@ type Props = {
  * strings, then a tappable cell per position. Full-bleed — it runs to both screen
  * edges under a soft veil that lifts as you reach either end of the neck.
  */
-export function Fretboard({ placed, rootPitchClass, nameForPitchClass, onToggle }: Props) {
+export function Fretboard({
+  placed,
+  rootPitchClass,
+  nameForPitchClass,
+  onToggle,
+  veilToken,
+}: Props) {
   const placedKeys = new Set(placed.map((n) => `${n.string}-${n.fret}`));
 
   return (
-    <FadingHScroll contentClassName="px-[18px] py-[8px]">
+    <FadingHScroll contentClassName="px-[18px] py-[8px]" veilToken={veilToken}>
       <View className="w-[788px]">
         {/* Neck. Inlays go in first so the strings and dots paint over them,
             and the block's height is exactly the six string rows — which is

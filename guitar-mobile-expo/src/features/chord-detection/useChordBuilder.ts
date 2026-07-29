@@ -1,8 +1,9 @@
 import { useCallback, useMemo, useState } from 'react';
 
-import { ACCIDENTAL, nameForPitchClassFrom } from '@/features/chord-detection/spelling';
-import type { PlacedNote } from '@/features/chord-detection/useChordDetection';
 import { analyzeChord, noteToSemitone } from '@/lib/chord-analysis';
+
+import { ACCIDENTAL, nameForPitchClassFrom } from './spelling';
+import type { PlacedNote } from './useChordDetection';
 
 // The voicing and the chosen reading of it move together: fretting a note
 // invalidates the old choice, and restoring a stored chord has to set both at
@@ -16,9 +17,9 @@ const EMPTY: Board = { placed: [], selected: 0 };
 
 /**
  * A voicing being built on the neck, with the engine's *ranked* readings of it
- * and which one the user has accepted. The accepted reading is what the key
- * engine scores, so an ambiguous shape (Am7 vs C6) is the user's call, not the
- * ranker's.
+ * and which one the user has accepted. An ambiguous shape (Am7 vs C6) is the
+ * user's call, not the ranker's — the chord detector shows the accepted reading's
+ * intervals and warnings, and the key detector scores it against the progression.
  */
 export function useChordBuilder() {
   const [board, setBoard] = useState<Board>(EMPTY);

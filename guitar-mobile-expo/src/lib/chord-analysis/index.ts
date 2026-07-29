@@ -92,11 +92,10 @@ export function analyzeChord(
       resultObj = chordSymbol([root, csArray, bassName])
     }
 
-    const warnings = chordWarnings(v)
     return {
       name: resultObj.csFormatted,
       primary: i === 0,
-      warnings: warnings.map((w) => w.short),
+      warnings: chordWarnings(v),
       chordTones: buildChordTones(v, bassPitchClass),
     }
   })
@@ -109,6 +108,7 @@ export function analyzeChord(
 // needs to map fretboard positions to pitch classes and label notes; the
 // lower-level building blocks stay internal to their modules.
 
+export { EMPTY_CHORD_TONES } from './adapter'
 export { notesFlat, notesSharp, OPEN_PITCHES, OPEN_PITCHES_MIDI } from './constants'
 export { noteToSemitone } from './half-steps'
 export type {

@@ -31,6 +31,21 @@ const INTERVAL_TO_PC: Record<string, number> = {
   maj7: 11,
 }
 
+// The grid with nothing in it. A UI that draws the slots as a fixed panel needs
+// the same rows in the same order before there is a chord to fill them, and this
+// keeps the slot tables above the single source of that order.
+export const EMPTY_CHORD_TONES: ChordTones = {
+  root: '',
+  bass: null,
+  triad: TRIAD_SLOTS.map(emptySlot),
+  seventh: SEVENTH_SLOTS.map(emptySlot),
+  extensions: EXTENSION_SLOTS.map(emptySlot),
+}
+
+function emptySlot(interval: string): IntervalSlot {
+  return { interval, note: null, altered: ALTERED_INTERVALS.has(interval) }
+}
+
 function pickRootSpelling(v: Variation): string {
   return v.autoRootMode === 'sharp' ? v.rootToneSharp : v.rootToneFlat
 }

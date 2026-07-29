@@ -21,6 +21,8 @@ interface Props {
   fadeClassName?: string;
   /** Scroll distance over which a veil fades in. */
   fadeTravel?: number;
+  /** Colour token the veil fades from — whatever the row is actually sitting on. */
+  veilToken?: string;
 }
 
 /**
@@ -33,6 +35,7 @@ export function FadingHScroll({
   contentClassName,
   fadeClassName = 'w-[30px]',
   fadeTravel = 40,
+  veilToken = '--bg',
 }: Props) {
   const [containerW, setContainerW] = useState(0);
   const [contentW, setContentW] = useState(0);
@@ -77,21 +80,21 @@ export function FadingHScroll({
         className={`pointer-events-none absolute bottom-0 left-0 top-0 ${fadeClassName}`}
         style={leftFade}
       >
-        <EdgeVeil side="left" id={veilId} />
+        <EdgeVeil side="left" id={veilId} token={veilToken} />
       </AnimatedView>
       <AnimatedView
         className={`pointer-events-none absolute bottom-0 right-0 top-0 ${fadeClassName}`}
         style={rightFade}
       >
-        <EdgeVeil side="right" id={veilId} />
+        <EdgeVeil side="right" id={veilId} token={veilToken} />
       </AnimatedView>
     </View>
   );
 }
 
 /** Background-to-transparent veil marking that the row continues past the edge. */
-function EdgeVeil({ side, id }: { side: 'left' | 'right'; id: string }) {
-  const bg = useToken('--bg', '#0c0d10');
+function EdgeVeil({ side, id, token }: { side: 'left' | 'right'; id: string; token: string }) {
+  const bg = useToken(token, '#0c0d10');
   const [from, to] = side === 'left' ? ['1', '0'] : ['0', '1'];
   const gradientId = `veil-${id}-${side}`;
 

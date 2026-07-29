@@ -22,9 +22,9 @@ export interface ChordTones {
 }
 
 export interface ChordResult {
-  name: string         // e.g. "Cm7", "C/E", "Cmaj9"
+  name: string           // e.g. "Cm7", "C/E", "Cmaj9"
   primary: boolean
-  warnings: string[]   // resolved English short-form text from chordWarnings
+  warnings: Warning[]    // fired rules for THIS reading, with category and both texts
   chordTones: ChordTones // interval grid for THIS reading
 }
 
