@@ -31,32 +31,35 @@ export function ChordHeading({ chord, shown, total }: Props) {
         </Text>
       </View>
 
-      <View className="mt-[10px] flex-row flex-wrap gap-[5px]">
-        {chord.tones.map((tone) => (
-          <View
-            key={tone.degree}
-            className={`h-[24px] flex-row items-center gap-[5px] rounded-[7px] px-[8px] ${
-              tone.degree === '1'
-                ? 'border border-accent-line bg-accent-wash'
-                : 'border border-line-soft bg-surface'
-            }`}
-          >
-            <Text
-              className={`text-[11.5px] font-medium ${
-                tone.degree === '1' ? 'text-accent' : 'text-ink'
-              }`}
-            >
-              {toAccidentalGlyphs(tone.note)}
-            </Text>
-            <Text className="font-mono text-[8.5px] tracking-[0.5px] text-ink-faint">
-              {toAccidentalGlyphs(tone.degree)}
-            </Text>
-          </View>
-        ))}
+      <View className="mt-[12px] flex-row flex-wrap items-start gap-x-[17px] gap-y-[10px]">
+        {chord.tones.map((tone) => {
+          const isRoot = tone.degree === '1';
+          return (
+            <View key={tone.degree} className="items-center">
+              <Text
+                className={`text-[16px] leading-[19px] tracking-[-0.3px] ${
+                  isRoot ? 'font-semibold text-accent' : 'font-medium text-ink'
+                }`}
+              >
+                {toAccidentalGlyphs(tone.note)}
+              </Text>
+              <View
+                className={`mt-[5px] h-px self-stretch ${isRoot ? 'bg-accent-line' : 'bg-line'}`}
+              />
+              <Text
+                className={`mt-[4px] font-mono text-[8.5px] uppercase tracking-[1px] ${
+                  isRoot ? 'text-accent' : 'text-ink-faint'
+                }`}
+              >
+                {toAccidentalGlyphs(tone.degree)}
+              </Text>
+            </View>
+          );
+        })}
       </View>
 
       {chord.spellingHint ? (
-        <Text className="mt-[8px] text-[11.5px] leading-[16px] text-ink-muted">
+        <Text className="mt-[12px] text-[11.5px] leading-[16px] text-ink-muted">
           More often written {toAccidentalGlyphs(chord.spellingHint)}.
         </Text>
       ) : null}
