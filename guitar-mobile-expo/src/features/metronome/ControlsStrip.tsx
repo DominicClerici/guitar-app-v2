@@ -2,11 +2,11 @@ import { SymbolView, type SFSymbol } from 'expo-symbols';
 import type { ReactNode } from 'react';
 import { Pressable, Text, View } from 'react-native';
 
+import { Segmented } from '@/components/Segmented';
 import { useToken } from '@/lib/tokens';
 
 import { VOICES } from './clickVoices';
 import { MAX_BEATS, MIN_BEATS, SUBDIVISIONS } from './patterns';
-import { Segmented } from './Segmented';
 
 interface Props {
   beats: number;

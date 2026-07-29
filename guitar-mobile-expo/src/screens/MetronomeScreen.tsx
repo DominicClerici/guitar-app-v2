@@ -4,12 +4,12 @@ import { Pressable, ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { tempoMarking } from '@/features/bpm-finder';
+import { TransportButton } from '@/components/TransportButton';
 import {
   BeatRow,
   ControlsStrip,
   TempoRail,
   TempoSteppers,
-  TransportButton,
   useMetronome,
 } from '@/features/metronome';
 import { useToken } from '@/lib/tokens';
@@ -103,7 +103,11 @@ export function MetronomeScreen() {
         className="items-center border-t border-t-line-soft bg-bg pt-[14px]"
         style={{ paddingBottom: insets.bottom + 12 }}
       >
-        <TransportButton running={metronome.running} onPress={metronome.toggle} />
+        <TransportButton
+          running={metronome.running}
+          what="metronome"
+          onPress={metronome.toggle}
+        />
       </View>
     </View>
   );
