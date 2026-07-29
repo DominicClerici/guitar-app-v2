@@ -20,7 +20,7 @@ export type TunerSheetRef = {
  * Full tuner in a native bottom sheet: oversized note readout over a rolling seismograph
  * trace. Opening it acquires the mic; dismissing releases it.
  *
- * Not mounted anywhere yet — present it via its ref from wherever it ends up living.
+ * Mounted by `ToolsTab`, which presents it from the pinned Tuner card.
  */
 export function TunerSheet({ ref }: { ref?: Ref<TunerSheetRef> }) {
   const sheetRef = useRef<React.ComponentRef<typeof BottomSheetModal>>(null);

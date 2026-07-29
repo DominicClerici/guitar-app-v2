@@ -1,8 +1,11 @@
 import { useRouter, type Href } from 'expo-router';
 import { SymbolView, type SFSymbol } from 'expo-symbols';
+import { useRef } from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { BpmSheet, type BpmSheetRef } from '@/features/bpm-finder';
+import { TunerSheet, type TunerSheetRef } from '@/features/tuner';
 import { useToken } from '@/lib/tokens';
 
 export type ToolId =
@@ -233,7 +236,19 @@ export function ToolsTab() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
 
+  const tunerSheet = useRef<TunerSheetRef>(null);
+  const bpmSheet = useRef<BpmSheetRef>(null);
+
   const openTool = (id: ToolId) => {
+    if (id === 'tuner') {
+      tunerSheet.current?.present();
+      return;
+    }
+    if (id === 'bpm-finder') {
+      bpmSheet.current?.present();
+      return;
+    }
+
     const route = ROUTES[id];
     if (route) router.push(route);
   };
@@ -267,6 +282,9 @@ export function ToolsTab() {
           </View>
         ))}
       </ScrollView>
+
+      <TunerSheet ref={tunerSheet} />
+      <BpmSheet ref={bpmSheet} />
     </View>
   );
 }
