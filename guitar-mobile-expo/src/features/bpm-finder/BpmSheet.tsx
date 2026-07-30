@@ -1,4 +1,5 @@
 import { BottomSheetModal } from '@expo/ui/community/bottom-sheet';
+import { SymbolView } from 'expo-symbols';
 import { useEffect, useImperativeHandle, useRef, useState, type Ref } from 'react';
 import { Pressable, Text, View } from 'react-native';
 
@@ -15,12 +16,22 @@ export type BpmSheetRef = {
 
 /**
  * Tap tempo in a native bottom sheet: tap the pad in time and the number above it
- * follows. Three seconds of silence ends the count and the next tap starts a new
- * one. Dismissing throws the session away.
+ * follows. A short silence ends the count and the next tap starts a new one.
+ * Dismissing throws the session away.
+ *
+ * `onUseTempo` fires after the sheet has finished closing rather than at the press,
+ * so a screen pushed in response is not racing a modal that is still on its way out.
  */
-export function BpmSheet({ ref }: { ref?: Ref<BpmSheetRef> }) {
+export function BpmSheet({
+  ref,
+  onUseTempo,
+}: {
+  ref?: Ref<BpmSheetRef>;
+  onUseTempo?: (bpm: number) => void;
+}) {
   const sheetRef = useRef<React.ComponentRef<typeof BottomSheetModal>>(null);
   const [visible, setVisible] = useState(false);
+  const handing = useRef<number | null>(null);
   const bg = useToken('--bg', '#0c0d10');
 
   useImperativeHandle(
@@ -35,21 +46,46 @@ export function BpmSheet({ ref }: { ref?: Ref<BpmSheetRef> }) {
   return (
     <BottomSheetModal
       ref={sheetRef}
-      snapPoints={['88%']}
+      // No snap points on purpose: they and dynamic sizing are mutually exclusive
+      // here, and a fixed detent both stretched the pad out of square and left the
+      // buttons fighting it for the leftover height. The content decides instead.
+      enableDynamicSizing
       enablePanDownToClose
       // The library reads `backgroundColor` off this prop to drive the native sheet's
       // presentation background; there is no className equivalent.
       backgroundStyle={{ backgroundColor: bg }}
       onChange={(index) => setVisible(index >= 0)}
-      onDismiss={() => setVisible(false)}
+      onDismiss={() => {
+        setVisible(false);
+        const bpm = handing.current;
+        handing.current = null;
+        if (bpm !== null) onUseTempo?.(bpm);
+      }}
     >
-      <BpmSheetBody visible={visible} onClose={() => sheetRef.current?.dismiss()} />
+      <BpmSheetBody
+        visible={visible}
+        onClose={() => sheetRef.current?.dismiss()}
+        onUse={(bpm) => {
+          handing.current = bpm;
+          sheetRef.current?.dismiss();
+        }}
+      />
     </BottomSheetModal>
   );
 }
 
-function BpmSheetBody({ visible, onClose }: { visible: boolean; onClose: () => void }) {
+function BpmSheetBody({
+  visible,
+  onClose,
+  onUse,
+}: {
+  visible: boolean;
+  onClose: () => void;
+  onUse: (bpm: number) => void;
+}) {
   const { bpm, taps, spread, stale, tap, reset } = useTapTempo();
+  const onAccent = useToken('--on-accent', '#04211f');
+  const faint = useToken('--ink-faint', '#62666e');
 
   // The sheet keeps its body mounted between openings, so closing it is what ends
   // the session — otherwise the next open would resume a count from minutes ago.
@@ -58,6 +94,7 @@ function BpmSheetBody({ visible, onClose }: { visible: boolean; onClose: () => v
   }, [visible, reset]);
 
   const rounded = bpm === null ? null : Math.round(bpm);
+  const handoffReady = rounded !== null && stale;
 
   const caption = stale
     ? 'Tap to start again'
@@ -73,7 +110,7 @@ function BpmSheetBody({ visible, onClose }: { visible: boolean; onClose: () => v
       : `${taps} taps${spread === null ? '' : ` · ±${Math.round(spread)} ms`}`;
 
   return (
-    <View className="flex-1 px-[24px] pb-[24px] pt-[8px]">
+    <View className="px-[24px] pb-[24px] pt-[8px]">
       <View className="flex-row items-center justify-between py-[8px]">
         <Pressable
           onPress={onClose}
@@ -120,7 +157,43 @@ function BpmSheetBody({ visible, onClose }: { visible: boolean; onClose: () => v
 
       <TapPad onTap={tap} />
 
-      <View className="items-center">
+      <View className="items-center gap-[12px]">
+        {/* Held back until the count has timed out: mid-tap the reading is still
+            moving, and handing over a number you were about to improve on is
+            worse than waiting the moment out. */}
+        <Pressable
+          onPress={() => {
+            if (rounded !== null) onUse(rounded);
+          }}
+          disabled={!handoffReady}
+          accessibilityRole="button"
+          accessibilityState={{ disabled: !handoffReady }}
+          accessibilityLabel={
+            handoffReady
+              ? `Open the metronome at ${rounded} beats per minute`
+              : 'Set in metronome. Available once you stop tapping.'
+          }
+          className={`w-full flex-row items-center justify-center gap-[8px] rounded-[12px] border py-[14px] active:opacity-80 ${
+            handoffReady
+              ? 'border-x-transparent border-t-[rgba(255,255,255,0.4)] border-b-[rgba(0,0,0,0.28)] bg-accent'
+              : 'border-x-line-soft border-t-edge-top border-b-edge-bottom bg-surface-raised'
+          }`}
+        >
+          <SymbolView
+            name="metronome"
+            size={15}
+            weight="semibold"
+            tintColor={handoffReady ? onAccent : faint}
+          />
+          <Text
+            className={`font-mono text-[11px] font-semibold uppercase tracking-[2px] ${
+              handoffReady ? 'text-on-accent' : 'text-ink-faint'
+            }`}
+          >
+            Set in Metronome
+          </Text>
+        </Pressable>
+
         <Pressable
           onPress={reset}
           disabled={taps === 0}

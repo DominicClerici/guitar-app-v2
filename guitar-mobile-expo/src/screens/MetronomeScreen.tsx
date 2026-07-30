@@ -1,4 +1,4 @@
-import { useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SymbolView } from 'expo-symbols';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -17,13 +17,19 @@ import { useToken } from '@/lib/tokens';
 /**
  * The metronome. The bar reads top-down: what the click is doing, how fast, and how
  * to change it — with the transport pinned where your thumb already is.
+ *
+ * A `bpm` param is a tempo sent over from the BPM finder; the screen opens set to
+ * it, and to defaults for everything else.
  */
 export function MetronomeScreen() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
   const muted = useToken('--ink-muted', '#9aa0aa');
 
-  const metronome = useMetronome();
+  const { bpm: bpmParam } = useLocalSearchParams<{ bpm?: string }>();
+  const handedBpm = Number(bpmParam);
+
+  const metronome = useMetronome(Number.isFinite(handedBpm) && handedBpm > 0 ? handedBpm : undefined);
 
   return (
     <View className="flex-1 bg-bg" style={{ paddingTop: Math.max(insets.top - 6, 0) }}>

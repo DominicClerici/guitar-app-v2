@@ -1,5 +1,5 @@
 import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
-import { useCallback, useEffect, useSyncExternalStore } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useSyncExternalStore } from 'react';
 
 import { useTapTempo } from '@/features/bpm-finder';
 
@@ -7,6 +7,7 @@ import {
   beatSV,
   getSnapshot,
   release,
+  reset,
   setBpm as engineSetBpm,
   setHaptics,
   setPattern,
@@ -44,10 +45,18 @@ export type UseMetronomeResult = MetronomeSnapshot & {
  * — the scheduler runs off a timer that no render is involved in, and it has to read
  * the current tempo and bar at the moment it commits a click, not at the moment React
  * last drew. So the engine owns them and this reports them.
+ *
+ * `initialBpm` is a tempo arriving from elsewhere — the BPM finder, so far. It
+ * resets the rest of the engine rather than only setting the number, and it is a
+ * layout effect so the screen's first paint is already showing it.
  */
-export function useMetronome(): UseMetronomeResult {
+export function useMetronome(initialBpm?: number): UseMetronomeResult {
   const snapshot = useSyncExternalStore(subscribe, getSnapshot, getSnapshot);
   const tapTempo = useTapTempo();
+
+  useLayoutEffect(() => {
+    if (initialBpm !== undefined) reset(initialBpm);
+  }, [initialBpm]);
 
   const tapBpm = tapTempo.bpm;
   useEffect(() => {

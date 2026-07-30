@@ -14,6 +14,7 @@ import { ReadingShelf } from '@/features/chord-detection/ReadingShelf';
 import { useChordBuilder } from '@/features/chord-detection/useChordBuilder';
 import { WarningNotes } from '@/features/chord-detection/WarningNotes';
 import { useToken } from '@/lib/tokens';
+import { encodeVoicing } from '@/lib/voicing-param';
 
 /**
  * Everything the engine knows about one shape. The neck is fixed to the bottom of
@@ -102,6 +103,22 @@ export function ChordDetectorScreen() {
 
         <View className="mt-[10px] flex-row gap-[10px] px-[18px]">
           <LabelModeToggle mode={labelMode} onChange={setLabelMode} />
+          {/* Always in the row rather than appearing with the reading: the two
+              controls beside it should not move as the shape resolves. */}
+          <DroneAction
+            label={chord ? `Hold ${chord.name} as a drone` : 'Drone. Build a chord first.'}
+            disabled={!chord}
+            onPress={() =>
+              router.push({
+                pathname: '/drone',
+                params: {
+                  voicing: encodeVoicing(placed),
+                  root: String(rootPitchClass),
+                  play: '1',
+                },
+              })
+            }
+          />
           <IconAction
             symbol="arrow.counterclockwise"
             label="Clear board"
@@ -111,5 +128,51 @@ export function ChordDetectorScreen() {
         </View>
       </View>
     </View>
+  );
+}
+
+/**
+ * Sends the shape on the neck to the drone. Sits between the two other keys in
+ * the tray and is built like them — the same raised key, widened to carry a word,
+ * because handing the chord on is an action on the shape rather than a way out of
+ * the screen.
+ */
+function DroneAction({
+  label,
+  disabled,
+  onPress,
+}: {
+  label: string;
+  disabled: boolean;
+  onPress: () => void;
+}) {
+  const accent = useToken('--accent', '#5ec8c2');
+  const faint = useToken('--ink-faint', '#62666e');
+
+  return (
+    <Pressable
+      onPress={onPress}
+      disabled={disabled}
+      accessibilityRole="button"
+      accessibilityState={{ disabled }}
+      accessibilityLabel={label}
+      className={`h-[50px] flex-row items-center gap-[7px] rounded-[10px] border border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface-raised px-[14px] active:opacity-70 ${
+        disabled ? 'opacity-45' : ''
+      }`}
+    >
+      <SymbolView
+        name="speaker.wave.2"
+        size={15}
+        weight="semibold"
+        tintColor={disabled ? faint : accent}
+      />
+      <Text
+        className={`font-mono text-[10px] font-semibold uppercase tracking-[1.5px] ${
+          disabled ? 'text-ink-faint' : 'text-accent'
+        }`}
+      >
+        Drone
+      </Text>
+    </Pressable>
   );
 }

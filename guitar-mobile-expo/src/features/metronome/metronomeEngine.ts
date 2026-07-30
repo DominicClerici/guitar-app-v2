@@ -307,6 +307,26 @@ export function setHaptics(enabled: boolean): void {
   emit({ haptics });
 }
 
+/**
+ * Puts the engine back to how it starts, at `nextBpm` if one is given. The state
+ * outlives any one visit to the screen, so a tempo handed over from another tool
+ * has to clear what the last session left behind — otherwise the tempo you asked
+ * for arrives wearing someone else's meter, subdivision and voice.
+ */
+export function reset(nextBpm?: number): void {
+  stop();
+
+  bpm = clampBpm(nextBpm ?? DEFAULT_BPM);
+  pattern = defaultPattern(DEFAULT_BEATS);
+  perBeat = SUBDIVISIONS[0].perBeat;
+  voice = DEFAULT_VOICE;
+  haptics = true;
+  nextBeat = 0;
+  nextSub = 0;
+
+  emit({ bpm, pattern, perBeat, voiceId: voice.id, haptics });
+}
+
 /** Stops and hands the audio session back. Called when the screen goes away. */
 export function release(): void {
   stop();

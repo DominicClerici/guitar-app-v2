@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { bpmFromIntervals, isRestart, MIN_INTERVAL_MS, spreadMs } from './tapTempo';
 
 /** Silence that ends a session. The reading stays on screen; the next tap replaces it. */
-export const IDLE_MS = 3000;
+export const IDLE_MS = 2200;
 
 export interface TapTempoSession {
   /** Null until there are two taps to measure between. */

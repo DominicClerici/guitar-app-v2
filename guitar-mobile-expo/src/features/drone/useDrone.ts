@@ -1,16 +1,29 @@
 import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
-import { useCallback, useEffect, useMemo, useState, useSyncExternalStore } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from 'react';
 
-import { useChordBuilder } from '@/features/chord-detection/useChordBuilder';
+import {
+  useChordBuilder,
+  type InitialVoicing,
+} from '@/features/chord-detection/useChordBuilder';
 import { buildChord, type RootName } from '@/lib/chord-library';
 import { noteToSemitone } from '@/lib/theory';
 
 import {
   getSnapshot,
   release,
+  reset,
   setIntonation,
   setPitches,
   setVoiceId,
+  start,
   stop,
   subscribe,
   toggle,
@@ -63,6 +76,14 @@ const NOTHING: DroneSelection = {
   rootIndex: -1,
 };
 
+/**
+ * A shape sent over from another tool. The drone opens on the neck holding it,
+ * and — where the sender asked for it — already sounding.
+ */
+export interface DroneHandoff extends InitialVoicing {
+  autoStart?: boolean;
+}
+
 export type UseDroneResult = DroneSnapshot & {
   mode: DroneMode;
   root: RootName;
@@ -89,16 +110,29 @@ export type UseDroneResult = DroneSnapshot & {
  * is a graph on the audio thread that no render should be involved in. The join
  * between them is one effect, handing down the pitches whenever they change —
  * which is also what makes a chord change under a running drone work at all.
+ *
+ * `handoff` is a shape arriving from another screen — the chord detector, so far.
+ * It is read once, into the initial state rather than into an effect, so the neck
+ * and the chord it sounds are right on the first render.
  */
-export function useDrone(): UseDroneResult {
+export function useDrone(handoff?: DroneHandoff): UseDroneResult {
   const snapshot = useSyncExternalStore(subscribe, getSnapshot, getSnapshot);
 
-  const [mode, setMode] = useState<DroneMode>('chords');
+  const [mode, setMode] = useState<DroneMode>(handoff ? 'neck' : 'chords');
   const [root, setRoot] = useState<RootName>('C');
   const [quality, setQuality] = useState<string>(SINGLE_NOTE);
   const [octave, setOctave] = useState(0);
 
-  const board = useChordBuilder();
+  const handedOver = useRef(handoff !== undefined);
+  const pendingStart = useRef(handoff?.autoStart === true);
+
+  // A layout effect so it lands before the pitches effect below, which is where a
+  // handed-over drone actually starts.
+  useLayoutEffect(() => {
+    if (handedOver.current) reset();
+  }, []);
+
+  const board = useChordBuilder(handoff);
   const { placed, chord: reading, rootPitchClass, nameForPitchClass } = board;
 
   const fromCatalogue = useMemo<DroneSelection>(() => {
@@ -145,6 +179,13 @@ export function useDrone(): UseDroneResult {
 
   useEffect(() => {
     setPitches(pitches, rootMidi);
+
+    // A handed-over chord starts here rather than on mount: the engine will not
+    // start on nothing, and this is the first moment it has the notes.
+    if (pendingStart.current && pitches.length > 0) {
+      pendingStart.current = false;
+      start();
+    }
   }, [pitches, rootMidi]);
 
   useEffect(() => () => release(), []);

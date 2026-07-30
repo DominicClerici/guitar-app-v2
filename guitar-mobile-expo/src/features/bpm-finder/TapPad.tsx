@@ -1,5 +1,5 @@
 import * as Haptics from 'expo-haptics';
-import { Text, View } from 'react-native';
+import { Text, useWindowDimensions, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import {
   Easing,
@@ -22,6 +22,17 @@ const RIPPLE_MS = 450;
 const RIPPLE_SCALE = 0.35;
 /** Rings in the pool. Three overlap comfortably at any tempo a ripple outlives. */
 const RINGS = 3;
+
+/** Widest the pad gets, however much room there is. */
+const MAX_SIZE = 280;
+/** The sheet's padding either side of it. */
+const SIDE_ROOM = 48;
+/**
+ * Most of the screen the pad may claim. The sheet sizes itself to its content, so
+ * a pad measured off width alone would push the buttons under the fold on a short
+ * phone rather than being told to shrink by a container.
+ */
+const HEIGHT_SHARE = 0.34;
 
 const PRESS_IN = { duration: 70 };
 const PRESS_OUT = { damping: 13, stiffness: 260 };
@@ -55,6 +66,14 @@ export function TapPad({ onTap }: Props) {
   const accentLine = useToken('--accent-line', 'rgba(94, 200, 194, 0.5)');
   const accentBright = useToken('--accent-bright', '#86e0da');
 
+  const { width, height } = useWindowDimensions();
+
+  // Sized here rather than by the layout: a square is the one shape flexbox will
+  // not hold on its own — `aspectRatio` alongside a `maxWidth` takes its height
+  // from the width *before* the clamp, which is how a circle becomes a pill.
+  const size = Math.round(Math.min(MAX_SIZE, width - SIDE_ROOM, height * HEIGHT_SHARE));
+  const radius = size / 2;
+
   const press = useSharedValue(0);
 
   // A fixed pool cycled by `cursor`: a ring still travelling is left to finish
@@ -73,7 +92,11 @@ export function TapPad({ onTap }: Props) {
 
   // `onBegin` rather than `onEnd`: the beat is where the finger lands, and waiting
   // for the lift would put every reading at the mercy of how long you hold.
-  const tap = Gesture.Tap().onBegin(() => {
+  const tap = Gesture.Tap().onBegin((event) => {
+    const dx = event.x - radius;
+    const dy = event.y - radius;
+    if (dx * dx + dy * dy > radius * radius) return;
+
     const at = uiNow();
 
     press.value = withSequence(withTiming(1, PRESS_IN), withSpring(0, PRESS_OUT));
@@ -94,17 +117,19 @@ export function TapPad({ onTap }: Props) {
     borderColor: interpolateColor(press.value, [0, 1], [accentLine, accentBright]),
   }));
 
-  // The gesture takes the whole region rather than the circle: nothing else in the
-  // middle of the sheet is tappable, so a beat landing wide of the disc should
-  // still count. The circle is the target you aim at, not the edge you must hit.
+  // The zone is the disc itself, not the region around it: a view's touch area is
+  // its rectangle, so the corners of the square the disc is inscribed in are
+  // measured away in the gesture rather than left to count as beats.
   return (
-    <GestureDetector gesture={tap}>
-      <View
-        accessibilityRole="button"
-        accessibilityLabel="Tap in time to find the tempo"
-        className="w-full flex-1 items-center justify-center"
-      >
-        <View className="aspect-square w-full max-w-[280px] items-center justify-center">
+    <View className="w-full items-center py-[22px]">
+      <GestureDetector gesture={tap}>
+        <View
+          accessibilityRole="button"
+          accessibilityLabel="Tap in time to find the tempo"
+          // The one dimension no utility can carry: it is measured off the screen.
+          style={{ width: size, height: size }}
+          className="items-center justify-center"
+        >
           <Ring progress={r0} />
           <Ring progress={r1} />
           <Ring progress={r2} />
@@ -116,8 +141,8 @@ export function TapPad({ onTap }: Props) {
             <Text className="font-mono text-[13px] uppercase tracking-[6px] text-accent">Tap</Text>
           </AnimatedView>
         </View>
-      </View>
-    </GestureDetector>
+      </GestureDetector>
+    </View>
   );
 }
 

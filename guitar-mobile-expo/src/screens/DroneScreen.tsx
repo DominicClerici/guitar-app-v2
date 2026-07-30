@@ -1,5 +1,6 @@
-import { useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SymbolView } from 'expo-symbols';
+import { useMemo } from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -14,9 +15,11 @@ import {
   SINGLE_NOTE,
   useDrone,
   voiceById,
+  type DroneHandoff,
   type DroneMode,
 } from '@/features/drone';
 import { useToken } from '@/lib/tokens';
+import { decodeVoicing } from '@/lib/voicing-param';
 
 const MODES: { id: DroneMode; label: string }[] = [
   { id: 'chords', label: 'Chords' },
@@ -35,13 +38,36 @@ const NOTE_GROUP: ExtraGroup = {
  * sounding, where the notes come from, how they should sound — with the
  * transport pinned at the bottom, because that is the one thing you reach for
  * while playing rather than while setting up.
+ *
+ * A `voicing` param is a shape sent over from the chord detector: the screen opens
+ * on the neck holding it and, with `play`, already sounding it.
  */
 export function DroneScreen() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
   const muted = useToken('--ink-muted', '#9aa0aa');
 
-  const drone = useDrone();
+  const { voicing, root, play } = useLocalSearchParams<{
+    voicing?: string;
+    root?: string;
+    play?: string;
+  }>();
+
+  // Read once and held: the drone takes it as initial state, and a new object on
+  // every render would say the handoff had changed when nothing had.
+  const handoff = useMemo<DroneHandoff | undefined>(() => {
+    const placed = decodeVoicing(voicing);
+    if (placed.length === 0) return undefined;
+
+    const rootPitchClass = Number(root);
+    return {
+      placed,
+      rootPitchClass: Number.isInteger(rootPitchClass) ? rootPitchClass : undefined,
+      autoStart: play === '1',
+    };
+  }, [voicing, root, play]);
+
+  const drone = useDrone(handoff);
   const { board } = drone;
 
   const detail = [

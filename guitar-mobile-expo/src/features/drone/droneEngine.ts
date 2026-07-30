@@ -389,6 +389,19 @@ export function setIntonation(mode: Intonation): void {
   applyPitches(true, SWAP_ATTACK, SWAP_RELEASE);
 }
 
+/**
+ * Puts the engine back to how it starts. The voice and the intonation outlive any
+ * one visit to the screen, so a chord handed over from another tool has to clear
+ * them — otherwise it arrives sounding like whatever the last session was set to.
+ * Call before the pitches, not after: both are read when a note is built.
+ */
+export function reset(): void {
+  stop();
+  voice = DEFAULT_VOICE;
+  intonation = 'equal';
+  emit({ voiceId: voice.id, intonation });
+}
+
 /** Stops and hands the audio session back. Called when the screen goes away. */
 export function release(): void {
   stop();
