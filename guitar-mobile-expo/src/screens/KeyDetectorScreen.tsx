@@ -8,12 +8,15 @@ import { FadingHScroll } from '@/components/FadingHScroll';
 import { IconAction } from '@/components/IconAction';
 import { Fretboard } from '@/features/chord-detection/Fretboard';
 import { useChordBuilder } from '@/features/chord-detection/useChordBuilder';
+import { ChipMenu } from '@/features/key-detection/ChipMenu';
 import { KeyReadout } from '@/features/key-detection/KeyReadout';
 import { ProgressionChips } from '@/features/key-detection/ProgressionChips';
+import { useChipMenu } from '@/features/key-detection/useChipMenu';
 import { buildProgressionChord, useKeyDetection } from '@/features/key-detection/useKeyDetection';
 import { toAccidentalGlyphs } from '@/lib/accidentals';
 import type { ProgressionChord } from '@/lib/key-analysis';
 import { useToken } from '@/lib/tokens';
+import { encodeVoicing } from '@/lib/voicing-param';
 
 type Symbol = ComponentProps<typeof SymbolView>['name'];
 
@@ -114,13 +117,14 @@ export function KeyDetectorScreen() {
   // The board has two jobs: composing a new chord, or standing in for one already
   // in the progression. `editId` is which, and it decides the whole action row.
   const [editId, setEditId] = useState<string | null>(null);
-  const [reordering, setReordering] = useState(false);
+  // A chip is out of the row and riding a finger. Not a mode you can enter — only
+  // a drag in flight — so it is reported up from the row rather than set here.
+  const [dragging, setDragging] = useState(false);
 
   const editing = editId !== null;
-  const canReorder = chords.length >= 2 && !editing;
-  // Dragging has no meaning once there is one chord left or the board is busy
-  // editing, so the mode drops itself rather than waiting to be dismissed.
-  if (reordering && !canReorder) setReordering(false);
+  // Order is order whatever the board happens to be doing, so an edit in progress
+  // is no reason to refuse a drag. One chord is.
+  const canReorder = chords.length >= 2;
 
   const endEdit = () => {
     setEditId(null);
@@ -149,8 +153,58 @@ export function KeyDetectorScreen() {
     load(stored.voicing, stored.feature.rootPc);
   };
 
+  /**
+   * A tap on the chip already being edited is the way out of the edit: the board is
+   * cleared and nothing is written back, so whatever was being tried on the neck is
+   * dropped. Saving is the Save button's job and only ever the Save button's job.
+   */
+  const onTapChord = (stored: ProgressionChord) => {
+    if (stored.id === editId) {
+      endEdit();
+      return;
+    }
+    onEditChord(stored);
+  };
+
+  /**
+   * Hand a stored chord to the chord detector. Pushed rather than replaced, so this
+   * screen stays mounted underneath with the progression, the chosen key and the
+   * board exactly as they were — coming back is a pop, not a rebuild.
+   */
+  const onAnalyzeChord = (stored: ProgressionChord) => {
+    router.push({
+      pathname: '/chord-detector',
+      params: {
+        voicing: encodeVoicing(stored.voicing),
+        root: String(stored.feature.rootPc),
+      },
+    });
+  };
+
+  const menu = useChipMenu({
+    onSelect: (id) => {
+      const stored = chords.find((c) => c.id === id);
+      if (stored) onEditChord(stored);
+    },
+    onAnalyze: (id) => {
+      const stored = chords.find((c) => c.id === id);
+      if (stored) onAnalyzeChord(stored);
+    },
+    onDelete: (id) => {
+      remove(id);
+      if (editId === id) endEdit();
+    },
+  });
+
+  // The card hangs off a chip. Lose the chip — deleted from the board, or the whole
+  // progression reset — and there is nothing left for it to point at.
+  const menuTarget = menu.target;
+  const menuChord = menuTarget ? chords.find((c) => c.id === menuTarget.id) : undefined;
+  if (menuTarget && !menuChord) menu.close();
+
   const onResetProgression = () => {
     clearProgression();
+    menu.close();
     if (editing) endEdit();
   };
 
@@ -195,9 +249,10 @@ export function KeyDetectorScreen() {
 
       <ScrollView
         showsVerticalScrollIndicator={false}
-        // A vertical drag in reorder mode belongs to the chip under the finger,
-        // not to the page.
-        scrollEnabled={!reordering}
+        // A vertical drag belongs to the chip under the finger, not to the page —
+        // and while a menu is up the page has to hold still, because the card and
+        // the hole in its backdrop are pinned to where the chip was measured.
+        scrollEnabled={!dragging && menuTarget === null}
         // The verdict sits at the top and the instrument at the bottom, so a tall
         // screen opens a gap between them rather than stranding the board in the
         // middle. `grow` lets the spacer below claim whatever is left over.
@@ -220,19 +275,27 @@ export function KeyDetectorScreen() {
 
         {chords.length === 0 ? (
           <Text className="text-[12.5px] leading-[18px] text-ink-muted">
-            Chords you add show up here in order. Tap one to put it back on the neck and edit it.
+            Chords you add show up here in order. Tap one to put it back on the neck and edit it, or
+            hold one for more.
           </Text>
         ) : (
           <ProgressionChips
             chords={chords}
             labels={labels}
             activeId={editId}
-            reordering={reordering}
             canReorder={canReorder}
-            onSelect={onEditChord}
+            menuTargetId={menuTarget?.id ?? null}
+            menuLatched={menu.latched}
+            onSelect={onTapChord}
             onReorder={reorder}
-            onBeginReorder={() => setReordering(true)}
-            onEndReorder={() => setReordering(false)}
+            onOpenMenu={(index, anchor) => {
+              const stored = chords[index];
+              if (stored) menu.open(stored.id, anchor);
+            }}
+            onFocusMenu={menu.focus}
+            onReleaseMenu={menu.release}
+            onDismissMenu={menu.close}
+            onDragging={setDragging}
           />
         )}
 
@@ -320,13 +383,6 @@ export function KeyDetectorScreen() {
                 disabled={placed.length === 0}
                 onPress={clearBoard}
               />
-              <IconAction
-                symbol={reordering ? 'checkmark' : 'arrow.left.arrow.right'}
-                label={reordering ? 'Done reordering' : 'Reorder chords'}
-                disabled={!canReorder}
-                on={reordering}
-                onPress={() => setReordering(!reordering)}
-              />
               <PrimaryAction
                 label={isFull ? 'Full' : 'Add chord'}
                 symbol="plus"
@@ -337,6 +393,19 @@ export function KeyDetectorScreen() {
           )}
         </View>
       </ScrollView>
+
+      {/* Outside the scroll view on purpose. The chip it belongs to is two scroll
+          views deep and both of them clip, so the card has to be drawn up here and
+          told in window coordinates where its chip is. */}
+      {menuTarget && menuChord ? (
+        <ChipMenu
+          anchor={menuTarget.anchor}
+          focused={menu.focused}
+          chordName={menuChord.name}
+          onActivate={menu.activate}
+          onDismiss={menu.close}
+        />
+      ) : null}
     </View>
   );
 }

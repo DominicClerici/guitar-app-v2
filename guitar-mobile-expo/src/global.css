@@ -18,11 +18,13 @@
   --bg: #0c0d10; /* app background — cool near-black */
   --tray: #131418; /* outer machined tray */
   --surface: #181a1f; /* default card face */
+  --surface-glass: rgba(24, 26, 31, 0.5); /* --surface at half weight, over a blur */
   --surface-raised: #20232a; /* raised chips / ghost buttons */
   --edge-top: rgba(255, 255, 255, 0.08); /* bevel highlight */
   --edge-bottom: rgba(0, 0, 0, 0.52); /* bevel shadow */
   --line: #2a2e36; /* hairline */
   --line-soft: #23262d; /* softer hairline / side borders */
+  --scrim: rgba(4, 5, 7, 0.35); /* backdrop behind a transient menu */
 
   /* ─ ink ─ */
   --ink: #eef0f4;
@@ -40,6 +42,7 @@
   --aqua: #5ec8c2;
   --amber: #e0a84e;
   --rose: #e0788f;
+  --rose-wash: rgba(224, 120, 143, 0.12); /* rose counterpart to --accent-wash */
   --violet: #9b8cf0;
 }
 
@@ -53,11 +56,13 @@
   --color-bg: var(--bg);
   --color-tray: var(--tray);
   --color-surface: var(--surface);
+  --color-surface-glass: var(--surface-glass);
   --color-surface-raised: var(--surface-raised);
   --color-edge-top: var(--edge-top);
   --color-edge-bottom: var(--edge-bottom);
   --color-line: var(--line);
   --color-line-soft: var(--line-soft);
+  --color-scrim: var(--scrim);
   --color-ink: var(--ink);
   --color-ink-muted: var(--ink-muted);
   --color-ink-faint: var(--ink-faint);
@@ -68,5 +73,6 @@
   --color-aqua: var(--aqua);
   --color-amber: var(--amber);
   --color-rose: var(--rose);
+  --color-rose-wash: var(--rose-wash);
   --color-violet: var(--violet);
 }

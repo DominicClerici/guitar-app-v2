@@ -1,4 +1,4 @@
-import { useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SymbolView } from 'expo-symbols';
 import { useMemo, useState } from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
@@ -11,21 +11,43 @@ import { Fretboard } from '@/features/chord-detection/Fretboard';
 import { IntervalLattice } from '@/features/chord-detection/IntervalLattice';
 import { LabelModeToggle, type LabelMode } from '@/features/chord-detection/LabelModeToggle';
 import { ReadingShelf } from '@/features/chord-detection/ReadingShelf';
-import { useChordBuilder } from '@/features/chord-detection/useChordBuilder';
+import {
+  useChordBuilder,
+  type InitialVoicing,
+} from '@/features/chord-detection/useChordBuilder';
 import { WarningNotes } from '@/features/chord-detection/WarningNotes';
 import { useToken } from '@/lib/tokens';
-import { encodeVoicing } from '@/lib/voicing-param';
+import { decodeVoicing, encodeVoicing } from '@/lib/voicing-param';
 
 /**
  * Everything the engine knows about one shape. The neck is fixed to the bottom of
  * the screen so it stays under your thumb while the readout scrolls above it, and
  * the whole readout — name, intervals, warnings, and the labels on the board
  * itself — hangs off whichever reading of the shape is currently accepted.
+ *
+ * A `voicing` param is a chord sent over from the key detector's progression. It
+ * arrives with the `root` of the reading that was accepted there, so an Am7 stored
+ * as an Am7 opens as one rather than re-ranking to a C6.
  */
 export function ChordDetectorScreen() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
   const muted = useToken('--ink-muted', '#9aa0aa');
+
+  const { voicing, root } = useLocalSearchParams<{ voicing?: string; root?: string }>();
+
+  // Read once and held: the builder takes this as initial state, and a new object
+  // on every render would say the handoff had changed when nothing had.
+  const initial = useMemo<InitialVoicing | undefined>(() => {
+    const placed = decodeVoicing(voicing);
+    if (placed.length === 0) return undefined;
+
+    const rootPitchClass = Number(root);
+    return {
+      placed,
+      rootPitchClass: Number.isInteger(rootPitchClass) ? rootPitchClass : undefined,
+    };
+  }, [voicing, root]);
 
   const {
     placed,
@@ -37,7 +59,7 @@ export function ChordDetectorScreen() {
     toggle,
     select,
     clear,
-  } = useChordBuilder();
+  } = useChordBuilder(initial);
 
   const [labelMode, setLabelMode] = useState<LabelMode>('notes');
 
