@@ -1,5 +1,6 @@
 import { Pressable, Text } from 'react-native';
 
+import { useFace } from '@/components/CornerFace';
 import { FadingHScroll } from '@/components/FadingHScroll';
 import { toAccidentalGlyphs } from '@/lib/accidentals';
 import { ROOTS, type RootName } from '@/lib/chord-library';
@@ -17,33 +18,46 @@ interface Props {
 export function RootRail({ root, onChange }: Props) {
   return (
     <FadingHScroll contentClassName="flex-row gap-[6px] px-[18px]">
-      {ROOTS.map((name) => {
-        const selected = name === root;
-        const natural = name.length === 1;
-
-        return (
-          <Pressable
-            key={name}
-            onPress={() => onChange(name)}
-            accessibilityRole="button"
-            accessibilityState={{ selected }}
-            accessibilityLabel={`Root ${name}`}
-            className={`h-[40px] min-w-[40px] items-center justify-center rounded-[10px] border px-[10px] active:opacity-70 ${
-              selected
-                ? 'border-accent-line bg-accent-wash'
-                : 'border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface'
-            }`}
-          >
-            <Text
-              className={`text-[15px] font-semibold tracking-[-0.2px] ${
-                selected ? 'text-accent' : natural ? 'text-ink' : 'text-ink-muted'
-              }`}
-            >
-              {toAccidentalGlyphs(name)}
-            </Text>
-          </Pressable>
-        );
-      })}
+      {ROOTS.map((name) => (
+        <RootChip
+          key={name}
+          name={name}
+          selected={name === root}
+          onPress={() => onChange(name)}
+        />
+      ))}
     </FadingHScroll>
+  );
+}
+
+function RootChip({
+  name,
+  selected,
+  onPress,
+}: {
+  name: RootName;
+  selected: boolean;
+  onPress: () => void;
+}) {
+  const face = useFace(selected ? 'accent' : 'card', 10);
+  const natural = name.length === 1;
+
+  return (
+    <Pressable
+      onPress={onPress}
+      accessibilityRole="button"
+      accessibilityState={{ selected }}
+      accessibilityLabel={`Root ${name}`}
+      className={`h-[40px] min-w-[40px] items-center justify-center rounded-[10px] px-[10px] active:opacity-70 ${face.className}`}
+    >
+      {face.paint}
+      <Text
+        className={`text-[15px] font-semibold tracking-[-0.2px] ${
+          selected ? 'text-accent' : natural ? 'text-ink' : 'text-ink-muted'
+        }`}
+      >
+        {toAccidentalGlyphs(name)}
+      </Text>
+    </Pressable>
   );
 }

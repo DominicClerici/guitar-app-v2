@@ -4,6 +4,8 @@ import { Pressable } from 'react-native';
 
 import { useToken } from '@/lib/tokens';
 
+import { useFace } from './CornerFace';
+
 type Symbol = ComponentProps<typeof SymbolView>['name'];
 
 interface Props {
@@ -29,6 +31,7 @@ export function IconAction({
   const faint = useToken('--ink-faint', '#62666e');
   const accent = useToken('--accent', '#5ec8c2');
   const rose = useToken('--rose', '#e0788f');
+  const face = useFace(on ? 'accent' : 'key', 10);
 
   const tint = disabled ? faint : on ? accent : destructive ? rose : ink;
 
@@ -39,12 +42,9 @@ export function IconAction({
       accessibilityRole="button"
       accessibilityState={{ disabled, selected: on }}
       accessibilityLabel={label}
-      className={`h-[50px] w-[50px] items-center justify-center rounded-[10px] border active:opacity-70 ${
-        on
-          ? 'border-accent-line bg-accent-wash'
-          : 'border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface-raised'
-      }`}
+      className={`h-[50px] w-[50px] items-center justify-center rounded-[10px] active:opacity-70 ${face.className}`}
     >
+      {face.paint}
       <SymbolView name={symbol} size={17} weight="semibold" tintColor={tint} />
     </Pressable>
   );

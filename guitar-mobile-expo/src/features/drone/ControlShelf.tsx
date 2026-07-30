@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { Text, View } from 'react-native';
 
+import { useFace } from '@/components/CornerFace';
 import { Segmented, type Segment } from '@/components/Segmented';
 
 import { VOICES } from './droneVoices';
@@ -35,8 +36,11 @@ export function ControlShelf({
   onIntonation,
   onOctave,
 }: Props) {
+  const face = useFace('card', 13);
+
   return (
-    <View className="rounded-[13px] border border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface px-[16px]">
+    <View className={`rounded-[13px] px-[16px] ${face.className}`}>
+      {face.paint}
       <Row label="Voice">
         <Segmented
           segments={VOICES.map((voice) => chip(voice.id, voice.label, voice.id === voiceId))}

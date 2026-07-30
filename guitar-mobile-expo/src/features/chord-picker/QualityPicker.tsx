@@ -1,5 +1,6 @@
 import { Pressable, Text, View } from 'react-native';
 
+import { useFace } from '@/components/CornerFace';
 import { FadingHScroll } from '@/components/FadingHScroll';
 import { toAccidentalGlyphs } from '@/lib/accidentals';
 import {
@@ -82,42 +83,66 @@ export function QualityPicker({ quality, onChange, extraGroup }: Props) {
 
       <View className="mt-[10px] px-[18px]">
         {extraGroup && group === extraGroup.id ? (
-          <View className="h-[42px] justify-center rounded-[11px] border border-line-soft bg-surface px-[14px]">
-            <Text className="text-[12.5px] leading-[17px] text-ink-muted">
-              {extraGroup.description}
-            </Text>
-          </View>
+          <GroupNote description={extraGroup.description} />
         ) : (
           <View className="flex-row flex-wrap gap-[6px]">
-            {chordTypesByFamily(group as ChordFamily).map((type) => {
-              const selected = type.id === quality;
-              return (
-                <Pressable
-                  key={type.id}
-                  onPress={() => onChange(type.id)}
-                  accessibilityRole="button"
-                  accessibilityState={{ selected }}
-                  accessibilityLabel={type.name}
-                  className={`h-[42px] min-w-[52px] items-center justify-center rounded-[11px] border px-[12px] active:opacity-70 ${
-                    selected
-                      ? 'border-accent-line bg-accent-wash'
-                      : 'border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface'
-                  }`}
-                >
-                  <Text
-                    className={`text-[14px] font-medium tracking-[-0.2px] ${
-                      selected ? 'text-accent' : 'text-ink'
-                    }`}
-                  >
-                    {/* A major triad's suffix is empty, and a blank chip is unreadable. */}
-                    {type.symbol === '' ? 'maj' : toAccidentalGlyphs(type.symbol)}
-                  </Text>
-                </Pressable>
-              );
-            })}
+            {chordTypesByFamily(group as ChordFamily).map((type) => (
+              <QualityChip
+                key={type.id}
+                name={type.name}
+                /* A major triad's suffix is empty, and a blank chip is unreadable. */
+                symbol={type.symbol === '' ? 'maj' : toAccidentalGlyphs(type.symbol)}
+                selected={type.id === quality}
+                onPress={() => onChange(type.id)}
+              />
+            ))}
           </View>
         )}
       </View>
     </View>
+  );
+}
+
+function GroupNote({ description }: { description: string }) {
+  const face = useFace('quiet', 11);
+
+  return (
+    <View className={`h-[42px] justify-center rounded-[11px] px-[14px] ${face.className}`}>
+      {face.paint}
+      <Text className="text-[12.5px] leading-[17px] text-ink-muted">{description}</Text>
+    </View>
+  );
+}
+
+function QualityChip({
+  name,
+  symbol,
+  selected,
+  onPress,
+}: {
+  name: string;
+  symbol: string;
+  selected: boolean;
+  onPress: () => void;
+}) {
+  const face = useFace(selected ? 'accent' : 'card', 11);
+
+  return (
+    <Pressable
+      onPress={onPress}
+      accessibilityRole="button"
+      accessibilityState={{ selected }}
+      accessibilityLabel={name}
+      className={`h-[42px] min-w-[52px] items-center justify-center rounded-[11px] px-[12px] active:opacity-70 ${face.className}`}
+    >
+      {face.paint}
+      <Text
+        className={`text-[14px] font-medium tracking-[-0.2px] ${
+          selected ? 'text-accent' : 'text-ink'
+        }`}
+      >
+        {symbol}
+      </Text>
+    </Pressable>
   );
 }

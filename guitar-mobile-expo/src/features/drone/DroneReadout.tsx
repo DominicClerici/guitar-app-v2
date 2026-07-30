@@ -8,6 +8,7 @@ import {
 } from 'react-native-reanimated';
 
 import { AnimatedView } from '@/components/AnimatedView';
+import { useFace } from '@/components/CornerFace';
 import { toAccidentalGlyphs } from '@/lib/accidentals';
 
 import type { DroneSelection } from './useDrone';
@@ -77,22 +78,11 @@ export function DroneReadout({ selection, running, detail, hint }: Props) {
       <View className="mt-[10px] h-[24px] flex-row items-center gap-[5px]">
         {has ? (
           selection.notes.map((note, index) => (
-            <View
+            <NoteChip
               key={`${note}-${index}`}
-              className={`h-[24px] justify-center rounded-[7px] px-[8px] ${
-                index === selection.rootIndex
-                  ? 'border border-accent-line bg-accent-wash'
-                  : 'border border-line-soft bg-surface'
-              }`}
-            >
-              <Text
-                className={`font-mono text-[11px] tracking-[0.5px] ${
-                  index === selection.rootIndex ? 'text-accent' : 'text-ink-muted'
-                }`}
-              >
-                {toAccidentalGlyphs(note)}
-              </Text>
-            </View>
+              note={note}
+              isRoot={index === selection.rootIndex}
+            />
           ))
         ) : (
           <Text className="font-mono text-[9.5px] uppercase tracking-[1.5px] text-ink-faint">
@@ -106,6 +96,23 @@ export function DroneReadout({ selection, running, detail, hint }: Props) {
           {running ? 'Sounding' : 'Silent'}
         </Text>
         {detail.map((field) => ` · ${field}`).join('')}
+      </Text>
+    </View>
+  );
+}
+
+function NoteChip({ note, isRoot }: { note: string; isRoot: boolean }) {
+  const face = useFace(isRoot ? 'accent' : 'quiet', 7);
+
+  return (
+    <View className={`h-[24px] justify-center rounded-[7px] px-[8px] ${face.className}`}>
+      {face.paint}
+      <Text
+        className={`font-mono text-[11px] tracking-[0.5px] ${
+          isRoot ? 'text-accent' : 'text-ink-muted'
+        }`}
+      >
+        {toAccidentalGlyphs(note)}
       </Text>
     </View>
   );
