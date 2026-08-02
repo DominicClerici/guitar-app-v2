@@ -1,9 +1,9 @@
-import { BottomSheetModal } from '@expo/ui/community/bottom-sheet';
 import { useEffect, useImperativeHandle, useRef, useState, type Ref } from 'react';
 import { InteractionManager, Linking, Pressable, Text, View, type LayoutChangeEvent } from 'react-native';
 import { useAnimatedStyle } from 'react-native-reanimated';
 
 import { AnimatedView } from '@/components/AnimatedView';
+import { Sheet, type SheetRef } from '@/components/Sheet';
 
 import { IN_TUNE_CENTS } from './freqToNote';
 import { SeismographChart, SeismographFrame } from './SeismographChart';
@@ -11,21 +11,17 @@ import { centsTextClass, useTunerColors } from './tunerColors';
 import { type TunerStatus } from './tunerEngine';
 import { useTunerSession } from './useTuner';
 
-export type TunerSheetRef = {
-  present: () => void;
-  dismiss: () => void;
-};
+export type TunerSheetRef = SheetRef;
 
 /**
- * Full tuner in a native bottom sheet: oversized note readout over a rolling seismograph
+ * Full tuner in a bottom sheet: oversized note readout over a rolling seismograph
  * trace. Opening it acquires the mic; dismissing releases it.
  *
  * Mounted by `ToolsTab`, which presents it from the pinned Tuner card.
  */
 export function TunerSheet({ ref }: { ref?: Ref<TunerSheetRef> }) {
-  const sheetRef = useRef<React.ComponentRef<typeof BottomSheetModal>>(null);
+  const sheetRef = useRef<SheetRef>(null);
   const [visible, setVisible] = useState(false);
-  const colors = useTunerColors();
 
   useImperativeHandle(
     ref,
@@ -37,20 +33,18 @@ export function TunerSheet({ ref }: { ref?: Ref<TunerSheetRef> }) {
   );
 
   return (
-    <BottomSheetModal
+    <Sheet
       ref={sheetRef}
-      snapPoints={['92%']}
-      enablePanDownToClose
-      // The library reads `backgroundColor` off this prop to drive the native sheet's
-      // presentation background; there is no className equivalent.
-      backgroundStyle={{ backgroundColor: colors.bg }}
-      onChange={(index) => setVisible(index >= 0)}
+      snapPoints={SNAP_POINTS}
+      onVisibleChange={setVisible}
       onDismiss={() => setVisible(false)}
     >
       <TunerSheetBody visible={visible} onClose={() => sheetRef.current?.dismiss()} />
-    </BottomSheetModal>
+    </Sheet>
   );
 }
+
+const SNAP_POINTS = ['92%'];
 
 function TunerSheetBody({ visible, onClose }: { visible: boolean; onClose: () => void }) {
   const { status, note, frequency, centsSV, claritySV, presenceSV, frameSV, start, stop } =

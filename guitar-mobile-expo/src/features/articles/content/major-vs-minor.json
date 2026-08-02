@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_major-vs-minor",
+    "slug": "major-vs-minor",
+    "title": "Major vs Minor",
+    "summary": "How the two scales are built, and the three notes that change everything.",
+    "tags": ["theory"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-02"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Almost every song you know lives in one of two moods: " },
+        { "text": "major", "marks": ["bold", { "type": "color", "tone": "accent" }] },
+        { "text": " or " },
+        { "text": "minor", "marks": ["bold", { "type": "color", "tone": "amber" }] },
+        { "text": ". Built from the same root, they differ by exactly " },
+        { "text": "three notes", "link": { "kind": "footnote", "id": "fn-parallel" } },
+        { "text": " — and once you can hear those three, you hear the difference everywhere." }
+      ]
+    },
+    { "type": "heading", "level": 1, "spans": [{ "text": "Two recipes, one root" }] },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "A scale is a recipe of whole and half steps. The major scale climbs " },
+        { "text": "W–W–H–W–W–W–H", "marks": ["code"] },
+        { "text": "; the natural minor climbs " },
+        { "text": "W–H–W–W–H–W–W", "marks": ["code"] },
+        {
+          "text": ". Same ingredients, different order — and the order is the mood.",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        [
+          { "text": "Major", "marks": ["bold"] },
+          { "text": " — bright, settled, sure of where home is." }
+        ],
+        [
+          { "text": "Minor", "marks": ["bold"] },
+          { "text": " — darker, unresolved, leaning inward." }
+        ]
+      ]
+    },
+    {
+      "type": "table",
+      "header": [[{ "text": "Degree" }], [{ "text": "Major" }], [{ "text": "Minor" }]],
+      "rows": [
+        [[{ "text": "Third" }], [{ "text": "3", "marks": ["code"] }], [{ "text": "b3", "marks": ["code"] }]],
+        [[{ "text": "Sixth" }], [{ "text": "6", "marks": ["code"] }], [{ "text": "b6", "marks": ["code"] }]],
+        [[{ "text": "Seventh" }], [{ "text": "7", "marks": ["code"] }], [{ "text": "b7", "marks": ["code"] }]]
+      ]
+    },
+    { "type": "heading", "level": 1, "spans": [{ "text": "Hear it" }] },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Both scales below start from the same root, A. Tap play on each and listen for the third note — the tones tinted " },
+        { "text": "amber", "marks": [{ "type": "color", "tone": "amber" }] },
+        { "text": " are the ones minor lowers." }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "scale-compare",
+      "props": { "root": "A", "scales": ["major", "minor"] }
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        { "text": "Play the major run, then immediately the minor one. The mood flips on the third note — that's the " },
+        { "text": "b3", "marks": ["code"] },
+        { "text": " doing the work." }
+      ]
+    },
+    { "type": "divider" },
+    { "type": "heading", "level": 2, "spans": [{ "text": "Where to go next" }] },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Map either scale across the whole neck in the " },
+        { "text": "Scale Visualizer", "link": { "kind": "screen", "href": "/scale-visualizer" } },
+        { "text": ", or read about " },
+        {
+          "text": "relative keys",
+          "link": { "kind": "url", "url": "https://en.wikipedia.org/wiki/Relative_key" }
+        },
+        { "text": " — the other way major and minor are entangled." }
+      ]
+    },
+    {
+      "type": "quote",
+      "spans": [{ "text": "The minor scale is the major scale wearing its heart on its sleeve." }],
+      "attribution": "Every theory teacher, eventually"
+    }
+  ],
+  "footnotes": [
+    {
+      "id": "fn-parallel",
+      "spans": [
+        { "text": "Comparing scales on the same root — A major against A minor — is a " },
+        { "text": "parallel", "marks": ["italic"] },
+        { "text": " comparison. Relative comparison (C major against A minor) shares the notes and moves the root instead." }
+      ]
+    }
+  ]
+}

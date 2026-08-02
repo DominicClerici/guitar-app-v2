@@ -21,6 +21,13 @@ language (vibe, colour, typography, spacing, elevation). Use the design tokens i
 `src/global.css` (`var(--token)`); never hardcode colours. When a new screen introduces a
 reusable pattern, document it in `DESIGN.md`.
 
+## Articles
+
+Learn-tab articles are JSON documents rendered by a reusable block renderer.
+Before authoring an article, changing the article schema, or adding a live
+(interactive) article component, read `docs/articles.md` — it documents the
+data model, the forward-compatibility rules, and the checklists for both.
+
 ## Verifying a solution
 
 Run `pnpm lint` — it runs `tsc --noEmit` followed by `expo lint`, covering both typecheck and lint. Always run this after making changes to confirm the solution is correct.

@@ -1,21 +1,18 @@
-import { BottomSheetModal } from '@expo/ui/community/bottom-sheet';
 import { SymbolView } from 'expo-symbols';
 import { useEffect, useImperativeHandle, useRef, useState, type Ref } from 'react';
 import { Pressable, Text, View } from 'react-native';
 
+import { Sheet, type SheetRef } from '@/components/Sheet';
 import { useToken } from '@/lib/tokens';
 
 import { TapPad } from './TapPad';
 import { tempoMarking } from './tapTempo';
 import { useTapTempo } from './useTapTempo';
 
-export type BpmSheetRef = {
-  present: () => void;
-  dismiss: () => void;
-};
+export type BpmSheetRef = SheetRef;
 
 /**
- * Tap tempo in a native bottom sheet: tap the pad in time and the number above it
+ * Tap tempo in a bottom sheet: tap the pad in time and the number above it
  * follows. A short silence ends the count and the next tap starts a new one.
  * Dismissing throws the session away.
  *
@@ -29,10 +26,9 @@ export function BpmSheet({
   ref?: Ref<BpmSheetRef>;
   onUseTempo?: (bpm: number) => void;
 }) {
-  const sheetRef = useRef<React.ComponentRef<typeof BottomSheetModal>>(null);
+  const sheetRef = useRef<SheetRef>(null);
   const [visible, setVisible] = useState(false);
   const handing = useRef<number | null>(null);
-  const bg = useToken('--bg', '#0c0d10');
 
   useImperativeHandle(
     ref,
@@ -44,17 +40,12 @@ export function BpmSheet({
   );
 
   return (
-    <BottomSheetModal
+    <Sheet
+      // No snap points on purpose: a fixed detent both stretched the pad out of
+      // square and left the buttons fighting it for the leftover height. The
+      // content decides its own height instead.
       ref={sheetRef}
-      // No snap points on purpose: they and dynamic sizing are mutually exclusive
-      // here, and a fixed detent both stretched the pad out of square and left the
-      // buttons fighting it for the leftover height. The content decides instead.
-      enableDynamicSizing
-      enablePanDownToClose
-      // The library reads `backgroundColor` off this prop to drive the native sheet's
-      // presentation background; there is no className equivalent.
-      backgroundStyle={{ backgroundColor: bg }}
-      onChange={(index) => setVisible(index >= 0)}
+      onVisibleChange={setVisible}
       onDismiss={() => {
         setVisible(false);
         const bpm = handing.current;
@@ -70,7 +61,7 @@ export function BpmSheet({
           sheetRef.current?.dismiss();
         }}
       />
-    </BottomSheetModal>
+    </Sheet>
   );
 }
 
