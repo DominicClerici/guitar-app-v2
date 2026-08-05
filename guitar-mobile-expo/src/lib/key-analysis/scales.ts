@@ -60,11 +60,58 @@ export const MINOR_DEGREE_QUALITIES: readonly ReadonlySet<Quality>[] = [
   new Set<Quality>(['min', 'min7']),
   new Set<Quality>(['min', 'min7', 'maj', 'dom7']),
   new Set<Quality>(['maj', 'maj7']),
-  new Set<Quality>(['maj', 'dom7', 'dim', 'dim7', 'min7b5']),
+  // Degree 7 here is the *subtonic* only — see MINOR_LEADING_TONE_QUALITIES.
+  new Set<Quality>(['maj', 'dom7']),
 ];
 
 export function degreeQualities(mode: Mode): readonly ReadonlySet<Quality>[] {
   return mode === 'major' ? MAJOR_DEGREE_QUALITIES : MINOR_DEGREE_QUALITIES;
+}
+
+// A minor key has two chords on scale degree 7 and only one row in the table
+// above to hold them: the subtonic a whole step below the tonic (VII, from
+// natural minor) and the leading tone a half step below it (vii°, from
+// harmonic minor). Both are conventionally written without an accidental —
+// the quality is what tells them apart — so indexing expectations by degree
+// merged the two, and a major triad on the leading tone passed as the
+// subtonic's VII: fully diatonic, full chord-fit reward, no borrowed marker.
+//
+// Split by offset instead. A *major* triad a half step below the tonic belongs
+// to neither minor scale, and is the one chord at this offset that has to be
+// spelled ♯VII.
+const MINOR_LEADING_TONE_OFFSET = 11;
+const MINOR_LEADING_TONE_QUALITIES = new Set<Quality>(['dim', 'dim7', 'min7b5']);
+
+// No third, so no mode to contradict. On a diatonic root these chords agree
+// with the key whatever quality the degree expects.
+export const THIRDLESS_QUALITIES = new Set<Quality>(['sus', 'power']);
+
+export interface KeySlot {
+  degree: number;
+  accidental: '' | '♭' | '♯';
+  /** Qualities that read as diatonic here; null when the root itself is not. */
+  expected: ReadonlySet<Quality> | null;
+}
+
+/**
+ * Where a chord sits in a key: its scale degree, how that degree is spelled,
+ * and what it would have to be to count as diatonic. Takes the quality because
+ * minor's degree 7 is spelled from it (VII / vii° / ♯VII).
+ */
+export function slotFor(mode: Mode, offset: number, quality: Quality): KeySlot {
+  const { degree, accidental } = degreeMap(mode)[offset];
+
+  if (mode === 'minor' && offset === MINOR_LEADING_TONE_OFFSET) {
+    return MINOR_LEADING_TONE_QUALITIES.has(quality)
+      ? { degree, accidental: '', expected: MINOR_LEADING_TONE_QUALITIES }
+      : { degree, accidental: '♯', expected: null };
+  }
+
+  return {
+    degree,
+    accidental,
+    expected: accidental === '' ? degreeQualities(mode)[degree - 1] : null,
+  };
 }
 
 // Chromatic roots common enough to be idiomatic rather than evidence against the

@@ -4,8 +4,8 @@ import {
   KS_MINOR_PROFILE,
   MAJOR_BORROWED_OFFSETS,
   MINOR_BORROWED_OFFSETS,
-  degreeMap,
-  degreeQualities,
+  THIRDLESS_QUALITIES,
+  slotFor,
   toleranceSet,
 } from './scales';
 import type { KeyCandidate, KeyEstimate, Mode, ProgressionChord, Quality } from './types';
@@ -48,9 +48,12 @@ const SEVENTH_QUALITIES = new Set<Quality>([
 // The allowance can't be unconditional — an isolated I7 in functional harmony
 // really is V/IV (C–C7–F). It's gated instead on the progression as a whole
 // reading as a dominant idiom, which is what actually distinguishes the two:
-// blues saturates every degree with dom7, functional harmony uses it on one or
-// two roots at most.
+// blues saturates I, IV and V with dom7 and goes nowhere else, while functional
+// harmony spends its dominants driving to other degrees.
 const BLUES_DOM7_RATIO = 0.5;
+// I, IV and V. A dom7 anywhere else is a dominant pointing out of the key, so it
+// rules the idiom out for that key however many dom7s the progression holds.
+const BLUES_DOM7_HOMES = new Set([0, 5, 7]);
 // Degree 1 and degree 4 — the two blues-idiomatic homes for a dom7 besides V.
 const BLUES_DOM7_OFFSETS = new Set([0, 5]);
 // Parity with a functional V7 (REWARD_FULL + REWARD_SEVENTH_BONUS): inside the
@@ -95,10 +98,21 @@ function keyDisplayName(tonicPc: number, mode: Mode, preference: 'sharp' | 'flat
   return `${base} ${mode}`;
 }
 
-// True when dominant 7ths saturate the progression rather than marking one or
-// two functional dominants — see BLUES_DOM7_RATIO.
-function isDominantIdiom(chords: ProgressionChord[]): boolean {
-  const dom7 = chords.filter((c) => qualityOf(c.feature) === 'dom7').length;
+/**
+ * True when dominant 7ths saturate the progression *and* all of them sit on this
+ * key's I, IV or V — see BLUES_DOM7_RATIO. Asked per candidate key rather than
+ * once for the progression, because a count alone cannot tell a blues from a
+ * descending-fifths chain of secondary dominants: E7–A7–D7–G7–C is 80% dom7 and
+ * functional throughout. Against C that chain's dom7s land on III, VI, II and V,
+ * so the idiom is refused; a real blues in C puts them only on I, IV and V.
+ */
+function isDominantIdiom(chords: ProgressionChord[], tonicPc: number): boolean {
+  let dom7 = 0;
+  for (const chord of chords) {
+    if (qualityOf(chord.feature) !== 'dom7') continue;
+    if (!BLUES_DOM7_HOMES.has(mod12(chord.feature.rootPc - tonicPc))) return false;
+    dom7 += 1;
+  }
   return dom7 / chords.length >= BLUES_DOM7_RATIO;
 }
 
@@ -110,6 +124,10 @@ function isTonicChord(
 ): boolean {
   if (mod12(chord.feature.rootPc - tonicPc) !== 0) return false;
   const q = qualityOf(chord.feature);
+  // A chord with no third names a tonic without committing to a mode, and a
+  // riff that opens and closes on E5 or Esus4 is still telling us its tonic is
+  // E. Both modes take the bonus and the other chords settle which one wins.
+  if (THIRDLESS_QUALITIES.has(q)) return true;
   return mode === 'major'
     ? // Inside the idiom the I7 *is* the tonic arrival; without this the position
       // term keeps voting for the subdominant even once chord-fit is corrected.
@@ -124,8 +142,8 @@ function chordFitScore(
   blues: boolean,
 ): number {
   const offset = mod12(chord.feature.rootPc - tonicPc);
-  const slot = degreeMap(mode)[offset];
   const quality = qualityOf(chord.feature);
+  const slot = slotFor(mode, offset, quality);
   const inKey = toleranceSet(mode);
   const bluesDom7 =
     blues && mode === 'major' && quality === 'dom7' && BLUES_DOM7_OFFSETS.has(offset);
@@ -143,9 +161,12 @@ function chordFitScore(
   }
 
   let reward: number;
-  if (slot.accidental === '') {
-    const expected = degreeQualities(mode)[slot.degree - 1];
-    if (expected.has(quality)) {
+  if (slot.expected !== null) {
+    // A thirdless chord takes the full reward on a diatonic root: it cannot
+    // disagree with the degree's expected quality, having no third to disagree
+    // with. Scoring it as a mismatch made every sus and power chord read as
+    // weak evidence for its own key.
+    if (slot.expected.has(quality) || THIRDLESS_QUALITIES.has(quality)) {
       reward = REWARD_FULL + (SEVENTH_QUALITIES.has(quality) ? REWARD_SEVENTH_BONUS : 0);
     } else if (bluesDom7) {
       reward = REWARD_BLUES_DOM7;
@@ -207,13 +228,14 @@ function positionBonus(
     const b = mod12(chords[i + 1].feature.rootPc - tonicPc);
     const aq = qualityOf(chords[i].feature);
     const dominant = a === 7 && (aq === 'maj' || aq === 'dom7');
-    // Inside the dominant idiom, dom7→dom7 by descending fifth is the ordinary
-    // I7→IV7 move, not an authentic cadence — and it is indistinguishable from
-    // a real V7→I7 turnaround locally. Awarding it hands the subdominant two
-    // spurious cadences in a stock 12-bar (bars 1→2 and 4→5). Chord fit and the
-    // first/last-tonic bonus carry the key instead.
-    const idiomatic = blues && qualityOf(chords[i + 1].feature) === 'dom7';
-    if (dominant && b === 0 && !idiomatic) cadences += 1;
+    // A descending fifth onto another dominant seventh is not an arrival: the
+    // target is itself unresolved and the motion carries on through it. True of
+    // the I7→IV7 move in a stock 12-bar, which would otherwise hand the
+    // subdominant two spurious cadences (bars 1→2 and 4→5), and equally true of
+    // every link but the last in a chain of secondary dominants. Chord fit and
+    // the first/last-tonic bonus carry the key instead.
+    const unresolved = qualityOf(chords[i + 1].feature) === 'dom7';
+    if (dominant && b === 0 && !unresolved) cadences += 1;
   }
   // Saturating rather than cumulative. chordFitScore is averaged over the
   // progression and the KS correlation is scale-free, so an uncapped sum here
@@ -255,10 +277,9 @@ export function estimateKey(
     return { best: null, candidates: [], status: 'insufficient' };
   }
 
-  const blues = isDominantIdiom(chords);
-
   const raw: KeyCandidate[] = [];
   for (let tonicPc = 0; tonicPc < 12; tonicPc += 1) {
+    const blues = isDominantIdiom(chords, tonicPc);
     for (const mode of ['major', 'minor'] as Mode[]) {
       const fit =
         chords.reduce((s, c) => s + chordFitScore(c, tonicPc, mode, blues), 0) / chords.length;

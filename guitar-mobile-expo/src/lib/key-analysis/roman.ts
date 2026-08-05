@@ -1,5 +1,5 @@
 import { qualityOf } from './extract';
-import { ROMAN_NUMERALS, degreeMap, degreeQualities } from './scales';
+import { ROMAN_NUMERALS, THIRDLESS_QUALITIES, slotFor } from './scales';
 import type { KeyCandidate, ProgressionChord, Quality, RomanLabel } from './types';
 
 const LOWERCASE_QUALITIES = new Set<Quality>([
@@ -55,14 +55,15 @@ function romanString(degree: number, accidental: string, quality: Quality): stri
  * Independent of estimateKey — pass any candidate to relabel without re-estimating.
  */
 export function romanLabelsFor(chords: ProgressionChord[], key: KeyCandidate): RomanLabel[] {
-  const map = degreeMap(key.mode);
-  const expected = degreeQualities(key.mode);
   return chords.map((c) => {
     const offset = mod12(c.feature.rootPc - key.tonicPc);
-    const { degree, accidental } = map[offset];
     const quality = qualityOf(c.feature);
+    const { degree, accidental, expected } = slotFor(key.mode, offset, quality);
     const roman = romanString(degree, accidental, quality);
-    const isDiatonic = accidental === '' && expected[degree - 1].has(quality);
+    // A thirdless chord on a diatonic root contradicts nothing, so it is not
+    // borrowed — it simply declines to say which quality the degree carries.
+    const isDiatonic =
+      expected !== null && (expected.has(quality) || THIRDLESS_QUALITIES.has(quality));
     return { roman, degree, accidental, isDiatonic };
   });
 }
