@@ -119,6 +119,17 @@ export function chordSymbol(
     r = replaceAcc(r)
   }
 
+  // getChordInfo encodes "holds both sevenths" as the extension "7,maj7", which
+  // is a pair of labels rather than a printable extension — left alone it reaches
+  // the screen verbatim ("D7,maj7/C"). Demote the major 7th to a tension so the
+  // rest of the pipeline sees an ordinary dominant: the abbreviation pass can
+  // still fold a 9/11/13 into the extension, and the bracketing puts the leftover
+  // maj7 where every other tension goes (C9(maj7)).
+  if ('7,maj7' === n[1]) {
+    n[1] = '7'
+    ;(n[3] as string[]).push('maj7')
+  }
+
   // Step 5 — special-chord detection (m11b5no3).
   if (
     n[5] && '3' === n[5] && 'm' === n[0] && '7' === n[1]

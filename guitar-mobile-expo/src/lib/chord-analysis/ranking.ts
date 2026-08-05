@@ -31,13 +31,20 @@ function plausibilityScore(v: Variation, bassPitchClass: number): number {
   if (p.sus) score += 2
   if (p.omit) score += 3
   if (p.extNum === 'b6') score += 2
-  score += Object.values(p.tensionsObj).filter(Boolean).length
+  // b5 and #5 alter the triad rather than stacking on top of it, so they are
+  // structural, not tensions. Counting them made every m7(b5) lose to the m6 a
+  // minor third above it — the b5 that names the chord was what sank it.
+  for (const [interval, present] of Object.entries(p.tensionsObj)) {
+    if (present && interval !== 'b5' && interval !== '#5') score += 1
+  }
   score += Object.values(p.addsObj).filter(Boolean).length
 
-  // Tiebreak: prefer the reading rooted on the actual bass note, so a clean
-  // root-position chord stays primary (and renders without a needless slash).
+  // Prefer the reading rooted on the actual bass note, so a clean root-position
+  // chord stays primary and renders without a needless slash. This is worth more
+  // than any single tension: at 0.5 it only broke exact ties, which let a slash
+  // reading a fifth up (Gm11/C) outrank the root-position C7sus4 it came from.
   const root = v.autoRootMode === 'sharp' ? v.rootToneSharp : v.rootToneFlat
-  if (noteToSemitone(root) !== bassPitchClass) score += 0.5
+  if (noteToSemitone(root) !== bassPitchClass) score += 1.5
 
   return score
 }

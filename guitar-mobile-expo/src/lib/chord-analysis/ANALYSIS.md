@@ -123,9 +123,12 @@ one becomes primary:
 - Readings flagged as a **likely inversion / fragment** are heavily penalized
   (the warning rules literally mean "this wants a different root").
 - Simpler names beat complex ones (sus, omitted tones, stacked tensions add
-  cost).
-- Ties prefer the reading rooted on the actual **bass** note, so a clean
-  root-position chord stays primary and renders without a slash.
+  cost). `b5` and `#5` are exempt: they alter the triad rather than stacking on
+  top of it, and charging them as tensions made `m7(b5)` lose to the `m6` a
+  minor third above it on every root.
+- A reading rooted on the actual **bass** note is preferred by more than any
+  single tension, so a clean root-position chord stays primary and renders
+  without a slash.
 
 A reading whose root isn't the bass renders as a **slash chord** (`C/G`); a
 root-position reading renders plain (`C`). This is why an open C major over a G
@@ -185,7 +188,8 @@ decision) — live in `@/lib/theory` and are shared with `chord-library`.
 
 ## Tests
 
-There is no test runner in this project. Verification is `pnpm lint`
-(`tsc --noEmit` + `expo lint`). `scripts/verify-chord-library.ts` exercises the
-shared spelling core through the chord-library catalogue, which covers
-`notes-from-intervals.ts` across all 17 roots.
+`chord-analysis.test.ts` names chords from note sets and round-trips the whole
+`chord-library` catalogue (17 roots × every quality) back through
+`analyzeChord`, so a ranking change that breaks a standard chord fails the
+build. `scripts/verify-chord-library.ts` exercises the shared spelling core the
+other way. Run both with `pnpm lint` (`tsc --noEmit` + `expo lint` + `vitest`).
