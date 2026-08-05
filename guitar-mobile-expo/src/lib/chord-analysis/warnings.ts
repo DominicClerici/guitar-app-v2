@@ -201,9 +201,12 @@ export function chordWarnings(info: ChordInfo): Warning[] {
   if (nMa2 && u[2] === 'sus2' && h && u[6] === 'b5') {
     push('sus2b5', { cat: 'inversion', assumedRoot: '2' })
   }
-  // 12. sus2#5 (no cat in source)
+  // 12. sus2#5 — the source omits the cat, which left the rule invisible to the
+  // ranker even though its text says "Likely an inversion" like every sibling
+  // that does carry one. That only surfaced once a #5 with no perfect 5th
+  // stopped being labelled b13: C D Ab Bb is Bb9 over C, not C7sus2(#5).
   if (nMa2 && u[2] === 'sus2' && d && u[8] === '#5') {
-    push('sus2#5', { assumedRoot: '7' })
+    push('sus2#5', { cat: 'inversion', assumedRoot: '7' })
   }
   // 13. sus4b5
   if (c && u[5] === 'sus4' && h && u[6] === 'b5') {

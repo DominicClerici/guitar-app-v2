@@ -162,7 +162,13 @@ The engine has no user-facing settings. Names are always rendered:
 - with letter qualities — `m` / `dim` / `aug` (never `−` / `°` / `+`)
 - with tensions in parentheses — `Cm7(b5,11)`
 - abbreviated where unambiguous — `C9` not `C7add9`, `sus` not `sus4`
+- with the sus after the extension number — `C9sus`, `C13sus`, `C6/9sus`
 - `6/9`, `b6/9` with a slash
+- with a tritone or b6 spelled as a **fifth** (`b5` / `#5`) when the voicing has
+  no perfect 5th, and as a **tension** (`#11` / `b13`) when it does — so `C7(b5)`
+  is C E Gb Bb and `C7(#11)` is C E G Bb Gb
+- with an 11 printed whenever the extension number doesn't imply it — `C13` is
+  C E G Bb D A, `C13(11)` is C E G Bb F A
 - as plain strings (no markup)
 - extreme enharmonics collapsed — `B##` → `C#`, `Cbb` → `Bb`
 

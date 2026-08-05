@@ -103,13 +103,19 @@ export function getChordInfo(t: number[]): ChordInfo {
     if (o && v !== 'sus2') m['9'] = true
     if (i && a) m['#9'] = true
     if (n && v !== 'sus4') m['11'] = true
+    // A tritone over the root is an upper-structure #11 only when there is a
+    // perfect 5th for it to sit above. With no 5th in the voicing it *is* the
+    // chord's fifth and has to spell b5 — otherwise C E Gb Bb and C E G Bb Gb
+    // both print C7(#11).
     if (r && b !== 'dim') {
       if (h) m['#11'] = true
-      else if ((!a && !p && v !== 'sus2') || n) m.b5 = true
-      else m['#11'] = true
+      else m.b5 = true
     }
+    // Same rule for the b6: a b13 hangs off a fifth, perfect (h) or diminished
+    // (r, which covers the dim triad). With neither, this tone is the raised
+    // fifth itself.
     if (l && b !== 'aug' && g !== 'b6') {
-      if (h || (c && !d) || b === 'dim') m.b13 = true
+      if (h || r) m.b13 = true
       else m['#5'] = true
     }
     if (d && (c || p)) m['13'] = true

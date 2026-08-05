@@ -39,10 +39,14 @@ function place(pitchClasses: number[]): FretboardNote[] | null {
   return notes;
 }
 
-function nameOf(notes: string[]): string {
+function namesOf(notes: string[]): string[] {
   const dots = place(notes.map(noteToSemitone));
   if (!dots) throw new Error(`too many notes to place: ${notes.join(' ')}`);
-  return analyzeChord(dots)?.chordNames[0].name ?? 'null';
+  return analyzeChord(dots)?.chordNames.map((chord) => chord.name) ?? [];
+}
+
+function nameOf(notes: string[]): string {
+  return namesOf(notes)[0] ?? 'null';
 }
 
 describe('analyzeChord', () => {
@@ -92,6 +96,52 @@ describe('analyzeChord', () => {
     expect(nameOf(['C', 'F', 'G', 'Bb'])).toBe('C7sus'); // not Gm11/C
   });
 
+  // An altered 5th used to be labelled as the tension a fifth above it, which
+  // made the name ambiguous as well as wrong: C E Gb Bb and C E G Bb Gb both
+  // printed C7(#11).
+  it('spells an altered 5th as a 5th when no perfect 5th is voiced', () => {
+    expect(nameOf(['C', 'E', 'Gb', 'Bb'])).toBe('C7(b5)');
+    expect(nameOf(['C', 'E', 'Ab', 'Bb'])).toBe('C7(#5)');
+    expect(nameOf(['C', 'E', 'Gb', 'B'])).toBe('Cmaj7(b5)');
+    expect(nameOf(['C', 'E', 'Ab', 'B'])).toBe('Cmaj7(#5)');
+    expect(nameOf(['C', 'E', 'Gb', 'Bb', 'D'])).toBe('C9(b5)');
+    expect(nameOf(['C', 'Eb', 'Gb', 'B'])).toBe('Cm(maj7,b5)');
+    expect(nameOf(['C', 'E', 'Gb'])).toBe('C(b5)');
+  });
+
+  it('keeps #11 / b13 where a perfect 5th is there to reach past', () => {
+    expect(nameOf(['C', 'E', 'G', 'Bb', 'Gb'])).toBe('C7(#11)');
+    expect(nameOf(['C', 'E', 'G', 'Bb', 'Ab'])).toBe('C7(b13)');
+    expect(nameOf(['C', 'E', 'G', 'B', 'Gb'])).toBe('Cmaj7(#11)');
+    // A diminished triad carries its own b5, so this rule leaves it alone.
+    expect(nameOf(['C', 'Eb', 'Gb', 'Bb'])).toBe('Cm7(b5)');
+    expect(nameOf(['C', 'Eb', 'Gb', 'A'])).toBe('Cdim7');
+  });
+
+  // The abbreviation pass used to splice all of 9/11/13 out of the tensions
+  // while printing only the highest, so a voiced 11 vanished from the name.
+  it('keeps a natural 11 that the extension number does not imply', () => {
+    expect(nameOf(['C', 'E', 'G', 'Bb', 'D', 'A'])).toBe('C13');
+    expect(nameOf(['C', 'E', 'G', 'Bb', 'F', 'A'])).toBe('C13(11)');
+    expect(nameOf(['C', 'Eb', 'G', 'Bb', 'D', 'F'])).toBe('Cm11');
+  });
+
+  // susPostExt was matched against a token list after the abbreviation pass had
+  // already rewritten "7" as "9"/"11"/"13", so C9sus4 printed as "Csus9" — which
+  // also collides with the chord library's `sus9` alias for sus2.
+  it('puts sus after an abbreviated extension number', () => {
+    expect(nameOf(['C', 'F', 'G', 'Bb'])).toBe('C7sus');
+    expect(nameOf(['C', 'F', 'G', 'B'])).toBe('Cmaj7sus');
+    expect(namesOf(['C', 'F', 'G', 'Bb', 'D'])).toContain('C9sus');
+    expect(namesOf(['C', 'F', 'G', 'Bb', 'D', 'A'])).toContain('C13sus');
+    expect(namesOf(['C', 'F', 'G', 'A', 'D'])).toContain('C6/9sus');
+    // With no extension the sus stays last, and b6 stays behind it so that
+    // "Cb6sus" can never be misread as a Cb chord.
+    expect(nameOf(['C', 'F', 'G'])).toBe('Csus');
+    expect(nameOf(['C', 'D', 'G'])).toBe('Csus2');
+    expect(namesOf(['C', 'Eb', 'G', 'Ab'])).toContain('Gsusb6(b9)/C');
+  });
+
   // getChordInfo encodes "holds both sevenths" as the extension "7,maj7"; the
   // formatter used to print that pair verbatim.
   it('does not leak the "7,maj7" extension token', () => {
@@ -106,18 +156,12 @@ describe('analyzeChord', () => {
  * round-trip below can cover everything else. These are naming-convention gaps
  * in getChordInfo, not ranking ones:
  *
- *   dom7b5/dom7#5 — an altered 5th is labelled as the tension a fifth above it
- *     (`#11`/`b13`) even with no perfect 5th in the chord, which also makes the
- *     name ambiguous: C7(#11) comes out for both C E Gb Bb and C E G Gb Bb.
  *   dom11 — with no third the 11 is absorbed into `sus4`, so the C-rooted
- *     reading prints `Csus9` and loses to the m11 a fifth up. `sus9` is also
- *     the chord-library's alias for sus2.
+ *     reading prints `C9sus` and loses to the m11 a fifth up.
  *
  * Fixing one of these should delete its entry, not update it.
  */
 const KNOWN_GAPS: Record<string, RegExp> = {
-  dom7b5: /^7#11$/,
-  'dom7#5': /^7b13$/,
   dom11: /^m11\/[A-G](##?|bb?)?$/,
 };
 

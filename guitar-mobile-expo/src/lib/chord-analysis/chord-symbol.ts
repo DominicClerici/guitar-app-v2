@@ -213,16 +213,23 @@ export function chordSymbol(
       }
     }
 
-    // Step 9 — abbr collapses (7/maj7/dim7 + 9/11/13 → 9/11/13).
+    // Step 9 — abbr collapses (7/maj7/dim7 + 9/11/13 → 9/11/13). The number
+    // takes the highest extension present and swallows the 9 underneath it, but
+    // never a natural 11: "13" is read as 1-3-5-7-9-13, so an 11 that really is
+    // voiced has to stay printed or C13 names both C E G Bb D A and C E G Bb F A.
     if (o.abbr === true && ('7' === l || 'maj7' === l || 'dim7' === l)) {
+      const tensions = n[3] as string[]
       let b = '7'
       for (let f = 0; f < 3; f++) {
-        if ((n[3] as string[]).indexOf(u[f]) > -1) {
-          b = u[f]
-          ;(n[3] as string[]).splice((n[3] as string[]).indexOf(u[f]), 1)
-        }
+        if (tensions.indexOf(u[f]) > -1) b = u[f]
       }
-      l = l.replace('7', b)
+      if ('7' !== b) {
+        for (const absorbed of b === '9' ? ['9'] : ['9', b]) {
+          const at = tensions.indexOf(absorbed)
+          if (at > -1) tensions.splice(at, 1)
+        }
+        l = l.replace('7', b)
+      }
     }
 
     // Step 8 — comma-joined fallback when l is still "b6".
@@ -248,14 +255,13 @@ export function chordSymbol(
   // Omit local.
   if (n[5] && '' !== n[5]) p = n[5]
 
-  // Step 12 — susPostExt flag.
-  if (
-    '' !== c
-    && (
-      '6' === l || '7' === l || 'maj7' === l
-      || 'maj' === h || l.indexOf('maj') > -1
-    )
-  ) {
+  // Step 12 — susPostExt flag. The sus follows the extension number for every
+  // extension that reads as a stack over the root: C7sus, C9sus, C13sus,
+  // C6/9sus, Cmaj9sus. This runs *after* the abbreviation pass has rewritten
+  // "7" as "9"/"11"/"13", so it tests the shape of the extension rather than
+  // listing tokens — a token list is what left C9sus4 printing as "Csus9".
+  // b6 is the exception: "Cb6sus" would read as a Cb chord.
+  if ('' !== c && '' !== l && '5' !== l && l.indexOf('b6') < 0) {
     s.susPostExt = true
   }
 
