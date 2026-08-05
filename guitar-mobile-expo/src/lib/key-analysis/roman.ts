@@ -51,13 +51,27 @@ function romanString(degree: number, accidental: string, quality: Quality): stri
 }
 
 /**
+ * The reading of a chord a candidate key's analysis committed to. Falls back to
+ * the pin (then the primary) when the candidate has no assignment for that
+ * index — which happens only if the candidate came from a different progression
+ * than the one being labelled.
+ */
+export function assignedFeature(chord: ProgressionChord, key: KeyCandidate, index: number) {
+  const idx = key.assignment[index] ?? chord.pinned ?? 0;
+  return chord.readings[idx] ?? chord.readings[0];
+}
+
+/**
  * Roman numeral per chord, relative to a chosen key. Index-aligned with `chords`.
  * Independent of estimateKey — pass any candidate to relabel without re-estimating.
+ * Labels the readings the candidate's assignment chose, so the numerals always
+ * describe the same analysis that produced the candidate's score.
  */
 export function romanLabelsFor(chords: ProgressionChord[], key: KeyCandidate): RomanLabel[] {
-  return chords.map((c) => {
-    const offset = mod12(c.feature.rootPc - key.tonicPc);
-    const quality = qualityOf(c.feature);
+  return chords.map((c, i) => {
+    const feature = assignedFeature(c, key, i);
+    const offset = mod12(feature.rootPc - key.tonicPc);
+    const quality = qualityOf(feature);
     const { degree, accidental, expected } = slotFor(key.mode, offset, quality);
     const roman = romanString(degree, accidental, quality);
     // A thirdless chord on a diatonic root contradicts nothing, so it is not

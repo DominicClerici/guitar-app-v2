@@ -56,6 +56,11 @@ export function createVariations(
   // this never overrides a theoretically-clearer spelling. Defaults to flats to
   // preserve the engine's historical behavior on ties.
   tieBreak: 'sharp' | 'flat' = 'flat',
+  // Force every variation onto one side regardless of accidental counts. Used
+  // when the chord is being spelled inside a known key: F major spells its
+  // chords with flats even where a sharp spelling would be one accidental
+  // cheaper in isolation. Omitted, spelling stays count-based as before.
+  force?: 'sharp' | 'flat',
 ): Variation[] {
   const noteNamesAllOccurrences = allSelectedNotesWithOctaves.map(stripOctave)
   const uniqueNotes = [...new Set(noteNamesAllOccurrences)]
@@ -99,7 +104,7 @@ export function createVariations(
       notesFlatRoot,
       notesSharpRoot,
       autoRootMode:
-        sharpCount < flatCount ? 'sharp' : flatCount < sharpCount ? 'flat' : tieBreak,
+        force ?? (sharpCount < flatCount ? 'sharp' : flatCount < sharpCount ? 'flat' : tieBreak),
     })
   }
   return variations

@@ -29,9 +29,16 @@ export interface ChordFeature {
 
 export interface ProgressionChord {
   id: string;
-  name: string;
   voicing: FretboardNote[];
-  feature: ChordFeature;
+  /**
+   * Every plausible reading of the voicing, in the analyzer's ranked order —
+   * never empty. The progression stores them all so the key engine can choose
+   * the combination across chords that best explains a key, instead of being
+   * stuck with whichever reading was on screen at add time.
+   */
+  readings: ChordFeature[];
+  /** Index of the reading the user explicitly chose; null lets the engine pick. */
+  pinned: number | null;
 }
 
 export type Mode = 'major' | 'minor';
@@ -44,6 +51,12 @@ export interface KeyCandidate {
   score: number;
   /** Softmax share across all 24 keys. See keyStrength before rendering. */
   confidence: number;
+  /**
+   * The reading of each chord this key's score was computed with, index-aligned
+   * with the progression it was estimated from. Pinned chords always hold their
+   * pinned index; the rest hold whatever reading scored best for this key.
+   */
+  assignment: number[];
 }
 
 export type KeyStatus = 'confident' | 'ambiguous' | 'insufficient';

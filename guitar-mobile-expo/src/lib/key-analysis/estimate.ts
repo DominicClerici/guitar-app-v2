@@ -8,7 +8,14 @@ import {
   slotFor,
   toleranceSet,
 } from './scales';
-import type { KeyCandidate, KeyEstimate, Mode, ProgressionChord, Quality } from './types';
+import type {
+  ChordFeature,
+  KeyCandidate,
+  KeyEstimate,
+  Mode,
+  ProgressionChord,
+  Quality,
+} from './types';
 
 const W_CHORD_FIT = 1.0;
 const W_KS = 0.6;
@@ -30,6 +37,11 @@ const ROOT_HISTOGRAM_BONUS = 2;
 
 const SOFTMAX_TEMPERATURE = 0.3;
 const AMBIGUITY_EPSILON = 0.18;
+
+// Coordinate ascent over reading choices converges in one or two sweeps in
+// practice; the cap is a guard, not a budget that gets spent.
+const MAX_ASCENT_SWEEPS = 4;
+const SCORE_IMPROVEMENT_EPSILON = 1e-9;
 
 const SEVENTH_QUALITIES = new Set<Quality>([
   'dom7',
@@ -98,6 +110,32 @@ function keyDisplayName(tonicPc: number, mode: Mode, preference: 'sharp' | 'flat
   return `${base} ${mode}`;
 }
 
+// Which side of the enharmonic fence a key's signature lives on, per tonic pc.
+// Follows the key-name tables above: a key spelled with flats spells its chords
+// with flats (B♭, not A♯, in F major). Keys with an empty signature (C major,
+// A minor) have no side of their own; chromatic chords in them conventionally
+// take flats (♭III/♭VI/♭VII borrowings), which also matches the app default.
+const MAJOR_SIDES = [
+  'flat', 'flat', 'sharp', 'flat', 'sharp', 'flat', '', 'sharp', 'flat', 'sharp', 'flat', 'sharp',
+] as const;
+const MINOR_SIDES = [
+  'flat', 'sharp', 'flat', '', 'sharp', 'flat', 'sharp', 'flat', 'sharp', 'flat', 'flat', 'sharp',
+] as const;
+
+/**
+ * The accidental side chords should be spelled on inside a key. The two tied
+ * tonics (F♯/G♭ major, D♯/E♭ minor) fall back to the caller's preference, the
+ * same way keyDisplayName resolves their names.
+ */
+export function accidentalSideFor(
+  tonicPc: number,
+  mode: Mode,
+  preference: 'sharp' | 'flat',
+): 'sharp' | 'flat' {
+  const side = (mode === 'major' ? MAJOR_SIDES : MINOR_SIDES)[tonicPc];
+  return side === '' ? preference : side;
+}
+
 /**
  * True when dominant 7ths saturate the progression *and* all of them sit on this
  * key's I, IV or V — see BLUES_DOM7_RATIO. Asked per candidate key rather than
@@ -106,24 +144,24 @@ function keyDisplayName(tonicPc: number, mode: Mode, preference: 'sharp' | 'flat
  * functional throughout. Against C that chain's dom7s land on III, VI, II and V,
  * so the idiom is refused; a real blues in C puts them only on I, IV and V.
  */
-function isDominantIdiom(chords: ProgressionChord[], tonicPc: number): boolean {
+function isDominantIdiom(features: readonly ChordFeature[], tonicPc: number): boolean {
   let dom7 = 0;
-  for (const chord of chords) {
-    if (qualityOf(chord.feature) !== 'dom7') continue;
-    if (!BLUES_DOM7_HOMES.has(mod12(chord.feature.rootPc - tonicPc))) return false;
+  for (const feature of features) {
+    if (qualityOf(feature) !== 'dom7') continue;
+    if (!BLUES_DOM7_HOMES.has(mod12(feature.rootPc - tonicPc))) return false;
     dom7 += 1;
   }
-  return dom7 / chords.length >= BLUES_DOM7_RATIO;
+  return dom7 / features.length >= BLUES_DOM7_RATIO;
 }
 
 function isTonicChord(
-  chord: ProgressionChord,
+  feature: ChordFeature,
   tonicPc: number,
   mode: Mode,
   blues: boolean,
 ): boolean {
-  if (mod12(chord.feature.rootPc - tonicPc) !== 0) return false;
-  const q = qualityOf(chord.feature);
+  if (mod12(feature.rootPc - tonicPc) !== 0) return false;
+  const q = qualityOf(feature);
   // A chord with no third names a tonic without committing to a mode, and a
   // riff that opens and closes on E5 or Esus4 is still telling us its tonic is
   // E. Both modes take the bonus and the other chords settle which one wins.
@@ -136,13 +174,13 @@ function isTonicChord(
 }
 
 function chordFitScore(
-  chord: ProgressionChord,
+  feature: ChordFeature,
   tonicPc: number,
   mode: Mode,
   blues: boolean,
 ): number {
-  const offset = mod12(chord.feature.rootPc - tonicPc);
-  const quality = qualityOf(chord.feature);
+  const offset = mod12(feature.rootPc - tonicPc);
+  const quality = qualityOf(feature);
   const slot = slotFor(mode, offset, quality);
   const inKey = toleranceSet(mode);
   const bluesDom7 =
@@ -153,9 +191,9 @@ function chordFitScore(
   // dominants / borrowed chords still count as evidence against this key.
   // Exception: the ♭7 an idiomatic I7/IV7 carries is a blue note, not evidence
   // of another key. (On I that ♭7 is scale-degree ♭7; on IV it is ♭3.)
-  const bluesNote = mod12(chord.feature.rootPc + 10);
+  const bluesNote = mod12(feature.rootPc + 10);
   let penalty = 0;
-  for (const pc of chord.feature.pitchClasses) {
+  for (const pc of feature.pitchClasses) {
     if (bluesDom7 && pc === bluesNote) continue;
     if (!inKey.has(mod12(pc - tonicPc))) penalty += PENALTY_ACCIDENTAL;
   }
@@ -200,33 +238,33 @@ function pearson(a: readonly number[], b: readonly number[]): number {
   return denom === 0 ? 0 : num / denom;
 }
 
-function ksCorrelation(chords: ProgressionChord[], tonicPc: number, mode: Mode): number {
+function ksCorrelation(features: readonly ChordFeature[], tonicPc: number, mode: Mode): number {
   const hist = new Array(12).fill(0);
-  for (const c of chords) {
-    for (const pc of c.feature.pitchClasses) {
+  for (const f of features) {
+    for (const pc of f.pitchClasses) {
       hist[mod12(pc - tonicPc)] += 1;
     }
     // Root appears once via pitchClasses above; this adds its extra weight.
-    hist[mod12(c.feature.rootPc - tonicPc)] += ROOT_HISTOGRAM_BONUS;
+    hist[mod12(f.rootPc - tonicPc)] += ROOT_HISTOGRAM_BONUS;
   }
   const profile = mode === 'major' ? KS_MAJOR_PROFILE : KS_MINOR_PROFILE;
   return pearson(hist, profile);
 }
 
 function positionBonus(
-  chords: ProgressionChord[],
+  features: readonly ChordFeature[],
   tonicPc: number,
   mode: Mode,
   blues: boolean,
 ): number {
   let bonus = 0;
-  if (isTonicChord(chords[0], tonicPc, mode, blues)) bonus += BONUS_FIRST_TONIC;
-  if (isTonicChord(chords[chords.length - 1], tonicPc, mode, blues)) bonus += BONUS_LAST_TONIC;
+  if (isTonicChord(features[0], tonicPc, mode, blues)) bonus += BONUS_FIRST_TONIC;
+  if (isTonicChord(features[features.length - 1], tonicPc, mode, blues)) bonus += BONUS_LAST_TONIC;
   let cadences = 0;
-  for (let i = 0; i < chords.length - 1; i += 1) {
-    const a = mod12(chords[i].feature.rootPc - tonicPc);
-    const b = mod12(chords[i + 1].feature.rootPc - tonicPc);
-    const aq = qualityOf(chords[i].feature);
+  for (let i = 0; i < features.length - 1; i += 1) {
+    const a = mod12(features[i].rootPc - tonicPc);
+    const b = mod12(features[i + 1].rootPc - tonicPc);
+    const aq = qualityOf(features[i]);
     const dominant = a === 7 && (aq === 'maj' || aq === 'dom7');
     // A descending fifth onto another dominant seventh is not an arrival: the
     // target is itself unresolved and the motion carries on through it. True of
@@ -234,7 +272,7 @@ function positionBonus(
     // subdominant two spurious cadences (bars 1→2 and 4→5), and equally true of
     // every link but the last in a chain of secondary dominants. Chord fit and
     // the first/last-tonic bonus carry the key instead.
-    const unresolved = qualityOf(chords[i + 1].feature) === 'dom7';
+    const unresolved = qualityOf(features[i + 1]) === 'dom7';
     if (dominant && b === 0 && !unresolved) cadences += 1;
   }
   // Saturating rather than cumulative. chordFitScore is averaged over the
@@ -252,8 +290,113 @@ function positionBonus(
   // long progression stays weaker than one in a short progression — which is
   // what keeps C–C7–F–Fm–C in C major instead of hearing the C7–F as a cadence
   // into F.
-  const saturationPoint = Math.max(1, (chords.length - 1) / 2);
+  const saturationPoint = Math.max(1, (features.length - 1) / 2);
   return bonus + BONUS_CADENCE * Math.min(1, cadences / saturationPoint);
+}
+
+/**
+ * The full hybrid score of one concrete analysis: every chord committed to one
+ * reading. The blues gate is re-derived per evaluation because whether the
+ * progression reads as a dominant idiom depends on which readings were chosen.
+ */
+function scoreFeatures(features: readonly ChordFeature[], tonicPc: number, mode: Mode): number {
+  const blues = isDominantIdiom(features, tonicPc);
+  const fit =
+    features.reduce((s, f) => s + chordFitScore(f, tonicPc, mode, blues), 0) / features.length;
+  const ks = ksCorrelation(features, tonicPc, mode);
+  const pos = positionBonus(features, tonicPc, mode, blues);
+  return W_CHORD_FIT * fit + W_KS * ks + W_POSITION * pos;
+}
+
+interface Assignment {
+  score: number;
+  assignment: number[];
+}
+
+/**
+ * Coordinate ascent: sweep the unpinned chords, and for each one try every
+ * alternate reading against the full score with the rest of the assignment held
+ * fixed, keeping any strict improvement. Repeats until a sweep changes nothing.
+ *
+ * Ascent rather than exact DP because the score doesn't decompose over chords:
+ * the KS correlation is a nonlinear function of the whole pitch histogram, and
+ * the blues gate and cadence saturation are properties of the assignment as a
+ * whole. Each accepted step re-evaluates the true score, so the search can never
+ * "win" through an approximation — the risk is only a local maximum, which the
+ * two seeds in bestAssignmentFor guard against.
+ */
+function ascend(
+  chords: readonly ProgressionChord[],
+  seed: readonly number[],
+  tonicPc: number,
+  mode: Mode,
+): Assignment {
+  const assignment = [...seed];
+  const features = assignment.map((idx, i) => chords[i].readings[idx]);
+  let score = scoreFeatures(features, tonicPc, mode);
+
+  for (let sweep = 0; sweep < MAX_ASCENT_SWEEPS; sweep += 1) {
+    let improved = false;
+    for (let i = 0; i < chords.length; i += 1) {
+      const { readings, pinned } = chords[i];
+      if (pinned !== null || readings.length < 2) continue;
+      for (let r = 0; r < readings.length; r += 1) {
+        if (r === assignment[i]) continue;
+        features[i] = readings[r];
+        const s = scoreFeatures(features, tonicPc, mode);
+        if (s > score + SCORE_IMPROVEMENT_EPSILON) {
+          score = s;
+          assignment[i] = r;
+          improved = true;
+        } else {
+          features[i] = readings[assignment[i]];
+        }
+      }
+    }
+    if (!improved) break;
+  }
+
+  return { score, assignment };
+}
+
+/**
+ * The best reading-per-chord this key can make of the progression, pins held
+ * fixed. Seeded twice — from the analyzer's primary readings and from the
+ * per-chord best diatonic fit for this key — because ascent moves one chord at
+ * a time and a pair of chords that only pay off together (a manufactured V–I,
+ * say) needs at least one seed to start on the right side of the ridge.
+ */
+function bestAssignmentFor(
+  chords: readonly ProgressionChord[],
+  tonicPc: number,
+  mode: Mode,
+): Assignment {
+  const primary = chords.map((c) => c.pinned ?? 0);
+
+  // Nothing to optimize: one reading everywhere (or every choice pinned).
+  if (chords.every((c) => c.pinned !== null || c.readings.length < 2)) {
+    const features = primary.map((idx, i) => chords[i].readings[idx]);
+    return { score: scoreFeatures(features, tonicPc, mode), assignment: primary };
+  }
+
+  const greedy = chords.map((c) => {
+    if (c.pinned !== null) return c.pinned;
+    let best = 0;
+    let bestFit = -Infinity;
+    for (let r = 0; r < c.readings.length; r += 1) {
+      const fit = chordFitScore(c.readings[r], tonicPc, mode, false);
+      if (fit > bestFit) {
+        bestFit = fit;
+        best = r;
+      }
+    }
+    return best;
+  });
+
+  const a = ascend(chords, primary, tonicPc, mode);
+  if (greedy.every((idx, i) => idx === primary[i])) return a;
+  const b = ascend(chords, greedy, tonicPc, mode);
+  return b.score > a.score ? b : a;
 }
 
 function softmax(scores: number[], temperature: number): number[] {
@@ -268,30 +411,33 @@ function softmax(scores: number[], temperature: number): number[] {
  * diatonic chord fit, a Krumhansl–Schmuckler pitch-class correlation (which is
  * what breaks relative-major/minor ties), and cadence/position bonuses. Weights
  * are heuristic constants tuned against known progressions.
+ *
+ * Estimation is joint over key and chord readings: each key is scored with the
+ * combination of per-chord readings that best explains it (user pins excepted),
+ * and reports that combination in its `assignment`. All keys get their
+ * best-case analysis, so the comparison stays symmetric; wrong keys can't
+ * rename their way past the reading-independent accidental penalty, because
+ * every reading of a voicing sounds the same pitch classes.
  */
 export function estimateKey(
   chords: ProgressionChord[],
   accidentalPreference: 'sharp' | 'flat' = 'flat',
 ): KeyEstimate {
-  if (chords.length < 2) {
+  if (chords.length < 2 || chords.some((c) => c.readings.length === 0)) {
     return { best: null, candidates: [], status: 'insufficient' };
   }
 
   const raw: KeyCandidate[] = [];
   for (let tonicPc = 0; tonicPc < 12; tonicPc += 1) {
-    const blues = isDominantIdiom(chords, tonicPc);
     for (const mode of ['major', 'minor'] as Mode[]) {
-      const fit =
-        chords.reduce((s, c) => s + chordFitScore(c, tonicPc, mode, blues), 0) / chords.length;
-      const ks = ksCorrelation(chords, tonicPc, mode);
-      const pos = positionBonus(chords, tonicPc, mode, blues);
-      const score = W_CHORD_FIT * fit + W_KS * ks + W_POSITION * pos;
+      const { score, assignment } = bestAssignmentFor(chords, tonicPc, mode);
       raw.push({
         tonicPc,
         mode,
         name: keyDisplayName(tonicPc, mode, accidentalPreference),
         score,
         confidence: 0,
+        assignment,
       });
     }
   }

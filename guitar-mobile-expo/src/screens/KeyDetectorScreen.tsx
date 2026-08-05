@@ -12,9 +12,12 @@ import { ChipMenu } from '@/features/key-detection/ChipMenu';
 import { KeyReadout } from '@/features/key-detection/KeyReadout';
 import { ProgressionChips } from '@/features/key-detection/ProgressionChips';
 import { useChipMenu } from '@/features/key-detection/useChipMenu';
-import { buildProgressionChord, useKeyDetection } from '@/features/key-detection/useKeyDetection';
+import {
+  buildProgressionChord,
+  useKeyDetection,
+  type DisplayChord,
+} from '@/features/key-detection/useKeyDetection';
 import { toAccidentalGlyphs } from '@/lib/accidentals';
-import type { ProgressionChord } from '@/lib/key-analysis';
 import { useToken } from '@/lib/tokens';
 import { encodeVoicing } from '@/lib/voicing-param';
 
@@ -86,6 +89,7 @@ export function KeyDetectorScreen() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
   const muted = useToken('--ink-muted', '#9aa0aa');
+  const accent = useToken('--accent', '#5ec8c2');
 
   const {
     placed,
@@ -117,6 +121,11 @@ export function KeyDetectorScreen() {
   // The board has two jobs: composing a new chord, or standing in for one already
   // in the progression. `editId` is which, and it decides the whole action row.
   const [editId, setEditId] = useState<string | null>(null);
+  // Which reading pill the user has explicitly locked, if any. Everything else
+  // about the board's reading choice is advisory — the key engine renames auto
+  // chords freely — so this is the one piece of reading state that gets stored.
+  // It dies with the voicing: fretting a note changes what the readings even are.
+  const [boardPin, setBoardPin] = useState<number | null>(null);
   // A chip is out of the row and riding a finger. Not a mode you can enter — only
   // a drag in flight — so it is reported up from the row rather than set here.
   const [dragging, setDragging] = useState(false);
@@ -128,18 +137,40 @@ export function KeyDetectorScreen() {
 
   const endEdit = () => {
     setEditId(null);
+    setBoardPin(null);
     clearBoard();
+  };
+
+  const onToggle = (string: number, fret: number) => {
+    setBoardPin(null);
+    toggle(string, fret);
+  };
+
+  const onClearBoard = () => {
+    setBoardPin(null);
+    clearBoard();
+  };
+
+  /**
+   * A pill tap is how a reading gets pinned, and tapping the pinned pill again is
+   * how it stops being pinned — the reading stays on screen either way; what
+   * changes is whether the key engine is allowed to reconsider it later.
+   */
+  const onSelectReading = (index: number) => {
+    setBoardPin((prev) => (prev === index ? null : index));
+    select(index);
   };
 
   const onAdd = () => {
     if (!chord || isFull) return;
-    add(buildProgressionChord(chord.name, placed, chord));
+    add(buildProgressionChord(placed, readings, boardPin));
+    setBoardPin(null);
     clearBoard();
   };
 
   const onSave = () => {
     if (!chord || !editId) return;
-    replace(editId, buildProgressionChord(chord.name, placed, chord));
+    replace(editId, buildProgressionChord(placed, readings, boardPin));
     endEdit();
   };
 
@@ -148,9 +179,12 @@ export function KeyDetectorScreen() {
     endEdit();
   };
 
-  const onEditChord = (stored: ProgressionChord) => {
+  const onEditChord = (stored: DisplayChord) => {
     setEditId(stored.id);
-    load(stored.voicing, stored.feature.rootPc);
+    setBoardPin(stored.pinned);
+    // Open on the reading the chip is currently showing — the displayed key's
+    // choice, or the pin — so the board and the chip agree on arrival.
+    load(stored.voicing, stored.readings[stored.readingIndex]?.rootPc);
   };
 
   /**
@@ -158,7 +192,7 @@ export function KeyDetectorScreen() {
    * cleared and nothing is written back, so whatever was being tried on the neck is
    * dropped. Saving is the Save button's job and only ever the Save button's job.
    */
-  const onTapChord = (stored: ProgressionChord) => {
+  const onTapChord = (stored: DisplayChord) => {
     if (stored.id === editId) {
       endEdit();
       return;
@@ -171,12 +205,12 @@ export function KeyDetectorScreen() {
    * screen stays mounted underneath with the progression, the chosen key and the
    * board exactly as they were — coming back is a pop, not a rebuild.
    */
-  const onAnalyzeChord = (stored: ProgressionChord) => {
+  const onAnalyzeChord = (stored: DisplayChord) => {
     router.push({
       pathname: '/chord-detector',
       params: {
         voicing: encodeVoicing(stored.voicing),
-        root: String(stored.feature.rootPc),
+        root: String(stored.readings[stored.readingIndex]?.rootPc ?? stored.readings[0].rootPc),
       },
     });
   };
@@ -326,17 +360,25 @@ export function KeyDetectorScreen() {
               >
                 {readings.map((reading, i) => {
                   const on = i === selectedIndex;
+                  const pinnedHere = i === boardPin;
                   return (
                     <Pressable
                       key={`${reading.name}-${i}`}
-                      onPress={() => select(i)}
+                      onPress={() => onSelectReading(i)}
                       accessibilityRole="button"
                       accessibilityState={{ selected: on }}
-                      accessibilityLabel={`Read as ${reading.name}`}
-                      className={`h-[30px] items-center justify-center rounded-full border px-[13px] active:opacity-70 ${
+                      accessibilityLabel={
+                        pinnedHere
+                          ? `Read as ${reading.name}, pinned. Tap to let the key decide.`
+                          : `Read as ${reading.name}. Tap to pin this reading.`
+                      }
+                      className={`h-[30px] flex-row items-center justify-center gap-[5px] rounded-full border px-[13px] active:opacity-70 ${
                         on ? 'border-accent-line bg-accent-wash' : 'border-line-soft bg-surface'
                       }`}
                     >
+                      {pinnedHere ? (
+                        <SymbolView name="pin.fill" size={9} weight="semibold" tintColor={accent} />
+                      ) : null}
                       <Text
                         className={`text-[13px] font-medium tracking-[-0.1px] ${
                           on ? 'text-accent' : 'text-ink-muted'
@@ -364,7 +406,7 @@ export function KeyDetectorScreen() {
             placed={placed}
             rootPitchClass={rootPitchClass}
             nameForPitchClass={nameForPitchClass}
-            onToggle={toggle}
+            onToggle={onToggle}
           />
         </View>
 
@@ -381,7 +423,7 @@ export function KeyDetectorScreen() {
                 symbol="arrow.counterclockwise"
                 label="Clear board"
                 disabled={placed.length === 0}
-                onPress={clearBoard}
+                onPress={onClearBoard}
               />
               <PrimaryAction
                 label={isFull ? 'Full' : 'Add chord'}

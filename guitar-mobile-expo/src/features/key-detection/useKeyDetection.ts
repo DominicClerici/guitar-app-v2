@@ -1,9 +1,11 @@
 import { useCallback, useEffect, useMemo, useReducer, useState } from 'react';
 
 import { ACCIDENTAL } from '@/features/chord-detection/spelling';
+import { analyzeChord } from '@/lib/chord-analysis';
 import type { ChordResult, FretboardNote } from '@/lib/chord-analysis';
-import { estimateKey, extractFeature, romanLabelsFor } from '@/lib/key-analysis';
+import { accidentalSideFor, estimateKey, extractFeature, romanLabelsFor } from '@/lib/key-analysis';
 import type { KeyEstimate, ProgressionChord, RomanLabel } from '@/lib/key-analysis';
+import { noteToSemitone } from '@/lib/theory';
 
 export const MAX_CHORDS = 12;
 
@@ -53,20 +55,38 @@ export function progressionReducer(
   }
 }
 
+/**
+ * A progression chord as the screen renders it: the stored voicing and readings,
+ * plus the name of the reading the displayed key's analysis committed to. The
+ * name is derived, not stored — it moves when the estimate (or the user's key
+ * choice) moves, which is the point of naming chords in context.
+ */
+export interface DisplayChord extends ProgressionChord {
+  name: string;
+  /** Index into `readings` that `name` belongs to. */
+  readingIndex: number;
+}
+
 let idCounter = 0;
 
 /**
- * Freeze an accepted reading into a progression entry. Capturing the reading
- * here matters: re-analysing the voicing later would hand back the engine's
- * primary name, not the one the user chose.
+ * Freeze a voicing into a progression entry. Every reading the analyzer offered
+ * is kept — the key engine chooses among them in the context of the whole
+ * progression — and `pinned` records the one the user explicitly chose, if any,
+ * which the engine then never overrides.
  */
 export function buildProgressionChord(
-  name: string,
   voicing: FretboardNote[],
-  chord: ChordResult,
+  readings: ChordResult[],
+  pinned: number | null,
 ): ProgressionChord {
   idCounter += 1;
-  return { id: `pc-${idCounter}`, name, voicing, feature: extractFeature(chord) };
+  return {
+    id: `pc-${idCounter}`,
+    voicing,
+    readings: readings.map(extractFeature),
+    pinned: pinned !== null && pinned >= 0 && pinned < readings.length ? pinned : null,
+  };
 }
 
 // Session cache: the progression survives leaving and re-entering the screen
@@ -74,8 +94,10 @@ export function buildProgressionChord(
 let cachedProgression: ProgressionChord[] = [];
 
 /**
- * Owns the progression and runs the key engine over it. `labels` track the
- * *displayed* key, so choosing an ambiguous runner-up relabels every numeral.
+ * Owns the progression and runs the key engine over it. Everything shown for a
+ * chord — its name, its numeral — tracks the *displayed* key, so choosing an
+ * ambiguous runner-up relabels the whole progression as that key's analysis,
+ * not just the numerals.
  */
 export function useKeyDetection() {
   const [state, dispatch] = useReducer(progressionReducer, undefined, () => ({
@@ -101,6 +123,34 @@ export function useKeyDetection() {
   }
 
   const displayedKey = estimate.candidates[keyChoice] ?? estimate.best;
+
+  /**
+   * Names re-derived per render from the displayed key: each chord takes the
+   * reading that key's assignment chose (its pin, when it has one), spelled on
+   * the key's side of the accidental fence. With no key yet, the pinned or
+   * primary reading in the app's default spelling stands in.
+   */
+  const chords: DisplayChord[] = useMemo(() => {
+    const side = displayedKey
+      ? accidentalSideFor(displayedKey.tonicPc, displayedKey.mode, ACCIDENTAL)
+      : ACCIDENTAL;
+    return state.chords.map((c, i) => {
+      const readingIndex = Math.min(
+        (displayedKey ? displayedKey.assignment[i] : undefined) ?? c.pinned ?? 0,
+        Math.max(0, c.readings.length - 1),
+      );
+      const rootPc = c.readings[readingIndex]?.rootPc;
+      const analysis = analyzeChord(c.voicing, side, displayedKey ? side : undefined);
+      // Match by root rather than index: the re-analysis is the same ranked list
+      // the readings were extracted from, but the root is the identity that
+      // matters if the two ever disagree on order.
+      const named =
+        analysis?.chordNames.find((r) => noteToSemitone(r.chordTones.root) === rootPc) ??
+        analysis?.chordNames[0];
+      return { ...c, name: named?.name ?? '—', readingIndex };
+    });
+  }, [state.chords, displayedKey]);
+
   const labels: RomanLabel[] = useMemo(
     () => (displayedKey ? romanLabelsFor(state.chords, displayedKey) : []),
     [state.chords, displayedKey],
@@ -119,7 +169,7 @@ export function useKeyDetection() {
   const clear = useCallback(() => dispatch({ type: 'clear' }), []);
 
   return {
-    chords: state.chords,
+    chords,
     estimate,
     labels,
     displayedKey,

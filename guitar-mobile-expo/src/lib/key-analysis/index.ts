@@ -10,9 +10,9 @@
 // estimateKey and romanLabelsFor are independent: relabelling against a
 // user-picked runner-up does not re-run estimation.
 
-export { estimateKey } from './estimate';
+export { accidentalSideFor, estimateKey } from './estimate';
 export { extractFeature, qualityOf } from './extract';
-export { romanLabelsFor } from './roman';
+export { assignedFeature, romanLabelsFor } from './roman';
 export type {
   ChordFeature,
   KeyCandidate,

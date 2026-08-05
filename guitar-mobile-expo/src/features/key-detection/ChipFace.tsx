@@ -1,3 +1,4 @@
+import { SymbolView } from 'expo-symbols';
 import { Pressable, Text, View, type LayoutChangeEvent } from 'react-native';
 import {
   LinearTransition,
@@ -9,14 +10,16 @@ import {
 
 import { AnimatedView } from '@/components/AnimatedView';
 import { toAccidentalGlyphs } from '@/lib/accidentals';
-import type { ProgressionChord, RomanLabel } from '@/lib/key-analysis';
+import type { RomanLabel } from '@/lib/key-analysis';
+import { useToken } from '@/lib/tokens';
 
 import type { Rect } from './chipGeometry';
+import type { DisplayChord } from './useKeyDetection';
 
 const RING = { duration: 170 };
 
 interface ChipProps {
-  chord: ProgressionChord;
+  chord: DisplayChord;
   label: RomanLabel | undefined;
   index: number;
   count: number;
@@ -34,7 +37,7 @@ interface ChipProps {
   pressId: SharedValue<string>;
   pressScale: SharedValue<number>;
   onMeasure: (index: number, rect: Rect) => void;
-  onSelect: (chord: ProgressionChord) => void;
+  onSelect: (chord: DisplayChord) => void;
   onDismissMenu: () => void;
 }
 
@@ -121,7 +124,7 @@ export function Chip({
 }
 
 interface FaceProps {
-  chord: ProgressionChord;
+  chord: DisplayChord;
   label: RomanLabel | undefined;
   position: number;
   reordering: boolean;
@@ -131,6 +134,7 @@ interface FaceProps {
 /** The chip itself, drawn twice: once in the flow, once riding the finger. */
 export function ChipFace({ chord, label, position, reordering, active }: FaceProps) {
   const borrowed = label ? !label.isDiatonic : false;
+  const faint = useToken('--ink-faint', '#62666e');
 
   return (
     <View
@@ -142,9 +146,16 @@ export function ChipFace({ chord, label, position, reordering, active }: FacePro
             : 'border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface'
       }`}
     >
-      <Text className="text-[15px] font-semibold tracking-[-0.2px] text-ink">
-        {toAccidentalGlyphs(chord.name)}
-      </Text>
+      <View className="flex-row items-center gap-[4px]">
+        {/* The engine names every unpinned chord in whatever reading best serves
+            the displayed key; the pin marks the one chord it may not touch. */}
+        {chord.pinned !== null ? (
+          <SymbolView name="pin.fill" size={8} weight="semibold" tintColor={faint} />
+        ) : null}
+        <Text className="text-[15px] font-semibold tracking-[-0.2px] text-ink">
+          {toAccidentalGlyphs(chord.name)}
+        </Text>
+      </View>
       {reordering ? (
         <Text className="mt-[3px] font-mono text-[9.5px] tracking-[1.2px] text-accent">
           {position}

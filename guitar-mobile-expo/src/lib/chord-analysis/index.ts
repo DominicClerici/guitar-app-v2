@@ -64,12 +64,15 @@ export function analyzeChord(
   notes: FretboardNote[],
   // Tiebreaker for genuinely-enharmonic roots/notes (see createVariations).
   accidentalPreference: 'sharp' | 'flat' = 'flat',
+  // Spell every reading on this side, overriding the count-based choice. For
+  // naming a chord inside a known key (sharp keys spell sharp, flat keys flat).
+  forceAccidental?: 'sharp' | 'flat',
 ): ChordAnalysis | null {
   if (notes.length < 3) return null
 
   const sorted = preSortByMidi(notes)
   const noteStrings = sorted.map(noteWithOctave)
-  const variations = createVariations(noteStrings, accidentalPreference)
+  const variations = createVariations(noteStrings, accidentalPreference, forceAccidental)
   if (variations.length === 0) return null
 
   const bassPitchClass = (OPEN_PITCHES[sorted[0].string] + sorted[0].fret) % 12

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { estimateKey } from './estimate';
+import { accidentalSideFor, estimateKey } from './estimate';
 import { romanLabelsFor } from './roman';
 import type {
   ChordFeature,
@@ -41,27 +41,47 @@ const QUALITIES: Record<string, QualitySpec> = {
   sus4: { triad: 'sus', seventh: 'none', intervals: [0, 5, 7] },
   sus2: { triad: 'sus', seventh: 'none', intervals: [0, 2, 7] },
   '5': { triad: 'power', seventh: 'none', intervals: [0, 7] },
+  '6': { triad: 'maj', seventh: 'none', intervals: [0, 4, 7, 9] },
+  m6: { triad: 'min', seventh: 'none', intervals: [0, 3, 7, 9] },
 };
 
 let nextId = 0;
 
-/** One chord symbol ("Cmaj7", "F#m7b5", "A5") as the engine's input feature. */
-function chord(symbol: string, transpose = 0): ProgressionChord {
+/** The ChordFeature a chord symbol ("Cmaj7", "F#m7b5", "A5") describes. */
+function featureOf(symbol: string, transpose = 0): ChordFeature {
   const parsed = /^([A-G][#b]?)(.*)$/.exec(symbol);
   if (!parsed) throw new Error(`unparseable chord symbol: ${symbol}`);
   const spec = QUALITIES[parsed[2]];
   if (!spec) throw new Error(`unsupported quality "${parsed[2]}" in ${symbol}`);
 
   const rootPc = (PITCH_CLASS[parsed[1]] + transpose + 12) % 12;
-  const feature: ChordFeature = {
+  return {
     rootPc,
     bassPc: null,
     triad: spec.triad,
     seventh: spec.seventh,
     pitchClasses: spec.intervals.map((i) => (rootPc + i) % 12),
   };
+}
+
+/** One unambiguous progression chord: a single reading, nothing pinned. */
+function chord(symbol: string, transpose = 0): ProgressionChord {
   nextId += 1;
-  return { id: `fixture-${nextId}`, name: symbol, voicing: [], feature };
+  return { id: `fixture-${nextId}`, voicing: [], readings: [featureOf(symbol, transpose)], pinned: null };
+}
+
+/**
+ * One ambiguous progression chord: the same notes offered under several names
+ * (the fixture does not check they really are the same notes — spell them so).
+ */
+function ambiguous(symbols: string[], pinned: number | null = null): ProgressionChord {
+  nextId += 1;
+  return {
+    id: `fixture-${nextId}`,
+    voicing: [],
+    readings: symbols.map((s) => featureOf(s)),
+    pinned,
+  };
 }
 
 /** A whole progression from a space-separated string of chord symbols. */
@@ -82,7 +102,8 @@ function candidateFor(symbols: string, keyName: string): KeyCandidate {
 }
 
 function keyOf(tonicPc: number, mode: 'major' | 'minor'): KeyCandidate {
-  return { tonicPc, mode, name: `${tonicPc} ${mode}`, score: 0, confidence: 0 };
+  // No assignment: labelling falls back to each chord's pin, then its primary.
+  return { tonicPc, mode, name: `${tonicPc} ${mode}`, score: 0, confidence: 0, assignment: [] };
 }
 
 const A_MINOR = keyOf(9, 'minor');
@@ -297,5 +318,80 @@ describe('chords with no third', () => {
     // the pitch-class correlation moves. What it must not do is cost the tonic
     // its position bonus and its chord fit on top: that gap was 0.66.
     expect(plain - sus).toBeLessThan(0.15);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Joint estimation: a chord with several readings is named by whichever one
+// best explains each candidate key, so A–C–E–G after F and G is the C6 that
+// closes a IV–V–I, not the Am7 the analyzer would name in isolation. A pin
+// takes that choice away from the engine for one chord only.
+// ---------------------------------------------------------------------------
+
+describe('joint reading assignment', () => {
+  const AM7_OR_C6 = ['Am7', 'C6'];
+
+  it('single-reading chords keep an identity assignment', () => {
+    const best = estimateKey(progression('C F G C'), 'flat').best!;
+    expect(best.assignment).toEqual([0, 0, 0, 0]);
+  });
+
+  it('names the shared shape for the key it closes', () => {
+    const prog = [chord('F'), chord('G'), ambiguous(AM7_OR_C6)];
+    const est = estimateKey(prog, 'flat');
+    expect(est.best!.name).toBe('C major');
+    // Read as C6 the last chord is a tonic arrival off a V; read as Am7 it is
+    // a deceptive close. The joint estimate must find the arrival.
+    expect(est.best!.assignment).toEqual([0, 0, 1]);
+    expect(romanLabelsFor(prog, est.best!)[2].roman).toBe('I');
+  });
+
+  it('gives each candidate key its own reading of the same chord', () => {
+    const est = estimateKey([chord('F'), chord('G'), ambiguous(AM7_OR_C6)], 'flat');
+    const aMinor = est.candidates.find((c) => c.name === 'A minor');
+    expect(aMinor).toBeDefined();
+    // A minor wants its tonic seventh, not a C6 on the mediant.
+    expect(aMinor!.assignment[2]).toBe(0);
+  });
+
+  it('never renames a pinned chord', () => {
+    const est = estimateKey([chord('F'), chord('G'), ambiguous(AM7_OR_C6, 0)], 'flat');
+    for (const candidate of est.candidates) {
+      expect(candidate.assignment[2]).toBe(0);
+    }
+  });
+
+  it('a pin steers the estimate, not just the label', () => {
+    const auto = estimateKey([chord('F'), chord('G'), ambiguous(AM7_OR_C6)], 'flat');
+    const pinned = estimateKey([chord('F'), chord('G'), ambiguous(AM7_OR_C6, 0)], 'flat');
+    const autoC = auto.candidates.find((c) => c.name === 'C major')!;
+    const pinnedC = pinned.candidates.find((c) => c.name === 'C major')!;
+    // Denied the C6 reading, C major loses its cadential close and some score.
+    expect(pinnedC.score).toBeLessThan(autoC.score);
+  });
+
+  it('resolves m7-vs-6 by context in minor too', () => {
+    // D-F-A-C over F and E7: in D minor it is the iv7 (Dm7), while F6 would
+    // strand the progression without a subdominant.
+    const prog = [ambiguous(['Dm7', 'F6']), chord('E7'), chord('Am')];
+    const est = estimateKey(prog, 'flat');
+    expect(est.best!.name).toBe('A minor');
+    expect(est.best!.assignment[0]).toBe(0);
+  });
+});
+
+describe('accidentalSideFor', () => {
+  it('follows the key signature', () => {
+    expect(accidentalSideFor(5, 'major', 'sharp')).toBe('flat'); // F major
+    expect(accidentalSideFor(2, 'major', 'flat')).toBe('sharp'); // D major
+    expect(accidentalSideFor(4, 'minor', 'flat')).toBe('sharp'); // E minor
+    expect(accidentalSideFor(7, 'minor', 'sharp')).toBe('flat'); // G minor
+  });
+
+  it('lets the caller break the genuinely enharmonic ties', () => {
+    expect(accidentalSideFor(6, 'major', 'sharp')).toBe('sharp'); // F♯ major
+    expect(accidentalSideFor(6, 'major', 'flat')).toBe('flat'); // G♭ major
+    expect(accidentalSideFor(3, 'minor', 'sharp')).toBe('sharp'); // D♯ minor
+    expect(accidentalSideFor(3, 'minor', 'flat')).toBe('flat'); // E♭ minor
   });
 });

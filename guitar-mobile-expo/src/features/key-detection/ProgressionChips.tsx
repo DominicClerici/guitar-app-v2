@@ -19,7 +19,7 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import { AnimatedView } from '@/components/AnimatedView';
-import type { ProgressionChord, RomanLabel } from '@/lib/key-analysis';
+import type { RomanLabel } from '@/lib/key-analysis';
 
 import { Chip, ChipFace } from './ChipFace';
 import {
@@ -31,6 +31,7 @@ import {
   slotNear,
   type Rect,
 } from './chipGeometry';
+import type { DisplayChord } from './useKeyDetection';
 
 const LONG_PRESS_MS = 400;
 /**
@@ -68,7 +69,7 @@ const MENU = 2;
 const REORDER = 3;
 
 interface Props {
-  chords: ProgressionChord[];
+  chords: DisplayChord[];
   labels: RomanLabel[];
   /** The chord currently being edited on the neck, if any. */
   activeId: string | null;
@@ -78,7 +79,7 @@ interface Props {
   menuTargetId: string | null;
   /** That menu has been left up with no finger on it. */
   menuLatched: boolean;
-  onSelect: (chord: ProgressionChord) => void;
+  onSelect: (chord: DisplayChord) => void;
   onReorder: (from: number, to: number) => void;
   onOpenMenu: (index: number, anchor: Rect) => void;
   onFocusMenu: (index: number) => void;
