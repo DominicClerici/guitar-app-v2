@@ -1,6 +1,6 @@
 # @guitar/api
 
-The Cloudflare Worker: Hono + tRPC v11, with Better Auth to follow (`BACKEND_PLAN.md` §2, §4, §5).
+The Cloudflare Worker: Hono + tRPC v11 + Better Auth (`BACKEND_PLAN.md` §2, §4, §5).
 
 ## Running it
 
@@ -19,11 +19,29 @@ curl http://localhost:8787/trpc/health.ping
 
 ## Routes
 
-| Route             | Handler                                                    |
-| ----------------- | ---------------------------------------------------------- |
-| `GET /health`     | Plain Hono route — no tRPC, no database, for uptime checks |
-| `ALL /trpc/*`     | tRPC fetch adapter, `appRouter`                            |
-| `ALL /api/auth/*` | Better Auth — not yet mounted                              |
+| Route                   | Handler                                                           |
+| ----------------------- | ----------------------------------------------------------------- |
+| `GET /health`           | Plain Hono route — no tRPC, no database, for uptime checks        |
+| `ALL /trpc/*`           | tRPC fetch adapter, `appRouter`                                   |
+| `GET\|POST /api/auth/*` | Better Auth's own handler — deliberately not behind tRPC (§4, §5) |
+
+## Auth
+
+Email + password is on. Sign-in works without a verified address; the verification mail still goes
+out on sign-up, and with `RESEND_API_KEY` or `EMAIL_FROM` unset the link is logged to the console
+instead, so the whole flow is exercisable locally with no Resend account.
+
+Google and Apple appear only once their credentials are set, so a checkout with no OAuth apps still
+boots. The anonymous plugin stays off unless `ENABLE_ANONYMOUS_AUTH=true`; even then its
+`onLinkAccount` hook throws, because guest-to-real-account linking has to reassign and merge every
+synced row and that is not built yet (§5, §11).
+
+`SESSION_KV` is optional. Bound, it serves session reads and keeps them off Neon, which is the
+free-tier limit expected to bind first (§12); unbound, reads fall through to Postgres. Sessions are
+written to Postgres either way, so they survive KV eviction and stay revocable.
+
+Still to come before the Expo app can sign in: the `@better-auth/expo` plugin on both sides, so the
+app scheme's redirects and the secure-store cookie are handled.
 
 ## Type export
 

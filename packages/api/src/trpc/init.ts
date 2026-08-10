@@ -1,4 +1,4 @@
-import { initTRPC } from '@trpc/server';
+import { initTRPC, TRPCError } from '@trpc/server';
 
 import type { Context } from './context';
 
@@ -9,5 +9,16 @@ export const createCallerFactory = t.createCallerFactory;
 
 export const publicProcedure = t.procedure;
 
-// `protectedProcedure` arrives with Better Auth — it will assert a session on the context
-// and narrow `ctx.session` to non-null for downstream procedures.
+/**
+ * Requires a Better Auth session and narrows `ctx.user` to non-null for everything downstream.
+ *
+ * The session cookie travels as a plain `Cookie` header: the Expo client keeps it in
+ * expo-secure-store and attaches it to every tRPC request (BACKEND_PLAN.md §5).
+ */
+export const protectedProcedure = t.procedure.use(async ({ ctx, next }) => {
+  const result = await ctx.getSession();
+
+  if (!result) throw new TRPCError({ code: 'UNAUTHORIZED' });
+
+  return next({ ctx: { session: result.session, user: result.user } });
+});

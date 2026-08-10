@@ -5,3 +5,6 @@ pnpm-lock.yaml
 **/web-build
 **/expo-env.d.ts
 **/uniwind-env.d.ts
+**/.wrangler
+# drizzle-kit's own bookkeeping. The .sql migrations are still formatted by hand and reviewed.
+packages/db/drizzle/meta

@@ -17,6 +17,11 @@ APPLE_CLIENT_SECRET=
 GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_SECRET=
 
-# Resend, for email verification and password reset.
+# Resend, for email verification and password reset. With either of these unset, links are logged
+# to the console instead of sent, so email + password works locally without a Resend account.
 RESEND_API_KEY=
 EMAIL_FROM=Guitar App <noreply@example.com>
+
+# Better Auth's anonymous plugin. Leave unset: guest-to-real-account linking is not implemented,
+# and enabling this makes the app create guest rows whose data linking would strand.
+ENABLE_ANONYMOUS_AUTH=

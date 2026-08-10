@@ -19,8 +19,11 @@ app.get('/health', (c) =>
   c.json({ ok: true, service: 'guitar-api', time: new Date().toISOString() }),
 );
 
-// Better Auth mounts at /api/auth/* here — it handles its own routes rather than going
-// through tRPC (BACKEND_PLAN.md §4, §5).
+// Better Auth serves its own routes rather than going through tRPC (BACKEND_PLAN.md §4, §5).
+// The path here must match `basePath` in src/auth.ts.
+app.on(['GET', 'POST'], '/api/auth/*', (c) =>
+  createContext({ env: c.env, req: c.req.raw }).auth.handler(c.req.raw),
+);
 
 app.all('/trpc/*', (c) =>
   fetchRequestHandler({

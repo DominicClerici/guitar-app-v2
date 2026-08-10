@@ -28,6 +28,12 @@ export interface Env {
   RESEND_API_KEY?: string;
   EMAIL_FROM?: string;
 
+  /**
+   * `'true'` enables Better Auth's anonymous plugin. Off by default because guest-to-real-account
+   * linking reassigns every synced row and is not implemented yet (BACKEND_PLAN.md §5, §11).
+   */
+  ENABLE_ANONYMOUS_AUTH?: string;
+
   /** Better Auth `secondaryStorage`. Optional until the namespace is created. */
   SESSION_KV?: KVNamespace;
 }
