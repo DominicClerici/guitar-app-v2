@@ -20,6 +20,10 @@
     // Comma-separated. Better Auth checks this list for OAuth redirects and cookie handling,
     // and it drives the CORS allowlist — the Expo scheme must be here or sign-in fails silently.
     "TRUSTED_ORIGINS": "guitarmobileexpo://,http://localhost:8088,http://localhost:8081",
+    // Guest accounts (BACKEND_PLAN.md §5). Set to "false" to stop new ones being created; the app
+    // then shows the sign-in forms instead, with no deploy of its own. Note that per-environment
+    // `vars` below replace this block rather than merging into it, so each one repeats it.
+    "ENABLE_ANONYMOUS_AUTH": "true",
   },
 
   // Session cache and rate limiting live in KV so per-request session lookups stay off Neon
@@ -35,6 +39,7 @@
       "name": "guitar-api-staging",
       "vars": {
         "TRUSTED_ORIGINS": "guitarmobileexpo://,https://staging.example.com",
+        "ENABLE_ANONYMOUS_AUTH": "true",
       },
       // "kv_namespaces": [{ "binding": "SESSION_KV", "id": "<staging-id>" }],
       // "routes": [{ "pattern": "api-staging.example.com", "custom_domain": true }]
@@ -43,6 +48,7 @@
       "name": "guitar-api-production",
       "vars": {
         "TRUSTED_ORIGINS": "guitarmobileexpo://,https://example.com",
+        "ENABLE_ANONYMOUS_AUTH": "true",
       },
       // "kv_namespaces": [{ "binding": "SESSION_KV", "id": "<production-id>" }],
       // "routes": [{ "pattern": "api.example.com", "custom_domain": true }]

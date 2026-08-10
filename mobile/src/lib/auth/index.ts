@@ -6,3 +6,4 @@ export {
   useSession,
 } from './client';
 export { describeAuthError, type AuthErrorLike } from './errors';
+export { useEnsureGuestSession } from './guest';

@@ -17,12 +17,20 @@ import type { KVNamespace } from '@cloudflare/workers-types';
 
 import { createMailer } from './email';
 import { type Env, trustedOrigins } from './env';
+import { linkAnonymousUser } from './link-anonymous';
 
 type SecondaryStorage = NonNullable<BetterAuthOptions['secondaryStorage']>;
 type SocialProviders = NonNullable<BetterAuthOptions['socialProviders']>;
 
 /** KV rejects any shorter expiry outright, so a short session TTL has to be rounded up. */
 const KV_MIN_TTL_SECONDS = 60;
+
+/**
+ * Guest accounts still need an address, because `user.email` is unique and not null. A reserved
+ * TLD (RFC 2606) is used rather than the plugin's default `temp@<id>.com`, so a guest address can
+ * never collide with a domain somebody actually owns and nothing we send can escape to it.
+ */
+const ANONYMOUS_EMAIL_DOMAIN = 'guest.invalid';
 
 function kvSecondaryStorage(kv: KVNamespace): SecondaryStorage {
   return {
@@ -61,7 +69,7 @@ function socialProviders(env: Env): SocialProviders {
   return providers;
 }
 
-function plugins(env: Env): NonNullable<BetterAuthOptions['plugins']> {
+function plugins({ env, db }: { env: Env; db: Db }): NonNullable<BetterAuthOptions['plugins']> {
   // Unconditional — the native app needs two things from it. Requests from React Native carry no
   // `origin`, so the client sends `expo-origin` instead and this promotes it to the real header for
   // the origin check. And when a verification or OAuth callback redirects to a non-http URL — our
@@ -72,20 +80,21 @@ function plugins(env: Env): NonNullable<BetterAuthOptions['plugins']> {
   // plugin's own contribution is `exp://` in development only.
   const enabled: NonNullable<BetterAuthOptions['plugins']> = [expo()];
 
-  if (env.ENABLE_ANONYMOUS_AUTH !== 'true') return enabled;
+  if (env.ENABLE_ANONYMOUS_AUTH === 'false') return enabled;
 
   return [
     ...enabled,
     anonymous({
-      onLinkAccount: async () => {
-        // Every synced row is keyed by user_id, so linking a guest to a real account has to
-        // reassign those rows — and merge them under §7's rules when the real account already
-        // carries data from another device. Until that exists and is tested (§5, §11), failing
-        // loudly is the only safe option: returning quietly would strand the guest's data under a
-        // user row that Better Auth deletes moments later.
-        throw new Error(
-          'anonymous account linking is not implemented — see BACKEND_PLAN.md §5 before enabling',
-        );
+      emailDomainName: ANONYMOUS_EMAIL_DOMAIN,
+      // Every synced row is keyed by user_id, so a guest signing in has to take those rows with
+      // them (§5). Better Auth deletes the guest user as soon as this resolves, so anything left
+      // behind here is lost — and a throw is the only way to stop that deletion.
+      onLinkAccount: async ({ anonymousUser, newUser }) => {
+        await linkAnonymousUser({
+          db,
+          anonymousUserId: anonymousUser.user.id,
+          userId: newUser.user.id,
+        });
       },
     }),
   ];
@@ -145,7 +154,7 @@ export function createAuth({ env, db }: { env: Env; db: Db }) {
     },
 
     socialProviders: socialProviders(env),
-    plugins: plugins(env),
+    plugins: plugins({ env, db }),
   });
 }
 

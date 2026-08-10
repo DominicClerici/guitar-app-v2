@@ -7,10 +7,15 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { withUniwind } from 'uniwind';
 
 import { ApiProvider } from '@/lib/api';
+import { useEnsureGuestSession } from '@/lib/auth';
 
 const GestureRoot = withUniwind(GestureHandlerRootView);
 
 export default function RootLayout() {
+  // Nothing is rendered for this and nothing waits on it — the app is usable while it runs, and
+  // usable if it fails. See the hook (BACKEND_PLAN.md §5).
+  useEnsureGuestSession();
+
   return (
     <ApiProvider>
       <GestureRoot className="flex-1">

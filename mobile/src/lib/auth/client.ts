@@ -1,5 +1,6 @@
 import { expoClient } from '@better-auth/expo/client';
 import type { BetterAuthClientPlugin } from 'better-auth';
+import { anonymousClient } from 'better-auth/client/plugins';
 import { createAuthClient } from 'better-auth/react';
 import * as SecureStore from 'expo-secure-store';
 
@@ -52,7 +53,11 @@ const expoPlugin = expoClient({
 export const authClient = createAuthClient({
   baseURL: resolveApiBaseUrl(),
   basePath: '/api/auth',
-  plugins: [expoPlugin],
+  // The anonymous plugin contributes `signIn.anonymous()` and puts `isAnonymous` on the session
+  // user, which is what tells the Account tab apart a guest from someone with a real account
+  // (BACKEND_PLAN.md §5). Linking a guest to a real account is entirely server-side — the ordinary
+  // sign-in and sign-up calls trigger it, so nothing on this side has to ask for it.
+  plugins: [expoPlugin, anonymousClient()],
 });
 
 export const { useSession, signIn, signUp, signOut } = authClient;

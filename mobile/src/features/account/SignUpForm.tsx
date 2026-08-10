@@ -8,8 +8,9 @@ import { authClient, describeAuthError } from '@/lib/auth';
 import { fieldErrors } from '@/lib/forms';
 
 import { AuthShell, AuthSwitch, FormError } from './AuthShell';
+import { GuestBanner } from './GuestBanner';
 
-export function SignUpForm({ onSignIn }: { onSignIn: () => void }) {
+export function SignUpForm({ onSignIn, guest }: { onSignIn: () => void; guest?: boolean }) {
   const emailRef = useRef<TextInput>(null);
   const passwordRef = useRef<TextInput>(null);
 
@@ -44,6 +45,8 @@ export function SignUpForm({ onSignIn }: { onSignIn: () => void }) {
       title="Create an account"
       blurb="We’ll send a link to confirm your email. You can start using the app straight away."
     >
+      {guest ? <GuestBanner /> : null}
+
       <FormError message={failure} />
 
       <AuthTextField

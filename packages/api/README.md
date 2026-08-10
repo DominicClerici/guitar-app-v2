@@ -47,16 +47,20 @@ out on sign-up, and with `RESEND_API_KEY` or `EMAIL_FROM` unset the link is logg
 instead, so the whole flow is exercisable locally with no Resend account.
 
 Google and Apple appear only once their credentials are set, so a checkout with no OAuth apps still
-boots. The anonymous plugin stays off unless `ENABLE_ANONYMOUS_AUTH=true`; even then its
-`onLinkAccount` hook throws, because guest-to-real-account linking has to reassign and merge every
-synced row and that is not built yet (§5, §11).
+boots.
+
+Guest accounts are on (§5). The app signs in anonymously at launch, so a user row exists before
+anything worth saving happens, and every synced row can be keyed by `user_id` from the start. When
+that guest later signs in for real, `onLinkAccount` moves their rows onto the real account with
+`src/link-anonymous.ts`, merging under each table's rule from §7 — so an account that already
+carries data from another device gains the guest's rows rather than being overwritten by them.
+`ENABLE_ANONYMOUS_AUTH` in `wrangler.jsonc` is the kill switch: set it to `"false"` and no new
+guests are created, with no deploy of the app. It is not a secret and must not be put in
+`.dev.vars`, which would override it.
 
 `SESSION_KV` is optional. Bound, it serves session reads and keeps them off Neon, which is the
 free-tier limit expected to bind first (§12); unbound, reads fall through to Postgres. Sessions are
 written to Postgres either way, so they survive KV eviction and stay revocable.
-
-Still to come before the Expo app can sign in: the `@better-auth/expo` plugin on both sides, so the
-app scheme's redirects and the secure-store cookie are handled.
 
 ## Type export
 

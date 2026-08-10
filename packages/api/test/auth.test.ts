@@ -55,16 +55,18 @@ describe('auth configuration', () => {
       (authFor(overrides).options.plugins ?? []).map((plugin) => plugin.id);
 
     expect(ids({})).toContain('expo');
-    expect(ids({ ENABLE_ANONYMOUS_AUTH: 'true' })).toContain('expo');
+    expect(ids({ ENABLE_ANONYMOUS_AUTH: 'false' })).toContain('expo');
   });
 
-  it('leaves the anonymous plugin off unless the flag is explicitly true', () => {
+  it('enables the anonymous plugin unless the flag is explicitly false', () => {
     const names = (overrides: Partial<Env>) =>
       (authFor(overrides).options.plugins ?? []).map((plugin) => plugin.id);
 
-    expect(names({})).not.toContain('anonymous');
+    // On by default, and on where the var is simply missing — the kill switch has to be turned
+    // on deliberately, not reached by forgetting to set something.
+    expect(names({})).toContain('anonymous');
+    expect(names({ ENABLE_ANONYMOUS_AUTH: undefined })).toContain('anonymous');
     expect(names({ ENABLE_ANONYMOUS_AUTH: 'false' })).not.toContain('anonymous');
-    expect(names({ ENABLE_ANONYMOUS_AUTH: 'true' })).toContain('anonymous');
   });
 
   it('keeps sessions in Postgres and uses KV only when the binding exists', () => {

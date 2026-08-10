@@ -8,13 +8,15 @@ import { authClient, describeAuthError } from '@/lib/auth';
 import { fieldErrors } from '@/lib/forms';
 
 import { AuthShell, AuthSwitch, FormError } from './AuthShell';
+import { GuestBanner } from './GuestBanner';
 
 interface Props {
   onCreateAccount: () => void;
   onForgotPassword: () => void;
+  guest?: boolean;
 }
 
-export function SignInForm({ onCreateAccount, onForgotPassword }: Props) {
+export function SignInForm({ onCreateAccount, onForgotPassword, guest }: Props) {
   const passwordRef = useRef<TextInput>(null);
 
   const [email, setEmail] = useState('');
@@ -47,6 +49,8 @@ export function SignInForm({ onCreateAccount, onForgotPassword }: Props) {
       title="Sign in"
       blurb="Your practice history and settings follow you between devices."
     >
+      {guest ? <GuestBanner /> : null}
+
       <FormError message={failure} />
 
       <AuthTextField

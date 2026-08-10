@@ -15,6 +15,7 @@ import { describe, expect, it } from 'vitest';
 
 import { syncedTables as pgSynced, serverSeqSequence } from './schema.pg';
 import { syncedTables as sqliteSynced } from './schema.sqlite';
+import { syncMergeRules } from './sync';
 
 const SYNC_COLUMNS = ['server_seq', 'deleted_at'];
 
@@ -51,6 +52,23 @@ describe('synced schema parity', () => {
       expect(columnNames(pgConfig(name))).toContain(column);
       expect(columnNames(sqliteConfig(name))).toContain(column);
     }
+  });
+
+  /**
+   * Two paths merge rows — `sync.push` and the guest-to-real-account reassignment in §5 — and
+   * both read the rule from `syncMergeRules`. A synced table without one has no defined behaviour
+   * when the same row arrives from two devices, so it must not reach either path undeclared.
+   */
+  it.each(syncedNames)('%s declares a merge rule', (name) => {
+    expect(Object.keys(syncMergeRules)).toContain(name);
+  });
+
+  /**
+   * Every row the sync protocol carries belongs to exactly one user, and both paths above find
+   * that owner by column name.
+   */
+  it.each(syncedNames)('%s is owned by a user_id column', (name) => {
+    expect(columnNames(pgConfig(name))).toContain('user_id');
   });
 });
 

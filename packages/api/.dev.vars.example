@@ -23,6 +23,5 @@ GOOGLE_CLIENT_SECRET=
 RESEND_API_KEY=
 EMAIL_FROM=Guitar App <noreply@example.com>
 
-# Better Auth's anonymous plugin. Leave unset: guest-to-real-account linking is not implemented,
-# and enabling this makes the app create guest rows whose data linking would strand.
-ENABLE_ANONYMOUS_AUTH=
+# Guest accounts are not configured here — ENABLE_ANONYMOUS_AUTH is not a secret and lives in
+# wrangler.jsonc. Setting it in this file would override that and silently disable them locally.

@@ -20,5 +20,11 @@ export function AccountTab() {
 
   if (!session) return <SignedOutView />;
 
+  // A guest has a session but nothing to show in a profile: their name is "Anonymous" and their
+  // address is a placeholder the server made up. What they need is the way out of being a guest,
+  // which is the same pair of forms (BACKEND_PLAN.md §5). No sign-out either — there is no
+  // credential to sign back in with, so it would destroy the account rather than leave it.
+  if (session.user.isAnonymous) return <SignedOutView guest />;
+
   return <ProfileCard user={session.user} refetchSession={refetch} />;
 }

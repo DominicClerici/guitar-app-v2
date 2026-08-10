@@ -2,7 +2,8 @@
 
 Decisions made 2026-08-10. This document captures **what we chose and why**; the packages under
 `packages/` are where they get carried out. Built so far: the scaffold, Better Auth with email +
-password, and the schema through §8. Sync (§7) and the device's SQLite half are not written yet.
+password and anonymous guests including guest → real account linking, and the schema through §8.
+Sync (§7) and the device's SQLite half are not written yet.
 
 ## Goals
 
@@ -149,20 +150,42 @@ All four ship at launch.
   redirect plumbing. Requires verification and reset email.
 - **Anonymous / guest** — Better Auth's anonymous plugin. A real user row is created on first launch
   with no sign-in, so progress is tracked immediately and the app is fully usable before committing
-  to an account.
+  to an account. Created silently, with no screen of its own; a failure just leaves the app signed
+  out, and is retried when the app next comes to the foreground or the network returns.
+
+The guest's address is `temp-<id>@guest.invalid` — `user.email` is unique and not null, and a
+reserved TLD (RFC 2606) can never collide with a domain somebody owns.
 
 ### Guest → real account linking
 
 This is the sharpest edge in the auth design. All synced data is keyed by `user_id`. When an
-anonymous user signs in with Apple/Google/email, the server must reassign their rows:
+anonymous user signs in with Apple/Google/email, the server reassigns their rows:
 
 - Better Auth's `onLinkAccount` hook runs a server-side reassignment of every synced table from the
   anonymous id to the real user id.
 - If the real account **already exists** (user had an account on another device), the two data sets
   merge under the sync merge rules in §7 rather than one overwriting the other.
-- The anonymous user row is deleted after reassignment.
+- The anonymous user row is deleted after reassignment — by Better Auth, which takes the guest's
+  rows with it through the `user_id` cascade.
 
-This must be covered by tests before the anonymous plugin is enabled in production.
+The reassignment is generic over tables: it reads each table's rule from `syncMergeRules` and builds
+one merge statement from the table's own columns, so a new synced table is a rule declaration rather
+than new linking code. The `set_server_seq()` trigger is what makes a merged row visible to the
+account's _other_ devices — without it a reassigned row would keep the sequence value it was written
+with and sort below every existing cursor.
+
+Failure is safe rather than atomic: throwing out of `onLinkAccount` aborts the sign-in and leaves
+the guest user undeleted, so the device keeps its guest session and the next attempt replays the
+whole merge. Both merge rules are idempotent, so the replay converges.
+
+Covered by tests before enabling, per §11.
+
+### Guest UX
+
+A guest sees the ordinary sign-in and sign-up forms with a banner explaining what a guest account
+is, and no sign-out button — a guest has no credential to sign back in with, so signing out would
+destroy the account rather than leave it. Signing in or up from that screen is what claims the
+progress, so there is no separate "claim your account" flow.
 
 ### Sessions
 
@@ -290,9 +313,13 @@ is removed.
 ## 11. Testing
 
 - Sync merge rules get pure unit tests — they're the highest-risk logic and have no I/O.
-- API integration tests run under `@cloudflare/vitest-pool-workers` against a dedicated Neon branch.
+- API integration tests run under `@cloudflare/vitest-pool-workers` against a database: the local
+  Postgres from `packages/db/docker-compose.yml` by default, a dedicated Neon branch in CI. The
+  server is named once, by `TEST_DATABASE_URL` in `vitest.config.ts`. Tests needing it skip
+  themselves when nothing answers, so a checkout without Docker still runs green.
 - Guest-account linking (§5) gets explicit tests for both the "new account" and "account already
-  exists, merge" paths.
+  exists, merge" paths. These cannot be config assertions: what they check is `ON CONFLICT`
+  semantics and the `server_seq` trigger, both of which live in the database.
 - The mobile app already uses Vitest, so the toolchain is consistent across packages.
 
 ## 12. Cost model

@@ -12,6 +12,12 @@ export default defineConfig({
           DATABASE_URL: 'postgresql://test:test@localhost/test',
           BETTER_AUTH_SECRET: 'test-secret',
           BETTER_AUTH_URL: 'http://localhost:8788',
+          // Not a Worker binding: the one place the database-backed tests look for a server
+          // (BACKEND_PLAN.md §11). Locally that is docker-compose.yml in packages/db, reached
+          // through the same Neon HTTP proxy the Worker uses; CI points it at a Neon branch.
+          // Tests that need it skip themselves when nothing answers, so a checkout without
+          // Docker still runs green.
+          TEST_DATABASE_URL: 'postgres://guitar:guitar@localhost:5434/guitar',
         },
       },
     }),

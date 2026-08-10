@@ -29,8 +29,10 @@ export interface Env {
   EMAIL_FROM?: string;
 
   /**
-   * `'true'` enables Better Auth's anonymous plugin. Off by default because guest-to-real-account
-   * linking reassigns every synced row and is not implemented yet (BACKEND_PLAN.md §5, §11).
+   * Better Auth's anonymous plugin (BACKEND_PLAN.md §5), on unless this is exactly `'false'`. It
+   * is set in wrangler.jsonc rather than being a secret, and exists as a kill switch: turning it
+   * off stops new guest accounts being created without a deploy of the app, and the guest rows
+   * already in the database keep working because `is_anonymous` is part of the schema either way.
    */
   ENABLE_ANONYMOUS_AUTH?: string;
 
