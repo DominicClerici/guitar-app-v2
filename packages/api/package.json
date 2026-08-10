@@ -15,8 +15,8 @@
     "deploy:staging": "wrangler deploy --env staging",
     "cf-typegen": "wrangler types",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run",
-    "lint": "pnpm typecheck && pnpm test"
+    "test:integration": "vitest run",
+    "lint": "pnpm typecheck"
   },
   "dependencies": {
     "@better-auth/expo": "^1.6.26",

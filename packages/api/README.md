@@ -29,8 +29,12 @@ curl http://localhost:8788/api/auth/get-session -b /tmp/guitar-cookies.txt
 Port 8788, not Wrangler's default 8787: macOS's Photos daemon listens there and wins `localhost`
 over workerd, so the worker appears to run while photod answers every request.
 
-`pnpm test` runs the integration tests inside the real workerd runtime via
-`@cloudflare/vitest-pool-workers`.
+`pnpm test:integration` runs the integration tests inside the real workerd runtime via
+`@cloudflare/vitest-pool-workers`. It is deliberately not part of `pnpm lint` — booting workerd and
+transforming Better Auth, Hono, and Drizzle into it costs 30–45s before the first assertion, which
+is too slow for a per-edit loop and buys nothing for a change that does not reach the server's merge
+behaviour. `pnpm lint` here is typecheck only; run the integration suite when `src/sync/`,
+`src/link-anonymous.ts`, `src/auth.ts`, or a `packages/db` schema or migration changes.
 
 ## Routes
 

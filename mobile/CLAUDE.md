@@ -42,7 +42,23 @@ After changing them, run `pnpm db:generate` here to regenerate `drizzle/`. See `
 
 ## Verifying a solution
 
-Run `pnpm lint` — it runs `tsc --noEmit` followed by `expo lint`, covering both typecheck and lint. Always run this after making changes to confirm the solution is correct.
+Run `pnpm lint` here — it runs `tsc --noEmit`, then `expo lint`, then `vitest run`, covering
+typecheck, lint, and the pure theory tests. Always run this after making changes to confirm the
+solution is correct. It takes a few seconds.
+
+The API integration tests are **not** part of that loop. They run under
+`@cloudflare/vitest-pool-workers` against a live Postgres, cost 30–45s of workerd boot before the
+first assertion, and are unaffected by anything on the device. Run `pnpm test:integration` from the
+repo root only when a change reaches the server's merge behaviour:
+
+- a synced table added or changed in `packages/db/src/schema.sqlite.ts` / `schema.pg.ts`, or a new
+  migration in `packages/db/drizzle/`
+- anything under `packages/api/src/sync/` or `packages/api/src/link-anonymous.ts`
+- a change to the auth config in `packages/api/src/auth.ts`
+
+They need the database up — `pnpm db db:up && pnpm db db:migrate`. Without it they skip themselves
+and pass, which means a green run proves nothing; check the output for the skip warning rather than
+just the exit code.
 
 ## Argent
 
