@@ -13,10 +13,7 @@ import { Fretboard } from '@/features/chord-detection/Fretboard';
 import { IntervalLattice } from '@/features/chord-detection/IntervalLattice';
 import { LabelModeToggle, type LabelMode } from '@/features/chord-detection/LabelModeToggle';
 import { ReadingShelf } from '@/features/chord-detection/ReadingShelf';
-import {
-  useChordBuilder,
-  type InitialVoicing,
-} from '@/features/chord-detection/useChordBuilder';
+import { useChordBuilder, type InitialVoicing } from '@/features/chord-detection/useChordBuilder';
 import { WarningNotes } from '@/features/chord-detection/WarningNotes';
 import { useToken } from '@/lib/tokens';
 import { decodeVoicing, encodeVoicing } from '@/lib/voicing-param';
@@ -100,11 +97,7 @@ export function ChordDetectorScreen() {
 
           {readings.length > 0 ? (
             <View className="mt-[24px]">
-              <ReadingShelf
-                readings={readings}
-                selectedIndex={selectedIndex}
-                onSelect={select}
-              />
+              <ReadingShelf readings={readings} selectedIndex={selectedIndex} onSelect={select} />
             </View>
           ) : null}
 

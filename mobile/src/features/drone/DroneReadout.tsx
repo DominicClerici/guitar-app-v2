@@ -59,10 +59,7 @@ export function DroneReadout({ selection, running, detail, hint }: Props) {
   return (
     <View className="items-center justify-center py-[6px]">
       <View className="pointer-events-none absolute inset-0 items-center justify-center">
-        <AnimatedView
-          className="h-[168px] w-[168px] rounded-full bg-accent-wash"
-          style={aura}
-        />
+        <AnimatedView className="h-[168px] w-[168px] rounded-full bg-accent-wash" style={aura} />
       </View>
 
       <Text
@@ -78,11 +75,7 @@ export function DroneReadout({ selection, running, detail, hint }: Props) {
       <View className="mt-[10px] h-[24px] flex-row items-center gap-[5px]">
         {has ? (
           selection.notes.map((note, index) => (
-            <NoteChip
-              key={`${note}-${index}`}
-              note={note}
-              isRoot={index === selection.rootIndex}
-            />
+            <NoteChip key={`${note}-${index}`} note={note} isRoot={index === selection.rootIndex} />
           ))
         ) : (
           <Text className="font-mono text-[9.5px] uppercase tracking-[1.5px] text-ink-faint">

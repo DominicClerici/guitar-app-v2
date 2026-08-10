@@ -212,7 +212,9 @@ for (const root of ROOTS) {
         // Free fingers on one side of the barre only.
         const outside = voicing.frets
           .map((f, string) => ({ f, string }))
-          .filter(({ f, string }) => f !== null && f > 0 && (string < firstString || string > lastString));
+          .filter(
+            ({ f, string }) => f !== null && f > 0 && (string < firstString || string > lastString),
+          );
         check(
           !(
             outside.some(({ string }) => string < firstString) &&
@@ -239,9 +241,9 @@ for (const root of ROOTS) {
       }
 
       // ── Register ────────────────────────────────────────────────────────
-      const pitches = sounding.map((string) => midiAt(string, voicing.frets[string]!)).sort(
-        (a, b) => a - b,
-      );
+      const pitches = sounding
+        .map((string) => midiAt(string, voicing.frets[string]!))
+        .sort((a, b) => a - b);
       for (let i = 0; i + 1 < pitches.length; i += 1) {
         const gap = pitches[i + 1] - pitches[i];
         for (const rule of MUD_RULES) {
@@ -310,7 +312,8 @@ if (failures.length > 0) {
   const shown = failures.slice(0, 40);
   console.error(`\n${failures.length} failures:`);
   for (const failure of shown) console.error(`  ${failure}`);
-  if (failures.length > shown.length) console.error(`  … and ${failures.length - shown.length} more`);
+  if (failures.length > shown.length)
+    console.error(`  … and ${failures.length - shown.length} more`);
   process.exit(1);
 }
 

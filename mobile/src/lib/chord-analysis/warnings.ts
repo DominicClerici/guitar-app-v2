@@ -2,14 +2,11 @@
 // ambiguous voicings (clusters, conflicting tones, likely inversions, etc.).
 // Each fired rule carries an id, a category, and resolved English text.
 
-import type {
-    ChordInfo,
-    Warning
-} from './types'
+import type { ChordInfo, Warning } from './types';
 
 interface WarningText {
-  short: string
-  long: string
+  short: string;
+  long: string;
 }
 
 // User-facing English for each warning rule. `short` is the tag rendered in
@@ -21,7 +18,7 @@ interface WarningText {
 const WARNINGS_TEXT: Record<string, WarningText> = {
   no3: {
     short: 'No third',
-    long: 'Nothing plays the 3rd — no m3, no major 3rd, no sus. The chord doesn\'t commit to major or minor.',
+    long: "Nothing plays the 3rd — no m3, no major 3rd, no sus. The chord doesn't commit to major or minor.",
   },
   cluster: {
     short: 'Cluster: {intA}/{intB}/{intC}',
@@ -85,7 +82,7 @@ const WARNINGS_TEXT: Record<string, WarningText> = {
   },
   b6: {
     short: 'Likely an inversion',
-    long: 'Major 3rd plus a b6 — that b6 is often the actual root, and you\'re hearing the chord from there.',
+    long: "Major 3rd plus a b6 — that b6 is often the actual root, and you're hearing the chord from there.",
   },
   mb6: {
     short: 'Likely an inversion',
@@ -123,137 +120,154 @@ const WARNINGS_TEXT: Record<string, WarningText> = {
     short: 'Looks clean',
     long: 'No flags. This voicing reads as a standard chord.',
   },
-}
+};
 
 function interpolate(text: string, params: Record<string, string>): string {
-  return text.replace(/\{(\w+)\}/g, (_, k) => params[k] ?? '')
+  return text.replace(/\{(\w+)\}/g, (_, k) => params[k] ?? '');
 }
 
 function nAll(needles: string[], haystack: string[]): boolean {
-  for (const needle of needles) if (!haystack.includes(needle)) return false
-  return true
+  for (const needle of needles) if (!haystack.includes(needle)) return false;
+  return true;
 }
 
 export function chordWarnings(info: ChordInfo): Warning[] {
-  const b = info.uniqueIntervals
-  const u = info.intervalNames
-  const f = info.absoluteIntervals
+  const b = info.uniqueIntervals;
+  const u = info.intervalNames;
+  const f = info.absoluteIntervals;
   // Renamed locals to avoid shadowing — preserve source single-letter names
   // where they don't collide with TypeScript keywords or our own.
-  const i = f.pf1, a = f.mi2, nMa2 = f.ma2
-  const r = f.mi3, o = f.ma3, c = f.pf4
-  const h = f.dm5, l = f.pf5, d = f.mi6
-  const p = f.ma6, v = f.mi7, m = f.ma7
+  const i = f.pf1,
+    a = f.mi2,
+    nMa2 = f.ma2;
+  const r = f.mi3,
+    o = f.ma3,
+    c = f.pf4;
+  const h = f.dm5,
+    l = f.pf5,
+    d = f.mi6;
+  const p = f.ma6,
+    v = f.mi7,
+    m = f.ma7;
 
   // y[0..11]: f reordered into a 12-slot indexable array — the cluster
   // detector scans this with wraparound. KEY ORDER IS LOAD-BEARING.
-  const y: boolean[] = []
-  let x = 0
+  const y: boolean[] = [];
+  let x = 0;
   for (const k of [
-    'pf1', 'mi2', 'ma2', 'mi3', 'ma3', 'pf4',
-    'dm5', 'pf5', 'mi6', 'ma6', 'mi7', 'ma7',
+    'pf1',
+    'mi2',
+    'ma2',
+    'mi3',
+    'ma3',
+    'pf4',
+    'dm5',
+    'pf5',
+    'mi6',
+    'ma6',
+    'mi7',
+    'ma7',
   ] as const) {
-    y[x++] = f[k]
+    y[x++] = f[k];
   }
 
-  const out: Warning[] = []
+  const out: Warning[] = [];
   function push(rule: string, fields: Partial<Warning>, params?: Record<string, string>) {
-    const t = WARNINGS_TEXT[rule] ?? { short: '', long: '' }
+    const t = WARNINGS_TEXT[rule] ?? { short: '', long: '' };
     out.push({
       id: rule,
       ...fields,
       short: params ? interpolate(t.short, params) : t.short,
       long: params ? interpolate(t.long, params) : t.long,
-    } as Warning)
+    } as Warning);
   }
 
   // 1. no3 — pf1 present, no triad-defining tone (no m3, ma3, ma2, pf4)
   if (i && !r && !o && !nMa2 && !c) {
-    push('no3', { cat: 'omitted' })
+    push('no3', { cat: 'omitted' });
   }
   // 2. cluster — three consecutive semitones (sliding window with wraparound)
   for (let s = 0; s < 12; s += 1) {
-    let L = s + 1
-    let C = s + 2
-    if (L > 11) L -= 12
-    if (C > 11) C -= 12
+    let L = s + 1;
+    let C = s + 2;
+    if (L > 11) L -= 12;
+    if (C > 11) C -= 12;
     if (y[s] && y[L] && y[C]) {
-      push('cluster', { cat: 'cluster' }, { intA: u[s], intB: u[L], intC: u[C] })
+      push('cluster', { cat: 'cluster' }, { intA: u[s], intB: u[L], intC: u[C] });
     }
   }
   // 3. 5b5 — pf5 + dm5 with intervalNames[6] = "b5"
-  if (l && h && u[6] === 'b5') push('5b5', { cat: 'double' })
+  if (l && h && u[6] === 'b5') push('5b5', { cat: 'double' });
   // 4. 5#5 — pf5 + mi6 with intervalNames[8] = "#5"
-  if (l && d && u[8] === '#5') push('5#5', { cat: 'double' })
+  if (l && d && u[8] === '#5') push('5#5', { cat: 'double' });
   // 5. b5#5 — both b5 and #5 in unique intervals
-  if (nAll(['b5', '#5'], b)) push('b5#5', { cat: 'double' })
+  if (nAll(['b5', '#5'], b)) push('b5#5', { cat: 'double' });
   // 6. 7maj7 — both mi7 and ma7
-  if (v && m) push('7maj7', { cat: 'double' })
+  if (v && m) push('7maj7', { cat: 'double' });
   // 7. 9b9 — ma2 and mi2 both present
-  if (nMa2 && a) push('9b9', { cat: 'double' })
+  if (nMa2 && a) push('9b9', { cat: 'double' });
   // 8. 9#9 — ma2 + both 3rds
-  if (nMa2 && r && o) push('9#9', { cat: 'double' })
+  if (nMa2 && r && o) push('9#9', { cat: 'double' });
   // 9. b9#9 — both in unique intervals
-  if (nAll(['b9', '#9'], b)) push('b9#9', { cat: 'double' })
+  if (nAll(['b9', '#9'], b)) push('b9#9', { cat: 'double' });
   // 10. 13b13 — both
-  if (nAll(['b13', '13'], b)) push('13b13', { cat: 'double' })
+  if (nAll(['b13', '13'], b)) push('13b13', { cat: 'double' });
   // 11. sus2b5
   if (nMa2 && u[2] === 'sus2' && h && u[6] === 'b5') {
-    push('sus2b5', { cat: 'inversion', assumedRoot: '2' })
+    push('sus2b5', { cat: 'inversion', assumedRoot: '2' });
   }
   // 12. sus2#5 — the source omits the cat, which left the rule invisible to the
   // ranker even though its text says "Likely an inversion" like every sibling
   // that does carry one. That only surfaced once a #5 with no perfect 5th
   // stopped being labelled b13: C D Ab Bb is Bb9 over C, not C7sus2(#5).
   if (nMa2 && u[2] === 'sus2' && d && u[8] === '#5') {
-    push('sus2#5', { cat: 'inversion', assumedRoot: '7' })
+    push('sus2#5', { cat: 'inversion', assumedRoot: '7' });
   }
   // 13. sus4b5
   if (c && u[5] === 'sus4' && h && u[6] === 'b5') {
-    push('sus4b5', { cat: 'fragment', assumedRoot: 'b6,6,9,m3' })
+    push('sus4b5', { cat: 'fragment', assumedRoot: 'b6,6,9,m3' });
   }
   // 14. sus4#5
   if (c && u[5] === 'sus4' && d && u[8] === '#5') {
-    push('sus4#5', { cat: 'inversion', assumedRoot: '4' })
+    push('sus4#5', { cat: 'inversion', assumedRoot: '4' });
   }
   // 15. maj7sus4 (cat: '' in source — empty string)
   if (c && u[5] === 'sus4' && m) {
-    push('maj7sus4', { cat: '', assumedRoot: '' })
+    push('maj7sus4', { cat: '', assumedRoot: '' });
   }
   // 16. m#5
   if (r && u[3] === 'm3' && d && u[8] === '#5') {
-    push('m#5', { cat: 'uncommon', assumedRoot: 'b6' })
+    push('m#5', { cat: 'uncommon', assumedRoot: 'b6' });
   }
   // 17. b6
-  if (nAll(['3', 'b6'], b)) push('b6', { cat: 'inversion', assumedRoot: 'b6' })
+  if (nAll(['3', 'b6'], b)) push('b6', { cat: 'inversion', assumedRoot: 'b6' });
   // 18. mb6
-  if (nAll(['m3', 'b6', '5'], b)) push('mb6', { cat: 'inversion', assumedRoot: 'mb6' })
+  if (nAll(['m3', 'b6', '5'], b)) push('mb6', { cat: 'inversion', assumedRoot: 'mb6' });
   // 19. 6sus4
   if (c && u[5] === 'sus4' && p && u[9] === '6') {
-    push('6sus4', { cat: 'inversion', assumedRoot: '4' })
+    push('6sus4', { cat: 'inversion', assumedRoot: '4' });
   }
   // 20–21. 6/9/11 vs 6/11 (else-if'd in source — important!)
   if (nAll(['6', '9', '11'], b)) {
-    push('6/9/11', { cat: 'inversion', assumedRoot: '4' })
+    push('6/9/11', { cat: 'inversion', assumedRoot: '4' });
   } else if (nAll(['6', '11'], b)) {
-    push('6/11', { cat: 'inversion', assumedRoot: '4' })
+    push('6/11', { cat: 'inversion', assumedRoot: '4' });
   }
   // 22. majorb5
   if (o && h && u[6] === 'b5') {
-    push('majorb5', { cat: 'enharmonic', assumedRoot: '' })
+    push('majorb5', { cat: 'enharmonic', assumedRoot: '' });
   }
   // 23. major11 — must NOT contain "6"
-  if (nAll(['3', '11'], b) && !nAll(['6'], b)) push('major11', { cat: 'dissonance' })
+  if (nAll(['3', '11'], b) && !nAll(['6'], b)) push('major11', { cat: 'dissonance' });
   // 24. m3b9
-  if (nAll(['m3', 'b9'], b)) push('m3b9', { cat: 'dissonance' })
+  if (nAll(['m3', 'b9'], b)) push('m3b9', { cat: 'dissonance' });
   // 25. addAlt — no extension number AND any altered tension present
   if (
     info.csParams.extNum === '' &&
-    (b.indexOf('b9') > -1 || b.indexOf('#9') > -1 ||
-     b.indexOf('#11') > -1 || b.indexOf('b13') > -1)
+    (b.indexOf('b9') > -1 || b.indexOf('#9') > -1 || b.indexOf('#11') > -1 || b.indexOf('b13') > -1)
   ) {
-    push('addAlt', {})
+    push('addAlt', {});
   }
 
-  return out
+  return out;
 }

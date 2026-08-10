@@ -17,12 +17,7 @@ export interface GuitarString {
   targetMidi: number;
 }
 
-function makeString(
-  id: string,
-  label: string,
-  glyph: string,
-  openMidi: number,
-): GuitarString {
+function makeString(id: string, label: string, glyph: string, openMidi: number): GuitarString {
   return { id, label, glyph, openMidi, targetMidi: openMidi + 12 };
 }
 
@@ -64,11 +59,7 @@ export function stageTitle(string: GuitarString, stage: Stage): string {
  * are the ones this test invites: sounding the open string instead of the note
  * an octave up, and catching the 5th-fret harmonic instead of the 12th.
  */
-export function misfireMessage(
-  detectedMidi: number,
-  string: GuitarString,
-  stage: Stage,
-): string {
+export function misfireMessage(detectedMidi: number, string: GuitarString, stage: Stage): string {
   if (detectedMidi === string.openMidi) {
     return stage === 'harmonic'
       ? `That's the open ${string.label} string, an octave below the harmonic. Touch the string lightly right above the 12th fret wire rather than pressing it down.`

@@ -9,13 +9,13 @@ wherever it appears.
 Pure string/number math — no React, no native modules.
 
 ```ts
-import { buildChord, CHORD_TYPES, ROOTS } from '@/lib/chord-library'
-import type { Chord, ChordType, RootName } from '@/lib/chord-library'
+import { buildChord, CHORD_TYPES, ROOTS } from '@/lib/chord-library';
+import type { Chord, ChordType, RootName } from '@/lib/chord-library';
 
-const chord = buildChord('Gb', 'maj7')
-chord.symbol                        // "Gbmaj7"
-chord.tones.map((t) => t.note)      // ["Gb", "Bb", "Db", "F"]
-chord.tones.map((t) => t.degree)    // ["1", "3", "5", "maj7"]
+const chord = buildChord('Gb', 'maj7');
+chord.symbol; // "Gbmaj7"
+chord.tones.map((t) => t.note); // ["Gb", "Bb", "Db", "F"]
+chord.tones.map((t) => t.degree); // ["1", "3", "5", "maj7"]
 ```
 
 ## The catalogue
@@ -28,16 +28,16 @@ by the mixolydian spelling table — a root outside it has no spelling.
 
 Types are grouped into families for browsing (`FAMILY_ORDER`, `FAMILY_LABELS`):
 
-| Family | Types |
-|--------|-------|
-| `power` | 5 |
-| `triad` | maj, m, dim, aug |
-| `sus` | sus2, sus4, 7sus4 |
-| `added` | add9, m(add9) |
-| `sixth` | 6, m6, 6/9 |
-| `seventh` | 7, maj7, m7, m7(b5), dim7, m(maj7) |
-| `extended` | 9, maj9, m9, 11, m11, 13, m13 |
-| `altered` | 7(b9), 7(#9), 7(b5), 7(#5) |
+| Family     | Types                              |
+| ---------- | ---------------------------------- |
+| `power`    | 5                                  |
+| `triad`    | maj, m, dim, aug                   |
+| `sus`      | sus2, sus4, 7sus4                  |
+| `added`    | add9, m(add9)                      |
+| `sixth`    | 6, m6, 6/9                         |
+| `seventh`  | 7, maj7, m7, m7(b5), dim7, m(maj7) |
+| `extended` | 9, maj9, m9, 11, m11, 13, m13      |
+| `altered`  | 7(b9), 7(#9), 7(b5), 7(#5)         |
 
 ## Formulas are degrees, never semitones
 
@@ -55,12 +55,12 @@ knows which.
 Two labels are easy to misread, and they follow the spelling engine's existing
 vocabulary:
 
-| Label | Interval | Over C |
-|-------|----------|--------|
-| `7` | minor seventh | `Bb` |
-| `maj7` | major seventh | `B` |
-| `dim7` | diminished seventh | `Bbb` |
-| `m3` | minor third | `Eb` |
+| Label  | Interval           | Over C |
+| ------ | ------------------ | ------ |
+| `7`    | minor seventh      | `Bb`   |
+| `maj7` | major seventh      | `B`    |
+| `dim7` | diminished seventh | `Bbb`  |
+| `m3`   | minor third        | `Eb`   |
 
 Using `b7` where you meant a dominant seventh would spell the chord a semitone
 flat. The `Degree` union in `@/lib/theory` is the full list.
@@ -72,15 +72,15 @@ tones it can give up, in the order to give them up. The essential tones — the
 ones that make the name true — are `degrees` minus `dropOrder`.
 
 ```ts
-chordTypeById('maj9')!.dropOrder   // ['5']  — lose the fifth, keep 1/3/maj7/9
-chordTypeById('dim7')!.dropOrder   // []     — a symmetrical stack has no spare
-chordTypeById('min13')!.dropOrder  // ['5', '11', '9']
+chordTypeById('maj9')!.dropOrder; // ['5']  — lose the fifth, keep 1/3/maj7/9
+chordTypeById('dim7')!.dropOrder; // []     — a symmetrical stack has no spare
+chordTypeById('min13')!.dropOrder; // ['5', '11', '9']
 ```
 
 `essentialTones(chord, max)` applies it:
 
 ```ts
-essentialTones(buildChord('C', 'min13'), 4).map((t) => t.note)  // C Eb Bb A
+essentialTones(buildChord('C', 'min13'), 4).map((t) => t.note); // C Eb Bb A
 ```
 
 This is theory, not layout: it's why a `Cmaj9` on guitar is normally played
@@ -114,8 +114,8 @@ Where the honest spelling runs past a single accidental **and** the enharmonic
 root does better, `chord.spellingHint` names the better one:
 
 ```ts
-buildChord('D#', 'maj7').tones.map((t) => t.note)  // D# F## A# C##
-buildChord('D#', 'maj7').spellingHint              // "Ebmaj7"
+buildChord('D#', 'maj7').tones.map((t) => t.note); // D# F## A# C##
+buildChord('D#', 'maj7').spellingHint; // "Ebmaj7"
 ```
 
 70 of the 510 carry a hint. Ordinary flat-key chords don't: `Gb7` is one flat
@@ -125,17 +125,17 @@ correct.
 
 ## API
 
-| Export | What it is |
-|--------|------------|
-| `buildChord(root, type, options?)` | The entry point. `type` is a `ChordType` or its id. Throws on an unknown id. |
-| `essentialTones(chord, max)` | The tones that survive when only `max` fit. |
-| `chordSymbolFor(root, type)` | Root + suffix, e.g. `"Gbmaj7"`. |
-| `ROOTS` / `isRootName` / `enharmonicRoot` | The 17 roots and their pairings. |
-| `CHORD_TYPES` / `chordTypeById` / `chordTypesByFamily` | The catalogue. |
-| `FAMILY_ORDER` / `FAMILY_LABELS` | Browse-order and display names for families. |
-| `findChordTypes(query)` | Free-text search over name, symbol, id and aliases. Exact beats prefix beats substring. |
-| `parseChordSymbol(input)` | `"Cmaj7"` → `{ root, type }`, or `null`. Case-sensitive on `M`/`m`. |
-| `toChordTones(chord)` | Adapts to the `ChordTones` grid so `IntervalLattice` can render it. |
+| Export                                                 | What it is                                                                              |
+| ------------------------------------------------------ | --------------------------------------------------------------------------------------- |
+| `buildChord(root, type, options?)`                     | The entry point. `type` is a `ChordType` or its id. Throws on an unknown id.            |
+| `essentialTones(chord, max)`                           | The tones that survive when only `max` fit.                                             |
+| `chordSymbolFor(root, type)`                           | Root + suffix, e.g. `"Gbmaj7"`.                                                         |
+| `ROOTS` / `isRootName` / `enharmonicRoot`              | The 17 roots and their pairings.                                                        |
+| `CHORD_TYPES` / `chordTypeById` / `chordTypesByFamily` | The catalogue.                                                                          |
+| `FAMILY_ORDER` / `FAMILY_LABELS`                       | Browse-order and display names for families.                                            |
+| `findChordTypes(query)`                                | Free-text search over name, symbol, id and aliases. Exact beats prefix beats substring. |
+| `parseChordSymbol(input)`                              | `"Cmaj7"` → `{ root, type }`, or `null`. Case-sensitive on `M`/`m`.                     |
+| `toChordTones(chord)`                                  | Adapts to the `ChordTones` grid so `IntervalLattice` can render it.                     |
 
 ## Verification
 

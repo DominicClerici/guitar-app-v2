@@ -21,14 +21,7 @@ const DOUBLE_INLAY = 12;
 const MARKED_FRETS = new Set([...SINGLE_INLAYS, DOUBLE_INLAY]);
 
 // Wound strings are visibly thicker than the plain trebles; string 0 is the high e.
-const STRING_CLASS = [
-  'h-px',
-  'h-px',
-  'h-[1.25px]',
-  'h-[1.5px]',
-  'h-[1.75px]',
-  'h-[2px]',
-] as const;
+const STRING_CLASS = ['h-px', 'h-px', 'h-[1.25px]', 'h-[1.5px]', 'h-[1.75px]', 'h-[2px]'] as const;
 
 const colClass = (fret: number) => (fret === 0 ? 'w-[38px]' : 'w-[50px]');
 

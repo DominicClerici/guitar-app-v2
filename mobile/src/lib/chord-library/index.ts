@@ -9,19 +9,12 @@
 export { toChordTones } from './adapter';
 export { buildChord, chordSymbolFor, essentialTones } from './build';
 export {
-    CHORD_TYPES,
-    chordTypeById,
-    chordTypesByFamily,
-    FAMILY_LABELS,
-    FAMILY_ORDER
+  CHORD_TYPES,
+  chordTypeById,
+  chordTypesByFamily,
+  FAMILY_LABELS,
+  FAMILY_ORDER,
 } from './catalog';
 export { enharmonicRoot, isRootName, ROOTS } from './roots';
 export { findChordTypes, parseChordSymbol } from './search';
-export type {
-    BuildOptions,
-    Chord,
-    ChordFamily,
-    ChordTone,
-    ChordType,
-    RootName
-} from './types';
+export type { BuildOptions, Chord, ChordFamily, ChordTone, ChordType, RootName } from './types';

@@ -10,9 +10,9 @@ export { ScaleNeck } from './ScaleNeck';
 export { ScalePicker } from './ScalePicker';
 export { ScaleSummary } from './ScaleSummary';
 export {
-    useScaleVisualizer,
-    type Cell,
-    type DotTone,
-    type LabelMode,
-    type ScaleVisualizer
+  useScaleVisualizer,
+  type Cell,
+  type DotTone,
+  type LabelMode,
+  type ScaleVisualizer,
 } from './useScaleVisualizer';

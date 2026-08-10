@@ -6,7 +6,13 @@ import { z } from 'zod';
 import { pluck, prepare, release } from '@/features/scale-visualizer';
 import { toAccidentalGlyphs } from '@/lib/accidentals';
 import { isRootName, type RootName } from '@/lib/chord-library';
-import { buildScale, maskOf, noteToPitchClass, scaleTypeById, type Scale } from '@/lib/scale-library';
+import {
+  buildScale,
+  maskOf,
+  noteToPitchClass,
+  scaleTypeById,
+  type Scale,
+} from '@/lib/scale-library';
 import { useToken } from '@/lib/tokens';
 
 import { claimPlayback, releasePlayback } from '../playbackBus';

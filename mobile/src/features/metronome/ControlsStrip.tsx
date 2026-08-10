@@ -133,7 +133,13 @@ function Dots({ count, selected }: { count: number; selected: boolean }) {
         <View
           key={i}
           className={`h-[5px] w-[5px] rounded-full ${
-            selected ? (i === 0 ? 'bg-accent' : 'bg-accent-line') : i === 0 ? 'bg-ink' : 'bg-ink-faint'
+            selected
+              ? i === 0
+                ? 'bg-accent'
+                : 'bg-accent-line'
+              : i === 0
+                ? 'bg-ink'
+                : 'bg-ink-faint'
           }`}
         />
       ))}

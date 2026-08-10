@@ -6,11 +6,7 @@ import { useFace } from '@/components/CornerFace';
 import { Segmented } from '@/components/Segmented';
 import { Sheet, type SheetRef } from '@/components/Sheet';
 import { toAccidentalGlyphs } from '@/lib/accidentals';
-import {
-  DEFAULT_ROAM_EVERY,
-  type KeyPolicy,
-  type TrainerConfig,
-} from '@/lib/ear-training';
+import { DEFAULT_ROAM_EVERY, type KeyPolicy, type TrainerConfig } from '@/lib/ear-training';
 import { notesSharp } from '@/lib/theory';
 
 import { DegreeCircle } from './DegreeCircle';

@@ -3,20 +3,20 @@
 `src/lib/guitar-voicings/` puts a chord on a neck: give it a `Chord` from
 `chord-library` and get back every way a hand can hold it, ranked. It is the
 other half of the sentence `LIBRARY.md` starts — the chord library decides
-*which notes have to be there*, this decides *where they go and whether anyone
-can play them*.
+_which notes have to be there_, this decides _where they go and whether anyone
+can play them_.
 
 Pure string/number math — no React, no native modules. Standard tuning only.
 
 ```ts
-import { buildChord } from '@/lib/chord-library'
-import { chordShapes } from '@/lib/guitar-voicings'
+import { buildChord } from '@/lib/chord-library';
+import { chordShapes } from '@/lib/guitar-voicings';
 
-const shapes = chordShapes(buildChord('C', 'maj7'))
-shapes.featured      // a couple per neck region — the default view
-shapes.all           // every root-position shape, grouped
-shapes.inversions    // the second pass: another chord tone in the bass
-shapes.total         // 118
+const shapes = chordShapes(buildChord('C', 'maj7'));
+shapes.featured; // a couple per neck region — the default view
+shapes.all; // every root-position shape, grouped
+shapes.inversions; // the second pass: another chord tone in the bass
+shapes.total; // 118
 ```
 
 ## String order
@@ -28,7 +28,7 @@ and `ChordDiagram` — and nowhere else. Reading `frets[0]` as the low E is the
 easiest mistake to make against this module.
 
 ```ts
-chartFor([0, 1, 0, 2, 3, null])   // "x 3 2 0 1 0"  — open C
+chartFor([0, 1, 0, 2, 3, null]); // "x 3 2 0 1 0"  — open C
 ```
 
 ## How the search works
@@ -36,7 +36,7 @@ chartFor([0, 1, 0, 2, 3, null])   // "x 3 2 0 1 0"  — open C
 The space is partitioned by hand position, so no shape is generated twice:
 
 - **position 0** — shapes with no fingered notes at all.
-- **position p** — shapes whose *lowest fingered fret* is exactly `p`, reaching
+- **position p** — shapes whose _lowest fingered fret_ is exactly `p`, reaching
   up to `p+3`.
 
 Each string may be silent, ring open, or take a fret in the window, and only
@@ -49,15 +49,15 @@ precomputed. `chordShapes` memoises per chord symbol.
 
 Two of these are theory and come from the chord library; the rest are anatomy.
 
-| Rule | Why |
-|------|-----|
-| Every sounding pitch is a chord tone | Built into the candidate set |
-| Every essential tone is present | `essentialTones(chord, n)` — the library's `dropOrder` |
-| Three voices, or two for a power chord | Fewer is an interval, not a chord |
-| At most one interior muted string | A string deadened mid-chord is the hardest thing on the list |
-| Fingered span ≤ 4 frets | Longer stretches exist; not in a reference tool |
-| Four fingers, after any barre | — |
-| No mud (see below) | Correct on paper, unusable in the room |
+| Rule                                   | Why                                                          |
+| -------------------------------------- | ------------------------------------------------------------ |
+| Every sounding pitch is a chord tone   | Built into the candidate set                                 |
+| Every essential tone is present        | `essentialTones(chord, n)` — the library's `dropOrder`       |
+| Three voices, or two for a power chord | Fewer is an interval, not a chord                            |
+| At most one interior muted string      | A string deadened mid-chord is the hardest thing on the list |
+| Fingered span ≤ 4 frets                | Longer stretches exist; not in a reference tool              |
+| Four fingers, after any barre          | —                                                            |
+| No mud (see below)                     | Correct on paper, unusable in the room                       |
 
 ### Mud
 
@@ -65,14 +65,14 @@ Two adjacent voices too close together, too low down. The thresholds are on the
 lower note's register, because the same interval is a problem at the bottom of
 the neck and a colour an octave up:
 
-| Below | Minimum gap | |
-|-------|-------------|--|
-| A2 (45) | 4 semitones | thirds and wider only |
-| C3 (48) | 3 semitones | no seconds at all |
+| Below   | Minimum gap |                                 |
+| ------- | ----------- | ------------------------------- |
+| A2 (45) | 4 semitones | thirds and wider only           |
+| C3 (48) | 3 semitones | no seconds at all               |
 | A3 (57) | 2 semitones | whole tones fine, semitones not |
 
 The last two thresholds are deliberately loose enough to allow the sound a chord
-is *named* for: `x 3 3 0 1 1` puts F3 against G3, and that whole tone is what a
+is _named_ for: `x 3 3 0 1 1` puts F3 against G3, and that whole tone is what a
 sus4 chord is.
 
 ### Barres
@@ -84,7 +84,7 @@ it a hand rather than a diagram:
 
 - Nothing inside the span may be **muted or ringing open** — the finger is
   already lying across it.
-- Strings inside the span *may* be fretted higher; that is how a D-shape barre
+- Strings inside the span _may_ be fretted higher; that is how a D-shape barre
   (`x 5 7 7 7 5`) works.
 - Every remaining fretted note must fall on **one side** of the barre. A barre
   across the middle three strings with notes above and below it wants the ring
@@ -114,7 +114,7 @@ open chord by using fewer fingers.
 
 ## The bass is a pitch, not a string
 
-A low E fretted at the eighth fret sounds *above* an open A. The bass degree is
+A low E fretted at the eighth fret sounds _above_ an open A. The bass degree is
 taken from the lowest sounding **pitch**, which is why `[8 0 0 0 11 0]` is a
 C13 with its thirteenth in the bass and belongs in the inversions pass.
 
@@ -131,7 +131,7 @@ chords rather than the barre shapes at the same position.
 
 `pins.ts` hoists the shape a player expects to see first. **Pins reorder, never
 inject**: a pin is matched against what the generator produced, and a pin the
-generator did *not* produce fails the verify script. It is a generator bug, not
+generator did _not_ produce fails the verify script. It is a generator bug, not
 a missing chord — so the list can never paper over a filter throwing away real
 voicings, and it doubles as a regression test.
 
@@ -157,11 +157,11 @@ check after changing the generator, the scorer, or anything in `@/lib/theory`.
 
 ## API
 
-| Export | What it is |
-|--------|------------|
-| `chordShapes(chord)` | The entry point. Featured, all, inversions, total. Memoised. |
-| `generateVoicings(chord, options?)` | The raw ranked list. `{ inversions: true }` runs the second pass. |
-| `groupByRegion(voicings, limit?)` | Group in neck order, dropping empty regions. |
-| `chartFor` / `fretsFromChart` | The `x 3 2 0 1 0` shorthand, both directions. |
-| `REGION_ORDER` / `REGION_LABELS` | Browse order and display names. |
-| `pinnedFor(chord)` / `pinKey(chord)` | The curated ordering hints. |
+| Export                               | What it is                                                        |
+| ------------------------------------ | ----------------------------------------------------------------- |
+| `chordShapes(chord)`                 | The entry point. Featured, all, inversions, total. Memoised.      |
+| `generateVoicings(chord, options?)`  | The raw ranked list. `{ inversions: true }` runs the second pass. |
+| `groupByRegion(voicings, limit?)`    | Group in neck order, dropping empty regions.                      |
+| `chartFor` / `fretsFromChart`        | The `x 3 2 0 1 0` shorthand, both directions.                     |
+| `REGION_ORDER` / `REGION_LABELS`     | Browse order and display names.                                   |
+| `pinnedFor(chord)` / `pinKey(chord)` | The curated ordering hints.                                       |

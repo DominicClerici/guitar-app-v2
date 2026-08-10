@@ -40,15 +40,7 @@ export function LabelModeToggle({
   );
 }
 
-function ModeButton({
-  label,
-  on,
-  onPress,
-}: {
-  label: string;
-  on: boolean;
-  onPress: () => void;
-}) {
+function ModeButton({ label, on, onPress }: { label: string; on: boolean; onPress: () => void }) {
   const face = useFace(on ? 'slab' : 'bare', 7);
 
   return (

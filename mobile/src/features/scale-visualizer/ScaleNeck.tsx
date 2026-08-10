@@ -51,14 +51,7 @@ interface Props {
  * stacked layers — inlays, then the strings, then a cell per position. Full-bleed
  * and horizontally scrollable, and when a box is showing it scrolls itself to it.
  */
-export function ScaleNeck({
-  cells,
-  hue,
-  position,
-  soundingKey,
-  onPressNote,
-  veilToken,
-}: Props) {
+export function ScaleNeck({ cells, hue, position, soundingKey, onPressNote, veilToken }: Props) {
   const centerOnX = position ? (fretLeft(position.from) + fretRight(position.to)) / 2 : null;
 
   return (

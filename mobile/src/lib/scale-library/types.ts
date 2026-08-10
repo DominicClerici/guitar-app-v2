@@ -3,11 +3,7 @@
 // from that. See index.ts for how this module sits next to the others.
 
 export type ScaleFamily =
-  | 'major-modes'
-  | 'pentatonic'
-  | 'harmonic-minor'
-  | 'melodic-minor'
-  | 'harmonic-major';
+  'major-modes' | 'pentatonic' | 'harmonic-minor' | 'melodic-minor' | 'harmonic-major';
 
 /** The three non-accent jewel hues in global.css, usable as a tint. */
 export type JewelHue = 'amber' | 'rose' | 'violet';

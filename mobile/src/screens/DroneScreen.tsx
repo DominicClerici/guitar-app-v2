@@ -74,10 +74,7 @@ export function DroneScreen() {
 
   const [corners, setCorners] = useState<CornerStyle>('circular');
 
-  const detail = [
-    voiceById(drone.voiceId).label,
-    drone.intonation === 'just' ? 'Pure' : 'Equal',
-  ];
+  const detail = [voiceById(drone.voiceId).label, drone.intonation === 'just' ? 'Pure' : 'Equal'];
 
   return (
     <CornerStyleProvider value={corners}>

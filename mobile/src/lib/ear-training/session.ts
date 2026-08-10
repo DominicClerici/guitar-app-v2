@@ -7,9 +7,7 @@
 export const DEFAULT_ROAM_EVERY = 10;
 
 /** Where the tonic lives over a session. */
-export type KeyPolicy =
-  | { mode: 'fixed'; tonicPc: number }
-  | { mode: 'roaming'; everyN: number };
+export type KeyPolicy = { mode: 'fixed'; tonicPc: number } | { mode: 'roaming'; everyN: number };
 
 export interface TrainerConfig {
   /** Degrees in play, as semitones above the tonic. At least two. */

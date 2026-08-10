@@ -11,10 +11,4 @@
 // module adds no scales of its own.
 
 export { scalePlanFor } from './analyze';
-export type {
-  ExceptionSpan,
-  NoteDelta,
-  PentatonicVerdict,
-  ScalePlan,
-  ScaleTone,
-} from './types';
+export type { ExceptionSpan, NoteDelta, PentatonicVerdict, ScalePlan, ScaleTone } from './types';

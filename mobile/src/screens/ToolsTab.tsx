@@ -292,9 +292,7 @@ export function ToolsTab() {
       <TunerSheet ref={tunerSheet} />
       <BpmSheet
         ref={bpmSheet}
-        onUseTempo={(bpm) =>
-          router.push({ pathname: '/metronome', params: { bpm: String(bpm) } })
-        }
+        onUseTempo={(bpm) => router.push({ pathname: '/metronome', params: { bpm: String(bpm) } })}
       />
     </View>
   );

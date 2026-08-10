@@ -502,8 +502,8 @@ function SummaryPhase({
 
         <Text className="mt-[16px] text-[12px] leading-[17px] text-ink-faint">
           Distances are estimates, derived from the scale length and carrying roughly ±
-          {TOLERANCE_CENTS} cents of measurement noise. They assume a saddle you can move for
-          that string alone — on a fixed or shared compensated saddle, go by the direction only.
+          {TOLERANCE_CENTS} cents of measurement noise. They assume a saddle you can move for that
+          string alone — on a fixed or shared compensated saddle, go by the direction only.
         </Text>
       </ScrollView>
 

@@ -88,9 +88,7 @@ export function TempoRail({ bpm, onChange }: Props) {
       // Drag left and the higher numbers come round, the way a wheel would turn.
       travelled.value = -event.translationX / PX_PER_BPM;
 
-      const whole = Math.round(
-        Math.max(MIN_BPM, Math.min(MAX_BPM, from.value + travelled.value)),
-      );
+      const whole = Math.round(Math.max(MIN_BPM, Math.min(MAX_BPM, from.value + travelled.value)));
       if (whole === reported.value) return;
       reported.value = whole;
       runOnJS(onChange)(whole);

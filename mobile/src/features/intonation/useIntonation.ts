@@ -59,10 +59,7 @@ export function useIntonation(): Intonation {
   const taken = stage === 'harmonic' ? takes.harmonic.length : takes.fretted.length;
   const isLast = index === STRINGS.length - 1;
 
-  const result = useMemo(
-    () => results.find((r) => r.stringId === string.id),
-    [results, string.id],
-  );
+  const result = useMemo(() => results.find((r) => r.stringId === string.id), [results, string.id]);
 
   const begin = useCallback(() => {
     setIndex(0);

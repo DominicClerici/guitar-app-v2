@@ -43,14 +43,7 @@ const AMBIGUITY_EPSILON = 0.18;
 const MAX_ASCENT_SWEEPS = 4;
 const SCORE_IMPROVEMENT_EPSILON = 1e-9;
 
-const SEVENTH_QUALITIES = new Set<Quality>([
-  'dom7',
-  'maj7',
-  'min7',
-  'min7b5',
-  'dim7',
-  'minMaj7',
-]);
+const SEVENTH_QUALITIES = new Set<Quality>(['dom7', 'maj7', 'min7', 'min7b5', 'dim7', 'minMaj7']);
 
 // Blues and blues-derived rock put a dominant 7th on I and IV as tonic colour,
 // not as a functional dominant: a 12-bar in C is C7–F7–G7 and never leaves C.
@@ -95,18 +88,10 @@ function keyDisplayName(tonicPc: number, mode: Mode, preference: 'sharp' | 'flat
   let base: string;
   if (mode === 'major') {
     base =
-      tonicPc === MAJOR_TIE_PC
-        ? preference === 'flat'
-          ? 'G♭'
-          : 'F♯'
-        : MAJOR_KEY_NAMES[tonicPc];
+      tonicPc === MAJOR_TIE_PC ? (preference === 'flat' ? 'G♭' : 'F♯') : MAJOR_KEY_NAMES[tonicPc];
   } else {
     base =
-      tonicPc === MINOR_TIE_PC
-        ? preference === 'flat'
-          ? 'E♭'
-          : 'D♯'
-        : MINOR_KEY_NAMES[tonicPc];
+      tonicPc === MINOR_TIE_PC ? (preference === 'flat' ? 'E♭' : 'D♯') : MINOR_KEY_NAMES[tonicPc];
   }
   return `${base} ${mode}`;
 }
@@ -117,10 +102,32 @@ function keyDisplayName(tonicPc: number, mode: Mode, preference: 'sharp' | 'flat
 // A minor) have no side of their own; chromatic chords in them conventionally
 // take flats (♭III/♭VI/♭VII borrowings), which also matches the app default.
 const MAJOR_SIDES = [
-  'flat', 'flat', 'sharp', 'flat', 'sharp', 'flat', '', 'sharp', 'flat', 'sharp', 'flat', 'sharp',
+  'flat',
+  'flat',
+  'sharp',
+  'flat',
+  'sharp',
+  'flat',
+  '',
+  'sharp',
+  'flat',
+  'sharp',
+  'flat',
+  'sharp',
 ] as const;
 const MINOR_SIDES = [
-  'flat', 'sharp', 'flat', '', 'sharp', 'flat', 'sharp', 'flat', 'sharp', 'flat', 'flat', 'sharp',
+  'flat',
+  'sharp',
+  'flat',
+  '',
+  'sharp',
+  'flat',
+  'sharp',
+  'flat',
+  'sharp',
+  'flat',
+  'flat',
+  'sharp',
 ] as const;
 
 /**
@@ -166,12 +173,7 @@ export function isDominantIdiom(features: readonly ChordFeature[], tonicPc: numb
   return atHome && dom7 / features.length >= BLUES_DOM7_RATIO;
 }
 
-function isTonicChord(
-  feature: ChordFeature,
-  tonicPc: number,
-  mode: Mode,
-  blues: boolean,
-): boolean {
+function isTonicChord(feature: ChordFeature, tonicPc: number, mode: Mode, blues: boolean): boolean {
   if (mod12(feature.rootPc - tonicPc) !== 0) return false;
   const q = qualityOf(feature);
   // A chord with no third names a tonic without committing to a mode, and a
@@ -185,12 +187,7 @@ function isTonicChord(
     : q === 'min' || q === 'min7' || q === 'minMaj7';
 }
 
-function chordFitScore(
-  feature: ChordFeature,
-  tonicPc: number,
-  mode: Mode,
-  blues: boolean,
-): number {
+function chordFitScore(feature: ChordFeature, tonicPc: number, mode: Mode, blues: boolean): number {
   const offset = mod12(feature.rootPc - tonicPc);
   const quality = qualityOf(feature);
   const slot = slotFor(mode, offset, quality);

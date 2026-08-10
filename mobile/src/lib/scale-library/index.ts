@@ -10,11 +10,11 @@
 // Pure string/number math. No React, no native modules.
 
 export {
-    FAMILY_LABELS,
-    FAMILY_ORDER,
-    SCALE_TYPES,
-    scaleTypeById,
-    scaleTypesByFamily
+  FAMILY_LABELS,
+  FAMILY_ORDER,
+  SCALE_TYPES,
+  scaleTypeById,
+  scaleTypesByFamily,
 } from './catalog';
 export { intervalLabel, stepFormula } from './intervals';
 export { preferredRoot, relatedScales, type Related, type RelatedScale } from './neighbours';

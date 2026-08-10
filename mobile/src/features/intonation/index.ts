@@ -20,5 +20,11 @@ export {
   type GuitarString,
   type Stage,
 } from './strings';
-export { orderedResults, TAKES, useIntonation, type Measurement, type Phase } from './useIntonation';
+export {
+  orderedResults,
+  TAKES,
+  useIntonation,
+  type Measurement,
+  type Phase,
+} from './useIntonation';
 export { useSampleCapture, RECORD_MS, type CaptureProblem } from './useSampleCapture';

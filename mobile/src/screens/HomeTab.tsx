@@ -110,7 +110,9 @@ export function HomeTab() {
           <View className="mt-[22px] flex-row gap-[12px]">
             <Pressable className="h-[52px] flex-1 flex-row items-center justify-center gap-[9px] rounded-[10px] border border-t-[rgba(255,255,255,0.4)] border-x-transparent border-b-[rgba(0,0,0,0.28)] bg-accent">
               <SymbolView name="play.fill" size={14} tintColor={onAccent} />
-              <Text className="text-[15px] font-bold tracking-[0.3px] text-on-accent">Continue</Text>
+              <Text className="text-[15px] font-bold tracking-[0.3px] text-on-accent">
+                Continue
+              </Text>
             </Pressable>
             <Pressable className="h-[52px] w-[52px] items-center justify-center rounded-[10px] border border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface-raised">
               <SymbolView name="metronome" size={18} tintColor={muted} />

@@ -3,7 +3,12 @@
 // React, no native modules: the renderer and repository live in
 // src/features/articles. See docs/articles.md for how to author content.
 
-export { ArticleParseError, parseArticleDocument, parseArticleMeta, SCHEMA_VERSION } from './schema';
+export {
+  ArticleParseError,
+  parseArticleDocument,
+  parseArticleMeta,
+  SCHEMA_VERSION,
+} from './schema';
 export type {
   ArticleDocument,
   ArticleMeta,

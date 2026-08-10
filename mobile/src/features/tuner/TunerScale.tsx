@@ -11,7 +11,14 @@ import {
 
 import { AnimatedView } from '@/components/AnimatedView';
 
-import { CENTS_STOPS, MAX_CENTS, centsRamp, glowRamp, useTunerColors, withAlpha } from './tunerColors';
+import {
+  CENTS_STOPS,
+  MAX_CENTS,
+  centsRamp,
+  glowRamp,
+  useTunerColors,
+  withAlpha,
+} from './tunerColors';
 
 // 25 graduations: every fifth is major, the rest fine. The centre is the in-tune mark.
 const TICKS = Array.from({ length: 25 }, (_, i) => i);

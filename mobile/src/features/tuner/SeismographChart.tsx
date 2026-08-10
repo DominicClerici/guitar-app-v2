@@ -95,10 +95,7 @@ export function SeismographFrame({
 
   return (
     <View style={{ width, height }}>
-      <View
-        className="absolute top-0 w-px bg-line"
-        style={{ left: halfWidth - 0.5, height }}
-      />
+      <View className="absolute top-0 w-px bg-line" style={{ left: halfWidth - 0.5, height }} />
       {[-50, -25, 25, 50].map((c) => (
         <View
           key={c}

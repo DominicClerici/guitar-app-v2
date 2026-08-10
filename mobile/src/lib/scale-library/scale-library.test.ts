@@ -136,19 +136,14 @@ describe('stepFormula', () => {
   });
 
   it('writes a three-semitone gap as one and a half', () => {
-    expect(stepFormula(typeOf('minor-pentatonic').semitones)).toEqual([
-      '1½',
-      'W',
-      'W',
-      '1½',
-      'W',
-    ]);
+    expect(stepFormula(typeOf('minor-pentatonic').semitones)).toEqual(['1½', 'W', 'W', '1½', 'W']);
   });
 
   it('always adds up to an octave', () => {
     for (const type of SCALE_TYPES) {
       const total = type.semitones.reduce((sum, semitone, index) => {
-        const next = index === type.semitones.length - 1 ? type.semitones[0] + 12 : type.semitones[index + 1];
+        const next =
+          index === type.semitones.length - 1 ? type.semitones[0] + 12 : type.semitones[index + 1];
         return sum + (next - semitone);
       }, 0);
       expect(total, type.id).toBe(12);

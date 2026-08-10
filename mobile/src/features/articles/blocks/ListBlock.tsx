@@ -16,10 +16,7 @@ export function ListBlock({ block }: { block: ListBlockData }) {
           ) : (
             <Text className="w-[18px] pt-[1px] text-right text-[13px] text-accent">•</Text>
           )}
-          <RichText
-            spans={item}
-            className="flex-1 text-[15px] leading-[23px] text-ink-muted"
-          />
+          <RichText spans={item} className="flex-1 text-[15px] leading-[23px] text-ink-muted" />
         </View>
       ))}
     </View>

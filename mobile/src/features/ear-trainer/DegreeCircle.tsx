@@ -136,9 +136,7 @@ function DegreeKey({
       {sounding ? (
         <View className="pointer-events-none absolute -inset-[7px] rounded-full bg-accent-wash" />
       ) : null}
-      <Text className={`font-mono text-[14px] font-semibold tracking-[0.3px] ${ink}`}>
-        {label}
-      </Text>
+      <Text className={`font-mono text-[14px] font-semibold tracking-[0.3px] ${ink}`}>{label}</Text>
     </Pressable>
   );
 }

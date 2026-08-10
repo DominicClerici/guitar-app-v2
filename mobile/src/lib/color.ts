@@ -47,7 +47,10 @@ export function splitAlpha(color: string): { color: string; opacity: number } {
   if (opacity === null) return opaque;
 
   return {
-    color: `${base}(${parts.slice(0, 3).map((part) => part.trim()).join(', ')})`,
+    color: `${base}(${parts
+      .slice(0, 3)
+      .map((part) => part.trim())
+      .join(', ')})`,
     opacity,
   };
 }

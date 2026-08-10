@@ -97,8 +97,7 @@ export function KeyReadout({ estimate, keyChoice, onSelectKey }: Props) {
       {ambiguous ? (
         <View className="mt-[18px]">
           <Text className="text-[12.5px] leading-[18px] text-ink-muted">
-            Two keys fit this progression about equally. Pick one to read the numerals against
-            it.
+            Two keys fit this progression about equally. Pick one to read the numerals against it.
           </Text>
           <View className="mt-[12px] flex-row gap-[8px]">
             {pair.map((candidate, i) => {

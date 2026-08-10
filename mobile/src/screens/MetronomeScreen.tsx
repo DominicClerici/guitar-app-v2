@@ -29,7 +29,9 @@ export function MetronomeScreen() {
   const { bpm: bpmParam } = useLocalSearchParams<{ bpm?: string }>();
   const handedBpm = Number(bpmParam);
 
-  const metronome = useMetronome(Number.isFinite(handedBpm) && handedBpm > 0 ? handedBpm : undefined);
+  const metronome = useMetronome(
+    Number.isFinite(handedBpm) && handedBpm > 0 ? handedBpm : undefined,
+  );
 
   return (
     <View className="flex-1 bg-bg" style={{ paddingTop: Math.max(insets.top - 6, 0) }}>
@@ -84,11 +86,7 @@ export function MetronomeScreen() {
 
         <View className="mt-[20px]">
           <TempoRail bpm={metronome.bpm} onChange={metronome.setBpm} />
-          <TempoSteppers
-            onStep={metronome.nudge}
-            onTap={metronome.tap}
-            taps={metronome.taps}
-          />
+          <TempoSteppers onStep={metronome.nudge} onTap={metronome.tap} taps={metronome.taps} />
         </View>
 
         <View className="mt-[22px]">
@@ -109,11 +107,7 @@ export function MetronomeScreen() {
         className="items-center border-t border-t-line-soft bg-bg pt-[14px]"
         style={{ paddingBottom: insets.bottom + 12 }}
       >
-        <TransportButton
-          running={metronome.running}
-          what="metronome"
-          onPress={metronome.toggle}
-        />
+        <TransportButton running={metronome.running} what="metronome" onPress={metronome.toggle} />
       </View>
     </View>
   );

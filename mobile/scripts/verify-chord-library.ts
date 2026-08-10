@@ -23,10 +23,7 @@ for (const type of CHORD_TYPES) {
 
   check(type.degrees[0] === '1', `${type.id}: formula must start at the root`);
 
-  check(
-    new Set(type.degrees).size === type.degrees.length,
-    `${type.id}: formula repeats a degree`,
-  );
+  check(new Set(type.degrees).size === type.degrees.length, `${type.id}: formula repeats a degree`);
 
   const semitones = type.degrees.map((degree) => DEGREE_SEMITONES[degree]);
   check(

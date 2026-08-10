@@ -57,7 +57,7 @@ export function chordPitches(tones: ChordTone[]): number[] {
 
     // The next placement of this pitch class above the note below it, pushed up
     // an octave if it landed too close.
-    const rise = ((((tones[index].pitchClass - previous) % 12) + 12) % 12) || 12;
+    const rise = (((tones[index].pitchClass - previous) % 12) + 12) % 12 || 12;
     let pitch = previous + rise;
     if (rise < gap) pitch += 12;
 

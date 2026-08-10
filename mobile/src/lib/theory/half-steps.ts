@@ -2,7 +2,7 @@
 // "halfSteps" array (offsets relative to a given root) the rest of the engine
 // is built on.
 
-import { notesEnhFlat, notesEnhSharp, notesFlat, notesSharp } from './constants'
+import { notesEnhFlat, notesEnhSharp, notesFlat, notesSharp } from './constants';
 
 /**
  * Returns the pitch class (0..11) of a note name. Throws if the name is not
@@ -19,10 +19,10 @@ export function noteToSemitone(note: string): number {
       notesEnhFlat[i] === note ||
       notesEnhSharp[i] === note
     ) {
-      return i
+      return i;
     }
   }
-  throw new Error(`noteToSemitone: unknown note "${note}"`)
+  throw new Error(`noteToSemitone: unknown note "${note}"`);
 }
 
 /**
@@ -34,7 +34,7 @@ export function noteToSemitone(note: string): number {
  * undefined — same behavior as the source. Callers should filter upstream.
  */
 export function getHalfSteps(root: string, notes: string[]): number[] {
-  let s: number | undefined
+  let s: number | undefined;
   for (let i = 0; i < 12; i += 1) {
     if (
       notesFlat[i] === root ||
@@ -42,17 +42,17 @@ export function getHalfSteps(root: string, notes: string[]): number[] {
       notesEnhFlat[i] === root ||
       notesEnhSharp[i] === root
     ) {
-      s = i
-      break
+      s = i;
+      break;
     }
   }
-  if (s === undefined) throw new Error(`getHalfSteps: unknown root "${root}"`)
+  if (s === undefined) throw new Error(`getHalfSteps: unknown root "${root}"`);
 
-  const out: number[] = []
+  const out: number[] = [];
   for (let a = 0; a < notes.length; a += 1) {
     if (notes[a] === root) {
-      out[a] = 0
-      continue
+      out[a] = 0;
+      continue;
     }
     for (let i = 0; i < 12; i += 1) {
       if (
@@ -61,11 +61,11 @@ export function getHalfSteps(root: string, notes: string[]): number[] {
         notesEnhFlat[i] === notes[a] ||
         notesEnhSharp[i] === notes[a]
       ) {
-        const wrapped = i < s ? i + 12 : i
-        out[a] = wrapped - s
-        break
+        const wrapped = i < s ? i + 12 : i;
+        out[a] = wrapped - s;
+        break;
       }
     }
   }
-  return out
+  return out;
 }

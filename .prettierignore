@@ -8,3 +8,5 @@ pnpm-lock.yaml
 **/.wrangler
 # drizzle-kit's own bookkeeping. The .sql migrations are still formatted by hand and reviewed.
 packages/db/drizzle/meta
+mobile/ios/
+*.md

@@ -214,7 +214,8 @@ function describe(error: z.ZodError): string {
 
 export function parseArticleMeta(data: unknown): ArticleMeta {
   const result = metaSchema.safeParse(data);
-  if (!result.success) throw new ArticleParseError(`Invalid article meta — ${describe(result.error)}`);
+  if (!result.success)
+    throw new ArticleParseError(`Invalid article meta — ${describe(result.error)}`);
   return result.data;
 }
 

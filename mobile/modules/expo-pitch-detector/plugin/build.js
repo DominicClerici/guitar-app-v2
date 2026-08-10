@@ -11,7 +11,7 @@ const withMicPermissions = (config) => {
     const app = cfg.modResults.manifest;
     app['uses-permission'] = app['uses-permission'] || [];
     const has = app['uses-permission'].some(
-      (p) => p.$['android:name'] === 'android.permission.RECORD_AUDIO'
+      (p) => p.$['android:name'] === 'android.permission.RECORD_AUDIO',
     );
     if (!has) {
       app['uses-permission'].push({ $: { 'android:name': 'android.permission.RECORD_AUDIO' } });

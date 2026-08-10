@@ -54,16 +54,30 @@
       "type": "table",
       "header": [[{ "text": "Degree" }], [{ "text": "Major" }], [{ "text": "Minor" }]],
       "rows": [
-        [[{ "text": "Third" }], [{ "text": "3", "marks": ["code"] }], [{ "text": "b3", "marks": ["code"] }]],
-        [[{ "text": "Sixth" }], [{ "text": "6", "marks": ["code"] }], [{ "text": "b6", "marks": ["code"] }]],
-        [[{ "text": "Seventh" }], [{ "text": "7", "marks": ["code"] }], [{ "text": "b7", "marks": ["code"] }]]
+        [
+          [{ "text": "Third" }],
+          [{ "text": "3", "marks": ["code"] }],
+          [{ "text": "b3", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "Sixth" }],
+          [{ "text": "6", "marks": ["code"] }],
+          [{ "text": "b6", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "Seventh" }],
+          [{ "text": "7", "marks": ["code"] }],
+          [{ "text": "b7", "marks": ["code"] }]
+        ]
       ]
     },
     { "type": "heading", "level": 1, "spans": [{ "text": "Hear it" }] },
     {
       "type": "paragraph",
       "spans": [
-        { "text": "Both scales below start from the same root, A. Tap play on each and listen for the third note — the tones tinted " },
+        {
+          "text": "Both scales below start from the same root, A. Tap play on each and listen for the third note — the tones tinted "
+        },
         { "text": "amber", "marks": [{ "type": "color", "tone": "amber" }] },
         { "text": " are the ones minor lowers." }
       ]
@@ -77,7 +91,9 @@
       "type": "callout",
       "tone": "tip",
       "spans": [
-        { "text": "Play the major run, then immediately the minor one. The mood flips on the third note — that's the " },
+        {
+          "text": "Play the major run, then immediately the minor one. The mood flips on the third note — that's the "
+        },
         { "text": "b3", "marks": ["code"] },
         { "text": " doing the work." }
       ]
@@ -109,7 +125,9 @@
       "spans": [
         { "text": "Comparing scales on the same root — A major against A minor — is a " },
         { "text": "parallel", "marks": ["italic"] },
-        { "text": " comparison. Relative comparison (C major against A minor) shares the notes and moves the root instead." }
+        {
+          "text": " comparison. Relative comparison (C major against A minor) shares the notes and moves the root instead."
+        }
       ]
     }
   ]

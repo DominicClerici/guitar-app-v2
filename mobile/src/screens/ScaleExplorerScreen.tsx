@@ -69,8 +69,7 @@ export function ScaleExplorerScreen() {
         <Header onBack={() => router.back()} />
         <View className="px-[18px] pt-[10px]">
           <Text className="text-[12.5px] leading-[18px] text-ink-muted">
-            Build a progression in the key detector first — the scales to play over it show up
-            here.
+            Build a progression in the key detector first — the scales to play over it show up here.
           </Text>
         </View>
       </View>
@@ -239,7 +238,10 @@ export function ScaleExplorerScreen() {
             {plan.exceptions.map((span) => (
               <View key={span.start} className="flex-row items-center gap-[8px]">
                 <View className="h-[7px] w-[7px] rounded-full bg-amber" />
-                <Text className="flex-1 text-[12.5px] leading-[18px] text-ink-muted" numberOfLines={2}>
+                <Text
+                  className="flex-1 text-[12.5px] leading-[18px] text-ink-muted"
+                  numberOfLines={2}
+                >
                   <Text className="font-semibold text-ink">
                     {chords
                       .slice(span.start, span.end + 1)

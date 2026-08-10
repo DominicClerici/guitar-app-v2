@@ -92,7 +92,11 @@ function candidatesFor(
 
     // Position 0 is the all-open shapes and nothing else; every fingered shape
     // belongs to the position named by its lowest finger.
-    for (let fret = position; position > 0 && fret <= Math.min(position + WINDOW, maxFret); fret += 1) {
+    for (
+      let fret = position;
+      position > 0 && fret <= Math.min(position + WINDOW, maxFret);
+      fret += 1
+    ) {
       if (byPitchClass.has(pitchClassAt(string, fret))) options.push(fret);
     }
 
@@ -131,9 +135,7 @@ function evaluate(
   const interiorMutes = countInteriorMutes(frets, sounding);
   if (interiorMutes > 1) return null;
 
-  const tones = frets.map((fret, string) =>
-    fret === null ? null : toneAt(chord, string, fret),
-  );
+  const tones = frets.map((fret, string) => (fret === null ? null : toneAt(chord, string, fret)));
   if (tones.some((tone, index) => frets[index] !== null && !tone)) return null;
 
   const present = new Set<Degree>();

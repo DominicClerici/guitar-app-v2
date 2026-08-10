@@ -142,10 +142,7 @@ export function TopTabs() {
           </PagerView>
         </Animated.View>
         {IncomingPage && (
-          <Animated.View
-            pointerEvents="none"
-            style={[StyleSheet.absoluteFill, overlayAnimStyle]}
-          >
+          <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, overlayAnimStyle]}>
             <IncomingPage />
           </Animated.View>
         )}

@@ -191,10 +191,13 @@ function releaseDrone(note: DroneNote, at: number, over: number) {
 
   const context = ctx;
   const wait = context ? Math.max(0, end - context.currentTime) : over;
-  setTimeout(() => {
-    for (const source of note.sources) source.disconnect();
-    for (const node of note.nodes) node.disconnect();
-  }, wait * 1000 + 60);
+  setTimeout(
+    () => {
+      for (const source of note.sources) source.disconnect();
+      for (const node of note.nodes) node.disconnect();
+    },
+    wait * 1000 + 60,
+  );
 }
 
 async function begin() {
@@ -275,10 +278,7 @@ export function playTone(midi: number): void {
 
   const tone = context.createBiquadFilter();
   tone.type = 'lowpass';
-  tone.frequency.value = Math.min(
-    TONE_CUTOFF_CEILING,
-    Math.max(TONE_CUTOFF_FLOOR, frequency * 6),
-  );
+  tone.frequency.value = Math.min(TONE_CUTOFF_CEILING, Math.max(TONE_CUTOFF_FLOOR, frequency * 6));
 
   env.connect(tone);
   tone.connect(out);

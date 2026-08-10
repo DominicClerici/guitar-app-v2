@@ -70,9 +70,7 @@ export function ChordDiagram({ voicing, size = 'card' }: Props) {
         <Text className={`font-mono ${s.head} opacity-0`}> </Text>
         <View className="mt-[2px] h-[3px]" />
         <View className={`${s.row} justify-center`}>
-          {atNut ? null : (
-            <Text className={`font-mono ${s.marker} text-ink-muted`}>{base}fr</Text>
-          )}
+          {atNut ? null : <Text className={`font-mono ${s.marker} text-ink-muted`}>{base}fr</Text>}
         </View>
       </View>
 
@@ -116,13 +114,7 @@ export function ChordDiagram({ voicing, size = 'card' }: Props) {
             return (
               <View key={fret} className={`${s.row} flex-row border-b border-b-line-soft`}>
                 {DISPLAY.map((string) => (
-                  <Cell
-                    key={string}
-                    size={s}
-                    voicing={voicing}
-                    string={string}
-                    fret={fret}
-                  />
+                  <Cell key={string} size={s} voicing={voicing} string={string} fret={fret} />
                 ))}
               </View>
             );
@@ -163,9 +155,7 @@ function Cell({ size, voicing, string, fret }: CellProps) {
             }`}
           />
         </View>
-        {isLow ? (
-          <Text className={`${size.dotText} font-bold text-on-accent`}>1</Text>
-        ) : null}
+        {isLow ? <Text className={`${size.dotText} font-bold text-on-accent`}>1</Text> : null}
       </View>
     );
   }

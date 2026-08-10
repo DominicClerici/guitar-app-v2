@@ -78,9 +78,7 @@ export function VoicingDetail({ voicing }: { voicing: Voicing }) {
                   {voicing.notes[string] ? toAccidentalGlyphs(voicing.notes[string]!) : '—'}
                 </Text>
                 <Text className="font-mono text-[9px] tracking-[0.5px] text-ink-muted">
-                  {voicing.degrees[string]
-                    ? toAccidentalGlyphs(voicing.degrees[string]!)
-                    : ''}
+                  {voicing.degrees[string] ? toAccidentalGlyphs(voicing.degrees[string]!) : ''}
                 </Text>
               </View>
             );

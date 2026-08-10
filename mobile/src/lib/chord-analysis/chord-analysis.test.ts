@@ -51,7 +51,12 @@ function nameOf(notes: string[]): string {
 
 describe('analyzeChord', () => {
   it('needs three notes', () => {
-    expect(analyzeChord([{ string: 5, fret: 3 }, { string: 4, fret: 2 }])).toBeNull();
+    expect(
+      analyzeChord([
+        { string: 5, fret: 3 },
+        { string: 4, fret: 2 },
+      ]),
+    ).toBeNull();
   });
 
   it.each([
@@ -170,13 +175,13 @@ describe('chord-library round-trip', () => {
   // has to come back naming the same quality. The root may come back spelled as
   // its enharmonic partner (Db7sus4 → C#7sus) — that is the documented
   // accidental tiebreak, so compare on the quality alone.
-  const cases = ROOTS.flatMap((root) =>
-    CHORD_TYPES.map((type) => ({ root, type })),
-  ).filter(({ root, type }) => {
-    const chord = buildChord(root, type, { spelling: 'collapsed' });
-    // Power chords are two notes, and m13 is seven — neither is nameable here.
-    return chord.tones.length >= 3 && place(chord.tones.map((t) => t.pitchClass)) !== null;
-  });
+  const cases = ROOTS.flatMap((root) => CHORD_TYPES.map((type) => ({ root, type }))).filter(
+    ({ root, type }) => {
+      const chord = buildChord(root, type, { spelling: 'collapsed' });
+      // Power chords are two notes, and m13 is seven — neither is nameable here.
+      return chord.tones.length >= 3 && place(chord.tones.map((t) => t.pitchClass)) !== null;
+    },
+  );
 
   it.each(cases)('names $root $type.id', ({ root, type }) => {
     const chord = buildChord(root, type, { spelling: 'collapsed' });

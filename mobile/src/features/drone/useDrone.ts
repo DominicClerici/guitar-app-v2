@@ -9,10 +9,7 @@ import {
   useSyncExternalStore,
 } from 'react';
 
-import {
-  useChordBuilder,
-  type InitialVoicing,
-} from '@/features/chord-detection/useChordBuilder';
+import { useChordBuilder, type InitialVoicing } from '@/features/chord-detection/useChordBuilder';
 import { buildChord, type RootName } from '@/lib/chord-library';
 import { noteToSemitone } from '@/lib/theory';
 

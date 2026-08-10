@@ -85,9 +85,10 @@ describe('positionsFor', () => {
       for (const type of SCALE_TYPES) {
         const scale = buildScale(root, type.id);
         for (const system of systemsFor(scale)) {
-          expect(positionsFor(scale, system).length, `${root} ${type.id} ${system}`).toBeGreaterThan(
-            3,
-          );
+          expect(
+            positionsFor(scale, system).length,
+            `${root} ${type.id} ${system}`,
+          ).toBeGreaterThan(3);
         }
       }
     }

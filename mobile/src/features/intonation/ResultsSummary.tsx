@@ -72,7 +72,9 @@ export function ResultsSummary({ results, scaleInches }: Props) {
               </Text>
 
               <View className="flex-1">
-                <Text className={`font-mono text-[14px] tracking-[0.5px] ${SEVERITY_TONE[severity]}`}>
+                <Text
+                  className={`font-mono text-[14px] tracking-[0.5px] ${SEVERITY_TONE[severity]}`}
+                >
                   {sign}
                   {Math.abs(measurement.cents).toFixed(1)} ¢
                 </Text>
@@ -87,11 +89,7 @@ export function ResultsSummary({ results, scaleInches }: Props) {
 
               <View
                 className={`h-[8px] w-[8px] rounded-full ${
-                  severity === 'good'
-                    ? 'bg-accent'
-                    : severity === 'large'
-                      ? 'bg-rose'
-                      : 'bg-amber'
+                  severity === 'good' ? 'bg-accent' : severity === 'large' ? 'bg-rose' : 'bg-amber'
                 }`}
               />
             </View>

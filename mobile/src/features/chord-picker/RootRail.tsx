@@ -19,12 +19,7 @@ export function RootRail({ root, onChange }: Props) {
   return (
     <FadingHScroll contentClassName="flex-row gap-[6px] px-[18px]">
       {ROOTS.map((name) => (
-        <RootChip
-          key={name}
-          name={name}
-          selected={name === root}
-          onPress={() => onChange(name)}
-        />
+        <RootChip key={name} name={name} selected={name === root} onPress={() => onChange(name)} />
       ))}
     </FadingHScroll>
   );

@@ -25,14 +25,7 @@ export type RootName =
   | 'B';
 
 export type ChordFamily =
-  | 'power'
-  | 'triad'
-  | 'sus'
-  | 'added'
-  | 'sixth'
-  | 'seventh'
-  | 'extended'
-  | 'altered';
+  'power' | 'triad' | 'sus' | 'added' | 'sixth' | 'seventh' | 'extended' | 'altered';
 
 /** A chord quality, independent of any root. */
 export interface ChordType {

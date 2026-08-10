@@ -2,14 +2,7 @@ import { qualityOf } from './extract';
 import { ROMAN_NUMERALS, THIRDLESS_QUALITIES, slotFor } from './scales';
 import type { KeyCandidate, ProgressionChord, Quality, RomanLabel } from './types';
 
-const LOWERCASE_QUALITIES = new Set<Quality>([
-  'min',
-  'min7',
-  'minMaj7',
-  'dim',
-  'dim7',
-  'min7b5',
-]);
+const LOWERCASE_QUALITIES = new Set<Quality>(['min', 'min7', 'minMaj7', 'dim', 'dim7', 'min7b5']);
 
 function mod12(n: number): number {
   return ((n % 12) + 12) % 12;

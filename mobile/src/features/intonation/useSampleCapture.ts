@@ -25,9 +25,7 @@ const VERIFY_FRAMES = 6;
 
 export type CaptureState = 'waiting' | 'recording';
 
-export type CaptureProblem =
-  | { kind: 'wrong-note'; midi: number }
-  | { kind: 'faded' };
+export type CaptureProblem = { kind: 'wrong-note'; midi: number } | { kind: 'faded' };
 
 interface Options {
   /** Pitch both readings should land on. */

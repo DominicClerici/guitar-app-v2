@@ -55,7 +55,9 @@ export function ExpandedNeck({
             {toAccidentalGlyphs(scale.root)} {scale.type.name}
           </Text>
           <Text className="flex-1 font-mono text-[9.5px] uppercase tracking-[1.4px] text-ink-faint">
-            {position ? `${position.label} · frets ${position.from}–${position.to}` : 'All positions'}
+            {position
+              ? `${position.label} · frets ${position.from}–${position.to}`
+              : 'All positions'}
           </Text>
           <Pressable
             onPress={onClose}

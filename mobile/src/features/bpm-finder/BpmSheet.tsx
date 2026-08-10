@@ -96,9 +96,7 @@ function BpmSheetBody({
         : 'Tap the pad in time';
 
   const stats =
-    rounded === null
-      ? ''
-      : `${taps} taps${spread === null ? '' : ` · ±${Math.round(spread)} ms`}`;
+    rounded === null ? '' : `${taps} taps${spread === null ? '' : ` · ±${Math.round(spread)} ms`}`;
 
   return (
     <View className="px-[24px] pb-[24px] pt-[8px]">

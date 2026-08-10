@@ -75,7 +75,11 @@ the document's `footnotes` array).
 ### Live blocks
 
 ```json
-{ "type": "live", "component": "scale-compare", "props": { "root": "A", "scales": ["major", "minor"] } }
+{
+  "type": "live",
+  "component": "scale-compare",
+  "props": { "root": "A", "scales": ["major", "minor"] }
+}
 ```
 
 `props` is opaque to the document schema — each live component validates its
@@ -145,8 +149,8 @@ same tones the component uses (see how major-vs-minor uses amber).
 
 ### Live component reference
 
-| name | props | what it does |
-| --- | --- | --- |
+| name            | props                                                          | what it does                                                                                                                                                         |
+| --------------- | -------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `scale-compare` | `{ root: RootName, scales: string[] (1–4 scale-library ids) }` | One card per scale on the same root: tones as chips, play button runs the scale (chips light as notes sound). Non-reference scales tint their differing tones amber. |
 
 ## The backend seam

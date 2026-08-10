@@ -1,4 +1,9 @@
-import { accidentalSideFor, assignedFeature, BLUES_HOMES, isDominantIdiom } from '@/lib/key-analysis';
+import {
+  accidentalSideFor,
+  assignedFeature,
+  BLUES_HOMES,
+  isDominantIdiom,
+} from '@/lib/key-analysis';
 import type { ChordFeature, KeyCandidate, Mode, ProgressionChord } from '@/lib/key-analysis';
 import { buildScale, maskOf } from '@/lib/scale-library';
 import type { Scale } from '@/lib/scale-library';
@@ -101,9 +106,7 @@ export function scalePlanFor(
   const global = chooseGlobal(features, tonicPc, mode, names);
   const globalMask = maskOf(global);
 
-  const covered = features.map((f) =>
-    f.pitchClasses.every((pc) => ((globalMask >> pc) & 1) === 1),
-  );
+  const covered = features.map((f) => f.pitchClasses.every((pc) => ((globalMask >> pc) & 1) === 1));
 
   // The blues gate: with dom7s saturating I/IV/V, the tonic minor pentatonic and
   // blues scale are the idiomatic answer, and the ♭7 rubs are the sound rather

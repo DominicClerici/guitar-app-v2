@@ -50,8 +50,8 @@ export function EarTab() {
             Free Play
           </Text>
           <Text className="mt-[5px] text-[12.5px] leading-[17px] text-ink-muted">
-            A drone, a tone, and your ear. Explore the twelve degrees over a held tonic, then
-            switch on questions and name what you hear.
+            A drone, a tone, and your ear. Explore the twelve degrees over a held tonic, then switch
+            on questions and name what you hear.
           </Text>
           <Text className="mt-[10px] font-mono text-[9.5px] tracking-[1.5px] text-ink-faint">
             DRONE · DEGREES

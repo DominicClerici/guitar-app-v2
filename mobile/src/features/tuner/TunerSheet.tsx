@@ -1,5 +1,12 @@
 import { useEffect, useImperativeHandle, useRef, useState, type Ref } from 'react';
-import { InteractionManager, Linking, Pressable, Text, View, type LayoutChangeEvent } from 'react-native';
+import {
+  InteractionManager,
+  Linking,
+  Pressable,
+  Text,
+  View,
+  type LayoutChangeEvent,
+} from 'react-native';
 import { useAnimatedStyle } from 'react-native-reanimated';
 
 import { AnimatedView } from '@/components/AnimatedView';
@@ -151,7 +158,11 @@ function TunerSheetBody({ visible, onClose }: { visible: boolean; onClose: () =>
         </View>
 
         <View className="mt-[20px]">
-          <StatusPill status={status} inTune={note !== null && Math.abs(note.cents) < IN_TUNE_CENTS} onStart={start} />
+          <StatusPill
+            status={status}
+            inTune={note !== null && Math.abs(note.cents) < IN_TUNE_CENTS}
+            onStart={start}
+          />
         </View>
       </View>
     </View>

@@ -9,9 +9,9 @@ including a worklet or a plain function).
 Import from the folder index; the shared primitives come from `@/lib/theory`:
 
 ```ts
-import { analyzeChord } from '@/lib/chord-analysis'
-import type { ChordAnalysis, ChordTones } from '@/lib/chord-analysis'
-import { noteToSemitone, OPEN_PITCHES } from '@/lib/theory'
+import { analyzeChord } from '@/lib/chord-analysis';
+import type { ChordAnalysis, ChordTones } from '@/lib/chord-analysis';
+import { noteToSemitone, OPEN_PITCHES } from '@/lib/theory';
 ```
 
 ## What it does (and doesn't)
@@ -27,11 +27,11 @@ import { noteToSemitone, OPEN_PITCHES } from '@/lib/theory'
 
 ## Public API
 
-| Export | What it is |
-|--------|------------|
-| `analyzeChord(notes: FretboardNote[]): ChordAnalysis \| null` | The entry point. Returns `null` for fewer than 3 notes. |
-| `EMPTY_CHORD_TONES` | The blank `ChordTones` grid, for drawing the slot panel before a chord exists. |
-| types | `ChordAnalysis`, `ChordResult`, `ChordTones`, `IntervalSlot`, `FretboardNote`, `Warning`. |
+| Export                                                        | What it is                                                                                |
+| ------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `analyzeChord(notes: FretboardNote[]): ChordAnalysis \| null` | The entry point. Returns `null` for fewer than 3 notes.                                   |
+| `EMPTY_CHORD_TONES`                                           | The blank `ChordTones` grid, for drawing the slot panel before a chord exists.            |
+| types                                                         | `ChordAnalysis`, `ChordResult`, `ChordTones`, `IntervalSlot`, `FretboardNote`, `Warning`. |
 
 The chromatic tables (`notesFlat`, `notesSharp`), `noteToSemitone`, and the
 tuning constants (`OPEN_PITCHES`, `OPEN_PITCHES_MIDI`) used to be re-exported
@@ -41,8 +41,8 @@ here. They now live in `@/lib/theory` — import them from there.
 
 ```ts
 interface FretboardNote {
-  string: number   // 0 = high e, 5 = low E
-  fret: number     // 0 = open
+  string: number; // 0 = high e, 5 = low E
+  fret: number; // 0 = open
 }
 ```
 
@@ -54,15 +54,15 @@ fret) % 12`.
 
 ```ts
 interface ChordAnalysis {
-  chordNames: ChordResult[]   // up to 5, primary first
-  chordTones: ChordTones      // interval grid for the primary reading
+  chordNames: ChordResult[]; // up to 5, primary first
+  chordTones: ChordTones; // interval grid for the primary reading
 }
 
 interface ChordResult {
-  name: string                // e.g. "Cm7", "C/G", "Cmaj9"
-  primary: boolean            // true for chordNames[0]
-  warnings: Warning[]         // fired rules for this reading — see Warnings below
-  chordTones: ChordTones      // interval grid for this reading, not just the primary
+  name: string; // e.g. "Cm7", "C/G", "Cmaj9"
+  primary: boolean; // true for chordNames[0]
+  warnings: Warning[]; // fired rules for this reading — see Warnings below
+  chordTones: ChordTones; // interval grid for this reading, not just the primary
 }
 ```
 
@@ -77,17 +77,17 @@ has a spelled note when that interval is present, or `null` when it isn't.
 
 ```ts
 interface ChordTones {
-  root: string
-  bass: string | null          // null when the bass note is the root
-  triad:      IntervalSlot[]   // sus2, m3, 3, sus4, b5, 5, #5
-  seventh:    IntervalSlot[]   // b6, dim7, 6, 7, maj7
-  extensions: IntervalSlot[]   // b9, #9, 9, #11, 11, b13, 13
+  root: string;
+  bass: string | null; // null when the bass note is the root
+  triad: IntervalSlot[]; // sus2, m3, 3, sus4, b5, 5, #5
+  seventh: IntervalSlot[]; // b6, dim7, 6, 7, maj7
+  extensions: IntervalSlot[]; // b9, #9, 9, #11, 11, b13, 13
 }
 
 interface IntervalSlot {
-  interval: string             // the slot's label, e.g. "3", "b5"
-  note: string | null          // spelled note name, or null if not in the chord
-  altered: boolean             // true for b5/#5/b9/#9/#11/b13 (e.g. highlight color)
+  interval: string; // the slot's label, e.g. "3", "b5"
+  note: string | null; // spelled note name, or null if not in the chord
+  altered: boolean; // true for b5/#5/b9/#9/#11/b13 (e.g. highlight color)
 }
 ```
 
@@ -105,13 +105,13 @@ const notes: FretboardNote[] = [
   { string: 2, fret: 0 }, // G
   { string: 1, fret: 1 }, // C
   { string: 0, fret: 0 }, // E
-]
+];
 
-const analysis = analyzeChord(notes)
-analysis?.chordNames[0].name          // "C/G"
-analysis?.chordNames.map(c => c.name) // ["C/G", "Emb6/G", "G6sus"]
-analysis?.chordTones.root             // "C"
-analysis?.chordTones.bass             // "G"
+const analysis = analyzeChord(notes);
+analysis?.chordNames[0].name; // "C/G"
+analysis?.chordNames.map((c) => c.name); // ["C/G", "Emb6/G", "G6sus"]
+analysis?.chordTones.root; // "C"
+analysis?.chordTones.bass; // "G"
 ```
 
 ## How a name is chosen (ranking)
@@ -137,18 +137,26 @@ bass surfaces as `C/G` rather than the literal bass-rooted `G6sus`.
 ## Warnings
 
 `ChordResult.warnings` is a list of fired rules describing why a voicing is
-unusual or ambiguous — e.g. *"Likely an inversion"*, *"Has both 5 and b5"*,
-*"No third"*, cluster/dissonance flags. Surface them next to the chord name (the
+unusual or ambiguous — e.g. _"Likely an inversion"_, _"Has both 5 and b5"_,
+_"No third"_, cluster/dissonance flags. Surface them next to the chord name (the
 primary chord is usually warning-free; alternates carry most of them).
 
 ```ts
 interface Warning {
-  id: string       // rule id, e.g. "sus2b5"
-  cat?: 'omitted' | 'cluster' | 'double' | 'inversion' | 'fragment'
-      | 'uncommon' | 'enharmonic' | 'dissonance' | ''
-  short: string    // tag, e.g. "Likely an inversion"
-  long: string     // the explanation behind the tag
-  assumedRoot?: string
+  id: string; // rule id, e.g. "sus2b5"
+  cat?:
+    | 'omitted'
+    | 'cluster'
+    | 'double'
+    | 'inversion'
+    | 'fragment'
+    | 'uncommon'
+    | 'enharmonic'
+    | 'dissonance'
+    | '';
+  short: string; // tag, e.g. "Likely an inversion"
+  long: string; // the explanation behind the tag
+  assumedRoot?: string;
 }
 ```
 
@@ -177,15 +185,15 @@ The engine has no user-facing settings. Names are always rendered:
 `analyzeChord` is the only thing the UI calls; the pipeline lives in small
 modules:
 
-| File | Job |
-|------|-----|
-| `chord-info.ts` | The core: half-steps → triad quality, extension, sus, tensions, per-semitone interval labels, and a slash-chord reading. |
-| `chord-symbol.ts` | Format the printed chord symbol. |
-| `variations.ts` | For each input pitch class, run identification + spelling and pick flat/sharp side. |
-| `ranking.ts` | Score variations and pick the primary (see above). |
-| `warnings.ts` | 25 rules flagging unusual voicings. |
-| `adapter.ts` | Map the primary reading into the `ChordTones` grid. |
-| `index.ts` | `analyzeChord` + the public surface. |
+| File              | Job                                                                                                                      |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `chord-info.ts`   | The core: half-steps → triad quality, extension, sus, tensions, per-semitone interval labels, and a slash-chord reading. |
+| `chord-symbol.ts` | Format the printed chord symbol.                                                                                         |
+| `variations.ts`   | For each input pitch class, run identification + spelling and pick flat/sharp side.                                      |
+| `ranking.ts`      | Score variations and pick the primary (see above).                                                                       |
+| `warnings.ts`     | 25 rules flagging unusual voicings.                                                                                      |
+| `adapter.ts`      | Map the primary reading into the `ChordTones` grid.                                                                      |
+| `index.ts`        | `analyzeChord` + the public surface.                                                                                     |
 
 The pieces this module builds on — `constants.ts` (chromatic tables, mixolydian
 skeleton, tuning), `half-steps.ts` (note name ↔ pitch class), and
