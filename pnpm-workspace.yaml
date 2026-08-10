@@ -1,9 +1,11 @@
 packages:
   - 'guitar-mobile-expo'
-  - 'lambda-backend'
   - 'packages/*'
 allowBuilds:
   unrs-resolver: true
+  esbuild: true
+  sharp: true
+  workerd: true
 minimumReleaseAgeExclude:
   - '@expo/cli@57.0.10'
   - '@expo/config-plugins@57.0.6'
@@ -25,3 +27,4 @@ minimumReleaseAgeExclude:
   - expo-router@57.0.8
   - expo-splash-screen@57.0.5
   - expo-web-browser@57.0.2
+  - '@cloudflare/workers-types@5.20260810.1'

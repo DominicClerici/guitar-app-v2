@@ -1,0 +1,22 @@
+# Copy to `.dev.vars` (gitignored) for local `wrangler dev`.
+# In deployed environments these are set with `wrangler secret put <NAME> --env <staging|production>`.
+
+# Neon connection string for your development branch.
+DATABASE_URL=postgresql://user:password@ep-example-123456.us-east-2.aws.neon.tech/guitar?sslmode=require
+
+# Better Auth. Generate the secret with: openssl rand -base64 32
+BETTER_AUTH_SECRET=replace-me
+BETTER_AUTH_URL=http://localhost:8787
+
+# Sign in with Apple. SERVICE_ID is the web/Services identifier, not the app bundle id.
+APPLE_CLIENT_ID=
+APPLE_APP_BUNDLE_IDENTIFIER=
+APPLE_CLIENT_SECRET=
+
+# Google OAuth.
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+
+# Resend, for email verification and password reset.
+RESEND_API_KEY=
+EMAIL_FROM=Guitar App <noreply@example.com>

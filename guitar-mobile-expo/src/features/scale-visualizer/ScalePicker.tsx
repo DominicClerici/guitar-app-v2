@@ -15,9 +15,9 @@ interface Props {
 }
 
 /**
- * The catalogue, two taps deep: a family, then a scale within it. Eighteen scales
- * in one list is a wall — grouped, the one you want is where you would have
- * looked for it.
+ * The catalogue, two taps deep: a family, then a scale within it. Twenty-six
+ * scales in one list is a wall — grouped, the one you want is where you would
+ * have looked for it.
  */
 export function ScalePicker({ scaleId, onChange }: Props) {
   // Derived rather than held: the open family is always the one the current scale

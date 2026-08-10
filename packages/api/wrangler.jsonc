@@ -1,0 +1,47 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "guitar-api",
+  "main": "src/index.ts",
+  // Cannot exceed the newest date the installed workerd binary supports, or local dev and the
+  // vitest pool both refuse to start. Bump it alongside wrangler.
+  "compatibility_date": "2026-08-08",
+  // Better Auth and Drizzle both reach for Node built-ins (crypto, buffer, async_hooks).
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": { "enabled": true },
+
+  // Change this and WRANGLER_DEV_PORT in the Expo app's src/lib/api/client.ts together.
+  "dev": { "port": 8787 },
+
+  "vars": {
+    // Comma-separated. Better Auth checks this list for OAuth redirects and cookie handling,
+    // and it drives the CORS allowlist — the Expo scheme must be here or sign-in fails silently.
+    "TRUSTED_ORIGINS": "guitarmobileexpo://,http://localhost:8088,http://localhost:8081",
+  },
+
+  // Session cache and rate limiting live in KV so per-request session lookups stay off Neon
+  // (BACKEND_PLAN.md §5). Uncomment once the namespaces exist:
+  //   wrangler kv namespace create SESSION_KV
+  //   wrangler kv namespace create SESSION_KV --preview
+  // "kv_namespaces": [
+  //   { "binding": "SESSION_KV", "id": "<id>", "preview_id": "<preview-id>" }
+  // ],
+
+  "env": {
+    "staging": {
+      "name": "guitar-api-staging",
+      "vars": {
+        "TRUSTED_ORIGINS": "guitarmobileexpo://,https://staging.example.com",
+      },
+      // "kv_namespaces": [{ "binding": "SESSION_KV", "id": "<staging-id>" }],
+      // "routes": [{ "pattern": "api-staging.example.com", "custom_domain": true }]
+    },
+    "production": {
+      "name": "guitar-api-production",
+      "vars": {
+        "TRUSTED_ORIGINS": "guitarmobileexpo://,https://example.com",
+      },
+      // "kv_namespaces": [{ "binding": "SESSION_KV", "id": "<production-id>" }],
+      // "routes": [{ "pattern": "api.example.com", "custom_domain": true }]
+    },
+  },
+}

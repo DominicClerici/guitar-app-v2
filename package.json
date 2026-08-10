@@ -7,6 +7,10 @@
     "dev": "pnpm -r --if-present --parallel dev",
     "build": "pnpm -r --if-present build",
     "lint": "pnpm -r --if-present lint",
+    "typecheck": "pnpm -r --if-present typecheck",
+    "test": "pnpm -r --if-present test",
+    "api": "pnpm --filter @guitar/api",
+    "db": "pnpm --filter @guitar/db",
     "format": "prettier --write ."
   },
   "devDependencies": {

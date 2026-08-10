@@ -1,9 +1,15 @@
 import type { ScaleFamily, ScaleType } from './types';
 
-// Eighteen scales in four families. Each modal family is written out mode by
+// Twenty-six scales in five families. Each modal family is written out mode by
 // mode rather than derived by rotation, because a mode's *degrees* are what
 // name it — Lydian ♯2 is the sixth mode of harmonic minor, but calling it that
 // tells you nothing about the ♯2 that makes it worth playing.
+//
+// The parent families are carried mode-complete on purpose. Naming a set of
+// notes is only half the job; scale-analysis names the *chord* it sits over, and
+// it can only do that when the mode rooted on that chord is in here. Leaving out
+// Mixolydian ♭6 meant the scale over a V/ii came back as "D melodic minor" — the
+// right notes, filed under a root the player has no use for.
 //
 // `accent` marks the one tone that separates a scale from its nearest plain
 // relative. That is what the neck tints, so it has to be the note a player
@@ -142,6 +148,42 @@ export const SCALE_TYPES: readonly ScaleType[] = [
     character: 'Lydian with a ♯2 opening a minor 3rd off the root',
     accent: { degree: '#2', hue: 'violet' },
   },
+  {
+    id: 'dorian-sharp4',
+    name: 'Dorian ♯4',
+    family: 'harmonic-minor',
+    semitones: [0, 2, 3, 6, 7, 9, 10],
+    degrees: ['1', '2', 'b3', '#4', '5', '6', 'b7'],
+    character: 'Dorian with a ♯4 — klezmer, and the minor blues gone strange',
+    accent: { degree: '#4', hue: 'violet' },
+  },
+  {
+    id: 'locrian-natural6',
+    name: 'Locrian ♮6',
+    family: 'harmonic-minor',
+    semitones: [0, 1, 3, 5, 6, 9, 10],
+    degrees: ['1', 'b2', 'b3', '4', 'b5', '6', 'b7'],
+    character: 'Locrian with the 6th put back — over m7♭5, one shade less bleak',
+    accent: { degree: '6', hue: 'amber' },
+  },
+  {
+    id: 'ionian-sharp5',
+    name: 'Ionian ♯5',
+    family: 'harmonic-minor',
+    semitones: [0, 2, 4, 5, 8, 9, 11],
+    degrees: ['1', '2', '3', '4', '#5', '6', '7'],
+    character: 'Major with a ♯5 — the maj7♯5 that will not sit still',
+    accent: { degree: '#5', hue: 'violet' },
+  },
+  {
+    id: 'altered-bb7',
+    name: 'Altered ♭♭7',
+    family: 'harmonic-minor',
+    semitones: [0, 1, 3, 4, 6, 8, 9],
+    degrees: ['1', 'b2', 'b3', 'b4', 'b5', 'b6', 'bb7'],
+    character: 'The scale a diminished seventh comes from',
+    accent: { degree: 'bb7', hue: 'violet' },
+  },
 
   // ─ melodic minor and its three useful modes ─
   {
@@ -163,6 +205,15 @@ export const SCALE_TYPES: readonly ScaleType[] = [
     accent: { degree: '#4', hue: 'violet' },
   },
   {
+    id: 'mixolydian-b6',
+    name: 'Mixolydian ♭6',
+    family: 'melodic-minor',
+    semitones: [0, 2, 4, 5, 7, 8, 10],
+    degrees: ['1', '2', '3', '4', '5', 'b6', 'b7'],
+    character: 'A dominant with a ♭13 — the V7 that leans towards minor',
+    accent: { degree: 'b6', hue: 'rose' },
+  },
+  {
     id: 'locrian-natural2',
     name: 'Locrian ♮2',
     family: 'melodic-minor',
@@ -180,6 +231,40 @@ export const SCALE_TYPES: readonly ScaleType[] = [
     character: 'Every tension a dominant can carry — super Locrian',
     accent: { degree: 'b4', hue: 'violet' },
   },
+  {
+    id: 'dorian-b2',
+    name: 'Dorian ♭2',
+    family: 'melodic-minor',
+    semitones: [0, 1, 3, 5, 7, 9, 10],
+    degrees: ['1', 'b2', 'b3', '4', '5', '6', 'b7'],
+    character: 'Phrygian with the 6th raised — dark at the bottom, open on top',
+    accent: { degree: 'b2', hue: 'rose' },
+  },
+  {
+    id: 'lydian-augmented',
+    name: 'Lydian augmented',
+    family: 'melodic-minor',
+    semitones: [0, 2, 4, 6, 8, 9, 11],
+    degrees: ['1', '2', '3', '#4', '#5', '6', '7'],
+    character: 'Lydian lifted again at the 5th — nothing left holding it down',
+    accent: { degree: '#5', hue: 'violet' },
+  },
+
+  // ─ harmonic major ─
+  //
+  // Major with a ♭6, and the reason it earns a family of its own: it is what a
+  // major key sounds like the moment it borrows a iv or a ♭VI without giving up
+  // its leading tone — the commonest chromatic move in pop, and one no mode of
+  // the major scale can spell.
+  {
+    id: 'harmonic-major',
+    name: 'Harmonic major',
+    family: 'harmonic-major',
+    semitones: [0, 2, 4, 5, 7, 8, 11],
+    degrees: ['1', '2', '3', '4', '5', 'b6', '7'],
+    character: 'Major with a ♭6 — the borrowed minor iv, without leaving home',
+    accent: { degree: 'b6', hue: 'rose' },
+  },
 ];
 
 export const FAMILY_ORDER: readonly ScaleFamily[] = [
@@ -187,13 +272,17 @@ export const FAMILY_ORDER: readonly ScaleFamily[] = [
   'pentatonic',
   'harmonic-minor',
   'melodic-minor',
+  'harmonic-major',
 ];
 
+// "Harmonic" and "Melodic" alone stopped being enough to point at once harmonic
+// major joined them on the shelf.
 export const FAMILY_LABELS: Record<ScaleFamily, string> = {
   'major-modes': 'Major modes',
   pentatonic: 'Pentatonic',
-  'harmonic-minor': 'Harmonic',
-  'melodic-minor': 'Melodic',
+  'harmonic-minor': 'Harmonic minor',
+  'melodic-minor': 'Melodic minor',
+  'harmonic-major': 'Harmonic major',
 };
 
 const BY_ID = new Map(SCALE_TYPES.map((type) => [type.id, type]));

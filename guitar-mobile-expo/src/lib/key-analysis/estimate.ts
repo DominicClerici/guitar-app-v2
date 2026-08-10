@@ -63,9 +63,10 @@ const SEVENTH_QUALITIES = new Set<Quality>([
 // blues saturates I, IV and V with dom7 and goes nowhere else, while functional
 // harmony spends its dominants driving to other degrees.
 const BLUES_DOM7_RATIO = 0.5;
-// I, IV and V. A dom7 anywhere else is a dominant pointing out of the key, so it
-// rules the idiom out for that key however many dom7s the progression holds.
-const BLUES_DOM7_HOMES = new Set([0, 5, 7]);
+// I, IV and V — the three degrees a blues lives on. A dom7 anywhere else is a
+// dominant pointing out of the key, so it rules the idiom out for that key
+// however many dom7s the progression holds.
+export const BLUES_HOMES = new Set([0, 5, 7]);
 // Degree 1 and degree 4 — the two blues-idiomatic homes for a dom7 besides V.
 const BLUES_DOM7_OFFSETS = new Set([0, 5]);
 // Parity with a functional V7 (REWARD_FULL + REWARD_SEVENTH_BONUS): inside the
@@ -138,20 +139,31 @@ export function accidentalSideFor(
 
 /**
  * True when dominant 7ths saturate the progression *and* all of them sit on this
- * key's I, IV or V — see BLUES_DOM7_RATIO. Asked per candidate key rather than
- * once for the progression, because a count alone cannot tell a blues from a
- * descending-fifths chain of secondary dominants: E7–A7–D7–G7–C is 80% dom7 and
- * functional throughout. Against C that chain's dom7s land on III, VI, II and V,
- * so the idiom is refused; a real blues in C puts them only on I, IV and V.
+ * key's I, IV or V, at least one of them on I or IV — see BLUES_DOM7_RATIO.
+ * Asked per candidate key rather than once for the progression, because a count
+ * alone cannot tell a blues from a descending-fifths chain of secondary
+ * dominants: E7–A7–D7–G7–C is 80% dom7 and functional throughout. Against C that
+ * chain's dom7s land on III, VI, II and V, so the idiom is refused; a real blues
+ * in C puts them only on I, IV and V.
+ *
+ * The I-or-IV requirement is what makes the ratio mean something. A dom7 on V is
+ * a cadence every tonal idiom owns, and half the chords of a short progression
+ * being one is nothing unusual: G7–C, Dm7–G7 and C–G7–C–G7 all clear the ratio
+ * on a bare V7. What no functional progression does is treat the *tonic* or the
+ * subdominant as a standing dominant — that is the blues, and it is the only
+ * case the allowance was ever meant to cover.
  */
 export function isDominantIdiom(features: readonly ChordFeature[], tonicPc: number): boolean {
   let dom7 = 0;
+  let atHome = false;
   for (const feature of features) {
     if (qualityOf(feature) !== 'dom7') continue;
-    if (!BLUES_DOM7_HOMES.has(mod12(feature.rootPc - tonicPc))) return false;
+    const offset = mod12(feature.rootPc - tonicPc);
+    if (!BLUES_HOMES.has(offset)) return false;
+    if (BLUES_DOM7_OFFSETS.has(offset)) atHome = true;
     dom7 += 1;
   }
-  return dom7 / features.length >= BLUES_DOM7_RATIO;
+  return atHome && dom7 / features.length >= BLUES_DOM7_RATIO;
 }
 
 function isTonicChord(

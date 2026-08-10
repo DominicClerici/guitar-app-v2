@@ -50,25 +50,38 @@ function inflectionDirection(outPc: number, feature: ChordFeature): 'raise' | 'l
   }
 }
 
-/** Scale-type ids in the order a name should be preferred when several match. */
+/**
+ * Scale-type ids in the order a name should be preferred when several match at
+ * the same root — roughly, how readily a player would say the name out loud.
+ * Anything missing sorts last, which is the right default for a scale nobody
+ * asked for.
+ */
 const TYPE_PRIORITY = [
   'major',
   'minor',
   'harmonic-minor',
   'melodic-minor',
+  'harmonic-major',
   'mixolydian',
   'dorian',
   'lydian',
   'phrygian',
   'lydian-dominant',
+  'mixolydian-b6',
   'phrygian-dominant',
+  'dorian-sharp4',
   'locrian-natural2',
+  'locrian-natural6',
   'lydian-sharp2',
+  'lydian-augmented',
+  'ionian-sharp5',
+  'dorian-b2',
   'minor-pentatonic',
   'major-pentatonic',
   'blues',
   'major-blues',
   'altered',
+  'altered-bb7',
   'locrian',
 ];
 
@@ -84,9 +97,17 @@ interface NameMatch {
 
 /**
  * The best dictionary name for a pitch-class set, if it has one. Every root ×
- * type whose mask matches is a candidate; the winner is the one that keeps the
- * most familiar frame — rooted on the key's tonic first, then its relative,
- * then a chord root inside the span, and only then anywhere else.
+ * type whose mask matches is a candidate; the winner is the one rooted where the
+ * advice is aimed.
+ *
+ * That is a chord root inside the span, first and by a distance. A span is not a
+ * key, it is the answer to "what do I play over *this*", and the same seven
+ * notes usually carry a name for every degree they contain: the swap the IV7 of
+ * a blues asks for is F Lydian dominant and C melodic minor at once, and only
+ * the F name can be picked up without transposing the thought first. The key's
+ * frame — tonic, then relative — takes over only when no chord in the span
+ * names the set, which is where a genuinely tonic-framed colour like a borrowed
+ * ♭VI belongs.
  */
 function bestName(
   mask: number,
@@ -95,7 +116,7 @@ function bestName(
   spanRootPcs: ReadonlySet<number>,
 ): NameMatch | null {
   const rootRank = (pc: number) =>
-    pc === tonicPc ? 0 : pc === relativePc ? 1 : spanRootPcs.has(pc) ? 2 : 3;
+    spanRootPcs.has(pc) ? 0 : pc === tonicPc ? 1 : pc === relativePc ? 2 : 3;
 
   let best: NameMatch | null = null;
   let bestKey = Infinity;

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { accidentalSideFor, estimateKey } from './estimate';
+import { accidentalSideFor, estimateKey, isDominantIdiom } from './estimate';
 import { romanLabelsFor } from './roman';
 import type {
   ChordFeature,
@@ -87,6 +87,11 @@ function ambiguous(symbols: string[], pinned: number | null = null): Progression
 /** A whole progression from a space-separated string of chord symbols. */
 function progression(symbols: string, transpose = 0): ProgressionChord[] {
   return symbols.split(/\s+/).map((s) => chord(s, transpose));
+}
+
+/** The same progression as the bare features the scoring helpers take. */
+function featuresOf(symbols: string): ChordFeature[] {
+  return symbols.split(/\s+/).map((s) => featureOf(s));
 }
 
 function bestKey(symbols: string): string {
@@ -288,6 +293,21 @@ describe('the blues dominant-seventh allowance', () => {
 
   it('still applies to a quick-change blues', () => {
     expect(bestKey('A7 D7 A7 E7 D7 A7')).toBe('A major');
+  });
+
+  // The idiom is what a dom7 on I or IV means, so one has to be there. Without
+  // that requirement a bare V7 saturates any short progression — G7–C is half
+  // dominant sevenths — and everything downstream that asks "is this a blues?"
+  // gets a yes for a plain perfect cadence.
+  it('refuses the idiom when every dominant seventh sits on V', () => {
+    expect(isDominantIdiom(featuresOf('G7 C'), PITCH_CLASS.C)).toBe(false);
+    expect(isDominantIdiom(featuresOf('C G7 C G7'), PITCH_CLASS.C)).toBe(false);
+    expect(isDominantIdiom(featuresOf('Dm7 G7'), PITCH_CLASS.C)).toBe(false);
+  });
+
+  it('accepts a shuffle once a dominant seventh stands on I or IV', () => {
+    expect(isDominantIdiom(featuresOf('C7 F7 G7 C7'), PITCH_CLASS.C)).toBe(true);
+    expect(isDominantIdiom(featuresOf('C F7 C G7'), PITCH_CLASS.C)).toBe(true);
   });
 });
 

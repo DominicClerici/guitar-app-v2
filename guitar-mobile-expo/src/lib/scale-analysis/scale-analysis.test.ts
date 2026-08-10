@@ -104,6 +104,76 @@ describe('global scale and coverage', () => {
   });
 });
 
+// ---------------------------------------------------------------------------
+// The key fixes the tonic; it does not fix which mode of that tonic the
+// progression actually lives in. A ♭VII vamp is Mixolydian, not major with a
+// footnote — and the difference is the whole recommendation.
+// ---------------------------------------------------------------------------
+
+describe('choosing the global scale', () => {
+  it('hears a ♭VII in a major key as Mixolydian, not an exception', () => {
+    const p = plan(['G', 'F', 'C', 'G'], 'G', 'major');
+    expect(p.global.root).toBe('G');
+    expect(p.global.type.id).toBe('mixolydian');
+    expect(p.global.notes).toEqual(['G', 'A', 'B', 'C', 'D', 'E', 'F']);
+    expect(p.covered).toEqual([true, true, true, true]);
+    expect(p.exceptions).toEqual([]);
+  });
+
+  it('hears a major IV in a minor key as Dorian', () => {
+    const p = plan(['Am', 'D', 'Am', 'D'], 'A', 'minor');
+    expect(p.global.type.id).toBe('dorian');
+    expect(p.exceptions).toEqual([]);
+  });
+
+  it('hears a ♭II in a minor key as Phrygian', () => {
+    const p = plan(['Am', 'Bb', 'Am', 'Bb'], 'A', 'minor');
+    expect(p.global.type.id).toBe('phrygian');
+    expect(p.exceptions).toEqual([]);
+  });
+
+  it('hears a II major in a major key as Lydian', () => {
+    const p = plan(['C', 'D', 'C', 'D'], 'C', 'major');
+    expect(p.global.type.id).toBe('lydian');
+    expect(p.exceptions).toEqual([]);
+  });
+
+  it('keeps the key′s own scale when no mode covers more', () => {
+    expect(plan(['C', 'Am', 'F', 'G'], 'C', 'major').global.type.id).toBe('major');
+    expect(plan(['Am', 'Dm', 'Em', 'Am'], 'A', 'minor').global.type.id).toBe('minor');
+  });
+
+  // Harmonic minor covers Am–Dm–E7–Am outright, and is still the wrong headline:
+  // the raised 7th belongs to the dominant, not to the tune. Only the modes of
+  // the major scale can carry a whole progression; a leading tone is an event,
+  // and events stay in the spans.
+  it('leaves a raised leading tone as an exception rather than a global colour', () => {
+    const p = plan(['Am', 'Dm', 'E7', 'Am'], 'A', 'minor');
+    expect(p.global.type.id).toBe('minor');
+    expect(p.exceptions).toHaveLength(1);
+  });
+
+  it('never picks a mode whose tonic triad contradicts the key', () => {
+    const major = ['major', 'mixolydian', 'lydian'];
+    const minor = ['minor', 'dorian', 'phrygian'];
+    for (const symbols of [
+      ['C', 'D', 'C', 'D'],
+      ['C', 'Bb', 'F', 'C'],
+      ['C', 'Fm', 'C', 'G'],
+      ['C7', 'F7', 'G7', 'C7'],
+    ]) {
+      expect(major, symbols.join(' ')).toContain(plan(symbols, 'C', 'major').global.type.id);
+    }
+    for (const symbols of [
+      ['Am', 'D', 'Am', 'D'],
+      ['Am', 'Bb', 'Am', 'Bb'],
+      ['Am', 'Dm', 'E7', 'Am'],
+    ]) {
+      expect(minor, symbols.join(' ')).toContain(plan(symbols, 'A', 'minor').global.type.id);
+    }
+  });
+});
+
 describe('pentatonic verdict', () => {
   it('names the relative minor pentatonic for a major key, with the major alias', () => {
     const p = plan(['C', 'Am', 'F', 'G'], 'C', 'major');
@@ -128,7 +198,12 @@ describe('pentatonic verdict', () => {
 });
 
 describe('exception spans and deltas', () => {
-  it('hears a secondary dominant as one raised note: V/vi means G→G♯, A harmonic minor', () => {
+  // A span is advice about the chords inside it — the line the player reads is
+  // "over E7, do this" — so it is named from a chord root inside the span when
+  // the dictionary has such a name, and only otherwise from the key's frame.
+  // The same seven notes are A harmonic minor; E Phrygian dominant is the one
+  // you can act on without transposing the thought first.
+  it('hears a secondary dominant as one raised note: V/vi means G→G♯', () => {
     const p = plan(['C', 'E7', 'Am', 'F'], 'C', 'major');
     expect(p.exceptions).toHaveLength(1);
 
@@ -137,8 +212,44 @@ describe('exception spans and deltas', () => {
     expect(span.end).toBe(1);
     expect(span.deltas).toHaveLength(1);
     expect(span.deltas[0]).toMatchObject({ fromPc: 7, toPc: 8, fromName: 'G' });
-    expect(span.scale?.root).toBe('A');
-    expect(span.scale?.type.id).toBe('harmonic-minor');
+    expect(span.scale?.root).toBe('E');
+    expect(span.scale?.type.id).toBe('phrygian-dominant');
+  });
+
+  it('names a span from the chord it bends around, not from the tonic', () => {
+    // The IV7 of a blues bends C Mixolydian by one note, and the result carries
+    // a name on both degrees: F Mixolydian and C Dorian are the same seven
+    // notes. Only the F name answers "what do I play over this F7?".
+    const p = plan(['C7', 'F7', 'C7', 'C7'], 'C', 'major');
+    const span = p.exceptions.find((s) => s.start === 1);
+    expect(span?.deltas).toEqual([{ fromPc: 4, toPc: 3, fromName: 'E', toName: 'Eb' }]);
+    expect(span?.scale?.root).toBe('F');
+    expect(span?.scale?.type.id).toBe('mixolydian');
+  });
+
+  it('names a merged span from one of its own chord roots', () => {
+    const p = plan(['C', 'Fm', 'Bb7', 'C'], 'C', 'major');
+    expect(p.exceptions[0].scale?.root).toBe('F');
+    expect(p.exceptions[0].scale?.type.id).toBe('melodic-minor');
+  });
+
+  // Several chord roots in a merged span can each name the set — the IV7–V7 of a
+  // blues is F Lydian dominant and G Mixolydian ♭6 at once. The tie goes to the
+  // name a player is likelier to already own.
+  it('breaks a tie between chord roots on how well known the name is', () => {
+    const p = plan(['C7', 'F7', 'G7', 'C7'], 'C', 'major');
+    const span = p.exceptions.find((s) => s.start === 1);
+    expect(span?.end).toBe(2);
+    expect(span?.scale?.root).toBe('F');
+    expect(span?.scale?.type.id).toBe('lydian-dominant');
+  });
+
+  it('leaves a span the catalogue has no name for unnamed, and still spells it', () => {
+    const p = plan(['G', 'Gdim7', 'D7', 'G'], 'G', 'major');
+    const span = p.exceptions[0];
+    expect(span.deltas.map((d) => `${d.fromName}→${d.toName}`)).toEqual(['B→Bb', 'D→Db']);
+    expect(span.scale).toBeNull();
+    expect(span.tones.map((t) => t.name)).toEqual(['G', 'A', 'Bb', 'C', 'Db', 'E', 'F#']);
   });
 
   it('hears a borrowed iv as one lowered note: Fm means A→A♭', () => {
@@ -168,11 +279,15 @@ describe('exception spans and deltas', () => {
     expect(span.scale?.type.id).toBe('melodic-minor');
   });
 
-  it('splits contradictory neighbours: C7 needs E, F7 removes it', () => {
-    const p = plan(['C7', 'F7', 'G7', 'C7'], 'C', 'major');
+  it('splits contradictory neighbours: E7 raises G, Fm lowers A onto the same tone', () => {
+    const p = plan(['C', 'E7', 'Fm', 'C'], 'C', 'major');
     const spans = p.exceptions.map((s) => [s.start, s.end]);
-    expect(spans).toContainEqual([0, 0]);
-    expect(spans).toContainEqual([1, 1]);
+    expect(spans).toEqual([
+      [1, 1],
+      [2, 2],
+    ]);
+    expect(p.exceptions[0].deltas).toEqual([{ fromPc: 7, toPc: 8, fromName: 'G', toName: 'G#' }]);
+    expect(p.exceptions[1].deltas).toEqual([{ fromPc: 9, toPc: 8, fromName: 'A', toName: 'Ab' }]);
   });
 
   it('does not span across a covered chord', () => {
@@ -182,32 +297,44 @@ describe('exception spans and deltas', () => {
     expect(p.exceptions[1].start).toBe(3);
   });
 
-  it('raises the minor leading tone: E7 in A minor means G→G♯, A harmonic minor', () => {
+  it('raises the minor leading tone: E7 in A minor means G→G♯', () => {
     const p = plan(['Am', 'Dm', 'E7', 'Am'], 'A', 'minor');
     expect(p.exceptions).toHaveLength(1);
 
     const span = p.exceptions[0];
     expect(span.deltas[0]).toMatchObject({ fromPc: 7, toPc: 8 });
-    expect(span.scale?.root).toBe('A');
-    expect(span.scale?.type.id).toBe('harmonic-minor');
+    expect(span.scale?.root).toBe('E');
+    expect(span.scale?.type.id).toBe('phrygian-dominant');
+    // The A harmonic minor spelling of the same seven notes, tonic-framed.
+    expect(span.tones.map((t) => t.name)).toEqual(['A', 'B', 'C', 'D', 'E', 'F', 'G#']);
   });
 
-  it('gives an unnamed delta when no dictionary scale matches, and still spells it', () => {
+  it('names a borrowed iv in a major key as harmonic major', () => {
     const p = plan(['C', 'Fm', 'C', 'G'], 'C', 'major');
     const span = p.exceptions[0];
-    // C D E F G A♭ B is harmonic major — real, but outside the catalogue.
-    expect(span.scale).toBeNull();
+    // C D E F G A♭ B. No chord root in the span names it, so the key's own
+    // frame takes over — which is the right one for a borrowed chord.
+    expect(span.scale?.root).toBe('C');
+    expect(span.scale?.type.id).toBe('harmonic-major');
     expect(span.tones.map((t) => t.name)).toEqual(['C', 'D', 'E', 'F', 'G', 'Ab', 'B']);
   });
 
-  it('names the I7 colour C Mixolydian, tonic-framed', () => {
+  it('names the scale over a secondary dominant from that dominant', () => {
+    const p = plan(['C', 'A7', 'Dm', 'G7', 'C'], 'C', 'major');
+    const span = p.exceptions[0];
+    expect(span.start).toBe(1);
+    expect(span.deltas).toEqual([{ fromPc: 0, toPc: 1, fromName: 'C', toName: 'C#' }]);
+    expect(span.scale?.root).toBe('A');
+    expect(span.scale?.type.id).toBe('mixolydian-b6');
+  });
+
+  // The ♭7 a I7 carries is the tune's colour, not a swerve away from it, so it
+  // belongs to the global scale rather than to a span the player is warned about.
+  it('carries the I7 colour in the global scale instead of an exception', () => {
     const p = plan(['C7', 'F7', 'G7', 'C7'], 'C', 'major');
-    const first = p.exceptions.find((s) => s.start === 0);
-    expect(first?.deltas).toEqual([
-      { fromPc: 11, toPc: 10, fromName: 'B', toName: 'Bb' },
-    ]);
-    expect(first?.scale?.root).toBe('C');
-    expect(first?.scale?.type.id).toBe('mixolydian');
+    expect(p.global.type.id).toBe('mixolydian');
+    expect(p.covered[0]).toBe(true);
+    expect(p.exceptions.some((span) => span.start === 0)).toBe(false);
   });
 });
 
@@ -226,6 +353,33 @@ describe('the blues idiom', () => {
   it('does not fire outside the idiom', () => {
     const p = plan(['C', 'Am', 'F', 'G'], 'C', 'major');
     expect(p.blues).toBeNull();
+  });
+
+  // A dom7 on V is a cadence, not a blues, and half the chords of a short
+  // progression being one is not evidence of an idiom. Firing here handed a
+  // plain V–I the tonic *minor* pentatonic over a major key.
+  it('does not fire on a perfect cadence', () => {
+    const p = plan(['G7', 'C'], 'C', 'major');
+    expect(p.blues).toBeNull();
+    expect(p.pentatonic.scale.root).toBe('A');
+  });
+
+  it('does not fire on a ii–V vamp', () => {
+    const p = plan(['Am7', 'D7', 'Am7', 'D7'], 'G', 'major');
+    expect(p.blues).toBeNull();
+    expect(p.pentatonic.scale.root).toBe('E');
+  });
+
+  // "The key scale covers this chord" is only a reason to skip the clash test
+  // while the pentatonic sits inside the key scale. The blues pentatonic does
+  // not — it brings its own ♭3 and ♭7 — so a chord the major scale covers can
+  // still grind against it, and the skip was reporting those as clean.
+  it('still tests chords the key scale covers against the blues pentatonic', () => {
+    const p = plan(['C7', 'F7', 'G7', 'Am'], 'C', 'major');
+    expect(p.blues).not.toBeNull();
+    expect(p.covered[3]).toBe(true);
+    expect(p.pentatonic.clashes).toEqual([3]);
+    expect(p.pentatonic.survives).toBe(false);
   });
 });
 
