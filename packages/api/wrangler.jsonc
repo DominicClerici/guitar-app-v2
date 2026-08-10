@@ -10,7 +10,11 @@
   "observability": { "enabled": true },
 
   // Change this and WRANGLER_DEV_PORT in the Expo app's src/lib/api/client.ts together.
-  "dev": { "port": 8787 },
+  // Deliberately not Wrangler's default 8787: macOS's Photos daemon listens on it, and because it
+  // binds the IPv6 wildcard it wins `localhost` over workerd's loopback bind. The symptom is a
+  // worker that appears to run while every request is answered by photod — /health even returns a
+  // plausible {"ok":true}. Reach it on 127.0.0.1 explicitly if a port ever has to be shared again.
+  "dev": { "port": 8788 },
 
   "vars": {
     // Comma-separated. Better Auth checks this list for OAuth redirects and cookie handling,

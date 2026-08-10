@@ -31,13 +31,45 @@ value and drops below every client's cursor forever.
 ## Commands
 
 ```bash
+pnpm db:up         # docker compose up — local Postgres + the Neon HTTP proxy
+pnpm db:down       # stop them (add -v by hand to discard the data)
+pnpm db:reset      # wipe the volume, recreate, re-migrate
+
 pnpm db:generate   # drizzle-kit generate — writes SQL into ./drizzle, commit the result
 pnpm db:migrate    # applies ./drizzle against $DATABASE_URL, from Node — never from the Worker
 pnpm db:studio     # drizzle-kit studio
 ```
 
-All three read `DATABASE_URL` from `packages/db/.env` (see `.env.example`). Point it at the Neon
-branch for the environment you're targeting.
+The last three read `DATABASE_URL` from `packages/db/.env` (see `.env.example`).
+
+## Local development
+
+Development runs against a local Postgres in Docker, not a Neon branch. Neon is a hosted service
+with no local server, so the alternative would be sharing a remote branch across machines and
+having no offline story.
+
+The wrinkle is that production reaches Postgres over Neon's SQL-over-HTTP protocol, which a plain
+Postgres does not speak. `docker-compose.yml` therefore runs a proxy alongside it that accepts that
+protocol and forwards to the local database, and `createDb` points the driver at it whenever
+`DATABASE_URL` names a local host.
+
+This is deliberate: swapping in `node-postgres` locally would remove the proxy, but that driver
+supports interactive transactions and `neon-http` does not. `db.transaction()` would then work
+throughout development and fail only in production — the exact constraint the write design in §3 is
+built around. Same driver locally means that failure shows up on your machine instead.
+
+```bash
+pnpm db:up
+cp .env.example .env    # already points at the local containers
+pnpm db:migrate
+```
+
+Ports are 5433 for Postgres and 4444 for the proxy, both off the defaults because 5432 is so
+commonly taken by another project's container. Connect with
+`psql -h localhost -p 5433 -U guitar -d guitar` (password `guitar`).
+
+Going to Neon later is a one-line change: point `DATABASE_URL` at the branch. The local-host check
+stops matching, the driver goes straight to Neon over HTTPS, and nothing else moves.
 
 ## Transaction constraint
 

@@ -5,14 +5,29 @@ The Cloudflare Worker: Hono + tRPC v11 + Better Auth (`BACKEND_PLAN.md` §2, §4
 ## Running it
 
 ```bash
-cp .dev.vars.example .dev.vars   # fill in what you have; health works with none of it
-pnpm dev                         # wrangler dev on http://localhost:8787
+pnpm db db:up                    # local Postgres + Neon HTTP proxy (see packages/db)
+cp .dev.vars.example .dev.vars   # generate BETTER_AUTH_SECRET; the rest is optional
+pnpm dev                         # wrangler dev on http://localhost:8788
 ```
 
+`/health` and `/trpc/*` work with no database. Anything under `/api/auth/*` builds a client first,
+so it 500s until `DATABASE_URL` is reachable and migrated.
+
 ```bash
-curl http://localhost:8787/health
-curl http://localhost:8787/trpc/health.ping
+curl http://localhost:8788/health
+curl http://localhost:8788/trpc/health.ping
+
+# Sign up. The verification link is printed to the wrangler console when Resend is unconfigured.
+curl -X POST http://localhost:8788/api/auth/sign-up/email \
+  -H 'Content-Type: application/json' \
+  -d '{"email":"dev@example.com","password":"password123","name":"Dev"}' \
+  -c /tmp/guitar-cookies.txt
+
+curl http://localhost:8788/api/auth/get-session -b /tmp/guitar-cookies.txt
 ```
+
+Port 8788, not Wrangler's default 8787: macOS's Photos daemon listens there and wins `localhost`
+over workerd, so the worker appears to run while photod answers every request.
 
 `pnpm test` runs the integration tests inside the real workerd runtime via
 `@cloudflare/vitest-pool-workers`.

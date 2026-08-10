@@ -11,7 +11,7 @@ export default defineConfig({
         bindings: {
           DATABASE_URL: 'postgresql://test:test@localhost/test',
           BETTER_AUTH_SECRET: 'test-secret',
-          BETTER_AUTH_URL: 'http://localhost:8787',
+          BETTER_AUTH_URL: 'http://localhost:8788',
         },
       },
     }),

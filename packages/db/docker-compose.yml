@@ -1,0 +1,49 @@
+# Local development database (BACKEND_PLAN.md §3).
+#
+# Two containers, because production reaches Postgres over Neon's SQL-over-HTTP protocol rather
+# than the Postgres wire protocol. The proxy speaks that protocol and forwards to a plain Postgres,
+# which lets local development run the *same* `neon-http` driver as the Worker does in production.
+#
+# That parity is the point. Swapping in `node-postgres` locally would be simpler, but it supports
+# interactive transactions and `neon-http` does not — so `db.transaction()` would work all through
+# development and fail only once deployed, which is precisely the constraint the write design in §3
+# is built around.
+#
+#   docker compose up -d      # or: pnpm db:up
+#   docker compose down       # or: pnpm db:down       (add -v to discard the data)
+#
+# Ports avoid the defaults deliberately: 5432 is commonly taken by another project's container.
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: guitar
+      POSTGRES_PASSWORD: guitar
+      POSTGRES_DB: guitar
+    ports:
+      - '5433:5432'
+    volumes:
+      - guitar-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U guitar -d guitar']
+      interval: 2s
+      timeout: 3s
+      retries: 15
+
+  # Accepts Neon's HTTP SQL protocol on :4444 and replays it against `postgres` above. The
+  # credentials in the app's DATABASE_URL are not used for this hop — this connection string is.
+  # Community image, not published by Neon; it exists only in local development and is never part
+  # of a deployed environment.
+  neon-http-proxy:
+    image: ghcr.io/timowilhelm/local-neon-http-proxy:main
+    environment:
+      PG_CONNECTION_STRING: postgres://guitar:guitar@postgres:5432/guitar
+    ports:
+      - '4444:4444'
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  guitar-pgdata:

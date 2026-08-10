@@ -1,12 +1,13 @@
 # Copy to `.dev.vars` (gitignored) for local `wrangler dev`.
 # In deployed environments these are set with `wrangler secret put <NAME> --env <staging|production>`.
 
-# Neon connection string for your development branch.
-DATABASE_URL=postgresql://user:password@ep-example-123456.us-east-2.aws.neon.tech/guitar?sslmode=require
+# Local development: the containers from `pnpm db db:up`. A local host here makes the driver route
+# through the HTTP proxy on :4444 instead of reaching for Neon.
+DATABASE_URL=postgres://guitar:guitar@localhost:5433/guitar
 
 # Better Auth. Generate the secret with: openssl rand -base64 32
 BETTER_AUTH_SECRET=replace-me
-BETTER_AUTH_URL=http://localhost:8787
+BETTER_AUTH_URL=http://localhost:8788
 
 # Sign in with Apple. SERVICE_ID is the web/Services identifier, not the app bundle id.
 APPLE_CLIENT_ID=

@@ -1,7 +1,8 @@
 # Backend Plan
 
-Decisions made 2026-08-10. This document captures **what we chose and why**. No code has been
-written yet; implementation happens in later sessions.
+Decisions made 2026-08-10. This document captures **what we chose and why**; the packages under
+`packages/` are where they get carried out. Built so far: the scaffold, Better Auth with email +
+password, and the schema through §8. Sync (§7) and the device's SQLite half are not written yet.
 
 ## Goals
 
@@ -12,19 +13,19 @@ written yet; implementation happens in later sessions.
 
 ## Decisions at a glance
 
-| Area | Choice |
-| --- | --- |
-| Architecture | Standalone API service; both clients call it over HTTP |
-| Runtime / host | Cloudflare Workers |
-| Server framework | Hono |
-| Database | Neon Postgres |
-| ORM / migrations | Drizzle + drizzle-kit |
-| API layer | tRPC v11 + TanStack Query |
-| Auth | Better Auth, self-hosted, on our own Postgres |
-| Sign-in methods | Sign in with Apple, Google, email + password, anonymous guest |
-| Client/server state | Offline-first; on-device SQLite is the source of truth |
-| Sync | Hand-rolled push/pull over tRPC |
-| Transactional email | Resend |
+| Area                | Choice                                                        |
+| ------------------- | ------------------------------------------------------------- |
+| Architecture        | Standalone API service; both clients call it over HTTP        |
+| Runtime / host      | Cloudflare Workers                                            |
+| Server framework    | Hono                                                          |
+| Database            | Neon Postgres                                                 |
+| ORM / migrations    | Drizzle + drizzle-kit                                         |
+| API layer           | tRPC v11 + TanStack Query                                     |
+| Auth                | Better Auth, self-hosted, on our own Postgres                 |
+| Sign-in methods     | Sign in with Apple, Google, email + password, anonymous guest |
+| Client/server state | Offline-first; on-device SQLite is the source of truth        |
+| Sync                | Hand-rolled push/pull over tRPC                               |
+| Transactional email | Resend                                                        |
 
 ---
 
@@ -87,6 +88,17 @@ Two ways out, and we take the first:
 
 **Environments:** a Neon branch per environment (production, staging, and ephemeral preview branches).
 Branches are copy-on-write and cheap.
+
+**Local development runs on a local Postgres, not a Neon branch** (decided 2026-08-10, after the
+scaffold). Neon has no local server, so the alternative was sharing a remote branch across machines
+with no offline story. Because a plain Postgres doesn't speak Neon's SQL-over-HTTP protocol,
+`packages/db/docker-compose.yml` runs a proxy that does, and `createDb` routes to it whenever
+`DATABASE_URL` names a local host.
+
+Keeping the `neon-http` driver in local development is the whole point of the proxy. Substituting
+`node-postgres` locally would be simpler but it supports interactive transactions, so
+`db.transaction()` would work all through development and fail only once deployed — the exact
+constraint above. Moving to Neon is then a one-line `DATABASE_URL` change.
 
 **Migrations:** `drizzle-kit generate` produces SQL files that are committed to git. They are applied
 by a `pnpm db:migrate` script running in Node (locally or in CI), never from the Worker.
@@ -173,7 +185,7 @@ launch. A custom sending domain must be verified before production.
 **On-device SQLite is the source of truth.** All reads and writes hit local storage; a background
 sync reconciles with the server. The app works fully offline and opens instantly.
 
-**Context:** the mobile app currently has *no persistence at all* — no AsyncStorage, MMKV, or SQLite
+**Context:** the mobile app currently has _no persistence at all_ — no AsyncStorage, MMKV, or SQLite
 in `package.json` and no storage module in `src/lib`. This is a clean slate, not a retrofit, which is
 the main reason offline-first is affordable here.
 
@@ -212,11 +224,11 @@ batch after a dropped connection converges to the same state.
 
 Each synced table declares exactly one rule:
 
-| Rule | Semantics | Applies to |
-| --- | --- | --- |
-| Append-only | `ON CONFLICT DO NOTHING`; rows are immutable once written | Ear-trainer sessions |
-| Monotonic | Per-column `GREATEST`/`LEAST` merge — best score up, first-completion date down | Lesson / article progress |
-| Last-write-wins | Per-key row with a client timestamp; later timestamp wins | Preferences |
+| Rule            | Semantics                                                                       | Applies to                |
+| --------------- | ------------------------------------------------------------------------------- | ------------------------- |
+| Append-only     | `ON CONFLICT DO NOTHING`; rows are immutable once written                       | Ear-trainer sessions      |
+| Monotonic       | Per-column `GREATEST`/`LEAST` merge — best score up, first-completion date down | Lesson / article progress |
+| Last-write-wins | Per-key row with a client timestamp; later timestamp wins                       | Preferences               |
 
 Counters that would need summing (e.g. total attempts) are **derived** from append-only rows at read
 time rather than stored as a mutable counter. This keeps every merge commutative and avoids an
@@ -287,12 +299,12 @@ is removed.
 
 **Free tier at launch:**
 
-| Service | Free allowance |
-| --- | --- |
-| Cloudflare Workers | 100k requests/day |
-| Cloudflare KV | 100k reads/day, 1k writes/day |
-| Neon | 0.5 GB storage, 190 compute-hours/month |
-| Resend | 3k emails/month, 100/day |
+| Service            | Free allowance                          |
+| ------------------ | --------------------------------------- |
+| Cloudflare Workers | 100k requests/day                       |
+| Cloudflare KV      | 100k reads/day, 1k writes/day           |
+| Neon               | 0.5 GB storage, 190 compute-hours/month |
+| Resend             | 3k emails/month, 100/day                |
 
 Realistically $0/month until the app has meaningful traction.
 

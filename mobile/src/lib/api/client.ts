@@ -2,7 +2,7 @@ import type { AppRouter } from '@guitar/api';
 import { createTRPCClient, httpBatchLink } from '@trpc/client';
 import Constants from 'expo-constants';
 
-const WRANGLER_DEV_PORT = 8787;
+const WRANGLER_DEV_PORT = 8788;
 
 function resolveBaseUrl(): string {
   const fromEnv = process.env.EXPO_PUBLIC_API_URL;
