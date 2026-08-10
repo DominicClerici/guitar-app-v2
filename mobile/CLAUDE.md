@@ -28,6 +28,18 @@ Before authoring an article, changing the article schema, or adding a live
 (interactive) article component, read `docs/articles.md` — it documents the
 data model, the forward-compatibility rules, and the checklists for both.
 
+## Data and sync
+
+Anything that has to survive a restart or follow a user to another device belongs in the local
+SQLite database, not in component state or a new storage library. `src/lib/db` is the database,
+`src/lib/preferences` is the worked example of a feature reading and writing through it, and
+`src/lib/sync` reconciles with the server on its own — a write is saved locally and returns, and
+nothing renders a loading or error state for it.
+
+The tables live in `packages/db/src/schema.sqlite.ts`, alongside the Postgres tables they mirror.
+After changing them, run `pnpm db:generate` here to regenerate `drizzle/`. See `BACKEND_PLAN.md`
+§6–§8 before adding a synced table — there are five edits and only some of them fail loudly.
+
 ## Verifying a solution
 
 Run `pnpm lint` — it runs `tsc --noEmit` followed by `expo lint`, covering both typecheck and lint. Always run this after making changes to confirm the solution is correct.

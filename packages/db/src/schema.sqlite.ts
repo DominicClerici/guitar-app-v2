@@ -53,9 +53,20 @@ export const syncedTables = { userPreferences };
  * `cursor` is the highest `server_seq` this device has successfully pulled. The server also
  * publishes a `min_valid_cursor`; if this one falls below it — because tombstones it never saw
  * have since been purged — the device must discard its data and resync from zero.
+ *
+ * `user_id` is who that cursor belongs to. A sequence value means nothing across accounts, so the
+ * device compares this against the signed-in user on every launch: when it changes the cursor
+ * restarts at zero.
+ *
+ * `user_is_anonymous` is what tells the two reasons for that change apart. A guest claiming their
+ * account (§5) should take the rows they wrote as a guest with them; someone signing in as a
+ * different person should not inherit the previous account's. Both look identical from the new
+ * session alone — the difference is what the *previous* owner was, which is why it is stored.
  */
 export const syncState = sqliteTable('sync_state', {
   id: integer('id').primaryKey(),
+  userId: text('user_id'),
+  userIsAnonymous: integer('user_is_anonymous', { mode: 'boolean' }).notNull().default(false),
   cursor: integer('cursor').notNull().default(0),
   lastPulledAt: integer('last_pulled_at', { mode: 'timestamp_ms' }),
 });

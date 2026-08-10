@@ -2,8 +2,10 @@
 
 Decisions made 2026-08-10. This document captures **what we chose and why**; the packages under
 `packages/` are where they get carried out. Built so far: the scaffold, Better Auth with email +
-password and anonymous guests including guest → real account linking, and the schema through §8.
-Sync (§7) and the device's SQLite half are not written yet.
+password and anonymous guests including guest → real account linking, the schema through §8, and
+sync (§6, §7) end to end for the one synced table there is — `user_preferences`. What is not built:
+any UI that reads or writes a preference, the tombstone purge job §7 describes, and every table the
+learning system will need.
 
 ## Goals
 
@@ -208,9 +210,28 @@ launch. A custom sending domain must be verified before production.
 **On-device SQLite is the source of truth.** All reads and writes hit local storage; a background
 sync reconciles with the server. The app works fully offline and opens instantly.
 
-**Context:** the mobile app currently has _no persistence at all_ — no AsyncStorage, MMKV, or SQLite
-in `package.json` and no storage module in `src/lib`. This is a clean slate, not a retrofit, which is
-the main reason offline-first is affordable here.
+**Context:** the mobile app had _no persistence at all_ before this — no AsyncStorage, MMKV, or
+SQLite, and no storage module in `src/lib`. It was a clean slate, not a retrofit, which is the main
+reason offline-first was affordable here.
+
+**How it is carried out.** `expo-sqlite` with Drizzle, in `mobile/src/lib/db`. The tables come from
+`@guitar/db/schema.sqlite` so the parity test in §8 can hold them against the server's; the
+migrations that create them are generated from that same file by `pnpm db:generate` **in the mobile
+app**, since `driver: 'expo'` emits a `drizzle/migrations.js` that Metro bundles into the binary and
+nothing else consumes. Adding `expo-sqlite` is a native dependency, so a dev client built before it
+needs a rebuild.
+
+Reads go through `useLiveQuery`, which re-runs on any write to the table it selects from — a value
+pulled from another device reaches the screen without anything invalidating a cache, and there is no
+loading state to render because SQLite is local and synchronous.
+
+**When the account changes.** The device's rows are keyed by `user_id` like the server's, so a guest
+claiming their account has to move them (§5). It carries them over — merged under the same
+last-write-wins comparison the server uses — and restarts the cursor at zero, because a guest's
+offline writes exist nowhere else and would otherwise be lost at the one moment a user is most
+likely to notice. It only does this when the *previous* owner was a guest: a different person
+signing in on the same device inherits nothing, which is why `sync_state` records whether its user
+was anonymous.
 
 **Accepted cost:** conflict resolution, tombstones, and sync cursors are most of the work, and the
 learning system doesn't exist yet to validate the design against. Mitigation: the sync layer is
@@ -238,10 +259,26 @@ assigned server-side on write. `pull(cursor)` returns rows with `server_seq > cu
 `server_seq`, capped at a page limit, and returns the new cursor. Using a sequence rather than
 `updated_at` eliminates clock-skew bugs entirely.
 
+One consequence of paging per table against a shared sequence: the returned cursor is the **lowest**
+stopping point among the tables that filled their page, not the highest sequence value seen. If one
+table stops at 900 while another returns everything it has up to 1200, resuming from 1200 skips the
+first table's rows in between — permanently, since the cursor only moves forward. Rows above the
+boundary are dropped from the response and re-sent by the next page.
+
+`min_valid_cursor` is currently always `0`: nothing has ever been purged, because the purge job
+below does not exist yet. When it lands it has to record the highest sequence value it removed, and
+`pull` has to return that instead.
+
 ### Identity and idempotency
 
-All row ids are **client-generated UUIDv7**. Push is therefore naturally idempotent — replaying a
-batch after a dropped connection converges to the same state.
+Push is idempotent: replaying a batch after a dropped connection converges to the same state.
+
+Row identity is per table, and is whatever already names the row. Tables whose rows are events —
+ear-trainer sessions, when they arrive — get **client-generated UUIDv7** ids. `user_preferences`
+instead has a composite key of `(user_id, key)`, because that pair already identifies the row; a
+generated id would let one device hold two rows for the same preference and make the merge
+ambiguous. What matters for idempotency is that the client names the row, not that the name is a
+UUID.
 
 ### Merge rules
 
@@ -265,9 +302,18 @@ whose cursor is older than that must perform a full resync.
 
 ### Push shape
 
-A batch of operations `{ table, op: 'upsert' | 'delete', id, payload, clientUpdatedAt }`, grouped by
-table server-side into one bulk statement each and submitted as a single Neon array-form transaction
-(see the driver constraint in §3). The response returns the new cursor.
+A batch of operations `{ op: 'upsert' | 'delete', payload, clientUpdatedAt }`, **keyed by table** in
+the request rather than carrying a `table` field per operation — the client already knows which
+table it is writing, and a key per table lets each one validate under its own schema, which a single
+flat union of every table's payload cannot. Each table becomes one bulk statement, submitted as a
+single Neon array-form transaction (see the driver constraint in §3).
+
+**The response returns rows, not a cursor.** A cursor cannot be derived from a write: the sequence
+values the write consumed say nothing about what other devices wrote below them, so advancing to the
+highest one would silently skip those rows. What comes back instead is the server's settled row for
+every key the batch named — including the ones this device **lost**. Without that, a device whose
+write lost the merge would never learn: the winning row may sit below its cursor and never be pulled
+again, so it would re-push the same losing row on every sync forever.
 
 ## 8. Schema sharing across dialects
 
@@ -290,6 +336,7 @@ fresh `pod install` / `expo prebuild` after the rename).
 ```
 guitar-app-v2/
   mobile/                    # renamed from guitar-mobile-expo/
+    drizzle/                 # device SQLite migrations, generated from packages/db, bundled by Metro
   packages/
     api/                     # Cloudflare Worker: Hono + tRPC + Better Auth
     db/                      # Drizzle schemas (pg + sqlite), migrations, client factory
@@ -312,7 +359,13 @@ is removed.
 
 ## 11. Testing
 
-- Sync merge rules get pure unit tests — they're the highest-risk logic and have no I/O.
+- Sync merge rules get pure unit tests — they're the highest-risk logic and have no I/O. That is
+  `mobile/src/lib/sync/reconcile.ts` on the device (what a pulled row does to a local one, what a
+  guest's row does to the account it joins) and `packages/api/src/sync/cursor.ts` on the server (the
+  paging boundary above, whose multi-table case cannot be reached end to end while one table exists).
+- The merge itself is *not* unit-tested, deliberately: it is an `ON CONFLICT` clause, so testing it
+  without a database would only assert the SQL string we wrote. It is covered by the integration
+  tests instead.
 - API integration tests run under `@cloudflare/vitest-pool-workers` against a database: the local
   Postgres from `packages/db/docker-compose.yml` by default, a dedicated Neon branch in CI. The
   server is named once, by `TEST_DATABASE_URL` in `vitest.config.ts`. Tests needing it skip
@@ -320,6 +373,8 @@ is removed.
 - Guest-account linking (§5) gets explicit tests for both the "new account" and "account already
   exists, merge" paths. These cannot be config assertions: what they check is `ON CONFLICT`
   semantics and the `server_seq` trigger, both of which live in the database.
+- `sync.pull` and `sync.push` are tested the same way and for the same reason — the cursor comes
+  from a trigger and the merge from `ON CONFLICT`, so a stubbed database would test nothing.
 - The mobile app already uses Vitest, so the toolchain is consistent across packages.
 
 ## 12. Cost model

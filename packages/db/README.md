@@ -15,18 +15,26 @@ Drizzle schemas, migrations, and the Neon client factory (`BACKEND_PLAN.md` §3,
 
 ## Adding a synced table
 
-Three edits, and the parity test fails until all three are done:
+Five edits. The parity test fails until the first four are done, and nothing fails if you skip the
+fifth — the device just never creates the table.
 
 1. Declare it in `src/schema.pg.ts` with `...syncColumns()`, and add it to `syncedTables`.
 2. Mirror it in `src/schema.sqlite.ts` under the same table and column names, and add it to that
    file's `syncedTables`.
-3. `pnpm db:generate`, then add a `set_server_seq()` trigger for it — either in
+3. Declare its merge rule in `src/sync.ts`.
+4. `pnpm db:generate`, then add a `set_server_seq()` trigger for it — either in
    `drizzle/0001_server_seq_trigger.sql` if that migration has not been applied anywhere yet, or in
    a new `pnpm exec drizzle-kit generate --custom` migration if it has.
+5. `pnpm --filter mobile db:generate`, which regenerates the device's migrations from
+   `schema.sqlite.ts` into `mobile/drizzle/`. They live there because Metro bundles them into the
+   app binary and nothing else consumes them.
 
-Step 3 is the one that matters. `server_seq` has a `nextval` default, so a table without a trigger
-looks fine on insert and silently stops syncing on update — the row keeps its original sequence
-value and drops below every client's cursor forever.
+Step 4 is the one that matters most. `server_seq` has a `nextval` default, so a table without a
+trigger looks fine on insert and silently stops syncing on update — the row keeps its original
+sequence value and drops below every client's cursor forever.
+
+`sync_state` in `schema.sqlite.ts` is device-local and deliberately has no Postgres counterpart, so
+the parity test does not look at it. Changing it still needs step 5.
 
 ## Commands
 

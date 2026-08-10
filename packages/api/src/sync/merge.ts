@@ -79,6 +79,49 @@ export function mergeRowsIntoUserSql(
   return sql`${copy} ${onConflict(table, rule)}`;
 }
 
+/**
+ * Merges rows a device pushed into that device's own account, under the table's rule — the write
+ * half of §7's push, and the other caller `onConflict` exists to serve.
+ *
+ * Rows are plain records keyed by **database column name**, and every column the table has except
+ * the server-assigned ones must be present: a partial row would be an insert with a hole in it,
+ * and under last-write-wins the whole row moves or none of it does.
+ *
+ * Two rows with the same primary key in one statement is a Postgres error, not a merge — the
+ * caller reduces a batch to one row per key before calling this.
+ */
+export function mergeValuesSql(
+  table: PgTable,
+  rule: MergeRule,
+  rows: readonly Record<string, unknown>[],
+): SQL {
+  const { name, columns } = getTableConfig(table);
+
+  if (!rows.length) throw new Error(`nothing to merge into "${name}"`);
+
+  const copied = columns.filter((column) => !SERVER_ASSIGNED.has(column.name));
+
+  const tuples = rows.map((row) => {
+    const values = copied.map((column) => {
+      if (!(column.name in row)) {
+        throw new Error(`row for "${name}" is missing a value for ${column.name}`);
+      }
+
+      // Bound as a parameter, so Postgres infers its type from the column it is being inserted
+      // into — which is what lets an ISO string land in a `timestamptz` without a cast here.
+      return sql`${row[column.name]}`;
+    });
+
+    return sql`(${sql.join(values, sql`, `)})`;
+  });
+
+  return sql`
+    insert into ${sql.identifier(name)} (${columnList(copied)})
+    values ${sql.join(tuples, sql`, `)}
+    ${onConflict(table, rule)}
+  `;
+}
+
 function onConflict(table: PgTable, rule: MergeRule): SQL {
   if (rule.kind === 'append-only') return sql`on conflict do nothing`;
 

@@ -62,6 +62,21 @@ guests are created, with no deploy of the app. It is not a secret and must not b
 free-tier limit expected to bind first (§12); unbound, reads fall through to Postgres. Sessions are
 written to Postgres either way, so they survive KV eviction and stay revocable.
 
+## Sync
+
+`sync.pull` and `sync.push` (§7) are the whole protocol — two tRPC procedures, no persistent
+connection, no vendor between the app and Postgres. `src/sync/` holds the parts that are generic
+over the table (the paging boundary, and the one merge statement built from a table's declared
+rule); `src/sync/preferences.ts` is the only part that is not.
+
+Both are `protectedProcedure`, and every statement is scoped to the session's user. A cursor is a
+position in one sequence shared by all users, so it is not a capability — the ownership filter is
+what keeps accounts apart, not the cursor.
+
+Two things differ from the sketch in §7, and are explained where they are implemented: `push`
+answers with the rows the server settled on rather than a new cursor, and a pull page stops at the
+lowest table that filled it rather than the highest sequence value seen.
+
 ## Type export
 
 `package.json` resolves `@guitar/api` to `src/public.ts`, which exports nothing but the `AppRouter`
