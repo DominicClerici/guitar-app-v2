@@ -19,6 +19,7 @@
     "lint": "pnpm typecheck && pnpm test"
   },
   "dependencies": {
+    "@better-auth/expo": "^1.6.26",
     "@guitar/db": "workspace:*",
     "@guitar/shared": "workspace:*",
     "@trpc/server": "^11.18.0",

@@ -1,21 +1,23 @@
 import type { AppRouter } from '@guitar/api';
 import { createTRPCClient, httpBatchLink } from '@trpc/client';
-import Constants from 'expo-constants';
 
-const WRANGLER_DEV_PORT = 8788;
+import { authClient } from '@/lib/auth';
 
-function resolveBaseUrl(): string {
-  const fromEnv = process.env.EXPO_PUBLIC_API_URL;
-  if (fromEnv) return fromEnv;
-
-  // In dev, derive the host from Metro's own address so a physical device reaches the LAN machine
-  // running `wrangler dev` rather than its own loopback. Simulators land on localhost either way.
-  const metroHost = Constants.expoConfig?.hostUri?.split(':')[0];
-  return `http://${metroHost ?? 'localhost'}:${WRANGLER_DEV_PORT}`;
-}
+import { resolveApiBaseUrl } from './baseUrl';
 
 export function createApiClient() {
   return createTRPCClient<AppRouter>({
-    links: [httpBatchLink({ url: `${resolveBaseUrl()}/trpc` })],
+    links: [
+      httpBatchLink({
+        url: `${resolveApiBaseUrl()}/trpc`,
+        // React Native has no cookie jar, so the session cookie the auth client keeps in secure
+        // storage has to be attached by hand — this is what `protectedProcedure` reads
+        // (BACKEND_PLAN.md §5). Read per request: signing in or out changes it in place.
+        headers: () => {
+          const cookie = authClient.getCookie();
+          return cookie ? { cookie } : {};
+        },
+      }),
+    ],
   });
 }

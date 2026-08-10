@@ -9,7 +9,7 @@
   "compatibility_flags": ["nodejs_compat"],
   "observability": { "enabled": true },
 
-  // Change this and WRANGLER_DEV_PORT in the Expo app's src/lib/api/client.ts together.
+  // Change this and WRANGLER_DEV_PORT in the Expo app's src/lib/api/baseUrl.ts together.
   // Deliberately not Wrangler's default 8787: macOS's Photos daemon listens on it, and because it
   // binds the IPv6 wildcard it wins `localhost` over workerd's loopback bind. The symptom is a
   // worker that appears to run while every request is answered by photod — /health even returns a

@@ -36,7 +36,8 @@
       ],
       "expo-web-browser",
       "./modules/expo-pitch-detector/plugin/build.js",
-      "react-native-audio-api"
+      "react-native-audio-api",
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true,

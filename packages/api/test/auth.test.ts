@@ -47,6 +47,17 @@ describe('auth configuration', () => {
     });
   });
 
+  it('always registers the expo plugin', () => {
+    // It carries the session cookie onto deep-link redirects and promotes the app's `expo-origin`
+    // header, so it must survive every combination of the optional flags below. Asserted on the
+    // config because its effects only show on a device.
+    const ids = (overrides: Partial<Env>) =>
+      (authFor(overrides).options.plugins ?? []).map((plugin) => plugin.id);
+
+    expect(ids({})).toContain('expo');
+    expect(ids({ ENABLE_ANONYMOUS_AUTH: 'true' })).toContain('expo');
+  });
+
   it('leaves the anonymous plugin off unless the flag is explicitly true', () => {
     const names = (overrides: Partial<Env>) =>
       (authFor(overrides).options.plugins ?? []).map((plugin) => plugin.id);

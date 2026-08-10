@@ -8,6 +8,7 @@
  * Auth routes never pass through tRPC — Better Auth serves its own handler, mounted in Hono at
  * `/api/auth/*` (§4).
  */
+import { expo } from '@better-auth/expo';
 import { authSchema, type Db } from '@guitar/db';
 import { betterAuth, type BetterAuthOptions } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
@@ -61,9 +62,20 @@ function socialProviders(env: Env): SocialProviders {
 }
 
 function plugins(env: Env): NonNullable<BetterAuthOptions['plugins']> {
-  if (env.ENABLE_ANONYMOUS_AUTH !== 'true') return [];
+  // Unconditional — the native app needs two things from it. Requests from React Native carry no
+  // `origin`, so the client sends `expo-origin` instead and this promotes it to the real header for
+  // the origin check. And when a verification or OAuth callback redirects to a non-http URL — our
+  // `guitarmobileexpo://` deep links — it copies the session cookie onto that redirect, which is
+  // the only way the cookie reaches a device that has no cookie jar.
+  //
+  // It does not trust our URL scheme: that comes from TRUSTED_ORIGINS in wrangler.jsonc, and the
+  // plugin's own contribution is `exp://` in development only.
+  const enabled: NonNullable<BetterAuthOptions['plugins']> = [expo()];
+
+  if (env.ENABLE_ANONYMOUS_AUTH !== 'true') return enabled;
 
   return [
+    ...enabled,
     anonymous({
       onLinkAccount: async () => {
         // Every synced row is keyed by user_id, so linking a guest to a real account has to
