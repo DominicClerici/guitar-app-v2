@@ -4,7 +4,7 @@ import { drizzle } from 'drizzle-orm/neon-http';
 import * as schema from './schema.pg';
 
 /** Where docker-compose.yml publishes the local Neon HTTP proxy. */
-const LOCAL_PROXY_PORT = 4444;
+const LOCAL_PROXY_PORT = 4445;
 
 const LOCAL_HOSTS = new Set(['localhost', '127.0.0.1', '[::1]', 'host.docker.internal']);
 

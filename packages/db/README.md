@@ -64,9 +64,9 @@ cp .env.example .env    # already points at the local containers
 pnpm db:migrate
 ```
 
-Ports are 5433 for Postgres and 4444 for the proxy, both off the defaults because 5432 is so
-commonly taken by another project's container. Connect with
-`psql -h localhost -p 5433 -U guitar -d guitar` (password `guitar`).
+Ports are 5434 for Postgres and 4445 for the proxy, both off the defaults because 5432 (and other
+projects' common substitutes like 5433) are so often taken by another project's container. Connect
+with `psql -h localhost -p 5434 -U guitar -d guitar` (password `guitar`).
 
 Going to Neon later is a one-line change: point `DATABASE_URL` at the branch. The local-host check
 stops matching, the driver goes straight to Neon over HTTPS, and nothing else moves.

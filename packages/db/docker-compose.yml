@@ -22,7 +22,7 @@ services:
       POSTGRES_PASSWORD: guitar
       POSTGRES_DB: guitar
     ports:
-      - '5433:5432'
+      - '5434:5432'
     volumes:
       - guitar-pgdata:/var/lib/postgresql/data
     healthcheck:
@@ -40,7 +40,7 @@ services:
     environment:
       PG_CONNECTION_STRING: postgres://guitar:guitar@postgres:5432/guitar
     ports:
-      - '4444:4444'
+      - '4445:4444'
     depends_on:
       postgres:
         condition: service_healthy
