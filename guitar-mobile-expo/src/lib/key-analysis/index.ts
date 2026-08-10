@@ -10,7 +10,7 @@
 // estimateKey and romanLabelsFor are independent: relabelling against a
 // user-picked runner-up does not re-run estimation.
 
-export { accidentalSideFor, estimateKey } from './estimate';
+export { accidentalSideFor, estimateKey, isDominantIdiom } from './estimate';
 export { extractFeature, qualityOf } from './extract';
 export { assignedFeature, romanLabelsFor } from './roman';
 export type {

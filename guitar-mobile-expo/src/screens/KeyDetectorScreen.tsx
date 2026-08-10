@@ -17,6 +17,7 @@ import {
   useKeyDetection,
   type DisplayChord,
 } from '@/features/key-detection/useKeyDetection';
+import { WhatToPlayRow } from '@/features/scale-explorer/WhatToPlayRow';
 import { toAccidentalGlyphs } from '@/lib/accidentals';
 import { useToken } from '@/lib/tokens';
 import { encodeVoicing } from '@/lib/voicing-param';
@@ -108,6 +109,8 @@ export function KeyDetectorScreen() {
     chords,
     estimate,
     labels,
+    scalePlan,
+    displayedKey,
     keyChoice,
     setKeyChoice,
     isFull,
@@ -294,6 +297,18 @@ export function KeyDetectorScreen() {
         contentContainerStyle={{ paddingBottom: insets.bottom + 24 }}
       >
         <KeyReadout estimate={estimate} keyChoice={keyChoice} onSelectKey={setKeyChoice} />
+
+        {scalePlan && displayedKey ? (
+          <WhatToPlayRow
+            plan={scalePlan}
+            onPress={() =>
+              router.push({
+                pathname: '/scale-explorer',
+                params: { tonic: String(displayedKey.tonicPc), mode: displayedKey.mode },
+              })
+            }
+          />
+        ) : null}
 
         {/* Hangs off the card rather than the chip row, so a hint reads as a note
             on the verdict and does not drift down the page with the board. */}

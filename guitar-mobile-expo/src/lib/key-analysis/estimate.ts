@@ -144,7 +144,7 @@ export function accidentalSideFor(
  * functional throughout. Against C that chain's dom7s land on III, VI, II and V,
  * so the idiom is refused; a real blues in C puts them only on I, IV and V.
  */
-function isDominantIdiom(features: readonly ChordFeature[], tonicPc: number): boolean {
+export function isDominantIdiom(features: readonly ChordFeature[], tonicPc: number): boolean {
   let dom7 = 0;
   for (const feature of features) {
     if (qualityOf(feature) !== 'dom7') continue;

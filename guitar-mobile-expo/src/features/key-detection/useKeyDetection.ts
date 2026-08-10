@@ -5,6 +5,8 @@ import { analyzeChord } from '@/lib/chord-analysis';
 import type { ChordResult, FretboardNote } from '@/lib/chord-analysis';
 import { accidentalSideFor, estimateKey, extractFeature, romanLabelsFor } from '@/lib/key-analysis';
 import type { KeyEstimate, ProgressionChord, RomanLabel } from '@/lib/key-analysis';
+import { scalePlanFor } from '@/lib/scale-analysis';
+import type { ScalePlan } from '@/lib/scale-analysis';
 import { noteToSemitone } from '@/lib/theory';
 
 export const MAX_CHORDS = 12;
@@ -156,6 +158,13 @@ export function useKeyDetection() {
     [state.chords, displayedKey],
   );
 
+  // The scale plan tracks the displayed key the same way the labels do, so
+  // picking a runner-up key re-plans what to play over the progression.
+  const scalePlan: ScalePlan | null = useMemo(
+    () => (displayedKey ? scalePlanFor(state.chords, displayedKey, ACCIDENTAL) : null),
+    [state.chords, displayedKey],
+  );
+
   const add = useCallback((chord: ProgressionChord) => dispatch({ type: 'add', chord }), []);
   const replace = useCallback(
     (id: string, chord: ProgressionChord) => dispatch({ type: 'replace', id, chord }),
@@ -172,6 +181,7 @@ export function useKeyDetection() {
     chords,
     estimate,
     labels,
+    scalePlan,
     displayedKey,
     keyChoice,
     setKeyChoice,
