@@ -1,2 +1,2 @@
 export { ArticleRenderer } from './ArticleRenderer';
-export { articleRepository, type ArticleRepository } from './repository';
+export { contentRepository, type ContentRepository } from './repository';

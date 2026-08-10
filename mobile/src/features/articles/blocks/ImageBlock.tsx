@@ -2,7 +2,7 @@ import { Image } from 'expo-image';
 import { View } from 'react-native';
 import { withUniwind } from 'uniwind';
 
-import type { ImageBlock as ImageBlockData } from '@/lib/articles';
+import type { ImageBlock as ImageBlockData } from '@/lib/content';
 
 import { RichText } from '../RichText';
 

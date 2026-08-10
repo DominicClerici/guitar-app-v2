@@ -2,10 +2,10 @@
 
 Decisions made 2026-08-10. This document captures **what we chose and why**; the packages under
 `packages/` are where they get carried out. Built so far: the scaffold, Better Auth with email +
-password and anonymous guests including guest → real account linking, the schema through §8, and
-sync (§6, §7) end to end for the one synced table there is — `user_preferences`. What is not built:
-any UI that reads or writes a preference, the tombstone purge job §7 describes, and every table the
-learning system will need.
+password and anonymous guests including guest → real account linking, the schema through §8, sync
+(§6, §7) generalised over a table registry and carrying four tables, and the learning system's data
+model and content delivery (§14). What is not built: any UI that reads or writes a preference, the
+tombstone purge job §7 describes, and the microphone "activity" sections §14 leaves as placeholders.
 
 ## Goals
 
@@ -233,10 +233,15 @@ likely to notice. It only does this when the *previous* owner was a guest: a dif
 signing in on the same device inherits nothing, which is why `sync_state` records whether its user
 was anonymous.
 
-**Accepted cost:** conflict resolution, tombstones, and sync cursors are most of the work, and the
-learning system doesn't exist yet to validate the design against. Mitigation: the sync layer is
-generic over tables with an explicit per-table merge rule, so adding learning-system tables later is
-configuration rather than new sync code.
+**Accepted cost:** conflict resolution, tombstones, and sync cursors are most of the work.
+Mitigation: the sync layer is generic over a table registry with an explicit per-table merge rule,
+so adding a synced table is configuration rather than new sync code. The learning system (§14) was
+the first test of that claim, and it held — three tables arrived as three adapters and three rule
+declarations, with no change to the push loop, the pull loop, the cursor, or the merge builder.
+
+The registry exists because the failures it prevents are silent. A table missing from the full-resync
+clear leaves stale rows behind; one missing from the push loop is simply never sent. Neither raises
+anything, and neither shows up until a user notices their progress is wrong on a second device.
 
 **Rejected:** server-authoritative with cached reads (simplest, but the app is unusable offline and
 retrofitting sync later is a rewrite); local-only preferences (less to build, but a new phone starts
@@ -284,11 +289,22 @@ UUID.
 
 Each synced table declares exactly one rule:
 
-| Rule            | Semantics                                                                       | Applies to                |
-| --------------- | ------------------------------------------------------------------------------- | ------------------------- |
-| Append-only     | `ON CONFLICT DO NOTHING`; rows are immutable once written                       | Ear-trainer sessions      |
-| Monotonic       | Per-column `GREATEST`/`LEAST` merge — best score up, first-completion date down | Lesson / article progress |
-| Last-write-wins | Per-key row with a client timestamp; later timestamp wins                       | Preferences               |
+| Rule            | Semantics                                                                       | Applies to                             |
+| --------------- | ------------------------------------------------------------------------------- | -------------------------------------- |
+| Append-only     | `ON CONFLICT DO NOTHING`; rows are immutable once written                       | `quiz_attempts`, ear-trainer sessions  |
+| Monotonic       | Per-column `GREATEST`/`LEAST` merge — best score up, first-completion date down | `section_progress`                     |
+| Last-write-wins | Per-key row with a client timestamp; later timestamp wins                       | `user_preferences`, enrollments        |
+
+The monotonic update carries a `WHERE` guard — `least(...) is distinct from ...` — so a merge that
+changes nothing performs no update. This is not an optimisation: `set_server_seq()` fires on every
+UPDATE, so an unguarded no-op would draw a fresh sequence value for an unchanged row and
+re-broadcast it to every device on each push, growing pull pages with rows nobody touched.
+
+**Every synced table's primary key must include `user_id`.** The guest-to-real-account
+reassignment in §5 copies rows between accounts, and a table keyed only by a client-generated id
+collides with the guest's own row — `ON CONFLICT DO NOTHING` then discards the copy silently, and
+the user loses that data at exactly the moment they claim their account. `quiz_attempts` is keyed
+`(user_id, attempt_id)` for this reason despite the id being a globally unique UUIDv7.
 
 Counters that would need summing (e.g. total attempts) are **derived** from append-only rows at read
 time rather than stored as a mutable counter. This keeps every merge commutative and avoids an
@@ -321,7 +337,9 @@ Drizzle schemas are dialect-specific — `pg-core` on the server, `sqlite-core` 
 single Drizzle schema **cannot** be shared. The layering instead is:
 
 - **Zod domain schemas** in the shared package are the single source of truth for shape and validation.
-  Both clients and the API validate against them.
+  Both clients and the API validate against them. The content parsers (§14) live there for exactly
+  this reason: the publish script, the Worker, and the device must agree on what a valid article is,
+  and a second copy in the app would drift from the one the script checks against.
 - **`schema.pg.ts`** defines the server's Postgres tables.
 - **`schema.sqlite.ts`** defines the device's mirror tables.
 - A **parity test** asserts the two Drizzle schemas expose the same table and column names, so they
@@ -402,12 +420,80 @@ The Next.js app is a pure client. It imports the same `AppRouter` type and uses 
 client against the same Worker. It introduces no backend of its own. Hosting is undecided (Vercel or
 Cloudflare Pages) and does not affect anything above.
 
+## 14. The learning system
+
+Pathways contain chapters, chapters contain sections, and a section is an article, a quiz, or an
+activity. Progress is synced; the content itself is published.
+
+### Structure and delivery
+
+The curriculum is **authored as JSON files** in `packages/content` and published to Postgres by a
+script that validates every document against the same Zod parsers the device runs (§8) and checks
+what no single-document parser can: that every `ref` resolves, that no section id is duplicated,
+that each checkpoint points at a checkpoint-kind quiz. Content is reviewed in pull requests, and
+publishing is a deliberate command — `pnpm content:publish` — rather than a deploy side effect. It
+refuses to touch the database if anything fails validation, and reports every issue rather than the
+first, because someone fixing content wants the whole list.
+
+A document's `version` is the hash of its **authored** JSON, canonicalised by sorting object keys
+and preserving array order — key order in a file is cosmetic, array order is content. The body
+stored is the authored JSON verbatim rather than the parser's output, because normalisation is
+lossy: baking one build's understanding into storage would defeat the forward-compatibility rules
+the device depends on. Republishing unchanged content therefore writes nothing at all, which is the
+property the device's `unchanged` fast path rests on.
+
+Rejected: relational tables per block (every new block type becomes a migration, and Postgres still
+cannot validate one); an admin CMS (a whole second app before there is any content to manage).
+
+Three public, version-conditional procedures serve it: `content.index`, `content.pathway`,
+`content.chapter`. The device sends the version it holds and is usually told `unchanged`, which is
+what keeps a launch-time refresh from re-downloading cached chapters — bandwidth, but more to the
+point Neon compute against the free tier. The index's version is **derived** from the pathway rows
+rather than stored, so it cannot claim to be current after a pathway underneath it was republished.
+
+`content.chapter` is deliberately shaped like the device's cache unit rather than like the data
+model: it returns every document a chapter references in one response, because a chapter is what
+gets cached and what gets evicted.
+
+### Offline
+
+The device caches the **current chapter of each active pathway**, capped at three, plus a small
+library of recently-read standalone articles. Cache rows live in device-local SQLite tables that
+are excluded from `syncedTables`: content is published, not owned, so there is nothing to merge and
+nothing to push. SQLite rather than the filesystem because reads there are synchronous, so a cached
+article renders on the first frame with no loading state, matching how the rest of the app behaves.
+
+Eviction runs after the fetches, never before, so a failed refresh leaves the old chapter in place
+instead of clearing the cache and being unable to refill it.
+
+### Progress
+
+Three synced tables, one per merge rule (see §7's table). Two consequences are load-bearing:
+
+- **Progress cannot be un-done.** There is no reset, deliberately: a tombstone racing a monotonic
+  upsert is resurrected by the next device to report the same section. Dropping a pathway therefore
+  removes only the enrollment, so starting it again resumes rather than restarts.
+- **The three-pathway cap is a client rule.** Rows merge independently and commutatively, so two
+  devices can each start a fourth pathway offline and both succeed. The client keeps the three most
+  recently active and tombstones the rest, which converges without any write ever being rejected —
+  a server-side constraint would instead fail one device's push permanently.
+
+A checkpoint has no section of its own, so its result is stored under a derived id
+(`<chapter id>:checkpoint`). Keyed on the chapter rather than the quiz slug, so one quiz reused as
+two chapters' checkpoints does not pass both at once.
+
+Quiz grading is client-side and correct answers ship in the document. This is a learning app:
+cheating costs the user only their own progress, and server-side grading would mean a round trip
+per question and no offline quizzes at all.
+
 ## Open questions
 
 Deferred until the relevant features are designed:
 
-- The learning system's data model — deliberately not modelled speculatively. It will be added as
-  new tables with a declared merge rule once the feature is designed.
 - Whether preferences sync at all, or split into synced (musical defaults) vs device-local (UI
   chrome). Currently planned as fully synced.
 - Whether ear-trainer sessions need retention limits, given they're append-only and unbounded.
+- Whether `quiz_attempts` needs the same, for the same reason — unlimited retakes make it unbounded
+  per user, though far more slowly.
+- The microphone "activity" sections. Modelled in the curriculum and excluded from every progress
+  denominator via `optional`, but nothing renders them yet.

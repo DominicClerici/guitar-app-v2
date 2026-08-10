@@ -14,6 +14,8 @@ import {
   bigint,
   boolean,
   index,
+  integer,
+  jsonb,
   pgSequence,
   pgTable,
   primaryKey,
@@ -168,5 +170,162 @@ export const userPreferences = pgTable(
   ],
 );
 
+/**
+ * Which pathways a user is working through (the learning system, §7).
+ *
+ * Enrollment is a mutable state — started, worked on, dropped — so it merges last-write-wins on
+ * `client_updated_at`, and dropping a pathway is a tombstone like any other delete.
+ *
+ * The product rule of at most three active pathways is **not** enforced here, and cannot be. Rows
+ * merge independently and commutatively, so two devices each starting a fourth pathway offline both
+ * succeed and converge on five. The client reconciles by keeping the three most recently active and
+ * tombstoning the rest; a server-side constraint would instead reject one device's push forever.
+ *
+ * Dropping a pathway deliberately leaves `section_progress` alone, so starting it again resumes
+ * rather than restarts. That is also what lets progress be monotonic — nothing ever needs to un-do
+ * a completion.
+ */
+export const pathwayEnrollments = pgTable(
+  'pathway_enrollments',
+  {
+    userId: text('user_id')
+      .notNull()
+      .references(() => user.id, { onDelete: 'cascade' }),
+    pathwayId: text('pathway_id').notNull(),
+    startedAt: timestamp('started_at', { withTimezone: true, mode: 'date' }).notNull(),
+    /** Drives both the "continue" ordering and which three enrollments survive the cap. */
+    lastActiveAt: timestamp('last_active_at', { withTimezone: true, mode: 'date' }).notNull(),
+    clientUpdatedAt: timestamp('client_updated_at', {
+      withTimezone: true,
+      mode: 'date',
+    }).notNull(),
+    ...syncColumns(),
+  },
+  (table) => [
+    primaryKey({ columns: [table.userId, table.pathwayId] }),
+    index('pathway_enrollments_pull_idx').on(table.userId, table.serverSeq),
+  ],
+);
+
+/**
+ * How far a user has got in each section (§7).
+ *
+ * The one **monotonic** table: `completed_at` only ever moves earlier and `best_score_pct` only
+ * ever moves higher, so the merge needs no client timestamp and no ordering. Two devices that each
+ * finished a different section offline converge whichever arrives first, and replaying a push
+ * changes nothing — which is the property that makes progress safe to sync without a clock.
+ *
+ * The consequence is that progress cannot be un-done, and nothing in the app offers to. A reset
+ * would have to be a tombstone, and a tombstone racing a monotonic upsert resurrects the row.
+ *
+ * `best_score_pct` is null for a section that is not a quiz, and is deliberately denormalised from
+ * `quiz_attempts` so a chapter's view is one query rather than a join and an aggregate. Counts —
+ * how many attempts, when each was — are derived from the attempts themselves (§7), never stored
+ * here as something that would have to be summed.
+ */
+export const sectionProgress = pgTable(
+  'section_progress',
+  {
+    userId: text('user_id')
+      .notNull()
+      .references(() => user.id, { onDelete: 'cascade' }),
+    /** Stable across a section being retitled, reordered, or moved between chapters. */
+    sectionId: text('section_id').notNull(),
+    completedAt: timestamp('completed_at', { withTimezone: true, mode: 'date' }),
+    bestScorePct: integer('best_score_pct'),
+    ...syncColumns(),
+  },
+  (table) => [
+    primaryKey({ columns: [table.userId, table.sectionId] }),
+    index('section_progress_pull_idx').on(table.userId, table.serverSeq),
+  ],
+);
+
+/**
+ * One row per quiz or checkpoint attempt (§7), append-only.
+ *
+ * Immutable once written, so the row already on the server always wins and a replayed push is a
+ * no-op. The id is client-generated UUIDv7 because an attempt is an event with nothing else to name
+ * it — unlike a preference, whose `(user_id, key)` already identifies the row.
+ *
+ * This is the audit trail behind `section_progress.best_score_pct`: how many attempts a checkpoint
+ * took and what each scored are read from here rather than kept as counters, so every merge in the
+ * system stays commutative.
+ */
+export const quizAttempts = pgTable(
+  'quiz_attempts',
+  {
+    attemptId: text('attempt_id').notNull(),
+    userId: text('user_id')
+      .notNull()
+      .references(() => user.id, { onDelete: 'cascade' }),
+    sectionId: text('section_id').notNull(),
+    scorePct: integer('score_pct').notNull(),
+    passed: boolean('passed').notNull(),
+    answeredAt: timestamp('answered_at', { withTimezone: true, mode: 'date' }).notNull(),
+    ...syncColumns(),
+  },
+  (table) => [
+    // Keyed by (user, attempt) even though a UUIDv7 is unique on its own, because every synced
+    // table has to be copyable from one account to another (§5). With `attempt_id` alone the
+    // guest-to-real-account copy collides with the guest's own row and `ON CONFLICT DO NOTHING`
+    // silently drops it — and a client pushing an id another account already holds would be
+    // dropped the same way, then re-push it forever because the read-back finds nothing.
+    primaryKey({ columns: [table.userId, table.attemptId] }),
+    index('quiz_attempts_pull_idx').on(table.userId, table.serverSeq),
+    index('quiz_attempts_section_idx').on(table.userId, table.sectionId),
+  ],
+);
+
 /** Every table the sync protocol carries. The parity test compares this against SQLite's copy. */
-export const syncedTables = { userPreferences };
+export const syncedTables = {
+  userPreferences,
+  pathwayEnrollments,
+  sectionProgress,
+  quizAttempts,
+};
+
+// ---------------------------------------------------------------------------
+// Published content. Server-only by design: these tables belong to nobody, carry no `user_id` and
+// no `server_seq`, and are deliberately absent from `syncedTables` — content is *published*, not
+// synced. The device keeps its own cache of whatever it has fetched (§6), which is a different
+// thing with a different lifetime, and the parity test correctly ignores both.
+// ---------------------------------------------------------------------------
+
+/**
+ * One article or quiz, exactly as the publish script validated it.
+ *
+ * `body` is `jsonb` rather than a set of columns because the document schema is the app's, not the
+ * database's: the shape is versioned by `schemaVersion` inside the document and evolves under the
+ * forward-compatibility rules in `mobile/docs/articles.md`. Modelling blocks as rows would turn
+ * every new block type into a migration and still not let Postgres validate one.
+ *
+ * `version` is the content hash the device compares against to decide whether its cached copy is
+ * stale — see `contentHash` in `@guitar/shared`.
+ */
+export const contentDocuments = pgTable('content_documents', {
+  slug: text('slug').primaryKey(),
+  /** `article` or `quiz`. Not an enum: adding a third kind should not be a migration. */
+  kind: text('kind').notNull(),
+  version: text('version').notNull(),
+  body: jsonb('body').notNull(),
+  publishedAt: timestamp('published_at', { withTimezone: true, mode: 'date' })
+    .notNull()
+    .defaultNow(),
+});
+
+/**
+ * One pathway's full chapter and section tree.
+ *
+ * The curriculum *index* is not stored. It is derived from these rows on request, so it cannot
+ * claim to be current after a pathway underneath it has been republished — a stored index would
+ * need a second write that could be forgotten or fail on its own.
+ */
+export const curriculumPathways = pgTable('curriculum_pathways', {
+  slug: text('slug').primaryKey(),
+  version: text('version').notNull(),
+  body: jsonb('body').notNull(),
+  publishedAt: timestamp('published_at', { withTimezone: true, mode: 'date' })
+    .notNull()
+    .defaultNow(),
+});

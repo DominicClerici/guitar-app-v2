@@ -9,6 +9,7 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
+import { SYNCED_TABLE_NAMES } from '@guitar/shared';
 import { getTableConfig as getPgTableConfig, type PgTable } from 'drizzle-orm/pg-core';
 import { getTableConfig as getSqliteTableConfig, type SQLiteTable } from 'drizzle-orm/sqlite-core';
 import { describe, expect, it } from 'vitest';
@@ -40,6 +41,16 @@ function columnNames(config: { columns: readonly { name: string }[] }): string[]
 describe('synced schema parity', () => {
   it('declares the same synced tables in both dialects', () => {
     expect(Object.keys(sqliteTables).sort()).toEqual(syncedNames);
+  });
+
+  /**
+   * Storage and the wire protocol are declared in different packages — the tables here, the push
+   * and pull schemas in `@guitar/shared`'s registry — and neither import can see the other's list.
+   * A table with storage but no wire entry is never pushed or pulled, and a wire entry with no
+   * table fails only when a row of it first arrives, so the mismatch has to be caught here.
+   */
+  it('carries every stored table on the wire, and nothing else', () => {
+    expect([...SYNCED_TABLE_NAMES].sort()).toEqual(syncedNames);
   });
 
   it.each(syncedNames)('%s matches across dialects', (name) => {

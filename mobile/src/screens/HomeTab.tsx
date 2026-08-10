@@ -1,9 +1,12 @@
+import { useRouter } from 'expo-router';
 import { SymbolView, type SFSymbol } from 'expo-symbols';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { InlineChordDetector } from '@/features/chord-detection';
+import { LearningHero, LearningHeroEmpty } from '@/features/learning';
 import { InlineTunerCard } from '@/features/tuner/InlineTunerCard';
+import { nextStep, nextStepHref, pathwayHref, useLearning } from '@/lib/learning';
 import { useToken } from '@/lib/tokens';
 
 const ARTICLES: { icon: SFSymbol; title: string; subtitle: string }[] = [
@@ -67,8 +70,11 @@ function PlayCard({ icon, title, subtitle }: (typeof PLAY)[number]) {
 
 export function HomeTab() {
   const insets = useSafeAreaInsets();
-  const onAccent = useToken('--on-accent', '#04211f');
-  const muted = useToken('--ink-muted', '#9aa0aa');
+  const router = useRouter();
+
+  // The hero is the pathway touched most recently, which is what `active` is already ordered by.
+  const { active, progress } = useLearning();
+  const hero = active[0] ?? null;
 
   return (
     <View className="flex-1 bg-bg">
@@ -84,40 +90,20 @@ export function HomeTab() {
 
         {/* hero — learning progress, unenclosed and sitting on the background */}
         <View className="mt-[28px]">
-          <Text className="font-mono text-[10px] font-semibold uppercase tracking-[2.5px] text-accent">
-            Up next
-          </Text>
-          <Text className="mt-[10px] text-[34px] leading-[37px] font-semibold tracking-[-0.9px] text-ink">
-            Major Scale
-          </Text>
-          <Text className="mt-[6px] text-[13.5px] leading-[20px] text-ink-muted">
-            Changing Keys · D → G
-          </Text>
-
-          <View className="mt-[24px] flex-row items-baseline justify-between">
-            <Text className="font-mono text-[30px] leading-[30px] font-medium tracking-[0.5px] text-ink">
-              3/5
-            </Text>
-            <Text className="font-mono text-[10px] uppercase tracking-[2px] text-ink-faint">
-              60% complete
-            </Text>
-          </View>
-
-          <View className="mt-[14px] h-[6px] overflow-hidden rounded-[6px] bg-line">
-            <View className="h-[6px] w-[60%] rounded-[6px] bg-accent" />
-          </View>
-
-          <View className="mt-[22px] flex-row gap-[12px]">
-            <Pressable className="h-[52px] flex-1 flex-row items-center justify-center gap-[9px] rounded-[10px] border border-t-[rgba(255,255,255,0.4)] border-x-transparent border-b-[rgba(0,0,0,0.28)] bg-accent">
-              <SymbolView name="play.fill" size={14} tintColor={onAccent} />
-              <Text className="text-[15px] font-bold tracking-[0.3px] text-on-accent">
-                Continue
-              </Text>
-            </Pressable>
-            <Pressable className="h-[52px] w-[52px] items-center justify-center rounded-[10px] border border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface-raised">
-              <SymbolView name="metronome" size={18} tintColor={muted} />
-            </Pressable>
-          </View>
+          {hero ? (
+            <LearningHero
+              meta={hero.meta}
+              pathway={hero.pathway}
+              progress={progress}
+              onContinue={() => {
+                const step = hero.pathway ? nextStep(hero.pathway, progress) : null;
+                if (step) router.push(nextStepHref(hero.meta.slug, step));
+              }}
+              onOpen={() => router.push(pathwayHref(hero.meta.slug))}
+            />
+          ) : (
+            <LearningHeroEmpty />
+          )}
         </View>
 
         {/* signature — tuner scale */}

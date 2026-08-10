@@ -1,6 +1,6 @@
 import { Text } from 'react-native';
 
-import type { Mark, Span } from '@/lib/articles';
+import type { Mark, Span } from '@/lib/content';
 
 import { useArticleLink } from './links';
 

@@ -1,6 +1,6 @@
 import { View } from 'react-native';
 
-import type { Span, TableBlock as TableBlockData } from '@/lib/articles';
+import type { Span, TableBlock as TableBlockData } from '@/lib/content';
 
 import { RichText } from '../RichText';
 

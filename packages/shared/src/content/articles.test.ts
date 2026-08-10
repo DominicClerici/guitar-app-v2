@@ -81,8 +81,8 @@ describe('parseArticleDocument', () => {
     );
 
     const block = parsed.blocks[0];
-    if (block.type !== 'paragraph') throw new Error('expected paragraph');
-    expect(block.spans[0].marks).toEqual(['bold', { type: 'color', tone: 'amber' }]);
+    if (block?.type !== 'paragraph') throw new Error('expected paragraph');
+    expect(block.spans[0]?.marks).toEqual(['bold', { type: 'color', tone: 'amber' }]);
   });
 
   it('drops a link of an unknown kind but keeps the text', () => {
@@ -91,9 +91,9 @@ describe('parseArticleDocument', () => {
     );
 
     const block = parsed.blocks[0];
-    if (block.type !== 'paragraph') throw new Error('expected paragraph');
-    expect(block.spans[0].link).toBeUndefined();
-    expect(block.spans[0].text).toBe('Hi');
+    if (block?.type !== 'paragraph') throw new Error('expected paragraph');
+    expect(block.spans[0]?.link).toBeUndefined();
+    expect(block.spans[0]?.text).toBe('Hi');
   });
 
   it('rejects an unsupported schemaVersion', () => {

@@ -1,6 +1,6 @@
 import { Text, View } from 'react-native';
 
-import type { ListBlock as ListBlockData } from '@/lib/articles';
+import type { ListBlock as ListBlockData } from '@/lib/content';
 
 import { RichText } from '../RichText';
 

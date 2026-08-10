@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "quiz_fundamentals-ch1-checkpoint",
+    "slug": "fundamentals-ch1-checkpoint",
+    "title": "Checkpoint: Notes and Distances",
+    "summary": "Prove you can read the neck and count an interval before moving on to scales and chords.",
+    "kind": "checkpoint",
+    "passThresholdPct": 70
+  },
+  "questions": [
+    {
+      "id": "q_fundamentals-ch1-checkpoint.perfect-fifth",
+      "kind": "choice",
+      "prompt": [{ "text": "How many frets is a perfect fifth?" }],
+      "options": [
+        { "id": "a", "spans": [{ "text": "4" }] },
+        { "id": "b", "spans": [{ "text": "5" }] },
+        { "id": "c", "spans": [{ "text": "7" }] },
+        { "id": "d", "spans": [{ "text": "9" }] }
+      ],
+      "answerId": "c",
+      "explanation": [
+        {
+          "text": "Seven. It is the most stable interval after the octave, and the top note of every power chord."
+        }
+      ]
+    },
+    {
+      "id": "q_fundamentals-ch1-checkpoint.power-chord",
+      "kind": "multi-select",
+      "prompt": [{ "text": "Which statements about a power chord are true?" }],
+      "options": [
+        { "id": "root-fifth", "spans": [{ "text": "It is a root plus its fifth" }] },
+        { "id": "no-third", "spans": [{ "text": "It contains no third" }] },
+        {
+          "id": "either-key",
+          "spans": [{ "text": "It fits over both major and minor progressions" }]
+        },
+        { "id": "always-minor", "spans": [{ "text": "It is always a minor chord" }] },
+        { "id": "four-notes", "spans": [{ "text": "It needs at least four different note names" }] }
+      ],
+      "answerIds": ["root-fifth", "no-third", "either-key"],
+      "explanation": [
+        {
+          "text": "No third means no mood — which is the entire reason a power chord can sit over anything."
+        }
+      ]
+    },
+    {
+      "id": "q_fundamentals-ch1-checkpoint.major-formula",
+      "kind": "choice",
+      "prompt": [
+        { "text": "Measured in half steps from its root, which pattern is the major scale?" }
+      ],
+      "setup": [
+        {
+          "type": "table",
+          "header": [
+            [{ "text": "Degree" }],
+            [{ "text": "1" }],
+            [{ "text": "2" }],
+            [{ "text": "3" }],
+            [{ "text": "4" }],
+            [{ "text": "5" }],
+            [{ "text": "6" }],
+            [{ "text": "7" }]
+          ],
+          "rows": [
+            [
+              [{ "text": "Half steps" }],
+              [{ "text": "0", "marks": ["code"] }],
+              [{ "text": "?" }],
+              [{ "text": "?" }],
+              [{ "text": "?" }],
+              [{ "text": "?" }],
+              [{ "text": "?" }],
+              [{ "text": "?" }]
+            ]
+          ]
+        }
+      ],
+      "options": [
+        { "id": "a", "spans": [{ "text": "0–2–4–5–7–9–11", "marks": ["code"] }] },
+        { "id": "b", "spans": [{ "text": "0–2–3–5–7–8–10", "marks": ["code"] }] },
+        { "id": "c", "spans": [{ "text": "0–1–3–5–7–8–10", "marks": ["code"] }] },
+        { "id": "d", "spans": [{ "text": "0–2–4–6–7–9–11", "marks": ["code"] }] }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "The same thing as " },
+        { "text": "W–W–H–W–W–W–H", "marks": ["code"] },
+        { "text": ", counted in frets instead of steps." }
+      ]
+    },
+    {
+      "id": "q_fundamentals-ch1-checkpoint.g-to-b",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "Standard tuning stacks fourths, with one exception. What is the interval between the open "
+        },
+        { "text": "G", "marks": ["code"] },
+        { "text": " and open " },
+        { "text": "B", "marks": ["code"] },
+        { "text": " strings?" }
+      ],
+      "options": [
+        { "id": "a", "spans": [{ "text": "A minor third (3 frets)" }] },
+        { "id": "b", "spans": [{ "text": "A major third (4 frets)" }] },
+        { "id": "c", "spans": [{ "text": "A perfect fourth (5 frets)" }] },
+        { "id": "d", "spans": [{ "text": "A perfect fifth (7 frets)" }] }
+      ],
+      "answerId": "b",
+      "explanation": [
+        {
+          "text": "A major third — the irregularity that makes shapes shift by a fret once they cross the B string."
+        }
+      ]
+    },
+    {
+      "id": "q_fundamentals-ch1-checkpoint.three-frets",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "A riff's first two notes are three frets apart, low to high. What interval did you hear?"
+        }
+      ],
+      "options": [
+        { "id": "a", "spans": [{ "text": "A major second" }] },
+        { "id": "b", "spans": [{ "text": "A minor third" }] },
+        { "id": "c", "spans": [{ "text": "A major third" }] },
+        { "id": "d", "spans": [{ "text": "A perfect fourth" }] }
+      ],
+      "answerId": "b",
+      "explanation": [
+        { "text": "Three frets is a minor third — the interval hiding inside every minor chord." }
+      ]
+    }
+  ]
+}

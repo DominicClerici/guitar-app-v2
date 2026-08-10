@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react';
 
-import type { Link } from '@/lib/articles';
+import type { Link } from '@/lib/content';
 
 // Spans deep inside blocks need to fire navigation without every block
 // threading a handler down. The renderer provides one handler for the whole

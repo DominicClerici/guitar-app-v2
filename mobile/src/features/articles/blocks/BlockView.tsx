@@ -1,6 +1,6 @@
 import { View } from 'react-native';
 
-import type { RenderBlock } from '@/lib/articles';
+import type { RenderBlock } from '@/lib/content';
 
 import { CalloutBlock } from './CalloutBlock';
 import { DividerBlock } from './DividerBlock';

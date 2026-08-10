@@ -1,4 +1,4 @@
-import type { ParagraphBlock as ParagraphBlockData } from '@/lib/articles';
+import type { ParagraphBlock as ParagraphBlockData } from '@/lib/content';
 
 import { RichText } from '../RichText';
 

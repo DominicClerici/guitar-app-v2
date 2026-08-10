@@ -6,26 +6,38 @@
  * device is offline more often than the sync layer is broken, and the triggers in `provider.tsx`
  * are what bring it back.
  *
+ * No table is named anywhere below. Both halves walk `DEVICE_SYNC_TABLE_LIST`, because the failure
+ * mode of naming them is silent — a table left out of the push loop is simply never sent, and
+ * nothing reports it.
+ *
  * The target is module state rather than a React value because writes come from anywhere — a
  * preference is set from a screen with no access to a provider, and the write should nudge sync
  * without the caller knowing sync exists.
  */
 import type { AppRouter } from '@guitar/api';
-import { SYNC_PUSH_LIMIT, type PreferenceSyncRow } from '@guitar/shared';
+import {
+  SYNC_PUSH_LIMIT,
+  type SyncedTableName,
+  type SyncMutation,
+  type SyncPushInput,
+  type SyncRow,
+  type SyncRowsByTable,
+} from '@guitar/shared';
 import type { TRPCClient } from '@trpc/client';
 
 import { db } from '@/lib/db/client';
 import {
   deleteAllRows,
-  deletePreferenceRow,
-  readPreferenceRows,
+  deleteRow,
+  readRows,
   readSyncState,
   readUnpushedRows,
-  writePreferenceRow,
+  writeRow,
   writeSyncState,
 } from '@/lib/db/rows';
 
-import { acceptsRemote, needsFullResync, toPushOperations } from './reconcile';
+import { needsFullResync } from './reconcile';
+import { DEVICE_SYNC_TABLE_LIST } from './tables';
 
 interface SyncTarget {
   client: TRPCClient<AppRouter>;
@@ -95,20 +107,34 @@ async function runSync(): Promise<void> {
  * Sends this device's unsent writes and applies whatever the server settled on for them —
  * including the rows this device lost, which is what stops a stale local row being re-sent forever.
  *
- * One batch. `SYNC_PUSH_LIMIT` is far above the number of preferences that exist, so paging here
- * would be untestable code guarding a case that cannot happen; a synced table that can outgrow one
- * batch needs a loop, and needs it written against that table's own reality.
+ * One batch per run. `SYNC_PUSH_LIMIT` is a per-table ceiling, and a device that has more than that
+ * waiting for one table sends the rest on the next run rather than in a loop here: the run is
+ * already re-triggered by `queued`, and an unbounded loop against a server that keeps accepting is
+ * how a sync turns into a stall on the JS thread.
  */
 async function push({ client, userId }: SyncTarget): Promise<void> {
-  const pending = readUnpushedRows(userId);
-  if (!pending.length) return;
+  const operations: Partial<Record<SyncedTableName, SyncMutation[]>> = {};
+  let total = 0;
 
-  const operations = toPushOperations(pending.slice(0, SYNC_PUSH_LIMIT));
-  if (!operations.length) return;
+  for (const spec of DEVICE_SYNC_TABLE_LIST) {
+    const pending = readUnpushedRows(spec, userId).slice(0, SYNC_PUSH_LIMIT);
+    if (!pending.length) continue;
 
-  const result = await client.sync.push.mutate({ userPreferences: operations });
+    const mutations = pending
+      .map((row) => spec.toMutation(row))
+      .filter((mutation): mutation is SyncMutation => mutation !== null);
 
-  applyRemoteRows(userId, result.rows.userPreferences);
+    if (!mutations.length) continue;
+
+    operations[spec.name] = mutations;
+    total += mutations.length;
+  }
+
+  if (!total) return;
+
+  const result = await client.sync.push.mutate(operations as SyncPushInput);
+
+  applyRemoteRows(userId, result.rows);
 }
 
 /** Pulls pages until the server has nothing newer, moving the cursor forward as each lands. */
@@ -130,7 +156,7 @@ async function pull({ client, userId }: SyncTarget): Promise<void> {
       continue;
     }
 
-    applyRemoteRows(userId, page.rows.userPreferences);
+    applyRemoteRows(userId, page.rows);
     writeSyncState({ ...state, cursor: page.cursor, lastPulledAt: new Date() });
 
     if (!page.hasMore) return;
@@ -138,36 +164,35 @@ async function pull({ client, userId }: SyncTarget): Promise<void> {
 }
 
 /**
- * Applies server rows to the local database under the merge rule in `reconcile.ts`.
+ * Applies server rows to the local database under each table's merge rule.
  *
- * One transaction, so a screen reading through `useLiveQuery` never sees half a page — and so the
- * comparison each row is judged against cannot change underneath the loop.
+ * One transaction across every table, so a screen reading through `useLiveQuery` never sees half a
+ * page — and so the comparison each row is judged against cannot change underneath the loop.
  */
-function applyRemoteRows(userId: string, rows: readonly PreferenceSyncRow[]): void {
-  if (!rows.length) return;
+function applyRemoteRows(userId: string, rows: SyncRowsByTable): void {
+  const incoming = DEVICE_SYNC_TABLE_LIST.map(
+    (spec) => [spec, (rows[spec.name] ?? []) as SyncRow[]] as const,
+  ).filter(([, table]) => table.length > 0);
+
+  if (!incoming.length) return;
 
   db.transaction((tx) => {
-    const local = new Map(readPreferenceRows(userId, tx).map((row) => [row.key, row]));
-
-    for (const remote of rows) {
-      if (!acceptsRemote(local.get(remote.key), remote)) continue;
-
-      if (remote.deletedAt !== null) {
-        deletePreferenceRow(userId, remote.key, tx);
-        continue;
-      }
-
-      writePreferenceRow(
-        userId,
-        {
-          key: remote.key,
-          value: remote.value,
-          clientUpdatedAt: remote.clientUpdatedAt,
-          deletedAt: null,
-          serverSeq: remote.serverSeq,
-        },
-        tx,
+    for (const [spec, table] of incoming) {
+      const local = new Map(
+        readRows(spec, userId, tx).map((row) => [spec.identity(row), row] as const),
       );
+
+      for (const remote of table) {
+        const row = spec.merge(local.get(spec.wireIdentity(remote)), remote);
+        if (!row) continue;
+
+        if (row.deletedAt !== null) {
+          deleteRow(spec, userId, row, tx);
+          continue;
+        }
+
+        writeRow(spec, userId, row, tx);
+      }
     }
   });
 }

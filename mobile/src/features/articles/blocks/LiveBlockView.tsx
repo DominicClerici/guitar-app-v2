@@ -1,6 +1,6 @@
 import { Component, type ReactNode } from 'react';
 
-import type { LiveBlock } from '@/lib/articles';
+import type { LiveBlock } from '@/lib/content';
 
 import { LIVE_COMPONENTS } from '../registry';
 import { UnknownContentCard } from './UnknownContentCard';

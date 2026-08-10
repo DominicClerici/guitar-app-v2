@@ -1,0 +1,207 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_intervals-and-half-steps",
+    "slug": "intervals-and-half-steps",
+    "title": "Intervals: The Distance Between Notes",
+    "summary": "Musicians hear distances, not notes. Here is how to count them on a fretboard.",
+    "tags": ["theory", "ear", "fundamentals"],
+    "readingTimeMin": 5,
+    "publishedAt": "2026-08-06"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Sing the first two notes of "
+        },
+        { "text": "Somewhere Over the Rainbow", "marks": ["italic"] },
+        {
+          "text": " and you have sung an octave — in whatever key you happened to start in. What you recognised was not the notes. It was the "
+        },
+        { "text": "distance", "marks": ["bold", { "type": "color", "tone": "accent" }] },
+        {
+          "text": " between them. That distance is an interval, and it is the unit everything else is built from."
+        }
+      ]
+    },
+    { "type": "heading", "level": 1, "spans": [{ "text": "Counting in half steps" }] },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "A guitar makes intervals unusually easy to count: one fret is one half step, two frets is a whole step, and that is all the arithmetic there is. Every interval gets a number — how many letter names it spans — and a "
+        },
+        { "text": "quality", "link": { "kind": "footnote", "id": "fn-quality" } },
+        { "text": " that nudges it by a fret." }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [[{ "text": "Frets" }], [{ "text": "Interval" }], [{ "text": "Sounds like" }]],
+      "rows": [
+        [
+          [{ "text": "1", "marks": ["code"] }],
+          [{ "text": "minor 2nd" }],
+          [{ "text": "the two-note shark theme" }]
+        ],
+        [
+          [{ "text": "2", "marks": ["code"] }],
+          [{ "text": "major 2nd" }],
+          [{ "text": "the step up in \"Happy Birthday\"" }]
+        ],
+        [
+          [{ "text": "3", "marks": ["code"] }],
+          [{ "text": "minor 3rd" }],
+          [{ "text": "the shadow in every sad chord" }]
+        ],
+        [
+          [{ "text": "4", "marks": ["code"] }],
+          [{ "text": "major 3rd" }],
+          [{ "text": "the brightness in every happy one" }]
+        ],
+        [
+          [{ "text": "5", "marks": ["code"] }],
+          [{ "text": "perfect 4th" }],
+          [{ "text": "\"Here Comes the Bride\"" }]
+        ],
+        [
+          [{ "text": "7", "marks": ["code"] }],
+          [{ "text": "perfect 5th" }],
+          [{ "text": "the opening leap of \"Twinkle, Twinkle\"" }]
+        ],
+        [
+          [{ "text": "12", "marks": ["code"] }],
+          [{ "text": "octave" }],
+          [{ "text": "the same note, higher" }]
+        ]
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "spans": [{ "text": "Why fourths and fifths feel like furniture" }]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The perfect fifth — seven frets — is the most stable interval there is after the octave. A "
+        },
+        { "text": "power chord", "marks": ["bold"] },
+        {
+          "text": " is nothing but a root and its fifth, which is why it fits over a major or a minor progression without complaint: it has no third, so it takes no side."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The perfect fourth — five frets — is why standard tuning is shaped the way it is. Strings 6 to 3 are stacked in fourths, and so are strings 2 to 1."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "info",
+      "spans": [
+        { "text": "The one exception is the gap between strings 3 and 2, which is a " },
+        { "text": "major third", "marks": ["bold", { "type": "color", "tone": "amber" }] },
+        {
+          "text": ". That single irregularity is why so many chord and scale shapes look symmetrical until they cross the B string, and then shift by a fret."
+        }
+      ]
+    },
+    { "type": "heading", "level": 1, "spans": [{ "text": "A scale is a pattern of intervals" }] },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Once distance is the unit, a scale stops being seven note names and becomes one shape. The major scale is "
+        },
+        { "text": "0–2–4–5–7–9–11", "marks": ["code"] },
+        {
+          "text": " half steps from its root, on any root, on any string. Move one of those numbers and you change the mood without leaving the key."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here is the smallest possible edit: lower the seventh by one fret. Major becomes "
+        },
+        { "text": "Mixolydian", "marks": ["bold", { "type": "color", "tone": "amber" }] },
+        { "text": " — six identical tones and one that moved." }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "scale-compare",
+      "props": { "root": "E", "scales": ["major", "mixolydian"] }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Play them back to back. Major leans hard toward home on its seventh note; Mixolydian shrugs and keeps going. One fret, and a scale that resolves becomes a scale that grooves."
+        }
+      ]
+    },
+    { "type": "divider" },
+    { "type": "heading", "level": 2, "spans": [{ "text": "Train the distance, not the note" }] },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        [
+          { "text": "Pick a fret at random, then find the note seven frets up " },
+          { "text": "without", "marks": ["italic"] },
+          {
+            "text": " naming either one. You are learning the shape of a fifth, not a pair of letters."
+          }
+        ],
+        [
+          {
+            "text": "Hum the top note of an interval before you play it. Being wrong is the useful part."
+          }
+        ],
+        [
+          {
+            "text": "When a riff catches your ear, count the frets between its first two notes and write the number down."
+          }
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The most consequential interval of all is the third — it decides whether a chord is happy or sad. That one gets its own article: "
+        },
+        { "text": "Major vs Minor", "link": { "kind": "article", "slug": "major-vs-minor" } },
+        { "text": "." }
+      ]
+    }
+  ],
+  "footnotes": [
+    {
+      "id": "fn-quality",
+      "spans": [
+        { "text": "Seconds, thirds, sixths and sevenths come in " },
+        { "text": "major", "marks": ["italic"] },
+        { "text": " and " },
+        { "text": "minor", "marks": ["italic"] },
+        {
+          "text": " flavours, one fret apart. Fourths, fifths and octaves are called "
+        },
+        { "text": "perfect", "marks": ["italic"] },
+        {
+          "text": " instead — they have no major or minor form, only augmented and diminished versions a fret either side."
+        }
+      ]
+    }
+  ]
+}

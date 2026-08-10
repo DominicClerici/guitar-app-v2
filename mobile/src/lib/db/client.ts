@@ -9,11 +9,29 @@
  * test can hold them against the server's Postgres tables. Only the SQLite half is imported; the
  * package's Neon client is a separate entrypoint and never reaches this bundle.
  */
-import { syncState, userPreferences } from '@guitar/db/schema.sqlite';
+import {
+  cachedChapters,
+  cachedCurriculum,
+  cachedDocuments,
+  pathwayEnrollments,
+  quizAttempts,
+  sectionProgress,
+  syncState,
+  userPreferences,
+} from '@guitar/db/schema.sqlite';
 import { drizzle } from 'drizzle-orm/expo-sqlite';
 import { openDatabaseSync } from 'expo-sqlite';
 
-export const schema = { userPreferences, syncState };
+export const schema = {
+  userPreferences,
+  pathwayEnrollments,
+  sectionProgress,
+  quizAttempts,
+  syncState,
+  cachedDocuments,
+  cachedChapters,
+  cachedCurriculum,
+};
 
 /**
  * `enableChangeListener` is what `useLiveQuery` subscribes to — without it a screen showing a

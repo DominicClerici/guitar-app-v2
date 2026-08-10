@@ -2,7 +2,7 @@
 
 How the article feature works, how to author an article, and how to add a new
 live (interactive) component. Read this before touching anything under
-`src/lib/articles` or `src/features/articles`.
+`src/lib/content` or `src/features/articles`.
 
 ## The shape of the feature
 
@@ -11,10 +11,14 @@ reusable component. Nothing about a specific article lives in app code except
 live components (interactive widgets an article can summon by name).
 
 ```
-src/lib/articles/            The wire format & parser (pure TS, no React)
+src/lib/content/             The content wire formats & parsers (pure TS, no React)
   types.ts                   Every type an article is made of — START HERE
   schema.ts                  zod validation + forward-compat normalization
-  articles.test.ts           Parser behavior tests
+  quiz.ts                    Quiz documents — same rules, unknown questions
+                             degrade instead of failing (see gradableQuestions)
+  curriculum.ts              Pathway/chapter/section tree; sections are refs to
+                             article and quiz slugs
+  *.test.ts                  Parser behavior tests
 
 src/features/articles/       Rendering & data access
   ArticleRenderer.tsx        Document in → virtualized article out (FlatList)
@@ -48,7 +52,7 @@ Two payloads, designed as the future backend wire format:
 A document body is a **flat array** of blocks (no arbitrary nesting — lists and
 tables bottom out at spans, never at other blocks). Current block types:
 `heading` (levels 1–3), `paragraph`, `list`, `callout` (info/tip/warning),
-`quote`, `divider`, `image`, `table`, `live`. See `src/lib/articles/types.ts`
+`quote`, `divider`, `image`, `table`, `live`. See `src/lib/content/types.ts`
 for exact fields — it is the single source of truth and is documented.
 
 ### Rich text
@@ -101,7 +105,7 @@ The renderer never sees invalid data. The rules:
    string `type`, unsupported `schemaVersion`) → `ArticleParseError`; the
    screen shows an error state.
 
-Bump `SCHEMA_VERSION` (`src/lib/articles/schema.ts`) **only** for breaking
+Bump `SCHEMA_VERSION` (`src/lib/content/schema.ts`) **only** for breaking
 shape changes. Additions (new block types, new marks, new live components) are
 not breaking — that's what rules 1–3 are for.
 

@@ -1,0 +1,84 @@
+{
+  "id": "path_fundamentals",
+  "slug": "fundamentals",
+  "title": "Guitar Fundamentals",
+  "summary": "Twelve notes, the distances between them, and the three-note chords they build. Start here if the fretboard still looks like a wall of frets.",
+  "tags": ["theory", "fretboard", "beginner"],
+  "difficulty": "intro",
+  "estimatedMin": 40,
+  "chapters": [
+    {
+      "id": "fundamentals.ch1",
+      "slug": "notes-and-distances",
+      "title": "Notes and Distances",
+      "summary": "Learn to read the neck, then learn to count the gaps — the two skills every other lesson assumes.",
+      "sections": [
+        {
+          "id": "fundamentals.ch1.fretboard",
+          "slug": "reading-the-fretboard",
+          "title": "Reading the Fretboard",
+          "kind": "article",
+          "ref": "reading-the-fretboard",
+          "estimatedMin": 4
+        },
+        {
+          "id": "fundamentals.ch1.intervals",
+          "slug": "intervals-and-half-steps",
+          "title": "Intervals: The Distance Between Notes",
+          "kind": "article",
+          "ref": "intervals-and-half-steps",
+          "estimatedMin": 5
+        },
+        {
+          "id": "fundamentals.ch1.fretboard-quiz",
+          "slug": "fretboard-basics",
+          "title": "Quick Check: Notes on the Neck",
+          "kind": "quiz",
+          "ref": "fretboard-basics",
+          "estimatedMin": 3
+        }
+      ],
+      "checkpoint": {
+        "ref": "fundamentals-ch1-checkpoint",
+        "passThresholdPct": 70
+      }
+    },
+    {
+      "id": "fundamentals.ch2",
+      "slug": "scales-and-chords",
+      "title": "Scales and Chords",
+      "summary": "Three notes decide whether music sounds happy or sad. Find them, then build chords out of them.",
+      "sections": [
+        {
+          "id": "fundamentals.ch2.major-vs-minor",
+          "slug": "major-vs-minor",
+          "title": "Major vs Minor",
+          "kind": "article",
+          "ref": "major-vs-minor",
+          "estimatedMin": 3
+        },
+        {
+          "id": "fundamentals.ch2.first-chords",
+          "slug": "building-your-first-chords",
+          "title": "Building Your First Chords",
+          "kind": "article",
+          "ref": "building-your-first-chords",
+          "estimatedMin": 5
+        },
+        {
+          "id": "fundamentals.ch2.chord-switch-drill",
+          "slug": "chord-switch-drill",
+          "title": "Drill: Em to G in Sixty Seconds",
+          "kind": "activity",
+          "ref": "chord-switch-drill",
+          "optional": true,
+          "estimatedMin": 5
+        }
+      ],
+      "checkpoint": {
+        "ref": "fundamentals-ch2-checkpoint",
+        "passThresholdPct": 70
+      }
+    }
+  ]
+}

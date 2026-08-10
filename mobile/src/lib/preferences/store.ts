@@ -9,12 +9,13 @@
  */
 import type { PreferenceEntry, PreferenceKey } from '@guitar/shared';
 
-import { writePreferenceRow } from '@/lib/db/rows';
+import { writeLocalRow } from '@/lib/db/rows';
 import { requestSync } from '@/lib/sync/engine';
+import { preferencesSyncTable } from '@/lib/sync/tables';
 
 /** Sets one preference for `userId`, and nudges sync. */
 export function setPreference(userId: string, entry: PreferenceEntry): void {
-  writePreferenceRow(userId, {
+  writeLocalRow(preferencesSyncTable, userId, {
     key: entry.key,
     value: entry.value,
     clientUpdatedAt: Date.now(),
@@ -36,7 +37,7 @@ export function setPreference(userId: string, entry: PreferenceEntry): void {
 export function resetPreference(userId: string, key: PreferenceKey): void {
   const now = Date.now();
 
-  writePreferenceRow(userId, {
+  writeLocalRow(preferencesSyncTable, userId, {
     key,
     value: '',
     clientUpdatedAt: now,

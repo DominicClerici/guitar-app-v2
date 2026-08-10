@@ -5,6 +5,7 @@ import {
   preferenceMutation,
   preferenceSyncRow,
   SYNC_PUSH_LIMIT,
+  SYNCED_TABLE_NAMES,
   syncPullInput,
   syncPushInput,
 } from './sync';
@@ -77,8 +78,16 @@ describe('preferenceSyncRow', () => {
 });
 
 describe('syncPushInput', () => {
-  it('defaults a table nobody wrote to an empty batch', () => {
-    expect(syncPushInput.parse({})).toEqual({ userPreferences: [] });
+  /**
+   * Asserted against the registry rather than a written-out shape: a device that wrote to one
+   * table sends only that key, so every other table has to arrive as an empty batch — including
+   * tables added after this test was written.
+   */
+  it('defaults every table nobody wrote to an empty batch', () => {
+    const parsed = syncPushInput.parse({});
+
+    expect(Object.keys(parsed).sort()).toEqual([...SYNCED_TABLE_NAMES].sort());
+    expect(Object.values(parsed)).toEqual(SYNCED_TABLE_NAMES.map(() => []));
   });
 
   it('caps a batch, so one request cannot become an unbounded statement', () => {

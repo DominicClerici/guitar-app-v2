@@ -1,6 +1,6 @@
 import { Text, View } from 'react-native';
 
-import type { QuoteBlock as QuoteBlockData } from '@/lib/articles';
+import type { QuoteBlock as QuoteBlockData } from '@/lib/content';
 
 import { RichText } from '../RichText';
 

@@ -1,0 +1,204 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_building-your-first-chords",
+    "slug": "building-your-first-chords",
+    "title": "Building Your First Chords",
+    "summary": "A chord is a scale with most of the notes taken out. Here is which ones stay.",
+    "tags": ["chords", "theory", "fundamentals"],
+    "readingTimeMin": 5,
+    "publishedAt": "2026-08-07"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "A chord is a scale with most of the notes taken out. Keep the " },
+        { "text": "1st, 3rd and 5th", "marks": ["bold", { "type": "color", "tone": "accent" }] },
+        {
+          "text": " degrees, discard the other four, and what is left is a triad — three notes that describe a key so efficiently that one of them can go missing and your ear still fills it in."
+        }
+      ]
+    },
+    { "type": "heading", "level": 1, "spans": [{ "text": "Stacking thirds" }] },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Number the major scale " },
+        { "text": "1–7", "marks": ["code"] },
+        { "text": " and sound degrees 1, 3 and 5 together. In C that is " },
+        { "text": "C E G", "marks": ["code"] },
+        {
+          "text": ". Both gaps are thirds: four frets from C up to E, then three from E up to G. Swap the size of those two gaps — three frets, then four — and the same three fingers give you a minor chord."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Chord" }],
+        [{ "text": "On C" }],
+        [{ "text": "Stack (frets)" }],
+        [{ "text": "Mood" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "Major" }],
+          [{ "text": "C E G", "marks": ["code"] }],
+          [{ "text": "4 then 3" }],
+          [{ "text": "settled, bright" }]
+        ],
+        [
+          [{ "text": "Minor" }],
+          [{ "text": "C Eb G", "marks": ["code"] }],
+          [{ "text": "3 then 4" }],
+          [{ "text": "darker, inward" }]
+        ],
+        [
+          [{ "text": "Diminished" }],
+          [{ "text": "C Eb Gb", "marks": ["code"] }],
+          [{ "text": "3 then 3" }],
+          [{ "text": "unstable, wants to move" }]
+        ],
+        [
+          [{ "text": "Power chord" }],
+          [{ "text": "C G", "marks": ["code"] }],
+          [{ "text": "7, no third" }],
+          [{ "text": "neutral — takes no side" }]
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        { "text": "If you remember one thing from this article: the " },
+        { "text": "third", "marks": ["bold", { "type": "color", "tone": "amber" }] },
+        {
+          "text": " decides the mood, and it is almost always the note your fretting hand moves by a single fret to change a chord from happy to sad."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "spans": [{ "text": "Why a six-string chord has three notes" }]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Strum an open " },
+        { "text": "E minor", "marks": ["code"] },
+        { "text": ". Six strings ring, but only three note names are involved — " },
+        { "text": "E", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "B", "marks": ["code"] },
+        {
+          "text": " — several of them twice, in different octaves. That doubling is what makes a strummed guitar sound large. It is not extra harmony; it is the same three notes wearing a bigger coat."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "It also explains why open E minor is the cheapest chord in music: two fingers, because four of the six strings are already sitting on the right note."
+        }
+      ]
+    },
+    { "type": "heading", "level": 1, "spans": [{ "text": "Five shapes, a few thousand songs" }] },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        [
+          { "text": "Em", "marks": ["code", "bold"] },
+          { "text": " — " },
+          { "text": "E G B", "marks": ["code"] },
+          { "text": ". Two fingers at fret 2, all six strings." }
+        ],
+        [
+          { "text": "G", "marks": ["code", "bold"] },
+          { "text": " — " },
+          { "text": "G B D", "marks": ["code"] },
+          { "text": ". The one everybody's hand fights at first; it stops fighting." }
+        ],
+        [
+          { "text": "C", "marks": ["code", "bold"] },
+          { "text": " — " },
+          { "text": "C E G", "marks": ["code"] },
+          { "text": ". Five strings; leave the low E out." }
+        ],
+        [
+          { "text": "D", "marks": ["code", "bold"] },
+          { "text": " — " },
+          { "text": "D F# A", "marks": ["code"] },
+          { "text": ". Top four strings only." }
+        ],
+        [
+          { "text": "Am", "marks": ["code", "bold"] },
+          { "text": " — " },
+          { "text": "A C E", "marks": ["code"] },
+          { "text": ". The E major shape, moved one string over." }
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "spans": [
+        {
+          "text": "C and D want the lowest strings kept quiet. A D chord with a low E booming underneath is not exactly wrong — it is a D/E — but it is blurred, and the blur is usually an accident."
+        }
+      ]
+    },
+    { "type": "divider" },
+    { "type": "heading", "level": 2, "spans": [{ "text": "Practise the change, not the chord" }] },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Anyone can hold a G if they are given ten seconds. The skill is arriving on it in time, and that is a separate thing to practise:"
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        [
+          { "text": "Set a timer for one minute and switch between " },
+          { "text": "Em", "marks": ["code"] },
+          { "text": " and " },
+          { "text": "G", "marks": ["code"] },
+          { "text": ", one strum each. Count the clean changes." }
+        ],
+        [
+          { "text": "Look for the finger that does not have to move. Between " },
+          { "text": "Em", "marks": ["code"] },
+          { "text": " and " },
+          { "text": "G", "marks": ["code"] },
+          { "text": " your second finger barely travels — let it be the pivot." }
+        ],
+        [{ "text": "Tomorrow, beat today's count by one. That is the entire method." }]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Why the major and minor versions of a chord feel so different is a story about three notes, not one: "
+        },
+        { "text": "Major vs Minor", "link": { "kind": "article", "slug": "major-vs-minor" } },
+        { "text": " has it." }
+      ]
+    },
+    {
+      "type": "quote",
+      "spans": [{ "text": "Three chords and the truth." }],
+      "attribution": "Harlan Howard, on country music"
+    }
+  ]
+}

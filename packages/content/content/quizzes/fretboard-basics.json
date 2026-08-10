@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "quiz_fretboard-basics",
+    "slug": "fretboard-basics",
+    "title": "Quick Check: Notes on the Neck",
+    "summary": "Five questions on half steps, open strings, and the two gaps in the alphabet.",
+    "kind": "quiz",
+    "passThresholdPct": 60
+  },
+  "questions": [
+    {
+      "id": "q_fretboard-basics.octave-size",
+      "kind": "choice",
+      "prompt": [{ "text": "How many half steps are there in an octave?" }],
+      "options": [
+        { "id": "a", "spans": [{ "text": "7" }] },
+        { "id": "b", "spans": [{ "text": "8" }] },
+        { "id": "c", "spans": [{ "text": "12" }] },
+        { "id": "d", "spans": [{ "text": "13" }] }
+      ],
+      "answerId": "c",
+      "explanation": [
+        { "text": "Twelve — which is why fret 12 sounds the open string again, one octave up." }
+      ]
+    },
+    {
+      "id": "q_fretboard-basics.no-sharp-between",
+      "kind": "multi-select",
+      "prompt": [
+        { "text": "Select " },
+        { "text": "every", "marks": ["bold"] },
+        { "text": " pair of notes that is already one fret apart, with no sharp in between." }
+      ],
+      "options": [
+        { "id": "ab", "spans": [{ "text": "A and B", "marks": ["code"] }] },
+        { "id": "bc", "spans": [{ "text": "B and C", "marks": ["code"] }] },
+        { "id": "cd", "spans": [{ "text": "C and D", "marks": ["code"] }] },
+        { "id": "ef", "spans": [{ "text": "E and F", "marks": ["code"] }] },
+        { "id": "ga", "spans": [{ "text": "G and A", "marks": ["code"] }] }
+      ],
+      "answerIds": ["bc", "ef"],
+      "explanation": [
+        { "text": "Only " },
+        { "text": "B–C", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "E–F", "marks": ["code"] },
+        { "text": ". Every other neighbouring pair has a sharp sitting between them." }
+      ]
+    },
+    {
+      "id": "q_fretboard-basics.open-strings",
+      "kind": "choice",
+      "prompt": [
+        { "text": "In standard tuning, what are the open strings from thickest to thinnest?" }
+      ],
+      "options": [
+        { "id": "a", "spans": [{ "text": "E A D G B E", "marks": ["code"] }] },
+        { "id": "b", "spans": [{ "text": "E A D G C E", "marks": ["code"] }] },
+        { "id": "c", "spans": [{ "text": "D A D G B E", "marks": ["code"] }] },
+        { "id": "d", "spans": [{ "text": "E B G D A E", "marks": ["code"] }] }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "Fourths all the way up, except the major third between " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "B", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "id": "q_fretboard-basics.fifth-fret-tuning",
+      "kind": "choice",
+      "prompt": [
+        { "text": "You fret the 5th fret of the low " },
+        { "text": "E", "marks": ["code"] },
+        { "text": " string. Which open string should match it?" }
+      ],
+      "options": [
+        { "id": "a", "spans": [{ "text": "The open D string" }] },
+        { "id": "b", "spans": [{ "text": "The open A string" }] },
+        { "id": "c", "spans": [{ "text": "The open G string" }] },
+        { "id": "d", "spans": [{ "text": "The open B string" }] }
+      ],
+      "answerId": "b",
+      "explanation": [
+        {
+          "text": "Five frets is a perfect fourth, and the strings are tuned in fourths — which is exactly why fifth-fret tuning works."
+        }
+      ]
+    },
+    {
+      "id": "q_fretboard-basics.twelfth-fret",
+      "kind": "choice",
+      "prompt": [{ "text": "What note is at the 12th fret of any string?" }],
+      "options": [
+        { "id": "a", "spans": [{ "text": "The open string's note, one octave higher" }] },
+        { "id": "b", "spans": [{ "text": "The open string's note, one octave lower" }] },
+        { "id": "c", "spans": [{ "text": "A perfect fifth above the open string" }] },
+        { "id": "d", "spans": [{ "text": "It depends on the string" }] }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "Twelve frets, twelve half steps, one octave. Above fret 12 the whole neck repeats."
+        }
+      ]
+    }
+  ]
+}

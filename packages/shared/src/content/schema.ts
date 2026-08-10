@@ -39,7 +39,7 @@ export class ArticleParseError extends Error {
 // span carrying a future mark doesn't fail its whole block; sanitizeSpan then
 // keeps only what this build understands.
 
-const spanSchema = z.object({
+export const spanSchema = z.object({
   text: z.string(),
   marks: z.array(z.unknown()).optional(),
   link: z.unknown().optional(),
@@ -87,7 +87,10 @@ function sanitizeSpan(wire: WireSpan): Span {
   return span;
 }
 
-const sanitizeSpans = (spans: WireSpan[]): Span[] => spans.map(sanitizeSpan);
+// Exported for the sibling content schemas (quiz prompts, option labels): rich
+// text is the same wire format everywhere, so it must go through the same
+// mark/link sanitizer or the drop-unknown-marks rule would only hold for articles.
+export const sanitizeSpans = (spans: WireSpan[]): Span[] => spans.map(sanitizeSpan);
 
 // ─ blocks ─
 
@@ -185,6 +188,16 @@ function normalizeBlock(raw: unknown, index: number): RenderBlock {
   throw new ArticleParseError(`Block ${index} is not an object with a string "type".`);
 }
 
+/**
+ * Blocks are not exclusive to articles — a quiz question can set up its prompt
+ * with them. Callers outside a document (where there is no whole-document error
+ * state to fall back on) are expected to catch the throw and degrade the
+ * *container* instead.
+ */
+export function normalizeBlocks(raw: unknown[]): RenderBlock[] {
+  return raw.map(normalizeBlock);
+}
+
 // ─ meta & document ─
 
 const metaSchema = z.object({
@@ -235,7 +248,7 @@ export function parseArticleDocument(data: unknown): ArticleDocument {
   const document: ArticleDocument = {
     schemaVersion,
     meta,
-    blocks: blocks.map(normalizeBlock),
+    blocks: normalizeBlocks(blocks),
   };
 
   if (footnotes) {

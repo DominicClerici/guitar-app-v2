@@ -15,6 +15,27 @@
       "when": 1786379959068,
       "tag": "0001_server_seq_trigger",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1786400415400,
+      "tag": "0002_petite_morbius",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1786400415401,
+      "tag": "0003_learning_server_seq_triggers",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1786400809367,
+      "tag": "0004_nervous_stature",
+      "breakpoints": true
     }
   ]
 }

@@ -1,4 +1,4 @@
-import type { HeadingBlock as HeadingBlockData } from '@/lib/articles';
+import type { HeadingBlock as HeadingBlockData } from '@/lib/content';
 
 import { RichText } from '../RichText';
 

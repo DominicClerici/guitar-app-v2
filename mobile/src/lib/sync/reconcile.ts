@@ -9,35 +9,29 @@
  * dialect: the server is the authority, and a device that disagrees converges on the next pull.
  * What the device adds is the one thing the server cannot know — whether a local row is a write
  * that has not been pushed yet.
+ *
+ * One function per rule from §7's table, taking the shape that rule needs rather than a particular
+ * table's row. Each synced table names the pair it uses in its `DeviceSyncTable`, so the rule a
+ * table merges under is declared once and read in one place.
  */
-import {
-  isPreferenceKey,
-  preferenceEntry,
-  type PreferenceMutation,
-  type PreferenceSyncRow,
-} from '@guitar/shared';
+import type { LocalSyncRow } from './spec';
 
-/** A stored row as the device holds it, with instants as epoch milliseconds. */
-export interface LocalPreferenceRow {
-  key: string;
-  value: string;
+/** What a last-write-wins row must carry: the client stamp the whole comparison rests on. */
+interface Stamped extends LocalSyncRow {
   clientUpdatedAt: number;
-  deletedAt: number | null;
-  /** `null` means "written here and not yet accepted by the server". */
-  serverSeq: number | null;
 }
 
 /**
- * Whether a row that arrived from the server replaces the device's copy.
+ * Whether a row that arrived from the server replaces the device's copy, under last-write-wins.
  *
  * A local row carrying a `server_seq` is one the server has already seen, so there is no unpushed
  * edit to protect and the incoming row simply wins. Only a pending local write competes, and it
  * has to be strictly newer to survive — a tie goes to the server, so two devices that write in the
  * same millisecond converge instead of each keeping its own.
  */
-export function acceptsRemote(
-  local: LocalPreferenceRow | undefined,
-  remote: PreferenceSyncRow,
+export function lastWriteWinsAcceptsRemote(
+  local: Stamped | undefined,
+  remote: { clientUpdatedAt: number },
 ): boolean {
   if (!local) return true;
   if (local.serverSeq !== null) return true;
@@ -47,18 +41,70 @@ export function acceptsRemote(
 
 /**
  * Whether a row being carried over from the previous account replaces what this account already
- * has locally (§5).
+ * has locally (§5), under last-write-wins.
  *
- * The same last-write-wins comparison the server runs when it merges the guest's rows — the device
- * does it too so that the moment after signing in looks like the moment after the next pull,
- * rather than showing the account's old value until sync catches up. A tie keeps what is already
- * there, since the incoming row has no claim to being newer.
+ * The same comparison the server runs when it merges the guest's rows — the device does it too so
+ * that the moment after signing in looks like the moment after the next pull, rather than showing
+ * the account's old value until sync catches up. A tie keeps what is already there, since the
+ * incoming row has no claim to being newer.
  */
-export function acceptsAdopted(
-  existing: LocalPreferenceRow | undefined,
-  adopted: LocalPreferenceRow,
+export function lastWriteWinsAcceptsAdopted(
+  existing: Stamped | undefined,
+  adopted: Stamped,
 ): boolean {
   return !existing || adopted.clientUpdatedAt > existing.clientUpdatedAt;
+}
+
+/**
+ * Whether an append-only row that arrived from the server has anything to tell this device.
+ *
+ * The row is immutable, so there is nothing to merge — but a local copy still waiting to be pushed
+ * has to learn its sequence value, or the push path keeps finding it unsent and re-sending it
+ * forever. That, not the row's contents, is what the server is answering with here.
+ */
+export function appendOnlyAcceptsRemote(
+  local: LocalSyncRow | undefined,
+  remote: { serverSeq: number },
+): 'store' | 'confirm' | 'ignore' {
+  if (!local) return 'store';
+  if (local.serverSeq === null) return 'confirm';
+
+  return 'ignore';
+}
+
+/**
+ * Whether a monotonic fold still owes the server something (§7).
+ *
+ * The device keeps `server_seq` as its "already sent" marker, so the fold's own outcome decides it:
+ * if what this device now holds is exactly what the server sent, the server has everything and the
+ * row can carry the sequence value it came with. If the fold produced anything the server has not
+ * seen — an earlier completion or a better score written offline — the row must stay unsent, or
+ * that progress reaches no other device.
+ */
+export function monotonicSequence(
+  folded: readonly (number | null)[],
+  remote: readonly (number | null)[],
+  remoteSeq: number,
+): number | null {
+  const settled = folded.every((value, index) => value === remote[index]);
+
+  return settled ? remoteSeq : null;
+}
+
+/** Null means "nothing recorded", so it never displaces a real value on either side of a fold. */
+export function earliest(a: number | null, b: number | null): number | null {
+  if (a === null) return b;
+  if (b === null) return a;
+
+  return Math.min(a, b);
+}
+
+/** The other half of the monotonic fold: a best score only ever moves up. */
+export function greatest(a: number | null, b: number | null): number | null {
+  if (a === null) return b;
+  if (b === null) return a;
+
+  return Math.max(a, b);
 }
 
 /**
@@ -67,33 +113,4 @@ export function acceptsAdopted(
  */
 export function needsFullResync(cursor: number, minValidCursor: number): boolean {
   return cursor < minValidCursor;
-}
-
-/**
- * Turns unpushed local rows into the operations `sync.push` takes.
- *
- * A row is dropped when its value no longer parses — which happens if this build of the app is
- * older than the one that wrote the row, and can only come from a downgrade. Dropping one row is
- * the alternative to the whole batch being rejected by the server's validation and no preference
- * on the device ever syncing again.
- */
-export function toPushOperations(rows: readonly LocalPreferenceRow[]): PreferenceMutation[] {
-  const operations: PreferenceMutation[] = [];
-
-  for (const row of rows) {
-    if (!isPreferenceKey(row.key)) continue;
-
-    // A tombstone carries no value, so it only needs a key the server will recognise.
-    if (row.deletedAt !== null) {
-      operations.push({ op: 'delete', key: row.key, clientUpdatedAt: row.clientUpdatedAt });
-      continue;
-    }
-
-    const parsed = preferenceEntry.safeParse({ key: row.key, value: row.value });
-    if (parsed.success) {
-      operations.push({ op: 'upsert', entry: parsed.data, clientUpdatedAt: row.clientUpdatedAt });
-    }
-  }
-
-  return operations;
 }

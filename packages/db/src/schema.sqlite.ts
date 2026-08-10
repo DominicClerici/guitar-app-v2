@@ -39,8 +39,65 @@ export const userPreferences = sqliteTable(
   ],
 );
 
+/** Mirror of `pathwayEnrollments` in schema.pg.ts. */
+export const pathwayEnrollments = sqliteTable(
+  'pathway_enrollments',
+  {
+    userId: text('user_id').notNull(),
+    pathwayId: text('pathway_id').notNull(),
+    startedAt: integer('started_at', { mode: 'timestamp_ms' }).notNull(),
+    lastActiveAt: integer('last_active_at', { mode: 'timestamp_ms' }).notNull(),
+    clientUpdatedAt: integer('client_updated_at', { mode: 'timestamp_ms' }).notNull(),
+    ...syncColumns(),
+  },
+  (table) => [
+    primaryKey({ columns: [table.userId, table.pathwayId] }),
+    index('pathway_enrollments_pull_idx').on(table.userId, table.serverSeq),
+  ],
+);
+
+/** Mirror of `sectionProgress` in schema.pg.ts. */
+export const sectionProgress = sqliteTable(
+  'section_progress',
+  {
+    userId: text('user_id').notNull(),
+    sectionId: text('section_id').notNull(),
+    completedAt: integer('completed_at', { mode: 'timestamp_ms' }),
+    bestScorePct: integer('best_score_pct'),
+    ...syncColumns(),
+  },
+  (table) => [
+    primaryKey({ columns: [table.userId, table.sectionId] }),
+    index('section_progress_pull_idx').on(table.userId, table.serverSeq),
+  ],
+);
+
+/** Mirror of `quizAttempts` in schema.pg.ts. */
+export const quizAttempts = sqliteTable(
+  'quiz_attempts',
+  {
+    attemptId: text('attempt_id').notNull(),
+    userId: text('user_id').notNull(),
+    sectionId: text('section_id').notNull(),
+    scorePct: integer('score_pct').notNull(),
+    passed: integer('passed', { mode: 'boolean' }).notNull(),
+    answeredAt: integer('answered_at', { mode: 'timestamp_ms' }).notNull(),
+    ...syncColumns(),
+  },
+  (table) => [
+    primaryKey({ columns: [table.userId, table.attemptId] }),
+    index('quiz_attempts_pull_idx').on(table.userId, table.serverSeq),
+    index('quiz_attempts_section_idx').on(table.userId, table.sectionId),
+  ],
+);
+
 /** Every table the sync protocol carries. The parity test compares this against Postgres's copy. */
-export const syncedTables = { userPreferences };
+export const syncedTables = {
+  userPreferences,
+  pathwayEnrollments,
+  sectionProgress,
+  quizAttempts,
+};
 
 // ---------------------------------------------------------------------------
 // Device-local tables. These have no server counterpart by design and are excluded from
@@ -63,6 +120,66 @@ export const syncedTables = { userPreferences };
  * different person should not inherit the previous account's. Both look identical from the new
  * session alone — the difference is what the *previous* owner was, which is why it is stored.
  */
+/**
+ * Cached content documents — articles and quizzes the device has fetched (§6, §8).
+ *
+ * Device-local and not synced: content is published, not owned, so there is nothing to merge and
+ * nothing to push. It lives in SQLite rather than on the filesystem for one reason — reads here are
+ * synchronous, so a cached article renders on the first frame with no loading state, which is how
+ * everything else in the app already behaves.
+ *
+ * `body` is the document's JSON as text. It is parsed and validated at the repository boundary by
+ * the same parsers the server publishes through, so a row written by a newer build that this one
+ * cannot understand degrades under the forward-compatibility rules rather than crashing a screen.
+ *
+ * `pathway_slug` and `chapter_id` are what a row is evicted by: the cache holds the current chapter
+ * of each active pathway and nothing else. Both null marks a standalone article from the library,
+ * which is evicted on its own terms.
+ */
+export const cachedDocuments = sqliteTable(
+  'cached_documents',
+  {
+    slug: text('slug').primaryKey(),
+    kind: text('kind').notNull(),
+    version: text('version').notNull(),
+    body: text('body').notNull(),
+    pathwaySlug: text('pathway_slug'),
+    chapterId: text('chapter_id'),
+    fetchedAt: integer('fetched_at', { mode: 'timestamp_ms' }).notNull(),
+  },
+  (table) => [index('cached_documents_chapter_idx').on(table.pathwaySlug, table.chapterId)],
+);
+
+/**
+ * Which chapters are cached, and at what version.
+ *
+ * Separate from the documents because the version being tracked is the *chapter's* — the hash of
+ * its documents' versions, which is what `content.chapter` compares against to answer `unchanged`.
+ * Storing it on each document instead would mean deciding which document's row speaks for the
+ * chapter, and getting a partially-fetched chapter wrong in the process.
+ */
+export const cachedChapters = sqliteTable(
+  'cached_chapters',
+  {
+    pathwaySlug: text('pathway_slug').notNull(),
+    chapterId: text('chapter_id').notNull(),
+    version: text('version').notNull(),
+    fetchedAt: integer('fetched_at', { mode: 'timestamp_ms' }).notNull(),
+  },
+  (table) => [primaryKey({ columns: [table.pathwaySlug, table.chapterId] })],
+);
+
+/**
+ * The curriculum tree itself: the catalogue index under scope `index`, and one row per pathway
+ * under its slug. Both are small and both are version-checked on every refresh.
+ */
+export const cachedCurriculum = sqliteTable('cached_curriculum', {
+  scope: text('scope').primaryKey(),
+  version: text('version').notNull(),
+  body: text('body').notNull(),
+  fetchedAt: integer('fetched_at', { mode: 'timestamp_ms' }).notNull(),
+});
+
 export const syncState = sqliteTable('sync_state', {
   id: integer('id').primaryKey(),
   userId: text('user_id'),

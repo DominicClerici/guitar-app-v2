@@ -1,6 +1,6 @@
 import { Text, View } from 'react-native';
 
-import type { CalloutBlock as CalloutBlockData, CalloutTone } from '@/lib/articles';
+import type { CalloutBlock as CalloutBlockData, CalloutTone } from '@/lib/content';
 
 import { RichText } from '../RichText';
 

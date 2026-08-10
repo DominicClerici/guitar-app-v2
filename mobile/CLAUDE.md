@@ -38,7 +38,16 @@ nothing renders a loading or error state for it.
 
 The tables live in `packages/db/src/schema.sqlite.ts`, alongside the Postgres tables they mirror.
 After changing them, run `pnpm db:generate` here to regenerate `drizzle/`. See `BACKEND_PLAN.md`
-§6–§8 before adding a synced table — there are five edits and only some of them fail loudly.
+§6–§8 before adding a synced table. Adding one is now four declarations, and each is checked:
+a wire spec in `@guitar/shared`'s `SYNCED_TABLE_SPECS`, a merge rule in `packages/db/src/sync.ts`,
+a server adapter in `packages/api/src/sync/tables.ts`, and a device adapter in
+`mobile/src/lib/sync/tables/`. Miss one and either `satisfies` or the parity test fails — nothing
+in the push, pull, resync, or account-carry-over paths names a table, so none of them can silently
+skip yours. A new table also needs its `server_seq` trigger; the parity test checks that too.
+
+Features write through `writeLocalRow`, never `writeRow`. The former folds under the table's own
+merge rule, which is what stops a worse quiz retake lowering a best score locally; the latter is
+raw and belongs to the sync engine, which has already decided what the row should be.
 
 ## Verifying a solution
 

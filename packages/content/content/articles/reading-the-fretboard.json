@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_reading-the-fretboard",
+    "slug": "reading-the-fretboard",
+    "title": "Reading the Fretboard",
+    "summary": "Six strings, one rule, and the two places the alphabet skips a step.",
+    "tags": ["fretboard", "fundamentals"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-05"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "A fretboard looks like a hundred and thirty separate notes to memorise. It is really "
+        },
+        {
+          "text": "twelve notes, repeated",
+          "marks": ["bold", { "type": "color", "tone": "accent" }]
+        },
+        {
+          "text": " — and once you know where the repeats are, the neck stops being a map you memorise and becomes one you can read."
+        }
+      ]
+    },
+    { "type": "heading", "level": 1, "spans": [{ "text": "One fret, one half step" }] },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Every fret is one " },
+        { "text": "half step", "marks": ["bold"] },
+        {
+          "text": ": the smallest distance Western music uses. Move up one fret and the note rises by that much. Move up twelve and you are back where you started, an octave higher. That is the whole system — everything after this is bookkeeping."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The bookkeeping starts with the open strings. In standard tuning, counting the thinnest string as string 1:"
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [[{ "text": "String" }], [{ "text": "Open note" }], [{ "text": "Feels like" }]],
+      "rows": [
+        [
+          [{ "text": "1" }],
+          [{ "text": "E", "marks": ["code"] }],
+          [{ "text": "thinnest, brightest" }]
+        ],
+        [[{ "text": "2" }], [{ "text": "B", "marks": ["code"] }], [{ "text": "melody string" }]],
+        [[{ "text": "3" }], [{ "text": "G", "marks": ["code"] }], [{ "text": "middle of things" }]],
+        [[{ "text": "4" }], [{ "text": "D", "marks": ["code"] }], [{ "text": "middle of things" }]],
+        [
+          [{ "text": "5" }],
+          [{ "text": "A", "marks": ["code"] }],
+          [{ "text": "root of many chords" }]
+        ],
+        [
+          [{ "text": "6" }],
+          [{ "text": "E", "marks": ["code"] }],
+          [{ "text": "thickest, two octaves under string 1" }]
+        ]
+      ]
+    },
+    { "type": "heading", "level": 1, "spans": [{ "text": "The alphabet with two gaps" }] },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Note names run " },
+        { "text": "A B C D E F G", "marks": ["code"] },
+        {
+          "text": " and then start over. Between most neighbouring letters sits a sharp — a fret you skip over when you say the letters out loud. Between two pairs there is nothing at all: "
+        },
+        { "text": "B to C", "marks": ["bold", { "type": "color", "tone": "amber" }] },
+        { "text": " and " },
+        { "text": "E to F", "marks": ["bold", { "type": "color", "tone": "amber" }] },
+        { "text": " are already one fret apart." }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "spans": [
+        {
+          "text": "Those two gaps cause nearly every early fretboard mistake. Count frets expecting a sharp between B and C and every note above it lands one fret too high."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Counting up from the open fifth string, then, string 5 reads " },
+        { "text": "A A# B C C# D D# E F F# G G#", "marks": ["code"] },
+        { "text": " — and at the twelfth fret, " },
+        { "text": "A", "marks": ["code"] },
+        { "text": " again." }
+      ]
+    },
+    { "type": "heading", "level": 1, "spans": [{ "text": "The dots are doing you a favour" }] },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Inlays are not decoration. Frets 3, 5, 7 and 9 are marked, and the double dot at fret 12 is the octave — the open string's note again, halfway up the neck. Learn the marked frets on the two "
+        },
+        { "text": "E", "marks": ["code"] },
+        {
+          "text": " strings first, and you can reach any other note by counting one or two frets from an anchor you already know."
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        [
+          { "text": "Fret 5 on string 6 is " },
+          { "text": "A", "marks": ["code"] },
+          {
+            "text": " — the same note as the open fifth string. That is why tuning by the fifth fret works."
+          }
+        ],
+        [
+          { "text": "Fret 7 on string 6 is " },
+          { "text": "B", "marks": ["code"] },
+          { "text": "; fret 7 on string 5 is " },
+          { "text": "E", "marks": ["code"] },
+          { "text": ". The seventh fret is a reliable place to find a chord's fifth." }
+        ],
+        [
+          { "text": "Fret 12 is the open string one octave up, on " },
+          { "text": "every", "marks": ["italic"] },
+          { "text": " string. Above it, the whole neck repeats." }
+        ]
+      ]
+    },
+    { "type": "divider" },
+    { "type": "heading", "level": 2, "spans": [{ "text": "What to practise" }] },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Pick one note — say " },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": " — and find all six of them at or below the twelfth fret. Say the string and fret out loud as you go. Five minutes a day beats an hour once, and you can check yourself against the "
+        },
+        { "text": "Scale Visualizer", "link": { "kind": "screen", "href": "/scale-visualizer" } },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        {
+          "text": "Name notes out loud while you play them. It feels slow and slightly ridiculous for about a week, and then the neck is simply legible."
+        }
+      ]
+    }
+  ]
+}

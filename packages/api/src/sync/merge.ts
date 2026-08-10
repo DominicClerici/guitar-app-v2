@@ -124,6 +124,7 @@ export function mergeValuesSql(
 
 function onConflict(table: PgTable, rule: MergeRule): SQL {
   if (rule.kind === 'append-only') return sql`on conflict do nothing`;
+  if (rule.kind === 'monotonic') return monotonicUpdate(table, rule);
 
   const { name, columns } = getTableConfig(table);
   const key = new Set(conflictTarget(table).map((column) => column.name));
@@ -153,5 +154,66 @@ function onConflict(table: PgTable, rule: MergeRule): SQL {
   return sql`
     on conflict (${columnList(conflictTarget(table))}) do update set ${assignments}
     where excluded.${sql.identifier(stamp)} > ${sql.identifier(name)}.${sql.identifier(stamp)}
+  `;
+}
+
+/**
+ * Per-column convergence with no clock involved (§7).
+ *
+ * Each named column is folded with `least`/`greatest` against the row already stored, so the result
+ * is the same whichever device's push arrives first and applying the same push twice changes
+ * nothing. That commutativity is the whole reason lesson progress needs no `client_updated_at`:
+ * there is no ordering to get wrong, so there is no clock skew to be wrong about.
+ *
+ * Postgres's `least`/`greatest` ignore nulls rather than propagating them, which is the behaviour
+ * this rule wants — a section completed on one device and untouched on the other keeps the
+ * completion instead of having it erased by the null.
+ *
+ * The `where` guard is not an optimisation. `set_server_seq()` fires on every UPDATE, so an
+ * unguarded no-op merge would draw a fresh sequence value for an unchanged row and re-broadcast it
+ * to every other device on each push — pull pages that grow forever with rows nobody changed.
+ * `is distinct from` states the condition null-safely: apply only if the fold moves something.
+ */
+function monotonicUpdate(table: PgTable, rule: Extract<MergeRule, { kind: 'monotonic' }>): SQL {
+  const { name, columns } = getTableConfig(table);
+  const key = new Set(conflictTarget(table).map((column) => column.name));
+  const present = new Set(columns.map((column) => column.name));
+
+  const folded = [
+    ...(rule.earliest ?? []).map((column) => ({ column, fn: 'least' })),
+    ...(rule.greatest ?? []).map((column) => ({ column, fn: 'greatest' })),
+  ];
+
+  if (!folded.length) {
+    throw new Error(`monotonic merge rule for "${name}" names no columns — declare it append-only`);
+  }
+
+  const fold = ({ column, fn }: { column: AnyPgColumn; fn: string }): SQL => {
+    if (!present.has(column.name)) {
+      throw new Error(`merge rule for "${name}" names a column it does not have: ${column.name}`);
+    }
+    if (key.has(column.name)) {
+      throw new Error(`merge rule for "${name}" folds its own primary key: ${column.name}`);
+    }
+
+    return sql`${sql.raw(fn)}(excluded.${sql.identifier(column.name)}, ${sql.identifier(name)}.${sql.identifier(column.name)})`;
+  };
+
+  const assignments = sql.join(
+    folded.map((entry) => sql`${sql.identifier(entry.column.name)} = ${fold(entry)}`),
+    sql`, `,
+  );
+
+  const changes = sql.join(
+    folded.map(
+      (entry) =>
+        sql`${fold(entry)} is distinct from ${sql.identifier(name)}.${sql.identifier(entry.column.name)}`,
+    ),
+    sql` or `,
+  );
+
+  return sql`
+    on conflict (${columnList(conflictTarget(table))}) do update set ${assignments}
+    where ${changes}
   `;
 }
