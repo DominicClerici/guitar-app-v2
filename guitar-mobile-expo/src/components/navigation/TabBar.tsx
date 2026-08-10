@@ -15,7 +15,7 @@ import { useCSSVariable } from 'uniwind';
 import { TABS } from './tabs';
 
 // Mirror of the content container's px-[18px] / gap-[26px]; needed in JS to work
-// out how much empty space the last tab needs behind it to reach the left edge.
+// out how much empty space the last tabs need behind them to scroll far enough.
 const EDGE_PADDING = 18;
 const TAB_GAP = 26;
 
@@ -45,14 +45,18 @@ interface TabLabelProps {
   onLayout: (event: LayoutChangeEvent) => void;
 }
 
-// Content offset that puts `position` (a fractional tab index) flush against the
-// bar's left padding, lerped between the two tabs it sits between.
-function offsetForPosition(position: number, offsets: number[]) {
+// Content offset that puts the tab *before* `position` (a fractional tab index)
+// flush against the bar's left padding, so the selected tab sits one slot in
+// from the left edge and its predecessor stays visible. Lerped between the two
+// anchors it sits between. The first tab has nothing to its left, so it anchors
+// itself — which also means selecting tab 0 or tab 1 leaves the bar in the same
+// place, and a swipe between them does not move it.
+function offsetForSelection(position: number, offsets: number[]) {
   'worklet';
-  const clamped = Math.min(Math.max(position, 0), offsets.length - 1);
-  const lower = Math.floor(clamped);
-  const upper = Math.ceil(clamped);
-  const x = offsets[lower] + (offsets[upper] - offsets[lower]) * (clamped - lower);
+  const anchor = Math.min(Math.max(position - 1, 0), offsets.length - 1);
+  const lower = Math.floor(anchor);
+  const upper = Math.ceil(anchor);
+  const x = offsets[lower] + (offsets[upper] - offsets[lower]) * (anchor - lower);
   return x - offsets[0];
 }
 
@@ -134,13 +138,18 @@ export function TabBar({
     if (measured.some((layout) => layout === undefined)) return;
 
     const known = measured as { x: number; width: number }[];
-    offsets.value = known.map((layout) => layout.x);
+    const xs = known.map((layout) => layout.x);
+    offsets.value = xs;
 
     // Without this the ScrollView runs out of content before the last tabs can
-    // reach the left edge, and clamps them somewhere in the middle instead.
+    // reach their anchored position, and clamps them somewhere in the middle
+    // instead. The furthest the bar ever scrolls is the offset that selects the
+    // last tab, i.e. one that left-aligns its predecessor.
     const last = known[known.length - 1];
-    const needed = viewport.current - known[0].x - last.width - EDGE_PADDING - TAB_GAP;
-    setTrailingSpace(Math.max(0, needed));
+    // Extra TAB_GAP because the spacer is a flex child of the gap-[26px] row.
+    const contentEnd = last.x + last.width + EDGE_PADDING + TAB_GAP;
+    const maxScroll = offsetForSelection(xs.length - 1, xs);
+    setTrailingSpace(Math.max(0, viewport.current + maxScroll - contentEnd));
   };
 
   const onScroll = useAnimatedScrollHandler((event) => {
@@ -148,9 +157,9 @@ export function TabBar({
   });
 
   // While a change is in flight the bar is ours: every frame it lands at
-  // lerp(where the user had it, left-aligned target, how far the change has
+  // lerp(where the user had it, anchored target, how far the change has
   // committed). A swipe drives that from the finger, a tap from tapProgress, so
-  // in both cases the bar arrives left-aligned exactly as the change settles.
+  // in both cases the bar arrives anchored exactly as the change settles.
   useAnimatedReaction(
     () => ({
       tap: tapActive.value,
@@ -173,7 +182,7 @@ export function TabBar({
           // keeps whatever scroll position the user had set.
           const index = Math.round(current.x);
           if (index !== anchorIndex.value) {
-            scrollTo(scrollRef, offsetForPosition(index, o), 0, false);
+            scrollTo(scrollRef, offsetForSelection(index, o), 0, false);
           }
         }
         return;
@@ -184,7 +193,7 @@ export function TabBar({
         anchorIndex.value =
           current.tap === 1 ? current.from : Math.round(previous ? previous.x : current.x);
         // How far the user had scrolled the bar away from the tab it is leaving.
-        anchorDrift.value = contentOffset.value - offsetForPosition(anchorIndex.value, o);
+        anchorDrift.value = contentOffset.value - offsetForSelection(anchorIndex.value, o);
       }
 
       const position =
@@ -196,8 +205,8 @@ export function TabBar({
 
       // The bar follows the tabs linearly, exactly as the colours do, while the
       // user's drift decays to nothing — so it starts from wherever they left it
-      // and is left-aligned by the time the change lands.
-      const base = offsetForPosition(position, o);
+      // and is anchored by the time the change lands.
+      const base = offsetForSelection(position, o);
       scrollTo(scrollRef, base + anchorDrift.value * (1 - commitment), 0, false);
     },
   );
