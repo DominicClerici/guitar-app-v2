@@ -1,4 +1,4 @@
-# guitar-mobile-expo
+# mobile
 
 Expo 57 app using React 19 with the React Compiler enabled. Routing via `expo-router`.
 

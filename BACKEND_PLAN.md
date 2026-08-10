@@ -248,19 +248,20 @@ single Drizzle schema **cannot** be shared. The layering instead is:
 
 ## 9. Monorepo layout
 
-The existing pnpm workspace stays; `guitar-mobile-expo` does not move (its native iOS project has
-baked-in paths).
+The existing pnpm workspace stays; the mobile app now lives at `mobile/` (renamed from
+`guitar-mobile-expo/`; its native `ios/` project is gitignored/generated, so it just needs a
+fresh `pod install` / `expo prebuild` after the rename).
 
 ```
 guitar-app-v2/
-  guitar-mobile-expo/        # unchanged
+  mobile/                    # renamed from guitar-mobile-expo/
   packages/
     api/                     # Cloudflare Worker: Hono + tRPC + Better Auth
     db/                      # Drizzle schemas (pg + sqlite), migrations, client factory
     shared/                  # Zod domain schemas, sync contracts, domain constants
 ```
 
-`pnpm-workspace.yaml` becomes `guitar-mobile-expo` + `packages/*`. The stale `lambda-backend` entry
+`pnpm-workspace.yaml` becomes `mobile` + `packages/*`. The stale `lambda-backend` entry
 is removed.
 
 ## 10. Environments, config, and deployment
