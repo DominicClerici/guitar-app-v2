@@ -1,9 +1,7 @@
 import { useRouter } from 'expo-router';
-import { SymbolView } from 'expo-symbols';
 import { useEffect, useRef, useState } from 'react';
 import {
   ActivityIndicator,
-  Pressable,
   Text,
   useWindowDimensions,
   View,
@@ -12,7 +10,9 @@ import {
 import Animated, { useAnimatedScrollHandler, useSharedValue } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { BackLink } from '@/components/BackLink';
 import { BottomDock } from '@/components/BottomDock';
+import { Button } from '@/components/Button';
 import {
   ChapterCard,
   PathwayActions,
@@ -192,16 +192,7 @@ export function PathwayScreen({ slug }: { slug: string | undefined }) {
     <View className="flex-1 bg-bg">
       <View className="flex-1" style={{ paddingTop: Math.max(insets.top - 6, 0) }}>
         <View className="h-[42px] flex-row items-center px-[18px]">
-          <Pressable
-            onPress={() => router.back()}
-            hitSlop={10}
-            accessibilityRole="button"
-            accessibilityLabel="Back"
-            className="-ml-[4px] flex-row items-center gap-[6px] py-[6px] pr-[8px] active:opacity-60"
-          >
-            <SymbolView name="chevron.left" size={15} weight="semibold" tintColor={muted} />
-            <Text className="text-[15px] font-medium tracking-[-0.2px] text-ink">Pathway</Text>
-          </Pressable>
+          <BackLink title="Pathway" />
         </View>
 
         {query.loading ? (
@@ -213,16 +204,16 @@ export function PathwayScreen({ slug }: { slug: string | undefined }) {
             <Text className="text-center text-[13px] leading-[19px] text-ink-muted">
               {query.error ?? 'No pathway specified.'}
             </Text>
-            <Pressable
-              onPress={query.reload}
-              accessibilityRole="button"
+            <Button
+              variant="secondary"
+              size="xs"
+              text="mono"
+              radius={999}
               accessibilityLabel="Try loading the pathway again"
-              className="rounded-full bg-surface-raised px-[16px] py-[8px] active:opacity-70"
+              onPress={query.reload}
             >
-              <Text className="font-mono text-[10px] font-semibold uppercase tracking-[1.5px] text-ink">
-                Retry
-              </Text>
-            </Pressable>
+              Retry
+            </Button>
           </View>
         ) : (
           <Animated.ScrollView

@@ -1,9 +1,9 @@
-import { useRouter } from 'expo-router';
-import { SymbolView } from 'expo-symbols';
 import { useCallback, useEffect, useState } from 'react';
-import { ActivityIndicator, Pressable, Text, View } from 'react-native';
+import { ActivityIndicator, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { BackLink } from '@/components/BackLink';
+import { Button } from '@/components/Button';
 import { ArticleRenderer, contentRepository } from '@/features/articles';
 import { SectionStrip } from '@/features/learning';
 import type { ArticleDocument } from '@/lib/content';
@@ -41,7 +41,6 @@ export function ArticleScreen({
   pathwaySlug?: string;
 }) {
   const insets = useSafeAreaInsets();
-  const router = useRouter();
   const muted = useToken('--ink-muted', '#9aa0aa');
 
   const userId = useLearnerId();
@@ -96,18 +95,7 @@ export function ArticleScreen({
     <View className="flex-1 bg-bg">
       <View className="flex-1" style={{ paddingTop: Math.max(insets.top - 6, 0) }}>
         <View className="h-[42px] flex-row items-center px-[18px]">
-          <Pressable
-            onPress={() => router.back()}
-            hitSlop={10}
-            accessibilityRole="button"
-            accessibilityLabel="Back"
-            className="-ml-[4px] flex-row items-center gap-[6px] py-[6px] pr-[8px] active:opacity-60"
-          >
-            <SymbolView name="chevron.left" size={15} weight="semibold" tintColor={muted} />
-            <Text numberOfLines={1} className="text-[15px] font-medium tracking-[-0.2px] text-ink">
-              {pathway.value?.title ?? 'Article'}
-            </Text>
-          </Pressable>
+          <BackLink title={pathway.value?.title ?? 'Article'} />
         </View>
 
         {state.status === 'loading' ? (
@@ -119,16 +107,16 @@ export function ArticleScreen({
             <Text className="text-center text-[13px] leading-[19px] text-ink-muted">
               {state.message}
             </Text>
-            <Pressable
-              onPress={retry}
-              accessibilityRole="button"
+            <Button
+              variant="secondary"
+              size="xs"
+              text="mono"
+              radius={999}
               accessibilityLabel="Try loading the article again"
-              className="rounded-full bg-surface-raised px-[16px] py-[8px] active:opacity-70"
+              onPress={retry}
             >
-              <Text className="font-mono text-[10px] font-semibold uppercase tracking-[1.5px] text-ink">
-                Retry
-              </Text>
-            </Pressable>
+              Retry
+            </Button>
           </View>
         ) : (
           <View className="flex-1">

@@ -4,8 +4,9 @@ import { useState, type ComponentProps } from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { BackLink } from '@/components/BackLink';
+import { Button } from '@/components/Button';
 import { FadingHScroll } from '@/components/FadingHScroll';
-import { IconAction } from '@/components/IconAction';
 import { Fretboard } from '@/features/chord-detection/Fretboard';
 import { useChordBuilder } from '@/features/chord-detection/useChordBuilder';
 import { ChipMenu } from '@/features/key-detection/ChipMenu';
@@ -35,31 +36,18 @@ interface PrimaryProps {
 
 /** Filled accent CTA. Sinks to a dead surface when there is nothing to commit. */
 function PrimaryAction({ label, symbol, disabled, onPress }: PrimaryProps) {
-  const onAccent = useToken('--on-accent', '#04211f');
-  const faint = useToken('--ink-faint', '#62666e');
-
   return (
-    <Pressable
-      onPress={onPress}
+    <Button
+      variant="primary"
+      size="lg"
+      radius={10}
+      icon={symbol}
       disabled={disabled}
-      accessibilityRole="button"
-      accessibilityState={{ disabled }}
-      accessibilityLabel={label}
-      className={`h-[50px] flex-1 flex-row items-center justify-center gap-[9px] rounded-[10px] border active:opacity-80 ${
-        disabled
-          ? 'border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface'
-          : 'border-t-[rgba(255,255,255,0.4)] border-x-transparent border-b-[rgba(0,0,0,0.28)] bg-accent'
-      }`}
+      className="flex-1"
+      onPress={onPress}
     >
-      <SymbolView name={symbol} size={13} weight="bold" tintColor={disabled ? faint : onAccent} />
-      <Text
-        className={`text-[15px] font-bold tracking-[0.3px] ${
-          disabled ? 'text-ink-faint' : 'text-on-accent'
-        }`}
-      >
-        {label}
-      </Text>
-    </Pressable>
+      {label}
+    </Button>
   );
 }
 
@@ -89,7 +77,6 @@ function HintRow({ hint }: { hint: Hint }) {
 export function KeyDetectorScreen() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
-  const muted = useToken('--ink-muted', '#9aa0aa');
   const accent = useToken('--accent', '#5ec8c2');
 
   const {
@@ -255,33 +242,19 @@ export function KeyDetectorScreen() {
   return (
     <View className="flex-1 bg-bg" style={{ paddingTop: Math.max(insets.top - 6, 0) }}>
       <View className="h-[42px] flex-row items-center justify-between px-[18px]">
-        <Pressable
-          onPress={() => router.back()}
-          hitSlop={10}
-          accessibilityRole="button"
-          accessibilityLabel="Back"
-          className="-ml-[4px] flex-row items-center gap-[6px] py-[6px] pr-[8px] active:opacity-60"
-        >
-          <SymbolView name="chevron.left" size={15} weight="semibold" tintColor={muted} />
-          <Text className="text-[15px] font-medium tracking-[-0.2px] text-ink">Key Detector</Text>
-        </Pressable>
+        <BackLink title="Key Detector" />
 
-        <Pressable
-          onPress={onResetProgression}
-          disabled={chords.length === 0}
+        <Button
+          variant="link"
+          size="inline"
+          text="mono"
           hitSlop={10}
-          accessibilityRole="button"
+          disabled={chords.length === 0}
           accessibilityLabel="Reset progression"
-          className="py-[6px] active:opacity-60"
+          onPress={onResetProgression}
         >
-          <Text
-            className={`font-mono text-[10px] font-semibold uppercase tracking-[2px] ${
-              chords.length === 0 ? 'text-ink-faint' : 'text-accent'
-            }`}
-          >
-            Reset
-          </Text>
-        </Pressable>
+          Reset
+        </Button>
       </View>
 
       <ScrollView
@@ -428,16 +401,36 @@ export function KeyDetectorScreen() {
         <View className="mt-[18px] flex-row gap-[10px]">
           {editing ? (
             <>
-              <IconAction symbol="trash" label="Delete chord" destructive onPress={onDelete} />
-              <IconAction symbol="xmark" label="Cancel edit" onPress={endEdit} />
+              <Button
+                variant="destructive"
+                size="lg"
+                square
+                radius={10}
+                icon="trash"
+                accessibilityLabel="Delete chord"
+                onPress={onDelete}
+              />
+              <Button
+                variant="secondary"
+                size="lg"
+                square
+                radius={10}
+                icon="xmark"
+                accessibilityLabel="Cancel edit"
+                onPress={endEdit}
+              />
               <PrimaryAction label="Save" symbol="checkmark" disabled={!chord} onPress={onSave} />
             </>
           ) : (
             <>
-              <IconAction
-                symbol="arrow.counterclockwise"
-                label="Clear board"
+              <Button
+                variant="secondary"
+                size="lg"
+                square
+                radius={10}
+                icon="arrow.counterclockwise"
                 disabled={placed.length === 0}
+                accessibilityLabel="Clear board"
                 onPress={onClearBoard}
               />
               <PrimaryAction

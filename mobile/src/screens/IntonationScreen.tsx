@@ -2,9 +2,11 @@ import * as Haptics from 'expo-haptics';
 import { useRouter } from 'expo-router';
 import { SymbolView } from 'expo-symbols';
 import { useCallback, useEffect, useState } from 'react';
-import { InteractionManager, Linking, Pressable, ScrollView, Text, View } from 'react-native';
+import { InteractionManager, Linking, ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { BackLink } from '@/components/BackLink';
+import { Button } from '@/components/Button';
 import {
   CaptureDial,
   DEFAULT_SCALE_INCHES,
@@ -25,7 +27,6 @@ import {
 } from '@/features/intonation';
 import { IN_TUNE_CENTS, TunerScale, useTunerSession } from '@/features/tuner';
 import { centsTextClass } from '@/features/tuner/tunerColors';
-import { useToken } from '@/lib/tokens';
 
 const EM_DASH = '—';
 const MINUS = '−';
@@ -37,8 +38,6 @@ const MINUS = '−';
  */
 export function IntonationScreen() {
   const insets = useSafeAreaInsets();
-  const router = useRouter();
-  const muted = useToken('--ink-muted', '#9aa0aa');
 
   const { status, note, centsSV, presenceSV, start, stop } = useTunerSession();
   const session = useIntonation();
@@ -101,29 +100,18 @@ export function IntonationScreen() {
   return (
     <View className="flex-1 bg-bg" style={{ paddingTop: Math.max(insets.top - 6, 0) }}>
       <View className="h-[42px] flex-row items-center justify-between px-[18px]">
-        <Pressable
-          onPress={() => router.back()}
-          hitSlop={10}
-          accessibilityRole="button"
-          accessibilityLabel="Back"
-          className="-ml-[4px] flex-row items-center gap-[6px] py-[6px] pr-[8px] active:opacity-60"
-        >
-          <SymbolView name="chevron.left" size={15} weight="semibold" tintColor={muted} />
-          <Text className="text-[15px] font-medium tracking-[-0.2px] text-ink">{title}</Text>
-        </Pressable>
+        <BackLink title={title} />
 
         {session.phase === 'tune' ? null : (
-          <Pressable
-            onPress={session.cancel}
-            hitSlop={10}
-            accessibilityRole="button"
+          <Button
+            variant="link"
+            size="inline"
+            text="mono"
             accessibilityLabel="Cancel the check"
-            className="py-[6px] active:opacity-60"
+            onPress={session.cancel}
           >
-            <Text className="font-mono text-[10px] font-semibold uppercase tracking-[2px] text-accent">
-              Cancel
-            </Text>
-          </Pressable>
+            Cancel
+          </Button>
         )}
       </View>
 
@@ -179,16 +167,15 @@ function MicNotice({ denied }: { denied: boolean }) {
           : 'The pitch detector is not available in this build.'}
       </Text>
       {denied ? (
-        <Pressable
+        <Button
+          variant="secondary"
+          size="sm"
+          text="mono"
+          className="mt-[18px]"
           onPress={() => void Linking.openSettings()}
-          accessibilityRole="button"
-          accessibilityLabel="Open settings"
-          className="mt-[18px] rounded-[10px] border border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface-raised px-[18px] py-[11px] active:opacity-70"
         >
-          <Text className="font-mono text-[10.5px] uppercase tracking-[1.5px] text-ink-muted">
-            Open settings
-          </Text>
-        </Pressable>
+          Open settings
+        </Button>
       ) : null}
     </View>
   );
@@ -204,31 +191,25 @@ function PrimaryAction({
   symbol: Parameters<typeof SymbolView>[0]['name'];
   onPress: () => void;
 }) {
-  const onAccent = useToken('--on-accent', '#04211f');
-
   return (
-    <Pressable
+    <Button
+      variant="primary"
+      size="lg"
+      radius={10}
+      icon={symbol}
+      className="flex-1"
       onPress={onPress}
-      accessibilityRole="button"
-      accessibilityLabel={label}
-      className="h-[50px] flex-1 flex-row items-center justify-center gap-[9px] rounded-[10px] border border-t-[rgba(255,255,255,0.4)] border-x-transparent border-b-[rgba(0,0,0,0.28)] bg-accent active:opacity-80"
     >
-      <SymbolView name={symbol} size={13} weight="bold" tintColor={onAccent} />
-      <Text className="text-[15px] font-bold tracking-[0.3px] text-on-accent">{label}</Text>
-    </Pressable>
+      {label}
+    </Button>
   );
 }
 
 function SecondaryAction({ label, onPress }: { label: string; onPress: () => void }) {
   return (
-    <Pressable
-      onPress={onPress}
-      accessibilityRole="button"
-      accessibilityLabel={label}
-      className="h-[50px] flex-1 items-center justify-center rounded-[10px] border border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface-raised active:opacity-70"
-    >
-      <Text className="text-[15px] font-medium tracking-[-0.2px] text-ink-muted">{label}</Text>
-    </Pressable>
+    <Button variant="secondary" size="lg" radius={10} className="flex-1" onPress={onPress}>
+      {label}
+    </Button>
   );
 }
 

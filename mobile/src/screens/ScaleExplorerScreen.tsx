@@ -1,9 +1,9 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { SymbolView } from 'expo-symbols';
 import { useState } from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { BackLink } from '@/components/BackLink';
 import { FadingHScroll } from '@/components/FadingHScroll';
 import { Segmented, type Segment } from '@/components/Segmented';
 import { ChipFace } from '@/features/key-detection/ChipFace';
@@ -13,7 +13,6 @@ import { pluck, prepare, ScaleNeck, type Cell } from '@/features/scale-visualize
 import { toAccidentalGlyphs } from '@/lib/accidentals';
 import type { ExceptionSpan, NoteDelta, ScalePlan } from '@/lib/scale-analysis';
 import { midiAt } from '@/lib/theory';
-import { useToken } from '@/lib/tokens';
 
 type Lens = 'pentatonic' | 'scale' | 'blues';
 
@@ -260,20 +259,9 @@ export function ScaleExplorerScreen() {
 }
 
 function Header({ onBack }: { onBack: () => void }) {
-  const muted = useToken('--ink-muted', '#9aa0aa');
-
   return (
     <View className="h-[42px] flex-row items-center px-[18px]">
-      <Pressable
-        onPress={onBack}
-        hitSlop={10}
-        accessibilityRole="button"
-        accessibilityLabel="Back"
-        className="-ml-[4px] flex-row items-center gap-[6px] py-[6px] pr-[8px] active:opacity-60"
-      >
-        <SymbolView name="chevron.left" size={15} weight="semibold" tintColor={muted} />
-        <Text className="text-[15px] font-medium tracking-[-0.2px] text-ink">What to play</Text>
-      </Pressable>
+      <BackLink title="What to play" onPress={onBack} />
     </View>
   );
 }

@@ -1,7 +1,8 @@
 import type { ReactNode } from 'react';
 import { useSyncExternalStore } from 'react';
-import { ActivityIndicator, Linking, Pressable, Text, View } from 'react-native';
+import { ActivityIndicator, Linking, Text, View } from 'react-native';
 
+import { Button } from '@/components/Button';
 import { getStatus, subscribeStatus, type MicStatus } from '@/lib/mic';
 import { useToken } from '@/lib/tokens';
 
@@ -43,16 +44,16 @@ export function MicGate({
   if (status === 'denied') {
     return (
       <Notice title="Microphone access needed" body={reason}>
-        <Pressable
+        <Button
+          variant="secondary"
+          size="md"
+          text="mono"
+          radius={10}
+          className="mt-[18px]"
           onPress={() => void Linking.openSettings()}
-          accessibilityRole="button"
-          accessibilityLabel="Open settings"
-          className="mt-[18px] rounded-[10px] border border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface-raised px-[18px] py-[11px] active:opacity-70"
         >
-          <Text className="font-mono text-[10.5px] uppercase tracking-[1.5px] text-ink-muted">
-            Open settings
-          </Text>
-        </Pressable>
+          Open settings
+        </Button>
       </Notice>
     );
   }

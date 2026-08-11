@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from 'react';
-import { ActivityIndicator, Pressable, ScrollView, Text, View } from 'react-native';
+import { ActivityIndicator, ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
   Easing,
@@ -9,6 +9,7 @@ import {
   type SharedValue,
 } from 'react-native-reanimated';
 
+import { Button } from '@/components/Button';
 import { RichText } from '@/features/articles/RichText';
 import type { ActivityDocument, RhythmActivity, RhythmRound } from '@/lib/content';
 import { runnableRounds } from '@/lib/content';
@@ -528,16 +529,9 @@ function RoundView({
         // The result moves on by itself; this only spends the wait early, which is what keeps
         // it an accelerator rather than something a learner holding a guitar has to reach for.
         <View className="border-t border-t-line-soft px-[18px] pt-[12px]">
-          <Pressable
-            onPress={onSkip}
-            accessibilityRole="button"
-            accessibilityLabel="Continue now"
-            className="items-center rounded-[13px] bg-accent py-[13px] active:opacity-80"
-          >
-            <Text className="text-[15px] font-semibold tracking-[-0.2px] text-on-accent">
-              Continue
-            </Text>
-          </Pressable>
+          <Button variant="primary" size="lg" accessibilityLabel="Continue now" onPress={onSkip}>
+            Continue
+          </Button>
         </View>
       ) : null}
     </>
@@ -590,24 +584,12 @@ function Blocked({
       </Text>
 
       <View className="mt-[22px] flex-row gap-[10px]">
-        <Pressable
-          onPress={onDone}
-          accessibilityRole="button"
-          accessibilityLabel="Leave the activity"
-          className="h-[46px] items-center justify-center rounded-[12px] border border-x-line-soft border-t-edge-top border-b-edge-bottom bg-surface-raised px-[18px] active:opacity-70"
-        >
-          <Text className="text-[14px] font-medium tracking-[-0.2px] text-ink-muted">Back</Text>
-        </Pressable>
-        <Pressable
-          onPress={onRetry}
-          accessibilityRole="button"
-          accessibilityLabel="Calibrate again"
-          className="h-[46px] items-center justify-center rounded-[12px] bg-accent px-[18px] active:opacity-80"
-        >
-          <Text className="text-[14px] font-semibold tracking-[-0.2px] text-on-accent">
-            Try again
-          </Text>
-        </Pressable>
+        <Button variant="secondary" size="md" accessibilityLabel="Leave the activity" onPress={onDone}>
+          Back
+        </Button>
+        <Button variant="primary" size="md" accessibilityLabel="Calibrate again" onPress={onRetry}>
+          Try again
+        </Button>
       </View>
     </Centred>
   );

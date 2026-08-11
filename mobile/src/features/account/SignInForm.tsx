@@ -2,8 +2,8 @@ import { signInInput } from '@guitar/shared';
 import { useRef, useState } from 'react';
 import type { TextInput } from 'react-native';
 
-import { AuthButton } from '@/components/AuthButton';
 import { AuthTextField } from '@/components/AuthTextField';
+import { Button } from '@/components/Button';
 import { authClient, describeAuthError } from '@/lib/auth';
 import { fieldErrors } from '@/lib/forms';
 
@@ -82,7 +82,16 @@ export function SignInForm({ onCreateAccount, onForgotPassword, guest }: Props) 
         onSubmitEditing={submit}
       />
 
-      <AuthButton label="Sign in" onPress={submit} pending={pending} />
+      <Button
+        variant="soft"
+        size="md"
+        radius={11}
+        className="w-full"
+        pending={pending}
+        onPress={submit}
+      >
+        Sign in
+      </Button>
 
       <AuthSwitch prompt="Forgot your password?" action="Reset it" onPress={onForgotPassword} />
       <AuthSwitch prompt="No account yet?" action="Create one" onPress={onCreateAccount} />

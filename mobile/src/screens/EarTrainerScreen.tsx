@@ -1,7 +1,5 @@
-import { useRouter } from 'expo-router';
-import { SymbolView } from 'expo-symbols';
 import { useRef } from 'react';
-import { Pressable, Text, useWindowDimensions, View } from 'react-native';
+import { Text, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
   Easing,
@@ -12,7 +10,8 @@ import {
 } from 'react-native-reanimated';
 
 import { AnimatedView } from '@/components/AnimatedView';
-import { useFace } from '@/components/CornerFace';
+import { BackLink } from '@/components/BackLink';
+import { Button } from '@/components/Button';
 import { TransportButton } from '@/components/TransportButton';
 import {
   DegreeCircle,
@@ -24,7 +23,6 @@ import {
 } from '@/features/ear-trainer';
 import { toAccidentalGlyphs } from '@/lib/accidentals';
 import { notesSharp } from '@/lib/theory';
-import { useToken } from '@/lib/tokens';
 
 /** One half of the aura's breath. Slow enough to be felt rather than watched. */
 const BREATH_MS = 2800;
@@ -38,9 +36,7 @@ const EASE = { duration: BREATH_MS, easing: Easing.inOut(Easing.quad) };
  */
 export function EarTrainerScreen() {
   const insets = useSafeAreaInsets();
-  const router = useRouter();
   const { width } = useWindowDimensions();
-  const muted = useToken('--ink-muted', '#9aa0aa');
 
   const trainer = useTrainer();
   const sheet = useRef<TrainerConfigSheetRef>(null);
@@ -60,26 +56,18 @@ export function EarTrainerScreen() {
   return (
     <View className="flex-1 bg-bg" style={{ paddingTop: Math.max(insets.top - 6, 0) }}>
       <View className="h-[44px] flex-row items-center px-[18px]">
-        <Pressable
-          onPress={() => router.back()}
-          hitSlop={10}
-          accessibilityRole="button"
-          accessibilityLabel="Back"
-          className="-ml-[4px] flex-row items-center gap-[6px] py-[6px] pr-[8px] active:opacity-60"
-        >
-          <SymbolView name="chevron.left" size={15} weight="semibold" tintColor={muted} />
-          <Text className="text-[15px] font-medium tracking-[-0.2px] text-ink">Free Play</Text>
-        </Pressable>
+        <BackLink title="Free Play" />
 
-        <Pressable
-          onPress={() => sheet.current?.present()}
+        <Button
+          variant="ghost"
+          size="inline"
+          square
+          icon="slider.horizontal.3"
           hitSlop={10}
-          accessibilityRole="button"
+          className="ml-auto"
           accessibilityLabel="Training settings"
-          className="ml-auto py-[6px] pl-[8px] active:opacity-60"
-        >
-          <SymbolView name="slider.horizontal.3" size={17} weight="medium" tintColor={muted} />
-        </Pressable>
+          onPress={() => sheet.current?.present()}
+        />
       </View>
 
       <View className="px-[18px] pt-[2px]">
@@ -202,20 +190,17 @@ function TrainerReadout({ trainer }: { trainer: UseTrainerResult }) {
 
 /** Re-hear the question, from the one place your eye already is. */
 function ReplayKey({ onPress }: { onPress: () => void }) {
-  const ink = useToken('--ink', '#eef0f4');
-  const face = useFace('key', 27);
-
   return (
-    <Pressable
-      onPress={onPress}
+    <Button
+      variant="secondary"
+      size="lg"
+      square
+      radius={999}
+      icon="arrow.counterclockwise"
       hitSlop={6}
-      accessibilityRole="button"
       accessibilityLabel="Replay the question tone"
-      className={`h-[54px] w-[54px] items-center justify-center rounded-full active:opacity-70 ${face.className}`}
-    >
-      {face.paint}
-      <SymbolView name="arrow.counterclockwise" size={18} weight="semibold" tintColor={ink} />
-    </Pressable>
+      onPress={onPress}
+    />
   );
 }
 
@@ -228,41 +213,24 @@ function TrainPill({
   disabled: boolean;
   onPress: () => void;
 }) {
-  const face = useFace(training ? 'accent' : disabled ? 'quiet' : 'key', 25);
-
   return (
-    <Pressable
-      onPress={onPress}
+    <Button
+      variant={training ? 'soft' : 'secondary'}
+      size="lg"
+      radius={999}
       disabled={disabled}
-      accessibilityRole="button"
-      accessibilityState={{ disabled }}
       accessibilityLabel={training ? 'End training' : 'Start training'}
-      className={`h-[50px] items-center justify-center rounded-full px-[24px] active:opacity-70 ${face.className}`}
+      onPress={onPress}
     >
-      {face.paint}
-      <Text
-        className={`text-[14px] font-medium tracking-[-0.1px] ${
-          training ? 'text-accent' : disabled ? 'text-ink-faint' : 'text-ink'
-        }`}
-      >
-        {training ? 'End training' : 'Start training'}
-      </Text>
-    </Pressable>
+      {training ? 'End training' : 'Start training'}
+    </Button>
   );
 }
 
 function ContinuePill({ onPress }: { onPress: () => void }) {
-  const face = useFace('accent', 21);
-
   return (
-    <Pressable
-      onPress={onPress}
-      accessibilityRole="button"
-      accessibilityLabel="Next question"
-      className={`h-[42px] items-center justify-center rounded-full px-[26px] active:opacity-70 ${face.className}`}
-    >
-      {face.paint}
-      <Text className="text-[13.5px] font-medium tracking-[-0.1px] text-accent">Continue</Text>
-    </Pressable>
+    <Button variant="soft" size="md" radius={999} accessibilityLabel="Next question" onPress={onPress}>
+      Continue
+    </Button>
   );
 }

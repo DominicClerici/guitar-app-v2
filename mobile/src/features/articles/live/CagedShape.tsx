@@ -1,15 +1,14 @@
-import { SymbolView } from 'expo-symbols';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { z } from 'zod';
 
+import { Button } from '@/components/Button';
 import { pluck, prepare, release } from '@/features/scale-visualizer';
 import { toAccidentalGlyphs } from '@/lib/accidentals';
 import { isRootName, type RootName } from '@/lib/chord-library';
 import { CAGED_FORMS, cagedFormWindow, cagedMarks, type CagedMark } from '@/lib/guitar-positions';
 import { noteToPitchClass } from '@/lib/scale-library';
 import { midiAt } from '@/lib/theory';
-import { useToken } from '@/lib/tokens';
 
 import { claimPlayback, releasePlayback } from '../playbackBus';
 
@@ -54,8 +53,6 @@ const SINGLE_INLAYS = new Set([3, 5, 7, 9, 15]);
 const markKey = (mark: Pick<CagedMark, 'string' | 'fret'>) => `${mark.string}-${mark.fret}`;
 
 export function CagedShape({ root, form, show, caption }: CagedShapeProps) {
-  const onAccent = useToken('--on-accent', '#04211f');
-
   const [sounding, setSounding] = useState<string | null>(null);
   const [playing, setPlaying] = useState(false);
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -129,7 +126,14 @@ export function CagedShape({ root, form, show, caption }: CagedShapeProps) {
             {caption ?? LAYER_CAPTION[show]}
           </Text>
         </View>
-        <Pressable
+        <Button
+          variant="primary"
+          size="xs"
+          square
+          radius={999}
+          icon={playing ? 'stop.fill' : 'play.fill'}
+          hitSlop={8}
+          accessibilityLabel={`${playing ? 'Stop' : 'Play'} the ${form} form of ${name}`}
           onPress={() => {
             if (playing) {
               stop();
@@ -138,18 +142,7 @@ export function CagedShape({ root, form, show, caption }: CagedShapeProps) {
               play();
             }
           }}
-          hitSlop={8}
-          accessibilityRole="button"
-          accessibilityLabel={`${playing ? 'Stop' : 'Play'} the ${form} form of ${name}`}
-          className="h-[30px] w-[30px] items-center justify-center rounded-full bg-accent active:opacity-80"
-        >
-          <SymbolView
-            name={playing ? 'stop.fill' : 'play.fill'}
-            size={11}
-            tintColor={onAccent}
-            style={playing ? undefined : { marginLeft: 1.5 }}
-          />
-        </Pressable>
+        />
       </View>
 
       <View className="mt-[12px] self-center">

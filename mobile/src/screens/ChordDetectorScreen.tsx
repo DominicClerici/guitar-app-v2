@@ -1,12 +1,12 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { SymbolView } from 'expo-symbols';
 import { useMemo, useState } from 'react';
-import { Pressable, ScrollView, Text, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { CornerStyleProvider, useFace, type CornerStyle } from '@/components/CornerFace';
+import { BackLink } from '@/components/BackLink';
+import { Button } from '@/components/Button';
+import { CornerStyleProvider, type CornerStyle } from '@/components/CornerFace';
 import { CornerStyleToggle } from '@/components/CornerStyleToggle';
-import { IconAction } from '@/components/IconAction';
 import { ChordVerdict } from '@/features/chord-detection/ChordVerdict';
 import { degreeForPitchClassFrom } from '@/features/chord-detection/degrees';
 import { Fretboard } from '@/features/chord-detection/Fretboard';
@@ -15,7 +15,6 @@ import { LabelModeToggle, type LabelMode } from '@/features/chord-detection/Labe
 import { ReadingShelf } from '@/features/chord-detection/ReadingShelf';
 import { useChordBuilder, type InitialVoicing } from '@/features/chord-detection/useChordBuilder';
 import { WarningNotes } from '@/features/chord-detection/WarningNotes';
-import { useToken } from '@/lib/tokens';
 import { decodeVoicing, encodeVoicing } from '@/lib/voicing-param';
 
 /**
@@ -31,7 +30,6 @@ import { decodeVoicing, encodeVoicing } from '@/lib/voicing-param';
 export function ChordDetectorScreen() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
-  const muted = useToken('--ink-muted', '#9aa0aa');
 
   const { voicing, root } = useLocalSearchParams<{ voicing?: string; root?: string }>();
 
@@ -72,18 +70,7 @@ export function ChordDetectorScreen() {
         {/* The A/B switch rides in the header: it is the smallest surface on the
             screen, so it is where the corner treatment is hardest to fake. */}
         <View className="h-[44px] flex-row items-center justify-between px-[18px]">
-          <Pressable
-            onPress={() => router.back()}
-            hitSlop={10}
-            accessibilityRole="button"
-            accessibilityLabel="Back"
-            className="-ml-[4px] flex-row items-center gap-[6px] py-[6px] pr-[8px] active:opacity-60"
-          >
-            <SymbolView name="chevron.left" size={15} weight="semibold" tintColor={muted} />
-            <Text className="text-[15px] font-medium tracking-[-0.2px] text-ink">
-              Chord Detector
-            </Text>
-          </Pressable>
+          <BackLink title="Chord Detector" />
 
           <CornerStyleToggle value={corners} onChange={setCorners} />
         </View>
@@ -144,10 +131,14 @@ export function ChordDetectorScreen() {
                 })
               }
             />
-            <IconAction
-              symbol="arrow.counterclockwise"
-              label="Clear board"
+            <Button
+              variant="secondary"
+              size="lg"
+              square
+              radius={10}
+              icon="arrow.counterclockwise"
               disabled={placed.length === 0}
+              accessibilityLabel="Clear board"
               onPress={clear}
             />
           </View>
@@ -172,35 +163,18 @@ function DroneAction({
   disabled: boolean;
   onPress: () => void;
 }) {
-  const accent = useToken('--accent', '#5ec8c2');
-  const faint = useToken('--ink-faint', '#62666e');
-  const face = useFace('key', 10);
-
   return (
-    <Pressable
-      onPress={onPress}
+    <Button
+      variant="secondary"
+      size="lg"
+      text="mono"
+      icon="speaker.wave.2"
+      radius={10}
       disabled={disabled}
-      accessibilityRole="button"
-      accessibilityState={{ disabled }}
       accessibilityLabel={label}
-      className={`h-[50px] flex-row items-center gap-[7px] rounded-[10px] px-[14px] active:opacity-70 ${
-        disabled ? 'opacity-45' : ''
-      } ${face.className}`}
+      onPress={onPress}
     >
-      {face.paint}
-      <SymbolView
-        name="speaker.wave.2"
-        size={15}
-        weight="semibold"
-        tintColor={disabled ? faint : accent}
-      />
-      <Text
-        className={`font-mono text-[10px] font-semibold uppercase tracking-[1.5px] ${
-          disabled ? 'text-ink-faint' : 'text-accent'
-        }`}
-      >
-        Drone
-      </Text>
-    </Pressable>
+      Drone
+    </Button>
   );
 }

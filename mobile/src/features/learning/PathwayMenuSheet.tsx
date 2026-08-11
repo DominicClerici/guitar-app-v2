@@ -3,6 +3,7 @@ import { useState, type ComponentProps, type Ref } from 'react';
 import { Pressable, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { Button } from '@/components/Button';
 import { useFace } from '@/components/CornerFace';
 import { Sheet, type SheetRef } from '@/components/Sheet';
 import { MAX_ACTIVE_PATHWAYS } from '@/lib/learning';
@@ -121,20 +122,18 @@ function MenuButton({
 }
 
 function AboutPathways({ onBack }: { onBack: () => void }) {
-  const muted = useToken('--ink-muted', '#9aa0aa');
-
   return (
     <View>
-      <Pressable
-        onPress={onBack}
+      <Button
+        variant="ghost"
+        size="inline"
+        icon="chevron.left"
         hitSlop={10}
-        accessibilityRole="button"
-        accessibilityLabel="Back to the pathway menu"
-        className="-ml-[4px] flex-row items-center gap-[6px] py-[6px] pr-[8px] active:opacity-60"
+        className="-ml-[4px]"
+        onPress={onBack}
       >
-        <SymbolView name="chevron.left" size={14} weight="semibold" tintColor={muted} />
-        <Text className="text-[15px] font-medium tracking-[-0.2px] text-ink">About Pathways</Text>
-      </Pressable>
+        About Pathways
+      </Button>
 
       <View className="mt-[14px] gap-[16px]">
         <Note

@@ -1,9 +1,8 @@
-import { SymbolView } from 'expo-symbols';
 import { useEffect, useImperativeHandle, useRef, useState, type Ref } from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 
+import { Button } from '@/components/Button';
 import { Sheet, type SheetRef } from '@/components/Sheet';
-import { useToken } from '@/lib/tokens';
 
 import { TapPad } from './TapPad';
 import { tempoMarking } from './tapTempo';
@@ -75,8 +74,6 @@ function BpmSheetBody({
   onUse: (bpm: number) => void;
 }) {
   const { bpm, taps, spread, stale, tap, reset } = useTapTempo();
-  const onAccent = useToken('--on-accent', '#04211f');
-  const faint = useToken('--ink-faint', '#62666e');
 
   // The sheet keeps its body mounted between openings, so closing it is what ends
   // the session — otherwise the next open would resume a count from minutes ago.
@@ -101,17 +98,16 @@ function BpmSheetBody({
   return (
     <View className="px-[24px] pb-[24px] pt-[8px]">
       <View className="flex-row items-center justify-between py-[8px]">
-        <Pressable
-          onPress={onClose}
+        <Button
+          variant="secondary"
+          size="sm"
+          text="mono"
           hitSlop={8}
-          accessibilityRole="button"
           accessibilityLabel="Close BPM finder"
-          className="rounded-[10px] border border-x-line-soft border-t-edge-top border-b-edge-bottom bg-surface-raised px-[14px] py-[8px]"
+          onPress={onClose}
         >
-          <Text className="font-mono text-[10px] uppercase tracking-[2px] text-ink-muted">
-            Close
-          </Text>
-        </Pressable>
+          Close
+        </Button>
 
         <ModeSwitch />
       </View>
@@ -150,54 +146,35 @@ function BpmSheetBody({
         {/* Held back until the count has timed out: mid-tap the reading is still
             moving, and handing over a number you were about to improve on is
             worse than waiting the moment out. */}
-        <Pressable
-          onPress={() => {
-            if (rounded !== null) onUse(rounded);
-          }}
+        <Button
+          variant="primary"
+          size="lg"
+          icon="metronome"
           disabled={!handoffReady}
-          accessibilityRole="button"
-          accessibilityState={{ disabled: !handoffReady }}
+          className="w-full"
           accessibilityLabel={
             handoffReady
               ? `Open the metronome at ${rounded} beats per minute`
               : 'Set in metronome. Available once you stop tapping.'
           }
-          className={`w-full flex-row items-center justify-center gap-[8px] rounded-[12px] border py-[14px] active:opacity-80 ${
-            handoffReady
-              ? 'border-x-transparent border-t-[rgba(255,255,255,0.4)] border-b-[rgba(0,0,0,0.28)] bg-accent'
-              : 'border-x-line-soft border-t-edge-top border-b-edge-bottom bg-surface-raised'
-          }`}
+          onPress={() => {
+            if (rounded !== null) onUse(rounded);
+          }}
         >
-          <SymbolView
-            name="metronome"
-            size={15}
-            weight="semibold"
-            tintColor={handoffReady ? onAccent : faint}
-          />
-          <Text
-            className={`font-mono text-[11px] font-semibold uppercase tracking-[2px] ${
-              handoffReady ? 'text-on-accent' : 'text-ink-faint'
-            }`}
-          >
-            Set in Metronome
-          </Text>
-        </Pressable>
+          Set in Metronome
+        </Button>
 
-        <Pressable
-          onPress={reset}
+        <Button
+          variant="secondary"
+          size="sm"
+          text="mono"
           disabled={taps === 0}
           hitSlop={8}
-          accessibilityRole="button"
-          accessibilityState={{ disabled: taps === 0 }}
           accessibilityLabel="Reset tempo"
-          className={`rounded-[10px] border border-x-line-soft border-t-edge-top border-b-edge-bottom bg-surface-raised px-[18px] py-[10px] active:opacity-70 ${
-            taps === 0 ? 'opacity-40' : ''
-          }`}
+          onPress={reset}
         >
-          <Text className="font-mono text-[10px] uppercase tracking-[2px] text-ink-muted">
-            Reset
-          </Text>
-        </Pressable>
+          Reset
+        </Button>
       </View>
     </View>
   );

@@ -1,9 +1,8 @@
-import { SymbolView } from 'expo-symbols';
 import { Pressable, Text, View } from 'react-native';
 
+import { Button } from '@/components/Button';
 import type { CurriculumPathway, PathwayMeta } from '@/lib/content';
 import { nextStep, pathwayProgress, stepTitle, type ProgressBySection } from '@/lib/learning';
-import { useToken } from '@/lib/tokens';
 
 import { ProgressTrack } from './ProgressTrack';
 
@@ -24,8 +23,6 @@ export function ContinueCard({
   onOpen: () => void;
   onContinue: () => void;
 }) {
-  const onAccent = useToken('--on-accent', '#04211f');
-
   const tally = pathway ? pathwayProgress(pathway, progress) : null;
   const step = pathway ? nextStep(pathway, progress) : null;
   const upNext = step === null ? null : stepTitle(step);
@@ -73,15 +70,15 @@ export function ContinueCard({
               {upNext}
             </Text>
           </View>
-          <Pressable
-            onPress={onContinue}
-            accessibilityRole="button"
+          <Button
+            variant="primary"
+            size="sm"
+            icon="play.fill"
             accessibilityLabel={`Continue ${meta.title}`}
-            className="h-[40px] flex-row items-center gap-[8px] rounded-[10px] border border-x-transparent border-t-[rgba(255,255,255,0.4)] border-b-[rgba(0,0,0,0.28)] bg-accent px-[16px] active:opacity-80"
+            onPress={onContinue}
           >
-            <SymbolView name="play.fill" size={12} tintColor={onAccent} />
-            <Text className="text-[13px] font-bold tracking-[0.3px] text-on-accent">Continue</Text>
-          </Pressable>
+            Continue
+          </Button>
         </View>
       ) : pathway ? (
         <Text className="mt-[16px] font-mono text-[9.5px] uppercase tracking-[2px] text-accent">

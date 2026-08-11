@@ -1,9 +1,9 @@
-import { SymbolView, type SFSymbol } from 'expo-symbols';
+import type { SFSymbol } from 'expo-symbols';
 import type { ReactNode } from 'react';
 import { Pressable, Text, View } from 'react-native';
 
+import { Button } from '@/components/Button';
 import { Segmented } from '@/components/Segmented';
-import { useToken } from '@/lib/tokens';
 
 import { VOICES } from './clickVoices';
 import { MAX_BEATS, MIN_BEATS, SUBDIVISIONS } from './patterns';
@@ -158,19 +158,16 @@ function MiniButton({
   disabled: boolean;
   onPress: () => void;
 }) {
-  const ink = useToken('--ink', '#eef0f4');
-  const faint = useToken('--ink-faint', '#62666e');
-
   return (
-    <Pressable
-      onPress={onPress}
+    <Button
+      variant="secondary"
+      size="xs"
+      square
+      icon={symbol}
       disabled={disabled}
-      accessibilityRole="button"
-      accessibilityState={{ disabled }}
+      hitSlop={6}
       accessibilityLabel={label}
-      className="h-[26px] w-[30px] items-center justify-center rounded-[6px] active:opacity-60"
-    >
-      <SymbolView name={symbol} size={12} weight="semibold" tintColor={disabled ? faint : ink} />
-    </Pressable>
+      onPress={onPress}
+    />
   );
 }

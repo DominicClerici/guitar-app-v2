@@ -1,9 +1,8 @@
-import { SymbolView } from 'expo-symbols';
-import { Pressable, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 
+import { Button } from '@/components/Button';
 import type { CurriculumPathway, PathwayMeta } from '@/lib/content';
 import { nextStep, pathwayProgress, stepTitle, type ProgressBySection } from '@/lib/learning';
-import { useToken } from '@/lib/tokens';
 
 import { ProgressTrack } from './ProgressTrack';
 
@@ -28,9 +27,6 @@ export function LearningHero({
   onContinue: () => void;
   onOpen: () => void;
 }) {
-  const onAccent = useToken('--on-accent', '#04211f');
-  const muted = useToken('--ink-muted', '#9aa0aa');
-
   const tally = pathway ? pathwayProgress(pathway, progress) : null;
   const step = pathway ? nextStep(pathway, progress) : null;
 
@@ -70,25 +66,25 @@ export function LearningHero({
       ) : null}
 
       <View className="mt-[22px] flex-row gap-[12px]">
-        <Pressable
-          onPress={step ? onContinue : onOpen}
-          accessibilityRole="button"
+        <Button
+          variant="primary"
+          size="lg"
+          icon={step ? 'play.fill' : 'checkmark'}
+          className="flex-1"
           accessibilityLabel={step ? `Continue ${meta.title}` : `Open ${meta.title}`}
-          className="h-[52px] flex-1 flex-row items-center justify-center gap-[9px] rounded-[10px] border border-x-transparent border-t-[rgba(255,255,255,0.4)] border-b-[rgba(0,0,0,0.28)] bg-accent active:opacity-80"
+          onPress={step ? onContinue : onOpen}
         >
-          <SymbolView name={step ? 'play.fill' : 'checkmark'} size={14} tintColor={onAccent} />
-          <Text className="text-[15px] font-bold tracking-[0.3px] text-on-accent">
-            {step ? 'Continue' : 'Review'}
-          </Text>
-        </Pressable>
-        <Pressable
-          onPress={onOpen}
-          accessibilityRole="button"
+          {step ? 'Continue' : 'Review'}
+        </Button>
+        <Button
+          variant="secondary"
+          size="lg"
+          square
+          radius={10}
+          icon="list.bullet"
           accessibilityLabel={`Open ${meta.title}`}
-          className="h-[52px] w-[52px] items-center justify-center rounded-[10px] border border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface-raised active:opacity-70"
-        >
-          <SymbolView name="list.bullet" size={18} tintColor={muted} />
-        </Pressable>
+          onPress={onOpen}
+        />
       </View>
     </View>
   );

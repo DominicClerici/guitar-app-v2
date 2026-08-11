@@ -1,11 +1,10 @@
 import { useKeepAwake } from 'expo-keep-awake';
-import { SymbolView } from 'expo-symbols';
-import { Pressable, Text, useWindowDimensions, View } from 'react-native';
+import { Text, useWindowDimensions, View } from 'react-native';
 
+import { Button } from '@/components/Button';
 import { toAccidentalGlyphs } from '@/lib/accidentals';
 import type { Position } from '@/lib/guitar-positions';
 import type { JewelHue, Scale } from '@/lib/scale-library';
-import { useToken } from '@/lib/tokens';
 
 import { ScaleNeck } from './ScaleNeck';
 import type { Cell } from './useScaleVisualizer';
@@ -43,7 +42,6 @@ export function ExpandedNeck({
   useKeepAwake();
 
   const { width, height } = useWindowDimensions();
-  const muted = useToken('--ink-muted', '#9aa0aa');
 
   return (
     <View className="absolute inset-0 items-center justify-center bg-bg">
@@ -59,15 +57,15 @@ export function ExpandedNeck({
               ? `${position.label} · frets ${position.from}–${position.to}`
               : 'All positions'}
           </Text>
-          <Pressable
-            onPress={onClose}
+          <Button
+            variant="quiet"
+            size="xs"
+            square
+            icon="xmark"
             hitSlop={10}
-            accessibilityRole="button"
             accessibilityLabel="Close the full-screen neck"
-            className="h-[34px] w-[34px] items-center justify-center rounded-[9px] border border-line-soft bg-surface active:opacity-70"
-          >
-            <SymbolView name="xmark" size={13} weight="semibold" tintColor={muted} />
-          </Pressable>
+            onPress={onClose}
+          />
         </View>
 
         <ScaleNeck

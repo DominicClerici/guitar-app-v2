@@ -1,8 +1,9 @@
 import { SymbolView } from 'expo-symbols';
 import type { ComponentProps } from 'react';
-import { Pressable, ScrollView, Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { Button } from '@/components/Button';
 import { gradableQuestions, type QuizDocument } from '@/lib/content';
 import { isCorrect, type AnswerSheet, type QuizScore } from '@/lib/quiz';
 import { useTokens } from '@/lib/tokens';
@@ -206,14 +207,9 @@ export function Results({
         className="border-t border-t-line-soft px-[18px] pt-[12px]"
         style={{ paddingBottom: insets.bottom + 12 }}
       >
-        <Pressable
-          onPress={onDone}
-          accessibilityRole="button"
-          accessibilityLabel="Done"
-          className="items-center rounded-[13px] bg-accent py-[14px] active:opacity-80"
-        >
-          <Text className="text-[15px] font-semibold tracking-[-0.2px] text-on-accent">Done</Text>
-        </Pressable>
+        <Button variant="primary" size="lg" onPress={onDone}>
+          Done
+        </Button>
       </View>
     </View>
   );

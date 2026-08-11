@@ -2,8 +2,8 @@ import { resetPasswordInput } from '@guitar/shared';
 import { useState } from 'react';
 import { Text } from 'react-native';
 
-import { AuthButton } from '@/components/AuthButton';
 import { AuthTextField } from '@/components/AuthTextField';
+import { Button } from '@/components/Button';
 import { authClient, describeAuthError } from '@/lib/auth';
 import { fieldErrors } from '@/lib/forms';
 
@@ -50,7 +50,9 @@ export function ResetPasswordForm({ token, onDone }: Props) {
         title="Link expired"
         blurb="Reset links can only be used once, and they stop working after an hour. Ask for a new one from the Account tab."
       >
-        <AuthButton label="Back to the app" onPress={onDone} />
+        <Button variant="soft" size="md" radius={11} className="w-full" onPress={onDone}>
+          Back to the app
+        </Button>
       </AuthShell>
     );
   }
@@ -61,7 +63,9 @@ export function ResetPasswordForm({ token, onDone }: Props) {
         title="Password changed"
         blurb="Sign in with your new password. Anywhere else you were signed in stays signed in."
       >
-        <AuthButton label="Back to the app" onPress={onDone} />
+        <Button variant="soft" size="md" radius={11} className="w-full" onPress={onDone}>
+          Back to the app
+        </Button>
       </AuthShell>
     );
   }
@@ -84,7 +88,16 @@ export function ResetPasswordForm({ token, onDone }: Props) {
         onSubmitEditing={submit}
       />
 
-      <AuthButton label="Set new password" onPress={submit} pending={pending} />
+      <Button
+        variant="soft"
+        size="md"
+        radius={11}
+        className="w-full"
+        pending={pending}
+        onPress={submit}
+      >
+        Set new password
+      </Button>
 
       <Text className="text-center text-[12px] leading-[17px] text-ink-faint">
         Sessions on other devices are left signed in.

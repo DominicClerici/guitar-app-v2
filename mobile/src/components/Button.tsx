@@ -107,6 +107,17 @@ const VARIANTS = {
     tint: '--ink-muted',
     press: 'active:opacity-60',
   },
+  /**
+   * `ghost` in accent ink. The one tap in a block of copy that has to look
+   * tappable without a face to say so — Cancel, Reset, Resend.
+   */
+  link: {
+    fill: 'transparent',
+    stroke: 'transparent',
+    text: 'text-accent',
+    tint: '--accent',
+    press: 'active:opacity-60',
+  },
   /** The raised key with rose ink. Nothing in Aurora is a filled red. */
   destructive: {
     fill: '--surface-raised',
@@ -146,6 +157,16 @@ interface SizeSpec {
 }
 
 const SIZES = {
+  /** A pill or a mini key, for a control that has to sit inside something else. */
+  xs: {
+    box: 'h-[30px] gap-[5px] px-[10px]',
+    square: 'h-[30px] w-[30px]',
+    radius: 8,
+    label: 'text-[12px] font-semibold tracking-[-0.1px]',
+    spinner: 'right-[10px]',
+    icon: 11,
+    soloIcon: 13,
+  },
   sm: {
     box: 'h-[38px] gap-[6px] px-[14px]',
     square: 'h-[38px] w-[38px]',
@@ -173,6 +194,22 @@ const SIZES = {
     icon: 13,
     soloIcon: 17,
   },
+  /**
+   * No box: as tall as its own label, and no wider than it either. For a
+   * control that reads as a piece of the text around it rather than as a key —
+   * which is only ever `ghost` or `link`, since a face needs a box to be drawn
+   * on. The vertical padding is a tap target, not a look; reach for `hitSlop`
+   * before adding more of it.
+   */
+  inline: {
+    box: 'gap-[6px] py-[6px]',
+    square: 'p-[6px]',
+    radius: 0,
+    label: 'text-[15px] font-medium tracking-[-0.2px]',
+    spinner: 'right-0',
+    icon: 15,
+    soloIcon: 15,
+  },
 } satisfies Record<string, SizeSpec>;
 
 export type Size = keyof typeof SIZES;
@@ -196,6 +233,8 @@ interface Base {
   disabled?: boolean;
   /** Working. Keeps its face, blocks presses, and shows a spinner beside the label. */
   pending?: boolean;
+  /** Grows the tap target past the face, for a button too small to be an easy one. */
+  hitSlop?: number;
   /** Layout only — width, flex, margins. The face comes from `variant`. */
   className?: string;
   onPress: () => void;
@@ -217,6 +256,7 @@ export function Button({
   square,
   disabled = false,
   pending = false,
+  hitSlop,
   className = '',
   accessibilityLabel,
   onPress,
@@ -236,6 +276,7 @@ export function Button({
     <SquirclePressable
       onPress={onPress}
       disabled={inert}
+      hitSlop={hitSlop}
       accessibilityRole="button"
       accessibilityLabel={
         accessibilityLabel ?? (typeof children === 'string' ? children : undefined)

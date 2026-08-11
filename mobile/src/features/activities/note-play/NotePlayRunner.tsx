@@ -1,8 +1,9 @@
 import { SymbolView } from 'expo-symbols';
 import { useEffect, useRef, useState } from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { Button } from '@/components/Button';
 import { RichText } from '@/features/articles/RichText';
 import { subscribeFrames } from '@/features/tuner/tunerEngine';
 import { toAccidentalGlyphs } from '@/lib/accidentals';
@@ -278,16 +279,16 @@ export function NotePlayRunner({
           >
             {/* Always here, whatever state the round is in. A learner who cannot find a note has
                 to be able to leave it rather than sit stuck on a board that will not complete. */}
-            <Pressable
-              onPress={() => advance(phase.round)}
-              accessibilityRole="button"
+            <Button
+              variant="secondary"
+              size="md"
+              text="mono"
+              radius={13}
               accessibilityLabel={complete ? 'Go to the next round' : 'Skip this round'}
-              className="h-[46px] items-center justify-center rounded-[13px] border border-x-line-soft border-t-edge-top border-b-edge-bottom bg-surface-raised active:opacity-70"
+              onPress={() => advance(phase.round)}
             >
-              <Text className="font-mono text-[10.5px] uppercase tracking-[1.5px] text-ink-muted">
-                {complete ? 'Next' : 'Skip round'}
-              </Text>
-            </Pressable>
+              {complete ? 'Next' : 'Skip round'}
+            </Button>
           </View>
         </View>
       )}

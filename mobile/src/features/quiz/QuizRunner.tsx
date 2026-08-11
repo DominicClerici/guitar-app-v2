@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Pressable, ScrollView, Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { Button } from '@/components/Button';
 import type { QuizDocument, RenderQuestion } from '@/lib/content';
 import { isCorrect, scoreQuiz, shuffled, type Answer, type QuizScore } from '@/lib/quiz';
 
@@ -174,24 +175,9 @@ export function QuizRunner({
         className="border-t border-t-line-soft px-[18px] pt-[12px]"
         style={{ paddingBottom: insets.bottom + 12 }}
       >
-        <Pressable
-          onPress={action.onPress}
-          disabled={!action.enabled}
-          accessibilityRole="button"
-          accessibilityLabel={action.label}
-          accessibilityState={{ disabled: !action.enabled }}
-          className={`items-center rounded-[13px] py-[14px] ${
-            action.enabled ? 'bg-accent active:opacity-80' : 'bg-surface-raised'
-          }`}
-        >
-          <Text
-            className={`text-[15px] font-semibold tracking-[-0.2px] ${
-              action.enabled ? 'text-on-accent' : 'text-ink-faint'
-            }`}
-          >
-            {action.label}
-          </Text>
-        </Pressable>
+        <Button variant="primary" size="lg" disabled={!action.enabled} onPress={action.onPress}>
+          {action.label}
+        </Button>
       </View>
     </View>
   );

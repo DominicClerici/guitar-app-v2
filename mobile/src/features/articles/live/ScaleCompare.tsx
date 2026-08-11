@@ -1,8 +1,8 @@
-import { SymbolView } from 'expo-symbols';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { z } from 'zod';
 
+import { Button } from '@/components/Button';
 import { pluck, prepare, release } from '@/features/scale-visualizer';
 import { toAccidentalGlyphs } from '@/lib/accidentals';
 import { isRootName, type RootName } from '@/lib/chord-library';
@@ -13,7 +13,6 @@ import {
   scaleTypeById,
   type Scale,
 } from '@/lib/scale-library';
-import { useToken } from '@/lib/tokens';
 
 import { claimPlayback, releasePlayback } from '../playbackBus';
 
@@ -134,7 +133,6 @@ function ScaleCard({
   soundingChip: number | null;
   onToggle: () => void;
 }) {
-  const onAccent = useToken('--on-accent', '#04211f');
   const name = `${toAccidentalGlyphs(scale.root)} ${scale.type.name}`;
 
   return (
@@ -146,20 +144,16 @@ function ScaleCard({
             {scale.type.character}
           </Text>
         </View>
-        <Pressable
-          onPress={onToggle}
+        <Button
+          variant="primary"
+          size="xs"
+          square
+          radius={999}
+          icon={playing ? 'stop.fill' : 'play.fill'}
           hitSlop={8}
-          accessibilityRole="button"
           accessibilityLabel={`${playing ? 'Stop' : 'Play'} the ${name} scale`}
-          className="h-[30px] w-[30px] items-center justify-center rounded-full bg-accent active:opacity-80"
-        >
-          <SymbolView
-            name={playing ? 'stop.fill' : 'play.fill'}
-            size={11}
-            tintColor={onAccent}
-            style={playing ? undefined : { marginLeft: 1.5 }}
-          />
-        </Pressable>
+          onPress={onToggle}
+        />
       </View>
 
       <View className="mt-[12px] flex-row flex-wrap gap-[6px]">

@@ -2,8 +2,8 @@ import { requestPasswordResetInput } from '@guitar/shared';
 import { useState } from 'react';
 import { Text, View } from 'react-native';
 
-import { AuthButton } from '@/components/AuthButton';
 import { AuthTextField } from '@/components/AuthTextField';
+import { Button } from '@/components/Button';
 import { authClient, describeAuthError, RESET_PASSWORD_LINK } from '@/lib/auth';
 import { fieldErrors } from '@/lib/forms';
 
@@ -55,7 +55,9 @@ export function ForgotPasswordForm({ onSignIn }: { onSignIn: () => void }) {
           </Text>
         </View>
 
-        <AuthButton label="Back to sign in" variant="quiet" onPress={onSignIn} />
+        <Button variant="quiet" size="md" radius={11} className="w-full" onPress={onSignIn}>
+          Back to sign in
+        </Button>
       </AuthShell>
     );
   }
@@ -81,7 +83,16 @@ export function ForgotPasswordForm({ onSignIn }: { onSignIn: () => void }) {
         onSubmitEditing={submit}
       />
 
-      <AuthButton label="Send reset link" onPress={submit} pending={pending} />
+      <Button
+        variant="soft"
+        size="md"
+        radius={11}
+        className="w-full"
+        pending={pending}
+        onPress={submit}
+      >
+        Send reset link
+      </Button>
 
       <AuthSwitch prompt="Remembered it?" action="Sign in" onPress={onSignIn} />
     </AuthShell>

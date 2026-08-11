@@ -2,8 +2,8 @@ import { changePasswordInput } from '@guitar/shared';
 import { useRef, useState } from 'react';
 import { View, type TextInput } from 'react-native';
 
-import { AuthButton } from '@/components/AuthButton';
 import { AuthTextField } from '@/components/AuthTextField';
+import { Button } from '@/components/Button';
 import { authClient, describeAuthError } from '@/lib/auth';
 import { fieldErrors } from '@/lib/forms';
 
@@ -82,8 +82,26 @@ export function ChangePasswordForm({ onDone, onCancel }: Props) {
         onSubmitEditing={submit}
       />
 
-      <AuthButton label="Change password" onPress={submit} pending={pending} />
-      <AuthButton label="Cancel" variant="quiet" onPress={onCancel} disabled={pending} />
+      <Button
+        variant="soft"
+        size="md"
+        radius={11}
+        className="w-full"
+        pending={pending}
+        onPress={submit}
+      >
+        Change password
+      </Button>
+      <Button
+        variant="quiet"
+        size="md"
+        radius={11}
+        className="w-full"
+        disabled={pending}
+        onPress={onCancel}
+      >
+        Cancel
+      </Button>
     </View>
   );
 }

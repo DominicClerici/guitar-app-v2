@@ -10,6 +10,7 @@ import {
 import { useAnimatedStyle } from 'react-native-reanimated';
 
 import { AnimatedView } from '@/components/AnimatedView';
+import { Button } from '@/components/Button';
 import { Sheet, type SheetRef } from '@/components/Sheet';
 
 import { IN_TUNE_CENTS } from './freqToNote';
@@ -99,17 +100,16 @@ function TunerSheetBody({ visible, onClose }: { visible: boolean; onClose: () =>
   return (
     <View className="flex-1 px-[24px] pb-[24px] pt-[8px]">
       <View className="flex-row items-center justify-between py-[8px]">
-        <Pressable
-          onPress={onClose}
+        <Button
+          variant="secondary"
+          size="sm"
+          text="mono"
           hitSlop={8}
-          accessibilityRole="button"
           accessibilityLabel="Close tuner"
-          className="rounded-[10px] border border-x-line-soft border-t-edge-top border-b-edge-bottom bg-surface-raised px-[14px] py-[8px]"
+          onPress={onClose}
         >
-          <Text className="font-mono text-[10px] uppercase tracking-[2px] text-ink-muted">
-            Close
-          </Text>
-        </Pressable>
+          Close
+        </Button>
         <Text className="font-mono text-[10px] uppercase tracking-[2.5px] text-ink-faint">
           A=440
         </Text>

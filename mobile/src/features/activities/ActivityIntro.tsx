@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { Button } from '@/components/Button';
 import type { ActivityMode } from '@/lib/content';
 
 // The card an activity opens on: what it is, how it works, and the one tap that starts it.
@@ -123,16 +124,15 @@ export function ActivityIntro({
         className="border-t border-t-line-soft px-[18px] pt-[12px]"
         style={{ paddingBottom: insets.bottom + 12 }}
       >
-        <Pressable
-          onPress={onStart}
-          accessibilityRole="button"
+        <Button
+          variant="primary"
+          size="lg"
+          className="w-full"
           accessibilityLabel={startLabel}
-          className="items-center rounded-[13px] bg-accent py-[14px] active:opacity-80"
+          onPress={onStart}
         >
-          <Text className="text-[15px] font-semibold tracking-[-0.2px] text-on-accent">
-            {startLabel}
-          </Text>
-        </Pressable>
+          {startLabel}
+        </Button>
       </View>
     </View>
   );

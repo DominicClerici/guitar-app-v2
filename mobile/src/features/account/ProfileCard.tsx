@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { AppState, Pressable, Text, View } from 'react-native';
+import { AppState, Text, View } from 'react-native';
 
-import { AuthButton } from '@/components/AuthButton';
+import { Button } from '@/components/Button';
 import { useFace } from '@/components/CornerFace';
 import { authClient, describeAuthError, VERIFY_EMAIL_LINK } from '@/lib/auth';
 
@@ -114,18 +114,16 @@ export function ProfileCard({ user, refetchSession }: Props) {
           <Text className="flex-1 text-[13px] leading-[18px] text-amber">
             Your email address isn’t confirmed yet.
           </Text>
-          <Pressable
-            onPress={resendVerification}
-            disabled={sending}
-            accessibilityRole="button"
-            accessibilityState={{ disabled: sending, busy: sending }}
+          <Button
+            variant="link"
+            size="inline"
+            text="mono"
             hitSlop={8}
-            className="active:opacity-60"
+            disabled={sending}
+            onPress={resendVerification}
           >
-            <Text className="font-mono text-[9.5px] uppercase tracking-[1.5px] text-accent">
-              {sending ? 'Sending' : 'Resend'}
-            </Text>
-          </Pressable>
+            {sending ? 'Sending' : 'Resend'}
+          </Button>
         </View>
       )}
 
@@ -140,24 +138,32 @@ export function ProfileCard({ user, refetchSession }: Props) {
           }}
         />
       ) : (
-        <AuthButton
-          label="Change password"
+        <Button
           variant="quiet"
+          size="md"
+          radius={11}
+          className="w-full"
           onPress={() => {
             setNotice(null);
             setFailure(null);
             setChanging(true);
           }}
-        />
+        >
+          Change password
+        </Button>
       )}
 
-      <AuthButton
-        label="Sign out"
+      <Button
         variant="destructive"
-        onPress={signOut}
+        size="md"
+        radius={11}
+        className="w-full"
         pending={signingOut}
         disabled={changing}
-      />
+        onPress={signOut}
+      >
+        Sign out
+      </Button>
     </AuthShell>
   );
 }

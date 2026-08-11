@@ -1,7 +1,7 @@
 import { SymbolView } from 'expo-symbols';
 import { Pressable, Text, View } from 'react-native';
 
-import { IconAction } from '@/components/IconAction';
+import { Button } from '@/components/Button';
 import type { Position } from '@/lib/guitar-positions';
 import { useToken } from '@/lib/tokens';
 
@@ -37,36 +37,46 @@ export function NeckStrip({
       <View className="h-[50px] flex-1 flex-row items-center rounded-[10px] border border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface px-[2px]">
         <Step direction="left" onPress={() => onStep(-1)} />
 
-        <Pressable
-          onPress={onAll}
+        <Button
+          variant="ghost"
+          size="inline"
           disabled={!position}
-          accessibilityRole="button"
           accessibilityLabel={position ? 'Show the whole neck' : 'Showing the whole neck'}
-          className="flex-1 items-center active:opacity-60"
+          className="flex-1"
+          onPress={onAll}
         >
-          <Text className="text-[13px] font-medium tracking-[-0.1px] text-ink">
-            {position ? position.label : 'All positions'}
-          </Text>
-          <Text className="mt-[2px] font-mono text-[9px] tracking-[1.2px] text-ink-faint">
-            {position
-              ? `FRETS ${position.from}–${position.to}`
-              : `${positions.length} ${positions.length === 1 ? 'BOX' : 'BOXES'}`}
-          </Text>
-        </Pressable>
+          <View className="items-center">
+            <Text className="text-[13px] font-medium tracking-[-0.1px] text-ink">
+              {position ? position.label : 'All positions'}
+            </Text>
+            <Text className="mt-[2px] font-mono text-[9px] tracking-[1.2px] text-ink-faint">
+              {position
+                ? `FRETS ${position.from}–${position.to}`
+                : `${positions.length} ${positions.length === 1 ? 'BOX' : 'BOXES'}`}
+            </Text>
+          </View>
+        </Button>
 
         <Step direction="right" onPress={() => onStep(1)} />
       </View>
 
-      <IconAction
-        symbol={playing ? 'stop.fill' : 'play.fill'}
-        label={playing ? 'Stop' : 'Play the scale'}
-        on={playing}
+      <Button
+        variant={playing ? 'soft' : 'secondary'}
+        size="lg"
+        square
+        radius={10}
+        icon={playing ? 'stop.fill' : 'play.fill'}
         disabled={!positions.length}
+        accessibilityLabel={playing ? 'Stop' : 'Play the scale'}
         onPress={onTogglePlay}
       />
-      <IconAction
-        symbol="arrow.up.left.and.arrow.down.right"
-        label="Show the whole neck full screen"
+      <Button
+        variant="secondary"
+        size="lg"
+        square
+        radius={10}
+        icon="arrow.up.left.and.arrow.down.right"
+        accessibilityLabel="Show the whole neck full screen"
         onPress={onExpand}
       />
     </View>

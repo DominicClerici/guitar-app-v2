@@ -1,12 +1,12 @@
-import { useLocalSearchParams, useRouter } from 'expo-router';
-import { SymbolView } from 'expo-symbols';
+import { useLocalSearchParams } from 'expo-router';
 import { useMemo, useState } from 'react';
-import { Pressable, ScrollView, Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { BackLink } from '@/components/BackLink';
+import { Button } from '@/components/Button';
 import { CornerStyleProvider, type CornerStyle } from '@/components/CornerFace';
 import { CornerStyleToggle } from '@/components/CornerStyleToggle';
-import { IconAction } from '@/components/IconAction';
 import { Segmented } from '@/components/Segmented';
 import { TransportButton } from '@/components/TransportButton';
 import { Fretboard } from '@/features/chord-detection/Fretboard';
@@ -20,7 +20,6 @@ import {
   type DroneHandoff,
   type DroneMode,
 } from '@/features/drone';
-import { useToken } from '@/lib/tokens';
 import { decodeVoicing } from '@/lib/voicing-param';
 
 const MODES: { id: DroneMode; label: string }[] = [
@@ -46,8 +45,6 @@ const NOTE_GROUP: ExtraGroup = {
  */
 export function DroneScreen() {
   const insets = useSafeAreaInsets();
-  const router = useRouter();
-  const muted = useToken('--ink-muted', '#9aa0aa');
 
   const { voicing, root, play } = useLocalSearchParams<{
     voicing?: string;
@@ -82,16 +79,7 @@ export function DroneScreen() {
         {/* The A/B switch rides in the header: it is the smallest surface on the
             screen, so it is where the corner treatment is hardest to fake. */}
         <View className="h-[44px] flex-row items-center px-[18px]">
-          <Pressable
-            onPress={() => router.back()}
-            hitSlop={10}
-            accessibilityRole="button"
-            accessibilityLabel="Back"
-            className="-ml-[4px] flex-row items-center gap-[6px] py-[6px] pr-[8px] active:opacity-60"
-          >
-            <SymbolView name="chevron.left" size={15} weight="semibold" tintColor={muted} />
-            <Text className="text-[15px] font-medium tracking-[-0.2px] text-ink">Drone</Text>
-          </Pressable>
+          <BackLink title="Drone" />
 
           <View className="ml-auto">
             <CornerStyleToggle value={corners} onChange={setCorners} />
@@ -130,10 +118,14 @@ export function DroneScreen() {
 
           {drone.mode === 'neck' ? (
             <View className="absolute right-[18px]">
-              <IconAction
-                symbol="arrow.counterclockwise"
-                label="Clear board"
+              <Button
+                variant="secondary"
+                size="lg"
+                square
+                radius={10}
+                icon="arrow.counterclockwise"
                 disabled={board.placed.length === 0}
+                accessibilityLabel="Clear board"
                 onPress={board.clear}
               />
             </View>

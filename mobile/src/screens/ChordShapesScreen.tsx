@@ -1,8 +1,8 @@
-import { useRouter } from 'expo-router';
 import { SymbolView } from 'expo-symbols';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { BackLink } from '@/components/BackLink';
 import { QualityPicker, RootRail } from '@/features/chord-picker';
 import { ChordHeading, RegionSection, useChordShapes } from '@/features/chord-shapes';
 import { useToken } from '@/lib/tokens';
@@ -14,24 +14,13 @@ import { useToken } from '@/lib/tokens';
  */
 export function ChordShapesScreen() {
   const insets = useSafeAreaInsets();
-  const router = useRouter();
-  const muted = useToken('--ink-muted', '#9aa0aa');
 
   const shapes = useChordShapes();
 
   return (
     <View className="flex-1 bg-bg" style={{ paddingTop: Math.max(insets.top - 6, 0) }}>
       <View className="h-[42px] flex-row items-center px-[18px]">
-        <Pressable
-          onPress={() => router.back()}
-          hitSlop={10}
-          accessibilityRole="button"
-          accessibilityLabel="Back"
-          className="-ml-[4px] flex-row items-center gap-[6px] py-[6px] pr-[8px] active:opacity-60"
-        >
-          <SymbolView name="chevron.left" size={15} weight="semibold" tintColor={muted} />
-          <Text className="text-[15px] font-medium tracking-[-0.2px] text-ink">Chord Shapes</Text>
-        </Pressable>
+        <BackLink title="Chord Shapes" />
       </View>
 
       <ScrollView

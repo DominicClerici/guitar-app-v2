@@ -1,10 +1,11 @@
 import { useRouter, type Href } from 'expo-router';
-import { SymbolView } from 'expo-symbols';
 import { openBrowserAsync } from 'expo-web-browser';
 import { useCallback, useEffect, useState } from 'react';
-import { ActivityIndicator, Pressable, Text, View } from 'react-native';
+import { ActivityIndicator, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { BackLink } from '@/components/BackLink';
+import { Button } from '@/components/Button';
 import { contentRepository } from '@/features/articles';
 import { ArticleLinkProvider } from '@/features/articles/links';
 import { useSession } from '@/lib/auth';
@@ -117,16 +118,7 @@ export function QuizScreen({ slug, sectionId, thresholdPct }: Props) {
   return (
     <View className="flex-1 bg-bg" style={{ paddingTop: Math.max(insets.top - 6, 0) }}>
       <View className="h-[42px] flex-row items-center px-[18px]">
-        <Pressable
-          onPress={() => router.back()}
-          hitSlop={10}
-          accessibilityRole="button"
-          accessibilityLabel="Back"
-          className="-ml-[4px] flex-row items-center gap-[6px] py-[6px] pr-[8px] active:opacity-60"
-        >
-          <SymbolView name="chevron.left" size={15} weight="semibold" tintColor={muted} />
-          <Text className="text-[15px] font-medium tracking-[-0.2px] text-ink">{title}</Text>
-        </Pressable>
+        <BackLink title={title} />
       </View>
 
       {state.status === 'loading' ? (
@@ -138,16 +130,16 @@ export function QuizScreen({ slug, sectionId, thresholdPct }: Props) {
           <Text className="text-center text-[13px] leading-[19px] text-ink-muted">
             {state.message}
           </Text>
-          <Pressable
-            onPress={retry}
-            accessibilityRole="button"
+          <Button
+            variant="secondary"
+            size="xs"
+            text="mono"
+            radius={999}
             accessibilityLabel="Try loading the quiz again"
-            className="rounded-full bg-surface-raised px-[16px] py-[8px] active:opacity-70"
+            onPress={retry}
           >
-            <Text className="font-mono text-[10px] font-semibold uppercase tracking-[1.5px] text-ink">
-              Retry
-            </Text>
-          </Pressable>
+            Retry
+          </Button>
         </View>
       ) : (
         <ArticleLinkProvider value={handleLink}>

@@ -1,9 +1,8 @@
-import { useRouter } from 'expo-router';
-import { SymbolView } from 'expo-symbols';
 import type { ReactNode } from 'react';
-import { Pressable, ScrollView, Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { BackLink } from '@/components/BackLink';
 import { Segmented, type Segment } from '@/components/Segmented';
 import { RootRail } from '@/features/chord-picker';
 import {
@@ -18,7 +17,6 @@ import {
   type LabelMode,
 } from '@/features/scale-visualizer';
 import { SYSTEM_LABELS, type PositionSystem } from '@/lib/guitar-positions';
-import { useToken } from '@/lib/tokens';
 
 const LABEL_MODES: { id: LabelMode; label: string }[] = [
   { id: 'notes', label: 'Notes' },
@@ -37,8 +35,6 @@ const LABEL_MODES: { id: LabelMode; label: string }[] = [
  */
 export function ScaleVisualizerScreen() {
   const insets = useSafeAreaInsets();
-  const router = useRouter();
-  const muted = useToken('--ink-muted', '#9aa0aa');
 
   const view = useScaleVisualizer();
 
@@ -74,18 +70,7 @@ export function ScaleVisualizerScreen() {
     <View className="flex-1 bg-bg">
       <View className="flex-1" style={{ paddingTop: Math.max(insets.top - 6, 0) }}>
         <View className="h-[42px] flex-row items-center px-[18px]">
-          <Pressable
-            onPress={() => router.back()}
-            hitSlop={10}
-            accessibilityRole="button"
-            accessibilityLabel="Back"
-            className="-ml-[4px] flex-row items-center gap-[6px] py-[6px] pr-[8px] active:opacity-60"
-          >
-            <SymbolView name="chevron.left" size={15} weight="semibold" tintColor={muted} />
-            <Text className="text-[15px] font-medium tracking-[-0.2px] text-ink">
-              Scale Visualizer
-            </Text>
-          </Pressable>
+          <BackLink title="Scale Visualizer" />
         </View>
 
         <View className="pt-[6px]">

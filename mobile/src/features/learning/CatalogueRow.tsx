@@ -1,6 +1,7 @@
 import { SymbolView } from 'expo-symbols';
 import { Pressable, Text, View } from 'react-native';
 
+import { Button } from '@/components/Button';
 import type { PathwayDifficulty, PathwayMeta } from '@/lib/content';
 import { useToken } from '@/lib/tokens';
 
@@ -55,16 +56,17 @@ export function CatalogueRow({
       </View>
 
       {state === 'available' ? (
-        <Pressable
-          onPress={onStart}
-          accessibilityRole="button"
+        <Button
+          variant="soft"
+          size="xs"
+          text="mono"
+          radius={999}
+          className="mt-[12px] self-start"
           accessibilityLabel={`Start ${meta.title}`}
-          className="mt-[12px] self-start rounded-full border border-accent-line bg-accent-wash px-[16px] py-[7px] active:opacity-70"
+          onPress={onStart}
         >
-          <Text className="font-mono text-[10px] font-semibold uppercase tracking-[1.5px] text-accent">
-            Start
-          </Text>
-        </Pressable>
+          Start
+        </Button>
       ) : state === 'enrolled' ? (
         <Text className="mt-[12px] font-mono text-[9.5px] uppercase tracking-[2px] text-accent">
           In progress
