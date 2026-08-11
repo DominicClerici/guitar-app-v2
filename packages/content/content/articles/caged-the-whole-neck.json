@@ -1,0 +1,239 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_caged-the-whole-neck",
+    "slug": "caged-the-whole-neck",
+    "title": "One Map, Any Key",
+    "summary": "Five shapes, learned once and filled in over five chapters, now cover the whole neck in any key — and the closing account of what that does and does not buy you.",
+    "tags": ["caged", "fretboard"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-11"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Five shapes. That's the whole inventory, and it was the whole inventory from the first lesson of this pathway."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Chapter 1 handed the five forms over as windows with a root or two lit inside each one. Chapter 2 put the third and the fifth in. Chapter 3 added the "
+        },
+        { "text": "2", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "6", "marks": ["code"] },
+        { "text": ". Chapter 4 added the " },
+        { "text": "4", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "7", "marks": ["code"] },
+        {
+          "text": ", and this chapter moved between the windows, walked along them, ran chords through them, and carried the whole thing to another key. At no point was a sixth shape asked for. "
+        },
+        { "text": "The Root Ladder", "link": { "kind": "article", "slug": "caged-root-ladder" } },
+        {
+          "text": " promised exactly that, and it's now fully paid. Five shapes, four layers, and one chapter of connecting them — that's the entire pathway, not four separate ones."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "info",
+      "spans": [
+        {
+          "text": "Five forms, five chapters, one shape learned once. Everything since chapter 1 was the same five windows filling in — never a new one."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "spans": [{ "text": "What You Can Do Now" }]
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        [{ "text": "Find any root of any major chord anywhere on the neck." }],
+        [{ "text": "Say which degree is under any finger, in any form." }],
+        [{ "text": "Play the whole major scale in any position." }],
+        [
+          {
+            "text": "Cross from one window into the next without stopping, through a note both windows own."
+          }
+        ],
+        [{ "text": "Play up a single string instead of across the neck." }],
+        [
+          {
+            "text": "Put a progression wherever your hand already is, instead of jumping back to the nut."
+          }
+        ],
+        [
+          {
+            "text": "Move all of it to another key, because the ladder itself never changes — only where you enter it."
+          }
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "None of those on their own were the point of any single chapter — each came from stacking one layer on top of the last, on windows that never changed shape underneath."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "spans": [{ "text": "The Honest Limits" }]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "A closer that only celebrates isn't trustworthy, so here's the other side of it, stated as plainly as the wins above."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Everything in this pathway has been major: major chords, the major scale, five major forms. Minor chords, seventh chords, and the rest of harmony are a different map laid over the same neck. The habit you've built — root first, then degrees, then the window around them — is the habit that reads those maps too. The maps themselves are not in this pathway, and pretending otherwise would be doing you no favours."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "And the criticism this chapter opened with is only half answered by knowing the map. Knowing that a doorway exists between two windows is not the same as your hand finding it at speed, without looking, mid-phrase. The other half of that criticism is hours on the instrument, not another lesson — a map tells you where the road goes, it doesn't drive you there."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "spans": [{ "text": "What to Practise" }]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Four things, drawn straight from this chapter and nothing beyond it, so the list stays usable instead of exhaustive:"
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        [
+          {
+            "text": "One octave up a single string, low E or high e, through all five windows — the drill that proved you can't be boxed in if you're on a string."
+          }
+        ],
+        [
+          { "text": "The " },
+          { "text": "5 → 4", "marks": ["code"] },
+          {
+            "text": " string-pair run from fret 3 to fret 10, root to root — the version people actually play."
+          }
+        ],
+        [
+          { "text": "A progression — " },
+          { "text": "C", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "F", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "G", "marks": ["code"] },
+          { "text": " — played in two different places without going back to the nut." }
+        ],
+        [
+          { "text": "The whole ladder in one key that isn't " },
+          { "text": "C", "marks": ["code"] },
+          { "text": " — start on the letter you already play best as an open chord." }
+        ]
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "spans": [{ "text": "Where to Go From Here" }]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The articles stop here, but the app doesn't. Four screens, each for a different job than the ones this pathway's diagrams could do:"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Scale Visualizer", "link": { "kind": "screen", "href": "/scale-visualizer" } },
+        {
+          "text": " puts all five windows live on the neck, in any key, with the CAGED position toggle and the same form names you've been using this whole pathway."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Drone", "link": { "kind": "screen", "href": "/drone" } },
+        {
+          "text": " gives you a sustained root to play a window against — the quickest way to hear whether a note arrives home or just leans on the way past."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Chord Shapes", "link": { "kind": "screen", "href": "/chord-shapes" } },
+        {
+          "text": " answers the question this pathway's diagrams never did: of everything lit in a window, which notes a hand can actually hold at once."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Chord Detector", "link": { "kind": "screen", "href": "/chord-detector" } },
+        {
+          "text": " listens back — play a form somewhere unfamiliar and check that what comes out is the chord you meant."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-ladder",
+      "props": { "root": "F" }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One last picture, in the one key this chapter uses that has no open chord of its own: five bands, same order, same overlaps, and not one of them an open shape. If you can read this cold, you can read it in any key — which is exactly the point of closing on "
+        },
+        { "text": "F", "marks": ["code"] },
+        { "text": " rather than " },
+        { "text": "C", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The boxes were never the point. They were how the neck got small enough to learn."
+        }
+      ]
+    }
+  ]
+}

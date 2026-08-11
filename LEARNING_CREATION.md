@@ -266,7 +266,14 @@ is told to read. The prompt must contain:
    lessons each question draws on) and of any activity.
 3. **Dispatch lesson agents** (§6) — Sonnet 5, ≤ 4 lessons each, in parallel when the lessons
    don't depend on each other's exact wording.
-4. **Read the finished articles.** Every one, as written — not as planned.
+4. **Read the finished articles.** Every one, as written — not as planned. **This step is not
+   optional and it is not a formality.** Across the first pathway's five chapters, lesson agents
+   reported their drafts clean and the chapter agent then found 6, 9 and 10 real errors in them.
+   Tell your lesson agents to verify superlatives specifically ("the only window that…", "more
+   than any other form") — those are the worst survivors, because an agent cannot catch one
+   without recomputing. Then recompute them yourself anyway: superlative-checking does not catch a
+   transposed row in a table, and one chapter shipped a draft whose central table had two strings
+   swapped. **Anything numeric gets recomputed, not re-read.**
 5. **Write the checkpoint quiz** from what the articles actually say. This ordering is the whole
    reason the chapter agent writes the quiz: a question drawn from the plan can test something a
    lesson ended up phrasing differently, or not covering at all.
@@ -426,6 +433,22 @@ Other screens take route params, but those are internal hand-offs between screen
 voicings, pitch-class indices) — not something to author by hand. Link the bare screen unless the
 param is documented above.
 
+**Link text is the screen's name, never its route.** Write `Scale Visualizer`, not
+`/scale-visualizer` — the href is already in the link. Lesson agents default to pasting the route
+if you don't tell them, and it happened in three separate chapters of the first pathway.
+
+### What the learner can actually see
+
+Two facts worth knowing before writing a cross-reference, because every chapter of the first
+pathway had to guess:
+
+- **Chapters are numbered on screen.** `ChapterCard` renders "Chapter 1", "Chapter 2" beside the
+  title, so referring to a chapter by number in prose is safe and matches what the learner sees.
+- **Lessons are not.** Sections carry a 1-based number inside their chapter, but it counts quizzes
+  as well as articles and skips optional ones entirely, so it is not a lesson count. "The last
+  lesson" and "lesson 3" are unsafe and break on reorder — **name the topic or link the article by
+  slug** instead.
+
 ### 7.5 Quizzes
 
 `{ schemaVersion: 1, meta, questions }`. Types and grading:
@@ -576,6 +599,14 @@ count* — how many articles, quizzes and activities exist, which pathway slugs,
 slugs, in order. Adding or removing content will fail those assertions, and updating them is part
 of the job, not a signal that something is broken. Update the expected lists; never weaken the
 assertion.
+
+**Expect the gate to be red in the middle of a chapter, and tell your lesson agents so.** The
+counts are pinned, so the moment the first article of a chapter lands they fail — and they keep
+failing until the chapter agent has written its quiz and activities and updated the pins. A lesson
+agent running the gate to check its own articles parse will see failures that are not its doing.
+Brief it to read *which* file each failure names and ignore the count assertions; otherwise it
+either "fixes" a pin it does not own or learns to ignore a red test, and both are worse than the
+noise.
 
 A chapter typically touches four of them: the three counts, and the two activity lists. Mind the
 ordering — the activity **slug** list is alphabetical (the loader reads each directory sorted),

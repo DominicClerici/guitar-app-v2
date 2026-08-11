@@ -1,0 +1,447 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "quiz_caged-fretboard-ch5-checkpoint",
+    "slug": "caged-fretboard-ch5-checkpoint",
+    "title": "Checkpoint: Off the Boxes",
+    "summary": "Moving between forms, playing along the strings, running a progression up the neck, and taking the whole ladder to another key.",
+    "kind": "checkpoint",
+    "passThresholdPct": 70
+  },
+  "questions": [
+    {
+      "id": "q_caged-fretboard-ch5-checkpoint.what-the-criticism-hits",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "The chapter opened with the argument that CAGED \"cages\" a player. Which part of that argument does this pathway agree actually lands?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "That the five windows are drawn in the wrong places on the neck, so the shapes themselves are unreliable."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "That a player who only ever moves up and down inside one window sounds boxed in, and the position changes are audible."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "That the five forms cannot be transposed, so everything learned in one key has to be relearned in the next."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "That the major scale is the wrong scale to lay across the five windows." }
+          ]
+        }
+      ],
+      "answerId": "b",
+      "explanation": [
+        {
+          "text": "The criticism that lands is about playing, not about the map. Chapters 1 to 4 were deliberately vertical — one window at a time — which is a good way to learn where the notes are and a bad way to play them. The chapter also concedes one thing outright: a window really does put two notes on one string and three on the next, so the fingerings are irregular. It does not concede that the shapes are wrongly placed, that they cannot be transposed, or that the scale is wrong."
+        }
+      ]
+    },
+    {
+      "id": "q_caged-fretboard-ch5-checkpoint.pivot-roots",
+      "kind": "fretboard",
+      "prompt": [
+        {
+          "text": "The G form window runs frets "
+        },
+        { "text": "4–8", "marks": ["code"] },
+        { "text": " and the E form window runs frets " },
+        { "text": "7–11", "marks": ["code"] },
+        {
+          "text": ". Mark the two roots of "
+        },
+        { "text": "C", "marks": ["code"] },
+        { "text": " that belong to both of those windows." }
+      ],
+      "frets": 11,
+      "answer": [
+        { "string": 6, "fret": 8 },
+        { "string": 1, "fret": 8 }
+      ],
+      "explanation": [
+        {
+          "text": "The G and E windows overlap at frets 7 and 8, and two roots sit inside that overlap: "
+        },
+        { "text": "6·8", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "1·8", "marks": ["code"] },
+        {
+          "text": " — the same fret on the two outside strings, because strings 6 and 1 are two octaves apart. It is the only neighbouring pair that shares two roots rather than one. "
+        },
+        { "text": "3·5", "marks": ["code"] },
+        { "text": " is the root shared by A and G; " },
+        { "text": "4·10", "marks": ["code"] },
+        { "text": " is the one shared by E and D." }
+      ]
+    },
+    {
+      "id": "q_caged-fretboard-ch5-checkpoint.shared-on-every-string",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "Your phrase is running along string 2 and you want to move from the A form window into the G form window without stopping. What lets you do it there rather than having to get to some particular string first?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "Nothing — you have to reach a string that carries a root before you can change window."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "Every neighbouring pair of windows shares a note on every one of the six strings, so string 2 has a shared note like any other."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "String 2 is a special case: the B string is the only string where two windows meet."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [{ "text": "You cannot — windows only connect on the low E string." }]
+        }
+      ],
+      "answerId": "b",
+      "explanation": [
+        {
+          "text": "Chapter 3 found the hand-over on the low E string; it turns out to happen on all six. In every neighbouring pair, each string's upper dot in the lower window is that string's lower dot in the upper window — twenty-four cases, one shared note each. Between the A and G windows every one of those six shared notes sits at fret "
+        },
+        { "text": "5", "marks": ["code"] },
+        {
+          "text": ". Roots are the easiest doorways to spot, but they are not the only ones."
+        }
+      ]
+    },
+    {
+      "id": "q_caged-fretboard-ch5-checkpoint.one-string-one-cycle",
+      "kind": "choice",
+      "prompt": [
+        { "text": "You play " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " major up the low E string alone — frets " },
+        { "text": "0 1 3 5 7 8 10 12", "marks": ["code"] },
+        { "text": " — and nothing else. In terms of the five windows, what have you just done?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [{ "text": "Stayed inside the C form, which is the window that owns the nut." }]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "Passed through all five windows in C-A-G-E-D order, once — an octave on one string is twelve frets, and the five windows tile twelve frets."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "Left the CAGED system, because notes played on one string do not belong to any window."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "Passed through three windows — the C, G and D forms — and skipped the other two."
+            }
+          ]
+        }
+      ],
+      "answerId": "b",
+      "explanation": [
+        {
+          "text": "Fret 0 and fret 1 are in the C window, fret 3 is shared by C and A, fret 5 by A and G, frets 7 and 8 by G and E, fret 10 by E and D, and fret 12 sits in D. One octave along a single string is exactly one full turn of the wheel. Every note is still inside a window — the point is that you never stop in one."
+        }
+      ]
+    },
+    {
+      "id": "q_caged-fretboard-ch5-checkpoint.pair-shift",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "Four notes on one string, then the same four-fret pattern on the next string up. That pattern moves up two frets on most string pairs, but three frets when you cross from string 3 to string 2. Why?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "The B string is thinner, so it needs a wider stretch to sound in tune." }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "Standard tuning is all fourths except "
+            },
+            { "text": "G → B", "marks": ["code"] },
+            {
+              "text": ", which is a major third — one semitone narrower, so the pattern has to move a fret further."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "Because string 2 is the short string in every window, so it carries one dot fewer."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "Because the major scale has a half-step between the " },
+            { "text": "3", "marks": ["code"] },
+            { "text": " and the " },
+            { "text": "4", "marks": ["code"] },
+            { "text": "." }
+          ]
+        }
+      ],
+      "answerId": "b",
+      "explanation": [
+        {
+          "text": "This is chapter 1's octave rule showing up as a horizontal move. Every string pair in standard tuning is a fourth apart except "
+        },
+        { "text": "G → B", "marks": ["code"] },
+        {
+          "text": ", which is a major third. Cross that gap and everything shifts a fret further — the same reason "
+        },
+        { "text": "4 → 2", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "3 → 1", "marks": ["code"] },
+        { "text": " octaves are " },
+        { "text": "+3", "marks": ["code"] },
+        { "text": " while " },
+        { "text": "6 → 4", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "5 → 3", "marks": ["code"] },
+        { "text": " are " },
+        { "text": "+2", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "id": "q_caged-fretboard-ch5-checkpoint.same-fret-two-chords",
+      "kind": "choice",
+      "prompt": [
+        { "text": "Your hand is at fret " },
+        { "text": "8", "marks": ["code"] },
+        { "text": " playing " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " as the E form barre. The progression moves to " },
+        { "text": "F", "marks": ["code"] },
+        { "text": ". Where is the nearest " },
+        { "text": "F", "marks": ["code"] },
+        { "text": "?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "Back at fret " },
+            { "text": "1", "marks": ["code"] },
+            { "text": " — the E form barre is the only practical " },
+            { "text": "F", "marks": ["code"] },
+            { "text": "." }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "The A form, barred at fret " },
+            { "text": "8", "marks": ["code"] },
+            { "text": " — the same fret, without moving the hand along the neck at all." }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "The E form, barred at fret " },
+            { "text": "13", "marks": ["code"] },
+            { "text": " — the same form five frets up." }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "There is no " },
+            { "text": "F", "marks": ["code"] },
+            { "text": " near fret " },
+            { "text": "8", "marks": ["code"] },
+            { "text": "; you have to change position." }
+          ]
+        }
+      ],
+      "answerId": "b",
+      "explanation": [
+        {
+          "text": "The E form's root sits on string 6 and the A form's on string 5, and string 5 is a fourth above string 6 — which is exactly the distance from "
+        },
+        { "text": "C", "marks": ["code"] },
+        { "text": " up to " },
+        { "text": "F", "marks": ["code"] },
+        {
+          "text": ". So the two barres land on the same fret. A chord is not a place on the neck; it is five places, and the useful question is which of them is nearest your hand."
+        }
+      ]
+    },
+    {
+      "id": "q_caged-fretboard-ch5-checkpoint.the-wheel",
+      "kind": "choice",
+      "prompt": [
+        { "text": "In the key of " },
+        { "text": "G", "marks": ["code"] },
+        {
+          "text": ", the five forms run nut upward as G, E, D, C, A. What does that tell you about the CAGED order?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "The order runs backwards in " },
+            { "text": "G", "marks": ["code"] },
+            { "text": "; each key has its own sequence to learn." }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "It is the same loop " },
+            { "text": "C → A → G → E → D → C", "marks": ["code"] },
+            { "text": ", entered at the G form instead of the C form. The order never changes." }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "Sharp keys reverse the cycle and flat keys keep it, which is why the two have to be learned separately."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "The order depends on which forms are barred, so it changes whenever an open shape is available."
+            }
+          ]
+        }
+      ],
+      "answerId": "b",
+      "explanation": [
+        {
+          "text": "Read G, E, D, C, A as a starting point on the wheel rather than as a new order: after G comes E, after E comes D, after D comes C, after C comes A, and after A comes G again. That is "
+        },
+        { "text": "C → A → G → E → D → C", "marks": ["code"] },
+        {
+          "text": " read from a different door. Changing key changes where you enter the wheel and nothing else — the barre frets even keep the same gaps between them, "
+        },
+        { "text": "3, 2, 3, 2, 2", "marks": ["code"] },
+        { "text": ", which add to twelve." }
+      ]
+    },
+    {
+      "id": "q_caged-fretboard-ch5-checkpoint.nut-form",
+      "kind": "choice",
+      "prompt": [
+        { "text": "In the key of " },
+        { "text": "F", "marks": ["code"] },
+        {
+          "text": " there is no open chord shape, so no form sits at the nut as an open chord. Which form is nut-most, and where?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "There is no F form in CAGED, so the key of " },
+            { "text": "F", "marks": ["code"] },
+            { "text": " has only four forms." }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "The C form, open — the C form always sits at the nut whatever the key." }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "The E form, barred at fret " },
+            { "text": "1", "marks": ["code"] },
+            { "text": " — " },
+            { "text": "F", "marks": ["code"] },
+            { "text": " is a semitone above " },
+            { "text": "E", "marks": ["code"] },
+            { "text": ", so the open E chord moved up one fret spells it." }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "The D form, barred at fret " },
+            { "text": "3", "marks": ["code"] },
+            { "text": " — nothing sits below fret 3 in this key." }
+          ]
+        }
+      ],
+      "answerId": "c",
+      "explanation": [
+        {
+          "text": "The letter names the form, never the chord — chapter 1's first claim, and this is where it pays off. In every key that has an open chord of that name, the form named after the key sits at the nut, which is where the acronym came from. "
+        },
+        { "text": "F", "marks": ["code"] },
+        {
+          "text": " has no open shape, so the nut-most form is the one named after the open chord nearest below it: the E form, with a finger doing the nut's job at fret "
+        },
+        { "text": "1", "marks": ["code"] },
+        {
+          "text": ". It is also why the F barre is the first barre chord almost everyone learns. The D form does sit at fret "
+        },
+        { "text": "3", "marks": ["code"] },
+        { "text": " in this key, but it is not the nut-most one." }
+      ]
+    }
+  ]
+}

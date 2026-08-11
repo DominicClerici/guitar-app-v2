@@ -5,7 +5,7 @@
   "summary": "Five chord shapes you already half-know, arranged into one map of the neck. Find any root, chord tone or scale note anywhere — and stop counting up from the open string.",
   "tags": ["fretboard", "caged", "chords", "theory"],
   "difficulty": "core",
-  "estimatedMin": 210,
+  "estimatedMin": 200,
   "chapters": [
     {
       "id": "caged-fretboard.ch1",
@@ -296,6 +296,75 @@
       ],
       "checkpoint": {
         "ref": "caged-fretboard-ch4-checkpoint",
+        "passThresholdPct": 70
+      }
+    },
+    {
+      "id": "caged-fretboard.ch5",
+      "slug": "off-the-boxes",
+      "title": "Off the Boxes",
+      "summary": "The five windows are finished, so this chapter is about using them: crossing between forms through the notes they share, playing along a string instead of inside a box, putting a progression wherever your hand already is, and taking the whole ladder to any key.",
+      "sections": [
+        {
+          "id": "caged-fretboard.ch5.the-box-argument",
+          "slug": "caged-the-box-argument",
+          "title": "The Case Against the Boxes",
+          "kind": "article",
+          "ref": "caged-the-box-argument",
+          "estimatedMin": 5
+        },
+        {
+          "id": "caged-fretboard.ch5.shared-notes",
+          "slug": "caged-shared-notes",
+          "title": "The Note That Belongs to Both",
+          "kind": "article",
+          "ref": "caged-shared-notes",
+          "estimatedMin": 5
+        },
+        {
+          "id": "caged-fretboard.ch5.along-the-strings",
+          "slug": "caged-along-the-strings",
+          "title": "Along a String, Not Across the Neck",
+          "kind": "article",
+          "ref": "caged-along-the-strings",
+          "estimatedMin": 5
+        },
+        {
+          "id": "caged-fretboard.ch5.progression-up-the-neck",
+          "slug": "caged-progression-up-the-neck",
+          "title": "A Progression Without Going Back to the Nut",
+          "kind": "article",
+          "ref": "caged-progression-up-the-neck",
+          "estimatedMin": 5
+        },
+        {
+          "id": "caged-fretboard.ch5.transposing-the-ladder",
+          "slug": "caged-transposing-the-ladder",
+          "title": "The Same Ladder in Any Key",
+          "kind": "article",
+          "ref": "caged-transposing-the-ladder",
+          "estimatedMin": 5
+        },
+        {
+          "id": "caged-fretboard.ch5.the-whole-neck",
+          "slug": "caged-the-whole-neck",
+          "title": "One Map, Any Key",
+          "kind": "article",
+          "ref": "caged-the-whole-neck",
+          "estimatedMin": 5
+        },
+        {
+          "id": "caged-fretboard.ch5.climb-one-string",
+          "slug": "caged-climb-one-string",
+          "title": "Drill: One String, Every Window",
+          "kind": "activity",
+          "ref": "caged-climb-one-string",
+          "optional": true,
+          "estimatedMin": 9
+        }
+      ],
+      "checkpoint": {
+        "ref": "caged-fretboard-ch5-checkpoint",
         "passThresholdPct": 70
       }
     }

@@ -1,0 +1,174 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_caged-the-box-argument",
+    "slug": "caged-the-box-argument",
+    "title": "The Case Against the Boxes",
+    "summary": "Four real criticisms of CAGED, answered honestly — two conceded, one dismissed, and one that names exactly what this chapter fixes: playing vertically inside one window instead of across the neck.",
+    "tags": ["caged", "fretboard"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-11"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "You have spent four chapters learning five five-fret boxes, and there is a real, widely held argument that this is exactly what damages a guitarist: learn the boxes, then spend a career stuck inside whichever one your hand lands in, changing gears audibly every time you leave it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That argument is not one complaint, it is four, and they deserve to be answered one at a time rather than waved off together."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The first is simply true, and conceding it costs nothing. A CAGED window puts two notes on one string and three on the next, so no two of the five windows are fingered alike and the picking hand adapts to each one differently. You have already seen the evidence yourself: the finished windows carried sixteen to eighteen dots each, and only the "
+        },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": " form ever came out even. Players who most want a regular, repeatable picking pattern prefer three notes to a string, which "
+        },
+        { "text": "Scale Visualizer", "link": { "kind": "screen", "href": "/scale-visualizer" } },
+        { "text": " offers as its own position system. This pathway does not teach it." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The second complaint does not land here, and it is worth saying exactly why. The claim is that CAGED teaches finger geometry instead of notes — that a player can be fluent in five hand positions and still not know what note is under any given finger. That is a fair description of CAGED taught as five pictures. It is not a fair description of how this pathway taught it. Chapter 1 gave you roots before it gave you a single shape to hold. Every dot in every diagram since has carried a degree, never just a position. Chapter 4's whole memory aid — a "
+        },
+        { "text": "4", "marks": ["code"] },
+        { "text": " sits one fret above every " },
+        { "text": "3", "marks": ["code"] },
+        { "text": ", a " },
+        { "text": "7", "marks": ["code"] },
+        { "text": " one fret below every " },
+        { "text": "1", "marks": ["code"] },
+        {
+          "text": " — is a rule about degrees, not a picture to memorise. You were never handed five pictures. You were handed a labelled map."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The third complaint is the one that actually lands, and it lands on this pathway by name. Vertical, boxed-in playing: a player learns the windows, solos inside one of them, and the moment a position change happens it is audible. Say plainly what that is describing, because it is a fair description of chapters 1 through 4. Those four chapters were deliberately vertical — one window at a time, filled in a layer at a time, was the right way to learn where the notes are. It is the wrong way to play them, and fixing that is this chapter's entire job."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "info",
+      "spans": [
+        {
+          "text": "Chapters 1 through 4 were vertical on purpose. That is a way to learn where the notes are — not a way to play them."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The distinction is worth defining once, because the rest of the chapter runs on it. Vertical playing keeps the hand at one fret range and moves it across the strings. Horizontal playing moves the hand along the neck, following a string or a pair of strings rather than a window. Neither is better on its own — a player with only vertical playing sounds boxed in, and a player with only horizontal playing never learns where anything actually is. You already have the vertical half. This chapter builds the other one."
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        [
+          { "text": "Changing window mid-phrase through a note that belongs to both, in " },
+          {
+            "text": "The Note That Belongs to Both",
+            "marks": ["italic"],
+            "link": { "kind": "article", "slug": "caged-shared-notes" }
+          },
+          { "text": "." }
+        ],
+        [
+          { "text": "Playing along a single string instead of across the neck, in " },
+          {
+            "text": "Along a String, Not Across the Neck",
+            "marks": ["italic"],
+            "link": { "kind": "article", "slug": "caged-along-the-strings" }
+          },
+          { "text": "." }
+        ],
+        [
+          {
+            "text": "Running a chord progression without walking back to the nut for every change, in "
+          },
+          {
+            "text": "A Progression Without Going Back to the Nut",
+            "marks": ["italic"],
+            "link": { "kind": "article", "slug": "caged-progression-up-the-neck" }
+          },
+          { "text": "." }
+        ],
+        [
+          { "text": "Taking the whole ladder to a key other than " },
+          { "text": "C", "marks": ["code"] },
+          { "text": ", in " },
+          {
+            "text": "The Same Ladder in Any Key",
+            "marks": ["italic"],
+            "link": { "kind": "article", "slug": "caged-transposing-the-ladder" }
+          },
+          { "text": "." }
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Look again at the root ladder, this time for what it has always shown and nothing so far has actually used: five bands, stacked wherever they physically overlap."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-ladder",
+      "props": { "root": "C" }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Every place two bands sit stacked over the same frets is a seam you have been walking past for four chapters. That overlap is where horizontal playing happens, and it was drawn into every diagram from chapter 1 onward — you just had nothing yet to do with it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One more complaint, worth a single honest sentence: CAGED was worked out to organise chord shapes, and the scale patterns you have spent two chapters learning are a later graft onto a chord system. This pathway's answer is that it built the scale layer on top of the chord layer on purpose, one degree at a time, which is exactly why the chord tones came before the scale ever did."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "None of that moves you out of "
+        },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": " major yet. It starts with the smallest possible step off the boxes: a single note that already belongs to two windows at once, on whatever string your hand happens to be on."
+        }
+      ]
+    }
+  ]
+}

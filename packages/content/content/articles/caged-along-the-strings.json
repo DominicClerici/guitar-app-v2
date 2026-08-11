@@ -1,0 +1,266 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_caged-along-the-strings",
+    "slug": "caged-along-the-strings",
+    "title": "Along a String, Not Across the Neck",
+    "summary": "Drop the five-fret window as the unit entirely: one octave along a single string passes through all five CAGED forms in order, and a string pair plays the same journey in four notes each.",
+    "tags": ["caged", "fretboard"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-11"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The Note That Belongs to Both",
+          "marks": ["italic"],
+          "link": { "kind": "article", "slug": "caged-shared-notes" }
+        },
+        {
+          "text": " kept the window and added a door in it. This lesson throws the window away. The unit is not a five-fret box anymore. It is a single string."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Play "
+        },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": " major on the low E string and nothing else — no other string, no window boundary to respect. The scale falls at frets "
+        },
+        { "text": "0, 1, 3, 5, 7, 8, 10, 12", "marks": ["code"] },
+        { "text": ", and each one sits inside whichever window happens to contain that fret." }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [[{ "text": "Fret" }], [{ "text": "Degree" }], [{ "text": "Window(s)" }]],
+      "rows": [
+        [
+          [{ "text": "0", "marks": ["code"] }],
+          [{ "text": "3", "marks": ["code"] }],
+          [{ "text": "C" }]
+        ],
+        [
+          [{ "text": "1", "marks": ["code"] }],
+          [{ "text": "4", "marks": ["code"] }],
+          [{ "text": "C" }]
+        ],
+        [
+          [{ "text": "3", "marks": ["code"] }],
+          [{ "text": "5", "marks": ["code"] }],
+          [{ "text": "C, A" }]
+        ],
+        [
+          [{ "text": "5", "marks": ["code"] }],
+          [{ "text": "6", "marks": ["code"] }],
+          [{ "text": "A, G" }]
+        ],
+        [
+          [{ "text": "7", "marks": ["code"] }],
+          [{ "text": "7", "marks": ["code"] }],
+          [{ "text": "G, E" }]
+        ],
+        [
+          [{ "text": "8", "marks": ["code"] }],
+          [{ "text": "1", "marks": ["code"] }],
+          [{ "text": "G, E" }]
+        ],
+        [
+          [{ "text": "10", "marks": ["code"] }],
+          [{ "text": "2", "marks": ["code"] }],
+          [{ "text": "E, D" }]
+        ],
+        [
+          [{ "text": "12", "marks": ["code"] }],
+          [{ "text": "3", "marks": ["code"] }],
+          [{ "text": "D" }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Those eight notes pass through all five windows, in "
+        },
+        { "text": "C-A-G-E-D", "marks": ["code"] },
+        {
+          "text": " order, once. An octave on one string is twelve frets. The five windows tile twelve frets. So one octave along a single string is exactly one full turn of the wheel — every window, in order, without ever choosing one to stay inside. You cannot be boxed in on a string, because a string has no box to be in."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The high e string reads identically, fret for fret, because strings 6 and 1 are two octaves apart at the same fret — chapter 1's cheapest fact, still true and still useful."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Say plainly what this costs. Twelve frets is a long stretch for one hand, and getting there means a lot of position shifting for very little musical payoff — nobody plays a whole solo up one string. What it buys instead is a rewiring of how the neck looks: where the "
+        },
+        { "text": "1", "marks": ["code"] },
+        {
+          "text": " falls on each string, where the half-steps are hiding, and that map is exactly what makes the version people actually play readable."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The version people actually play uses a pair of strings instead of one — four notes on the lower string, four on the next one up, one full octave between them."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Strings" }],
+        [{ "text": "Lower string frets" }],
+        [{ "text": "Upper string frets" }],
+        [{ "text": "Shift" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "5 → 4" }],
+          [{ "text": "3, 5, 7, 8", "marks": ["code"] }],
+          [{ "text": "5, 7, 9, 10", "marks": ["code"] }],
+          [{ "text": "+2", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "2 → 1" }],
+          [{ "text": "1, 3, 5, 6", "marks": ["code"] }],
+          [{ "text": "3, 5, 7, 8", "marks": ["code"] }],
+          [{ "text": "+2", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "3 → 2" }],
+          [{ "text": "5, 7, 9, 10", "marks": ["code"] }],
+          [{ "text": "8, 10, 12, 13", "marks": ["code"] }],
+          [{ "text": "+3", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "6 → 5" }],
+          [{ "text": "8, 10, 12, 13", "marks": ["code"] }],
+          [{ "text": "10, 12, 14, 15", "marks": ["code"] }],
+          [{ "text": "+2", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Learn the "
+        },
+        { "text": "5-to-4", "marks": ["code"] },
+        { "text": " run in full, because it is the one worth owning. On string 5: " },
+        { "text": "5·3, 5·5, 5·7, 5·8", "marks": ["code"] },
+        { "text": ". Carry straight on to string 4: " },
+        { "text": "4·5, 4·7, 4·9, 4·10", "marks": ["code"] },
+        { "text": ". Eight notes, " },
+        { "text": "1", "marks": ["code"] },
+        { "text": " up to " },
+        { "text": "1", "marks": ["code"] },
+        {
+          "text": ", and the hand travels from fret 3 to fret 10 without a single window boundary to think about."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The pattern on the next string up is the same four frets, moved. Crossing from string 5 to string 4 the shift is two frets, matching chapter 1's rule for the "
+        },
+        { "text": "6 → 4", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "5 → 3", "marks": ["code"] },
+        {
+          "text": " octave jumps. Crossing from string 3 to string 2 the shift is three frets instead, because "
+        },
+        { "text": "G → B", "marks": ["code"] },
+        {
+          "text": " is the one major third hiding in standard tuning — the same irregularity, showing up again as a horizontal move instead of a vertical one. Run it on strings 3 and 2 and you feel the extra fret: "
+        },
+        { "text": "3·5, 3·7, 3·9, 3·10", "marks": ["code"] },
+        { "text": ", then " },
+        { "text": "2·8, 2·10, 2·12, 2·13", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Where the "
+        },
+        { "text": "5-to-4", "marks": ["code"] },
+        { "text": " run starts and stops matters. It begins on " },
+        { "text": "5·3", "marks": ["code"] },
+        {
+          "text": " — a root, and the doorway between the C and A windows. It ends on "
+        },
+        { "text": "4·10", "marks": ["code"] },
+        {
+          "text": " — a root, and the doorway between the E and D windows. Do not mistake this for a run that climbs steadily through the five windows: crossing from string 5 to string 4 steps back three frets, from fret 8 down to fret 5. The honest claim is smaller and still striking — the run travels from fret 3 to fret 10 and never settles inside any one window on the way."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        {
+          "text": "Four notes on one string, then the same four notes moved up two frets on the next. Moved up three instead, the one time the crossing is string 3 to string 2."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Open the "
+        },
+        { "text": "Drone", "link": { "kind": "screen", "href": "/drone" } },
+        { "text": " on " },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": ". Run the low E string first, then the "
+        },
+        { "text": "5-to-4", "marks": ["code"] },
+        {
+          "text": " pair, against that sustained root. A line moving up the neck sounds like it is going somewhere, in a way a line moving across the strings at one fret range never quite does — and now you know exactly why: one is walking through all five windows, and the other is standing still inside one of them. "
+        },
+        { "text": "Scale Visualizer", "link": { "kind": "screen", "href": "/scale-visualizer" } },
+        {
+          "text": " will trace either journey for you, live, if you'd rather watch it than count frets."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "A Progression Without Going Back to the Nut",
+          "marks": ["italic"],
+          "link": { "kind": "article", "slug": "caged-progression-up-the-neck" }
+        },
+        {
+          "text": " plays the same idea in chords instead of single notes — the hand staying where it already is while the chord underneath it changes."
+        }
+      ]
+    }
+  ]
+}

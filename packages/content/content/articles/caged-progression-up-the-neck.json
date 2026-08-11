@@ -1,0 +1,307 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_caged-progression-up-the-neck",
+    "slug": "caged-progression-up-the-neck",
+    "title": "A Progression Without Going Back to the Nut",
+    "summary": "C, F and G each exist in all five forms, so a progression can be played wherever the hand already is instead of jumping back to the nut for every change.",
+    "tags": ["caged", "fretboard"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-11"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Most players know " },
+        { "text": "C", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "F", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "G", "marks": ["code"] },
+        {
+          "text": " in exactly one place each, near the nut. Change chord, and the hand makes a trip back there every time — three shapes, one neighbourhood, constant travel."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "These three chords aren't arbitrary. They're the only three major chords the C major scale builds: "
+        },
+        { "text": "C", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "C E G", "marks": ["code"] },
+        { "text": "), " },
+        { "text": "F", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "F A C", "marks": ["code"] },
+        { "text": "), and " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "G B D", "marks": ["code"] },
+        {
+          "text": "). Every note in every one of them is a note this pathway has already put in your hand somewhere on the neck."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here's the part that changes how you play them. Each of those three chords has all five forms, so it isn't sitting in one place — it's sitting in five. That makes "
+        },
+        { "text": "C", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "F", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "G", "marks": ["code"] },
+        {
+          "text": " fifteen places on this neck, not three. The barre fret for every form of every chord, computed from where each chord's root falls on the low E string:"
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Chord" }],
+        [{ "text": "C form" }],
+        [{ "text": "A form" }],
+        [{ "text": "G form" }],
+        [{ "text": "E form" }],
+        [{ "text": "D form" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "C", "marks": ["code"] }],
+          [{ "text": "0", "marks": ["code"] }],
+          [{ "text": "3", "marks": ["code"] }],
+          [{ "text": "5", "marks": ["code"] }],
+          [{ "text": "8", "marks": ["code"] }],
+          [{ "text": "10", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "F", "marks": ["code"] }],
+          [{ "text": "5", "marks": ["code"] }],
+          [{ "text": "8", "marks": ["code"] }],
+          [{ "text": "10", "marks": ["code"] }],
+          [{ "text": "1", "marks": ["code"] }],
+          [{ "text": "3", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "G", "marks": ["code"] }],
+          [{ "text": "7", "marks": ["code"] }],
+          [{ "text": "10", "marks": ["code"] }],
+          [{ "text": "0", "marks": ["code"] }],
+          [{ "text": "3", "marks": ["code"] }],
+          [{ "text": "5", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Read that as fifteen places rather than three chords with one place each. A chord isn't a spot on the neck — it's five spots — and the only useful question, once you know that, is which one is nearest your hand right now."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "spans": [{ "text": "The Showpiece: All Three at Fret 3" }]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Look down the fret-3 column of that table. All three chords have a form barred there: "
+        },
+        { "text": "C", "marks": ["code"] },
+        { "text": " is the A form, " },
+        { "text": "F", "marks": ["code"] },
+        { "text": " is the D form, and " },
+        { "text": "G", "marks": ["code"] },
+        {
+          "text": " is the E form. Three chords, three different forms, and the hand does not move position at all."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [[{ "text": "Chord" }], [{ "text": "Form" }], [{ "text": "Grip, strings 6 → 1" }]],
+      "rows": [
+        [
+          [{ "text": "C", "marks": ["code"] }],
+          [{ "text": "A form" }],
+          [{ "text": "x 3 5 5 5 3", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "F", "marks": ["code"] }],
+          [{ "text": "D form" }],
+          [{ "text": "x x 3 5 6 5", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "G", "marks": ["code"] }],
+          [{ "text": "E form" }],
+          [{ "text": "3 5 5 4 3 3", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The A form and the E form are two of the full barres you already hold whole. The D form's grip is the four-string fragment you already know as the D form's normal state — no strings 5 or 6, exactly as it's always played. Nothing about any of these three grips is new; what's new is seeing them stacked at one fret, ready to move between with a finger shift instead of a jump."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "spans": [{ "text": "A Practical Route: Around Fret 8" }]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "A second route sits further up. Here "
+        },
+        { "text": "C", "marks": ["code"] },
+        { "text": " is the E form barred at fret " },
+        { "text": "8", "marks": ["code"] },
+        { "text": ", and " },
+        { "text": "F", "marks": ["code"] },
+        { "text": " is the A form — also barred at fret " },
+        { "text": "8", "marks": ["code"] },
+        {
+          "text": ". Same fret, two different chords, because the E form's root sits on string 6 and the A form's root sits on string 5, a fourth higher — which is exactly the distance from "
+        },
+        { "text": "C", "marks": ["code"] },
+        { "text": " up to " },
+        { "text": "F", "marks": ["code"] },
+        {
+          "text": ". Only the two forms that hold as full barres are in play here, which is why this route feels the most playable of the three: no fragments to assemble, just one whole shape per chord. Then "
+        },
+        { "text": "G", "marks": ["code"] },
+        { "text": " is the A form again, two frets up at fret " },
+        { "text": "10", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        { "text": "C", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "F", "marks": ["code"] },
+        {
+          "text": " land on the same barre fret because the E form's root is on string 6 and the A form's is a fourth higher on string 5 — the same interval that separates the two chords."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here are those two drawn out. Both windows run frets 7 to 11 — the identical stretch of neck — and every diagram in this pathway before now has been the same key. These are two."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "C",
+        "form": "E",
+        "show": "triad",
+        "caption": "C major, E form, barre at fret 8 — the window runs 7 to 11."
+      }
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "F",
+        "form": "A",
+        "show": "triad",
+        "caption": "F major, A form, barre at fret 8 — the same frets, 7 to 11, a different chord."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Same frets, different dots. Nothing about your hand's location on the neck tells you which chord is sounding — the form does, and the root inside it does. That is the whole of chapter 1's argument, arriving as something you can use."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "spans": [{ "text": "For Contrast: The Nut" }]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "And then there's the route everyone already plays: " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " as the open C form, " },
+        { "text": "F", "marks": ["code"] },
+        { "text": " as the E form barred at fret " },
+        { "text": "1", "marks": ["code"] },
+        { "text": ", and " },
+        { "text": "G", "marks": ["code"] },
+        {
+          "text": " as the open G form. Nobody ever pointed out that this is three different forms — it's just what sits nearest the nut in this key, and it's why the "
+        },
+        { "text": "F", "marks": ["code"] },
+        {
+          "text": " always felt like the odd shape out: it's the only one of the three barred at all."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "None of the three routes is the right one. You're not choosing a chord — you're choosing which of its five forms is closest to where your hand already is. Everything this pathway has built so far, the roots, the fragments, the full barres, was preparation for being able to answer that question without stopping to think."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Try it on " },
+        { "text": "Chord Detector", "link": { "kind": "screen", "href": "/chord-detector" } },
+        { "text": ": play the fret-3 route and check that what comes out is " },
+        { "text": "C", "marks": ["code"] },
+        { "text": ", then " },
+        { "text": "F", "marks": ["code"] },
+        { "text": ", then " },
+        { "text": "G", "marks": ["code"] },
+        { "text": ". And " },
+        { "text": "Chord Shapes", "link": { "kind": "screen", "href": "/chord-shapes" } },
+        {
+          "text": " has every other voicing of each, if you want to go looking for a fourth route yourself."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "None of this has left C major yet — every chord, every form, every fret number above is still built on the same key this whole pathway has used. "
+        },
+        {
+          "text": "The Same Ladder in Any Key",
+          "marks": ["italic"],
+          "link": { "kind": "article", "slug": "caged-transposing-the-ladder" }
+        },
+        { "text": " lifts that restriction, and it costs less than you would expect." }
+      ]
+    }
+  ]
+}

@@ -24,9 +24,9 @@ describe('the authored corpus', () => {
   it('loads, validates, and resolves every reference', async () => {
     const { documents, pathways } = await loadContent();
 
-    expect(documents.filter((document) => document.kind === 'article')).toHaveLength(30);
-    expect(documents.filter((document) => document.kind === 'quiz')).toHaveLength(7);
-    expect(documents.filter((document) => document.kind === 'activity')).toHaveLength(6);
+    expect(documents.filter((document) => document.kind === 'article')).toHaveLength(36);
+    expect(documents.filter((document) => document.kind === 'quiz')).toHaveLength(8);
+    expect(documents.filter((document) => document.kind === 'activity')).toHaveLength(7);
     expect(pathways.map((pathway) => pathway.slug)).toEqual(['caged-fretboard', 'fundamentals']);
   });
 
@@ -63,6 +63,7 @@ describe('the authored corpus', () => {
       'caged-play-the-chord-tones',
       'caged-land-on-the-chord-tones',
       'caged-find-the-two-that-lean',
+      'caged-climb-one-string',
       'find-the-a-notes',
       'eighth-note-timing',
     ]);
@@ -78,6 +79,7 @@ describe('the authored corpus', () => {
     const activities = documents.filter((document) => document.kind === 'activity');
 
     expect(activities.map((document) => document.slug)).toEqual([
+      'caged-climb-one-string',
       'caged-find-every-c',
       'caged-find-the-two-that-lean',
       'caged-land-on-the-chord-tones',

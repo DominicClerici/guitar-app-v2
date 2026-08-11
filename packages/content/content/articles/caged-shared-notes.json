@@ -1,0 +1,244 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_caged-shared-notes",
+    "slug": "caged-shared-notes",
+    "title": "The Note That Belongs to Both",
+    "summary": "Every neighbouring pair of CAGED windows shares one pentatonic note on every string, so a phrase can change window mid-stream on whatever string it already happens to be on.",
+    "tags": ["caged", "fretboard"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-11"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Positions in this pathway are written string, then fret — "
+        },
+        { "text": "5·3", "marks": ["code"] },
+        {
+          "text": " means string 5, fret 3, and this lesson leans on that shorthand more than any before it. The windows overlap by design, so there are notes that belong to two of them at once, and a note like that is a doorway rather than a wall."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Chapter 3 found that on the low E string, each window's upper pentatonic dot is the next window's lower one. That turns out not to be a low-E-string curiosity. It is true on all six strings, in every neighbouring pair, with no exception — checked across all twenty-four cases, and every one of them hands over exactly one shared dot, on the string where the two windows meet."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Pair" }],
+        [{ "text": "str 6" }],
+        [{ "text": "str 5" }],
+        [{ "text": "str 4" }],
+        [{ "text": "str 3" }],
+        [{ "text": "str 2" }],
+        [{ "text": "str 1" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "C → A" }],
+          [{ "text": "3", "marks": ["code"] }],
+          [{ "text": "3", "marks": ["code"] }],
+          [{ "text": "2", "marks": ["code"] }],
+          [{ "text": "2", "marks": ["code"] }],
+          [{ "text": "3", "marks": ["code"] }],
+          [{ "text": "3", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "A → G" }],
+          [{ "text": "5", "marks": ["code"] }],
+          [{ "text": "5", "marks": ["code"] }],
+          [{ "text": "5", "marks": ["code"] }],
+          [{ "text": "5", "marks": ["code"] }],
+          [{ "text": "5", "marks": ["code"] }],
+          [{ "text": "5", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "G → E" }],
+          [{ "text": "8", "marks": ["code"] }],
+          [{ "text": "7", "marks": ["code"] }],
+          [{ "text": "7", "marks": ["code"] }],
+          [{ "text": "7", "marks": ["code"] }],
+          [{ "text": "8", "marks": ["code"] }],
+          [{ "text": "8", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "E → D" }],
+          [{ "text": "10", "marks": ["code"] }],
+          [{ "text": "10", "marks": ["code"] }],
+          [{ "text": "10", "marks": ["code"] }],
+          [{ "text": "9", "marks": ["code"] }],
+          [{ "text": "10", "marks": ["code"] }],
+          [{ "text": "10", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That buys you something concrete. You do not have to get back to a particular string before you are allowed to change window. Whatever string a phrase happens to be on, there is a note under your hand that both windows own. Play it as the last note of the window you are leaving and the first note of the window you are entering, and nothing in the sound marks the change. The listener hears one phrase; you know it crossed a seam."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The easiest doorways to find are roots you already have — the same six positions chapter 1 spent a whole lesson counting."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [[{ "text": "Pair" }], [{ "text": "Shared root(s)" }]],
+      "rows": [
+        [[{ "text": "C ∩ A" }], [{ "text": "5·3", "marks": ["code"] }]],
+        [[{ "text": "A ∩ G" }], [{ "text": "3·5", "marks": ["code"] }]],
+        [[{ "text": "G ∩ E" }], [{ "text": "6·8, 1·8", "marks": ["code"] }]],
+        [[{ "text": "E ∩ D" }], [{ "text": "4·10", "marks": ["code"] }]]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "2·1", "marks": ["code"] },
+        {
+          "text": " is missing from that table on purpose. It is the one root that belongs to a single form, because there is no window below the "
+        },
+        { "text": "C", "marks": ["code"] },
+        { "text": " form to share it with — chapter 1 said so, and nothing since has changed it." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Between the A and G windows, every one of the six shared notes — one per string — sits at fret "
+        },
+        { "text": "5", "marks": ["code"] },
+        {
+          "text": ". That is chapter 3's one-finger, six-string fret, read again as a doorway: lay a finger across fret "
+        },
+        { "text": "5", "marks": ["code"] },
+        { "text": " and your hand sits inside both windows at once, on whichever string it lands." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here is what crossing a doorway actually looks like, played out on one string. Run up the A form window on the high e string: "
+        },
+        { "text": "1·3", "marks": ["code"] },
+        { "text": " is a " },
+        { "text": "5", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "1·5", "marks": ["code"] },
+        { "text": " is a " },
+        { "text": "6", "marks": ["code"] },
+        { "text": ". Instead of stopping there, keep going on the same string: " },
+        { "text": "1·7", "marks": ["code"] },
+        { "text": " is a " },
+        { "text": "7", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "1·8", "marks": ["code"] },
+        { "text": " is a " },
+        { "text": "1", "marks": ["code"] },
+        {
+          "text": ". The first two notes belong to the A form. The last two belong to the G form. "
+        },
+        { "text": "1·5", "marks": ["code"] },
+        {
+          "text": " belongs to both, and nothing about your hand moved when you played it — the position change already happened, silently, one note earlier. The same move works on any of the six strings: find that string's shared fret from the table above and cross there instead."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One seam is sharper than the rest, and it is worth a sentence on its own. Fret "
+        },
+        { "text": "4", "marks": ["code"] },
+        { "text": " sits inside three windows at once — the " },
+        { "text": "C", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "A", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "G", "marks": ["code"] },
+        {
+          "text": " forms all claim it — the only fret in the first thirteen that does. It changes nothing about how you play; it is just the clearest evidence of how tightly these five windows are stacked on top of each other."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "C",
+        "form": "A",
+        "show": "scale",
+        "caption": "The A form's full scale — every dot at fret 4, 5 or 6 belongs to the G form as well."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Look at frets "
+        },
+        { "text": "4", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "5", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "6", "marks": ["code"] },
+        {
+          "text": " on that diagram. They are not only the A form's — they belong to the G form too, which begins at fret 4, two frets before the A form's own window ends. That overlap is "
+        },
+        {
+          "text": "The Root Ladder",
+          "marks": ["italic"],
+          "link": { "kind": "article", "slug": "caged-root-ladder" }
+        },
+        { "text": " drawn out note by note instead of root by root." }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        {
+          "text": "Play the shared note as the last note of the window you are leaving and the first note of the window you are entering. Nothing in the sound has to mark the change, because the note does not know which window you think it belongs to."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Every root on the ladder you built starting in chapter 1 is a doorway of this kind, and "
+        },
+        { "text": "Scale Visualizer", "link": { "kind": "screen", "href": "/scale-visualizer" } },
+        {
+          "text": " will show you the same overlap live — page between two neighbouring forms and watch which frets stay lit on both pages. "
+        },
+        {
+          "text": "Along a String, Not Across the Neck",
+          "marks": ["italic"],
+          "link": { "kind": "article", "slug": "caged-along-the-strings" }
+        },
+        {
+          "text": " drops the window as the unit entirely and follows a single string wherever it goes, doorway or not."
+        }
+      ]
+    }
+  ]
+}

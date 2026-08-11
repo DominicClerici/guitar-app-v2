@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "act_caged-climb-one-string",
+    "slug": "caged-climb-one-string",
+    "title": "Drill: One String, Every Window",
+    "summary": "Play the scale along a string instead of across the neck — one octave on the low E passes through all five windows in order, and the last round moves the whole thing into G."
+  },
+  "activity": {
+    "kind": "note-play",
+    "modes": ["easy", "hard"],
+    "board": { "fretFrom": 0, "fretTo": 13 },
+    "rounds": [
+      {
+        "kind": "targets",
+        "id": "r_caged-climb-one-string.low-e",
+        "prompt": [
+          { "text": "C major up the low E string and nothing else — frets " },
+          { "text": "0 1 3 5 7 8 10 12", "marks": ["code"] },
+          {
+            "text": ". One octave on one string passes through all five windows in C-A-G-E-D order. In order, low to high."
+          }
+        ],
+        "targets": [
+          { "string": 6, "fret": 0 },
+          { "string": 6, "fret": 1 },
+          { "string": 6, "fret": 3 },
+          { "string": 6, "fret": 5 },
+          { "string": 6, "fret": 7 },
+          { "string": 6, "fret": 8 },
+          { "string": 6, "fret": 10 },
+          { "string": 6, "fret": 12 }
+        ],
+        "ordered": true
+      },
+      {
+        "kind": "targets",
+        "id": "r_caged-climb-one-string.high-e",
+        "prompt": [
+          {
+            "text": "The same eight frets on the high e string. Strings 6 and 1 are two octaves apart at the same fret, so the journey reads identically — two octaves up. In order."
+          }
+        ],
+        "targets": [
+          { "string": 1, "fret": 0 },
+          { "string": 1, "fret": 1 },
+          { "string": 1, "fret": 3 },
+          { "string": 1, "fret": 5 },
+          { "string": 1, "fret": 7 },
+          { "string": 1, "fret": 8 },
+          { "string": 1, "fret": 10 },
+          { "string": 1, "fret": 12 }
+        ],
+        "ordered": true
+      },
+      {
+        "kind": "targets",
+        "id": "r_caged-climb-one-string.a-to-d",
+        "prompt": [
+          { "text": "One octave on a string pair: four notes on string 5 at frets " },
+          { "text": "3 5 7 8", "marks": ["code"] },
+          { "text": ", then the same four moved up two frets on string 4 — " },
+          { "text": "5 7 9 10", "marks": ["code"] },
+          { "text": ". Root to root, fret 3 to fret 10. In order." }
+        ],
+        "targets": [
+          { "string": 5, "fret": 3 },
+          { "string": 5, "fret": 5 },
+          { "string": 5, "fret": 7 },
+          { "string": 5, "fret": 8 },
+          { "string": 4, "fret": 5 },
+          { "string": 4, "fret": 7 },
+          { "string": 4, "fret": 9 },
+          { "string": 4, "fret": 10 }
+        ],
+        "ordered": true
+      },
+      {
+        "kind": "targets",
+        "id": "r_caged-climb-one-string.g-to-b",
+        "prompt": [
+          { "text": "The same run where the shift is three frets instead of two: string 3 at " },
+          { "text": "5 7 9 10", "marks": ["code"] },
+          { "text": ", then string 2 at " },
+          { "text": "8 10 12 13", "marks": ["code"] },
+          { "text": ". The extra fret is the " },
+          { "text": "G → B", "marks": ["code"] },
+          { "text": " major third. In order." }
+        ],
+        "targets": [
+          { "string": 3, "fret": 5 },
+          { "string": 3, "fret": 7 },
+          { "string": 3, "fret": 9 },
+          { "string": 3, "fret": 10 },
+          { "string": 2, "fret": 8 },
+          { "string": 2, "fret": 10 },
+          { "string": 2, "fret": 12 },
+          { "string": 2, "fret": 13 }
+        ],
+        "ordered": true
+      },
+      {
+        "kind": "targets",
+        "id": "r_caged-climb-one-string.g-major",
+        "prompt": [
+          { "text": "The first round again, in " },
+          { "text": "G", "marks": ["code"] },
+          { "text": " major: frets " },
+          { "text": "0 2 3 5 7 8 10 12", "marks": ["code"] },
+          {
+            "text": " on the low E string. One fret moved. The key changed the notes, not the method. In order."
+          }
+        ],
+        "targets": [
+          { "string": 6, "fret": 0 },
+          { "string": 6, "fret": 2 },
+          { "string": 6, "fret": 3 },
+          { "string": 6, "fret": 5 },
+          { "string": 6, "fret": 7 },
+          { "string": 6, "fret": 8 },
+          { "string": 6, "fret": 10 },
+          { "string": 6, "fret": 12 }
+        ],
+        "ordered": true
+      }
+    ]
+  }
+}
