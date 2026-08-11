@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "act_caged-find-every-c",
+    "slug": "caged-find-every-c",
+    "title": "Drill: Find Every C",
+    "summary": "One window at a time, play the roots the five forms hold — then find them again with the whole neck open."
+  },
+  "activity": {
+    "kind": "note-play",
+    "modes": ["easy", "hard"],
+    "board": { "fretFrom": 0, "fretTo": 13 },
+    "rounds": [
+      {
+        "kind": "targets",
+        "id": "r_caged-find-every-c.c-form",
+        "prompt": [
+          { "text": "The " },
+          { "text": "C", "marks": ["code"] },
+          { "text": " form, at the nut. Two roots: one on string 5, one on string 2." }
+        ],
+        "targets": [
+          { "string": 5, "fret": 3 },
+          { "string": 2, "fret": 1 }
+        ],
+        "board": { "fretFrom": 0, "fretTo": 4 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_caged-find-every-c.a-form",
+        "prompt": [
+          { "text": "The " },
+          { "text": "A", "marks": ["code"] },
+          { "text": " form, barre at fret 3. Two roots, two strings apart — the " },
+          { "text": "5 → 3", "marks": ["code"] },
+          { "text": " octave." }
+        ],
+        "targets": [
+          { "string": 5, "fret": 3 },
+          { "string": 3, "fret": 5 }
+        ],
+        "board": { "fretFrom": 2, "fretTo": 6 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_caged-find-every-c.g-form",
+        "prompt": [
+          { "text": "The " },
+          { "text": "G", "marks": ["code"] },
+          {
+            "text": " form, barre at fret 5. Three roots this time — and two of them share a fret."
+          }
+        ],
+        "targets": [
+          { "string": 6, "fret": 8 },
+          { "string": 3, "fret": 5 },
+          { "string": 1, "fret": 8 }
+        ],
+        "board": { "fretFrom": 4, "fretTo": 8 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_caged-find-every-c.e-form",
+        "prompt": [
+          { "text": "The " },
+          { "text": "E", "marks": ["code"] },
+          { "text": " form, barre at fret 8. Start on string 6, then " },
+          { "text": "6 → 4", "marks": ["code"] },
+          { "text": " and " },
+          { "text": "6 → 1", "marks": ["code"] },
+          { "text": " without counting." }
+        ],
+        "targets": [
+          { "string": 6, "fret": 8 },
+          { "string": 4, "fret": 10 },
+          { "string": 1, "fret": 8 }
+        ],
+        "board": { "fretFrom": 7, "fretTo": 11 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_caged-find-every-c.d-form",
+        "prompt": [
+          { "text": "The " },
+          { "text": "D", "marks": ["code"] },
+          { "text": " form, barre at fret 10. The upper root sits past the twelfth-fret marker." }
+        ],
+        "targets": [
+          { "string": 4, "fret": 10 },
+          { "string": 2, "fret": 13 }
+        ],
+        "board": { "fretFrom": 9, "fretTo": 13 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_caged-find-every-c.climb",
+        "prompt": [
+          { "text": "Whole neck now. Climb three " },
+          { "text": "C", "marks": ["code"] },
+          { "text": "s in order, low to high: string 5, then string 3, then string 1." }
+        ],
+        "targets": [
+          { "string": 5, "fret": 3 },
+          { "string": 3, "fret": 5 },
+          { "string": 1, "fret": 8 }
+        ],
+        "ordered": true,
+        "board": { "fretFrom": 0, "fretTo": 12 }
+      }
+    ]
+  }
+}

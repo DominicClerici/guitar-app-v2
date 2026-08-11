@@ -548,7 +548,14 @@ after every chapter, not once at the end.
 cd mobile && pnpm lint                 # only if app code changed (a new live component)
 ```
 
-`pnpm format` at the root formats JSON (markdown is deliberately excluded).
+**Do not run `pnpm format` while other work is in flight.** It is `prettier --write .` over the
+*entire repo* — app code included, not just the JSON you authored. Markdown is excluded
+(`.prettierignore` ends with `*.md`), which is the only part of that worth relying on. A chapter
+agent that runs it will reformat files other sessions are editing. Format your own files instead:
+
+```bash
+pnpm exec prettier --write packages/content/content/**/<your-slugs>.json
+```
 
 ### Decoding a failure
 
@@ -564,10 +571,17 @@ cd mobile && pnpm lint                 # only if app code changed (a new live co
 | `did not parse as a runnable round`                         | The message names the reason — duplicate pitch, slots/grid mismatch, bpm range.   |
 | `X slots for a 4×2×2 grid, which needs exactly 16`          | Count your `slots`.                                                               |
 
-**Corpus-pinned tests.** `packages/content/src/load.test.ts` asserts on the corpus *by name* —
-which activity slugs exist, in what order. Adding or removing content will fail those assertions,
-and updating them is part of the job, not a signal that something is broken. Update the expected
-lists; never weaken the assertion.
+**Corpus-pinned tests.** `packages/content/src/load.test.ts` asserts on the corpus *by name and by
+count* — how many articles, quizzes and activities exist, which pathway slugs, and which activity
+slugs, in order. Adding or removing content will fail those assertions, and updating them is part
+of the job, not a signal that something is broken. Update the expected lists; never weaken the
+assertion.
+
+A chapter typically touches four of them: the three counts, and the two activity lists. Mind the
+ordering — the activity **slug** list is alphabetical (the loader reads each directory sorted),
+while the activity **ref** list follows pathway then section order, so the two are not the same
+sequence. Pathway slugs are alphabetical too, which is why `caged-fretboard` precedes
+`fundamentals`.
 
 ### Finishing
 

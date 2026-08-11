@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_caged-roots-g-form",
+    "slug": "caged-roots-g-form",
+    "title": "The G Form: Three Roots, All Six Strings",
+    "summary": "The G form carries three roots across all six strings, which makes it the best form for seeing where a chord lives and the hardest to hold whole.",
+    "tags": ["caged", "fretboard"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-11"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The G form of " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " sits with its barre at fret " },
+        { "text": "5", "marks": ["code"] },
+        { "text": ", drawing a window across frets " },
+        { "text": "4–8", "marks": ["code"] },
+        {
+          "text": ". That window holds three roots, not two — the first form in this chapter with more than a pair. Both the C form and the A form only gave you two roots each; here the count changes, and so does what the form is good for."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The three roots: " },
+        { "text": "string 6 fret 8", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "string 3 fret 5", "marks": ["code"] },
+        { "text": ", and " },
+        { "text": "string 1 fret 8", "marks": ["code"] },
+        {
+          "text": ". Low, middle, and high — the G form is the only one of the five that touches the bottom of the neck, the middle, and the top at once."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "C",
+        "form": "G",
+        "show": "roots",
+        "caption": "Three roots: string 6 fret 8, string 3 fret 5, string 1 fret 8"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Strings 6 and 1 are tuned exactly two octaves apart, so any note on the low E has a twin on the high e at the very same fret. Here both roots land on "
+        },
+        { "text": "fret 8", "marks": ["code"] },
+        {
+          "text": ". It is the cheapest fact on the fretboard, and the G form is where it is impossible to miss — the two outer strings of the window, same fret, same letter. It is also the one octave relationship on the whole neck that needs no arithmetic: find a note on string 6 anywhere, in any key, and you have already found it on string 1, at the same fret, for free."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        {
+          "text": "String 6 and string 1, same fret, always the same note two octaves apart. The G form just happens to put both roots in view together."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The middle root, " },
+        { "text": "string 3 fret 5", "marks": ["code"] },
+        {
+          "text": ", is already familiar — it was the A form's upper root. One note, claimed by two forms, and it won't be the last time that happens."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Three roots is not trivia here — it is what the form is for. With a root on the bottom string, the middle string, and the top string, you can start a phrase at the bottom of the neck, in the middle of it, or right up near the top, all without leaving this one window. The C and A forms only told you about the bottom half; the G form's three roots span the whole thing, and that is what makes it the best form for simply seeing where a chord lives."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Character-wise, that width is also the catch. The G form is the " },
+        { "text": "widest", "marks": ["bold"] },
+        {
+          "text": " of the five and the hardest to hold whole. A barre at fret 5 while the outer fingers reach up to fret 8 is a stretch most hands decline, so in practice this form gets played in pieces — and each piece is for something specific. The top three strings give you a root on string 1 with the rest of the chord sitting right under it, useful wherever a lead line is already living up there. The low root paired with the string 3 root gives you the chord's two lowest anchors, useful for holding down the bottom of a progression without the stretch. That is the same fragment habit the C form introduced, not a new idea: wide forms get played partially, as the normal case, and which piece you take depends on what you need it for."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "For the fragment versions of this chord, " },
+        { "text": "Chord Shapes", "link": { "kind": "screen", "href": "/chord-shapes" } },
+        {
+          "text": " has the voicings players actually use — smaller, playable pieces of the same window instead of the whole stretch."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Open the " },
+        { "text": "Scale Visualizer", "link": { "kind": "screen", "href": "/scale-visualizer" } },
+        { "text": " on root " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " and page to the G form to see the same window live, all three roots lit." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The next form has three roots too, but the way they sit — and what that means for finding your way around the neck — is a different story entirely: the "
+        },
+        { "text": "E form", "marks": ["bold"] },
+        {
+          "text": ", the one shape almost everyone already plays without knowing what's inside it."
+        }
+      ]
+    }
+  ]
+}

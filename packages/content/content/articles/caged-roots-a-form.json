@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_caged-roots-a-form",
+    "slug": "caged-roots-a-form",
+    "title": "The A Form: The Cleanest Octave on the Neck",
+    "summary": "The A form is CAGED's friendliest shape, holding a full barre whole while its two roots give the cleanest octave jump on the neck.",
+    "tags": ["caged", "fretboard"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-11"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The A form of C major is the open A chord with the nut swapped for a barre at fret 3 — the barre chord most players already own before they've ever heard of CAGED. Its window runs frets 2 through 6; notice the barre sits inside that window, not at its front edge. Window and barre fret are different things, and they won't always line up the same way twice."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That distinction holds for every form in this chapter: the window is the five frets a diagram lights up, the barre fret is where the moving nut sits, and the two don't have to share an edge. Keep them sharp, or \"the form at fret n\" starts meaning different things depending on who's saying it — some players mean the barre, some mean the root."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Two roots: string 5, fret 3, and string 3, fret 5. That's the whole set for this form."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Those two roots hand you the cleanest move on the neck: " },
+        { "text": "5 → 3", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "+2", "marks": ["code"] },
+        {
+          "text": " frets. Cross two strings, add two frets, and you land an octave higher. It works here because "
+        },
+        { "text": "A", "marks": ["code"] },
+        { "text": " to " },
+        { "text": "D", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "D", "marks": ["code"] },
+        { "text": " to " },
+        { "text": "G", "marks": ["code"] },
+        {
+          "text": " are both a fourth apart — ten semitones together — so two more frets make twelve. Start from string 5, fret 3 and apply it: add two frets, cross to string 3, and you land on string 3, fret 5 — the same C, an octave up. That's exactly the two roots this form already gives you; the shape doesn't just contain an octave pair, it hands you the move that finds one anywhere else on the neck. The same move, two strings across and two frets up, also works from string 6 to string 4, and it isn't a fact about C alone — it's a piece of neck geometry that holds for any root, on any two-string jump that stays clear of the gap between strings 3 and 2. Learn it once, here."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "This is the friendliest of the five forms, and the reason is reach. The barre sits at fret 3 and the fretted notes sit at fret 5 — a two-fret span for the whole hand. The C form asked the barre at fret n to cover a finger out at n+3; the A form never asks for more than two frets past the barre. Hold this one whole rather than reaching for a fragment."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The lower root earns its keep, too. Glance at string 5 while you're barring, read the fret, and you know which chord the shape is spelling — no counting up from the nut required. That's the whole point of learning a root cold: it turns the shape into information instead of a memorized position."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "C",
+        "form": "A",
+        "show": "roots",
+        "caption": "The A form's roots: string 5, fret 3, and string 3, fret 5."
+      }
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        { "text": "The octave move " },
+        { "text": "5 → 3", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "+2", "marks": ["code"] },
+        { "text": " frets, and so is " },
+        { "text": "6 → 4", "marks": ["code"] },
+        { "text": " — the same shape, one string set over." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One more thing worth a single sentence: string 5, fret 3 isn't new here. It was the C form's lower root too. The same note belongs to both forms — why that happens is a bigger story this pathway comes back to, but it's worth clocking now."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Open " },
+        { "text": "Scale Visualizer", "link": { "kind": "screen", "href": "/scale-visualizer" } },
+        {
+          "text": " and page to the A form to see both roots lit at once. Next: the G form, the first shape in this chapter with three roots instead of two — a wider net, and a wider stretch, which is where fragments come back."
+        }
+      ]
+    }
+  ]
+}

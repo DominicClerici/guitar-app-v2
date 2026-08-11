@@ -6,5 +6,83 @@
   "tags": ["fretboard", "caged", "chords", "theory"],
   "difficulty": "core",
   "estimatedMin": 210,
-  "chapters": []
+  "chapters": [
+    {
+      "id": "caged-fretboard.ch1",
+      "slug": "where-the-roots-are",
+      "title": "Where the Roots Are",
+      "summary": "The letter names the form, not the chord. Find every C on the neck without counting, one window at a time.",
+      "sections": [
+        {
+          "id": "caged-fretboard.ch1.what-the-letter-means",
+          "slug": "caged-what-the-letter-means",
+          "title": "What the Letter Actually Names",
+          "kind": "article",
+          "ref": "caged-what-the-letter-means",
+          "estimatedMin": 4
+        },
+        {
+          "id": "caged-fretboard.ch1.roots-c-form",
+          "slug": "caged-roots-c-form",
+          "title": "The C Form: Roots on 5 and 2",
+          "kind": "article",
+          "ref": "caged-roots-c-form",
+          "estimatedMin": 4
+        },
+        {
+          "id": "caged-fretboard.ch1.roots-a-form",
+          "slug": "caged-roots-a-form",
+          "title": "The A Form: The Cleanest Octave on the Neck",
+          "kind": "article",
+          "ref": "caged-roots-a-form",
+          "estimatedMin": 4
+        },
+        {
+          "id": "caged-fretboard.ch1.roots-g-form",
+          "slug": "caged-roots-g-form",
+          "title": "The G Form: Three Roots, All Six Strings",
+          "kind": "article",
+          "ref": "caged-roots-g-form",
+          "estimatedMin": 5
+        },
+        {
+          "id": "caged-fretboard.ch1.roots-e-form",
+          "slug": "caged-roots-e-form",
+          "title": "The E Form: The Shape You Navigate From",
+          "kind": "article",
+          "ref": "caged-roots-e-form",
+          "estimatedMin": 5
+        },
+        {
+          "id": "caged-fretboard.ch1.roots-d-form",
+          "slug": "caged-roots-d-form",
+          "title": "The D Form: Small, High, and Always a Fragment",
+          "kind": "article",
+          "ref": "caged-roots-d-form",
+          "estimatedMin": 4
+        },
+        {
+          "id": "caged-fretboard.ch1.root-ladder",
+          "slug": "caged-root-ladder",
+          "title": "The Root Ladder",
+          "kind": "article",
+          "ref": "caged-root-ladder",
+          "estimatedMin": 5
+        },
+        {
+          "id": "caged-fretboard.ch1.find-every-c",
+          "slug": "caged-find-every-c",
+          "title": "Drill: Find Every C",
+          "kind": "activity",
+          "ref": "caged-find-every-c",
+          "optional": true,
+          "estimatedMin": 7
+        }
+      ],
+      "checkpoint": {
+        "ref": "caged-fretboard-ch1-checkpoint",
+        "passThresholdPct": 70
+      }
+    }
+  ]
 }

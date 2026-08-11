@@ -1,0 +1,194 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_caged-roots-e-form",
+    "slug": "caged-roots-e-form",
+    "title": "The E Form: The Shape You Navigate From",
+    "summary": "The E form's three roots form a map you can place from a single note on the low E string, which is why every other form gets located from it.",
+    "tags": ["caged", "fretboard"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-11"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "You already know this shape. Barre it anywhere on the neck and you have the most-used barre chord on the instrument — the one behind every \"F barre chord\" a beginner learns, and almost certainly a shape your hand can already find without thinking. What that hand has probably never been told is which of its six strings are actually sounding the root."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That's the trap this lesson corrects. Owning a shape physically and knowing what's inside it are two different things — muscle memory gets you the chord, not the map. You can barre this on command and still have no idea that three of the strings under your fingers are roots and which three they are."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The E form of " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " has its barre at fret " },
+        { "text": "8", "marks": ["code"] },
+        { "text": ", drawing a window across frets " },
+        { "text": "7–11", "marks": ["code"] },
+        {
+          "text": ". Note that the window starts a fret below the barre — the window is the five-fret span the form occupies, the barre fret is where the movable nut goes, and here they simply don't line up at the edge."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Its three roots: " },
+        { "text": "string 6 fret 8", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "string 4 fret 10", "marks": ["code"] },
+        { "text": ", and " },
+        { "text": "string 1 fret 8", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here is the map, as a procedure rather than three facts to memorise separately. Find one root on the low E string, and the other two follow without counting a single extra fret:"
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        [{ "text": "Root one is the note you already have on string 6." }],
+        [
+          { "text": "Root two: two strings across and " },
+          { "text": "+2", "marks": ["code"] },
+          { "text": " frets — " },
+          { "text": "6 → 4", "marks": ["code"] },
+          { "text": " — lands on string 4." }
+        ],
+        [
+          { "text": "Root three: straight across at the " },
+          { "text": "same fret", "marks": ["code"] },
+          { "text": " — " },
+          { "text": "6 → 1", "marks": ["code"] },
+          { "text": " — lands two octaves up on string 1." }
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The " },
+        { "text": "6 → 4", "marks": ["code"] },
+        {
+          "text": " move is not a new shape to learn — it is the same hand shape the A form gave you as "
+        },
+        { "text": "5 → 3", "marks": ["code"] },
+        {
+          "text": ", just moved over one string set. Three roots, from one piece of knowledge you already own. This is worth over-learning."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        { "text": "6 → 4", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "+2", "marks": ["code"] },
+        { "text": " frets. " },
+        { "text": "6 → 1", "marks": ["code"] },
+        { "text": " is the same fret. One root on the low E gives you the other two." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Why this form and not another becomes the anchor: the low E string is the one string most players learn note names on first, slowly, by counting from the nut. Find a note there and the E form is already located — everything else on the neck ends up measured from it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "It is also the one form where holding the whole barre is normal rather than a stretch, unlike the C and G forms before it. Nothing here needs to be played in fragments — the shape you already have is the shape you keep."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Put those two things together and you can see why every other form in this pathway ends up located relative to this one. You don't count frets from nowhere; you find a root on the low E string, apply "
+        },
+        { "text": "6 → 4", "marks": ["code"] },
+        { "text": " or " },
+        { "text": "6 → 1", "marks": ["code"] },
+        {
+          "text": ", and you already know where the rest of the chord's roots sit — on this form and, once you have the whole ladder ahead, on the neighbouring ones too."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "C",
+        "form": "E",
+        "show": "roots",
+        "caption": "Three roots: string 6 fret 8, string 4 fret 10, string 1 fret 8"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That's three roots, all findable from one. Compare it with the G form: same count, three roots across all six strings, but a different job. The G form is for seeing where a chord sits, top to bottom, in one glance. The E form is for finding it, starting from a string you can already read."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here is that form sitting inside the whole neck, with the other four quieted so the E form's place stands out."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-ladder",
+      "props": { "root": "C", "highlight": "E" }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Open the " },
+        { "text": "Scale Visualizer", "link": { "kind": "screen", "href": "/scale-visualizer" } },
+        { "text": " on root " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " and find the E form there — the same barre, the same three roots." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Last of the five is the " },
+        {
+          "text": "D form",
+          "marks": ["bold"],
+          "link": { "kind": "article", "slug": "caged-roots-d-form" }
+        },
+        { "text": " — the smallest, the highest, and the last one you'll ever need to add." }
+      ]
+    }
+  ]
+}

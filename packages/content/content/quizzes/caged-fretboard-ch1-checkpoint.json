@@ -1,0 +1,317 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "quiz_caged-fretboard-ch1-checkpoint",
+    "slug": "caged-fretboard-ch1-checkpoint",
+    "title": "Checkpoint: Where the Roots Are",
+    "summary": "The letter names the form, the five windows tile the neck, and every C in the first twelve frets has a home.",
+    "kind": "checkpoint",
+    "passThresholdPct": 70
+  },
+  "questions": [
+    {
+      "id": "q_caged-fretboard-ch1-checkpoint.c-form-at-five",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "You barre the C form with the barre at fret 5, so the root that sat on string 5, fret 3 in the open chord now sits on string 5, fret 8. Which chord are you playing?"
+        }
+      ],
+      "options": [
+        { "id": "a", "spans": [{ "text": "C", "marks": ["code"] }] },
+        { "id": "b", "spans": [{ "text": "D", "marks": ["code"] }] },
+        { "id": "c", "spans": [{ "text": "F", "marks": ["code"] }] },
+        { "id": "d", "spans": [{ "text": "A", "marks": ["code"] }] }
+      ],
+      "answerId": "c",
+      "explanation": [
+        { "text": "String 5, fret 8 is " },
+        { "text": "F", "marks": ["code"] },
+        { "text": ", so the chord is " },
+        { "text": "F", "marks": ["code"] },
+        {
+          "text": ". The letter in CAGED names the shape of the arrangement — what those fingers would spell sitting at the nut — never the chord that comes out. Answering "
+        },
+        { "text": "C", "marks": ["code"] },
+        { "text": " is the misconception this chapter exists to kill; answering " },
+        { "text": "D", "marks": ["code"] },
+        { "text": " reads the barre fret as the root instead of the root's own fret." }
+      ]
+    },
+    {
+      "id": "q_caged-fretboard-ch1-checkpoint.c-form-fragments",
+      "kind": "choice",
+      "prompt": [
+        { "text": "Why do players take fragments of the C form rather than barring it whole?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "The barre sits at fret " },
+            { "text": "n", "marks": ["code"] },
+            { "text": " while the other fingers have to reach out to " },
+            { "text": "n+3", "marks": ["code"] },
+            { "text": " — a stretch most hands refuse." }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "The C form only holds two roots, so the strings without one have to be muted."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "The C form lives at the nut, and a form at the nut cannot be barred at all."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "The C form crosses the B string, and a barre across the B string buzzes." }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "It is a reach problem, nothing more. Fragments — the top four strings, or the low root with its neighbours on strings 5, 4 and 3 — are how this form actually gets played, and that is the normal case rather than a concession. The B string does bend the C form's roots out of a clean diagonal, but that is a fact about pitch, not about what your hand can hold."
+        }
+      ]
+    },
+    {
+      "id": "q_caged-fretboard-ch1-checkpoint.three-roots",
+      "kind": "multi-select",
+      "prompt": [
+        { "text": "Which forms hold " },
+        { "text": "three", "marks": ["bold"] },
+        { "text": " roots inside their window? Select every one that does." }
+      ],
+      "options": [
+        { "id": "c-form", "spans": [{ "text": "The C form" }] },
+        { "id": "a-form", "spans": [{ "text": "The A form" }] },
+        { "id": "g-form", "spans": [{ "text": "The G form" }] },
+        { "id": "e-form", "spans": [{ "text": "The E form" }] },
+        { "id": "d-form", "spans": [{ "text": "The D form" }] }
+      ],
+      "answerIds": ["g-form", "e-form"],
+      "explanation": [
+        {
+          "text": "The G form holds roots on strings 6, 3 and 1; the E form holds them on strings 6, 4 and 1. The C form (5 and 2), the A form (5 and 3) and the D form (4 and 2) hold two each. The count is not trivia: three roots spanning all six strings is what makes the G form the one for "
+        },
+        { "text": "seeing", "marks": ["italic"] },
+        {
+          "text": " where a chord lives, and the E form's three are what you find from a single note on the low E string."
+        }
+      ]
+    },
+    {
+      "id": "q_caged-fretboard-ch1-checkpoint.e-form-map",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "You have found a root on string 6, fret 8. Using the E form's root map — and without counting up from the nut — where are its other two roots?"
+        }
+      ],
+      "options": [
+        { "id": "a", "spans": [{ "text": "String 4, fret 8 and string 1, fret 8" }] },
+        { "id": "b", "spans": [{ "text": "String 4, fret 10 and string 1, fret 8" }] },
+        { "id": "c", "spans": [{ "text": "String 4, fret 10 and string 1, fret 10" }] },
+        { "id": "d", "spans": [{ "text": "String 4, fret 11 and string 1, fret 8" }] }
+      ],
+      "answerId": "b",
+      "explanation": [
+        { "text": "Two moves, both free: " },
+        { "text": "6 → 4", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "+2", "marks": ["code"] },
+        { "text": " frets, so fret 8 becomes fret 10; " },
+        { "text": "6 → 1", "marks": ["code"] },
+        { "text": " is the " },
+        { "text": "same fret", "marks": ["code"] },
+        { "text": ", because strings 6 and 1 are tuned exactly two octaves apart. Option " },
+        { "text": "d", "marks": ["code"] },
+        { "text": " applies " },
+        { "text": "+3", "marks": ["code"] },
+        { "text": ", which is the jump that crosses the B string — this one does not." }
+      ]
+    },
+    {
+      "id": "q_caged-fretboard-ch1-checkpoint.b-string-shift",
+      "kind": "choice",
+      "prompt": [
+        { "text": "An octave is " },
+        { "text": "+2", "marks": ["code"] },
+        { "text": " frets going " },
+        { "text": "5 → 3", "marks": ["code"] },
+        { "text": ", but " },
+        { "text": "+3", "marks": ["code"] },
+        { "text": " frets going " },
+        { "text": "4 → 2", "marks": ["code"] },
+        { "text": ". What makes the difference?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [{ "text": "Octaves get wider as you move toward the higher strings." }]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "Strings 4 and 2 are physically further apart on the neck than strings 5 and 3."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "The jump from string 4 to string 2 crosses " },
+            { "text": "G → B", "marks": ["code"] },
+            {
+              "text": ", the one step in standard tuning that is a major third instead of a fourth."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "The B string is thinner, so it sounds sharp and needs an extra fret to compensate."
+            }
+          ]
+        }
+      ],
+      "answerId": "c",
+      "explanation": [
+        { "text": "Standard tuning is all fourths except " },
+        { "text": "G → B", "marks": ["code"] },
+        { "text": ". A two-string jump that stays clear of that gap covers ten semitones, so " },
+        { "text": "+2", "marks": ["code"] },
+        {
+          "text": " frets make the twelve an octave needs. One that crosses it covers only nine, so it takes "
+        },
+        { "text": "+3", "marks": ["code"] },
+        { "text": ". That is why " },
+        { "text": "6 → 4", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "5 → 3", "marks": ["code"] },
+        { "text": " behave one way and " },
+        { "text": "4 → 2", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "3 → 1", "marks": ["code"] },
+        { "text": " the other." }
+      ]
+    },
+    {
+      "id": "q_caged-fretboard-ch1-checkpoint.find-the-cs",
+      "kind": "fretboard",
+      "prompt": [
+        { "text": "Mark every " },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": " in the first five frets. There are three of them, and between them they belong to the C, A and G forms."
+        }
+      ],
+      "frets": 5,
+      "answer": [
+        { "string": 2, "fret": 1 },
+        { "string": 5, "fret": 3 },
+        { "string": 3, "fret": 5 }
+      ],
+      "explanation": [
+        {
+          "text": "String 2 fret 1 and string 5 fret 3 are the C form's pair; string 5 fret 3 and string 3 fret 5 are the A form's; and string 3 fret 5 is also the G form's middle root. Three positions, three forms, and two of the three positions shared — the overlap in miniature."
+        }
+      ]
+    },
+    {
+      "id": "q_caged-fretboard-ch1-checkpoint.six-roots",
+      "kind": "choice",
+      "prompt": [
+        { "text": "There are six " },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": "s in the first twelve frets, and the five forms between them account for all six. What does that tell you about the forms?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "Most of those roots sit inside two forms at once, so the windows share their edges."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "Each form holds its own separate roots, so learning five forms is five times the work."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "Only one form is really needed; the other four are alternative fingerings of it."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "The forms never touch, which is why you have to jump between them." }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "Five of the six belong to two forms each — only string 2, fret 1 sits in one form alone, because there is no form below the C form to share it with. The five forms are not five sets of different notes; they are five overlapping views of one set of six. That overlap is what makes the neck continuous instead of five islands."
+        }
+      ]
+    },
+    {
+      "id": "q_caged-fretboard-ch1-checkpoint.after-the-d-form",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "You are at the D form, barre at fret 10, and you keep climbing. What is the next window up the neck?"
+        }
+      ],
+      "options": [
+        { "id": "a", "spans": [{ "text": "Nothing — the D form is the last of the five." }] },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "The E form again, since it is the most-used barre on the instrument." }
+          ]
+        },
+        { "id": "c", "spans": [{ "text": "The C form, at fret 12." }] },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "The G form, because the order runs backwards above the twelfth fret." }
+          ]
+        }
+      ],
+      "answerId": "c",
+      "explanation": [
+        { "text": "The order " },
+        { "text": "C → A → G → E → D", "marks": ["code"] },
+        {
+          "text": " is cyclic, not a list with an end. Fret 12 is where the nut's own pattern comes back around, so the ladder wraps and the C form starts over there — and it reads the same way going down, where below any form sits the one before it in the order."
+        }
+      ]
+    }
+  ]
+}

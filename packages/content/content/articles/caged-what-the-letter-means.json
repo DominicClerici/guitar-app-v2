@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_caged-what-the-letter-means",
+    "slug": "caged-what-the-letter-means",
+    "title": "What the Letter Actually Names",
+    "summary": "The five CAGED letters name geometric shapes, not chords — barre the C form at the fifth fret and the chord you get is F.",
+    "tags": ["caged", "fretboard"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-11"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Barre the open " },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": " chord shape at fret 5 and most players will call the result a C. It isn't. It's "
+        },
+        { "text": "F", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "A barre is a movable nut. The open C chord only spells C because the guitar's real nut happens to put its root on string 5, fret 3. Swap that nut for a finger and the arrangement becomes portable — same skeleton, but the note it starts on now depends entirely on where you set the finger down."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "You already know this trick in your hands, even without a name for it. The two barre chords everyone learns first — the one built from the open E chord and the one built from the open A chord — work exactly this way: hold the arrangement, move where the nut effectively falls, and the chord follows. CAGED is the same trick applied to five open chords instead of the usual two."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Play it out in full. Open C is " },
+        { "text": "x 3 2 0 1 0", "marks": ["code"] },
+        {
+          "text": ", strings 6 through 1. Barre that same shape at fret 5 and every finger moves up five frets together: "
+        },
+        { "text": "x 8 7 5 6 5", "marks": ["code"] },
+        {
+          "text": ". The root — the note that used to sit on string 5, fret 3 — now sits on string 5, fret 8. That fret is "
+        },
+        { "text": "F", "marks": ["code"] },
+        { "text": ". Same shape, different chord, because the root landed somewhere else." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "So the five letters in CAGED don't name five chords. They name five geometric arrangements — five ways a major chord's root, third and fifth can sit across six strings, each one worked out from a familiar open chord. Any one of those arrangements can spell any chord at all, C included, depending only on where the nut — real or movable — happens to be. Each is named after the open chord it resembles, C, A, G, E, D, which is where the acronym comes from — but the letter is a label for the skeleton, never a promise about the sound that comes out of it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "You'll see these five arrangements called shapes elsewhere in the guitar world — a fair synonym, and worth recognising when you meet it. This pathway calls them forms: the C form, the A form, and so on."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "This chapter takes one chord — C — and finds where each of its five forms actually sits on the neck. For now you're marking only the root of each form: the single note that tells you which chord you're really holding. Everything else a form contains, its third and its fifth, waits for the next chapter. Roots first, because every other note gets measured from one — once you can find a form's root without counting, everything you add on top of it later slots into place around something solid."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-ladder",
+      "props": { "root": "C" }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That's the destination: every C on the neck, in all five forms, laid out as one picture. Don't try to read it yet — five overlapping bands is a lot to take in at once. Just notice C shows up again and again, and by the end of this chapter you'll know exactly why. Treat it as a preview: a promise that the pattern beneath these five shapes eventually clicks into one continuous map, not five separate ones."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "spans": [
+        {
+          "text": "The letter never tells you the chord. Only the root does — find that, and you know what you're actually playing."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Next up: " },
+        {
+          "text": "the C form itself",
+          "link": { "kind": "article", "slug": "caged-roots-c-form" }
+        },
+        { "text": ", right where it was named — sitting at the nut." }
+      ]
+    }
+  ]
+}

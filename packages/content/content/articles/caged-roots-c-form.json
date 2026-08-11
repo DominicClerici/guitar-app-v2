@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_caged-roots-c-form",
+    "slug": "caged-roots-c-form",
+    "title": "The C Form: Roots on 5 and 2",
+    "summary": "The C form's two roots sit on string 5 fret 3 and string 2 fret 1, and the B string bends what looks like a simple diagonal.",
+    "tags": ["caged", "fretboard"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-11"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The C form of C major is nothing new — it's the open C chord you already know, with the nut doing the work a barre would do elsewhere. Barre fret 0, and the window it occupies runs from the open strings to fret 4."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That's a five-fret span even though the barre itself does no real work at fret 0 — it's just the open strings ringing free. The window is the stretch the diagram lights up; the barre fret is where the moving nut actually sits. Keep the two separate in your head now, because they won't always land on the same edge, and later forms will make that obvious."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "It carries two roots: string 5, fret 3, and string 2, fret 1. Every other note this form will ever hold gets measured from one of those two. This is the first form in the chapter, and it sets the pattern for the rest: one root you probably already knew, one worth memorizing on purpose."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here's the first oddity. String 2, fret 1 is the higher-sounding root — a full octave above string 5, fret 3 — yet it sits two frets closer to the nut. Three strings across, and the octave comes back two frets early instead of further out. That's not an accident in the shape; it's the B string. Standard tuning breaks its usual spacing right between strings 3 and 2, and that irregularity is the first sign the neck won't ever feel like a clean diagonal. Fret the open chord and pluck string 2 alone: that ringing note is C, the same letter as the bass note beneath it, already an octave up before the shape even leaves the nut. The exact numbers behind the shift are still ahead — for now, just recognize the cause by name. The B string bites again, more sharply, once the ladder reaches the D form."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "In practice: string 5, fret 3 is the C most players already know — the note the open chord is built from, under your third finger. String 2, fret 1 sits under your index finger in that same open shape, a note you've been fretting all along without knowing it was a second root. Say the note out loud as you fret each one — string 5 fret 3 is C, string 2 fret 1 is also C — until reaching for either root is automatic rather than counted."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "C",
+        "form": "C",
+        "show": "roots",
+        "caption": "The C form's roots: string 5, fret 3, and string 2, fret 1."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Move this form off the nut and a problem shows up straight away. The barre sits at fret n while your other fingers have to reach out to n+3 — a stretch most hands refuse. Real players almost never hold the C form whole. They take fragments: the top four strings on their own, or the low root and its neighbours on strings 5, 4 and 3. That is not a workaround, it is how this form actually gets played, and the same habit comes back for every wide form in this chapter."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        {
+          "text": "Try just the top four strings next time you reach for C. They still spell a full, recognizable chord — no stretch required."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Open " },
+        { "text": "Scale Visualizer", "link": { "kind": "screen", "href": "/scale-visualizer" } },
+        {
+          "text": ", page to the C form, and both roots are lit exactly where they are here."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Next: " },
+        {
+          "text": "the A form",
+          "link": { "kind": "article", "slug": "caged-roots-a-form" }
+        },
+        {
+          "text": ", where the barre is finally comfortable to hold whole and the two roots line up the easy way."
+        }
+      ]
+    }
+  ]
+}

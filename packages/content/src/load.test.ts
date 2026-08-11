@@ -24,9 +24,9 @@ describe('the authored corpus', () => {
   it('loads, validates, and resolves every reference', async () => {
     const { documents, pathways } = await loadContent();
 
-    expect(documents.filter((document) => document.kind === 'article')).toHaveLength(4);
-    expect(documents.filter((document) => document.kind === 'quiz')).toHaveLength(3);
-    expect(documents.filter((document) => document.kind === 'activity')).toHaveLength(2);
+    expect(documents.filter((document) => document.kind === 'article')).toHaveLength(11);
+    expect(documents.filter((document) => document.kind === 'quiz')).toHaveLength(4);
+    expect(documents.filter((document) => document.kind === 'activity')).toHaveLength(3);
     expect(pathways.map((pathway) => pathway.slug)).toEqual(['caged-fretboard', 'fundamentals']);
   });
 
@@ -59,6 +59,7 @@ describe('the authored corpus', () => {
       (section): section is CurriculumSection => section.kind === 'activity',
     );
     expect(activities.map((section) => section.ref)).toEqual([
+      'caged-find-every-c',
       'find-the-a-notes',
       'eighth-note-timing',
     ]);
@@ -74,6 +75,7 @@ describe('the authored corpus', () => {
     const activities = documents.filter((document) => document.kind === 'activity');
 
     expect(activities.map((document) => document.slug)).toEqual([
+      'caged-find-every-c',
       'eighth-note-timing',
       'find-the-a-notes',
     ]);

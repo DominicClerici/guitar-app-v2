@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_caged-roots-d-form",
+    "slug": "caged-roots-d-form",
+    "title": "The D Form: Small, High, and Always a Fragment",
+    "summary": "The D form's octave jump is +3 frets instead of +2 because it crosses the B string, and its upper root sits one fret past the twelfth-fret marker.",
+    "tags": ["caged", "fretboard"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-11"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The D form of " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " sits with its barre at fret " },
+        { "text": "10", "marks": ["code"] },
+        { "text": ", drawing a window across frets " },
+        { "text": "9–13", "marks": ["code"] },
+        { "text": " — the highest of the five, and the only one that runs past the twelfth fret." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Its roots: " },
+        { "text": "string 4 fret 10", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "string 2 fret 13", "marks": ["code"] },
+        { "text": ". Two, back down from the G and E forms' three — and one of the two, " },
+        { "text": "string 4 fret 10", "marks": ["code"] },
+        { "text": ", is a note you already own from the E form's " },
+        { "text": "6 → 4", "marks": ["code"] },
+        { "text": " map. The E form and the D form share it." }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "C",
+        "form": "D",
+        "show": "roots",
+        "caption": "Two roots: string 4 fret 10, string 2 fret 13"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "This is the last form, so here is the octave rule complete: " },
+        { "text": "4 → 2", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "+3", "marks": ["code"] },
+        { "text": " frets, not the " },
+        { "text": "+2", "marks": ["code"] },
+        { "text": " you saw for " },
+        { "text": "6 → 4", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "5 → 3", "marks": ["code"] },
+        { "text": ". Standard tuning is all fourths except " },
+        { "text": "G → B", "marks": ["code"] },
+        { "text": ", which is a major third. A two-string jump that misses " },
+        { "text": "G → B", "marks": ["code"] },
+        {
+          "text": " covers ten semitones, so two more frets make an octave; one that crosses it covers only nine, so it takes three. That's why "
+        },
+        { "text": "4 → 2", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "3 → 1", "marks": ["code"] },
+        { "text": " both need " },
+        { "text": "+3", "marks": ["code"] },
+        { "text": " — they cross the B string." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "It's the same irregularity the C form flagged first: its higher-sounding root sat two frets nearer the nut than expected, and the B string was named as the cause without the arithmetic behind it. Here is that arithmetic, and it closes the loop — every odd lean in this chapter's roots traces back to the one string that isn't tuned a fourth from its neighbour."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The D form is the " },
+        { "text": "smallest", "marks": ["bold"] },
+        {
+          "text": " of the five, and essentially never played whole. The full D-form barre isn't a thing players do — it lives as a top-strings fragment from the start, not as a whole shape someone gave up on. That fragment is genuinely useful rather than a consolation prize: it's the highest place this chord lives before the neck repeats itself, and it sits exactly where a lead line is probably already sitting, so grabbing two or three notes of it costs no repositioning at all. Reuse the fragment habit from the C form; this is the same idea in its tightest spot."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "spans": [
+        {
+          "text": "Don't try to hold the full D-form barre. It isn't a stretch worth fighting for — take the top-strings fragment instead."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Every window in this chapter is the same five frets wide — the D form isn't smaller because its window is narrower, it's smaller because only two of the six "
+        },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": "s in the first twelve frets happen to fall inside it. Where the G and E forms each caught three, this one catches two."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Look at that upper root again: " },
+        { "text": "string 2 fret 13", "marks": ["code"] },
+        { "text": " sits one fret past the twelfth-fret marker, and it is the same note as " },
+        { "text": "string 2 fret 1", "marks": ["code"] },
+        {
+          "text": " — the C form's upper root — an octave higher. Fret 12 is where the nut's own pattern comes back around, so right after the D form the ladder starts again with the C form, up at fret 12."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Stop here and take stock: five forms, five windows, every root of " },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": " in the first twelve frets accounted for. Nothing about finding a root anywhere on this neck should require counting from open string any more."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That wrap-around, and what it means for the whole neck at once, is where the chapter closes next."
+        }
+      ]
+    }
+  ]
+}

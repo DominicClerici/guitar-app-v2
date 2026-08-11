@@ -1,0 +1,262 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_caged-root-ladder",
+    "slug": "caged-root-ladder",
+    "title": "The Root Ladder",
+    "summary": "The five forms are not five alternatives but consecutive, interlocking windows in the fixed order C-A-G-E-D, sharing six roots between them.",
+    "tags": ["caged", "fretboard"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-11"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Five forms, five lessons, and it can look like five separate ways to play the same chord. It isn't. Laid end to end, the five forms are one continuous ladder of windows climbing the neck, and every root you've met so far is a rung on it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The tables below write a root as string, then fret — " },
+        { "text": "5·3", "marks": ["code"] },
+        { "text": " means string 5, fret 3. Here's every form's roots, side by side:" }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Form" }],
+        [{ "text": "Barre fret" }],
+        [{ "text": "Window" }],
+        [{ "text": "Roots (string · fret)" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "C" }],
+          [{ "text": "0 (open)", "marks": ["code"] }],
+          [{ "text": "0–4", "marks": ["code"] }],
+          [{ "text": "5·3, 2·1", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "A" }],
+          [{ "text": "3", "marks": ["code"] }],
+          [{ "text": "2–6", "marks": ["code"] }],
+          [{ "text": "5·3, 3·5", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "G" }],
+          [{ "text": "5", "marks": ["code"] }],
+          [{ "text": "4–8", "marks": ["code"] }],
+          [{ "text": "6·8, 3·5, 1·8", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "E" }],
+          [{ "text": "8", "marks": ["code"] }],
+          [{ "text": "7–11", "marks": ["code"] }],
+          [{ "text": "6·8, 4·10, 1·8", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "D" }],
+          [{ "text": "10", "marks": ["code"] }],
+          [{ "text": "9–13", "marks": ["code"] }],
+          [{ "text": "4·10, 2·13", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-ladder",
+      "props": { "root": "C" }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That's every root you've learned this chapter, in one picture. Now it should read: five labelled bands, climbing the neck, every "
+        },
+        { "text": "C", "marks": ["code"] },
+        { "text": " lit inside them." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The order is fixed and cyclic: " },
+        { "text": "C → A → G → E → D", "marks": ["code"] },
+        { "text": ", then " },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": " again at fret 12, forever. It isn't an acronym to recite — it's the order the windows physically occur in as you move up the neck, and it reads the same way coming back down: below any form is whichever one precedes it in "
+        },
+        { "text": "C → A → G → E → D", "marks": ["code"] },
+        { "text": ", wrapping in both directions." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "And they interlock. The top of one window is the bottom of the next: " },
+        { "text": "C", "marks": ["code"] },
+        { "text": "'s 0–4 and " },
+        { "text": "A", "marks": ["code"] },
+        { "text": "'s 2–6 share frets 2–4; " },
+        { "text": "A", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " share 4–6; " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "E", "marks": ["code"] },
+        { "text": " share 7–8; " },
+        { "text": "E", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "D", "marks": ["code"] },
+        {
+          "text": " share 9–11. That overlap is what makes the neck one continuous ladder instead of five separate islands."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "You already saw the seam at the top of this ladder: the D form's upper root, " },
+        { "text": "string 2 fret 13", "marks": ["code"] },
+        { "text": ", is the same note as the C form's upper root, " },
+        { "text": "string 2 fret 1", "marks": ["code"] },
+        {
+          "text": ", an octave up. Fret 12 is where the pattern comes back around, so the ladder doesn't run out at the D form — it wraps, and the C form starts over exactly where the D form left off."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here is the concrete version of the same claim, and it's the strongest fact in this chapter: there are only six "
+        },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": "s in the first twelve frets, and every one of them except the very first belongs to two forms at once."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [[{ "text": "Position (string · fret)" }], [{ "text": "Belongs to" }]],
+      "rows": [
+        [[{ "text": "2·1", "marks": ["code"] }], [{ "text": "C form only" }]],
+        [[{ "text": "5·3", "marks": ["code"] }], [{ "text": "C and A" }]],
+        [[{ "text": "3·5", "marks": ["code"] }], [{ "text": "A and G" }]],
+        [[{ "text": "6·8", "marks": ["code"] }], [{ "text": "G and E" }]],
+        [[{ "text": "1·8", "marks": ["code"] }], [{ "text": "G and E" }]],
+        [[{ "text": "4·10", "marks": ["code"] }], [{ "text": "E and D" }]]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The forms are not five sets of different notes. They are five overlapping views of one set of six roots, and the overlap is the whole reason the neck feels continuous once you can see it this way."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That's the payoff of the whole chapter in one line: learn six positions and you know every "
+        },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": " on the first twelve frets, in all five forms. Five forms was never five times the work — it was six facts, viewed from five angles."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Notice the shape of that table: only the very first root, " },
+        { "text": "2·1", "marks": ["code"] },
+        { "text": ", belongs to one form alone, because there's no form below the " },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": " form to share it with. Every other root sits in exactly two forms' windows at once — which is also why the "
+        },
+        { "text": "A form", "link": { "kind": "article", "slug": "caged-roots-a-form" } },
+        {
+          "text": " could mention in passing that its lower root belonged to the C form too. That single sentence there is this whole table, one row at a time."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [{ "text": "The octave shapes you built form by form, all in one place:" }]
+    },
+    {
+      "type": "table",
+      "header": [[{ "text": "Jump" }], [{ "text": "Semitones" }], [{ "text": "Fret change" }]],
+      "rows": [
+        [
+          [{ "text": "6 → 4", "marks": ["code"] }],
+          [{ "text": "10" }],
+          [{ "text": "+2", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "5 → 3", "marks": ["code"] }],
+          [{ "text": "10" }],
+          [{ "text": "+2", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "4 → 2", "marks": ["code"] }],
+          [{ "text": "9" }],
+          [{ "text": "+3", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "3 → 1", "marks": ["code"] }],
+          [{ "text": "9" }],
+          [{ "text": "+3", "marks": ["code"] }]
+        ],
+        [[{ "text": "6 → 1", "marks": ["code"] }], [{ "text": "24" }], [{ "text": "same fret" }]]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Every row comes from one fact: standard tuning is all fourths except " },
+        { "text": "G → B", "marks": ["code"] },
+        {
+          "text": ", which is a major third. A two-string jump that stays clear of that gap covers ten semitones, needing "
+        },
+        { "text": "+2", "marks": ["code"] },
+        { "text": " frets for the octave; cross it and you've covered nine, needing " },
+        { "text": "+3", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "info",
+      "spans": [
+        {
+          "text": "You will not be asked to learn a new shape after this chapter. Chapters 2, 3 and 4 put more notes inside these same five windows — first the third and fifth, then the major pentatonic, then the whole major scale. The windows don't change. Only how much of each one is lit."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Open the " },
+        { "text": "Scale Visualizer", "link": { "kind": "screen", "href": "/scale-visualizer" } },
+        { "text": ", set the root to " },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": ", and page through the five positions one at a time. Check each one's window against the table above as you go — the pager's labels are the same five form names you've just spent a chapter learning, and the fret ranges should match exactly. A checkpoint is next, and after it, the next chapter starts filling these same windows in."
+        }
+      ]
+    }
+  ]
+}
