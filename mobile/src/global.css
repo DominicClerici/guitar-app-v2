@@ -22,6 +22,7 @@
   --surface-raised: #20232a; /* raised chips / ghost buttons */
   --edge-top: rgba(255, 255, 255, 0.06); /* bevel highlight */
   --edge-bottom: rgba(0, 0, 0, 0.52); /* bevel shadow */
+  --accent-edge: rgba(255, 255, 255, 0.16); /* lit hairline on a filled accent control */
   --line: #2a2e36; /* hairline */
   --line-soft: #23262d; /* softer hairline / side borders */
   --scrim: rgba(4, 5, 7, 0.35); /* backdrop behind a transient menu */
