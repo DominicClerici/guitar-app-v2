@@ -1,0 +1,219 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_caged-triad-e-form",
+    "slug": "caged-triad-e-form",
+    "title": "The E Form: One String Makes It Major",
+    "summary": "Five of the E form's six strings are a root or a fifth, so the whole quality of the most-used chord on the guitar rests on a single note.",
+    "tags": ["caged", "fretboard"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-11"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The E form of " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " has its barre at fret " },
+        { "text": "8", "marks": ["code"] },
+        { "text": ", drawing a window across frets " },
+        { "text": "7–11", "marks": ["code"] },
+        { "text": ". Its three roots — " },
+        { "text": "6·8", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "4·10", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "1·8", "marks": ["code"] },
+        { "text": " — are the " },
+        { "text": "6 → 4 → 1", "marks": ["code"] },
+        { "text": " map you already know. Degrees low to high: " },
+        { "text": "1 5 1 3 5 1", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Count them. Three " },
+        { "text": "1", "marks": ["code"] },
+        { "text": "s, two " },
+        { "text": "5", "marks": ["code"] },
+        { "text": "s, one " },
+        { "text": "3", "marks": ["code"] },
+        {
+          "text": ". Six strings, three notes — the doubling promised at the start of this chapter, made concrete in the shape you already play almost every day."
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        [{ "text": "6·8 — 1, C", "marks": ["code"] }],
+        [{ "text": "5·10 — 5, G", "marks": ["code"] }],
+        [{ "text": "4·10 — 1, C", "marks": ["code"] }],
+        [{ "text": "3·9 — 3, E", "marks": ["code"] }],
+        [{ "text": "2·8 — 5, G", "marks": ["code"] }],
+        [{ "text": "1·8 — 1, C", "marks": ["code"] }]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Five of the six strings are root or fifth. That leaves exactly one string carrying the note that actually decides what chord this is: "
+        },
+        { "text": "3·9", "marks": ["code"] },
+        {
+          "text": ", the only "
+        },
+        { "text": "3", "marks": ["code"] },
+        { "text": " in the whole shape. Move that one note and " },
+        { "text": "the most-used chord on the guitar turns minor.", "marks": ["bold"] },
+        {
+          "text": " The workhorse chord of the instrument hangs on a single string."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "C",
+        "form": "E",
+        "show": "triad",
+        "caption": "The only 3 in the shape is string 3, fret 9. Everything else in the grip is a 1 or a 5."
+      }
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        { "text": "String 3, fret " },
+        { "text": "9", "marks": ["code"] },
+        { "text": " is the only " },
+        { "text": "3", "marks": ["code"] },
+        { "text": " in the shape — the one note that makes this chord major instead of minor." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "It's also one of only two forms in this chapter you play exactly as written, barre and all, instead of in pieces — the other being the A form. Every one of those six notes rings; no fragment habit needed here."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The bottom three strings — " },
+        { "text": "6·8", "marks": ["code"] },
+        { "text": " " },
+        { "text": "1", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "5·10", "marks": ["code"] },
+        { "text": " " },
+        { "text": "5", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "4·10", "marks": ["code"] },
+        { "text": " " },
+        { "text": "1", "marks": ["code"] },
+        { "text": " — are " },
+        { "text": "1 5 1", "marks": ["code"] },
+        {
+          "text": ", the power chord with a low-E root. It's the same shape the A form gave you on strings 5-4-3; the two full-barre forms in this chapter each hide one, which is a large part of why both feel like home."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The top three strings are a different story: " },
+        { "text": "3·9", "marks": ["code"] },
+        { "text": " " },
+        { "text": "3", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "2·8", "marks": ["code"] },
+        { "text": " " },
+        { "text": "5", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "1·8", "marks": ["code"] },
+        { "text": " " },
+        { "text": "1", "marks": ["code"] },
+        { "text": " — a complete triad, " },
+        { "text": "3 5 1", "marks": ["code"] },
+        {
+          "text": ", unlike anything the G form's top three offered. Grab it without moving your hand off the barre position, and you have a high, bright fragment sitting right there whenever you need one."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One window dot sits below the barre and outside every grip here: "
+        },
+        { "text": "5·7", "marks": ["code"] },
+        { "text": ", a " },
+        { "text": "3", "marks": ["code"] },
+        { "text": " you'll never actually play in this form." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "This is also why the E form stays the shape you navigate the rest of the neck from. Its low-E root places every other chord tone in the window relative to the one string most players read fastest — name a note on string 6 and you have placed the other five without counting: two more roots, two fifths, and the single "
+        },
+        { "text": "3", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Compare it with the G form, which also has three roots. Count that one's degrees — "
+        },
+        { "text": "1 3 5 1 3 1", "marks": ["code"] },
+        { "text": " — and you get three roots, two thirds, one fifth. The E form is " },
+        { "text": "1 5 1 3 5 1", "marks": ["code"] },
+        {
+          "text": ": three roots, two fifths, one third. The two shapes are exact mirrors of each other. In the G form the fifth is the scarce note, which is why its top fragment can drop it and stay major; in the E form the third is the scarce note, which is why one string decides everything."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Open the " },
+        { "text": "Scale Visualizer", "link": { "kind": "screen", "href": "/scale-visualizer" } },
+        { "text": " on root " },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": " and find the E form there — the same barre, the same one note deciding everything. Fret it, then lift the finger sitting on "
+        },
+        { "text": "3·9", "marks": ["code"] },
+        {
+          "text": " and listen to the chord go hollow — root and fifth alone, no quality at all until that note comes back."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Last is the " },
+        {
+          "text": "D form",
+          "marks": ["bold"],
+          "link": { "kind": "article", "slug": "caged-triad-d-form" }
+        },
+        {
+          "text": " — the smallest of the five, and where this chapter joins every window up into one picture."
+        }
+      ]
+    }
+  ]
+}

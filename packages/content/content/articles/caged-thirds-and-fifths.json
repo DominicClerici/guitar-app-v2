@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_caged-thirds-and-fifths",
+    "slug": "caged-thirds-and-fifths",
+    "title": "Two More Notes, the Same Five Windows",
+    "summary": "A major triad is just 1, 3, 5, and the same five CAGED windows that held roots now light every one of them — more than any hand plays at once.",
+    "tags": ["caged", "fretboard"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-11"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Chapter 1 promised you'd never learn a new shape again. Here's that promise coming due: the same five windows you already found on the neck, filled in with two more notes apiece — no new shapes, just more of the ones you already have."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "A major triad is three notes: the root, the third and the fifth — " },
+        { "text": "1", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "5", "marks": ["code"] },
+        { "text": ". In C that's " },
+        { "text": "C", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "E", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "G", "marks": ["code"] },
+        {
+          "text": ", and nothing else. Every C major chord on this neck, however many strings it uses and wherever it sits, is built from exactly those three notes. Six strings, three notes — so notes have to repeat, which is why a form's degrees end up reading something like "
+        },
+        { "text": "1 5 1 3 5 1", "marks": ["code"] },
+        { "text": " instead of a tidy " },
+        { "text": "1 3 5", "marks": ["code"] },
+        {
+          "text": ". The extra numbers in a run like that aren't new notes. They're the same three, doubled onto more strings than a triad strictly needs."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "One of the three does more work than the other two: the " },
+        { "text": "3", "marks": ["code"] },
+        {
+          "text": ". Lower it a fret and the same chord turns minor — the root and the fifth don't move, only that one note does. Keep track of where it sits in each form from here on. It's the note worth being able to point to without counting, because it's the note a fragment keeps even when everything else around it gets left out."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here's the convention behind every diagram in this chapter, stated once so no later lesson has to repeat it. A window diagram doesn't draw one chord you could grab. It lights every "
+        },
+        { "text": "1", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "5", "marks": ["code"] },
+        {
+          "text": " inside the five-fret window — every C, E and G a hand could reach from that position, not the handful a hand actually plays at once. The window is the territory. The chord you play is a route through it, and for most of these windows there's more than one route."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Look again at " },
+        {
+          "text": "the A form",
+          "link": { "kind": "article", "slug": "caged-roots-a-form" }
+        },
+        {
+          "text": " — the barre chord chapter 1 already gave you two roots for, and the friendliest of the five."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "C",
+        "form": "A",
+        "show": "triad",
+        "caption": "The A form's window: the same two roots as before, now with every third and fifth around them lit too."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Same window, same two roots lit where they always were. Everything else on this diagram is new — five more dots, every one of them a third or a fifth, living inside a five-fret span no hand fully covers at once. That's not a flaw in the picture. It's the picture doing its job: showing you everything the window contains, not just the piece your fingers happen to be on."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That gap — between what the window holds and what a hand can hold — is this chapter's real subject, and it splits the five forms into two different jobs."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [[{ "text": "Form" }], [{ "text": "How it is actually played" }]],
+      "rows": [
+        [[{ "text": "C" }], [{ "text": "Fragments — top four strings, or strings 3-2-1" }]],
+        [[{ "text": "A" }], [{ "text": "Whole. The barre almost everyone already owns." }]],
+        [
+          [{ "text": "G" }],
+          [{ "text": "Fragments — bottom three, or the middle three at the barre" }]
+        ],
+        [[{ "text": "E" }], [{ "text": "Whole. The most-used barre on the instrument." }]],
+        [[{ "text": "D" }], [{ "text": "Top three or four strings, from the start" }]]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Two of the five are full barres. Three are fragment shapes. That isn't a shortcut or a concession — a full barre on the other three would be a genuine reach for very little gain. It's simply how the instrument gets played."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "spans": [
+        {
+          "text": "Don't try to barre all five forms whole. Two of them, A and E, are built for it. The other three are fragment shapes by design — treating them as barre chords you just haven't learned yet is the fastest way to quit CAGED."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Open " },
+        { "text": "Scale Visualizer", "link": { "kind": "screen", "href": "/scale-visualizer" } },
+        {
+          "text": " and page through the five C positions. Every window you'll meet this chapter is already there, waiting for its third and fifth to catch up with the root you already know."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Up first: " },
+        {
+          "text": "the C form",
+          "link": { "kind": "article", "slug": "caged-triad-c-form" }
+        },
+        {
+          "text": ", the one that shows exactly why fragments exist — not as a workaround, but as geometry."
+        }
+      ]
+    }
+  ]
+}

@@ -211,6 +211,7 @@ Hold all of these. A chapter that breaks one costs the pathway its consistency.
 | Accidentals | **Sharps by default** (`C#`, `G#`). Flats only when spelling a genuinely flat key, which is chapter 5 territory. |
 | Degrees | `1 2 3 4 5 6 7`, altered as `b3` / `b7`, always with the `code` mark. |
 | Frets | "fret 3"; the nut is "fret 0" or "open". The fret a barre sits at is the **barre fret**. |
+| Positions | **Spelled out** — "string 5, fret 3" — whenever a lesson is introducing something. The compact `5·3` (string, then fret, `code` mark) is defined in chapter 1's closer and used from chapter 2 on, where positions arrive thick enough that spelling every one out is unreadable. Ratified as a deliberate progression: a chapter may use `5·3` freely, but re-state what it means the first time a chapter leans on it, since a learner may arrive at any chapter after a gap. |
 | Chord names | `C` for C major. Never "Cmaj" for a triad. |
 | Key | Everything is in **C major** until chapter 5. Do not quietly demonstrate in G. |
 | Note names | `code` mark, scientific pitch only inside `listen` audio specs (`C4`), never in prose. |
@@ -227,6 +228,12 @@ section, when writing a `live` block.
   layer to show (`roots` / `triad` / `pentatonic` / `scale`). **One component serves all four
   layer chapters**, which is the point: the learner watches the same window fill in as they climb
   the pathway. This is the workhorse of chapters 1–4 and every form lesson should use it.
+  **It draws every note of the layer inside the window, not one playable grip** — so at
+  `show: "triad"` a window carries seven or eight dots where a hand holds four to six. That is
+  deliberate (which notes a hand can reach at once is `/chord-shapes`'s question), but a lesson
+  that describes the diagram as a chord shape will contradict its own picture. Chapter 2 handles
+  this by stating the convention once in its opener and naming each window's spare dots; do the
+  same, or say why not.
 - **`caged-ladder`** — the whole neck with all five windows for one chord, showing the tiling and
   the overlaps. For chapter closers and chapter 5.
 

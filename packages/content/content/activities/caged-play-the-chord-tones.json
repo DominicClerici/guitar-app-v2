@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "act_caged-play-the-chord-tones",
+    "slug": "caged-play-the-chord-tones",
+    "title": "Drill: Play the Chord Tones",
+    "summary": "Play the C major triad in all five windows — whole where that is sensible, as a fragment where it is not — and then pick out every 3 on the neck."
+  },
+  "activity": {
+    "kind": "note-play",
+    "modes": ["easy", "hard"],
+    "board": { "fretFrom": 0, "fretTo": 13 },
+    "rounds": [
+      {
+        "kind": "targets",
+        "id": "r_caged-play-the-chord-tones.c-form",
+        "prompt": [
+          { "text": "The C form, at the nut — the open " },
+          { "text": "C", "marks": ["code"] },
+          { "text": " chord. Five notes, strings 5 down to 1, degrees " },
+          { "text": "1 3 5 1 3", "marks": ["code"] },
+          { "text": ". Play them one at a time so the microphone can hear each one." }
+        ],
+        "targets": [
+          { "string": 5, "fret": 3 },
+          { "string": 4, "fret": 2 },
+          { "string": 3, "fret": 0 },
+          { "string": 2, "fret": 1 },
+          { "string": 1, "fret": 0 }
+        ],
+        "board": { "fretFrom": 0, "fretTo": 4 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_caged-play-the-chord-tones.a-form",
+        "prompt": [
+          { "text": "The A form, barre at fret 3. Hold this one whole — degrees " },
+          { "text": "1 5 1 3 5", "marks": ["code"] },
+          { "text": " from string 5 up. Pick the strings separately." }
+        ],
+        "targets": [
+          { "string": 5, "fret": 3 },
+          { "string": 4, "fret": 5 },
+          { "string": 3, "fret": 5 },
+          { "string": 2, "fret": 5 },
+          { "string": 1, "fret": 3 }
+        ],
+        "board": { "fretFrom": 2, "fretTo": 6 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_caged-play-the-chord-tones.g-fragment",
+        "prompt": [
+          {
+            "text": "The G form is not one you hold whole. Take its middle three instead: strings 4, 3 and 2, all at fret 5, one finger across them. Degrees "
+          },
+          { "text": "5 1 3", "marks": ["code"] },
+          { "text": " — a complete " },
+          { "text": "C", "marks": ["code"] },
+          { "text": "." }
+        ],
+        "targets": [
+          { "string": 4, "fret": 5 },
+          { "string": 3, "fret": 5 },
+          { "string": 2, "fret": 5 }
+        ],
+        "board": { "fretFrom": 4, "fretTo": 8 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_caged-play-the-chord-tones.e-form",
+        "prompt": [
+          {
+            "text": "The E form, barre at fret 8 — the most-used barre on the instrument. All six strings, degrees "
+          },
+          { "text": "1 5 1 3 5 1", "marks": ["code"] },
+          { "text": ". Only one of the six is the " },
+          { "text": "3", "marks": ["code"] },
+          { "text": "; listen for it as you go." }
+        ],
+        "targets": [
+          { "string": 6, "fret": 8 },
+          { "string": 5, "fret": 10 },
+          { "string": 4, "fret": 10 },
+          { "string": 3, "fret": 9 },
+          { "string": 2, "fret": 8 },
+          { "string": 1, "fret": 8 }
+        ],
+        "board": { "fretFrom": 7, "fretTo": 11 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_caged-play-the-chord-tones.d-fragment",
+        "prompt": [
+          {
+            "text": "The D form's top three strings — 3, 2 and 1 at frets 12, 13 and 12. Degrees "
+          },
+          { "text": "5 1 3", "marks": ["code"] },
+          { "text": ", with the " },
+          { "text": "3", "marks": ["code"] },
+          { "text": " on top. This is the whole form as anyone actually plays it." }
+        ],
+        "targets": [
+          { "string": 3, "fret": 12 },
+          { "string": 2, "fret": 13 },
+          { "string": 1, "fret": 12 }
+        ],
+        "board": { "fretFrom": 9, "fretTo": 13 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_caged-play-the-chord-tones.every-third",
+        "prompt": [
+          { "text": "Whole neck, no window to help you. Find four " },
+          { "text": "E", "marks": ["code"] },
+          { "text": "s — the " },
+          { "text": "3", "marks": ["code"] },
+          { "text": " of " },
+          { "text": "C", "marks": ["code"] },
+          {
+            "text": ", the note that makes the chord major — and play them low to high, in order: string 6 open, string 4 fret 2, string 3 fret 9, string 1 fret 12."
+          }
+        ],
+        "targets": [
+          { "string": 6, "fret": 0 },
+          { "string": 4, "fret": 2 },
+          { "string": 3, "fret": 9 },
+          { "string": 1, "fret": 12 }
+        ],
+        "ordered": true,
+        "board": { "fretFrom": 0, "fretTo": 13 }
+      }
+    ]
+  }
+}

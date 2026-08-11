@@ -83,6 +83,75 @@
         "ref": "caged-fretboard-ch1-checkpoint",
         "passThresholdPct": 70
       }
+    },
+    {
+      "id": "caged-fretboard.ch2",
+      "slug": "filling-in-the-chord",
+      "title": "Filling In the Chord",
+      "summary": "The third and the fifth go into the same five windows. Two forms hold whole, three live as fragments, and one note decides major or minor.",
+      "sections": [
+        {
+          "id": "caged-fretboard.ch2.thirds-and-fifths",
+          "slug": "caged-thirds-and-fifths",
+          "title": "Two More Notes, the Same Five Windows",
+          "kind": "article",
+          "ref": "caged-thirds-and-fifths",
+          "estimatedMin": 5
+        },
+        {
+          "id": "caged-fretboard.ch2.triad-c-form",
+          "slug": "caged-triad-c-form",
+          "title": "The C Form: Where Fragments Come From",
+          "kind": "article",
+          "ref": "caged-triad-c-form",
+          "estimatedMin": 4
+        },
+        {
+          "id": "caged-fretboard.ch2.triad-a-form",
+          "slug": "caged-triad-a-form",
+          "title": "The A Form: The Barre You Already Own",
+          "kind": "article",
+          "ref": "caged-triad-a-form",
+          "estimatedMin": 5
+        },
+        {
+          "id": "caged-fretboard.ch2.triad-g-form",
+          "slug": "caged-triad-g-form",
+          "title": "The G Form: Played in Pieces",
+          "kind": "article",
+          "ref": "caged-triad-g-form",
+          "estimatedMin": 5
+        },
+        {
+          "id": "caged-fretboard.ch2.triad-e-form",
+          "slug": "caged-triad-e-form",
+          "title": "The E Form: One String Makes It Major",
+          "kind": "article",
+          "ref": "caged-triad-e-form",
+          "estimatedMin": 5
+        },
+        {
+          "id": "caged-fretboard.ch2.triad-d-form",
+          "slug": "caged-triad-d-form",
+          "title": "The D Form, and the Chord Everywhere at Once",
+          "kind": "article",
+          "ref": "caged-triad-d-form",
+          "estimatedMin": 5
+        },
+        {
+          "id": "caged-fretboard.ch2.play-the-chord-tones",
+          "slug": "caged-play-the-chord-tones",
+          "title": "Drill: Play the Chord Tones",
+          "kind": "activity",
+          "ref": "caged-play-the-chord-tones",
+          "optional": true,
+          "estimatedMin": 8
+        }
+      ],
+      "checkpoint": {
+        "ref": "caged-fretboard-ch2-checkpoint",
+        "passThresholdPct": 70
+      }
     }
   ]
 }

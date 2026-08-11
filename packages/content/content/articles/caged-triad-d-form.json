@@ -1,0 +1,266 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_caged-triad-d-form",
+    "slug": "caged-triad-d-form",
+    "title": "The D Form, and the Chord Everywhere at Once",
+    "summary": "The D form is the only one whose top note is the third, and every overlap between neighbouring windows turns out to hold a complete triad of its own.",
+    "tags": ["caged", "fretboard"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-11"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The D form of " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " sits with its barre at fret " },
+        { "text": "10", "marks": ["code"] },
+        { "text": ", drawing a window across frets " },
+        { "text": "9–13", "marks": ["code"] },
+        { "text": ". Its grip is only four strings — " },
+        { "text": "x x 10 12 13 12", "marks": ["code"] },
+        { "text": ", degrees " },
+        { "text": "x x 1 5 1 3", "marks": ["code"] },
+        {
+          "text": ". You already know it's never played whole; now you can see what \"whole\" even means here. The open D chord this form comes from mutes the bottom two strings, and moving it up the neck changes nothing about that — four strings is the entire shape, not a fragment of a bigger one."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The " },
+        { "text": "3", "marks": ["code"] },
+        { "text": " is the top note here — " },
+        { "text": "1·12", "marks": ["code"] },
+        { "text": ", an " },
+        { "text": "E", "marks": ["code"] },
+        {
+          "text": " — the only one of the five forms whose highest note is the third rather than the root or the fifth. That's why the D shape reads "
+        },
+        { "text": "bright and thin", "marks": ["bold"] },
+        {
+          "text": ", and why it's the standard grab whenever a part calls for a high voicing instead of a low one."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The B string bites again, now in chord tones rather than octaves. Strings 3 and 1 sit at fret "
+        },
+        { "text": "12", "marks": ["code"] },
+        { "text": "; string 2 sits one fret higher, at " },
+        { "text": "13", "marks": ["code"] },
+        { "text": ". " },
+        { "text": "G → B", "marks": ["code"] },
+        {
+          "text": " is the one major third in standard tuning — chapter 1 named it as the reason octave jumps widen by a fret — and here it's the reason this grip isn't a flat barre at all."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "C",
+        "form": "D",
+        "show": "triad",
+        "caption": "Seven dots, four in the grip. String 2 sits a fret higher than its neighbours — the B string, doing what it does."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Three window dots never make it into the grip: " },
+        { "text": "6·12", "marks": ["code"] },
+        { "text": " " },
+        { "text": "3", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "5·10", "marks": ["code"] },
+        { "text": " " },
+        { "text": "5", "marks": ["code"] },
+        { "text": ", and " },
+        { "text": "3·9", "marks": ["code"] },
+        { "text": " " },
+        { "text": "3", "marks": ["code"] },
+        { "text": ". Look closely at the last two — " },
+        { "text": "5·10", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "3·9", "marks": ["code"] },
+        {
+          "text": " belong to the E form's grip, not this one. That's a seam between two windows, sitting in plain sight, and it's exactly where the rest of this lesson picks up."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "spans": [{ "text": "Every Window at Once" }]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here are all five forms side by side, in chord tones this time instead of roots."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Form" }],
+        [{ "text": "Degrees low → high" }],
+        [{ "text": "Roots on strings" }],
+        [{ "text": "How it's actually played" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "C" }],
+          [{ "text": "x 1 3 5 1 3", "marks": ["code"] }],
+          [{ "text": "5, 2" }],
+          [{ "text": "Fragments — top four strings, or 3-2-1" }]
+        ],
+        [
+          [{ "text": "A" }],
+          [{ "text": "x 1 5 1 3 5", "marks": ["code"] }],
+          [{ "text": "5, 3" }],
+          [{ "text": "Whole — the barre almost everyone owns" }]
+        ],
+        [
+          [{ "text": "G" }],
+          [{ "text": "1 3 5 1 3 1", "marks": ["code"] }],
+          [{ "text": "6, 3, 1" }],
+          [{ "text": "Fragments — bottom three, or the middle three" }]
+        ],
+        [
+          [{ "text": "E" }],
+          [{ "text": "1 5 1 3 5 1", "marks": ["code"] }],
+          [{ "text": "6, 4, 1" }],
+          [{ "text": "Whole — the most-used barre on the instrument" }]
+        ],
+        [
+          [{ "text": "D" }],
+          [{ "text": "x x 1 5 1 3", "marks": ["code"] }],
+          [{ "text": "4, 2" }],
+          [{ "text": "Top three or four strings, from the start" }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Every overlap between two neighbouring windows holds a complete " },
+        { "text": "1 3 5", "marks": ["code"] },
+        {
+          "text": " — the strongest fact this chapter has, and one chapter 1 could only assert in roots. Here it is in chord tones."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [[{ "text": "Overlap" }], [{ "text": "Frets" }], [{ "text": "Dots inside it" }]],
+      "rows": [
+        [
+          [{ "text": "C ∩ A" }],
+          [{ "text": "2–4", "marks": ["code"] }],
+          [{ "text": "6·3=5, 5·3=1, 4·2=3, 1·3=5", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "A ∩ G" }],
+          [{ "text": "4–6", "marks": ["code"] }],
+          [{ "text": "4·5=5, 3·5=1, 2·5=3", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "G ∩ E" }],
+          [{ "text": "7–8", "marks": ["code"] }],
+          [{ "text": "6·8=1, 5·7=3, 2·8=5, 1·8=1", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "E ∩ D" }],
+          [{ "text": "9–11", "marks": ["code"] }],
+          [{ "text": "5·10=5, 4·10=1, 3·9=3", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "D ∩ C at fret 12" }],
+          [{ "text": "12–13", "marks": ["code"] }],
+          [{ "text": "6·12=3, 3·12=5, 2·13=1, 1·12=3", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Two of those overlaps are three adjacent strings, so they're directly playable little triads in their own right. Strings 4-3-2, all at fret "
+        },
+        { "text": "5", "marks": ["code"] },
+        { "text": ", are " },
+        { "text": "5 1 3", "marks": ["code"] },
+        {
+          "text": " — and that isn't one form's property, it's the middle of the A form's grip "
+        },
+        { "text": "and", "marks": ["italic"] },
+        {
+          "text": " the middle of the G form's grip at once, the same three notes claimed by two forms. Strings 5-4-3, at frets "
+        },
+        { "text": "10, 10, 9", "marks": ["code"] },
+        { "text": ", are also " },
+        { "text": "5 1 3", "marks": ["code"] },
+        { "text": ", sitting exactly where the E and D windows meet." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "What that means is plain: "
+        },
+        { "text": "you are never between forms.", "marks": ["bold"] },
+        {
+          "text": " Wherever you stop on this neck, the notes under your hand belong to two windows at once, and there is always a whole chord sitting there. Chapter 1 could only claim the neck was continuous; here the chord tones prove it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "How to actually move between forms — sliding a progression up the neck through these overlaps — is its own chapter, later in this pathway."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "info",
+      "spans": [
+        {
+          "text": "The same five windows carry every layer this pathway adds. Next, two more notes go into each one — the major pentatonic. The windows never change; only how much of each one is lit."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Open the " },
+        { "text": "Scale Visualizer", "link": { "kind": "screen", "href": "/scale-visualizer" } },
+        {
+          "text": " on root "
+        },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": " and page through all five positions with chord tones showing — the same windows, the same overlaps you just read about. Or open "
+        },
+        { "text": "Chord Detector", "link": { "kind": "screen", "href": "/chord-detector" } },
+        {
+          "text": ", play any fragment from this chapter, and check that what comes out is still "
+        },
+        { "text": "C", "marks": ["code"] },
+        { "text": " major." }
+      ]
+    }
+  ]
+}

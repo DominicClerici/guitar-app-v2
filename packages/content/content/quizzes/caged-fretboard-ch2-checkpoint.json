@@ -1,0 +1,385 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "quiz_caged-fretboard-ch2-checkpoint",
+    "slug": "caged-fretboard-ch2-checkpoint",
+    "title": "Checkpoint: Filling In the Chord",
+    "summary": "Three notes across five windows — which forms hold whole, which live as fragments, and where the third is hiding in each one.",
+    "kind": "checkpoint",
+    "passThresholdPct": 70
+  },
+  "questions": [
+    {
+      "id": "q_caged-fretboard-ch2-checkpoint.full-barres",
+      "kind": "multi-select",
+      "prompt": [
+        { "text": "Which forms are worth holding as a " },
+        { "text": "full", "marks": ["bold"] },
+        { "text": " barre? Select every one that is." }
+      ],
+      "options": [
+        { "id": "c-form", "spans": [{ "text": "The C form" }] },
+        { "id": "a-form", "spans": [{ "text": "The A form" }] },
+        { "id": "g-form", "spans": [{ "text": "The G form" }] },
+        { "id": "e-form", "spans": [{ "text": "The E form" }] },
+        { "id": "d-form", "spans": [{ "text": "The D form" }] }
+      ],
+      "answerIds": ["a-form", "e-form"],
+      "explanation": [
+        {
+          "text": "Two of the five, and they are the two barre chords almost everyone already owns. Neither asks for more than two frets past the barre. The C form strands its root three frets out, the G form spans four frets with the little finger on two strings that aren't adjacent, and the D form only ever had four strings to begin with — those three live as two- and three-string fragments, and that is the normal case rather than a concession. Treating all five as barre chords you simply haven't mastered yet is the fastest way to give up on CAGED."
+        }
+      ]
+    },
+    {
+      "id": "q_caged-fretboard-ch2-checkpoint.c-form-barre-reach",
+      "kind": "choice",
+      "prompt": [
+        { "text": "You barre the C form at fret " },
+        { "text": "n", "marks": ["code"] },
+        {
+          "text": ". What makes it a stretch almost nobody plays, when the same form at the nut is the easy open chord everyone knows?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "The highest fretted note sits at " },
+            { "text": "n+3", "marks": ["code"] },
+            { "text": ", three frets past the barre — and that note is the root." }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "The barre has to cover all six strings, and the C form only sounds five of them."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "The form crosses the B string, so no single barre can line the notes up." }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "The root sits behind the barre, where the barring finger mutes it." }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "Barred at fret " },
+        { "text": "n", "marks": ["code"] },
+        { "text": ", the C form lands at " },
+        { "text": "n+3", "marks": ["code"] },
+        { "text": " on string 5, " },
+        { "text": "n+2", "marks": ["code"] },
+        { "text": " on string 4, " },
+        { "text": "n", "marks": ["code"] },
+        { "text": " on string 3, " },
+        { "text": "n+1", "marks": ["code"] },
+        { "text": " on string 2 and " },
+        { "text": "n", "marks": ["code"] },
+        {
+          "text": " on string 1 — so the far note is three frets out, and because it is the root you can't just drop it. At the nut none of this hurts, because the nut is doing the barring for free. Barre it at fret 5 and you get "
+        },
+        { "text": "x 8 7 5 6 5", "marks": ["code"] },
+        { "text": ", an " },
+        { "text": "F", "marks": ["code"] },
+        {
+          "text": ". The B string does bend this form's notes out of a clean line, but that is a fact about pitch, not about what a hand can hold."
+        }
+      ]
+    },
+    {
+      "id": "q_caged-fretboard-ch2-checkpoint.c-form-fragment",
+      "kind": "fretboard",
+      "prompt": [
+        {
+          "text": "Mark the C form's top-three-string fragment — strings 3, 2 and 1, inside the open window. Three notes, degrees "
+        },
+        { "text": "5 1 3", "marks": ["code"] },
+        { "text": ", no stretch required." }
+      ],
+      "frets": 5,
+      "answer": [
+        { "string": 3, "fret": 0 },
+        { "string": 2, "fret": 1 },
+        { "string": 1, "fret": 0 }
+      ],
+      "explanation": [
+        { "text": "String 3 open is " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " — the " },
+        { "text": "5", "marks": ["code"] },
+        { "text": ". String 2, fret 1 is " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " — the " },
+        { "text": "1", "marks": ["code"] },
+        { "text": ". String 1 open is " },
+        { "text": "E", "marks": ["code"] },
+        { "text": " — the " },
+        { "text": "3", "marks": ["code"] },
+        {
+          "text": ". Three strings, a complete chord, root included, and nothing to reach for. This is the C form as most players actually take it."
+        }
+      ]
+    },
+    {
+      "id": "q_caged-fretboard-ch2-checkpoint.a-form-minor-flip",
+      "kind": "choice",
+      "prompt": [
+        { "text": "You are holding the A form barred at fret 3 — " },
+        { "text": "x 3 5 5 5 3", "marks": ["code"] },
+        {
+          "text": ", a C major chord. You want to turn it minor by moving exactly one finger back one fret. Which note do you move?"
+        }
+      ],
+      "options": [
+        { "id": "a", "spans": [{ "text": "String 5, fret 3 — the root under the barre" }] },
+        { "id": "b", "spans": [{ "text": "String 3, fret 5" }] },
+        { "id": "c", "spans": [{ "text": "String 2, fret 5" }] },
+        { "id": "d", "spans": [{ "text": "String 1, fret 3 — the top note" }] }
+      ],
+      "answerId": "c",
+      "explanation": [
+        { "text": "String 2, fret 5 is the only " },
+        { "text": "3", "marks": ["code"] },
+        { "text": " in the grip — an " },
+        { "text": "E", "marks": ["code"] },
+        { "text": ". Move it to fret 4 and " },
+        { "text": "x 3 5 5 5 3", "marks": ["code"] },
+        { "text": " becomes " },
+        { "text": "x 3 5 5 4 3", "marks": ["code"] },
+        {
+          "text": ", the A-shape minor barre. The third is the note that decides a chord's quality; roots and fifths are the same in both. String 5 and string 3 are both roots, and the top note — string 1, fret 3 — is a "
+        },
+        { "text": "5", "marks": ["code"] },
+        { "text": ", not the root most players assume it is." }
+      ]
+    },
+    {
+      "id": "q_caged-fretboard-ch2-checkpoint.g-form-no-fifth",
+      "kind": "choice",
+      "prompt": [
+        { "text": "The top three strings of the G form's grip read " },
+        { "text": "1 3 1", "marks": ["code"] },
+        { "text": " — there is no fifth in them at all. What follows?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "It's still unmistakably major, because the " },
+            { "text": "3", "marks": ["code"] },
+            { "text": " is there." }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "It isn't a chord until you add the fifth back from another string." }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [{ "text": "It's ambiguous — it could be heard as major or minor." }]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "It's a power chord, which is why it sounds neither major nor minor." }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "The " },
+        { "text": "3", "marks": ["code"] },
+        {
+          "text": " is the note that decides major or minor, so a fragment that keeps it keeps the chord's identity. The fifth is the note you can afford to lose. A power chord is the exact opposite — root and fifth with "
+        },
+        { "text": "no", "marks": ["italic"] },
+        {
+          "text": " third — which is why that one really does sound neither major nor minor. The G form's grip holds only one fifth in the first place, down on string 4, so any piece of it that skips string 4 leaves the fifth behind."
+        }
+      ]
+    },
+    {
+      "id": "q_caged-fretboard-ch2-checkpoint.e-form-arithmetic",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "The E form barre sounds all six strings, but a C major triad is only three notes. Which describes what those six strings are actually holding?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "Six different notes — that's what makes a barre chord sound fuller than a triad."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "Three roots, two fifths and one third — so the only " },
+            { "text": "3", "marks": ["code"] },
+            { "text": " is on string 3, and the chord's whole quality rests on it." }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "Two roots, two thirds and two fifths — each note of the triad doubled once."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "Three roots, two thirds and one fifth — the same arrangement as the G form."
+            }
+          ]
+        }
+      ],
+      "answerId": "b",
+      "explanation": [
+        { "text": "The E form reads " },
+        { "text": "1 5 1 3 5 1", "marks": ["code"] },
+        {
+          "text": " low to high: three roots, two fifths, one third. Six strings, three notes — the extra strings are doubles, not extra notes. That leaves string 3, fret 9 carrying the entire difference between major and minor. The G form is the mirror of it, "
+        },
+        { "text": "1 3 5 1 3 1", "marks": ["code"] },
+        {
+          "text": " — three roots, two thirds, one fifth — which is why the scarce note there is the fifth instead."
+        }
+      ]
+    },
+    {
+      "id": "q_caged-fretboard-ch2-checkpoint.d-form-top-note",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "Every other form's highest-sounding note is a root or a fifth. The D form is the exception. Which degree sits on top of it?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "The " },
+            { "text": "1", "marks": ["code"] },
+            { "text": " — a second root, doubling the one on string 4" }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "The " },
+            { "text": "5", "marks": ["code"] },
+            { "text": " — the same top note the A form has" }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "The " },
+            { "text": "3", "marks": ["code"] },
+            { "text": " — which is why the shape reads bright and thin" }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [{ "text": "Nothing — the D form doesn't reach string 1 at all" }]
+        }
+      ],
+      "answerId": "c",
+      "explanation": [
+        { "text": "The D form's grip is " },
+        { "text": "x x 1 5 1 3", "marks": ["code"] },
+        { "text": ", and that last " },
+        { "text": "3", "marks": ["code"] },
+        { "text": " is string 1, fret 12 — an " },
+        { "text": "E", "marks": ["code"] },
+        {
+          "text": ". It is the only one of the five forms with the third on top, which is exactly why it gets reached for when a part wants a high, bright voicing. The A form's top note really is a "
+        },
+        { "text": "5", "marks": ["code"] },
+        {
+          "text": ", so that distractor is a true fact about the wrong form. And the D form does reach string 1 — it is strings 6 and 5 it never touches."
+        }
+      ]
+    },
+    {
+      "id": "q_caged-fretboard-ch2-checkpoint.overlap-triad",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "You lay one finger across strings 4, 3 and 2, all at fret 5, and strum just those three. What have you got?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "A complete " },
+            { "text": "C", "marks": ["code"] },
+            { "text": " — degrees " },
+            { "text": "5 1 3", "marks": ["code"] },
+            { "text": " — sitting in the A form's grip and the G form's grip at the same time." }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "Three notes of the A form only. The G form's window starts higher up the neck."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "Three notes with no root among them, so not a chord in its own right." }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "A piece of the G form that the A form happens to be able to reach, but which belongs to the G form."
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "The A form's window runs frets 2–6 and the G form's runs 4–8, so they share frets 4–6 — and the three dots living there are "
+        },
+        { "text": "4·5=5", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3·5=1", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "2·5=3", "marks": ["code"] },
+        {
+          "text": ". Root, third and fifth: a whole chord. Those same three notes are in both grips, so the question of which form owns them has no answer — that is the point. Every overlap between two neighbouring windows holds a complete "
+        },
+        { "text": "1 3 5", "marks": ["code"] },
+        {
+          "text": ", which is why you are never really between forms: wherever you stop, the notes under your hand belong to two windows at once."
+        }
+      ]
+    }
+  ]
+}
