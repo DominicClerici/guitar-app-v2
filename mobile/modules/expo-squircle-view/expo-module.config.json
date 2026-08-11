@@ -1,0 +1,9 @@
+{
+  "platforms": ["apple", "android"],
+  "apple": {
+    "modules": ["ExpoSquircleViewModule"]
+  },
+  "android": {
+    "modules": ["expo.modules.squircleview.ExpoSquircleViewModule"]
+  }
+}

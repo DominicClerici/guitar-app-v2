@@ -2,6 +2,7 @@ import { SymbolView } from 'expo-symbols';
 import { Pressable, Text, View } from 'react-native';
 
 import { useFace } from '@/components/CornerFace';
+import { SquirclePressable } from '@/components/Squircle';
 import { MAX_ACTIVE_PATHWAYS } from '@/lib/learning';
 import { useToken } from '@/lib/tokens';
 
@@ -30,8 +31,16 @@ interface Props {
 const PRIMARY =
   'h-[50px] flex-1 flex-row items-center justify-center gap-[9px] border border-x-transparent border-t-[rgba(255,255,255,0.4)] border-b-[rgba(0,0,0,0.28)] bg-accent active:opacity-80';
 
+/**
+ * The same two roundings the `trailing` classes describe, as numbers the native
+ * squircle can be drawn from. `rounded-full` on a 50px row is a semicircle, so
+ * the outer corner is half the height.
+ */
+const CONTINUE_RADIUS = { topLeft: 10, bottomLeft: 10, topRight: 25, bottomRight: 25 };
+
 export function PathwayActions({ action, onMenu, docked = false }: Props) {
   const onAccent = useToken('--on-accent', '#04211f');
+  const accent = useToken('--accent', '#5ec8c2');
 
   const trailing = docked ? 'rounded-l-[10px] rounded-r-full' : 'rounded-[10px]';
 
@@ -42,17 +51,24 @@ export function PathwayActions({ action, onMenu, docked = false }: Props) {
       <MenuTrigger onPress={onMenu} docked={docked} />
 
       {action.kind === 'continue' ? (
-        <Pressable
+        // The one control on the screen wearing Apple's corner rather than a
+        // quarter circle. Its fill and rounding come off the utilities and onto
+        // props, because the shape is painted by a native layer; the bevel does
+        // not survive the move, since that layer strokes one colour and the
+        // bevel is a different one top and bottom.
+        <SquirclePressable
           onPress={action.onPress}
           accessibilityRole="button"
           accessibilityLabel="Continue this pathway"
-          className={`${PRIMARY} ${trailing}`}
+          fill={accent}
+          radius={docked ? CONTINUE_RADIUS : 10}
+          className="h-[50px] flex-1 flex-row items-center justify-center gap-[9px] active:opacity-80"
         >
           <SymbolView name="play.fill" size={13} tintColor={onAccent} />
           <Text className="text-[15px] font-bold tracking-[0.3px] text-on-accent">
             {action.label}
           </Text>
-        </Pressable>
+        </SquirclePressable>
       ) : action.kind === 'start' ? (
         <Pressable
           onPress={action.onPress}
