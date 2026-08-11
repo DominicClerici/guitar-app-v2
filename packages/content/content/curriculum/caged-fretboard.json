@@ -221,6 +221,83 @@
         "ref": "caged-fretboard-ch3-checkpoint",
         "passThresholdPct": 70
       }
+    },
+    {
+      "id": "caged-fretboard.ch4",
+      "slug": "the-whole-major-scale",
+      "title": "The Whole Major Scale",
+      "summary": "The last two notes go into the same five windows, and they are not more of the same: the 4 sits one fret above every 3, the 7 one fret below every 1. Learn where they lean and you can play C major anywhere on the neck.",
+      "sections": [
+        {
+          "id": "caged-fretboard.ch4.fourths-and-sevenths",
+          "slug": "caged-fourths-and-sevenths",
+          "title": "The Two Notes That Lean",
+          "kind": "article",
+          "ref": "caged-fourths-and-sevenths",
+          "estimatedMin": 6
+        },
+        {
+          "id": "caged-fretboard.ch4.scale-c-form",
+          "slug": "caged-scale-c-form",
+          "title": "The C Form: Three on Every String",
+          "kind": "article",
+          "ref": "caged-scale-c-form",
+          "estimatedMin": 5
+        },
+        {
+          "id": "caged-fretboard.ch4.scale-a-form",
+          "slug": "caged-scale-a-form",
+          "title": "The A Form: Fewest New Notes, Biggest Change",
+          "kind": "article",
+          "ref": "caged-scale-a-form",
+          "estimatedMin": 5
+        },
+        {
+          "id": "caged-fretboard.ch4.scale-g-form",
+          "slug": "caged-scale-g-form",
+          "title": "The G Form: A Fret Below Every Root",
+          "kind": "article",
+          "ref": "caged-scale-g-form",
+          "estimatedMin": 5
+        },
+        {
+          "id": "caged-fretboard.ch4.scale-e-form",
+          "slug": "caged-scale-e-form",
+          "title": "The E Form: Seventeen Notes, Four Frets",
+          "kind": "article",
+          "ref": "caged-scale-e-form",
+          "estimatedMin": 5
+        },
+        {
+          "id": "caged-fretboard.ch4.scale-d-form",
+          "slug": "caged-scale-d-form",
+          "title": "The D Form: The Fret With Nothing On It",
+          "kind": "article",
+          "ref": "caged-scale-d-form",
+          "estimatedMin": 5
+        },
+        {
+          "id": "caged-fretboard.ch4.complete-window",
+          "slug": "caged-the-complete-window",
+          "title": "Every Note in the Window",
+          "kind": "article",
+          "ref": "caged-the-complete-window",
+          "estimatedMin": 5
+        },
+        {
+          "id": "caged-fretboard.ch4.find-the-two-that-lean",
+          "slug": "caged-find-the-two-that-lean",
+          "title": "Drill: Find the Two That Lean",
+          "kind": "activity",
+          "ref": "caged-find-the-two-that-lean",
+          "optional": true,
+          "estimatedMin": 9
+        }
+      ],
+      "checkpoint": {
+        "ref": "caged-fretboard-ch4-checkpoint",
+        "passThresholdPct": 70
+      }
     }
   ]
 }

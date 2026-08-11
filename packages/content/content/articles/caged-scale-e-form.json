@@ -1,0 +1,242 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_caged-scale-e-form",
+    "slug": "caged-scale-e-form",
+    "title": "The E Form: Seventeen Notes, Four Frets",
+    "summary": "The E form is the only window whose whole scale fits inside four consecutive frets, with fret 11 sitting empty at the top — the one place in the chapter where a complete scale needs no shift at all.",
+    "tags": ["caged", "fretboard"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-11"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The E form of " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " has its barre at fret " },
+        { "text": "8", "marks": ["code"] },
+        { "text": ", drawing a window across frets " },
+        { "text": "7–11", "marks": ["code"] },
+        { "text": ". But every one of its seventeen dots lives inside frets " },
+        { "text": "7", "marks": ["code"] },
+        { "text": " to " },
+        { "text": "10", "marks": ["code"] },
+        { "text": " — fret " },
+        { "text": "11", "marks": ["code"] },
+        {
+          "text": " is empty. That isn't a small detail. It's the reason this window behaves the way it does, and it's worth seeing the shape before anything else about it gets said."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "String" }],
+        [{ "text": "Dot 1" }],
+        [{ "text": "Dot 2" }],
+        [{ "text": "Dot 3" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "6" }],
+          [{ "text": "6·7 — 7, B", "marks": ["code"] }],
+          [{ "text": "6·8 — 1, C", "marks": ["code"] }],
+          [{ "text": "6·10 — 2, D", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "5" }],
+          [{ "text": "5·7 — 3, E", "marks": ["code"] }],
+          [{ "text": "5·8 — 4, F", "marks": ["code"] }],
+          [{ "text": "5·10 — 5, G", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "4" }],
+          [{ "text": "4·7 — 6, A", "marks": ["code"] }],
+          [{ "text": "4·9 — 7, B", "marks": ["code"] }],
+          [{ "text": "4·10 — 1, C", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "3" }],
+          [{ "text": "3·7 — 2, D", "marks": ["code"] }],
+          [{ "text": "3·9 — 3, E", "marks": ["code"] }],
+          [{ "text": "3·10 — 4, F", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "2" }],
+          [{ "text": "2·8 — 5, G", "marks": ["code"] }],
+          [{ "text": "2·10 — 6, A", "marks": ["code"] }],
+          [{ "text": "—" }]
+        ],
+        [
+          [{ "text": "1" }],
+          [{ "text": "1·7 — 7, B", "marks": ["code"] }],
+          [{ "text": "1·8 — 1, C", "marks": ["code"] }],
+          [{ "text": "1·10 — 2, D", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "C",
+        "form": "E",
+        "show": "scale",
+        "caption": "The window chapter 1 lit three roots in, chapter 2 filled with a triad, chapter 3 filled to twelve — now complete at seventeen, all of it inside four frets."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Fret " },
+        { "text": "11", "marks": ["code"] },
+        { "text": " carries no note of " },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": " major on any string at all, and that was checked string by string — it's the only fret in the first twelve where that's true. Chapter 3 already noticed the pentatonic left it empty here, but a five-note scale skipping one fret barely counts as news. Now that all seven degrees are in play, the emptiness means something different: not a gap in an incomplete scale, but a genuine hole in the neck, one fret wide. Only two windows reach it at all — this one, at its top edge, and the D form, which is less lucky about where it lands. Every other fret between "
+        },
+        { "text": "7", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "11", "marks": ["code"] },
+        {
+          "text": " carries something on at least two strings; this one carries nothing on any of them."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The consequence is the whole point of this lesson. Seventeen notes, four frets, one hand, nothing to shift for. No other window in this chapter manages that — the C form comes closest, but only because the nut plays two of its frets for free, and a fretting hand still has to cover the rest of it. If you're going to over-learn one window as a complete scale, this is the one. It's also the same window chapter 2 called the most-used barre on the instrument, and the one chapter 1 called the shape you navigate the rest of the neck from."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Three roots sit inside it — " },
+        { "text": "6·8", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "4·10", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "1·8", "marks": ["code"] },
+        { "text": ", chapter 1's " },
+        { "text": "6 → 4 → 1", "marks": ["code"] },
+        { "text": " map. Each one has its " },
+        { "text": "7", "marks": ["code"] },
+        { "text": " one fret below on the same string: " },
+        { "text": "6·7", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "4·9", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "1·7", "marks": ["code"] },
+        {
+          "text": ". Chapter 3 called this the window with three places to land without a shift; every one of those landing spots now has the note that leans into it sitting directly beneath it, ready before you reach for it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The two " },
+        { "text": "4", "marks": ["code"] },
+        { "text": "s here are " },
+        { "text": "5·8", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "3·10", "marks": ["code"] },
+        { "text": ", each a fret above the " },
+        { "text": "3", "marks": ["code"] },
+        { "text": " beneath it — " },
+        { "text": "5·7", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "3·9", "marks": ["code"] },
+        { "text": ". Notice that " },
+        { "text": "5·8", "marks": ["code"] },
+        { "text": " sits right at the barre fret, directly under the low root at " },
+        { "text": "6·8", "marks": ["code"] },
+        { "text": " — a fret apart in feel, a string apart in the hand." }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "info",
+      "spans": [
+        { "text": "Seventeen notes, four frets, no shift — fret " },
+        { "text": "11", "marks": ["code"] },
+        { "text": " has nothing on it." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "String " },
+        { "text": "2", "marks": ["code"] },
+        { "text": " is the short one here, carrying only two dots — " },
+        { "text": "2·8", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "2·10", "marks": ["code"] },
+        {
+          "text": " — a "
+        },
+        { "text": "5", "marks": ["code"] },
+        { "text": " and a " },
+        { "text": "6", "marks": ["code"] },
+        { "text": ", which is what a short string always carries. The note it's missing is a " },
+        { "text": "7", "marks": ["code"] },
+        {
+          "text": ", sitting at fret 12, one fret past this window's top edge, where the D form picks it up. Every window except the C form has exactly one string like this, and which string it is moves as you climb the neck."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Open the " },
+        { "text": "Drone", "link": { "kind": "screen", "href": "/drone" } },
+        { "text": " on " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " and run frets " },
+        { "text": "7", "marks": ["code"] },
+        { "text": " to " },
+        { "text": "10", "marks": ["code"] },
+        { "text": " without moving your hand, ending on " },
+        { "text": "6·8", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "4·10", "marks": ["code"] },
+        { "text": " or " },
+        { "text": "1·8", "marks": ["code"] },
+        { "text": ". Listen for what wants to move: " },
+        { "text": "6·7", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "4·9", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "1·7", "marks": ["code"] },
+        { "text": " pull up toward the root a fret above each of them, and " },
+        { "text": "5·8", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "3·10", "marks": ["code"] },
+        { "text": " sit restless above their own " },
+        { "text": "3", "marks": ["code"] },
+        {
+          "text": "s, restless above them. Seventeen notes, one position, and five of them leaning on a neighbour a single fret away."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Next is the " },
+        {
+          "text": "D form",
+          "marks": ["bold"],
+          "link": { "kind": "article", "slug": "caged-scale-d-form" }
+        },
+        {
+          "text": " — the window that puts this same empty fret in the middle of its shape instead of at the edge, and asks for a shift because of it."
+        }
+      ]
+    }
+  ]
+}

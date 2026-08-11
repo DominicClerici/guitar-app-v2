@@ -1,0 +1,258 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_caged-scale-c-form",
+    "slug": "caged-scale-c-form",
+    "title": "The C Form: Three on Every String",
+    "summary": "The C form is the only CAGED window this chapter fills in evenly, and its six open strings turn out to give you five of the seven degrees, including the note chapter 3 had to leave out.",
+    "tags": ["caged", "fretboard"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-11"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "5·3", "marks": ["code"] },
+        {
+          "text": " means string 5, fret 3 — string first, then fret, the shorthand you've been reading since chapter 1's closer. The C form sits at barre fret "
+        },
+        { "text": "0", "marks": ["code"] },
+        { "text": ", open, in a window running frets " },
+        { "text": "0–4", "marks": ["code"] },
+        {
+          "text": ". Every one of those five frets carries a dot now. Nothing here needs a stretch past open position — the whole window sits inside a fretting hand's ordinary reach."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Eighteen dots — the most of any window in this chapter — and three on every single string, with nothing left short. Of the five windows, the C form is the only one that comes out even like this. And it needs no stretch to hold: settle your fretting fingers over frets 1 through 4 and every fretted dot in the window is already under one of them, with the open strings ringing underneath for free."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [[{ "text": "String" }], [{ "text": "" }], [{ "text": "" }], [{ "text": "" }]],
+      "rows": [
+        [
+          [{ "text": "6" }],
+          [{ "text": "6·0 — 3 (E)" }],
+          [{ "text": "6·1 — 4 (F)" }],
+          [{ "text": "6·3 — 5 (G)" }]
+        ],
+        [
+          [{ "text": "5" }],
+          [{ "text": "5·0 — 6 (A)" }],
+          [{ "text": "5·2 — 7 (B)" }],
+          [{ "text": "5·3 — 1 (C)" }]
+        ],
+        [
+          [{ "text": "4" }],
+          [{ "text": "4·0 — 2 (D)" }],
+          [{ "text": "4·2 — 3 (E)" }],
+          [{ "text": "4·3 — 4 (F)" }]
+        ],
+        [
+          [{ "text": "3" }],
+          [{ "text": "3·0 — 5 (G)" }],
+          [{ "text": "3·2 — 6 (A)" }],
+          [{ "text": "3·4 — 7 (B)" }]
+        ],
+        [
+          [{ "text": "2" }],
+          [{ "text": "2·0 — 7 (B)" }],
+          [{ "text": "2·1 — 1 (C)" }],
+          [{ "text": "2·3 — 2 (D)" }]
+        ],
+        [
+          [{ "text": "1" }],
+          [{ "text": "1·0 — 3 (E)" }],
+          [{ "text": "1·1 — 4 (F)" }],
+          [{ "text": "1·3 — 5 (G)" }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Chapter 3's "
+        },
+        {
+          "text": "C form lesson",
+          "link": { "kind": "article", "slug": "caged-pentatonic-c-form" }
+        },
+        { "text": " had to tell you to leave string 2 out — its open " },
+        { "text": "B", "marks": ["code"] },
+        {
+          "text": " isn't in the C major pentatonic. It is in the scale. It's the "
+        },
+        { "text": "7", "marks": ["code"] },
+        {
+          "text": ". All six open strings turn out to be notes of C major: low to high that's "
+        },
+        { "text": "E A D G B E", "marks": ["code"] },
+        { "text": ", degrees " },
+        { "text": "3 6 2 5 7 3", "marks": ["code"] },
+        {
+          "text": ". Six strings, five different degrees — which means the two degrees the open strings never hand you are the "
+        },
+        { "text": "1", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "4", "marks": ["code"] },
+        {
+          "text": ". Fret 0 is one of only four frets up to the twelfth where every string is a scale note; the closer explains why there are exactly four, and why fret 0 is one of them."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The half-step rule is easiest to feel right here, at the nut. The open "
+        },
+        { "text": "B", "marks": ["code"] },
+        { "text": " on " },
+        { "text": "2·0", "marks": ["code"] },
+        { "text": " is the " },
+        { "text": "7", "marks": ["code"] },
+        { "text": ", and one fret up at " },
+        { "text": "2·1", "marks": ["code"] },
+        {
+          "text": " sits the "
+        },
+        { "text": "1", "marks": ["code"] },
+        {
+          "text": ". Open string to first finger, the note that leans right into the root beside it. The same pair shows up on string 5, two frets over: "
+        },
+        { "text": "5·2", "marks": ["code"] },
+        { "text": " then " },
+        { "text": "5·3", "marks": ["code"] },
+        {
+          "text": ". There's no barre to fight here either — the two notes you're comparing are both either open or one finger away, which is about as close to a controlled listening test as this window offers."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        { "text": "Play " },
+        { "text": "2·0", "marks": ["code"] },
+        { "text": " then " },
+        { "text": "2·1", "marks": ["code"] },
+        { "text": " — the open " },
+        { "text": "B", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " one fret up. The " },
+        { "text": "7", "marks": ["code"] },
+        { "text": " sounds unfinished until the " },
+        { "text": "1", "marks": ["code"] },
+        { "text": " arrives." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Six dots are new since chapter 3: "
+        },
+        { "text": "6·1", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "5·2", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "4·3", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3·4", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "2·0", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "1·1", "marks": ["code"] },
+        {
+          "text": " — three "
+        },
+        { "text": "4", "marks": ["code"] },
+        { "text": "s and three " },
+        { "text": "7", "marks": ["code"] },
+        {
+          "text": "s, more than any other window gains. Chapter 3 already called the C form the most chord-toned window of the five; it turns out to be the one the two new notes change the most, too."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One of those three "
+        },
+        { "text": "7", "marks": ["code"] },
+        { "text": "s is a little strange. " },
+        { "text": "3·4", "marks": ["code"] },
+        { "text": " is a " },
+        { "text": "7", "marks": ["code"] },
+        {
+          "text": " with no root above it in this window — its "
+        },
+        { "text": "1", "marks": ["code"] },
+        { "text": " sits at " },
+        { "text": "3·5", "marks": ["code"] },
+        {
+          "text": ", a fret past the window's edge, in the A form's territory. Every root in the C form has its "
+        },
+        { "text": "7", "marks": ["code"] },
+        { "text": " sitting below it. Not every " },
+        { "text": "7", "marks": ["code"] },
+        {
+          "text": " here has its root above it. That's the seam where this window hands off to the next one."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Eighteen dots sounds like a lot to keep straight, but six of them cost nothing to reach — they're the open strings. The window's real news is the other twelve: the same eight chord tones and four pentatonic notes you already knew from earlier chapters, plus the six new dots that just arrived."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Same window, four layers deep now. Chapter 1 lit two roots here, chapter 2 lit eight chord tones, chapter 3 lit twelve. This lesson lights all eighteen — the window is complete, and the shape underneath it hasn't changed since the first time you saw it."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "C",
+        "form": "C",
+        "show": "scale",
+        "caption": "The window chapter 1 lit at two roots, chapter 2 at eight chord tones, chapter 3 at twelve. Eighteen dots now — three on every string, and the window is complete."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "See it filled all the way in on "
+        },
+        { "text": "Scale Visualizer", "link": { "kind": "screen", "href": "/scale-visualizer" } },
+        { "text": " with the CAGED toggle set, then move to " },
+        {
+          "text": "the A form",
+          "link": { "kind": "article", "slug": "caged-scale-a-form" }
+        },
+        {
+          "text": " — the window that gains the fewest new notes of the five, and is changed the most by them."
+        }
+      ]
+    }
+  ]
+}

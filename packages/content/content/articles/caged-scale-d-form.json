@@ -1,0 +1,232 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_caged-scale-d-form",
+    "slug": "caged-scale-d-form",
+    "title": "The D Form: The Fret With Nothing On It",
+    "summary": "The D form's scale lands in two clusters separated by an empty fret 11 in the middle of the window, with three 4s and only two roots — the window that asks for the most planning of the five.",
+    "tags": ["caged", "fretboard"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-11"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The D form of " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " sits with its barre at fret " },
+        { "text": "10", "marks": ["code"] },
+        { "text": ", drawing a window across frets " },
+        { "text": "9–13", "marks": ["code"] },
+        { "text": ". Seventeen dots fill it, but they land at only four of those frets — " },
+        { "text": "9", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "10", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "12", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "13", "marks": ["code"] },
+        { "text": ". Nothing sits at fret " },
+        { "text": "11", "marks": ["code"] },
+        {
+          "text": ". Where the E form met that same empty fret at the top edge of its window, here it falls right in the middle."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "String" }],
+        [{ "text": "Dot 1" }],
+        [{ "text": "Dot 2" }],
+        [{ "text": "Dot 3" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "6" }],
+          [{ "text": "6·10 — 2, D", "marks": ["code"] }],
+          [{ "text": "6·12 — 3, E", "marks": ["code"] }],
+          [{ "text": "6·13 — 4, F", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "5" }],
+          [{ "text": "5·10 — 5, G", "marks": ["code"] }],
+          [{ "text": "5·12 — 6, A", "marks": ["code"] }],
+          [{ "text": "—" }]
+        ],
+        [
+          [{ "text": "4" }],
+          [{ "text": "4·9 — 7, B", "marks": ["code"] }],
+          [{ "text": "4·10 — 1, C", "marks": ["code"] }],
+          [{ "text": "4·12 — 2, D", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "3" }],
+          [{ "text": "3·9 — 3, E", "marks": ["code"] }],
+          [{ "text": "3·10 — 4, F", "marks": ["code"] }],
+          [{ "text": "3·12 — 5, G", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "2" }],
+          [{ "text": "2·10 — 6, A", "marks": ["code"] }],
+          [{ "text": "2·12 — 7, B", "marks": ["code"] }],
+          [{ "text": "2·13 — 1, C", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "1" }],
+          [{ "text": "1·10 — 2, D", "marks": ["code"] }],
+          [{ "text": "1·12 — 3, E", "marks": ["code"] }],
+          [{ "text": "1·13 — 4, F", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "C",
+        "form": "D",
+        "show": "scale",
+        "caption": "The window chapter 1 lit two roots in, chapter 2 filled with a triad, chapter 3 filled to twelve — now complete at seventeen, split by the empty fret in the middle."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The E form's empty fret cost nothing, because it sat right at the edge, where the window was already ending. Here it lands in the middle: two frets of dots, a dead fret, then two more frets of dots. That's why this window doesn't settle under one hand the way most of the others do — it's the shape talking, not your reach. Chapter 3 already said the pentatonic version of this window asked for a stretch or a shift; the reason was always this hole, it just wasn't visible until every fret in the window had a name."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Chapter 3 called this the widest window of the five, and at the pentatonic layer it was. It no longer is: three of the five windows now span five frets, so width alone doesn't set the D form apart anymore. What does is the gap running through the middle of it — the only window in this chapter with a hole in the shape rather than at its edge."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "This window carries three " },
+        { "text": "4", "marks": ["code"] },
+        { "text": "s — " },
+        { "text": "6·13", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3·10", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "1·13", "marks": ["code"] },
+        { "text": " — against only two roots, " },
+        { "text": "4·10", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "2·13", "marks": ["code"] },
+        {
+          "text": ", both sitting at the awkward edges of the shape chapter 3 already flagged. The C form is the only other window carrying three "
+        },
+        { "text": "4", "marks": ["code"] },
+        {
+          "text": "s, and it has eighteen dots, six open strings and three notes on every string to absorb them. This one has a hole through its middle and two roots stuck at its corners. Nothing about that makes the window worse — it makes it the one that asks for the most planning. Run it carelessly and it sounds restless; the two roots are worth knowing cold before you improvise here."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Five one-fret pairs sit inside this window — the same fact as three " },
+        { "text": "4", "marks": ["code"] },
+        { "text": "s and two " },
+        { "text": "7", "marks": ["code"] },
+        { "text": "s, seen from the hand instead of the table. Three point up into a " },
+        { "text": "4", "marks": ["code"] },
+        { "text": ": " },
+        { "text": "3·9 → 3·10", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "6·12 → 6·13", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "1·12 → 1·13", "marks": ["code"] },
+        { "text": ". Two point up into a root: " },
+        { "text": "4·9 → 4·10", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "2·12 → 2·13", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "spans": [
+        { "text": "Fret " },
+        { "text": "11", "marks": ["code"] },
+        {
+          "text": " is empty, so this window doesn't fall under one hand — that's the shape, not your reach."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "One more thing, briefly, because the closer takes it further: fret " },
+        { "text": "10", "marks": ["code"] },
+        { "text": " runs under all six strings, and every one of them is a scale note — " },
+        { "text": "2 5 1 4 6 2", "marks": ["code"] },
+        { "text": ", low to high. One of those six is the " },
+        { "text": "4", "marks": ["code"] },
+        { "text": " at " },
+        { "text": "3·10", "marks": ["code"] },
+        { "text": ". Chapter 3 gave you one fret like this, fret " },
+        { "text": "5", "marks": ["code"] },
+        { "text": ", and called it the only one. There are more now; the closer says why." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "New since the pentatonic: " },
+        { "text": "6·13", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3·10", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "1·13", "marks": ["code"] },
+        { "text": " — the three " },
+        { "text": "4", "marks": ["code"] },
+        { "text": "s — plus " },
+        { "text": "4·9", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "2·12", "marks": ["code"] },
+        { "text": ", the two " },
+        { "text": "7", "marks": ["code"] },
+        { "text": "s. String " },
+        { "text": "5", "marks": ["code"] },
+        { "text": " is this window's short string, carrying only two dots: " },
+        { "text": "5·10", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "5·12", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Chapter 1 lit two roots in this window. Chapter 2 filled it with seven chord tones. Chapter 3 brought it to twelve. It now holds all seventeen — the whole scale, complete — and that closes out the fifth and last of the five windows this chapter fills in."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "What's left is putting the five back together. " },
+        {
+          "text": "Every Note in the Window",
+          "marks": ["bold"],
+          "link": { "kind": "article", "slug": "caged-the-complete-window" }
+        },
+        {
+          "text": " does exactly that — the same five shapes, the roots you already know, and a single rule for everything else inside them."
+        }
+      ]
+    }
+  ]
+}

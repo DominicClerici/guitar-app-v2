@@ -1,0 +1,363 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_caged-the-complete-window",
+    "slug": "caged-the-complete-window",
+    "title": "Every Note in the Window",
+    "summary": "The five CAGED windows now hold every degree of the major scale, and none of it needs memorising dot by dot: the roots you already know, plus one rule — a 4 above every 3, a 7 below every 1 — regenerates the rest.",
+    "tags": ["caged", "fretboard"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-11"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Five windows, and now each one holds all seven degrees of " },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": " major — nothing left to add. That's the promise chapter 1 made, closed: five shapes, learned once, filled in four times over four chapters, and you were never handed a sixth. With the D form finished, the C, A, G, E and D forms you already know are all complete."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "spans": [{ "text": "Five Windows, Complete" }]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Form" }],
+        [{ "text": "Window" }],
+        [{ "text": "Dots" }],
+        [{ "text": "Frets the dots use" }],
+        [{ "text": "String carrying only two" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "C" }],
+          [{ "text": "0–4", "marks": ["code"] }],
+          [{ "text": "18" }],
+          [{ "text": "0, 1, 2, 3, 4", "marks": ["code"] }],
+          [{ "text": "none" }]
+        ],
+        [
+          [{ "text": "A" }],
+          [{ "text": "2–6", "marks": ["code"] }],
+          [{ "text": "16" }],
+          [{ "text": "2, 3, 4, 5, 6", "marks": ["code"] }],
+          [{ "text": "1 and 6", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "G" }],
+          [{ "text": "4–8", "marks": ["code"] }],
+          [{ "text": "17" }],
+          [{ "text": "4, 5, 6, 7, 8", "marks": ["code"] }],
+          [{ "text": "4", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "E" }],
+          [{ "text": "7–11", "marks": ["code"] }],
+          [{ "text": "17" }],
+          [{ "text": "7, 8, 9, 10", "marks": ["code"] }],
+          [{ "text": "2", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "D" }],
+          [{ "text": "9–13", "marks": ["code"] }],
+          [{ "text": "17" }],
+          [{ "text": "9, 10, 12, 13", "marks": ["code"] }],
+          [{ "text": "5", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Chapter 3's twelve-dots-two-per-string was the tidiest fact in this whole pathway, and it didn't survive. Sixteen to eighteen dots now, and only the C form manages three on every string. That's worth sitting with: the regular layer was the incomplete one. A box that's easy to memorise is a box that's missing something, and these windows are lumpy precisely because they're finished — that's what a complete major scale actually looks like, laid across six strings tuned the way a guitar is tuned."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "spans": [{ "text": "You Don't Memorise Seventeen Dots" }]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "You already know the roots, from chapter 1. You already know the chord tones, from chapter 2. Chapter 3 added the "
+        },
+        { "text": "2", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "6", "marks": ["code"] },
+        {
+          "text": ". What's left is one rule, stated at the start of this chapter and true in every window with no exception: a "
+        },
+        { "text": "4", "marks": ["code"] },
+        { "text": " sits one fret above every " },
+        { "text": "3", "marks": ["code"] },
+        { "text": ", and a " },
+        { "text": "7", "marks": ["code"] },
+        { "text": " sits one fret below every " },
+        { "text": "1", "marks": ["code"] },
+        {
+          "text": ". Add those two facts to what you already had, and there's nothing left in any window that you have to learn as a new fact — only positions to find, using rules you already own."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "info",
+      "spans": [
+        { "text": "A " },
+        { "text": "4", "marks": ["code"] },
+        { "text": " is one fret above every " },
+        { "text": "3", "marks": ["code"] },
+        { "text": ". A " },
+        { "text": "7", "marks": ["code"] },
+        { "text": " is one fret below every " },
+        { "text": "1", "marks": ["code"] },
+        { "text": ". True in all five windows, no exceptions — that's the whole memory aid." }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-ladder",
+      "props": { "root": "C" }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "This is the same ladder chapter 1 ended on, and it still marks nothing but roots. That was too little to go on then. It is enough now. From any root you have a "
+        },
+        { "text": "7", "marks": ["code"] },
+        { "text": " one fret below it, a " },
+        { "text": "1 3 5", "marks": ["code"] },
+        {
+          "text": " around it, and a whole scale after that. The ladder is the minimal map, not a tiling diagram — everything else regenerates from it."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "spans": [{ "text": "Where All Six Strings Line Up" }]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Chapter 3 found fret " },
+        { "text": "5", "marks": ["code"] },
+        {
+          "text": " was the only fret where all six strings sound a pentatonic note. With the whole scale in, there are four such frets — "
+        },
+        { "text": "0", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "5", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "10", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "12", "marks": ["code"] },
+        { "text": " — and since " },
+        { "text": "12", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "0", "marks": ["code"] },
+        { "text": " again an octave up, really three, five frets apart." }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [[{ "text": "Fret" }], [{ "text": "Notes, low → high" }], [{ "text": "Degrees" }]],
+      "rows": [
+        [
+          [{ "text": "0", "marks": ["code"] }],
+          [{ "text": "E A D G B E", "marks": ["code"] }],
+          [{ "text": "3 6 2 5 7 3", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "5", "marks": ["code"] }],
+          [{ "text": "A D G C E A", "marks": ["code"] }],
+          [{ "text": "6 2 5 1 3 6", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "10", "marks": ["code"] }],
+          [{ "text": "D G C F A D", "marks": ["code"] }],
+          [{ "text": "2 5 1 4 6 2", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "12", "marks": ["code"] }],
+          [{ "text": "E A D G B E", "marks": ["code"] }],
+          [{ "text": "3 6 2 5 7 3", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Look at what the other three carry that fret " },
+        { "text": "5", "marks": ["code"] },
+        { "text": " doesn't. Fret " },
+        { "text": "0", "marks": ["code"] },
+        { "text": " and fret " },
+        { "text": "12", "marks": ["code"] },
+        { "text": " both hold a " },
+        { "text": "7", "marks": ["code"] },
+        { "text": " — the open " },
+        { "text": "B", "marks": ["code"] },
+        { "text": " on string 2. Fret " },
+        { "text": "10", "marks": ["code"] },
+        { "text": " holds a " },
+        { "text": "4", "marks": ["code"] },
+        { "text": ", at " },
+        { "text": "3·10", "marks": ["code"] },
+        { "text": ". Fret " },
+        { "text": "5", "marks": ["code"] },
+        {
+          "text": " is the one fret whose six notes dodge both of the new notes — which is exactly why it stood alone before this chapter."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The reason is the same fact chapter 1 opened with: standard tuning is a stack of fourths with one major third at "
+        },
+        { "text": "G → B", "marks": ["code"] },
+        {
+          "text": ". Moving every string up five frets shifts each one exactly one step along that stack, and the whole set lands back inside the scale. It runs out after three jumps — fret "
+        },
+        { "text": "15", "marks": ["code"] },
+        { "text": " gives you " },
+        { "text": "G C F A# D G", "marks": ["code"] },
+        { "text": ", and " },
+        { "text": "A#", "marks": ["code"] },
+        { "text": " isn't a note of " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " major, so the pattern breaks there." }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "spans": [{ "text": "The Low E String, Completed" }]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Chapter 3 found the pentatonic on the low E string alone gives you frets " },
+        { "text": "0", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "5", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "8", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "10", "marks": ["code"] },
+        { "text": " — exactly the five forms' barre frets. The scale adds two more: fret " },
+        { "text": "1", "marks": ["code"] },
+        { "text": " and fret " },
+        { "text": "7", "marks": ["code"] },
+        {
+          "text": ". Below the twelfth fret, those are the only two scale notes on the low E string that aren't one of the five barre frets."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Fret" }],
+        [{ "text": "0" }],
+        [{ "text": "1" }],
+        [{ "text": "3" }],
+        [{ "text": "5" }],
+        [{ "text": "7" }],
+        [{ "text": "8" }],
+        [{ "text": "10" }],
+        [{ "text": "12" }],
+        [{ "text": "13" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "Degree" }],
+          [{ "text": "3", "marks": ["code"] }],
+          [{ "text": "4", "marks": ["code"] }],
+          [{ "text": "5", "marks": ["code"] }],
+          [{ "text": "6", "marks": ["code"] }],
+          [{ "text": "7", "marks": ["code"] }],
+          [{ "text": "1", "marks": ["code"] }],
+          [{ "text": "2", "marks": ["code"] }],
+          [{ "text": "3", "marks": ["code"] }],
+          [{ "text": "4", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Fret " },
+        { "text": "1", "marks": ["code"] },
+        { "text": " is a " },
+        { "text": "4", "marks": ["code"] },
+        { "text": "; fret " },
+        { "text": "7", "marks": ["code"] },
+        { "text": " is a " },
+        { "text": "7", "marks": ["code"] },
+        {
+          "text": ". Even walking a single string, the two new notes are the ones that fall between where the windows start."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One more thing, in a single sentence rather than a table: every overlap between neighbouring windows now holds all seven degrees, with something on every string — which, once each window holds every degree on its own, is exactly what you'd expect."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "spans": [{ "text": "What Each Note Is For" }]
+    },
+    {
+      "type": "table",
+      "header": [[{ "text": "Degrees" }], [{ "text": "What they're for" }]],
+      "rows": [
+        [[{ "text": "1, 3, 5", "marks": ["code"] }], [{ "text": "Where a phrase arrives" }]],
+        [[{ "text": "2, 6", "marks": ["code"] }], [{ "text": "Colour you can sit on" }]],
+        [
+          [{ "text": "4, 7", "marks": ["code"] }],
+          [{ "text": "A fret from a chord tone — lean on it, then move" }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Open " },
+        { "text": "Scale Visualizer", "link": { "kind": "screen", "href": "/scale-visualizer" } },
+        { "text": " on root " },
+        { "text": "C", "marks": ["code"] },
+        { "text": ", set the scale to major, and leave the position toggle on " },
+        { "text": "CAGED", "marks": ["code"] },
+        {
+          "text": " — the same five windows, now complete, laid out live across the whole neck. Open the "
+        },
+        { "text": "Drone", "link": { "kind": "screen", "href": "/drone" } },
+        { "text": " for a sustained " },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": " to play any of them against. The next chapter leaves these boxes behind and starts moving between them; for now, five windows, seven degrees each, and one rule for everything you haven't memorised yet."
+        }
+      ]
+    }
+  ]
+}

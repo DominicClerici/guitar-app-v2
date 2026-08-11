@@ -197,7 +197,7 @@ squeezed, and in chapter 3 the checkpoint ended up testing the closer's material
 form's. Chapter 1 used a separate closer and had no such problem. Seven is inside the 4–8 rule, so
 chapters 4 and 5 get one.
 
-**Chapter 5 — Off the boxes** (5 lessons)
+**Chapter 5 — Off the boxes** (6 lessons)
 After it, the learner can move between adjacent forms through the notes they share, play
 horizontally along a string set instead of vertically inside one window, run a real progression up
 the neck, and transpose the entire ladder to any key. This is where the box-trap criticism is

@@ -1,0 +1,284 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_caged-fourths-and-sevenths",
+    "slug": "caged-fourths-and-sevenths",
+    "title": "The Two Notes That Lean",
+    "summary": "The major scale's last two notes, the 4 and the 7, sit a single fret from a chord tone in every CAGED window — which is both why the pentatonic left them out and how you find them.",
+    "tags": ["caged", "fretboard"],
+    "readingTimeMin": 5,
+    "publishedAt": "2026-08-11"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Chapter 3 promised this moment: the same five windows, filled in one more time, with the last two notes of the scale. There's nothing new to learn how to hold. And this is where that promise runs out — after this layer there is no sixth note, no further chapter of dots to add. Five shapes, learned once back in chapter 1, turn out to be the whole map you were ever going to need."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The major scale is seven notes: " },
+        { "text": "1 2 3 4 5 6 7", "marks": ["code"] },
+        { "text": ". In C that's " },
+        { "text": "C D E F G A B", "marks": ["code"] },
+        { "text": ". The pentatonic you already play has five of them — " },
+        { "text": "1 2 3 5 6", "marks": ["code"] },
+        { "text": ", or " },
+        { "text": "C D E G A", "marks": ["code"] },
+        { "text": ". This chapter adds the last two: the " },
+        { "text": "4", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "7", "marks": ["code"] },
+        { "text": " — " },
+        { "text": "F", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "B", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Every note chapter 3 added sat a whole step or more from its neighbours — the "
+        },
+        { "text": "2", "marks": ["code"] },
+        { "text": " a whole step above the " },
+        { "text": "1", "marks": ["code"] },
+        { "text": ", the " },
+        { "text": "6", "marks": ["code"] },
+        { "text": " a whole step above the " },
+        { "text": "5", "marks": ["code"] },
+        {
+          "text": ". These two don't. The "
+        },
+        { "text": "4", "marks": ["code"] },
+        { "text": " sits a semitone above the " },
+        { "text": "3", "marks": ["code"] },
+        { "text": "; the " },
+        { "text": "7", "marks": ["code"] },
+        { "text": " sits a semitone below the " },
+        { "text": "1", "marks": ["code"] },
+        { "text": ". On a guitar, a semitone is one fret." }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        {
+          "text": "Every "
+        },
+        { "text": "3", "marks": ["code"] },
+        { "text": " has a " },
+        { "text": "4", "marks": ["code"] },
+        { "text": " one fret above it, on the same string, inside the window. Every " },
+        { "text": "1", "marks": ["code"] },
+        { "text": " has a " },
+        { "text": "7", "marks": ["code"] },
+        {
+          "text": " one fret below it, on the same string, inside the window. True in every one of the five windows, with no exception."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here's what that means when you're actually playing. Over a "
+        },
+        { "text": "C", "marks": ["code"] },
+        { "text": " chord, the " },
+        { "text": "4", "marks": ["code"] },
+        { "text": " sits a fret above the " },
+        { "text": "3", "marks": ["code"] },
+        {
+          "text": " the chord is built on, and it grates against it. The "
+        },
+        { "text": "7", "marks": ["code"] },
+        {
+          "text": " sits a fret under the root and pulls upward into it. Chapter 3 taught you to land a phrase on a chord tone. This is the other half of that lesson: the notes you don't land on aren't all alike. The "
+        },
+        { "text": "2", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "6", "marks": ["code"] },
+        {
+          "text": " are safe colour — sit on either one and nothing complains. The "
+        },
+        { "text": "4", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "7", "marks": ["code"] },
+        {
+          "text": " are different. They're notes to place on purpose and move on from, not notes to rest on. A phrase that lingers on one of them sounds like it's still deciding where to go; move through it instead, and the box starts to sound like music rather than a scale exercise."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Degree" }],
+        [{ "text": "Note" }],
+        [{ "text": "In the chord?" }],
+        [{ "text": "In the pentatonic?" }]
+      ],
+      "rows": [
+        [[{ "text": "1" }], [{ "text": "C" }], [{ "text": "Yes" }], [{ "text": "Yes" }]],
+        [[{ "text": "2" }], [{ "text": "D" }], [{ "text": "No" }], [{ "text": "Yes" }]],
+        [[{ "text": "3" }], [{ "text": "E" }], [{ "text": "Yes" }], [{ "text": "Yes" }]],
+        [[{ "text": "4" }], [{ "text": "F" }], [{ "text": "No" }], [{ "text": "No" }]],
+        [[{ "text": "5" }], [{ "text": "G" }], [{ "text": "Yes" }], [{ "text": "Yes" }]],
+        [[{ "text": "6" }], [{ "text": "A" }], [{ "text": "No" }], [{ "text": "Yes" }]],
+        [[{ "text": "7" }], [{ "text": "B" }], [{ "text": "No" }], [{ "text": "No" }]]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Chapter 3's big discovery was that every window came out to exactly twelve dots, two on every string, with no exceptions anywhere. That regularity doesn't survive this layer."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Form" }],
+        [{ "text": "Window" }],
+        [{ "text": "Dots" }],
+        [{ "text": "Dots per string, 1→6" }],
+        [{ "text": "Short string(s)" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "C" }],
+          [{ "text": "0–4" }],
+          [{ "text": "18" }],
+          [{ "text": "3 3 3 3 3 3" }],
+          [{ "text": "none" }]
+        ],
+        [
+          [{ "text": "A" }],
+          [{ "text": "2–6" }],
+          [{ "text": "16" }],
+          [{ "text": "2 3 3 3 3 2" }],
+          [{ "text": "1 and 6" }]
+        ],
+        [
+          [{ "text": "G" }],
+          [{ "text": "4–8" }],
+          [{ "text": "17" }],
+          [{ "text": "3 3 3 2 3 3" }],
+          [{ "text": "4" }]
+        ],
+        [
+          [{ "text": "E" }],
+          [{ "text": "7–11" }],
+          [{ "text": "17" }],
+          [{ "text": "3 2 3 3 3 3" }],
+          [{ "text": "2" }]
+        ],
+        [
+          [{ "text": "D" }],
+          [{ "text": "9–13" }],
+          [{ "text": "17" }],
+          [{ "text": "3 3 3 3 2 3" }],
+          [{ "text": "5" }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Sixteen to eighteen dots, not twelve. Only the C form manages three notes on every single string. The A form has two strings carrying just two dots. The G, E and D forms each have one string a dot short. Say the conclusion out loud: the tidy layer was the one that turned out to be missing something."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The short strings aren't random, either. In every window that has one, the string carrying only two dots carries the same two degrees — a "
+        },
+        { "text": "5", "marks": ["code"] },
+        { "text": " and a " },
+        { "text": "6", "marks": ["code"] },
+        {
+          "text": ", and nothing else. And in every case the note it's missing is a "
+        },
+        { "text": "7", "marks": ["code"] },
+        {
+          "text": ", sitting exactly one fret past the top of the window, where the next form picks it up. Which string this happens to changes from window to window, and each of the five lessons ahead names its own."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Chapter 3 said the two new notes would land in each window's three-fret gaps, and they do — every gap chapter 3 pointed at picks up a new dot. But that isn't the whole story. New dots also show up at the edges of each window, outside those gaps entirely, and it's the edge dots that make the totals uneven from form to form. A window that gains a lot at its edges ends up with more new dots than one that only fills gaps."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One reminder if you're arriving at this chapter cold: "
+        },
+        { "text": "caged-shape", "marks": ["code"] },
+        {
+          "text": " draws every note of the layer inside the window, not one grip a hand could hold. At the triad layer that meant more dots than five fingers could reach at once. At the pentatonic layer it was close to a hand's whole reach. At this layer it's sixteen to eighteen dots — the entire window, holding the entire scale. Guitarists also carve the neck a different way, three notes to a string instead of by window; "
+        },
+        { "text": "Scale Visualizer", "link": { "kind": "screen", "href": "/scale-visualizer" } },
+        {
+          "text": " offers that as its own position system, but it isn't what this pathway teaches."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Look at the A form for the clearest before-and-after. It's the same window you already know from "
+        },
+        {
+          "text": "its pentatonic lesson",
+          "link": { "kind": "article", "slug": "caged-pentatonic-a-form" }
+        },
+        {
+          "text": " — the same twelve dots — with four new ones added. The A form gains the fewest of any window this chapter, so the change is the easiest one to see clearly."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "C",
+        "form": "A",
+        "show": "scale",
+        "caption": "The A form's window, the same twelve pentatonic dots you already know, with four new ones filled in — the smallest change any window makes this chapter."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The C form is the exception to nearly everything above — the only window that comes out even, three dots on every string, eighteen in total, and no short string anywhere in it. "
+        },
+        {
+          "text": "That's next",
+          "link": { "kind": "article", "slug": "caged-scale-c-form" }
+        },
+        {
+          "text": ", and it's the natural place to start: the one window where the new count settles instead of leaving the hand extra work to plan around."
+        }
+      ]
+    }
+  ]
+}

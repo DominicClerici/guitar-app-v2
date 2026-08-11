@@ -1,0 +1,450 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "quiz_caged-fretboard-ch4-checkpoint",
+    "slug": "caged-fretboard-ch4-checkpoint",
+    "title": "Checkpoint: The Whole Major Scale",
+    "summary": "The last two notes go into the same five windows — why they behave differently from the rest, where to find them without memorising anything, and what each window does with them.",
+    "kind": "checkpoint",
+    "passThresholdPct": 70
+  },
+  "questions": [
+    {
+      "id": "q_caged-fretboard-ch4-checkpoint.why-they-lean",
+      "kind": "choice",
+      "prompt": [
+        { "text": "The major pentatonic leaves out the " },
+        { "text": "4", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "7", "marks": ["code"] },
+        { "text": ". What actually sets those two apart from the five notes it keeps?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "They are harder to reach — they fall outside a comfortable hand position" }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "Each sits a semitone from a note of the chord: the " },
+            { "text": "4", "marks": ["code"] },
+            { "text": " one fret above the " },
+            { "text": "3", "marks": ["code"] },
+            { "text": ", the " },
+            { "text": "7", "marks": ["code"] },
+            { "text": " one fret below the " },
+            { "text": "1", "marks": ["code"] }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [{ "text": "They are the two notes that don't belong to the C major scale" }]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "They are the only two degrees that aren't in the chord — the rest of the pentatonic is "
+            },
+            { "text": "1 3 5", "marks": ["code"] }
+          ]
+        }
+      ],
+      "answerId": "b",
+      "explanation": [
+        {
+          "text": "Every note the pentatonic keeps sits a whole step or more from its neighbours. These two don't. The "
+        },
+        { "text": "4", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "F", "marks": ["code"] },
+        { "text": ") is a semitone — one fret — above the " },
+        { "text": "3", "marks": ["code"] },
+        { "text": " the chord is built on, and grates against it. The " },
+        { "text": "7", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "B", "marks": ["code"] },
+        {
+          "text": ") is a semitone below the root and pulls up into it. Option D is wrong on the arithmetic: the "
+        },
+        { "text": "2", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "6", "marks": ["code"] },
+        { "text": " aren't chord tones either, and they're perfectly safe to sit on." }
+      ]
+    },
+    {
+      "id": "q_caged-fretboard-ch4-checkpoint.find-the-seven",
+      "kind": "choice",
+      "prompt": [
+        { "text": "You're in the G form window, frets " },
+        { "text": "4–8", "marks": ["code"] },
+        { "text": ", with a finger on the root at " },
+        { "text": "6·8", "marks": ["code"] },
+        { "text": ". Without counting anything out, where is the nearest " },
+        { "text": "7", "marks": ["code"] },
+        { "text": "?" }
+      ],
+      "options": [
+        { "id": "a", "spans": [{ "text": "6·7", "marks": ["code"] }] },
+        { "id": "b", "spans": [{ "text": "6·9", "marks": ["code"] }] },
+        { "id": "c", "spans": [{ "text": "6·10", "marks": ["code"] }] },
+        { "id": "d", "spans": [{ "text": "5·8", "marks": ["code"] }] }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "The " },
+        { "text": "7", "marks": ["code"] },
+        {
+          "text": " is a semitone below the root, so on the same string it is always one fret down — here "
+        },
+        { "text": "6·7", "marks": ["code"] },
+        { "text": ", a " },
+        { "text": "B", "marks": ["code"] },
+        {
+          "text": ". That holds in every window, which is why you never have to memorise where the "
+        },
+        { "text": "7", "marks": ["code"] },
+        { "text": "s are: find a root and step back a fret. " },
+        { "text": "6·9", "marks": ["code"] },
+        { "text": " is a fret above the root and isn't in the scale at all; " },
+        { "text": "5·8", "marks": ["code"] },
+        { "text": " is the " },
+        { "text": "4", "marks": ["code"] },
+        { "text": ", the other note this chapter added." }
+      ]
+    },
+    {
+      "id": "q_caged-fretboard-ch4-checkpoint.c-form-open-strings",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "Strum all six open strings. Every one of them is a note of C major — that's new, since chapter 3 had to tell you to leave string 2 out. Which degrees do the open strings never give you?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [{ "text": "None — all seven degrees are there across the six strings" }]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "The " },
+            { "text": "4", "marks": ["code"] },
+            { "text": " and the " },
+            { "text": "7", "marks": ["code"] },
+            { "text": " — the two this chapter added" }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "The " },
+            { "text": "1", "marks": ["code"] },
+            { "text": " and the " },
+            { "text": "4", "marks": ["code"] }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "The " },
+            { "text": "2", "marks": ["code"] },
+            { "text": " and the " },
+            { "text": "6", "marks": ["code"] }
+          ]
+        }
+      ],
+      "answerId": "c",
+      "explanation": [
+        { "text": "Low to high the open strings are " },
+        { "text": "E A D G B E", "marks": ["code"] },
+        { "text": " — degrees " },
+        { "text": "3 6 2 5 7 3", "marks": ["code"] },
+        { "text": ". Six strings, but only five different degrees, because the two " },
+        { "text": "E", "marks": ["code"] },
+        { "text": " strings double the " },
+        { "text": "3", "marks": ["code"] },
+        { "text": ". Missing are the " },
+        { "text": "1", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "4", "marks": ["code"] },
+        { "text": ". Option B is the trap: the open " },
+        { "text": "B", "marks": ["code"] },
+        { "text": " on string 2 is the " },
+        { "text": "7", "marks": ["code"] },
+        {
+          "text": ", and it is exactly the note this chapter added — which is why chapter 3 had to exclude that string."
+        }
+      ]
+    },
+    {
+      "id": "q_caged-fretboard-ch4-checkpoint.a-form-stretch",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "The A form window gains only four new notes — fewer than any other window. So why does it stop fitting inside three frets?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "Two of the four land on frets 4 and 6, which this window used to skip entirely, so it now uses all five of its frets"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "The new notes land on strings 1 and 6, and those two strings are the widest reach in any window"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "The B string pushes every note above it up a fret, as it does in the C and D forms"
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "The A form's barre moves from fret 3 to fret 5 once the scale is complete" }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "Chapter 3's A form used frets 2, 3 and 5 only. The " },
+        { "text": "7", "marks": ["code"] },
+        { "text": " at " },
+        { "text": "3·4", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "4", "marks": ["code"] },
+        { "text": " at " },
+        { "text": "2·6", "marks": ["code"] },
+        { "text": " land on the two frets it skipped, and " },
+        { "text": "2·6", "marks": ["code"] },
+        {
+          "text": " pushes the reach out to five frets. Option B has it backwards — strings 1 and 6 are the two that gain nothing here, still carrying just a "
+        },
+        { "text": "5", "marks": ["code"] },
+        { "text": " and a " },
+        { "text": "6", "marks": ["code"] },
+        { "text": ". A barre fret never moves; it's fixed by where the root falls." }
+      ]
+    },
+    {
+      "id": "q_caged-fretboard-ch4-checkpoint.g-form-leading-tones",
+      "kind": "fretboard",
+      "prompt": [
+        { "text": "The G form window holds three roots — " },
+        { "text": "6·8", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3·5", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "1·8", "marks": ["code"] },
+        { "text": ". Mark the " },
+        { "text": "7", "marks": ["code"] },
+        { "text": " that sits one fret below each of them." }
+      ],
+      "frets": 8,
+      "answer": [
+        { "string": 6, "fret": 7 },
+        { "string": 3, "fret": 4 },
+        { "string": 1, "fret": 7 }
+      ],
+      "explanation": [
+        { "text": "One fret below each root, on the same string: " },
+        { "text": "6·7", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3·4", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "1·7", "marks": ["code"] },
+        { "text": " — all three of them " },
+        { "text": "B", "marks": ["code"] },
+        {
+          "text": ". The two outside strings do it at the same pair of frets, 7 into 8, because strings 6 and 1 carry the same note at the same fret two octaves apart. "
+        },
+        { "text": "3·4", "marks": ["code"] },
+        { "text": " sits just below the barre." }
+      ]
+    },
+    {
+      "id": "q_caged-fretboard-ch4-checkpoint.e-form-four-frets",
+      "kind": "choice",
+      "prompt": [
+        { "text": "The E form window is drawn across frets " },
+        { "text": "7–11", "marks": ["code"] },
+        { "text": ", but all seventeen of its scale notes sit inside frets " },
+        { "text": "7–10", "marks": ["code"] },
+        { "text": ". Why is fret 11 empty?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "Nothing is ever played more than three frets above a barre, and the E form's barre is at fret 8"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "Fret 11 carries no note of C major on any string — the only fret in the first twelve where that's true"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "The notes at fret 11 belong to the D form's window, so the E form leaves them to it"
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [{ "text": "The diagram only ever draws four frets of a five-fret window" }]
+        }
+      ],
+      "answerId": "b",
+      "explanation": [
+        { "text": "Checked string by string, fret 11 sounds " },
+        { "text": "D#", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "A#", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "F#", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "C#", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "G#", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "D#", "marks": ["code"] },
+        {
+          "text": " — not one of them is in C major. That hole is what lets the E form hold a complete scale in four frets, and it's the same hole that lands in the middle of the D form's window and splits it in two. Windows overlap by design, so option C has the logic backwards: shared frets are shared, not handed over."
+        }
+      ]
+    },
+    {
+      "id": "q_caged-fretboard-ch4-checkpoint.d-form-tension",
+      "kind": "choice",
+      "prompt": [
+        { "text": "The D form window holds three " },
+        { "text": "4", "marks": ["code"] },
+        { "text": "s and only two roots, at " },
+        { "text": "4·10", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "2·13", "marks": ["code"] },
+        { "text": ", both at the edges of the shape. What does that make it in practice?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "The window where running the shape carelessly sounds most restless, and landing on a chord tone takes the most planning"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [{ "text": "The window where the scale comes out minor rather than major" }]
+        },
+        {
+          "id": "c",
+          "spans": [{ "text": "The window with the most notes in it" }]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "The window that should be avoided until you can move between forms" }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "The " },
+        { "text": "4", "marks": ["code"] },
+        { "text": " is the note that leans hardest over a " },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": " chord, and this window has three of them against only two roots — both awkwardly placed, with an empty fret 11 running through the middle of the shape. Nothing about that makes it a worse window; it makes it the one worth knowing the roots of before you improvise in it. Option C is wrong: the C form has eighteen dots to the D form's seventeen."
+        }
+      ]
+    },
+    {
+      "id": "q_caged-fretboard-ch4-checkpoint.all-six-frets",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "Chapter 3 found that fret 5 is the only fret where all six strings sound a note of the C major "
+        },
+        { "text": "pentatonic", "marks": ["italic"] },
+        { "text": ". With the whole scale, frets 0, 5, 10 and 12 all qualify. What changed?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "The scale has seven notes instead of five, so most frets qualify now" }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "Frets 0 and 12 hold a " },
+            { "text": "7", "marks": ["code"] },
+            { "text": " and fret 10 holds a " },
+            { "text": "4", "marks": ["code"] },
+            {
+              "text": " — the two notes the pentatonic didn't have. Fret 5 is the one that dodges both"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [{ "text": "The five windows shifted up the neck once the scale was complete" }]
+        },
+        {
+          "id": "d",
+          "spans": [{ "text": "Fret 5 no longer qualifies, and three different frets replaced it" }]
+        }
+      ],
+      "answerId": "b",
+      "explanation": [
+        { "text": "Fret 0 and fret 12 are " },
+        { "text": "E A D G B E", "marks": ["code"] },
+        { "text": " — the " },
+        { "text": "B", "marks": ["code"] },
+        { "text": " on string 2 is a " },
+        { "text": "7", "marks": ["code"] },
+        { "text": ". Fret 10 is " },
+        { "text": "D G C F A D", "marks": ["code"] },
+        { "text": " — the " },
+        { "text": "F", "marks": ["code"] },
+        { "text": " at " },
+        { "text": "3·10", "marks": ["code"] },
+        { "text": " is a " },
+        { "text": "4", "marks": ["code"] },
+        { "text": ". Fret 5 is " },
+        { "text": "A D G C E A", "marks": ["code"] },
+        {
+          "text": ", which contains neither, so it was the only one that qualified before. Four frets out of thirteen isn't \"most\", and the windows never move — they're fixed by where the root falls."
+        }
+      ]
+    }
+  ]
+}

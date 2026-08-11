@@ -1,0 +1,235 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_caged-scale-a-form",
+    "slug": "caged-scale-a-form",
+    "title": "The A Form: Fewest New Notes, Biggest Change",
+    "summary": "The A form gains fewer new notes than any other CAGED window this chapter, and still loses its tidiness completely — the four it gains land on the two frets it used to skip entirely.",
+    "tags": ["caged", "fretboard"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-11"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The A form of " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " sits at barre fret " },
+        { "text": "3", "marks": ["code"] },
+        { "text": ", window frets " },
+        { "text": "2–6", "marks": ["code"] },
+        {
+          "text": ". Sixteen dots — the fewest of the five windows — and only four of them new, also the fewest of any window this chapter adds. That's four fewer dots than the C form. It is also, for all that, the window these two notes change most: the four dots it gains are the ones that stop it fitting in three frets."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [[{ "text": "String" }], [{ "text": "" }], [{ "text": "" }], [{ "text": "" }]],
+      "rows": [
+        [
+          [{ "text": "6" }],
+          [{ "text": "6·3 — 5 (G)" }],
+          [{ "text": "6·5 — 6 (A)" }],
+          [{ "text": "—" }]
+        ],
+        [
+          [{ "text": "5" }],
+          [{ "text": "5·2 — 7 (B)" }],
+          [{ "text": "5·3 — 1 (C)" }],
+          [{ "text": "5·5 — 2 (D)" }]
+        ],
+        [
+          [{ "text": "4" }],
+          [{ "text": "4·2 — 3 (E)" }],
+          [{ "text": "4·3 — 4 (F)" }],
+          [{ "text": "4·5 — 5 (G)" }]
+        ],
+        [
+          [{ "text": "3" }],
+          [{ "text": "3·2 — 6 (A)" }],
+          [{ "text": "3·4 — 7 (B)" }],
+          [{ "text": "3·5 — 1 (C)" }]
+        ],
+        [
+          [{ "text": "2" }],
+          [{ "text": "2·3 — 2 (D)" }],
+          [{ "text": "2·5 — 3 (E)" }],
+          [{ "text": "2·6 — 4 (F)" }]
+        ],
+        [
+          [{ "text": "1" }],
+          [{ "text": "1·3 — 5 (G)" }],
+          [{ "text": "1·5 — 6 (A)" }],
+          [{ "text": "—" }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Chapter 3 called "
+        },
+        {
+          "text": "this window",
+          "link": { "kind": "article", "slug": "caged-pentatonic-a-form" }
+        },
+        {
+          "text": " the tidiest and most regular on the whole neck: twelve dots inside three frets — "
+        },
+        { "text": "2", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "5", "marks": ["code"] },
+        {
+          "text": " — with nothing at fret 4 and nothing at fret 6 at all. Two of the four new dots land on exactly those empty frets: a "
+        },
+        { "text": "7", "marks": ["code"] },
+        { "text": " at " },
+        { "text": "3·4", "marks": ["code"] },
+        { "text": ", a " },
+        { "text": "4", "marks": ["code"] },
+        { "text": " at " },
+        { "text": "2·6", "marks": ["code"] },
+        { "text": ". A third, the " },
+        { "text": "7", "marks": ["code"] },
+        { "text": " at " },
+        { "text": "5·2", "marks": ["code"] },
+        {
+          "text": ", sits at the window's bottom fret. Chapter 3's tidiest window now uses every fret it has: frets 2, 3, 4, 5 and 6 all carry something, where three of them used to be enough. Four dots, and two frets that held nothing before are suddenly in play."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Those two empty frets weren't ordinary empty frets, either. Fret 4 carries exactly one note of C major on the entire neck — "
+        },
+        { "text": "3·4", "marks": ["code"] },
+        { "text": " — and fret 6 carries exactly one — " },
+        { "text": "2·6", "marks": ["code"] },
+        {
+          "text": ". In the first twelve frets those are the only two like that, and both happen to sit inside this one window. The single note on each is one this chapter adds — before now, frets 4 and 6 were genuinely bare."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Chapter 3 let you settle a hand across frets 2 to 5 and reach every dot in the window without moving. This window's new top fret, 6, sits one further out than that — the first dot in the A form that a comfortable four-fret hand position doesn't already cover."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Strings 1 and 6 are untouched. Both still carry exactly two dots — the "
+        },
+        { "text": "5", "marks": ["code"] },
+        { "text": " at fret 3 and the " },
+        { "text": "6", "marks": ["code"] },
+        {
+          "text": " at fret 5 — the same content in the same places they've held since chapter 3. Every window except the C form has one string like that, but this is the only one with two, and they're a matched pair: chapter 1's fact showing up again, since strings 6 and 1 hold the same note at the same fret two octaves apart, so when one reads a certain way down its length, so does the other. Every other string in this window picked up something new; these two didn't."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Each new dot sits exactly where the opener's rule said it would. "
+        },
+        { "text": "4·3", "marks": ["code"] },
+        { "text": " is a " },
+        { "text": "4", "marks": ["code"] },
+        { "text": ", one fret above the " },
+        { "text": "3", "marks": ["code"] },
+        { "text": " at " },
+        { "text": "4·2", "marks": ["code"] },
+        { "text": ". " },
+        { "text": "2·6", "marks": ["code"] },
+        { "text": " is a " },
+        { "text": "4", "marks": ["code"] },
+        { "text": ", one fret above the " },
+        { "text": "3", "marks": ["code"] },
+        { "text": " at " },
+        { "text": "2·5", "marks": ["code"] },
+        { "text": ". " },
+        { "text": "5·2", "marks": ["code"] },
+        { "text": " is a " },
+        { "text": "7", "marks": ["code"] },
+        { "text": ", one fret below the " },
+        { "text": "1", "marks": ["code"] },
+        { "text": " at " },
+        { "text": "5·3", "marks": ["code"] },
+        { "text": ". " },
+        { "text": "3·4", "marks": ["code"] },
+        { "text": " is a " },
+        { "text": "7", "marks": ["code"] },
+        { "text": ", one fret below the " },
+        { "text": "1", "marks": ["code"] },
+        { "text": " at " },
+        { "text": "3·5", "marks": ["code"] },
+        {
+          "text": ". Two 3s and two roots, four new neighbours — the half-step rule landing in a real window for the first time. Compare it to the C form's six new dots and the difference in scale is obvious, even though the rule underneath both windows was identical."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "info",
+      "spans": [
+        {
+          "text": "Fewest new notes, biggest change — four dots put something on frets 4 and 6, which this window used to skip entirely, and push its reach out to five frets."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Chapter 3's fret-5 fact hasn't moved: one finger laid across fret 5 still catches six notes of the scale. What's changed is that fret 5 is no longer the only fret worth noticing in this window — the closer explains why it was ever alone in the first place."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Same window, fourth layer, and the last one there will be. Chapter 1 marked two roots in it, chapter 2 seven chord tones, chapter 3 twelve dots; sixteen is where it stops. The shape underneath has not moved a fret in four chapters."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "C",
+        "form": "A",
+        "show": "scale",
+        "caption": "The A form's window at its fourth and final layer: sixteen dots across all five frets — the window chapter 3 called the tidiest of the five, now stretched to match the rest."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "See it on "
+        },
+        { "text": "Scale Visualizer", "link": { "kind": "screen", "href": "/scale-visualizer" } },
+        { "text": " with the CAGED toggle set, then move to " },
+        {
+          "text": "the G form",
+          "link": { "kind": "article", "slug": "caged-scale-g-form" }
+        },
+        { "text": " — three roots, and a note sitting a fret below every one of them." }
+      ]
+    }
+  ]
+}

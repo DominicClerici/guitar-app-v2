@@ -1,0 +1,268 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_caged-scale-g-form",
+    "slug": "caged-scale-g-form",
+    "title": "The G Form: A Fret Below Every Root",
+    "summary": "The G form's three roots each have a 7 sitting one fret beneath them on the same string — the clearest demonstration in the chapter of what a leaning note actually sounds like.",
+    "tags": ["caged", "fretboard"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-11"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Every root in the G form has a leaning note sitting one fret beneath it, on the same string, and this window is the clearest place in the whole chapter to hear what that means, because it happens three separate times. The G form of "
+        },
+        { "text": "C", "marks": ["code"] },
+        { "text": " sits with its barre at fret " },
+        { "text": "5", "marks": ["code"] },
+        { "text": ", spanning frets " },
+        { "text": "4–8", "marks": ["code"] },
+        {
+          "text": ". It now carries seventeen dots — the major scale, complete, inside the same window chapter 1 first showed you three roots in. String "
+        },
+        { "text": "4", "marks": ["code"] },
+        { "text": " is the only string here holding just two, at " },
+        { "text": "4·5", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "4·7", "marks": ["code"] },
+        { "text": "; every other string holds three." }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "String" }],
+        [{ "text": "Dot 1" }],
+        [{ "text": "Dot 2" }],
+        [{ "text": "Dot 3" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "6" }],
+          [{ "text": "6·5 — 6, A", "marks": ["code"] }],
+          [{ "text": "6·7 — 7, B", "marks": ["code"] }],
+          [{ "text": "6·8 — 1, C", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "5" }],
+          [{ "text": "5·5 — 2, D", "marks": ["code"] }],
+          [{ "text": "5·7 — 3, E", "marks": ["code"] }],
+          [{ "text": "5·8 — 4, F", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "4" }],
+          [{ "text": "4·5 — 5, G", "marks": ["code"] }],
+          [{ "text": "4·7 — 6, A", "marks": ["code"] }],
+          [{ "text": "—" }]
+        ],
+        [
+          [{ "text": "3" }],
+          [{ "text": "3·4 — 7, B", "marks": ["code"] }],
+          [{ "text": "3·5 — 1, C", "marks": ["code"] }],
+          [{ "text": "3·7 — 2, D", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "2" }],
+          [{ "text": "2·5 — 3, E", "marks": ["code"] }],
+          [{ "text": "2·6 — 4, F", "marks": ["code"] }],
+          [{ "text": "2·8 — 5, G", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "1" }],
+          [{ "text": "1·5 — 6, A", "marks": ["code"] }],
+          [{ "text": "1·7 — 7, B", "marks": ["code"] }],
+          [{ "text": "1·8 — 1, C", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "C",
+        "form": "G",
+        "show": "scale",
+        "caption": "The window chapter 1 lit three roots in, chapter 2 filled with a triad, chapter 3 filled to twelve — now complete at seventeen, and the same shape it has always been."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Three roots, the same three chapter 1 gave this form: " },
+        { "text": "6·8", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3·5", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "1·8", "marks": ["code"] },
+        { "text": ". And three " },
+        { "text": "7", "marks": ["code"] },
+        { "text": "s, one directly beneath each: " },
+        { "text": "6·7", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3·4", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "1·7", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Play " },
+        { "text": "6·7", "marks": ["code"] },
+        { "text": ", then " },
+        { "text": "6·8", "marks": ["code"] },
+        {
+          "text": ". The first note sounds unfinished; the second arrives. That is the whole job of the "
+        },
+        { "text": "7", "marks": ["code"] },
+        {
+          "text": ": a semitone under home, leaning on it until it resolves. Musicians call that note the "
+        },
+        { "text": "leading tone", "marks": ["italic"] },
+        {
+          "text": ". It isn't a new idea — only a new name for the fret you just heard lean into the root beside it. From here on, keep calling it the "
+        },
+        { "text": "7", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "On the two outside strings it happens twice, identically. " },
+        { "text": "6·7", "marks": ["code"] },
+        { "text": " to " },
+        { "text": "6·8", "marks": ["code"] },
+        { "text": " on the low E and " },
+        { "text": "1·7", "marks": ["code"] },
+        { "text": " to " },
+        { "text": "1·8", "marks": ["code"] },
+        {
+          "text": " on the high e sit at the same two frets, two octaves apart, because chapter 1's twin fact still holds: strings 6 and 1 carry the same note at the same fret. The third pair, "
+        },
+        { "text": "3·4", "marks": ["code"] },
+        { "text": " to " },
+        { "text": "3·5", "marks": ["code"] },
+        {
+          "text": ", sits just below the barre. Three places, low, low-middle and high, and none of them is far from a root or from the note that walks straight into it."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        { "text": "Three roots, three " },
+        { "text": "7", "marks": ["code"] },
+        { "text": "s, one fret below each: " },
+        { "text": "6·7 → 6·8", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3·4 → 3·5", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "1·7 → 1·8", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The other new note does the opposite job. The " },
+        { "text": "4", "marks": ["code"] },
+        { "text": "s here are " },
+        { "text": "2·6", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "5·8", "marks": ["code"] },
+        { "text": ", each one fret above a " },
+        { "text": "3", "marks": ["code"] },
+        { "text": " — " },
+        { "text": "2·5", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "5·7", "marks": ["code"] },
+        { "text": ". Play " },
+        { "text": "5·7", "marks": ["code"] },
+        { "text": ", then " },
+        { "text": "5·8", "marks": ["code"] },
+        { "text": ", against a sustained " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " from the " },
+        { "text": "Drone", "link": { "kind": "screen", "href": "/drone" } },
+        { "text": ": the " },
+        { "text": "3", "marks": ["code"] },
+        { "text": " settles into the chord underneath it, and the " },
+        { "text": "4", "marks": ["code"] },
+        { "text": " a fret above it does not. Same one-fret distance as the " },
+        { "text": "7", "marks": ["code"] },
+        {
+          "text": " and the root, opposite feeling — one leans up into home, the other leans on a note that is already there."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Chapter 3 showed this window is, position for position, the box most guitarists already know as the minor pentatonic, and that the note you resolve to decides what it sounds like. Two more notes per octave do not change that — the roots are still "
+        },
+        { "text": "6·8", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3·5", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "1·8", "marks": ["code"] },
+        { "text": ", and each of them now has a note a fret below it pointing straight at it." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Five dots are new since the pentatonic: " },
+        { "text": "6·7", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3·4", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "1·7", "marks": ["code"] },
+        { "text": " — the three " },
+        { "text": "7", "marks": ["code"] },
+        { "text": "s — plus " },
+        { "text": "5·8", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "2·6", "marks": ["code"] },
+        { "text": ", the two " },
+        { "text": "4", "marks": ["code"] },
+        { "text": "s." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "This is the fourth time this window has been drawn, and the last. Chapter 1 lit three roots in it; chapter 2 filled it with a triad; chapter 3 brought it to twelve dots. It now holds all seventeen — the whole scale — and the shape underneath hasn't moved a fret since chapter 1 first drew it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Next is the " },
+        {
+          "text": "E form",
+          "marks": ["bold"],
+          "link": { "kind": "article", "slug": "caged-scale-e-form" }
+        },
+        {
+          "text": " — the other window with three roots, and the one where the entire scale fits inside four frets without a single shift. Until then, open "
+        },
+        { "text": "Scale Visualizer", "link": { "kind": "screen", "href": "/scale-visualizer" } },
+        { "text": " on root " },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": " and page to the G form: the same seventeen dots, laid out live on the neck instead of in a diagram."
+        }
+      ]
+    }
+  ]
+}
