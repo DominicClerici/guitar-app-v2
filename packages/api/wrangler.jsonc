@@ -14,7 +14,9 @@
   // binds the IPv6 wildcard it wins `localhost` over workerd's loopback bind. The symptom is a
   // worker that appears to run while every request is answered by photod — /health even returns a
   // plausible {"ok":true}. Reach it on 127.0.0.1 explicitly if a port ever has to be shared again.
-  "dev": { "port": 8788 },
+  // `ip` because Wrangler otherwise binds loopback only, so a physical device on the LAN gets a
+  // connection refused with nothing reaching the worker — no request log to explain it.
+  "dev": { "port": 8788, "ip": "0.0.0.0" },
 
   "vars": {
     // Comma-separated. Better Auth checks this list for OAuth redirects and cookie handling,
