@@ -1,0 +1,181 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_caged-pentatonic-a-form",
+    "slug": "caged-pentatonic-a-form",
+    "title": "The A Form: The Whole Scale at One Fret",
+    "summary": "Fret 5 is the only fret on the whole neck where every string sounds a note of the C major pentatonic, and it sits right at the top of the A form's window.",
+    "tags": ["caged", "fretboard"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-11"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The C form's twelve dots ran open, chord-toned, and edge-heavy. The A form's don't look anything like that — and the reason is the tidiest single fact in this chapter."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The A form sits at barre fret " },
+        { "text": "3", "marks": ["code"] },
+        { "text": ", window frets " },
+        { "text": "2–6", "marks": ["code"] },
+        { "text": ". Its twelve dots occupy only three frets — " },
+        { "text": "2", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "5", "marks": ["code"] },
+        {
+          "text": " — with nothing at fret 4 and nothing at fret 6 at all. That makes it the most regular of the five windows this chapter draws, and the easiest to see whole. Settle your hand over frets 2 through 5 and every one of the twelve dots is already under a finger, with nothing to shift for."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Four of the six strings carry an identical pair, frets 3 and 5. Only strings 4 and 3 differ, sitting at frets 2 and 5 instead — and those two are exactly the strings with the wider, three-fret reach. String 4 is jumping from the 3 to the 5; string 3 is jumping from the 6 to the 1. Different steps, same width, and they land on neighbouring strings rather than being spread across the window."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [[{ "text": "String" }], [{ "text": "Lower dot" }], [{ "text": "Upper dot" }]],
+      "rows": [
+        [[{ "text": "6" }], [{ "text": "6·3 — 5 (G)" }], [{ "text": "6·5 — 6 (A)" }]],
+        [[{ "text": "5" }], [{ "text": "5·3 — 1 (C)" }], [{ "text": "5·5 — 2 (D)" }]],
+        [[{ "text": "4" }], [{ "text": "4·2 — 3 (E)" }], [{ "text": "4·5 — 5 (G)" }]],
+        [[{ "text": "3" }], [{ "text": "3·2 — 6 (A)" }], [{ "text": "3·5 — 1 (C)" }]],
+        [[{ "text": "2" }], [{ "text": "2·3 — 2 (D)" }], [{ "text": "2·5 — 3 (E)" }]],
+        [[{ "text": "1" }], [{ "text": "1·3 — 5 (G)" }], [{ "text": "1·5 — 6 (A)" }]]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Now lay one finger flat across fret 5 and check every string underneath it. Low to high: "
+        },
+        { "text": "A D G C E A", "marks": ["code"] },
+        { "text": ", degrees " },
+        { "text": "6 2 5 1 3 6", "marks": ["code"] },
+        {
+          "text": ". Every single one is a note of the C major pentatonic. There is no other fret in the first twelve frets where that is true — verified, not assumed — and there's no fret at all, anywhere on the neck, where all six strings land on chord tones instead."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        {
+          "text": "One finger, fret 5, all six strings. That single barre gives you the whole C major pentatonic in one motion — the only fret on the neck where that's true."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That's worth more than a curiosity once you look at which three of those six notes are chord tones. At fret 5: string 4 gives you the "
+        },
+        { "text": "5", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "G", "marks": ["code"] },
+        { "text": "), string 3 gives you the " },
+        { "text": "1", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "C", "marks": ["code"] },
+        { "text": "), and string 2 gives you the " },
+        { "text": "3", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "E", "marks": ["code"] },
+        {
+          "text": ") — three chord tones sitting side by side on strings 4, 3 and 2. Chapter 2 already named that exact trio: the middle of the A form barre, the "
+        },
+        { "text": "5 1 3", "marks": ["code"] },
+        {
+          "text": " that also sits in the middle of the G form. It's the same three notes, now with the whole scale wrapped around them. One finger at fret 5 gives you the entire scale; three strings of it give you the entire chord."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "C",
+        "form": "A",
+        "show": "pentatonic",
+        "caption": "The A form's window: three frets, four matching strings, and a barre at fret 5 that catches every note in the scale at once."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "New since "
+        },
+        {
+          "text": "chapter 2's triad",
+          "link": { "kind": "article", "slug": "caged-triad-a-form" }
+        },
+        { "text": ": " },
+        { "text": "6·5", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "5·5", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3·2", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "2·3", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "1·5", "marks": ["code"] },
+        {
+          "text": " — five dots, and three of them the same note. Twelve dots over five degrees means two degrees always turn up three times and the other three turn up twice, and in this window the tripled pair is the "
+        },
+        { "text": "5", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "6", "marks": ["code"] },
+        {
+          "text": " — three "
+        },
+        { "text": "G", "marks": ["code"] },
+        { "text": "s and three " },
+        { "text": "A", "marks": ["code"] },
+        {
+          "text": "s. Which pair a window triples shifts one step along the scale as you climb the neck, so no two of the five lean the same way. Here the lean is toward the "
+        },
+        { "text": "6", "marks": ["code"] },
+        {
+          "text": ", and it is the reason this window sounds looser and less settled than the C form did — a lean the G form picks up and does something much stranger with."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Put it together and the friendliest barre from chapter 2 turns out to be the tidiest scale window too: three frets, four identical strings, and one fret that quietly holds everything."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "See it in " },
+        { "text": "Scale Visualizer", "link": { "kind": "screen", "href": "/scale-visualizer" } },
+        { "text": " with the CAGED toggle set, then move on to " },
+        {
+          "text": "the G form",
+          "link": { "kind": "article", "slug": "caged-pentatonic-g-form" }
+        },
+        { "text": " — a shape you may already own under a different name." }
+      ]
+    }
+  ]
+}

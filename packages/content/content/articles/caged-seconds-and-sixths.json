@@ -1,0 +1,219 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_caged-seconds-and-sixths",
+    "slug": "caged-seconds-and-sixths",
+    "title": "Twelve Dots, Two on Every String",
+    "summary": "The major pentatonic is the triad plus two more notes per octave, and adding them turns every CAGED window into a regular twelve-dot box you already know how to hold.",
+    "tags": ["caged", "fretboard"],
+    "readingTimeMin": 5,
+    "publishedAt": "2026-08-11"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Chapter 2 promised the same five windows would keep filling in, and this is that promise landing again. Take the C form, the A form, any of the five you already know, and light two more notes inside each one — same window, same shape, just more of what was already there."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "A major triad is three notes: the root, the third and the fifth — " },
+        { "text": "1", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "5", "marks": ["code"] },
+        { "text": ". Add two more per octave, a " },
+        { "text": "2", "marks": ["code"] },
+        { "text": " and a " },
+        { "text": "6", "marks": ["code"] },
+        { "text": ", and you get five: " },
+        { "text": "1 2 3 5 6", "marks": ["code"] },
+        { "text": ". In C that's " },
+        { "text": "C D E G A", "marks": ["code"] },
+        {
+          "text": ". That's the major pentatonic — the triad you already have, plus two notes. Define it that way and it stays honest: it's what those five notes add, never what some bigger scale is missing."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The full major scale has seven notes to the octave. This chapter's layer has five. Chapter 4 fills in the last two — not yet, and not here."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here's what happens when you add the "
+        },
+        { "text": "2", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "6", "marks": ["code"] },
+        {
+          "text": " to any of the five windows: the dot count comes out exactly the same every time. Twelve dots. Two on every one of the six strings — no exceptions, no string left lopsided. Check it in any window you like, C form or A form or any other, and you'll find the same tidy count waiting."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That regularity is the whole point. Two notes on a string, sitting a fret or three apart, is one hand position with nothing to shift for. A triad window scattered seven or eight dots unevenly across six strings — some strings carrying two, some only one — which is part of why chapter 2 kept having to talk about pieces of a shape rather than the shape itself. A pentatonic window doesn't scatter. It fills in evenly, and that evenness is what turns a window into a box: something a hand can simply sit inside and play, top to bottom."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The twelve-dot count is the same everywhere, but it doesn't feel the same everywhere. Where the two new notes land, how far apart they sit, which pair of degrees ends up tripled inside a given window — all of that changes from form to form. That's what gives each of the next five lessons something real to teach, rather than the same box redrawn five times in five places."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One more thing worth restating before the windows start, in case you're arriving at this chapter after a gap. "
+        },
+        { "text": "caged-shape", "marks": ["code"] },
+        {
+          "text": " draws every note of the window, not one grip a hand could hold. At the triad layer that meant more dots than five fingers could reach at once — the whole reason fragments existed. At this layer the same convention gives you the opposite result. Twelve dots spread across four frets is, in four of the five windows, roughly a hand's whole reach. The fifth, the D form, spreads wider than that, and its own lesson explains why."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here's the fact this whole chapter is built on, and it's worth holding onto through every window that follows. Three of these five notes are the chord: "
+        },
+        { "text": "1", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "5", "marks": ["code"] },
+        { "text": " — the " },
+        { "text": "C", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "E", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "G", "marks": ["code"] },
+        {
+          "text": " chapter 2 spent a whole chapter naming. The other two, the "
+        },
+        { "text": "2", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "6", "marks": ["code"] },
+        {
+          "text": ", aren't in the chord at all. A player who can tell which dot is which can land a phrase on a chord tone and sound like they meant it. A player who only knows the box runs it up and down without ever landing anywhere in particular. That difference is what this chapter actually teaches — the shapes are already familiar; telling the chord tones from the rest is the new skill."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Picture ending a phrase on the "
+        },
+        { "text": "2", "marks": ["code"] },
+        { "text": " instead of the " },
+        { "text": "1", "marks": ["code"] },
+        {
+          "text": ". Both notes sit inside the same box, both belong to the scale — but the "
+        },
+        { "text": "1", "marks": ["code"] },
+        {
+          "text": " lands at rest against the chord underneath it, and the "
+        },
+        { "text": "2", "marks": ["code"] },
+        {
+          "text": " keeps pulling toward somewhere else. Nothing about the shape of the box tells you which is which. Knowing the degree under each dot does."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [[{ "text": "Degree" }], [{ "text": "Note" }], [{ "text": "In the chord?" }]],
+      "rows": [
+        [[{ "text": "1" }], [{ "text": "C" }], [{ "text": "Yes" }]],
+        [[{ "text": "2" }], [{ "text": "D" }], [{ "text": "No" }]],
+        [[{ "text": "3" }], [{ "text": "E" }], [{ "text": "Yes" }]],
+        [[{ "text": "5" }], [{ "text": "G" }], [{ "text": "Yes" }]],
+        [[{ "text": "6" }], [{ "text": "A" }], [{ "text": "No" }]]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Look back at " },
+        {
+          "text": "the C form's triad diagram",
+          "link": { "kind": "article", "slug": "caged-triad-c-form" }
+        },
+        {
+          "text": " — eight chord tones, the same C, E and G found there. This lesson fills that exact window in further."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "C",
+        "form": "C",
+        "show": "pentatonic",
+        "caption": "The C form's window, one layer further: the same eight chord tones from the triad diagram, four new dots filled in around them."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "If some of these shapes look familiar from somewhere else entirely, hold that thought — "
+        },
+        {
+          "text": "the G form",
+          "link": { "kind": "article", "slug": "caged-pentatonic-g-form" }
+        },
+        { "text": " explains exactly why." }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "spans": [
+        {
+          "text": "The scale visualizer offers two position-system toggles for a five-note scale: CAGED and Boxes. CAGED gives you exactly this chapter's five windows, with these same form names. Boxes is a different five-window tiling with its own numbering that won't line up with anything this chapter teaches. Use the CAGED toggle, and pick major-pentatonic from the scale library."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "See it live in " },
+        { "text": "Scale Visualizer", "link": { "kind": "screen", "href": "/scale-visualizer" } },
+        { "text": " before the form lessons start filling in the rest." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Start where the triad started too: " },
+        {
+          "text": "the C form",
+          "link": { "kind": "article", "slug": "caged-pentatonic-c-form" }
+        },
+        { "text": ", the window that sits open at the nut." }
+      ]
+    }
+  ]
+}

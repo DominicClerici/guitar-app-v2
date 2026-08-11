@@ -1,0 +1,228 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_caged-pentatonic-e-form",
+    "slug": "caged-pentatonic-e-form",
+    "title": "The E Form: Three Places to Land",
+    "summary": "The E form's three roots sit low, middle and high with no shift required to reach any of them, which is what turns landing on a chord tone from a hope into a plan.",
+    "tags": ["caged", "fretboard"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-11"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The E form of " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " has its barre at fret " },
+        { "text": "8", "marks": ["code"] },
+        { "text": ", drawing a window across frets " },
+        { "text": "7–11", "marks": ["code"] },
+        { "text": ". Its twelve pentatonic dots live inside frets " },
+        { "text": "7", "marks": ["code"] },
+        { "text": " through " },
+        { "text": "10", "marks": ["code"] },
+        { "text": " — nothing at fret " },
+        { "text": "11", "marks": ["code"] },
+        {
+          "text": " at all, so the window's top edge sits empty while the bottom four frets carry everything."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [[{ "text": "String" }], [{ "text": "Lower dot" }], [{ "text": "Upper dot" }]],
+      "rows": [
+        [
+          [{ "text": "6" }],
+          [{ "text": "6·8 — 1, C", "marks": ["code"] }],
+          [{ "text": "6·10 — 2, D", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "5" }],
+          [{ "text": "5·7 — 3, E", "marks": ["code"] }],
+          [{ "text": "5·10 — 5, G", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "4" }],
+          [{ "text": "4·7 — 6, A", "marks": ["code"] }],
+          [{ "text": "4·10 — 1, C", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "3" }],
+          [{ "text": "3·7 — 2, D", "marks": ["code"] }],
+          [{ "text": "3·9 — 3, E", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "2" }],
+          [{ "text": "2·8 — 5, G", "marks": ["code"] }],
+          [{ "text": "2·10 — 6, A", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "1" }],
+          [{ "text": "1·8 — 1, C", "marks": ["code"] }],
+          [{ "text": "1·10 — 2, D", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "C",
+        "form": "E",
+        "show": "pentatonic",
+        "caption": "The same window as the roots and the triad, chapters 1 and 2 — now every string carries two notes."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Three of those twelve dots are roots: " },
+        { "text": "6·8", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "4·10", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "1·8", "marks": ["code"] },
+        { "text": ". That's the " },
+        { "text": "6 → 4 → 1", "marks": ["code"] },
+        {
+          "text": " map you already know from "
+        },
+        {
+          "text": "the E form's roots",
+          "link": { "kind": "article", "slug": "caged-roots-e-form" }
+        },
+        {
+          "text": ", unchanged three chapters later — one root low, one in the middle, one on top, spread across the whole window rather than bunched at one end of it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The G form just taught you that the note you resolve to is what decides whether these five notes sound major or minor. This window is where that fact turns from an idea into something practical. Three roots, spread low, middle and high with no shift required to reach any of them, means home is always close by. Whichever register a phrase happens to end in — down on the bass strings, up on the treble ones, or somewhere in between — a root is right there waiting, not a stretch away. That's the most useful thing this chapter has to offer a player who actually wants to solo over a chord rather than just run a shape, and it's a large part of why the E form stays the window most players learn to navigate the rest of the neck from."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Read the window as two groups instead of one, since that split is the whole point of this chapter. Seven of the twelve dots are chord tones — the three roots above, plus "
+        },
+        { "text": "5·7", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "5·10", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3·9", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "2·8", "marks": ["code"] },
+        { "text": ". The other five are not: " },
+        { "text": "6·10", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "4·7", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3·7", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "2·10", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "1·10", "marks": ["code"] },
+        { "text": ", the " },
+        { "text": "2", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "6", "marks": ["code"] },
+        {
+          "text": " running through the shape. Those five are what make a line move. The seven chord tones are what make it arrive. A phrase built only from the first group never settles anywhere and just keeps drifting; a phrase built only from the second is an arpeggio, chord tone after chord tone with nothing pulling it forward in between."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        { "text": "Three places to land in this window — " },
+        { "text": "6·8", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "4·10", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "1·8", "marks": ["code"] },
+        {
+          "text": ". End a phrase on one of them and it arrives; end it anywhere else and it just stops."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "One more thing this window does more than any other: it triples the " },
+        { "text": "2", "marks": ["code"] },
+        { "text": ", at " },
+        { "text": "6·10", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3·7", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "1·10", "marks": ["code"] },
+        { "text": ", the same way it triples the " },
+        { "text": "1", "marks": ["code"] },
+        { "text": " at its three roots. So the tripled pair here is the " },
+        { "text": "1", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "2", "marks": ["code"] },
+        {
+          "text": " — no other window in this chapter triples both of those. On strings 6 and 1 you can see it directly — the root sits at fret "
+        },
+        { "text": "8", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "2", "marks": ["code"] },
+        { "text": " sits at fret " },
+        { "text": "10", "marks": ["code"] },
+        { "text": " on both strings, a whole step higher, in exactly the same place on each." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Its three-fret strings are 5 and 4, right in the middle of the hand rather than out at the edges the way the C form's were. That's why this window feels compact even though it spans four frets end to end — the widest reach is centred under your hand instead of splitting it in two directions."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Landing on the root isn't a beginner's habit to grow out of; this window is the proof it's the whole craft. Play the shape against a sustained "
+        },
+        { "text": "C", "marks": ["code"] },
+        { "text": " from the " },
+        { "text": "Drone", "link": { "kind": "screen", "href": "/drone" } },
+        { "text": ", and end every phrase on " },
+        { "text": "6·8", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "4·10", "marks": ["code"] },
+        { "text": " or " },
+        { "text": "1·8", "marks": ["code"] },
+        {
+          "text": " instead of letting it trail off wherever your hand happens to be. It's the same twelve notes anyone else reaches for in this window. The only difference between a phrase that lands and one that just stops is where you choose it to end."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Next is the " },
+        {
+          "text": "D form",
+          "marks": ["bold"],
+          "link": { "kind": "article", "slug": "caged-pentatonic-d-form" }
+        },
+        {
+          "text": " — the smallest of the five forms as a chord, and, once these two notes go into it, the widest window of them all."
+        }
+      ]
+    }
+  ]
+}

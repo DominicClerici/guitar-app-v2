@@ -1,0 +1,278 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_caged-pentatonic-g-form",
+    "slug": "caged-pentatonic-g-form",
+    "title": "The G Form: The Box You Already Own",
+    "summary": "The G form's twelve pentatonic dots are, position for position, the box most guitarists already know as the minor pentatonic — and what decides whether it sounds major or minor is only the note you resolve to.",
+    "tags": ["caged", "fretboard"],
+    "readingTimeMin": 5,
+    "publishedAt": "2026-08-11"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The G form of " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " sits with its barre at fret " },
+        { "text": "5", "marks": ["code"] },
+        { "text": ", drawing a window across frets " },
+        { "text": "4–8", "marks": ["code"] },
+        { "text": ". Its twelve pentatonic dots crowd into only three of those frets — " },
+        { "text": "5", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "7", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "8", "marks": ["code"] },
+        { "text": " — with nothing sounding at fret " },
+        { "text": "4", "marks": ["code"] },
+        { "text": " or fret " },
+        { "text": "6", "marks": ["code"] },
+        {
+          "text": " at all. That's tighter than the A form's window, and it's worth meeting the shape as itself before anything else about it gets said."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [[{ "text": "String" }], [{ "text": "Lower dot" }], [{ "text": "Upper dot" }]],
+      "rows": [
+        [
+          [{ "text": "6" }],
+          [{ "text": "6·5 — 6, A", "marks": ["code"] }],
+          [{ "text": "6·8 — 1, C", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "5" }],
+          [{ "text": "5·5 — 2, D", "marks": ["code"] }],
+          [{ "text": "5·7 — 3, E", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "4" }],
+          [{ "text": "4·5 — 5, G", "marks": ["code"] }],
+          [{ "text": "4·7 — 6, A", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "3" }],
+          [{ "text": "3·5 — 1, C", "marks": ["code"] }],
+          [{ "text": "3·7 — 2, D", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "2" }],
+          [{ "text": "2·5 — 3, E", "marks": ["code"] }],
+          [{ "text": "2·8 — 5, G", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "1" }],
+          [{ "text": "1·5 — 6, A", "marks": ["code"] }],
+          [{ "text": "1·8 — 1, C", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "C",
+        "form": "G",
+        "show": "pentatonic",
+        "caption": "The same window chapter 1 lit two roots in and chapter 2 filled with a triad — now twelve dots, two on every string."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Look at that shape again, string 6 to string 1: fret " },
+        { "text": "5", "marks": ["code"] },
+        { "text": " and fret " },
+        { "text": "8", "marks": ["code"] },
+        { "text": ", fret " },
+        { "text": "5", "marks": ["code"] },
+        { "text": " and fret " },
+        { "text": "7", "marks": ["code"] },
+        { "text": ", fret " },
+        { "text": "5", "marks": ["code"] },
+        { "text": " and fret " },
+        { "text": "7", "marks": ["code"] },
+        { "text": ", fret " },
+        { "text": "5", "marks": ["code"] },
+        { "text": " and fret " },
+        { "text": "7", "marks": ["code"] },
+        { "text": ", fret " },
+        { "text": "5", "marks": ["code"] },
+        { "text": " and fret " },
+        { "text": "8", "marks": ["code"] },
+        { "text": ", fret " },
+        { "text": "5", "marks": ["code"] },
+        { "text": " and fret " },
+        { "text": "8", "marks": ["code"] },
+        {
+          "text": ". If it looks familiar, it should. This is the shape sold everywhere as the first box of the "
+        },
+        { "text": "minor pentatonic", "marks": ["italic"] },
+        { "text": " — not similar to it, the same twelve positions, note for note, fret for fret." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here is why, in plain terms and without drifting into minor theory. C major pentatonic is "
+        },
+        { "text": "C D E G A", "marks": ["code"] },
+        { "text": ". A minor pentatonic is " },
+        { "text": "A C D E G", "marks": ["code"] },
+        {
+          "text": ". Read those two lists again: they are the same five letters, just starting from a different one. There is only one set of pitches sitting under your hand in this window — the frets don't know a major scale from a minor one. There are two names for that one set of pitches, and two ways to hear it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "What decides which one you're hearing is not the shape. It isn't the fingering, and it isn't the frets — none of that changes at all, ever, for this box. What decides it is the note you keep coming back to, the one a phrase treats as home. Land on "
+        },
+        { "text": "C", "marks": ["code"] },
+        { "text": " and these five notes sound major. Land on " },
+        { "text": "A", "marks": ["code"] },
+        {
+          "text": " and the exact same five notes sound minor. The only thing that moved is where you stopped."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "info",
+      "spans": [
+        { "text": "C major pentatonic and A minor pentatonic are the same five pitch classes — " },
+        { "text": "C D E G A", "marks": ["code"] },
+        { "text": " doubling as " },
+        { "text": "A C D E G", "marks": ["code"] },
+        {
+          "text": ". The only thing that decides which one you're playing is the note you resolve to."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The G form's own geometry explains why a generation of guitarists learned this box as minor rather than major, without anyone having to tell them so directly. The "
+        },
+        { "text": "1", "marks": ["code"] },
+        { "text": " appears three times in this window — " },
+        { "text": "6·8", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3·5", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "1·8", "marks": ["code"] },
+        { "text": ", the three roots chapter 1 already gave this form — and the " },
+        { "text": "6", "marks": ["code"] },
+        { "text": " also appears three times, at " },
+        { "text": "6·5", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "4·7", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "1·5", "marks": ["code"] },
+        {
+          "text": ". Root and relative-minor root, three apiece, tied for the most crowded degrees in the whole shape. And the lowest note in the entire window, the very bottom of the box, is "
+        },
+        { "text": "6·5", "marks": ["code"] },
+        { "text": ", an " },
+        { "text": "A", "marks": ["code"] },
+        {
+          "text": " — not the root at all. Anyone who learned this shape by ear learned, without being told, to start and finish on the lowest thing under their hand. That note has always been the "
+        },
+        { "text": "A", "marks": ["code"] },
+        { "text": ", so that's the note the box has always resolved to." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here, played straight, is the payoff the whole chapter has been building toward. In this window the roots are "
+        },
+        { "text": "6·8", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3·5", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "1·8", "marks": ["code"] },
+        { "text": ". Open the " },
+        { "text": "Drone", "link": { "kind": "screen", "href": "/drone" } },
+        { "text": " for a sustained " },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": ", run the box exactly the way you already know how to run it, and end your phrases on one of those three notes instead of wherever your hand happens to stop. The same lick that has always sounded like it belonged over a minor chord will sound, note for note, like it belongs over this one — same fingers, same frets, different note to land on."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Five of these twelve dots are new since " },
+        {
+          "text": "the triad",
+          "link": { "kind": "article", "slug": "caged-triad-g-form" }
+        },
+        { "text": ": " },
+        { "text": "6·5", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "5·5", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "4·7", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3·7", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "1·5", "marks": ["code"] },
+        { "text": " — the " },
+        { "text": "2", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "6", "marks": ["code"] },
+        {
+          "text": " filling in around the seven chord tones that were already sitting in this window. Notice, too, that fret "
+        },
+        { "text": "5", "marks": ["code"] },
+        {
+          "text": " runs under all six strings here, exactly as it did at the top edge of the A form's window. That shared fret is what an overlap between two neighbouring windows actually looks like, once you know where to find it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Chapter 2 called this the widest form and the one you never hold whole as a chord — too much stretch for one hand to cover in a single grip. As a scale window it is the opposite: the most comfortable of the five to sit inside and run top to bottom. Two notes on a string doesn't care how far apart the chord tones used to be."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Open " },
+        { "text": "Scale Visualizer", "link": { "kind": "screen", "href": "/scale-visualizer" } },
+        { "text": " on root " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " and page to the G form there — the same twelve dots, the same fret " },
+        { "text": "5", "marks": ["code"] },
+        { "text": " you just saw drawn, laid out live on the neck instead of in a diagram." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Next is the " },
+        {
+          "text": "E form",
+          "marks": ["bold"],
+          "link": { "kind": "article", "slug": "caged-pentatonic-e-form" }
+        },
+        {
+          "text": " — the other shape with three roots, and the window where landing on one of them costs the least effort of anywhere on the neck."
+        }
+      ]
+    }
+  ]
+}

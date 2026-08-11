@@ -152,6 +152,75 @@
         "ref": "caged-fretboard-ch2-checkpoint",
         "passThresholdPct": 70
       }
+    },
+    {
+      "id": "caged-fretboard.ch3",
+      "slug": "the-pentatonic-in-each-form",
+      "title": "The Pentatonic in Each Form",
+      "summary": "Two more notes go into the same five windows, and each one becomes a twelve-dot box — two notes on every string. Three of the five are the chord; two are not, and knowing which is which is the whole difference.",
+      "sections": [
+        {
+          "id": "caged-fretboard.ch3.seconds-and-sixths",
+          "slug": "caged-seconds-and-sixths",
+          "title": "Twelve Dots, Two on Every String",
+          "kind": "article",
+          "ref": "caged-seconds-and-sixths",
+          "estimatedMin": 6
+        },
+        {
+          "id": "caged-fretboard.ch3.pentatonic-c-form",
+          "slug": "caged-pentatonic-c-form",
+          "title": "The C Form: Five Strings Ring Open",
+          "kind": "article",
+          "ref": "caged-pentatonic-c-form",
+          "estimatedMin": 4
+        },
+        {
+          "id": "caged-fretboard.ch3.pentatonic-a-form",
+          "slug": "caged-pentatonic-a-form",
+          "title": "The A Form: The Whole Scale at One Fret",
+          "kind": "article",
+          "ref": "caged-pentatonic-a-form",
+          "estimatedMin": 5
+        },
+        {
+          "id": "caged-fretboard.ch3.pentatonic-g-form",
+          "slug": "caged-pentatonic-g-form",
+          "title": "The G Form: The Box You Already Own",
+          "kind": "article",
+          "ref": "caged-pentatonic-g-form",
+          "estimatedMin": 6
+        },
+        {
+          "id": "caged-fretboard.ch3.pentatonic-e-form",
+          "slug": "caged-pentatonic-e-form",
+          "title": "The E Form: Three Places to Land",
+          "kind": "article",
+          "ref": "caged-pentatonic-e-form",
+          "estimatedMin": 5
+        },
+        {
+          "id": "caged-fretboard.ch3.pentatonic-d-form",
+          "slug": "caged-pentatonic-d-form",
+          "title": "The D Form, and the Ladder Up the Low E",
+          "kind": "article",
+          "ref": "caged-pentatonic-d-form",
+          "estimatedMin": 6
+        },
+        {
+          "id": "caged-fretboard.ch3.land-on-the-chord-tones",
+          "slug": "caged-land-on-the-chord-tones",
+          "title": "Drill: Land on the Chord Tones",
+          "kind": "activity",
+          "ref": "caged-land-on-the-chord-tones",
+          "optional": true,
+          "estimatedMin": 9
+        }
+      ],
+      "checkpoint": {
+        "ref": "caged-fretboard-ch3-checkpoint",
+        "passThresholdPct": 70
+      }
     }
   ]
 }

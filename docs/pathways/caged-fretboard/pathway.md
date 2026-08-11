@@ -187,9 +187,15 @@ fragments as the normal case.
 After it, the learner can play the C major pentatonic in any of the five windows and knows which
 of its notes are chord tones — the difference between running a scale and playing over a chord.
 
-**Chapter 4 — The whole major scale** (6 lessons)
+**Chapter 4 — The whole major scale** (7 lessons: opener, five forms, **a separate closer**)
 After it, the learner can play C major anywhere on the neck and knows the role of every note in the
 window, including the two the pentatonic left out and why they behave differently.
+
+The extra lesson is a correction, not a change of scope. Chapters 2 and 3 each folded the
+join-up into the D form lesson and both reported the same casualty: the D form's own character got
+squeezed, and in chapter 3 the checkpoint ended up testing the closer's material rather than the D
+form's. Chapter 1 used a separate closer and had no such problem. Seven is inside the 4–8 rule, so
+chapters 4 and 5 get one.
 
 **Chapter 5 — Off the boxes** (5 lessons)
 After it, the learner can move between adjacent forms through the notes they share, play

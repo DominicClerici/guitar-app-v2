@@ -1,0 +1,190 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_caged-pentatonic-c-form",
+    "slug": "caged-pentatonic-c-form",
+    "title": "The C Form: Five Strings Ring Open",
+    "summary": "The C form's pentatonic window is the open-position box, five of its six strings ringing open, and the most chord-toned of the five windows in this chapter.",
+    "tags": ["caged", "fretboard"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-11"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Twelve dots, two on every string — that's the shape of every window this chapter fills in, and the C form is where it starts. One reminder before the fret numbers arrive: "
+        },
+        { "text": "5·3", "marks": ["code"] },
+        {
+          "text": " means string 5, fret 3 — string first, fret second, in that compact form. This chapter leans on it constantly from here."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The C form sits at barre fret " },
+        { "text": "0", "marks": ["code"] },
+        { "text": " — open — in a window running frets " },
+        { "text": "0–4", "marks": ["code"] },
+        { "text": ". Its twelve dots don't need all five: they live in frets " },
+        { "text": "0–3", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Five of the six strings have their lower dot sitting right at the nut: "
+        },
+        { "text": "6·0", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "5·0", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "4·0", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3·0", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "1·0", "marks": ["code"] },
+        {
+          "text": " — open strings, ringing for free. Only string 2 breaks the pattern, with its lower dot at "
+        },
+        { "text": "2·1", "marks": ["code"] },
+        {
+          "text": " instead of the nut. That's the B string doing what it always does in this pathway — shifting a fret out of line with everything around it. Nowhere else on the neck does a whole pentatonic window sit this close to open strings."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [[{ "text": "String" }], [{ "text": "Lower dot" }], [{ "text": "Upper dot" }]],
+      "rows": [
+        [[{ "text": "6" }], [{ "text": "6·0 — 3 (E)" }], [{ "text": "6·3 — 5 (G)" }]],
+        [[{ "text": "5" }], [{ "text": "5·0 — 6 (A)" }], [{ "text": "5·3 — 1 (C)" }]],
+        [[{ "text": "4" }], [{ "text": "4·0 — 2 (D)" }], [{ "text": "4·2 — 3 (E)" }]],
+        [[{ "text": "3" }], [{ "text": "3·0 — 5 (G)" }], [{ "text": "3·2 — 6 (A)" }]],
+        [[{ "text": "2" }], [{ "text": "2·1 — 1 (C)" }], [{ "text": "2·3 — 2 (D)" }]],
+        [[{ "text": "1" }], [{ "text": "1·0 — 3 (E)" }], [{ "text": "1·3 — 5 (G)" }]]
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "C",
+        "form": "C",
+        "show": "pentatonic",
+        "caption": "The same window chapter 1 lit at two roots and chapter 2 lit at eight chord tones. Twelve dots now — every one of the six strings covered."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Only four dots here are new since the triad diagram: "
+        },
+        { "text": "5·0", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "4·0", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3·2", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "2·3", "marks": ["code"] },
+        {
+          "text": " — two of them open strings. Eight of the twelve dots in this window were already chord tones, which makes the C form the most chord-toned window of the five you'll meet this chapter: two thirds of it is "
+        },
+        { "text": "C", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "E", "marks": ["code"] },
+        { "text": " or " },
+        { "text": "G", "marks": ["code"] },
+        {
+          "text": ". That makes it the hardest window in the chapter to sound wrong in — and the easiest one in which to forget that the open "
+        },
+        { "text": "5·0", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "4·0", "marks": ["code"] },
+        { "text": " ringing under your fretted notes aren't chord tones at all." }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        {
+          "text": "Play the five open strings this window uses — 6, 5, 4, 3 and 1 — one at a time against a C chord. Two of them, the open "
+        },
+        { "text": "A", "marks": ["code"] },
+        { "text": " on string 5 and the open " },
+        { "text": "D", "marks": ["code"] },
+        {
+          "text": " on string 4, aren't in that chord. You're hearing this window's two non-chord tones before you've fretted a single note. Leave string 2 out — its open note isn't in this scale at all."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The reach in this window sits at its edges. Its three-fret strings are 6, 5 and 1 — the two outside strings and the low A string — while the middle of the shape stays compact. That's the opposite of what's coming next: the A form keeps its stretch in the middle of the hand instead."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Because eight of the twelve dots here are chord tones, this is the easiest window in the chapter to practice the habit the whole chapter is building: run the box freely, but pay attention to when a phrase lands on a "
+        },
+        { "text": "C", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "E", "marks": ["code"] },
+        { "text": " or " },
+        { "text": "G", "marks": ["code"] },
+        {
+          "text": " and when it lands on the open "
+        },
+        { "text": "A", "marks": ["code"] },
+        { "text": " or " },
+        { "text": "D", "marks": ["code"] },
+        {
+          "text": " instead. With this many chord tones inside reach, there's rarely a good excuse for a phrase to end anywhere else."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Same window, three layers now: chapter 1 lit two roots here, chapter 2 lit eight chord tones, and this lesson lights all twelve. Compare it against "
+        },
+        {
+          "text": "the roots",
+          "link": { "kind": "article", "slug": "caged-roots-c-form" }
+        },
+        { "text": " and " },
+        {
+          "text": "the triad",
+          "link": { "kind": "article", "slug": "caged-triad-c-form" }
+        },
+        { "text": " if either has gone fuzzy — nothing about the window itself has changed." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "See it paged in " },
+        { "text": "Scale Visualizer", "link": { "kind": "screen", "href": "/scale-visualizer" } },
+        { "text": " with the CAGED toggle on, then move to " },
+        {
+          "text": "the A form",
+          "link": { "kind": "article", "slug": "caged-pentatonic-a-form" }
+        },
+        { "text": ", where the whole shape lines up under one finger." }
+      ]
+    }
+  ]
+}

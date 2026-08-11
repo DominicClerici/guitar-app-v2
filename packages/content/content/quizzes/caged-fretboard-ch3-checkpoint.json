@@ -1,0 +1,947 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "quiz_caged-fretboard-ch3-checkpoint",
+    "slug": "caged-fretboard-ch3-checkpoint",
+    "title": "Checkpoint: The Pentatonic in Each Form",
+    "summary": "Two more notes in the same five windows — which of the five are the chord, why the familiar box is the same notes as this one, and where the windows begin.",
+    "kind": "checkpoint",
+    "passThresholdPct": 70
+  },
+  "questions": [
+    {
+      "id": "q_caged-fretboard-ch3-checkpoint.what-it-adds",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "You already had "
+        },
+        {
+          "text": "1 3 5",
+          "marks": ["code"]
+        },
+        {
+          "text": " in all five windows. What does the major pentatonic add to them?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "Two more notes per octave — a "
+            },
+            {
+              "text": "2",
+              "marks": ["code"]
+            },
+            {
+              "text": " and a "
+            },
+            {
+              "text": "6",
+              "marks": ["code"]
+            },
+            {
+              "text": " — making five notes in all: "
+            },
+            {
+              "text": "1 2 3 5 6",
+              "marks": ["code"]
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "Two more chord tones, so all five notes belong to the chord"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "Five new shapes, one to sit alongside each of the forms you already know"
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "Nothing new — the same three notes, doubled onto more strings"
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "The triad plus two: "
+        },
+        {
+          "text": "1 2 3 5 6",
+          "marks": ["code"]
+        },
+        {
+          "text": ", which in C is "
+        },
+        {
+          "text": "C D E G A",
+          "marks": ["code"]
+        },
+        {
+          "text": ". No new shapes — the same five windows, two more notes lit in each, which is the promise this pathway has kept since chapter 1. The doubling in option D is real but it is what chapter 2 already described; the pentatonic genuinely adds pitches the chord does not contain, which is what option B misses. The full major scale has seven notes to the octave, and chapter 4 fills in the last two."
+        }
+      ]
+    },
+    {
+      "id": "q_caged-fretboard-ch3-checkpoint.which-are-chord-tones",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "Of the five notes in the C major pentatonic, which ones is a "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": " chord actually built from?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "1",
+              "marks": ["code"]
+            },
+            {
+              "text": ", "
+            },
+            {
+              "text": "3",
+              "marks": ["code"]
+            },
+            {
+              "text": " and "
+            },
+            {
+              "text": "5",
+              "marks": ["code"]
+            },
+            {
+              "text": " — three of the five"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "1",
+              "marks": ["code"]
+            },
+            {
+              "text": " and "
+            },
+            {
+              "text": "5",
+              "marks": ["code"]
+            },
+            {
+              "text": " — two of the five"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "All five — that is what makes it the chord’s scale"
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "2",
+              "marks": ["code"]
+            },
+            {
+              "text": " and "
+            },
+            {
+              "text": "6",
+              "marks": ["code"]
+            },
+            {
+              "text": " — the two that were added"
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "Three of the five: "
+        },
+        {
+          "text": "1",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "3",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": " — the "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " chapter 2 spent a whole chapter on. The other two, the "
+        },
+        {
+          "text": "2",
+          "marks": ["code"]
+        },
+        {
+          "text": " and the "
+        },
+        {
+          "text": "6",
+          "marks": ["code"]
+        },
+        {
+          "text": ", belong to the scale but not to the chord. That split is the whole point of this chapter: the notes that are in the chord are the ones a phrase can land on and sound finished, and the two that are not are the ones that keep a line moving. A player who knows which dot is which lands on purpose; a player who only knows the box runs it up and down."
+        }
+      ]
+    },
+    {
+      "id": "q_caged-fretboard-ch3-checkpoint.caged-not-boxes",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "You open the scale visualizer on C major pentatonic and switch the position toggle to "
+        },
+        {
+          "text": "Boxes",
+          "marks": ["code"]
+        },
+        {
+          "text": ". The shapes on screen do not match the windows this chapter drew. What has happened?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "Boxes",
+              "marks": ["code"]
+            },
+            {
+              "text": " is a different five-window tiling with its own numbering. Switch the toggle to "
+            },
+            {
+              "text": "CAGED",
+              "marks": ["code"]
+            },
+            {
+              "text": " to get these windows."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "They are the same five windows, just renumbered from the nut — same shapes, different labels"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "The visualizer has switched to the minor pentatonic"
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "The "
+            },
+            {
+              "text": "Boxes",
+              "marks": ["code"]
+            },
+            {
+              "text": " toggle only works for seven-note scales"
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "Two genuinely different ways of carving the same notes into positions. The "
+        },
+        {
+          "text": "CAGED",
+          "marks": ["code"]
+        },
+        {
+          "text": " toggle gives exactly this chapter’s five windows, with these same form names. "
+        },
+        {
+          "text": "Boxes",
+          "marks": ["code"]
+        },
+        {
+          "text": " is its own tiling with its own numbering, and its windows do not line up with the forms — so the shapes really are different, not just relabelled. The notes on the neck have not changed; only the boxes drawn around them have. Leave the toggle on "
+        },
+        {
+          "text": "CAGED",
+          "marks": ["code"]
+        },
+        {
+          "text": " while you are working through this chapter."
+        }
+      ]
+    },
+    {
+      "id": "q_caged-fretboard-ch3-checkpoint.c-form-open-strings",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "In the C form’s pentatonic window, five of the six strings have their lower note sitting open, at fret 0. Which string breaks the pattern?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "String 2 — its lower note is at "
+            },
+            {
+              "text": "2·1",
+              "marks": ["code"]
+            },
+            {
+              "text": ", because its open note is not in this scale at all"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "String 6 — its lower note is at "
+            },
+            {
+              "text": "6·1",
+              "marks": ["code"]
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "String 5 — its lower note is at "
+            },
+            {
+              "text": "5·1",
+              "marks": ["code"]
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "None of them — all six open strings are notes of this scale"
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "String 2 is the B string, and its open note is not in the C major pentatonic — so this window’s lower dot on that string is "
+        },
+        {
+          "text": "2·1",
+          "marks": ["code"]
+        },
+        {
+          "text": ", a "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Every other string opens on a note the scale wants: "
+        },
+        {
+          "text": "6·0",
+          "marks": ["code"]
+        },
+        {
+          "text": " is an "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "5·0",
+          "marks": ["code"]
+        },
+        {
+          "text": " an "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "4·0",
+          "marks": ["code"]
+        },
+        {
+          "text": " a "
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "3·0",
+          "marks": ["code"]
+        },
+        {
+          "text": " a "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "1·0",
+          "marks": ["code"]
+        },
+        {
+          "text": " an "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": ". It is the same "
+        },
+        {
+          "text": "G → B",
+          "marks": ["code"]
+        },
+        {
+          "text": " major third that has bent every shape in this pathway a fret out of line. Option D is the trap: strum all six open strings and one of them is outside this scale entirely."
+        }
+      ]
+    },
+    {
+      "id": "q_caged-fretboard-ch3-checkpoint.fret-five",
+      "kind": "fretboard",
+      "prompt": [
+        {
+          "text": "Lay one finger flat across fret 5 and every string under it sounds a note of the C major pentatonic — the only fret on the neck where that is true. Mark all six."
+        }
+      ],
+      "frets": 5,
+      "answer": [
+        {
+          "string": 1,
+          "fret": 5
+        },
+        {
+          "string": 2,
+          "fret": 5
+        },
+        {
+          "string": 3,
+          "fret": 5
+        },
+        {
+          "string": 4,
+          "fret": 5
+        },
+        {
+          "string": 5,
+          "fret": 5
+        },
+        {
+          "string": 6,
+          "fret": 5
+        }
+      ],
+      "explanation": [
+        {
+          "text": "Low to high, fret 5 gives you "
+        },
+        {
+          "text": "A D G C E A",
+          "marks": ["code"]
+        },
+        {
+          "text": " — degrees "
+        },
+        {
+          "text": "6 2 5 1 3 6",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Every one is in the scale, and no other fret in the first twelve manages it; there is no fret at all where all six strings are chord tones. It sits at the top edge of the A form’s window and the bottom edge of the G form’s, which is what an overlap between two neighbouring windows looks like. Three of the six are adjacent and are a whole chord on their own: "
+        },
+        {
+          "text": "4·5",
+          "marks": ["code"]
+        },
+        {
+          "text": " the "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "3·5",
+          "marks": ["code"]
+        },
+        {
+          "text": " the "
+        },
+        {
+          "text": "1",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "2·5",
+          "marks": ["code"]
+        },
+        {
+          "text": " the "
+        },
+        {
+          "text": "3",
+          "marks": ["code"]
+        },
+        {
+          "text": "."
+        }
+      ]
+    },
+    {
+      "id": "q_caged-fretboard-ch3-checkpoint.relative-minor",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "The G form’s twelve pentatonic dots are, position for position, the box most guitarists already know as the first shape of the "
+        },
+        {
+          "text": "minor",
+          "marks": ["bold"]
+        },
+        {
+          "text": " pentatonic. What decides whether those same twelve positions sound major or minor?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "The note you keep coming back to — land on "
+            },
+            {
+              "text": "C",
+              "marks": ["code"]
+            },
+            {
+              "text": " and it sounds major, land on "
+            },
+            {
+              "text": "A",
+              "marks": ["code"]
+            },
+            {
+              "text": " and it sounds minor"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "One of the five notes moves down a fret"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "The major version sits at a different fret on the neck"
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "The order you play the notes in — ascending is major, descending is minor"
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "C major pentatonic is "
+        },
+        {
+          "text": "C D E G A",
+          "marks": ["code"]
+        },
+        {
+          "text": ". A minor pentatonic is "
+        },
+        {
+          "text": "A C D E G",
+          "marks": ["code"]
+        },
+        {
+          "text": ". The same five notes, written from a different starting point — there is only one set of pitches under your hand, and nothing about the shape, the fingering or the frets changes at all. What changes is where a phrase stops. The G form makes this visible: it carries three "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": "s and three "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": "s, and the lowest note in the whole window is "
+        },
+        {
+          "text": "6·5",
+          "marks": ["code"]
+        },
+        {
+          "text": ", an "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": " rather than the root. Anyone who learned this box by ear learned to resolve to its lowest note, which is why it has always sounded minor to them."
+        }
+      ]
+    },
+    {
+      "id": "q_caged-fretboard-ch3-checkpoint.e-form-landing",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "You are playing the E form’s pentatonic window over a sustained "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": " and want a phrase to sound finished rather than left hanging. Which of these ends it on a root?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "4·10",
+              "marks": ["code"]
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "3·7",
+              "marks": ["code"]
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "2·10",
+              "marks": ["code"]
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "5·7",
+              "marks": ["code"]
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "The E form’s three roots are "
+        },
+        {
+          "text": "6·8",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "4·10",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "1·8",
+          "marks": ["code"]
+        },
+        {
+          "text": " — chapter 1’s "
+        },
+        {
+          "text": "6 → 4 → 1",
+          "marks": ["code"]
+        },
+        {
+          "text": " map, unchanged. One low, one in the middle, one on top, so home is always within reach without shifting your hand, which is what makes this the best window for resolving. Of the others, "
+        },
+        {
+          "text": "3·7",
+          "marks": ["code"]
+        },
+        {
+          "text": " is the "
+        },
+        {
+          "text": "2",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "2·10",
+          "marks": ["code"]
+        },
+        {
+          "text": " is the "
+        },
+        {
+          "text": "6",
+          "marks": ["code"]
+        },
+        {
+          "text": " — both in the scale, neither in the chord, so a phrase ending there keeps pulling somewhere else. "
+        },
+        {
+          "text": "5·7",
+          "marks": ["code"]
+        },
+        {
+          "text": " is the "
+        },
+        {
+          "text": "3",
+          "marks": ["code"]
+        },
+        {
+          "text": ": a chord tone, so it does arrive, but it is not the root the question asked for."
+        }
+      ]
+    },
+    {
+      "id": "q_caged-fretboard-ch3-checkpoint.low-e-ladder",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "Play the C major pentatonic on the low E string alone and you land on frets "
+        },
+        {
+          "text": "0",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "3",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "8",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "10",
+          "marks": ["code"]
+        },
+        {
+          "text": ". What are those five frets?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "The barre fret of each of the five forms, in CAGED order"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "Every "
+            },
+            {
+              "text": "C",
+              "marks": ["code"]
+            },
+            {
+              "text": " on the low E string"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "The five frets where a progression in C changes chord"
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "The numbering the visualizer’s "
+            },
+            {
+              "text": "Boxes",
+              "marks": ["code"]
+            },
+            {
+              "text": " toggle uses"
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "C form at the nut, A form at fret 3, G form at 5, E form at 8, D form at 10 — chapter 1’s own table, arrived at from a completely different direction. The scale you spent this chapter learning in five windows is, on one string, the list of exactly where those windows begin. Option B is the tempting one: there is only one "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": " on the low E string in the first twelve frets, at fret 8. The other four frets are the rest of the scale, and each window’s upper note on string 6 is the next window’s lower note — the interlock, walked up a single string."
+        }
+      ]
+    }
+  ]
+}
