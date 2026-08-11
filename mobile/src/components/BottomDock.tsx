@@ -39,8 +39,8 @@ interface Props {
  * under the fade.
  */
 export function BottomDock({ scrollY, threshold, children }: Props) {
-  // const bg = useToken('--bg', '#0c0d10');
-  const bg = 'white';
+  const bg = useToken('--bg', '#0c0d10');
+  // const bg = '#fff';
   const gradient = useId().replace(/:/g, '');
 
   const reveal = useSharedValue(0);
@@ -83,7 +83,7 @@ export function BottomDock({ scrollY, threshold, children }: Props) {
         </Svg>
       </View>
 
-      <View pointerEvents="box-none" className="px-[8px] pb-[8px] pt-[12px]">
+      <View pointerEvents="box-none" className="px-5 pb-4">
         {children}
       </View>
     </AnimatedView>

@@ -36,7 +36,7 @@ const PRIMARY =
  * squircle can be drawn from. `rounded-full` on a 50px row is a semicircle, so
  * the outer corner is half the height.
  */
-const CONTINUE_RADIUS = { topLeft: 10, bottomLeft: 10, topRight: 25, bottomRight: 25 };
+const CONTINUE_RADIUS = { topLeft: 10, bottomLeft: 10, topRight: 28, bottomRight: 28 };
 
 export function PathwayActions({ action, onMenu, docked = false }: Props) {
   const onAccent = useToken('--on-accent', '#04211f');
@@ -62,7 +62,7 @@ export function PathwayActions({ action, onMenu, docked = false }: Props) {
           accessibilityLabel="Continue this pathway"
           fill={accent}
           radius={docked ? CONTINUE_RADIUS : 10}
-          className="h-[50px] flex-1 flex-row items-center justify-center gap-[9px] active:opacity-80"
+          className="h-14 flex-1 flex-row items-center justify-center gap-[9px] active:opacity-80"
         >
           <SymbolView name="play.fill" size={13} tintColor={onAccent} />
           <Text className="text-[15px] font-bold tracking-[0.3px] text-on-accent">
