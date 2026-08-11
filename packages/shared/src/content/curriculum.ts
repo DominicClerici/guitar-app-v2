@@ -66,7 +66,15 @@ export interface CurriculumChapter {
   summary?: string;
   sections: RenderSection[];
   /** The quiz that gates the end of the chapter, if it has one. */
-  checkpoint?: { ref: string; passThresholdPct: number };
+  checkpoint?: {
+    ref: string;
+    passThresholdPct: number;
+    /**
+     * A one-line name for the quiz, shown on the pathway screen. Optional so an
+     * older tree still parses; a chapter without one falls back to naming itself.
+     */
+    title?: string;
+  };
 }
 
 export interface CurriculumPathway {
@@ -121,7 +129,11 @@ const chapterSchema = z.object({
   summary: z.string().optional(),
   sections: z.array(z.unknown()),
   checkpoint: z
-    .object({ ref: z.string().min(1), passThresholdPct: z.number().min(0).max(100) })
+    .object({
+      ref: z.string().min(1),
+      passThresholdPct: z.number().min(0).max(100),
+      title: z.string().min(1).optional(),
+    })
     .optional(),
 });
 

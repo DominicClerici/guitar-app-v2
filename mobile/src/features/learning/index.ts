@@ -5,5 +5,8 @@ export { CatalogueRow, type CatalogueState } from './CatalogueRow';
 export { ChapterCard } from './ChapterCard';
 export { ContinueCard } from './ContinueCard';
 export { LearningHero, LearningHeroEmpty } from './LearningHero';
+export { PathwayActions, type PathwayAction } from './PathwayActions';
+export { PathwayMenuSheet, type PathwayMenuSheetRef } from './PathwayMenuSheet';
+export { ProgressRing } from './ProgressRing';
 export { ProgressTrack } from './ProgressTrack';
 export { SectionStrip } from './SectionStrip';

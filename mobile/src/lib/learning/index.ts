@@ -21,6 +21,8 @@ export {
   pathwayProgress,
   progressBySection,
   sectionComplete,
+  stepSectionId,
+  stepTitle,
 } from './progress';
 export type {
   ChapterAt,

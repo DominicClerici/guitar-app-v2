@@ -34,6 +34,7 @@
   /* ─ accent: aqua, the one primary ─ */
   --accent: #5ec8c2;
   --accent-bright: #86e0da;
+  --accent-muted: #45908d; /* accent settled back into the page — done, not active */
   --accent-wash: rgba(94, 200, 194, 0.12);
   --accent-line: rgba(94, 200, 194, 0.5); /* accent hairline / outlined control */
   --on-accent: #04211f;
@@ -41,6 +42,7 @@
   /* ─ key-coded jewel hues ─ */
   --aqua: #5ec8c2;
   --amber: #e0a84e;
+  --amber-wash: rgba(224, 168, 78, 0.12); /* amber counterpart to --accent-wash */
   --rose: #e0788f;
   --rose-wash: rgba(224, 120, 143, 0.12); /* rose counterpart to --accent-wash */
   --violet: #9b8cf0;
@@ -67,11 +69,13 @@
   --color-ink-muted: var(--ink-muted);
   --color-ink-faint: var(--ink-faint);
   --color-accent: var(--accent);
+  --color-accent-muted: var(--accent-muted);
   --color-accent-line: var(--accent-line);
   --color-accent-wash: var(--accent-wash);
   --color-on-accent: var(--on-accent);
   --color-aqua: var(--aqua);
   --color-amber: var(--amber);
+  --color-amber-wash: var(--amber-wash);
   --color-rose: var(--rose);
   --color-rose-wash: var(--rose-wash);
   --color-violet: var(--violet);

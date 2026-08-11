@@ -9,6 +9,7 @@ import { contentRepository } from '@/features/articles';
 import { ArticleLinkProvider } from '@/features/articles/links';
 import { useSession } from '@/lib/auth';
 import type { Link, QuizDocument } from '@/lib/content';
+import { useLearnerId, useProgress } from '@/lib/learning';
 import { useToken } from '@/lib/tokens';
 
 import { QuizRunner } from './QuizRunner';
@@ -48,6 +49,8 @@ export function QuizScreen({ slug, sectionId, thresholdPct }: Props) {
   const router = useRouter();
   const muted = useToken('--ink-muted', '#9aa0aa');
   const { data: session } = useSession();
+  const learnerId = useLearnerId();
+  const progress = useProgress(learnerId);
 
   const [state, setState] = useState<LoadState>(
     slug ? { status: 'loading' } : { status: 'error', message: 'No quiz specified.' },
@@ -104,7 +107,12 @@ export function QuizScreen({ slug, sectionId, thresholdPct }: Props) {
   );
 
   const title =
-    state.status === 'ready' && state.document.meta.kind === 'checkpoint' ? 'Checkpoint' : 'Quiz';
+    state.status === 'ready' && state.document.meta.kind === 'checkpoint' ? 'Chapter Quiz' : 'Quiz';
+
+  const recordUnder = state.status === 'ready' ? resolveSectionId(state.document, sectionId) : null;
+  // Read before the attempt writes anything, so the results screen can say what this go changed.
+  // `useProgress` is live, but the runner keeps its own copy of this the moment it finishes.
+  const previousBestPct = recordUnder ? (progress.get(recordUnder)?.bestScorePct ?? null) : null;
 
   return (
     <View className="flex-1 bg-bg" style={{ paddingTop: Math.max(insets.top - 6, 0) }}>
@@ -145,8 +153,9 @@ export function QuizScreen({ slug, sectionId, thresholdPct }: Props) {
         <ArticleLinkProvider value={handleLink}>
           <QuizRunner
             document={state.document}
-            sectionId={resolveSectionId(state.document, sectionId)}
+            sectionId={recordUnder}
             thresholdPct={thresholdPct ?? state.document.meta.passThresholdPct}
+            previousBestPct={previousBestPct}
             userId={session?.user.id ?? null}
             onDone={() => router.back()}
           />

@@ -247,6 +247,28 @@ export function nextStep(pathway: CurriculumPathway, progress: ProgressBySection
   };
 }
 
+/**
+ * The section id a step is recorded under — what a row on the pathway screen compares itself
+ * against to know it is the one Continue opens.
+ */
+export function stepSectionId(step: NextStep | null): string | null {
+  if (!step) return null;
+  return step.kind === 'section' ? step.section.id : step.sectionId;
+}
+
+/**
+ * What to call the next step, in one line.
+ *
+ * A chapter quiz is named by its author (`checkpoint.title`) so the learner reads the same words
+ * here, on the pathway screen and on the row itself. A tree published before those names existed
+ * falls back to the chapter it gates.
+ */
+export function stepTitle(step: NextStep): string {
+  return step.kind === 'section'
+    ? step.section.title
+    : (step.checkpoint.title ?? `Chapter ${step.index + 1} quiz`);
+}
+
 export interface EnrollmentSplit {
   /** The kept enrollments, most recently active first. */
   active: LocalEnrollmentRow[];

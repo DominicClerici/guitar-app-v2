@@ -52,26 +52,45 @@ interface Props {
   sectionId: string | null;
   /** What this attempt has to reach, which for a checkpoint is the chapter's threshold. */
   thresholdPct: number;
+  /**
+   * The high-water mark before this attempt, or null if the learner has never sat it. Live while
+   * the quiz is running — `finish` freezes it, because recording the attempt is what moves it.
+   */
+  previousBestPct: number | null;
   /** Null before a session exists. The quiz still runs; it just records nothing. */
   userId: string | null;
   onDone: () => void;
 }
 
-export function QuizRunner({ document, sectionId, thresholdPct, userId, onDone }: Props) {
+/** The attempt, once it is over, alongside the standing it had to beat. */
+interface Outcome {
+  score: QuizScore;
+  previousBestPct: number | null;
+}
+
+export function QuizRunner({
+  document,
+  sectionId,
+  thresholdPct,
+  previousBestPct,
+  userId,
+  onDone,
+}: Props) {
   const insets = useSafeAreaInsets();
 
   const [deck] = useState(() => deal(document.questions));
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<ReadonlyMap<string, Answer>>(() => new Map());
   const [checked, setChecked] = useState(false);
-  const [score, setScore] = useState<QuizScore | null>(null);
+  const [outcome, setOutcome] = useState<Outcome | null>(null);
 
-  if (score) {
+  if (outcome) {
     return (
       <Results
         document={document}
         answers={answers}
-        score={score}
+        score={outcome.score}
+        previousBestPct={outcome.previousBestPct}
         thresholdPct={thresholdPct}
         onDone={onDone}
       />
@@ -88,12 +107,14 @@ export function QuizRunner({ document, sectionId, thresholdPct, userId, onDone }
 
   const finish = () => {
     const result = scoreQuiz(document, answers, thresholdPct);
+    // Captured before the write, because the write is what raises it.
+    const standing = previousBestPct;
 
     // Both writes are local and neither is awaited. No session means no account to record
     // against — the attempt is still worth sitting, so the runner shows the score and drops it.
     if (userId && sectionId) recordAttempt(userId, sectionId, result);
 
-    setScore(result);
+    setOutcome({ score: result, previousBestPct: standing });
   };
 
   const advance = () => {

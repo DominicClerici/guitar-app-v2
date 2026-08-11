@@ -2,7 +2,7 @@ import { SymbolView } from 'expo-symbols';
 import { Pressable, Text, View } from 'react-native';
 
 import type { CurriculumPathway, PathwayMeta } from '@/lib/content';
-import { nextStep, pathwayProgress, type ProgressBySection } from '@/lib/learning';
+import { nextStep, pathwayProgress, stepTitle, type ProgressBySection } from '@/lib/learning';
 import { useToken } from '@/lib/tokens';
 
 import { ProgressTrack } from './ProgressTrack';
@@ -28,12 +28,7 @@ export function ContinueCard({
 
   const tally = pathway ? pathwayProgress(pathway, progress) : null;
   const step = pathway ? nextStep(pathway, progress) : null;
-  const upNext =
-    step === null
-      ? null
-      : step.kind === 'section'
-        ? step.section.title
-        : `Chapter ${step.index + 1} checkpoint`;
+  const upNext = step === null ? null : stepTitle(step);
 
   return (
     <Pressable

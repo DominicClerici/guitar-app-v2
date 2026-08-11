@@ -2,7 +2,7 @@ import { SymbolView } from 'expo-symbols';
 import { Pressable, Text, View } from 'react-native';
 
 import type { CurriculumPathway, PathwayMeta } from '@/lib/content';
-import { nextStep, pathwayProgress, type ProgressBySection } from '@/lib/learning';
+import { nextStep, pathwayProgress, stepTitle, type ProgressBySection } from '@/lib/learning';
 import { useToken } from '@/lib/tokens';
 
 import { ProgressTrack } from './ProgressTrack';
@@ -34,11 +34,7 @@ export function LearningHero({
   const tally = pathway ? pathwayProgress(pathway, progress) : null;
   const step = pathway ? nextStep(pathway, progress) : null;
 
-  const title = step
-    ? step.kind === 'section'
-      ? step.section.title
-      : `Chapter ${step.index + 1} checkpoint`
-    : meta.title;
+  const title = step ? stepTitle(step) : meta.title;
 
   // The strap names where the learner is; when the pathway is the title itself there is nothing
   // left to qualify it with.
@@ -116,8 +112,8 @@ export function LearningHeroEmpty() {
         Pick a pathway
       </Text>
       <Text className="mt-[6px] text-[13.5px] leading-[20px] text-ink-muted">
-        Short lessons that build on each other, with a checkpoint at the end of every chapter. Open
-        Learn to choose one.
+        Short lessons that build on each other, with a quiz at the end of every chapter. Open Learn
+        to choose one.
       </Text>
     </View>
   );

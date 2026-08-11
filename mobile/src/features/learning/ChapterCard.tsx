@@ -19,38 +19,73 @@ import { useToken } from '@/lib/tokens';
 // Inside an open chapter nothing is ordered. Every section is tappable in any order, because the
 // sequence is a suggestion and the checkpoint is the only real gate.
 
-const KIND_LABEL: Record<CurriculumSection['kind'], string> = {
-  article: 'Read',
+/**
+ * An article is the default here and says nothing about itself — a pathway is mostly reading, and
+ * labelling every row READ is noise on the one kind the learner already assumes. The kinds that
+ * are *not* reading still announce themselves.
+ */
+const KIND_LABEL: Partial<Record<CurriculumSection['kind'], string>> = {
   quiz: 'Quiz',
   activity: 'Practice',
 };
 
 function strapFor(section: CurriculumSection): string {
-  const parts = [KIND_LABEL[section.kind]];
+  const kind = KIND_LABEL[section.kind];
+  const parts = kind ? [kind] : [];
   if (section.optional) parts.unshift('Optional');
   if (section.estimatedMin) parts.push(`${section.estimatedMin} min`);
 
   return parts.join(' · ').toUpperCase();
 }
 
-function Marker({ complete, muted }: { complete: boolean; muted: boolean }) {
+/**
+ * Where a row sits in the sequence. `next` is the one the Continue button opens — never an
+ * optional row, which is the whole point of optional: it is not on the path.
+ */
+type MarkerState = 'complete' | 'next' | 'todo' | 'muted';
+
+function markerFor({
+  complete,
+  next,
+  muted,
+}: {
+  complete: boolean;
+  next: boolean;
+  muted: boolean;
+}): MarkerState {
+  if (complete) return 'complete';
+  if (muted) return 'muted';
+  return next ? 'next' : 'todo';
+}
+
+/**
+ * The dot down the left of every row, carrying the three answers a learner scans for: done, here,
+ * still to do. Done is the accent settled back a step — it has been earned and no longer needs the
+ * eye — while the one place to go next wears the accent at full strength.
+ */
+function Marker({ state }: { state: MarkerState }) {
   const onAccent = useToken('--on-accent', '#04211f');
 
-  if (complete) {
+  if (state === 'complete') {
     return (
-      <View className="h-[18px] w-[18px] items-center justify-center rounded-full bg-accent">
+      <View className="h-[18px] w-[18px] items-center justify-center rounded-full bg-accent-muted">
         <SymbolView name="checkmark" size={9} weight="bold" tintColor={onAccent} />
       </View>
     );
   }
 
+  const ring =
+    state === 'next' ? 'border-accent' : state === 'muted' ? 'border-line' : 'border-accent-line';
+  const pip =
+    state === 'next'
+      ? 'bg-accent h-2 w-2'
+      : state === 'muted'
+        ? 'bg-line h-1.5 w-1.5'
+        : 'bg-accent-line h-1.5 w-1.5';
+
   return (
-    <View
-      className={`h-[18px] w-[18px] items-center justify-center rounded-full border ${
-        muted ? 'border-line' : 'border-accent-line'
-      }`}
-    >
-      <View className={`h-[5px] w-[5px] rounded-full ${muted ? 'bg-line' : 'bg-accent-line'}`} />
+    <View className={`h-[18px] w-[18px] items-center justify-center rounded-full border ${ring}`}>
+      <View className={`rounded-full ${pip}`} />
     </View>
   );
 }
@@ -58,10 +93,12 @@ function Marker({ complete, muted }: { complete: boolean; muted: boolean }) {
 function SectionRow({
   section,
   complete,
+  next,
   onPress,
 }: {
   section: RenderSection;
   complete: boolean;
+  next: boolean;
   onPress: () => void;
 }) {
   // A section this build cannot open is shown rather than hidden, so chapter numbering reads the
@@ -69,7 +106,7 @@ function SectionRow({
   if (section.kind === 'unknown') {
     return (
       <View className="flex-row items-center gap-[12px] border-t border-t-line-soft py-[13px] opacity-60">
-        <Marker complete={false} muted />
+        <Marker state="muted" />
         <View className="flex-1">
           <Text className="text-[14px] font-medium tracking-[-0.2px] text-ink-muted">
             Something new
@@ -82,6 +119,8 @@ function SectionRow({
     );
   }
 
+  const strap = strapFor(section);
+
   return (
     <Pressable
       onPress={onPress}
@@ -89,12 +128,14 @@ function SectionRow({
       accessibilityLabel={`Open ${section.title}`}
       className="flex-row items-center gap-[12px] border-t border-t-line-soft py-[13px] active:opacity-55"
     >
-      <Marker complete={complete} muted={section.optional === true} />
+      <Marker state={markerFor({ complete, next, muted: section.optional === true })} />
       <View className="flex-1">
         <Text className="text-[14px] font-medium tracking-[-0.2px] text-ink">{section.title}</Text>
-        <Text className="mt-[3px] font-mono text-[9px] uppercase tracking-[2px] text-ink-faint">
-          {strapFor(section)}
-        </Text>
+        {strap ? (
+          <Text className="mt-[3px] font-mono text-[9px] uppercase tracking-[2px] text-ink-faint">
+            {strap}
+          </Text>
+        ) : null}
       </View>
     </Pressable>
   );
@@ -103,10 +144,12 @@ function SectionRow({
 function CheckpointRow({
   chapter,
   progress,
+  next,
   onPress,
 }: {
   chapter: CurriculumChapter;
   progress: ProgressBySection;
+  next: boolean;
   onPress: () => void;
 }) {
   const status = checkpointStatus(chapter, progress);
@@ -116,11 +159,9 @@ function CheckpointRow({
   const locked = status === 'locked';
   const passed = status === 'passed';
 
-  const strap = locked
-    ? 'Finish the sections above first'
-    : passed
-      ? `Passed${score === null || score === undefined ? '' : ` · ${score}%`}`
-      : `${chapter.checkpoint?.passThresholdPct ?? 0}% to pass`;
+  // The authored one-liner is what the row is *for*; the pass mark is a rule, not a name, and the
+  // results screen is where it actually matters. A tree without one falls back to naming the row.
+  const name = chapter.checkpoint?.title ?? 'Everything in this chapter';
 
   return (
     <Pressable
@@ -128,25 +169,37 @@ function CheckpointRow({
       disabled={locked}
       accessibilityRole="button"
       accessibilityState={{ disabled: locked }}
-      accessibilityLabel={`Chapter checkpoint — ${strap}`}
+      accessibilityLabel={`Chapter quiz — ${name}${passed ? ', passed' : ''}`}
       className={`mt-[12px] flex-row items-center gap-[12px] rounded-[10px] border px-[13px] py-[12px] ${
         locked
           ? 'border-line-soft bg-surface-raised opacity-55'
           : 'border-accent-line bg-accent-wash active:opacity-70'
       }`}
     >
-      <Marker complete={passed} muted={locked} />
+      <Marker state={markerFor({ complete: passed, next, muted: locked })} />
       <View className="flex-1">
-        <Text className="font-mono text-[9px] uppercase tracking-[2px] text-ink-faint">
-          Checkpoint
-        </Text>
+        <View className="flex-row items-center justify-between gap-[10px]">
+          <Text className="font-mono text-[9px] uppercase tracking-[2px] text-ink-faint">
+            Chapter Quiz
+          </Text>
+          {passed ? (
+            <Text className="font-mono text-[9px] uppercase tracking-[2px] text-accent">
+              Passed{score === null || score === undefined ? '' : ` · ${score}%`}
+            </Text>
+          ) : null}
+        </View>
         <Text
           className={`mt-[3px] text-[13.5px] font-medium tracking-[-0.2px] ${
             locked ? 'text-ink-muted' : 'text-ink'
           }`}
         >
-          {strap}
+          {name}
         </Text>
+        {locked ? (
+          <Text className="mt-[3px] text-[11.5px] leading-[16px] text-ink-faint">
+            Finish the lessons above first
+          </Text>
+        ) : null}
       </View>
     </Pressable>
   );
@@ -159,6 +212,7 @@ export function ChapterCard({
   progress,
   expanded,
   lockReason,
+  nextSectionId,
   onToggle,
   onOpenSection,
   onOpenCheckpoint,
@@ -170,6 +224,12 @@ export function ChapterCard({
   expanded: boolean;
   /** Why a locked chapter is locked, named specifically enough to act on. */
   lockReason: string;
+  /**
+   * The one row Continue opens, as a section id — `checkpointSectionId(chapter)` when what is
+   * outstanding is the chapter quiz. Null on a finished pathway. Passed down rather than derived
+   * here so the marker and the button can never disagree about where "next" is.
+   */
+  nextSectionId: string | null;
   onToggle: () => void;
   onOpenSection: (section: CurriculumSection) => void;
   onOpenCheckpoint: () => void;
@@ -247,6 +307,7 @@ export function ChapterCard({
               key={section.id}
               section={section}
               complete={sectionComplete(progress.get(section.id))}
+              next={section.id === nextSectionId}
               onPress={() => {
                 if (section.kind === 'unknown') return;
                 onOpenSection(section);
@@ -254,7 +315,12 @@ export function ChapterCard({
             />
           ))}
 
-          <CheckpointRow chapter={chapter} progress={progress} onPress={onOpenCheckpoint} />
+          <CheckpointRow
+            chapter={chapter}
+            progress={progress}
+            next={checkpointSectionId(chapter) === nextSectionId}
+            onPress={onOpenCheckpoint}
+          />
         </View>
       ) : null}
     </View>

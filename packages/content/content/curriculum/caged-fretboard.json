@@ -81,7 +81,8 @@
       ],
       "checkpoint": {
         "ref": "caged-fretboard-ch1-checkpoint",
-        "passThresholdPct": 70
+        "passThresholdPct": 70,
+        "title": "Review the Roots"
       }
     },
     {
@@ -150,7 +151,8 @@
       ],
       "checkpoint": {
         "ref": "caged-fretboard-ch2-checkpoint",
-        "passThresholdPct": 70
+        "passThresholdPct": 70,
+        "title": "Name the Chord Tones"
       }
     },
     {
@@ -219,7 +221,8 @@
       ],
       "checkpoint": {
         "ref": "caged-fretboard-ch3-checkpoint",
-        "passThresholdPct": 70
+        "passThresholdPct": 70,
+        "title": "Place the Five Notes"
       }
     },
     {
@@ -296,7 +299,8 @@
       ],
       "checkpoint": {
         "ref": "caged-fretboard-ch4-checkpoint",
-        "passThresholdPct": 70
+        "passThresholdPct": 70,
+        "title": "Complete the Window"
       }
     },
     {
@@ -365,7 +369,8 @@
       ],
       "checkpoint": {
         "ref": "caged-fretboard-ch5-checkpoint",
-        "passThresholdPct": 70
+        "passThresholdPct": 70,
+        "title": "Move Between the Forms"
       }
     }
   ]
