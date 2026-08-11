@@ -4,7 +4,13 @@ import { ROOTS } from '@/lib/chord-library';
 import { noteToPitchClass } from '@/lib/scale-library';
 import { FRET_COUNT, pitchClassAt } from '@/lib/theory';
 
-import { CAGED_FORMS, cagedFormWindow, cagedFormWindows, cagedMarks } from './caged';
+import {
+  CAGED_FORMS,
+  cagedFormWindow,
+  cagedFormWindows,
+  cagedLadderLanes,
+  cagedMarks,
+} from './caged';
 import type { CagedLayer } from './caged';
 
 const LAYERS: CagedLayer[] = ['roots', 'triad', 'pentatonic', 'scale'];
@@ -57,6 +63,41 @@ describe('cagedFormWindows', () => {
         expect(windows[i].from, root).toBeGreaterThanOrEqual(windows[i - 1].from);
       }
     }
+  });
+});
+
+describe('cagedLadderLanes', () => {
+  it('never puts two overlapping windows in one lane', () => {
+    for (const root of ROOTS) {
+      for (const lane of cagedLadderLanes(pc(root))) {
+        for (let i = 1; i < lane.length; i += 1) {
+          expect(lane[i].from, `${root} ${lane[i - 1].form}/${lane[i].form}`).toBeGreaterThan(
+            lane[i - 1].to,
+          );
+        }
+      }
+    }
+  });
+
+  it('draws every form exactly once', () => {
+    for (const root of ROOTS) {
+      const drawn = cagedLadderLanes(pc(root))
+        .flat()
+        .map((window) => window.form);
+      expect(drawn.sort(), root).toEqual([...CAGED_FORMS].sort());
+    }
+  });
+
+  it('needs three lanes for C, where three windows share fret 4', () => {
+    // The C form (0-4), A form (2-6) and G form (4-8) all cover fret 4, so two
+    // alternating lanes would drop a band — and C is the key the CAGED pathway
+    // teaches in, so this is the case that matters most.
+    const lanes = cagedLadderLanes(pc('C'));
+    expect(lanes.map((lane) => lane.map((w) => w.form))).toEqual([
+      ['C', 'E'],
+      ['A', 'D'],
+      ['G'],
+    ]);
   });
 });
 

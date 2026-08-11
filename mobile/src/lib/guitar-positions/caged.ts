@@ -86,6 +86,31 @@ export function cagedFormWindow(
 }
 
 /**
+ * The five windows packed into rows, none of which holds two that overlap.
+ *
+ * Drawing the ladder means drawing five bands over one fret axis, and neighbouring
+ * forms share frets by design — that overlap is the thing a learner has to see. So
+ * each window goes in the first row whose previous band has already ended, and the
+ * shared frets read as two bands stacked over one span.
+ *
+ * Alternating between two fixed rows is not enough, which is worth stating because
+ * it looks like it should be: in C the C form (0–4) and the G form (4–8) both cover
+ * fret 4 while the A form (2–6) sits between them, so three windows share a fret and
+ * two rows would silently drop a band.
+ */
+export function cagedLadderLanes(rootPitchClass: number): CagedWindow[][] {
+  const lanes: CagedWindow[][] = [];
+
+  for (const window of cagedFormWindows(rootPitchClass)) {
+    const lane = lanes.find((row) => (row[row.length - 1]?.to ?? -1) < window.from);
+    if (lane) lane.push(window);
+    else lanes.push([window]);
+  }
+
+  return lanes;
+}
+
+/**
  * How much of the chord a diagram shows. The four nest — each adds notes to the
  * window the one before it drew, which is the spine of the CAGED pathway.
  */

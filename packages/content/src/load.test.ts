@@ -27,7 +27,7 @@ describe('the authored corpus', () => {
     expect(documents.filter((document) => document.kind === 'article')).toHaveLength(4);
     expect(documents.filter((document) => document.kind === 'quiz')).toHaveLength(3);
     expect(documents.filter((document) => document.kind === 'activity')).toHaveLength(2);
-    expect(pathways.map((pathway) => pathway.slug)).toEqual(['fundamentals']);
+    expect(pathways.map((pathway) => pathway.slug)).toEqual(['caged-fretboard', 'fundamentals']);
   });
 
   it('versions every document and pathway with the hash of its canonical body', async () => {

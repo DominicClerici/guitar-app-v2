@@ -4,12 +4,7 @@ import { z } from 'zod';
 import { FadingHScroll } from '@/components/FadingHScroll';
 import { toAccidentalGlyphs } from '@/lib/accidentals';
 import { isRootName, type RootName } from '@/lib/chord-library';
-import {
-  CAGED_FORMS,
-  cagedFormWindows,
-  cagedMarks,
-  type CagedWindow,
-} from '@/lib/guitar-positions';
+import { CAGED_FORMS, cagedFormWindows, cagedLadderLanes, cagedMarks } from '@/lib/guitar-positions';
 import { noteToPitchClass } from '@/lib/scale-library';
 import { FRET_COUNT, STRING_COUNT } from '@/lib/theory';
 
@@ -54,19 +49,7 @@ export function CagedLadder({ root, highlight }: CagedLadderProps) {
     ),
   );
 
-  // Windows overlap at their edges, and that overlap is the whole point — so each
-  // goes in the first lane whose previous band has already ended. Neighbours stack
-  // instead of colliding, and a shared fret reads as two bands over one span.
-  //
-  // Alternating lanes fixed at two is not enough: in C, the C form (0–4) and the G
-  // form (4–8) both cover fret 4 while the A form (2–6) sits between them, so three
-  // windows share a fret and two lanes would drop one of the labels.
-  const lanes: CagedWindow[][] = [];
-  for (const window of windows) {
-    const lane = lanes.find((row) => (row[row.length - 1]?.to ?? -1) < window.from);
-    if (lane) lane.push(window);
-    else lanes.push([window]);
-  }
+  const lanes = cagedLadderLanes(rootPc);
 
   return (
     <View className="mt-[18px]">

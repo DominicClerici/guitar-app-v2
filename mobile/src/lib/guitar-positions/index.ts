@@ -21,6 +21,7 @@ export {
   CAGED_FORMS,
   cagedFormWindow,
   cagedFormWindows,
+  cagedLadderLanes,
   cagedMarks,
   type CagedForm,
   type CagedLayer,
