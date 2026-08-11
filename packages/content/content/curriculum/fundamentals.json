@@ -36,6 +36,15 @@
           "kind": "quiz",
           "ref": "fretboard-basics",
           "estimatedMin": 3
+        },
+        {
+          "id": "fundamentals.ch1.a-note-hunt",
+          "slug": "find-the-a-notes",
+          "title": "Drill: Find Every A",
+          "kind": "activity",
+          "ref": "find-the-a-notes",
+          "optional": true,
+          "estimatedMin": 6
         }
       ],
       "checkpoint": {
@@ -66,11 +75,11 @@
           "estimatedMin": 5
         },
         {
-          "id": "fundamentals.ch2.chord-switch-drill",
-          "slug": "chord-switch-drill",
-          "title": "Drill: Em to G in Sixty Seconds",
+          "id": "fundamentals.ch2.timing-drill",
+          "slug": "eighth-note-timing",
+          "title": "Drill: Eighth-Note Timing",
           "kind": "activity",
-          "ref": "chord-switch-drill",
+          "ref": "eighth-note-timing",
           "optional": true,
           "estimatedMin": 5
         }

@@ -2,6 +2,7 @@ import { Pressable, Text, View } from 'react-native';
 
 import { FadingHScroll } from '@/components/FadingHScroll';
 import { toAccidentalGlyphs } from '@/lib/accidentals';
+import { DOUBLE_INLAY_FRET, SINGLE_INLAY_FRETS, STRING_GAUGE_CLASS } from '@/lib/theory';
 
 import { FRET_COUNT, STRING_COUNT, pitchClassAt } from './tuning';
 import type { PlacedNote } from './useChordDetection';
@@ -16,12 +17,10 @@ import type { PlacedNote } from './useChordDetection';
 const FRETS = Array.from({ length: FRET_COUNT + 1 }, (_, f) => f);
 const STRINGS = Array.from({ length: STRING_COUNT }, (_, s) => s);
 
-const SINGLE_INLAYS = [3, 5, 7, 9, 15];
-const DOUBLE_INLAY = 12;
-const MARKED_FRETS = new Set([...SINGLE_INLAYS, DOUBLE_INLAY]);
-
-// Wound strings are visibly thicker than the plain trebles; string 0 is the high e.
-const STRING_CLASS = ['h-px', 'h-px', 'h-[1.25px]', 'h-[1.5px]', 'h-[1.75px]', 'h-[2px]'] as const;
+// The inlays and the string gauges come from `@/lib/theory/neck`, shared with the app's other
+// boards; its arrays are indexed 0 = high e, the same way this one is. The dots past FRET_COUNT
+// are simply never reached on a 15-fret neck.
+const MARKED_FRETS = new Set([...SINGLE_INLAY_FRETS, DOUBLE_INLAY_FRET]);
 
 const colClass = (fret: number) => (fret === 0 ? 'w-[38px]' : 'w-[50px]');
 
@@ -55,14 +54,14 @@ export function Fretboard({
             and the block's height is exactly the six string rows — which is
             what the inlays' `top-1/2` centres on. */}
         <View>
-          <InlayRow frets={SINGLE_INLAYS} offsetClass="-mt-[4px]" />
-          <InlayRow frets={[DOUBLE_INLAY]} offsetClass="-mt-[36px]" />
-          <InlayRow frets={[DOUBLE_INLAY]} offsetClass="mt-[28px]" />
+          <InlayRow frets={SINGLE_INLAY_FRETS} offsetClass="-mt-[4px]" />
+          <InlayRow frets={[DOUBLE_INLAY_FRET]} offsetClass="-mt-[36px]" />
+          <InlayRow frets={[DOUBLE_INLAY_FRET]} offsetClass="mt-[28px]" />
 
           {STRINGS.map((string) => (
             <View key={string} className="h-[32px] flex-row">
               <View className="pointer-events-none absolute inset-0 justify-center">
-                <View className={`${STRING_CLASS[string]} bg-ink-faint`} />
+                <View className={`${STRING_GAUGE_CLASS[string]} bg-ink-faint`} />
               </View>
 
               {FRETS.map((fret) => {
@@ -149,7 +148,7 @@ function Cell({ fret, label, isPlaced, isRoot, onPress }: CellProps) {
 }
 
 /** Inlay dots, laid out on the same column grid so they centre in their fret. */
-function InlayRow({ frets, offsetClass }: { frets: number[]; offsetClass: string }) {
+function InlayRow({ frets, offsetClass }: { frets: readonly number[]; offsetClass: string }) {
   return (
     <View className={`pointer-events-none absolute inset-x-0 top-1/2 flex-row ${offsetClass}`}>
       {FRETS.map((fret) => (

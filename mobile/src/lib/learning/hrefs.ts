@@ -21,14 +21,25 @@ export function pathwayHref(slug: string): Href {
   return { pathname: '/pathway/[slug]', params: { slug } };
 }
 
-/** An article or quiz opened as part of a pathway, carrying the context it reports back under. */
+/** A section opened as part of a pathway, carrying the context it reports back under. */
 export function sectionHref(pathwaySlug: string, section: CurriculumSection): Href {
-  return section.kind === 'quiz'
-    ? { pathname: '/quiz/[slug]', params: { slug: section.ref, section: section.id } }
-    : {
+  switch (section.kind) {
+    case 'quiz':
+      return { pathname: '/quiz/[slug]', params: { slug: section.ref, section: section.id } };
+    case 'activity':
+      // `section` matters as much here as anywhere else even though an activity can never move a
+      // tally: it is what the tick on the row is keyed on, so an activity opened without it runs
+      // perfectly and then looks untouched next time the chapter is opened.
+      return {
+        pathname: '/activity/[slug]',
+        params: { slug: section.ref, section: section.id, pathway: pathwaySlug },
+      };
+    case 'article':
+      return {
         pathname: '/article/[slug]',
         params: { slug: section.ref, section: section.id, pathway: pathwaySlug },
       };
+  }
 }
 
 export function checkpointHref(chapter: CurriculumChapter): Href | null {

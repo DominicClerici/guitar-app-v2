@@ -13,6 +13,32 @@
 // forward-compatibility rules every parser shares.
 
 export {
+  ACTIVITY_SCHEMA_VERSION,
+  ActivityParseError,
+  midiForTarget,
+  parseActivityDocument,
+  parseActivityMeta,
+  runnableRounds,
+} from '@guitar/shared';
+export type {
+  ActivityBody,
+  ActivityDocument,
+  ActivityMeta,
+  ActivityMode,
+  FretWindow,
+  NotePlayActivity,
+  NotePlayRound,
+  RenderActivity,
+  RenderNotePlayRound,
+  RenderRhythmRound,
+  RhythmActivity,
+  RhythmRound,
+  RhythmSlot,
+  UnknownActivity,
+  UnknownRound,
+} from '@guitar/shared';
+
+export {
   ArticleParseError,
   parseArticleDocument,
   parseArticleMeta,

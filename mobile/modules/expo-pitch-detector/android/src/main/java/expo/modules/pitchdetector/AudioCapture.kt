@@ -3,12 +3,14 @@ package expo.modules.pitchdetector
 
 import android.media.AudioFormat
 import android.media.AudioRecord
+import android.media.AudioTimestamp
 import android.media.MediaRecorder
 import kotlin.concurrent.thread
 
 class AudioCapture(
   private val sampleRate: Int,
-  private val onSamples: (FloatArray) -> Unit,
+  /** Called on the capture thread with a block and the epoch ms of its *first* frame. */
+  private val onSamples: (FloatArray, Double) -> Unit,
 ) {
   private var record: AudioRecord? = null
   private var captureThread: Thread? = null
@@ -39,6 +41,15 @@ class AudioCapture(
 
     val t = thread(name = "ExpoPitchDetector-mic", isDaemon = true) {
       val shorts = ShortArray(1024)
+
+      // nanoTime has no epoch of its own, so the two clocks are pinned to each other once.
+      // Re-reading the wall clock per block would fold this loop's own scheduling jitter
+      // (and any clock adjustment) into onset timestamps.
+      val epochAtMonoZeroMs = System.currentTimeMillis() - System.nanoTime() / 1_000_000.0
+      var framesRead = 0L
+      var anchorFrame = -1L
+      var anchorEpochMs = 0.0
+
       while (running) {
         val n = try {
           source.read(shorts, 0, shorts.size)
@@ -46,8 +57,32 @@ class AudioCapture(
           break
         }
         if (n <= 0) continue
+
+        if (anchorFrame < 0) {
+          val ts = AudioTimestamp()
+          val ok = try {
+            source.getTimestamp(ts, AudioTimestamp.TIMEBASE_MONOTONIC) == AudioRecord.SUCCESS
+          } catch (_: Throwable) {
+            false
+          }
+          if (ok) {
+            anchorFrame = ts.framePosition
+            anchorEpochMs = epochAtMonoZeroMs + ts.nanoTime / 1_000_000.0
+          } else {
+            // Fallback for devices where getTimestamp is unsupported or errors: the block
+            // that just came back was captured over the window ending roughly now, so its
+            // last frame is "now" and its first is n frames earlier. This ignores whatever
+            // the HAL had buffered ahead of us, so onsets can read a few ms late — the
+            // hardware timestamp above is the accurate path and this is only a floor.
+            anchorFrame = framesRead + n
+            anchorEpochMs = System.currentTimeMillis().toDouble()
+          }
+        }
+
+        val startEpochMs = anchorEpochMs + (framesRead - anchorFrame) * 1000.0 / sampleRate
         val floats = FloatArray(n) { shorts[it] / 32768f }
-        try { onSamples(floats) } catch (_: Throwable) { /* swallow to keep the loop alive */ }
+        framesRead += n
+        try { onSamples(floats, startEpochMs) } catch (_: Throwable) { /* swallow to keep the loop alive */ }
       }
     }
     captureThread = t

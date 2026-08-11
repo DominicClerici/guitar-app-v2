@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "act_find-the-a-notes",
+    "slug": "find-the-a-notes",
+    "title": "Find Every A",
+    "summary": "Three A's live below the twelfth fret. Hunt them down by name, not by shape."
+  },
+  "activity": {
+    "kind": "note-play",
+    "modes": ["easy", "hard"],
+    "board": { "fretFrom": 0, "fretTo": 12 },
+    "rounds": [
+      {
+        "kind": "targets",
+        "id": "r_find-the-a-notes.open-pair",
+        "prompt": [
+          { "text": "Start easy. There are two " },
+          { "text": "A", "marks": ["code"] },
+          {
+            "text": "'s in the first two frets — one of them is an open string. Play both, in any order."
+          }
+        ],
+        "targets": [
+          { "string": 5, "fret": 0 },
+          { "string": 3, "fret": 2 }
+        ]
+      },
+      {
+        "kind": "targets",
+        "id": "r_find-the-a-notes.mid-neck",
+        "prompt": [
+          { "text": "Now the middle of the neck. Three " },
+          { "text": "A", "marks": ["code"] },
+          {
+            "text": "'s sit between the fifth and tenth frets, one on a thick string, one in the middle, one up top."
+          }
+        ],
+        "targets": [
+          { "string": 6, "fret": 5 },
+          { "string": 4, "fret": 7 },
+          { "string": 2, "fret": 10 }
+        ]
+      },
+      {
+        "kind": "targets",
+        "id": "r_find-the-a-notes.octave-ladder",
+        "prompt": [
+          { "text": "Three " },
+          { "text": "A", "marks": ["code"] },
+          { "text": "'s, an octave apart each time. Play them " },
+          { "text": "lowest first", "marks": ["bold"] },
+          { "text": " — the order counts here." }
+        ],
+        "ordered": true,
+        "targets": [
+          { "string": 5, "fret": 0 },
+          { "string": 5, "fret": 12 },
+          { "string": 1, "fret": 5 }
+        ]
+      },
+      {
+        "kind": "targets",
+        "id": "r_find-the-a-notes.no-open-strings",
+        "prompt": [
+          { "text": "Last one, and no open strings this time. Three fretted " },
+          { "text": "A", "marks": ["code"] },
+          { "text": "'s, any order. If you are counting frets, you already know two of them." }
+        ],
+        "targets": [
+          { "string": 6, "fret": 5 },
+          { "string": 3, "fret": 2 },
+          { "string": 2, "fret": 10 }
+        ]
+      }
+    ]
+  }
+}

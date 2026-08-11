@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "act_eighth-note-timing",
+    "slug": "eighth-note-timing",
+    "title": "Eighth-Note Timing",
+    "summary": "Mute the strings and pick the grid. Nothing here listens to which note you played."
+  },
+  "activity": {
+    "kind": "rhythm",
+    "rounds": [
+      {
+        "kind": "pattern",
+        "id": "r_eighth-note-timing.quarters",
+        "prompt": [
+          {
+            "text": "Rest your fretting hand flat across the strings so nothing rings out — this drill only hears "
+          },
+          { "text": "when", "marks": ["italic"] },
+          { "text": " you pick. Two bars of quarter notes, one pick per click." }
+        ],
+        "bpm": 80,
+        "beatsPerBar": 4,
+        "subdivision": 1,
+        "bars": 2,
+        "slots": ["accent", "hit", "hit", "hit", "accent", "hit", "hit", "hit"],
+        "countInBars": 1
+      },
+      {
+        "kind": "pattern",
+        "id": "r_eighth-note-timing.eighths",
+        "prompt": [
+          { "text": "Same muted strings, twice the picks. Say " },
+          { "text": "one and two and", "marks": ["code"] },
+          {
+            "text": " out loud and put a downstroke on the numbers, an upstroke on the ands."
+          }
+        ],
+        "bpm": 80,
+        "beatsPerBar": 4,
+        "subdivision": 2,
+        "bars": 2,
+        "slots": [
+          "accent",
+          "hit",
+          "hit",
+          "hit",
+          "hit",
+          "hit",
+          "hit",
+          "hit",
+          "accent",
+          "hit",
+          "hit",
+          "hit",
+          "hit",
+          "hit",
+          "hit",
+          "hit"
+        ]
+      },
+      {
+        "kind": "pattern",
+        "id": "r_eighth-note-timing.upbeats",
+        "prompt": [
+          { "text": "Now the hard half. Keep the strings muted, keep counting " },
+          { "text": "one and two and", "marks": ["code"] },
+          { "text": ", and pick only on the " },
+          { "text": "ands", "marks": ["bold"] },
+          { "text": ". Two bars of clicks first — use them." }
+        ],
+        "bpm": 76,
+        "beatsPerBar": 4,
+        "subdivision": 2,
+        "bars": 2,
+        "slots": [
+          "rest",
+          "accent",
+          "rest",
+          "hit",
+          "rest",
+          "hit",
+          "rest",
+          "hit",
+          "rest",
+          "accent",
+          "rest",
+          "hit",
+          "rest",
+          "hit",
+          "rest",
+          "hit"
+        ],
+        "countInBars": 2
+      }
+    ]
+  }
+}

@@ -1,9 +1,11 @@
 import {
+  parseActivityDocument,
   parseArticleDocument,
   parseArticleMeta,
   parseCurriculumIndex,
   parseCurriculumPathway,
   parseQuizDocument,
+  type ActivityDocument,
   type ArticleDocument,
   type ArticleMeta,
   type CurriculumIndex,
@@ -36,6 +38,7 @@ export interface ContentRepository {
   listArticles(): Promise<ArticleMeta[]>;
   getArticle(slug: string): Promise<ArticleDocument>;
   getQuiz(slug: string): Promise<QuizDocument>;
+  getActivity(slug: string): Promise<ActivityDocument>;
   getCurriculumIndex(): Promise<CurriculumIndex>;
   getPathway(slug: string): Promise<CurriculumPathway>;
 }
@@ -87,6 +90,10 @@ export const contentRepository: ContentRepository = {
 
   async getQuiz(slug) {
     return parseQuizDocument(await loadDocument(slug));
+  },
+
+  async getActivity(slug) {
+    return parseActivityDocument(await loadDocument(slug));
   },
 
   async getCurriculumIndex() {

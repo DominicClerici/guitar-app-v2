@@ -1,5 +1,4 @@
 import { SymbolView } from 'expo-symbols';
-import { useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 
 import type { CurriculumChapter, CurriculumSection, RenderSection } from '@/lib/content';
@@ -59,12 +58,10 @@ function Marker({ complete, muted }: { complete: boolean; muted: boolean }) {
 function SectionRow({
   section,
   complete,
-  notice,
   onPress,
 }: {
   section: RenderSection;
   complete: boolean;
-  notice: string | null;
   onPress: () => void;
 }) {
   // A section this build cannot open is shown rather than hidden, so chapter numbering reads the
@@ -95,12 +92,8 @@ function SectionRow({
       <Marker complete={complete} muted={section.optional === true} />
       <View className="flex-1">
         <Text className="text-[14px] font-medium tracking-[-0.2px] text-ink">{section.title}</Text>
-        <Text
-          className={`mt-[3px] font-mono text-[9px] uppercase tracking-[2px] ${
-            notice ? 'text-amber' : 'text-ink-faint'
-          }`}
-        >
-          {notice ?? strapFor(section)}
+        <Text className="mt-[3px] font-mono text-[9px] uppercase tracking-[2px] text-ink-faint">
+          {strapFor(section)}
         </Text>
       </View>
     </Pressable>
@@ -184,10 +177,6 @@ export function ChapterCard({
   const faint = useToken('--ink-faint', '#62666e');
   const accent = useToken('--accent', '#5ec8c2');
 
-  // Which optional section was last tapped. An activity this build cannot run has to say so —
-  // a tap that visibly does nothing reads as a broken screen.
-  const [notice, setNotice] = useState<string | null>(null);
-
   const locked = status === 'locked';
   const tally = chapterProgress(chapter, progress);
   const open = expanded && !locked;
@@ -258,13 +247,8 @@ export function ChapterCard({
               key={section.id}
               section={section}
               complete={sectionComplete(progress.get(section.id))}
-              notice={notice === section.id ? 'Coming soon — not in this build yet' : null}
               onPress={() => {
                 if (section.kind === 'unknown') return;
-                if (section.kind === 'activity') {
-                  setNotice(section.id);
-                  return;
-                }
                 onOpenSection(section);
               }}
             />

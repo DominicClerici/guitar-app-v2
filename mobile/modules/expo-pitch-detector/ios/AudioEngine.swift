@@ -1,22 +1,33 @@
 // modules/expo-pitch-detector/ios/AudioEngine.swift
 import AVFoundation
+import Darwin
 
 final class AudioEngine {
   private let engine = AVAudioEngine()
   private let sampleRate: Double
-  private let onSamples: (UnsafePointer<Float>, Int) -> Void
+  /// Called on the real-time audio thread with converted mono samples and the epoch
+  /// time in ms of the block's *first* sample.
+  private let onSamples: (UnsafePointer<Float>, Int, Double) -> Void
   private var converter: AVAudioConverter?
   private var converterTarget: AVAudioFormat?
 
   // The AVAudioSession is a process-wide singleton shared with the app's playback
-  // engine (react-native-audio-api). Recording requires the `.record` category, so
-  // we snapshot whatever the session was configured with and restore it on stop —
-  // otherwise playback elsewhere would be stranded on a record-only session.
+  // engine (react-native-audio-api). Recording requires a category that includes
+  // input, so we snapshot whatever the session was configured with and restore it on
+  // stop — otherwise playback elsewhere would be stranded on our configuration.
   private var priorCategory: AVAudioSession.Category?
   private var priorMode: AVAudioSession.Mode?
   private var priorOptions: AVAudioSession.CategoryOptions?
 
-  init(sampleRate: Double, onSamples: @escaping (UnsafePointer<Float>, Int) -> Void) {
+  // Host time -> epoch is anchored once per session, and every later timestamp is
+  // derived from the converted-frame count instead. Reading the wall clock per buffer
+  // would fold the callback's own scheduling jitter into onset timestamps, which is
+  // the one error a rhythm grader cannot absorb.
+  private var timebase = mach_timebase_info_data_t()
+  private var anchorEpochMs: Double?
+  private var framesConverted: Int64 = 0
+
+  init(sampleRate: Double, onSamples: @escaping (UnsafePointer<Float>, Int, Double) -> Void) {
     self.sampleRate = sampleRate
     self.onSamples = onSamples
   }
@@ -26,8 +37,22 @@ final class AudioEngine {
     priorCategory = session.category
     priorMode = session.mode
     priorOptions = session.categoryOptions
-    try session.setCategory(.record, mode: .measurement, options: [])
+    // `.playAndRecord` rather than `.record` so a click track can play while we listen;
+    // `.defaultToSpeaker` keeps that click on the speaker instead of the earpiece, and
+    // `.mixWithOthers` keeps a backing track alive underneath it.
+    //
+    // `.measurement` stays: it turns off input processing (AGC, EQ), which is what makes
+    // the pitch reading trustworthy. It also turns off echo cancellation, so a click
+    // played through the speaker WILL bleed back into the mic. That is expected — the
+    // rhythm feature calibrates it out on the JS side, not here.
+    try session.setCategory(.playAndRecord,
+                            mode: .measurement,
+                            options: [.defaultToSpeaker, .mixWithOthers])
     try session.setActive(true)
+
+    mach_timebase_info(&timebase)
+    anchorEpochMs = nil
+    framesConverted = 0
 
     let input = engine.inputNode
     let nativeFormat = input.outputFormat(forBus: 0)
@@ -49,7 +74,7 @@ final class AudioEngine {
     self.converterTarget = target
 
     input.removeTap(onBus: 0)
-    input.installTap(onBus: 0, bufferSize: 1024, format: nativeFormat) { [weak self] inBuf, _ in
+    input.installTap(onBus: 0, bufferSize: 1024, format: nativeFormat) { [weak self] inBuf, when in
       guard let self,
             let converter = self.converter,
             let targetFormat = self.converterTarget else { return }
@@ -72,11 +97,31 @@ final class AudioEngine {
         return inBuf
       }
       guard status != .error, let ch0 = outBuf.floatChannelData?[0] else { return }
-      self.onSamples(ch0, Int(outBuf.frameLength))
+
+      let frames = Int(outBuf.frameLength)
+      let startEpochMs = self.blockStartEpochMs(when: when, targetSampleRate: targetFormat.sampleRate)
+      // Advanced before the callback so a re-entrant delivery can never reuse an index.
+      self.framesConverted += Int64(frames)
+      self.onSamples(ch0, frames, startEpochMs)
     }
 
     engine.prepare()
     try engine.start()
+  }
+
+  /// Epoch ms of the next converted frame. Frames are counted in the *target* domain,
+  /// so the sample-rate conversion is already accounted for.
+  private func blockStartEpochMs(when: AVAudioTime, targetSampleRate: Double) -> Double {
+    if anchorEpochMs == nil {
+      // The wall clock is read now, but this buffer was captured `nowHost - bufferHost`
+      // ago; subtracting that difference pins the anchor to the buffer rather than to us.
+      let nowHost = mach_absolute_time()
+      let bufferHost = when.isHostTimeValid ? when.hostTime : nowHost
+      let elapsedNs = (Double(nowHost) - Double(bufferHost))
+        * Double(timebase.numer) / Double(max(timebase.denom, 1))
+      anchorEpochMs = Date().timeIntervalSince1970 * 1000 - elapsedNs / 1_000_000
+    }
+    return (anchorEpochMs ?? 0) + Double(framesConverted) / targetSampleRate * 1000
   }
 
   func stop() {
@@ -84,6 +129,8 @@ final class AudioEngine {
     engine.stop()
     converter = nil
     converterTarget = nil
+    anchorEpochMs = nil
+    framesConverted = 0
 
     let session = AVAudioSession.sharedInstance()
     try? session.setActive(false, options: [.notifyOthersOnDeactivation])

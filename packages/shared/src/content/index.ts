@@ -35,6 +35,32 @@ export type {
 } from './api';
 
 export {
+  ACTIVITY_SCHEMA_VERSION,
+  ActivityParseError,
+  midiForTarget,
+  parseActivityDocument,
+  parseActivityMeta,
+  runnableRounds,
+} from './activity';
+export type {
+  ActivityBody,
+  ActivityDocument,
+  ActivityMeta,
+  ActivityMode,
+  FretWindow,
+  NotePlayActivity,
+  NotePlayRound,
+  RenderActivity,
+  RenderNotePlayRound,
+  RenderRhythmRound,
+  RhythmActivity,
+  RhythmRound,
+  RhythmSlot,
+  UnknownActivity,
+  UnknownRound,
+} from './activity';
+
+export {
   ArticleParseError,
   parseArticleDocument,
   parseArticleMeta,

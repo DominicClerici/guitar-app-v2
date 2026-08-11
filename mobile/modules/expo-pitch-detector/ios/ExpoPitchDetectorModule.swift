@@ -15,10 +15,22 @@ public class ExpoPitchDetectorModule: Module {
   private var detector: PitchDetectorMPM?
   private var timer: DispatchSourceTimer?
 
+  // Outlives any one session so `configureOnsets` means something before start() and
+  // survives stop(). It carries its own lock, so it is reachable from every queue.
+  private let onsets = OnsetDetector()
+
   public func definition() -> ModuleDefinition {
     Name("ExpoPitchDetector")
 
-    Events("onPitch")
+    Events("onPitch", "onOnset")
+
+    AsyncFunction("configureOnsets") { (config: [String: Any]) -> Void in
+      self.onsets.configure(
+        enabled: (config["enabled"] as? Bool) ?? false,
+        threshold: Float((config["threshold"] as? Double) ?? 0),
+        refractoryMs: (config["refractoryMs"] as? Double) ?? 0
+      )
+    }
 
     AsyncFunction("start") { (opts: [String: Any]?) async throws -> Void in
       // Idempotent: tear down any prior session before reconfiguring.
@@ -45,10 +57,16 @@ public class ExpoPitchDetectorModule: Module {
       let ring = SampleRing(capacity: self.windowSize)
       let detector = PitchDetectorMPM(sampleRate: sr, windowSize: self.windowSize)
 
-      // The tap captures this ring instance directly, so the real-time audio thread never
+      let onsets = self.onsets
+      onsets.begin(sampleRate: sr)
+
+      // The tap captures these instances directly, so the real-time audio thread never
       // reads a shared mutable property.
-      let engine = AudioEngine(sampleRate: sr) { samples, count in
+      let engine = AudioEngine(sampleRate: sr) { samples, count, startEpochMs in
         ring.write(samples, count: count)
+        // Fed from the converter output, not from the ring: hops must be consecutive and
+        // the ring only keeps the freshest window.
+        onsets.feed(samples, count: count, startEpochMs: startEpochMs)
       }
       try engine.start()
 
@@ -84,6 +102,15 @@ public class ExpoPitchDetectorModule: Module {
   // Runs on processingQueue at ~30ms cadence. Always analyzes the freshest window; the timer
   // coalesces missed firings, so a slow tick can't pile up a backlog of catch-up work.
   private func tick() {
+    // Drained ahead of the pitch guard below: onsets must not wait on the ring filling,
+    // and their timestamps are their own — a late tick does not make them late.
+    for onset in onsets.drain() {
+      sendEvent("onOnset", [
+        "at":   onset.atMs,
+        "peak": Double(onset.peak),
+      ])
+    }
+
     guard let ring = ring, let detector = detector, let window = ring.snapshot() else { return }
 
     var meanSquare: Float = 0
@@ -107,6 +134,8 @@ public class ExpoPitchDetectorModule: Module {
       engine = nil
       ring = nil
       detector = nil
+      // Config survives; only the envelope history and any undrained detections go.
+      onsets.reset()
     }
   }
 }

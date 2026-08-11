@@ -4,11 +4,21 @@ import { fileURLToPath } from 'node:url';
 
 import {
   contentHash,
+  midiForTarget,
+  parseActivityDocument,
   parseArticleDocument,
   parseCurriculumPathway,
   parseQuizDocument,
+  runnableRounds,
 } from '@guitar/shared';
-import type { CurriculumPathway, CurriculumSection, RenderSection } from '@guitar/shared';
+import type {
+  CurriculumPathway,
+  CurriculumSection,
+  FretPosition,
+  FretWindow,
+  RenderActivity,
+  RenderSection,
+} from '@guitar/shared';
 
 // Reads the authored corpus under `content/`, validates every file through the *shared* parsers
 // (the same code the device runs — BACKEND_PLAN.md §8), and then checks the things no single-file
@@ -19,8 +29,17 @@ import type { CurriculumPathway, CurriculumSection, RenderSection } from '@guita
 
 const CONTENT_ROOT = fileURLToPath(new URL('../content', import.meta.url));
 
-/** `kind` as stored in `content_documents` — the two kinds `contentDocumentPayload` allows. */
-export type DocumentKind = 'article' | 'quiz';
+/** `kind` as stored in `content_documents` — the three kinds `contentDocumentPayload` allows. */
+export type DocumentKind = 'article' | 'quiz' | 'activity';
+
+/**
+ * The metronome's own range — `MIN_BPM`/`MAX_BPM` in the app's metronome patterns module, restated
+ * rather than imported because this package cannot depend on the app. A round asking for a tempo
+ * outside it is silently pulled back into range at playback, which means the learner drills a
+ * different exercise than the one that was authored.
+ */
+const MIN_BPM = 20;
+const MAX_BPM = 300;
 
 export interface LoadedDocument {
   slug: string;
@@ -38,6 +57,13 @@ export interface LoadedDocument {
   file: string;
   /** Only for quizzes — the checkpoint/section distinction the pathway's refs are checked against. */
   quizKind?: 'quiz' | 'checkpoint';
+  /**
+   * Only for activities — the parsed body, carried for the same reason `LoadedPathway` carries its
+   * tree. `activity.kind` is the analogue of `quizKind` (a body this build could not run degrades to
+   * `unknown`), and the rules below also need the modes and rounds hanging off it, which would
+   * otherwise mean parsing every activity a second time.
+   */
+  activity?: RenderActivity;
 }
 
 export interface LoadedPathway {
@@ -214,6 +240,28 @@ export async function loadContent(): Promise<ContentCorpus> {
     }
   }
 
+  for (const raw of readJsonDir('activities', issues)) {
+    try {
+      const parsed = parseActivityDocument(raw.data);
+      if (parsed.meta.slug !== raw.stem) {
+        issues.push({
+          file: raw.file,
+          message: `meta.slug is "${parsed.meta.slug}" but the filename says "${raw.stem}".`,
+        });
+      }
+      documents.push({
+        slug: parsed.meta.slug,
+        kind: 'activity',
+        version: await versionOf(raw.data),
+        body: raw.data,
+        file: raw.file,
+        activity: parsed.activity,
+      });
+    } catch (error) {
+      issues.push({ file: raw.file, message: describeError(error) });
+    }
+  }
+
   const pathways: LoadedPathway[] = [];
 
   for (const raw of readJsonDir('curriculum', issues)) {
@@ -261,6 +309,7 @@ export function collectCorpusIssues(corpus: ContentCorpus): ContentIssue[] {
     }
     documentFiles.set(document.slug, document.file);
     bySlug.set(document.slug, document);
+    issues.push(...activityIssues(document));
   }
 
   const pathwayFiles = new Map<string, string>();
@@ -305,6 +354,17 @@ export function collectCorpusIssues(corpus: ContentCorpus): ContentIssue[] {
           sectionFiles.set(section.id, file);
         }
 
+        // `countedSections` leaves an activity out of a chapter's progress denominator only because
+        // it is optional — there is no rule about its kind. An activity is never graded, so a
+        // forgotten flag would quietly make a drill something the learner has to finish before the
+        // chapter reads as complete.
+        if (section.kind === 'activity' && !section.optional) {
+          issues.push({
+            file,
+            message: `section "${section.id}" in chapter "${chapter.id}" is an activity and must set "optional": true — activities are never graded, and without the flag this one counts toward the chapter's progress and gates it.`,
+          });
+        }
+
         checkSectionRef(section, chapter.id, file, bySlug, issues);
       }
 
@@ -341,6 +401,12 @@ export function collectCorpusIssues(corpus: ContentCorpus): ContentIssue[] {
   return issues;
 }
 
+const KIND_NAMES: Record<DocumentKind, string> = {
+  article: 'an article',
+  quiz: 'a quiz',
+  activity: 'an activity',
+};
+
 function checkSectionRef(
   section: CurriculumSection,
   chapterId: string,
@@ -348,15 +414,11 @@ function checkSectionRef(
   bySlug: Map<string, LoadedDocument>,
   issues: ContentIssue[],
 ): void {
-  // Activity sections are exempt from ref resolution *by design*: an activity is a screen in the
-  // app (a tuner drill, an ear-training game) addressed by name, not a stored document — and
-  // `content_documents.kind` only ever holds `article` or `quiz`, so there is nothing an activity
-  // ref could resolve to. Requiring resolution would mean inventing a third document kind whose
-  // only content is its own name. The forward-compatibility cost is covered by `optional: true`
-  // and by `countedSections`: a build that doesn't know the activity skips it without blocking the
-  // chapter.
-  if (section.kind === 'activity') return;
-
+  // An activity is a document like any other: an authored JSON in `content/activities`, published
+  // into `content_documents` beside articles and quizzes, and fetched with the chapter that
+  // references it. It differs only in what the app does with it — a board or a grid to play along
+  // with rather than something to read — which is a rendering decision, not a reason for its ref to
+  // resolve by a different rule than every other section's.
   const target = bySlug.get(section.ref);
   if (!target) {
     issues.push({
@@ -369,9 +431,166 @@ function checkSectionRef(
   if (target.kind !== section.kind) {
     issues.push({
       file,
-      message: `section "${section.id}" is kind "${section.kind}" but "${section.ref}" is ${
-        target.kind === 'article' ? 'an article' : 'a quiz'
-      }.`,
+      message: `section "${section.id}" is kind "${section.kind}" but "${section.ref}" is ${KIND_NAMES[target.kind]}.`,
     });
   }
+}
+
+/** The rules an activity document must satisfy on top of parsing at all. */
+function activityIssues(document: LoadedDocument): ContentIssue[] {
+  const { activity, file } = document;
+  if (!activity) return [];
+
+  const issues: ContentIssue[] = [];
+
+  // Forward compatibility is for *old apps reading new content*. A body the publisher's own parser
+  // can't run is simply broken, and shipping it would put an "update the app" placeholder in front
+  // of learners whose app is already current.
+  if (activity.kind === 'unknown') {
+    issues.push({
+      file,
+      message: `activity did not parse as a runnable activity (declared kind "${activity.originalKind}") — an unknown kind, a payload this build cannot read, or a note-play activity whose "modes" list is empty.`,
+    });
+    return issues;
+  }
+
+  // Restated for the reason `meta.passThresholdPct` is restated above: "an activity must offer a
+  // difficulty to play it at" is a content rule, and it has to keep being enforced if the parser
+  // ever relaxes an empty list into something less than degrading the whole activity.
+  if (activity.kind === 'note-play' && activity.modes.length === 0) {
+    issues.push({
+      file,
+      message: 'activity.modes is empty — a note-play activity must offer "easy", "hard", or both.',
+    });
+  }
+
+  // Likewise the parser's own bpm bound: see MIN_BPM/MAX_BPM above for why the clamp is a content
+  // rule rather than an engine detail.
+  if (activity.kind === 'rhythm') {
+    for (const round of runnableRounds(activity.rounds)) {
+      if (round.bpm < MIN_BPM || round.bpm > MAX_BPM) {
+        issues.push({
+          file,
+          message: `round "${round.id}" asks for ${round.bpm} bpm, outside the metronome's ${MIN_BPM}–${MAX_BPM}.`,
+        });
+      }
+    }
+  }
+
+  const board = activity.kind === 'note-play' ? activity.board : undefined;
+  const authored = authoredRounds(document.body);
+
+  activity.rounds.forEach((round, index) => {
+    if (round.kind !== 'unknown') return;
+    // Same verdict as the unknown-question rule for quizzes, for the same reason: a round this
+    // parser can't run is a round the learner can never finish, and `runnableRounds` would drop it
+    // silently.
+    const reason =
+      diagnoseRound(authored[index], activity.kind, board) ??
+      'an unrecognised round kind, or a field missing or out of range';
+    issues.push({
+      file,
+      message: `round "${round.id}" did not parse as a runnable round (${reason}).`,
+    });
+  });
+
+  return issues;
+}
+
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  typeof value === 'object' && value !== null;
+
+/**
+ * The rounds as authored, which the parser has by then replaced with placeholders.
+ *
+ * It knows exactly why it could not run each one — it throws a precise `ActivityParseError` inside
+ * and swallows it to build the placeholder, because on a device the reason is noise nobody can act
+ * on. Here it is the only thing an author wants, and there is no way to ask the parser for it.
+ */
+function authoredRounds(body: unknown): unknown[] {
+  if (!isRecord(body)) return [];
+  const activity = body.activity;
+
+  return isRecord(activity) && Array.isArray(activity.rounds) ? activity.rounds : [];
+}
+
+function diagnoseRound(
+  raw: unknown,
+  kind: 'note-play' | 'rhythm',
+  board: FretWindow | undefined,
+): string | undefined {
+  if (!isRecord(raw)) return undefined;
+
+  return kind === 'note-play' ? diagnoseTargets(raw, board) : diagnosePattern(raw);
+}
+
+const where = (target: FretPosition) => `string ${target.string} fret ${target.fret}`;
+
+function readWindow(value: unknown): FretWindow | undefined {
+  if (!isRecord(value)) return undefined;
+  const { fretFrom, fretTo } = value;
+
+  return typeof fretFrom === 'number' && typeof fretTo === 'number'
+    ? { fretFrom, fretTo }
+    : undefined;
+}
+
+function diagnoseTargets(
+  raw: Record<string, unknown>,
+  documentBoard: FretWindow | undefined,
+): string | undefined {
+  const targets = raw.targets;
+  if (!Array.isArray(targets)) return undefined;
+
+  const board = readWindow(raw.board) ?? documentBoard;
+  const heard = new Map<number, FretPosition>();
+
+  for (const entry of targets) {
+    if (!isRecord(entry) || typeof entry.string !== 'number' || typeof entry.fret !== 'number') {
+      return undefined;
+    }
+    const target: FretPosition = { string: entry.string, fret: entry.fret };
+
+    if (target.string < 1 || target.string > 6) {
+      return `string ${target.string} is not on a six-string neck`;
+    }
+    if (board && (target.fret < board.fretFrom || target.fret > board.fretTo)) {
+      return `${where(target)} is outside the board's frets ${board.fretFrom}–${board.fretTo}`;
+    }
+
+    const midi = midiForTarget(target);
+    const clash = heard.get(midi);
+    if (clash) {
+      return `${where(clash)} and ${where(target)} both sound MIDI ${midi}, and the detector hears pitches, not strings`;
+    }
+    heard.set(midi, target);
+  }
+
+  return undefined;
+}
+
+function diagnosePattern(raw: Record<string, unknown>): string | undefined {
+  const { bpm, beatsPerBar, subdivision, bars, slots } = raw;
+
+  if (typeof bpm === 'number' && (bpm < MIN_BPM || bpm > MAX_BPM)) {
+    return `${bpm} bpm is outside the metronome's ${MIN_BPM}–${MAX_BPM}`;
+  }
+  if (
+    typeof beatsPerBar !== 'number' ||
+    typeof subdivision !== 'number' ||
+    typeof bars !== 'number' ||
+    !Array.isArray(slots)
+  ) {
+    return undefined;
+  }
+
+  const expected = beatsPerBar * subdivision * bars;
+  if (slots.length !== expected) {
+    return `${slots.length} slots for a ${beatsPerBar}×${subdivision}×${bars} grid, which needs exactly ${expected}`;
+  }
+  if (!slots.some((slot) => slot === 'hit' || slot === 'accent')) {
+    return 'every slot is a rest, so there is nothing to detect';
+  }
+
+  return undefined;
 }

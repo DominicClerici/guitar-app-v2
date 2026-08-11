@@ -1,4 +1,10 @@
-import { contentHash, parseCurriculumPathway } from '@guitar/shared';
+import {
+  contentHash,
+  midiForTarget,
+  parseActivityDocument,
+  parseCurriculumPathway,
+} from '@guitar/shared';
+import type { CurriculumSection, NotePlayActivity, RenderActivity } from '@guitar/shared';
 import { describe, expect, it } from 'vitest';
 
 import {
@@ -20,6 +26,7 @@ describe('the authored corpus', () => {
 
     expect(documents.filter((document) => document.kind === 'article')).toHaveLength(4);
     expect(documents.filter((document) => document.kind === 'quiz')).toHaveLength(3);
+    expect(documents.filter((document) => document.kind === 'activity')).toHaveLength(2);
     expect(pathways.map((pathway) => pathway.slug)).toEqual(['fundamentals']);
   });
 
@@ -41,18 +48,61 @@ describe('the authored corpus', () => {
     );
   });
 
-  it('carries exactly one optional activity section, which no document backs', async () => {
+  it('backs every activity section with an optional ref to an activity document', async () => {
     const { documents, pathways } = await loadContent();
     const sections = pathways.flatMap((pathway) =>
       pathway.pathway.chapters.flatMap((chapter) => chapter.sections),
     );
+    const kinds = new Map(documents.map((document) => [document.slug, document.kind]));
 
-    const activities = sections.filter((section) => section.kind === 'activity');
-    expect(activities).toHaveLength(1);
-    expect(activities[0]).toMatchObject({ optional: true });
+    const activities = sections.filter(
+      (section): section is CurriculumSection => section.kind === 'activity',
+    );
+    expect(activities.map((section) => section.ref)).toEqual([
+      'find-the-a-notes',
+      'eighth-note-timing',
+    ]);
 
-    const slugs = new Set(documents.map((document) => document.slug));
-    expect(slugs.has('chord-switch-drill')).toBe(false);
+    for (const section of activities) {
+      expect(section).toMatchObject({ optional: true });
+      expect(kinds.get(section.ref)).toBe('activity');
+    }
+  });
+
+  it('ships no round this build cannot run', async () => {
+    const { documents } = await loadContent();
+    const activities = documents.filter((document) => document.kind === 'activity');
+
+    expect(activities.map((document) => document.slug)).toEqual([
+      'eighth-note-timing',
+      'find-the-a-notes',
+    ]);
+
+    for (const { slug, activity } of activities) {
+      if (!activity || activity.kind === 'unknown') throw new Error(`${slug} did not parse`);
+
+      const rounds: { kind: string }[] = activity.rounds;
+      expect(rounds.filter((round) => round.kind === 'unknown')).toEqual([]);
+    }
+  });
+
+  /**
+   * The rule the note-play corpus is authored around, asserted rather than trusted: the detector
+   * reports a pitch and never the string that produced it, so two targets sounding the same note
+   * would leave a round that can never be completed.
+   */
+  it('never asks for the same pitch twice inside one note-play round', async () => {
+    const { documents } = await loadContent();
+    const found = documents.find((document) => document.slug === 'find-the-a-notes');
+    const activity = found?.activity as NotePlayActivity | undefined;
+
+    expect(activity?.kind).toBe('note-play');
+
+    for (const round of activity?.rounds ?? []) {
+      if (round.kind === 'unknown') continue;
+      const pitches = round.targets.map(midiForTarget);
+      expect(new Set(pitches).size).toBe(pitches.length);
+    }
   });
 
   it('keeps every section id unique and namespaced by pathway and chapter', async () => {
@@ -98,6 +148,42 @@ const document = (
   ...(quizKind && { quizKind }),
 });
 
+const activityBody = (activity: Record<string, unknown>, slug = 'an-activity') => ({
+  schemaVersion: 1,
+  meta: { id: `act_${slug}`, slug, title: 'A drill' },
+  activity,
+});
+
+/** Built through the real parser, so the degraded forms the rules below react to are the real ones. */
+const activityDocument = (body: ReturnType<typeof activityBody>): LoadedDocument => ({
+  slug: body.meta.slug,
+  kind: 'activity',
+  version: 'v',
+  body,
+  file: `content/activities/${body.meta.slug}.json`,
+  activity: parseActivityDocument(body).activity,
+});
+
+const targetsRound = (targets: unknown[], overrides: Record<string, unknown> = {}) => ({
+  kind: 'targets',
+  id: 'r1',
+  prompt: [{ text: 'Find them.' }],
+  targets,
+  ...overrides,
+});
+
+const patternRound = (overrides: Record<string, unknown> = {}) => ({
+  kind: 'pattern',
+  id: 'r1',
+  prompt: [{ text: 'Play it.' }],
+  bpm: 80,
+  beatsPerBar: 4,
+  subdivision: 1,
+  bars: 1,
+  slots: ['accent', 'hit', 'hit', 'hit'],
+  ...overrides,
+});
+
 function corpus(sections: unknown[], checkpoint?: unknown): ContentCorpus {
   const body = {
     id: 'path_test',
@@ -123,6 +209,7 @@ function corpus(sections: unknown[], checkpoint?: unknown): ContentCorpus {
       document('an-article', 'article'),
       document('a-quiz', 'quiz', 'quiz'),
       document('a-checkpoint', 'quiz', 'checkpoint'),
+      activityDocument(activityBody({ kind: 'note-play', modes: ['easy'], rounds: [] })),
     ],
     pathways: [
       {
@@ -148,6 +235,33 @@ const section = (overrides: Record<string, unknown>) => ({
 const messages = (found: ContentCorpus) =>
   collectCorpusIssues(found).map((issue) => `${issue.file}: ${issue.message}`);
 
+/** One extra activity document in an otherwise clean corpus, so its own issues are the whole list. */
+const withActivity = (activity: Record<string, unknown>) => {
+  const found = corpus([section({})]);
+  found.documents.push(activityDocument(activityBody(activity, 'drill')));
+
+  return messages(found);
+};
+
+/**
+ * The same, but with the parsed body supplied directly rather than parsed out of the authored JSON.
+ * The rules restated from the parser's own bounds are unreachable through a real document — that is
+ * what "restated" means — so this is the only way to exercise them.
+ */
+const withParsedActivity = (activity: RenderActivity) => {
+  const found = corpus([section({})]);
+  found.documents.push({
+    slug: 'drill',
+    kind: 'activity',
+    version: 'v',
+    body: {},
+    file: 'content/activities/drill.json',
+    activity,
+  });
+
+  return messages(found);
+};
+
 describe('cross-file integrity', () => {
   it('accepts a corpus whose refs all resolve', () => {
     expect(collectCorpusIssues(corpus([section({})]))).toEqual([]);
@@ -165,10 +279,34 @@ describe('cross-file integrity', () => {
     ]);
   });
 
-  it('exempts activity sections from ref resolution', () => {
+  it('resolves an activity section like any other ref', () => {
+    const activitySection = { kind: 'activity', slug: 'an-activity', optional: true };
+
+    expect(messages(corpus([section({ ...activitySection, ref: 'not-a-document' })]))).toEqual([
+      expect.stringContaining('refs "not-a-document", which is not a document in the corpus'),
+    ]);
+
+    expect(messages(corpus([section({ ...activitySection, ref: 'an-article' })]))).toEqual([
+      expect.stringContaining('is kind "activity" but "an-article" is an article'),
+    ]);
+
+    expect(messages(corpus([section({ ref: 'an-activity' })]))).toEqual([
+      expect.stringContaining('is kind "article" but "an-activity" is an activity'),
+    ]);
+
     expect(
-      collectCorpusIssues(corpus([section({ kind: 'activity', ref: 'not-a-document' })])),
+      collectCorpusIssues(corpus([section({ ...activitySection, ref: 'an-activity' })])),
     ).toEqual([]);
+  });
+
+  it('requires every activity section to be optional', () => {
+    expect(
+      messages(corpus([section({ kind: 'activity', slug: 'an-activity', ref: 'an-activity' })])),
+    ).toEqual([
+      expect.stringContaining(
+        'is an activity and must set "optional": true — activities are never graded',
+      ),
+    ]);
   });
 
   it('requires a checkpoint to point at a quiz whose meta.kind is checkpoint', () => {
@@ -208,6 +346,108 @@ describe('cross-file integrity', () => {
     expect(messages(corpus([{ id: 'test.ch1.s1', kind: 'podcast' }]))).toEqual([
       expect.stringContaining('did not parse as a known section (declared kind "podcast")'),
     ]);
+  });
+
+  it('rejects an activity whose whole body degraded to a placeholder', () => {
+    expect(withActivity({ kind: 'ear-training', rounds: [] })).toEqual([
+      expect.stringContaining(
+        'did not parse as a runnable activity (declared kind "ear-training")',
+      ),
+    ]);
+  });
+
+  /**
+   * An empty `modes` list takes the whole note-play activity down rather than one round, so the
+   * message for a degraded body has to name it — otherwise an author reads "unknown kind" about a
+   * kind that is perfectly well known.
+   */
+  it('names an empty modes list among the reasons a body degrades', () => {
+    expect(withActivity({ kind: 'note-play', modes: [], rounds: [] })).toEqual([
+      expect.stringContaining('a note-play activity whose "modes" list is empty'),
+    ]);
+  });
+
+  it('states the mode rule as a content rule, where the parser cannot reach', () => {
+    // Hand-built rather than parsed: the parser degrades a modeless activity to a placeholder, so
+    // an authored document can never reach the restated rule — which is exactly why it is restated.
+    expect(withParsedActivity({ kind: 'note-play', modes: [], rounds: [] })).toEqual([
+      expect.stringContaining('activity.modes is empty'),
+    ]);
+  });
+
+  it('states the metronome range as a content rule, where the parser cannot reach', () => {
+    expect(
+      withParsedActivity({
+        kind: 'rhythm',
+        rounds: [
+          {
+            kind: 'pattern',
+            id: 'r1',
+            prompt: [],
+            bpm: 400,
+            beatsPerBar: 4,
+            subdivision: 1,
+            bars: 1,
+            slots: ['hit', 'hit', 'hit', 'hit'],
+          },
+        ],
+      }),
+    ).toEqual([
+      expect.stringContaining('round "r1" asks for 400 bpm, outside the metronome\'s 20–300'),
+    ]);
+  });
+
+  it('rejects a round the parser degraded, and says which problem it is', () => {
+    const cases: [Record<string, unknown>, string][] = [
+      [
+        {
+          kind: 'note-play',
+          modes: ['easy'],
+          rounds: [
+            targetsRound([
+              { string: 5, fret: 0 },
+              { string: 6, fret: 5 },
+            ]),
+          ],
+        },
+        'string 5 fret 0 and string 6 fret 5 both sound MIDI 45, and the detector hears pitches, not strings',
+      ],
+      [
+        {
+          kind: 'note-play',
+          modes: ['easy'],
+          board: { fretFrom: 0, fretTo: 5 },
+          rounds: [targetsRound([{ string: 1, fret: 9 }])],
+        },
+        "string 1 fret 9 is outside the board's frets 0–5",
+      ],
+      [
+        { kind: 'note-play', modes: ['easy'], rounds: [targetsRound([{ string: 7, fret: 0 }])] },
+        'string 7 is not on a six-string neck',
+      ],
+      [
+        { kind: 'rhythm', rounds: [patternRound({ bars: 2 })] },
+        '4 slots for a 4×1×2 grid, which needs exactly 8',
+      ],
+      [
+        { kind: 'rhythm', rounds: [patternRound({ slots: ['rest', 'rest', 'rest', 'rest'] })] },
+        'every slot is a rest, so there is nothing to detect',
+      ],
+      [
+        { kind: 'rhythm', rounds: [patternRound({ bpm: 400 })] },
+        "400 bpm is outside the metronome's 20–300",
+      ],
+      [
+        { kind: 'rhythm', rounds: [{ kind: 'swing', id: 'r1' }] },
+        'an unrecognised round kind, or a field missing or out of range',
+      ],
+    ];
+
+    for (const [activity, reason] of cases) {
+      expect(withActivity(activity)).toEqual([
+        `content/activities/drill.json: round "r1" did not parse as a runnable round (${reason}).`,
+      ]);
+    }
   });
 
   it('reports every failure, not just the first', () => {

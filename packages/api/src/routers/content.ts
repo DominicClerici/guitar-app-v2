@@ -36,6 +36,21 @@ const { contentDocuments, curriculumPathways } = pgSchema;
 /** Answered without a payload when the device is already current. */
 const UNCHANGED = { unchanged: true } as const;
 
+const DOCUMENT_KINDS = ['article', 'quiz', 'activity'] as const;
+type DocumentKind = (typeof DOCUMENT_KINDS)[number];
+
+/**
+ * `content_documents.kind` is a text column so that adding a kind is not a migration, which leaves
+ * this server free to read a row whose kind the wire contract does not name yet.
+ *
+ * Narrowed rather than coerced to a default: labelling a rhythm drill an article would hand the
+ * device something it will try to render as prose, which is worse than not serving it at all. A row
+ * this build cannot name is content published by a newer publisher, and the honest answer is that
+ * it is not available here.
+ */
+const documentKind = (kind: string): DocumentKind | undefined =>
+  DOCUMENT_KINDS.find((known) => known === kind);
+
 export const contentRouter = router({
   /**
    * Every pathway's meta, newest first, plus a version derived from the pathways themselves.
@@ -138,12 +153,15 @@ export const contentRouter = router({
 
       if (!row) throw new TRPCError({ code: 'NOT_FOUND', message: `No document "${input.slug}".` });
 
-      return {
-        slug: row.slug,
-        kind: row.kind === 'quiz' ? ('quiz' as const) : ('article' as const),
-        version: row.version,
-        body: row.body,
-      };
+      const kind = documentKind(row.kind);
+      if (!kind) {
+        throw new TRPCError({
+          code: 'NOT_FOUND',
+          message: `Document "${input.slug}" is kind "${row.kind}", which this server cannot serve.`,
+        });
+      }
+
+      return { slug: row.slug, kind, version: row.version, body: row.body };
     }),
 
   /** One pathway's full chapter and section tree. */
@@ -195,11 +213,12 @@ export const contentRouter = router({
         });
       }
 
-      // Activity sections have no document to serve yet, and an unknown-kind section is one this
-      // build of the server does not understand — neither should stop the rest of the chapter
-      // being cached.
+      // Every section that names a document, which is all of them now that an activity is one too.
+      // A chapter is the device's cache unit, so a section left out here is a section that only
+      // works online. The exception is an unknown-kind section — one this build of the server does
+      // not understand, and has no ref it can trust — which must not stop the rest being cached.
       const slugs = chapter.sections.flatMap((section) =>
-        section.kind === 'article' || section.kind === 'quiz' ? [section.ref] : [],
+        section.kind === 'unknown' ? [] : [section.ref],
       );
 
       if (chapter.checkpoint) slugs.push(chapter.checkpoint.ref);
@@ -227,13 +246,14 @@ export const contentRouter = router({
         version,
         // A section pointing at a slug that was never published is dropped rather than fatal: the
         // publish script is what guarantees referential integrity, and a chapter that lost one
-        // document should still be readable up to it.
-        content: rows.map((row) => ({
-          slug: row.slug,
-          kind: row.kind === 'quiz' ? ('quiz' as const) : ('article' as const),
-          version: row.version,
-          body: row.body,
-        })),
+        // document should still be readable up to it. A row whose kind this build cannot name is
+        // dropped for the same reason — but it still counts toward the version above, so the
+        // chapter refetches once this server learns the kind.
+        content: rows.flatMap((row) => {
+          const kind = documentKind(row.kind);
+
+          return kind ? [{ slug: row.slug, kind, version: row.version, body: row.body }] : [];
+        }),
       };
     }),
 });

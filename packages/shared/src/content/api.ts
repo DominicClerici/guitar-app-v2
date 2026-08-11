@@ -31,7 +31,7 @@ export const contentVersion = z.string().min(1);
  */
 export const contentDocumentPayload = z.object({
   slug: z.string(),
-  kind: z.enum(['article', 'quiz']),
+  kind: z.enum(['article', 'quiz', 'activity']),
   version: contentVersion,
   body: z.unknown(),
 });

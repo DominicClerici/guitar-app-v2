@@ -2,6 +2,12 @@ import { Pressable, Text, View } from 'react-native';
 
 import { FadingHScroll } from '@/components/FadingHScroll';
 import type { FretPosition } from '@/lib/content';
+import {
+  DOUBLE_INLAY_FRET,
+  SINGLE_INLAY_FRETS,
+  STRING_GAUGE_CLASS,
+  STRING_LABELS,
+} from '@/lib/theory';
 
 // A read/write neck for a `fretboard` question.
 //
@@ -21,12 +27,9 @@ const MAX_FRETS = 22;
 
 const STRING_COUNT = 6;
 
-/** Top row down. String 1 is the high E, as everywhere in the quiz schema. */
-const STRING_NAMES = ['e', 'B', 'G', 'D', 'A', 'E'] as const;
-const STRING_LINE = ['h-px', 'h-px', 'h-[1.25px]', 'h-[1.5px]', 'h-[1.75px]', 'h-[2px]'] as const;
-
-const SINGLE_INLAYS = new Set([3, 5, 7, 9, 15, 17, 19, 21]);
-const DOUBLE_INLAY = 12;
+// The neck's own display constants come from `@/lib/theory/neck`, which spells out the two string
+// conventions: those arrays are indexed 0 = high e, and the quiz schema counts strings from 1.
+const SINGLE_INLAYS = new Set(SINGLE_INLAY_FRETS);
 
 const colClass = (fret: number) => (fret === 0 ? 'w-[36px]' : 'w-[46px]');
 
@@ -56,7 +59,7 @@ export function QuizFretboard({ frets, selected, onToggle, checked, answer }: Pr
       <View className="pl-[18px] pr-[6px] pt-[8px]">
         {strings.map((row) => (
           <View key={row} className="h-[30px] justify-center">
-            <Text className="font-mono text-[9.5px] text-ink-faint">{STRING_NAMES[row]}</Text>
+            <Text className="font-mono text-[9.5px] text-ink-faint">{STRING_LABELS[row]}</Text>
           </View>
         ))}
       </View>
@@ -73,7 +76,7 @@ export function QuizFretboard({ frets, selected, onToggle, checked, answer }: Pr
                     <Cell
                       key={fret}
                       fret={fret}
-                      line={STRING_LINE[row]}
+                      line={STRING_GAUGE_CLASS[row]}
                       state={cellState(key({ string, fret }), picked, wanted, checked)}
                       onPress={() => onToggle({ string, fret })}
                       disabled={checked}
@@ -90,7 +93,7 @@ export function QuizFretboard({ frets, selected, onToggle, checked, answer }: Pr
                   <Inlay fret={fret} />
                   <Text
                     className={`mt-[3px] font-mono text-[9px] tracking-[0.5px] ${
-                      SINGLE_INLAYS.has(fret) || fret === DOUBLE_INLAY
+                      SINGLE_INLAYS.has(fret) || fret === DOUBLE_INLAY_FRET
                         ? 'text-ink-muted'
                         : 'text-ink-faint'
                     }`}
@@ -182,7 +185,7 @@ function Marker({ state }: { state: CellState }) {
 }
 
 function Inlay({ fret }: { fret: number }) {
-  if (fret === DOUBLE_INLAY) {
+  if (fret === DOUBLE_INLAY_FRET) {
     return (
       <View className="h-[6px] flex-row gap-[3px]">
         <View className="h-[5px] w-[5px] rounded-full bg-line" />

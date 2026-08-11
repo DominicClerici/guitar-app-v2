@@ -13,9 +13,21 @@ class ExpoPitchDetectorModule : Module() {
   private val ring = ArrayDeque<Float>()
   private val ringLock = Any()
 
+  // Outlives any one capture so `configureOnsets` means something before start() and
+  // survives stop(). It carries its own lock, so it is reachable from every thread.
+  private val onsets = OnsetDetector()
+
   override fun definition() = ModuleDefinition {
     Name("ExpoPitchDetector")
-    Events("onPitch")
+    Events("onPitch", "onOnset")
+
+    AsyncFunction("configureOnsets") { config: Map<String, Any> ->
+      onsets.configure(
+        enabled = (config["enabled"] as? Boolean) ?: false,
+        threshold = (config["threshold"] as? Number)?.toFloat() ?: 0f,
+        refractoryMs = (config["refractoryMs"] as? Number)?.toDouble() ?: 0.0,
+      )
+    }
 
     AsyncFunction("start") { opts: Map<String, Any>? ->
       val ctx = appContext.reactContext
@@ -32,8 +44,9 @@ class ExpoPitchDetectorModule : Module() {
       opts?.get("sampleRate")?.let { sampleRate = (it as Number).toInt() }
       detector = PitchDetectorMPM(sampleRate.toDouble(), windowSize)
       synchronized(ringLock) { ring.clear() }
+      onsets.begin(sampleRate.toDouble())
 
-      val cap = AudioCapture(sampleRate) { samples -> handle(samples) }
+      val cap = AudioCapture(sampleRate) { samples, startEpochMs -> handle(samples, startEpochMs) }
       cap.start()
       capture = cap
     }
@@ -42,15 +55,25 @@ class ExpoPitchDetectorModule : Module() {
       capture?.stop()
       capture = null
       synchronized(ringLock) { ring.clear() }
+      // Config survives; only the envelope history and any undrained detections go.
+      onsets.reset()
     }
 
     OnDestroy {
       capture?.stop()
       capture = null
+      onsets.reset()
     }
   }
 
-  private fun handle(samples: FloatArray) {
+  private fun handle(samples: FloatArray, startEpochMs: Double) {
+    // Onsets first: their timestamps are their own, but the MPM pass below is the slow
+    // part of this block and there is no reason to sit behind it.
+    onsets.feed(samples, startEpochMs)
+    for (onset in onsets.drain()) {
+      sendEvent("onOnset", mapOf("at" to onset.atMs, "peak" to onset.peak.toDouble()))
+    }
+
     // Drain into a local window buffer under lock, then run MPM and emit outside the lock
     // to keep the critical section short.
     val windows = mutableListOf<FloatArray>()

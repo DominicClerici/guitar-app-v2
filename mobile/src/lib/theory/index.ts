@@ -21,4 +21,12 @@ export {
 export { ALTERED_DEGREES, DEGREE_SEMITONES, degreeSemitones, type Degree } from './degrees';
 export { FRET_COUNT, midiAt, pitchClassAt, STRING_COUNT } from './fretboard';
 export { getHalfSteps, noteToSemitone } from './half-steps';
+export {
+  DOUBLE_INLAY_FRET,
+  SINGLE_INLAY_FRETS,
+  STRING_GAUGE_CLASS,
+  STRING_LABELS,
+  stringIndexFromWire,
+  wireStringFromIndex,
+} from './neck';
 export { getNotesFromIntervals } from './notes-from-intervals';
