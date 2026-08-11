@@ -12,11 +12,14 @@ function parse(key: string): { string: number; fret: number } {
 }
 
 describe('systemsFor', () => {
-  it('offers CAGED and three-per-string to seven-note scales only', () => {
+  it('offers CAGED to every scale, and pairs it by note count', () => {
     expect(systemsFor(buildScale('C', 'major'))).toEqual(['caged', 'nps']);
     expect(systemsFor(buildScale('C', 'altered'))).toEqual(['caged', 'nps']);
-    expect(systemsFor(buildScale('C', 'minor-pentatonic'))).toEqual(['boxes']);
-    expect(systemsFor(buildScale('C', 'blues'))).toEqual(['boxes']);
+    // A pentatonic gets CAGED too: the windows are fret spans anchored on the
+    // root, and the CAGED learning pathway teaches its shapes filled with the
+    // pentatonic, so the visualizer has to be able to show the same five windows.
+    expect(systemsFor(buildScale('C', 'minor-pentatonic'))).toEqual(['caged', 'boxes']);
+    expect(systemsFor(buildScale('C', 'blues'))).toEqual(['caged', 'boxes']);
   });
 });
 

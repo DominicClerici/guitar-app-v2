@@ -1,9 +1,12 @@
 // Carving a scale on the neck into boxes you can actually hold.
 //
-// Two mechanisms, picked by how many notes the scale has:
-//   seven notes → CAGED windows (windows.ts) or three-per-string shapes (nps.ts)
-//   five or six → the pentatonic boxes, since neither of the above means anything
-//                 for a scale that doesn't fill a string three notes at a time
+// CAGED windows (windows.ts) suit any scale: they are fret spans anchored on the
+// root, and a span holding too few notes to be worth paging to is dropped there
+// rather than here. What the note count decides is the *second* system offered
+// alongside them:
+//   seven notes → three-per-string shapes (nps.ts), which need a scale that fills
+//                 a string three notes at a time
+//   five or six → the pentatonic boxes, a different five-window tiling
 //
 // Pure number math over @/lib/theory's neck. No React, no native modules.
 
@@ -13,12 +16,23 @@ import { NPS_SCALE_SIZE, npsPositions } from './nps';
 import type { Position, PositionSystem } from './types';
 import { boxPositions, cagedPositions } from './windows';
 
+export {
+  CAGED_FORM_OFFSETS,
+  CAGED_FORMS,
+  cagedFormWindow,
+  cagedFormWindows,
+  cagedMarks,
+  type CagedForm,
+  type CagedLayer,
+  type CagedMark,
+  type CagedWindow,
+} from './caged';
 export { nextScalePitch, positionKey, scaleKeys, stringPitches } from './neck';
 export type { Position, PositionSystem } from './types';
 
 /** Which systems this scale can be carved into, in the order a toggle shows them. */
 export function systemsFor(scale: Scale): PositionSystem[] {
-  return scale.type.semitones.length === NPS_SCALE_SIZE ? ['caged', 'nps'] : ['boxes'];
+  return scale.type.semitones.length === NPS_SCALE_SIZE ? ['caged', 'nps'] : ['caged', 'boxes'];
 }
 
 export const SYSTEM_LABELS: Record<PositionSystem, string> = {

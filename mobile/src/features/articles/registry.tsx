@@ -1,6 +1,8 @@
 import type { ComponentType } from 'react';
 import type { ZodType } from 'zod';
 
+import { CagedLadder, cagedLadderPropsSchema } from './live/CagedLadder';
+import { CagedShape, cagedShapePropsSchema } from './live/CagedShape';
 import { ScaleCompare, scaleComparePropsSchema } from './live/ScaleCompare';
 
 // The live component registry — the ONE file to touch when adding a new kind
@@ -29,5 +31,7 @@ function define<P extends object>(
 }
 
 export const LIVE_COMPONENTS: Record<string, LiveComponentEntry> = {
+  'caged-ladder': define(cagedLadderPropsSchema, CagedLadder),
+  'caged-shape': define(cagedShapePropsSchema, CagedShape),
   'scale-compare': define(scaleComparePropsSchema, ScaleCompare),
 };

@@ -13,6 +13,7 @@
 
 import { FRET_COUNT, OPEN_PITCHES } from '@/lib/theory';
 
+import { CAGED_FORM_OFFSETS } from './caged';
 import { scaleKeysInSpan } from './neck';
 import type { Position } from './types';
 
@@ -23,13 +24,13 @@ interface Window {
   to: number;
 }
 
-const CAGED_WINDOWS: readonly Window[] = [
-  { name: 'E form', from: -1, to: 3 },
-  { name: 'D form', from: 1, to: 5 },
-  { name: 'C form', from: 4, to: 8 },
-  { name: 'A form', from: 6, to: 10 },
-  { name: 'G form', from: 8, to: 12 },
-];
+// The offsets themselves live in `caged.ts`, which reads them to answer "where is
+// this chord's C form" for an article diagram. One table, two questions.
+const CAGED_WINDOWS: readonly Window[] = CAGED_FORM_OFFSETS.map(({ form, from, to }) => ({
+  name: `${form} form`,
+  from,
+  to,
+}));
 
 const PENTATONIC_WINDOWS: readonly Window[] = [
   { name: 'Box 1', from: 0, to: 3 },
