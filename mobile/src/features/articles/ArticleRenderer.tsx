@@ -65,11 +65,40 @@ const SHORT_ARTICLE_MS = 900;
  */
 const END_SLACK = 150;
 
+/**
+ * How much article to keep mounted either side of the viewport, in screenfuls.
+ *
+ * The list's own default is ten each way, which it works towards a batch at a time over the second
+ * or so after mount. For an article that is mostly rendering blocks nobody will look at, and when
+ * the article was opened by a page turn it is a second of background work landing squarely on the
+ * animation carrying it. Two screens is further than a reader can outrun.
+ */
+const RENDER_AHEAD = 5;
+
+/**
+ * Blocks per fill pass, and the gap between passes.
+ *
+ * Deliberately small and unhurried: everything left to fill after the first render is below the
+ * fold, so the only thing that matters about it is that no single pass costs a frame. A list being
+ * scrolled hard overrides both and fills as fast as it can.
+ */
+const FILL_BLOCKS = 4;
+const FILL_PERIOD_MS = 100;
+
 export function ArticleRenderer({
   document,
+  crossing = false,
   onReachedEnd,
 }: {
   document: ArticleDocument;
+  /**
+   * Whether the article is passing across the screen rather than being read.
+   *
+   * A crossing article renders what fits and nothing beyond it. It is on screen for a few hundred
+   * milliseconds and cannot be scrolled, so filling in the rest would only be work competing with
+   * the animation carrying it — it fills once it lands.
+   */
+  crossing?: boolean;
   /**
    * Called when the reader has the end of the article in view.
    *
@@ -134,6 +163,9 @@ export function ArticleRenderer({
         ListHeaderComponent={<Header document={document} />}
         ListFooterComponent={<Footnotes document={document} />}
         showsVerticalScrollIndicator={false}
+        windowSize={crossing ? 1 : RENDER_AHEAD}
+        maxToRenderPerBatch={FILL_BLOCKS}
+        updateCellsBatchingPeriod={FILL_PERIOD_MS}
         onLayout={(event) => setViewportHeight(event.nativeEvent.layout.height)}
         onContentSizeChange={(_, height) => setContentHeight(height)}
         onScroll={(event) => {

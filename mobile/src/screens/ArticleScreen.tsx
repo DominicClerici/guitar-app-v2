@@ -1,12 +1,11 @@
-import { useRouter, type Href } from 'expo-router';
+import { useNavigation, useRouter, type Href } from 'expo-router';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, Text, useWindowDimensions, View } from 'react-native';
 import {
-  Easing,
   runOnJS,
   useAnimatedStyle,
   useSharedValue,
-  withTiming,
+  withSpring,
   type SharedValue,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -51,6 +50,13 @@ import { useToken } from '@/lib/tokens';
  * chrome changes what it says in the same beat, by fading where it stands rather than moving
  * (see `Swap`).
  *
+ * A turn is interruptible. Pressing Next again while one is under way puts a third article on the
+ * track and moves the destination on to it, and because the track is sprung rather than timed
+ * (see `SLIDE`) that happens without the content stopping — held down, the reader flicks through
+ * sections in one continuous movement. Everything the chrome says is about the section being
+ * *arrived at* rather than the one underneath, so the next press steps from where the reader is
+ * going rather than from where they were.
+ *
  * A step onto a quiz or an activity cannot be paged, because those are other screens. It is dressed
  * as one instead: the article and the bar slide away, the counter fades, and only then does the
  * stack replace the screen — with its own animation off, under a header the destination is already
@@ -63,7 +69,17 @@ const SLIDE_MS = 300;
 /** Each half of a chrome crossfade: out while the old content leaves, in as the new arrives. */
 const CHROME_FADE_MS = SLIDE_MS / 2;
 
-const SLIDE_EASING = Easing.inOut(Easing.cubic);
+/**
+ * How the track moves.
+ *
+ * A spring rather than an easing curve, because a page turn has to survive being interrupted by the
+ * next one. Assigning a new spring to a value that is already springing carries over the speed it
+ * had, so a second press picks the content up in flight and carries on with it; a timing curve
+ * begins from rest whatever it interrupts, which is the stop-and-restart in the middle of a turn
+ * this is here to avoid. Critically damped, so content asked for one page never overshoots and
+ * shows a frame of the one after it.
+ */
+const SLIDE = { duration: SLIDE_MS, dampingRatio: 1 };
 
 /** A loaded article and the section it is being read as. */
 interface Pane {
@@ -74,13 +90,46 @@ interface Pane {
    * landing free: the track is animated to the arriving pane's own number, and when the move ends
    * that pane is already at rest exactly where it is. Nothing has to be put back afterwards, so
    * there is no frame in which a shared value and a React commit can disagree about what is on
-   * screen.
+   * screen. It is also what lets a turn be interrupted — a third pane simply takes the next
+   * number, and the track is given a longer way to go.
    */
   index: number;
   /** Null for a standalone read, which has no section to report anything under. */
   sectionId: string | null;
   slug: string;
   document: ArticleDocument;
+  /**
+   * Whether this article is still on its way in — put on the track by a turn and not yet landed
+   * from one.
+   *
+   * It says how much of the article to keep mounted (see `crossing`), and it latches off rather
+   * than tracking where the track is: the narrow window is there to stop an arriving article
+   * filling in below the fold while it crosses, and one on its way back *out* did its filling long
+   * ago. Narrowing it again would only be work, at the one moment there is none to spare.
+   */
+  arriving: boolean;
+}
+
+/** The articles on the track and where it is heading. */
+interface Deck {
+  /** In track order: the one being read, plus any still crossing the screen behind or ahead. */
+  panes: Pane[];
+  /**
+   * The pane the track is travelling to, which at rest is the one being read.
+   *
+   * The chrome describes this rather than whatever is currently under it, so a second press steps
+   * from where the reader is going rather than from where they set off.
+   */
+  at: number;
+  /** Whether the track is still travelling. */
+  moving: boolean;
+}
+
+/** The deck's panes with `pane` among them, in track order. */
+function withPane(panes: Pane[], pane: Pane): Pane[] {
+  return [...panes.filter((existing) => existing.index !== pane.index), pane].sort(
+    (a, b) => a.index - b.index,
+  );
 }
 
 /**
@@ -97,6 +146,7 @@ function ArticlePane({
   document,
   sectionId,
   reading,
+  crossing,
   onRead,
 }: {
   index: number;
@@ -110,6 +160,8 @@ function ArticlePane({
    * has not been read, and a short one would otherwise report itself finished before it arrived.
    */
   reading: boolean;
+  /** Whether the article has yet to land, and so should render no more than fits. */
+  crossing: boolean;
   onRead: (sectionId: string) => void;
 }) {
   // Bound here rather than at the call site because the renderer times its fits-on-screen check
@@ -126,6 +178,7 @@ function ArticlePane({
     <AnimatedView className="absolute inset-0" style={style}>
       <ArticleRenderer
         document={document}
+        crossing={crossing}
         onReachedEnd={reading && sectionId ? reachedEnd : undefined}
       />
     </AnimatedView>
@@ -135,10 +188,7 @@ function ArticlePane({
 type Reader =
   | { status: 'loading' }
   | { status: 'error'; message: string }
-  | { status: 'ready'; pane: Pane };
-
-/** `page` swaps content inside this screen; `leave` hands over to another one. */
-type Move = { kind: 'page'; pane: Pane } | { kind: 'leave'; href: Href };
+  | { status: 'ready'; deck: Deck };
 
 export function ArticleScreen({
   slug,
@@ -152,6 +202,7 @@ export function ArticleScreen({
 }) {
   const insets = useSafeAreaInsets();
   const router = useRouter();
+  const navigation = useNavigation();
   const { width } = useWindowDimensions();
   const muted = useToken('--ink-muted', '#9aa0aa');
 
@@ -164,7 +215,8 @@ export function ArticleScreen({
   const [reader, setReader] = useState<Reader>(
     slug ? { status: 'loading' } : { status: 'error', message: 'No article specified.' },
   );
-  const [move, setMove] = useState<Move | null>(null);
+  /** The screen being handed over to, once a step off this route has started. */
+  const [leaving, setLeaving] = useState<Href | null>(null);
   // Bumped by Retry; re-runs the load effect. The handler also resets the visible state, so the
   // effect body never has to set state synchronously.
   const [attempt, setAttempt] = useState(0);
@@ -178,11 +230,11 @@ export function ArticleScreen({
   /** A press while a document is still being fetched, which would otherwise start a second move. */
   const busy = useRef(false);
   /**
-   * Where the track is at rest, mirrored in plain JS.
+   * Where the track is standing or heading, mirrored in plain JS.
    *
    * A pane loaded from the route rather than paged to — the first one, or a retry — has to be
-   * placed where the track is standing, not at nought, or it would mount somewhere off the side of
-   * the screen. Read from a ref rather than from the shared value, which is the movers' to touch.
+   * placed where the track is, not at nought, or it would mount somewhere off the side of the
+   * screen. Read from a ref rather than from the shared value, which is the movers' to touch.
    */
   const resting = useRef(0);
 
@@ -209,10 +261,14 @@ export function ArticleScreen({
     load(slug).then(
       (document) => {
         if (!cancelled) {
-          setReader({
-            status: 'ready',
-            pane: { index: resting.current, sectionId: sectionId ?? null, slug, document },
-          });
+          const pane = {
+            index: resting.current,
+            sectionId: sectionId ?? null,
+            slug,
+            document,
+            arriving: false,
+          };
+          setReader({ status: 'ready', deck: { panes: [pane], at: pane.index, moving: false } });
         }
       },
       (error: unknown) => {
@@ -236,10 +292,11 @@ export function ArticleScreen({
     setAttempt((n) => n + 1);
   }, []);
 
-  // What the chrome is describing, which during a page is the section arriving rather than the one
+  const deck = reader.status === 'ready' ? reader.deck : null;
+  // What the chrome is describing, which during a turn is the section arriving rather than the one
   // on its way out — the counter and the bar have to be talking about the destination while the
-  // content is still crossing.
-  const focus = move?.kind === 'page' ? move.pane : reader.status === 'ready' ? reader.pane : null;
+  // content is still crossing, and the next press has to step from it.
+  const focus = deck ? (deck.panes.find((pane) => pane.index === deck.at) ?? null) : null;
   const focusId = focus?.sectionId ?? null;
 
   const treeSlug = pathway.value?.slug;
@@ -268,44 +325,72 @@ export function ArticleScreen({
   // Plain functions rather than callbacks, and above every worklet hook: the compiler freezes a
   // shared value the moment a worklet captures it, so the writers have to come first.
 
-  function commit(pane: Pane) {
+  /**
+   * Whether the reader is still here.
+   *
+   * A move outlives the screen if the reader goes back part way through one, and what is left of it
+   * then has no business touching the route — the screen it would be pointing somewhere is no
+   * longer this one.
+   */
+  function present() {
+    return navigation.isFocused();
+  }
+
+  function settle(pane: Pane) {
+    if (!present()) return;
+
+    // Landed: the others are behind it and gone, and it is free to fill itself out.
+    const landed = { ...pane, arriving: false };
+    setReader((current) =>
+      current.status === 'ready' && current.deck.at === pane.index
+        ? { status: 'ready', deck: { panes: [landed], at: pane.index, moving: false } }
+        : current,
+    );
     held.current = pane.slug;
-    setReader({ status: 'ready', pane });
-    setMove(null);
     // The route follows rather than leads, so a restored or shared link opens where the reader
     // actually got to. It matches what the screen already shows, so nothing reloads.
     router.setParams({ slug: pane.slug, ...(pane.sectionId ? { section: pane.sectionId } : {}) });
   }
 
   function handOver(href: Href) {
-    router.replace(href);
+    if (present()) router.replace(href);
   }
 
-  function page(pane: Pane) {
-    setMove({ kind: 'page', pane });
+  function place(pane: Pane) {
+    setReader((current) =>
+      current.status === 'ready'
+        ? {
+            status: 'ready',
+            deck: { panes: withPane(current.deck.panes, pane), at: pane.index, moving: true },
+          }
+        : current,
+    );
     resting.current = pane.index;
-    track.value = withTiming(pane.index, { duration: SLIDE_MS, easing: SLIDE_EASING }, (done) => {
-      'worklet';
-      if (done) runOnJS(commit)(pane);
+
+    // A frame later, so that mounting the arriving article — its first screenful of blocks, and the
+    // layout pass under them — is done with before anything starts moving. Started in the same tick,
+    // that work would land on the opening frames of the slide, which is both where it is most
+    // visible and where the article it belongs to has not been drawn yet.
+    requestAnimationFrame(() => {
+      track.value = withSpring(pane.index, SLIDE, (done) => {
+        'worklet';
+        // False when a later press has taken the track over, whose own callback settles instead.
+        if (done) runOnJS(settle)(pane);
+      });
     });
   }
 
   function leave(towards: 1 | -1, from: number, href: Href) {
-    setMove({ kind: 'leave', href });
-    departure.value = 0;
-    track.value = withTiming(
-      from + towards,
-      { duration: SLIDE_MS, easing: SLIDE_EASING },
-      (done) => {
-        'worklet';
-        if (done) runOnJS(handOver)(href);
-      },
-    );
-    departure.value = withTiming(towards, { duration: SLIDE_MS, easing: SLIDE_EASING });
+    setLeaving(href);
+    track.value = withSpring(from + towards, SLIDE, (done) => {
+      'worklet';
+      if (done) runOnJS(handOver)(href);
+    });
+    departure.value = withSpring(towards, SLIDE);
   }
 
   function step(towards: 1 | -1) {
-    if (busy.current || move || !placement || !treeSlug) return;
+    if (busy.current || leaving || !deck || !placement || !treeSlug) return;
 
     const target: NextInChapter | null =
       towards === 1
@@ -315,18 +400,26 @@ export function ArticleScreen({
           : null;
     if (!target) return;
 
-    const index = resting.current + towards;
+    const index = deck.at + towards;
 
     if (target.kind === 'section' && target.section.kind === 'article') {
       const { id, ref } = target.section;
-      busy.current = true;
+      // Taken straight from the cache when it is there, which is what lets a press land while the
+      // last one is still moving: a promise, however fast it settles, would put the turn a tick
+      // behind the finger and break the run of them.
+      const ready = documents.current.get(ref);
+      if (ready) {
+        place({ index, sectionId: id, slug: ref, document: ready, arriving: true });
+        return;
+      }
 
-      // Nearly always already on the device — a chapter is cached whole — so this settles before
-      // the finger is off the button. A genuine miss goes to the network, and the press waits.
+      // A genuine miss — a chapter is cached whole, so this is the network. The press waits, and
+      // `busy` holds the deck still meanwhile so `index` is still the right one on the way back.
+      busy.current = true;
       load(ref).then(
         (document) => {
           busy.current = false;
-          page({ index, sectionId: id, slug: ref, document });
+          place({ index, sectionId: id, slug: ref, document, arriving: true });
         },
         () => {
           busy.current = false;
@@ -336,17 +429,23 @@ export function ArticleScreen({
       return;
     }
 
+    // Unlike a page, a hand-over cannot be joined mid-flight: the bar travels a screen's width of
+    // its own while the content covers whatever is left of the track, and the two only stay
+    // together if they set off together.
+    if (deck.moving) return;
+
     const hop = { chapterTitle: placement.chapter.title };
     const href =
       target.kind === 'section'
         ? sectionHref(treeSlug, target.section, hop)
         : checkpointHref(target.chapter, hop);
 
-    if (href) leave(towards, resting.current, href);
+    if (href) leave(towards, deck.at, href);
   }
 
   // Warm the neighbours so a press has nothing to wait for. A read that hits the cache costs one
-  // synchronous query; the point is the miss, which fetches now rather than under a finger.
+  // synchronous query; the point is the miss, which fetches now rather than under a finger. This
+  // follows the destination, so a turn has the section after it on the device before it lands.
   const previousRef = neighbours?.previous?.kind === 'article' ? neighbours.previous.ref : null;
   const nextRef =
     neighbours?.next?.kind === 'section' && neighbours.next.section.kind === 'article'
@@ -365,7 +464,7 @@ export function ArticleScreen({
 
   // Emptied on the way out, so the counter fades where it stands instead of travelling.
   const counter =
-    move?.kind === 'leave' || !placement || placement.position === 0
+    leaving || !placement || placement.position === 0
       ? ''
       : `${placement.position}/${placement.total}`;
 
@@ -410,11 +509,11 @@ export function ArticleScreen({
               </Button>
             </View>
           ) : (
-            // One keyed list rather than two children, so that when the move ends and the pane
-            // arriving becomes the pane being read, React matches it by key and keeps the list it
+            // Keyed by track position rather than laid out in order, so that when a turn ends and
+            // the pane arriving becomes the pane being read, React matches it and keeps the list it
             // has already mounted — at the top of the new article, where it was put. Reconciled by
             // position instead, it would be torn down and rebuilt on the last frame of the slide.
-            [reader.pane, ...(move?.kind === 'page' ? [move.pane] : [])].map((pane) => (
+            reader.deck.panes.map((pane) => (
               <ArticlePane
                 key={pane.index}
                 index={pane.index}
@@ -422,20 +521,24 @@ export function ArticleScreen({
                 width={width}
                 document={pane.document}
                 sectionId={pane.sectionId}
-                reading={pane.index === reader.pane.index}
+                reading={!reader.deck.moving && pane.index === reader.deck.at}
+                crossing={pane.arriving}
                 onRead={markSection}
               />
             ))
           )}
         </View>
 
-        {placement && reader.status === 'ready' ? (
+        {placement && deck ? (
           <AnimatedView style={barStyle}>
             <SectionBar
               complete={complete}
               fadeMs={CHROME_FADE_MS}
-              paging={move !== null}
-              onMarkComplete={() => focusId && markSection(focusId)}
+              paging={deck.moving || leaving !== null}
+              // Only from a page that has stopped. Mid-turn the control is a beat away from
+              // becoming Next again, and a reader drumming through completed sections should not
+              // be able to mark the unread one they land on by catching it on the way past.
+              onMarkComplete={() => !deck.moving && focusId && markSection(focusId)}
               onPrevious={neighbours?.previous ? () => step(-1) : undefined}
               onNext={neighbours?.next ? () => step(1) : undefined}
             />
