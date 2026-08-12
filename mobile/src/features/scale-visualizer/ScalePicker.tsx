@@ -1,6 +1,8 @@
-import { Pressable, Text, View } from 'react-native';
+import { View } from 'react-native';
 
+import { Button } from '@/components/Button';
 import { FadingHScroll } from '@/components/FadingHScroll';
+import { SelectableChips } from '@/components/SelectableChip';
 import {
   FAMILY_LABELS,
   FAMILY_ORDER,
@@ -32,55 +34,27 @@ export function ScalePicker({ scaleId, onChange }: Props) {
   return (
     <View>
       <FadingHScroll contentClassName="flex-row gap-[14px] px-[18px]">
-        {FAMILY_ORDER.map((id) => {
-          const selected = id === family;
-          return (
-            <Pressable
-              key={id}
-              onPress={() => openFamily(id)}
-              accessibilityRole="button"
-              accessibilityState={{ selected }}
-              className="h-[30px] justify-center px-[2px] active:opacity-60"
-            >
-              <Text
-                className={`font-mono text-[10px] font-semibold uppercase tracking-[1.6px] ${
-                  selected ? 'text-accent' : 'text-ink-faint'
-                }`}
-              >
-                {FAMILY_LABELS[id]}
-              </Text>
-            </Pressable>
-          );
-        })}
+        {FAMILY_ORDER.map((id) => (
+          <Button
+            key={id}
+            variant={id === family ? 'link' : 'ghost'}
+            size="inline"
+            text="mono"
+            hitSlop={6}
+            className="h-[30px]"
+            onPress={() => openFamily(id)}
+          >
+            {FAMILY_LABELS[id]}
+          </Button>
+        ))}
       </FadingHScroll>
 
-      <View className="mt-[10px] flex-row flex-wrap gap-[6px] px-[18px]">
-        {scaleTypesByFamily(family).map((type) => {
-          const selected = type.id === scaleId;
-          return (
-            <Pressable
-              key={type.id}
-              onPress={() => onChange(type.id)}
-              accessibilityRole="button"
-              accessibilityState={{ selected }}
-              accessibilityLabel={type.name}
-              className={`h-[42px] items-center justify-center rounded-[11px] border px-[13px] active:opacity-70 ${
-                selected
-                  ? 'border-accent-line bg-accent-wash'
-                  : 'border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface'
-              }`}
-            >
-              <Text
-                className={`text-[13.5px] font-medium tracking-[-0.2px] ${
-                  selected ? 'text-accent' : 'text-ink'
-                }`}
-              >
-                {type.name}
-              </Text>
-            </Pressable>
-          );
-        })}
-      </View>
+      <SelectableChips
+        items={scaleTypesByFamily(family).map((type) => ({ id: type.id, label: type.name }))}
+        value={scaleId}
+        onChange={onChange}
+        className="mt-[10px] px-[18px]"
+      />
     </View>
   );
 }

@@ -1,11 +1,11 @@
 import * as Haptics from 'expo-haptics';
-import { SymbolView, type SFSymbol } from 'expo-symbols';
+import type { SFSymbol } from 'expo-symbols';
 import { useEffect, useRef } from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import { runOnJS } from 'react-native-reanimated';
 
-import { useToken } from '@/lib/tokens';
+import { Button } from '@/components/Button';
 
 import { uiNow } from './uiClock';
 
@@ -41,8 +41,6 @@ function Stepper({
   label: string;
   onStep: () => void;
 }) {
-  const ink = useToken('--ink', '#eef0f4');
-
   const delay = useRef<ReturnType<typeof setTimeout> | null>(null);
   const repeat = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -70,15 +68,16 @@ function Stepper({
   };
 
   return (
-    <Pressable
+    <Button
+      variant="secondary"
+      size="md"
+      square
+      icon={symbol}
+      hitSlop={6}
+      accessibilityLabel={label}
       onPressIn={onPressIn}
       onPressOut={stopRepeating}
-      accessibilityRole="button"
-      accessibilityLabel={label}
-      className="h-[46px] w-[54px] items-center justify-center rounded-[10px] border border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface-raised active:opacity-70"
-    >
-      <SymbolView name={symbol} size={15} weight="semibold" tintColor={ink} />
-    </Pressable>
+    />
   );
 }
 

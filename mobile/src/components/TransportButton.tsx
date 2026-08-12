@@ -1,7 +1,9 @@
 import { SymbolView } from 'expo-symbols';
-import { Pressable } from 'react-native';
+import { View } from 'react-native';
 
 import { useToken } from '@/lib/tokens';
+
+import { Button } from './Button';
 
 interface Props {
   running: boolean;
@@ -12,31 +14,33 @@ interface Props {
   onPress: () => void;
 }
 
-/** The one thing on the screen you press without looking. */
+/**
+ * The one thing on the screen you press without looking: the `xl` key, rounded
+ * all the way to a circle. The glyph is a child rather than `icon` because the
+ * play triangle needs nudging off centre and a symbol placed by the button
+ * cannot be.
+ */
 export function TransportButton({ running, what, disabled = false, onPress }: Props) {
   const onAccent = useToken('--on-accent', '#04211f');
   const faint = useToken('--ink-faint', '#62666e');
 
   return (
-    <Pressable
-      onPress={onPress}
+    <Button
+      size="xl"
+      square
+      radius={999}
       disabled={disabled}
-      accessibilityRole="button"
-      accessibilityState={{ disabled }}
       accessibilityLabel={`${running ? 'Stop' : 'Start'} the ${what}`}
-      className={`h-[78px] w-[78px] items-center justify-center rounded-full active:opacity-80 ${
-        disabled
-          ? 'bg-surface-raised'
-          : 'border border-x-transparent border-t-[rgba(255,255,255,0.4)] border-b-[rgba(0,0,0,0.28)] bg-accent'
-      }`}
+      onPress={onPress}
     >
-      <SymbolView
-        name={running ? 'stop.fill' : 'play.fill'}
-        size={27}
-        tintColor={disabled ? faint : onAccent}
-        // A triangle centred on its bounding box reads as sitting left of centre.
-        style={running ? undefined : { marginLeft: 4 }}
-      />
-    </Pressable>
+      {/* A triangle centred on its bounding box reads as sitting left of centre. */}
+      <View className={running ? '' : 'ml-[4px]'}>
+        <SymbolView
+          name={running ? 'stop.fill' : 'play.fill'}
+          size={27}
+          tintColor={disabled ? faint : onAccent}
+        />
+      </View>
+    </Button>
   );
 }

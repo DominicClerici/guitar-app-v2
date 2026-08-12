@@ -35,7 +35,13 @@ export type {
   ProgressBySection,
 } from './progress';
 
-export { locateSection, type SectionPlacement } from './placement';
+export {
+  locateSection,
+  sectionNeighbours,
+  type NextInChapter,
+  type SectionNeighbours,
+  type SectionPlacement,
+} from './placement';
 export { checkpointHref, nextStepHref, pathwayHref, sectionHref } from './hrefs';
 
 export { dropEvictedPathways, dropPathway, startPathway, touchPathway } from './enrollment';

@@ -59,6 +59,12 @@ function Footnotes({ document }: { document: ArticleDocument }) {
  */
 const SHORT_ARTICLE_MS = 900;
 
+/**
+ * How much article may still be below the fold and the reader still counted as having reached the
+ * end. A screenful short of it is not "read"; a closing paragraph and a footnote block is.
+ */
+const END_SLACK = 150;
+
 export function ArticleRenderer({
   document,
   onReachedEnd,
@@ -67,9 +73,10 @@ export function ArticleRenderer({
   /**
    * Called when the reader has the end of the article in view.
    *
-   * Two paths lead here, deliberately. `onEndReached` covers an article long enough to scroll; the
-   * height comparison below covers one that never scrolls, which would otherwise never report
-   * itself read at all. Callers must tolerate being called more than once.
+   * Two paths lead here, deliberately. The scroll handler covers an article long enough to scroll,
+   * once `END_SLACK` or less of it is left below the fold; the height comparison below covers one
+   * that never scrolls, which would otherwise never report itself read at all. Callers must
+   * tolerate being called more than once — the scroll path fires on every frame past the mark.
    */
   onReachedEnd?: () => void;
 }) {
@@ -81,10 +88,10 @@ export function ArticleRenderer({
   /**
    * Whether the reader has moved at all.
    *
-   * A list that has never been scrolled can still fire `onEndReached`: only a screenful of blocks
-   * is mounted at first, so a long article whose opening blocks are short looks, for a moment, like
-   * one that ends there. A read that ends where it began is the fits-on-screen case below, and that
-   * one waits before believing itself.
+   * A list that has never been scrolled can still measure as being at its end: only a screenful of
+   * blocks is mounted at first, so a long article whose opening blocks are short looks, for a
+   * moment, like one that ends there. A read that ends where it began is the fits-on-screen case
+   * below, and that one waits before believing itself.
    */
   const scrolled = useRef(false);
 
@@ -130,13 +137,14 @@ export function ArticleRenderer({
         onLayout={(event) => setViewportHeight(event.nativeEvent.layout.height)}
         onContentSizeChange={(_, height) => setContentHeight(height)}
         onScroll={(event) => {
-          if (event.nativeEvent.contentOffset.y > 0) scrolled.current = true;
+          const { contentOffset, contentSize, layoutMeasurement } = event.nativeEvent;
+          if (contentOffset.y > 0) scrolled.current = true;
+          if (!scrolled.current) return;
+
+          const remaining = contentSize.height - (contentOffset.y + layoutMeasurement.height);
+          if (remaining <= END_SLACK) onReachedEnd?.();
         }}
         scrollEventThrottle={100}
-        onEndReached={() => {
-          if (scrolled.current) onReachedEnd?.();
-        }}
-        onEndReachedThreshold={0.05}
         contentContainerStyle={{ paddingBottom: insets.bottom + 48 }}
       />
     </ArticleLinkProvider>

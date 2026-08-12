@@ -1,7 +1,8 @@
 import type { ReactNode } from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 
-import { useFace, type FaceName } from '@/components/CornerFace';
+import { useFacePaint, type FaceSpec } from '@/components/buttonFace';
+import { SquirclePressable } from '@/components/Squircle';
 import { toAccidentalGlyphs } from '@/lib/accidentals';
 import { degreeLabel, FIFTHS_ORDER } from '@/lib/ear-training';
 
@@ -85,6 +86,41 @@ export function DegreeCircle({
   );
 }
 
+/**
+ * A key's four readings, in the order they win: lit — sounding, correct, or
+ * chosen in the picker — then wrong, then out of play, then simply a key.
+ */
+const FACES = {
+  lit: {
+    fill: '--accent-wash',
+    stroke: '--accent-line',
+    text: 'text-accent',
+    tint: '--accent',
+    press: 'active:opacity-70',
+  },
+  wrong: {
+    fill: '--rose-wash',
+    stroke: '--rose',
+    text: 'text-rose',
+    tint: '--rose',
+    press: 'active:opacity-70',
+  },
+  dim: {
+    fill: '--surface',
+    stroke: '--line-soft',
+    text: 'text-ink-faint',
+    tint: '--ink-faint',
+    press: 'active:opacity-70',
+  },
+  key: {
+    fill: '--surface-raised',
+    stroke: '--line-soft',
+    text: 'text-ink',
+    tint: '--ink',
+    press: 'active:opacity-70',
+  },
+} satisfies Record<string, FaceSpec>;
+
 function DegreeKey({
   degree,
   diameter,
@@ -107,36 +143,33 @@ function DegreeKey({
   onPress: (degree: number) => void;
 }) {
   const label = toAccidentalGlyphs(degreeLabel(degree));
+  const paint = useFacePaint();
 
   const lit = mark === 'correct' || sounding || emphasize;
-  const face: FaceName = lit ? 'accent' : mark === 'wrong' ? 'bare' : dim ? 'quiet' : 'key';
-  const painted = useFace(face, diameter / 2);
-
-  const ink = lit
-    ? 'text-accent'
-    : mark === 'wrong'
-      ? 'text-rose'
-      : dim
-        ? 'text-ink-faint'
-        : 'text-ink';
+  const spec = lit ? FACES.lit : mark === 'wrong' ? FACES.wrong : dim ? FACES.dim : FACES.key;
 
   return (
-    <Pressable
+    <SquirclePressable
       onPress={() => onPress(degree)}
       disabled={locked}
       hitSlop={4}
       accessibilityRole="button"
       accessibilityState={{ disabled: locked, selected: active }}
       accessibilityLabel={`Degree ${degreeLabel(degree)}`}
-      className={`h-full w-full items-center justify-center rounded-full active:opacity-70 ${
-        mark === 'wrong' ? 'border border-rose bg-rose-wash' : painted.className
-      }`}
+      // Half the key is a circle, so the face follows the ring however the
+      // screen sizes it.
+      radius={diameter / 2}
+      fill={paint(spec.fill)}
+      stroke={paint(spec.stroke)}
+      strokeWidth={1}
+      className="h-full w-full items-center justify-center active:opacity-70"
     >
-      {mark === 'wrong' ? null : painted.paint}
       {sounding ? (
         <View className="pointer-events-none absolute -inset-[7px] rounded-full bg-accent-wash" />
       ) : null}
-      <Text className={`font-mono text-[14px] font-semibold tracking-[0.3px] ${ink}`}>{label}</Text>
-    </Pressable>
+      <Text className={`font-mono text-[14px] font-semibold tracking-[0.3px] ${spec.text}`}>
+        {label}
+      </Text>
+    </SquirclePressable>
   );
 }

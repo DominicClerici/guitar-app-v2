@@ -1,8 +1,8 @@
 import type { Ref } from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { useFace } from '@/components/CornerFace';
+import { SelectableChips, type ChipItem } from '@/components/SelectableChip';
 import { Segmented } from '@/components/Segmented';
 import { Sheet, type SheetRef } from '@/components/Sheet';
 import { toAccidentalGlyphs } from '@/lib/accidentals';
@@ -96,16 +96,15 @@ export function TrainerConfigSheet({ ref, config, onDegrees, onKeyPolicy }: Prop
         </View>
 
         {config.keyPolicy.mode === 'fixed' ? (
-          <View className="mt-[16px] flex-row flex-wrap justify-center gap-[7px]">
-            {notesSharp.map((name, pc) => (
-              <TonicChip
-                key={name}
-                name={name}
-                selected={config.keyPolicy.mode === 'fixed' && config.keyPolicy.tonicPc === pc}
-                onPress={() => onKeyPolicy({ mode: 'fixed', tonicPc: pc })}
-              />
-            ))}
-          </View>
+          <SelectableChips
+            items={TONICS}
+            value={String(config.keyPolicy.tonicPc)}
+            onChange={(id) => onKeyPolicy({ mode: 'fixed', tonicPc: Number(id) })}
+            size="xs"
+            text="mono"
+            className="mt-[16px] justify-center"
+            chipClassName="min-w-[42px]"
+          />
         ) : (
           <Text className="mt-[16px] text-center font-mono text-[9.5px] uppercase tracking-[1.5px] text-ink-faint">
             The drone moves every {DEFAULT_ROAM_EVERY} questions
@@ -139,33 +138,9 @@ function SegmentText({ text, selected }: { text: string; selected: boolean }) {
   );
 }
 
-function TonicChip({
-  name,
-  selected,
-  onPress,
-}: {
-  name: string;
-  selected: boolean;
-  onPress: () => void;
-}) {
-  const face = useFace(selected ? 'accent' : 'quiet', 8);
-
-  return (
-    <Pressable
-      onPress={onPress}
-      accessibilityRole="button"
-      accessibilityState={{ selected }}
-      accessibilityLabel={`Key of ${name}`}
-      className={`h-[34px] min-w-[42px] items-center justify-center rounded-[8px] px-[8px] active:opacity-70 ${face.className}`}
-    >
-      {face.paint}
-      <Text
-        className={`font-mono text-[12px] tracking-[0.5px] ${
-          selected ? 'text-accent' : 'text-ink-muted'
-        }`}
-      >
-        {toAccidentalGlyphs(name)}
-      </Text>
-    </Pressable>
-  );
-}
+/** The twelve keys the drone can be held in, keyed by pitch class. */
+const TONICS: ChipItem[] = notesSharp.map((name, pc) => ({
+  id: String(pc),
+  label: toAccidentalGlyphs(name),
+  accessibilityLabel: `Key of ${name}`,
+}));

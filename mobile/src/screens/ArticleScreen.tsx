@@ -1,3 +1,4 @@
+import { useRouter } from 'expo-router';
 import { useCallback, useEffect, useState } from 'react';
 import { ActivityIndicator, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -5,12 +6,15 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { BackLink } from '@/components/BackLink';
 import { Button } from '@/components/Button';
 import { ArticleRenderer, contentRepository } from '@/features/articles';
-import { SectionStrip } from '@/features/learning';
+import { SectionBar } from '@/features/learning';
 import type { ArticleDocument } from '@/lib/content';
 import {
+  checkpointHref,
   locateSection,
   recordSectionComplete,
   sectionComplete,
+  sectionHref,
+  sectionNeighbours,
   useLearnerId,
   usePathway,
   useProgress,
@@ -25,10 +29,13 @@ type LoadState =
 /**
  * An article, either on its own or as a step in a pathway.
  *
- * The pathway case is the same screen with a context: a strip saying where this sits, and a
- * completion the gating rules read. Completion is "scrolled to the end" — the only signal a reading
- * screen has that is about reading rather than about opening — and the renderer reports it from
- * both of the paths that can produce it (see `onReachedEnd`).
+ * The pathway case is the same screen with a context: where this sits, in the header, and a bar
+ * carrying the completion the gating rules read plus the step either side of it.
+ *
+ * Completion has two sources and they agree on purpose. Reading to the end is the only signal a
+ * reading screen has that is about reading rather than about opening, and the renderer reports it
+ * (see `onReachedEnd`); Mark Complete is the reader saying so directly, for the article they
+ * skimmed or already knew. Both write the same row, and it only ever moves one way.
  */
 export function ArticleScreen({
   slug,
@@ -41,6 +48,7 @@ export function ArticleScreen({
   pathwaySlug?: string;
 }) {
   const insets = useSafeAreaInsets();
+  const router = useRouter();
   const muted = useToken('--ink-muted', '#9aa0aa');
 
   const userId = useLearnerId();
@@ -84,18 +92,45 @@ export function ArticleScreen({
   const placement = pathway.value && sectionId ? locateSection(pathway.value, sectionId) : null;
   const complete = sectionId !== undefined && sectionComplete(progress.get(sectionId));
 
-  const reachedEnd = useCallback(() => {
+  const markComplete = useCallback(() => {
     if (!userId || !sectionId || complete) return;
-    // The renderer may say this twice — once from the scroll and once from the height check — and
-    // the row it writes folds on the earliest `completedAt`, so a repeat costs nothing but a write.
+    // Both the renderer and the button lead here, more than once each, and the row this writes
+    // folds on the earliest `completedAt` — so a repeat costs nothing but a write.
     recordSectionComplete(userId, sectionId);
   }, [userId, sectionId, complete]);
+
+  // Where Previous and Next go. `replace` rather than `push`: reading a chapter end to end would
+  // otherwise leave a screen on the stack per section, and Back should always be the pathway.
+  const treeSlug = pathway.value?.slug;
+  const neighbours =
+    placement && sectionId && treeSlug ? sectionNeighbours(placement.chapter, sectionId) : null;
+
+  const previousHref =
+    neighbours?.previous && treeSlug ? sectionHref(treeSlug, neighbours.previous) : null;
+  const nextHref = !neighbours?.next
+    ? null
+    : neighbours.next.kind === 'section'
+      ? treeSlug
+        ? sectionHref(treeSlug, neighbours.next.section)
+        : null
+      : checkpointHref(neighbours.next.chapter);
 
   return (
     <View className="flex-1 bg-bg">
       <View className="flex-1" style={{ paddingTop: Math.max(insets.top - 6, 0) }}>
-        <View className="h-[42px] flex-row items-center px-[18px]">
-          <BackLink title={pathway.value?.title ?? 'Article'} />
+        <View className="h-[42px] flex-row items-center gap-[6px] px-[18px]">
+          <BackLink />
+          <Text
+            numberOfLines={1}
+            className="flex-1 text-[15px] font-medium tracking-[-0.2px] text-ink"
+          >
+            {placement?.chapter.title ?? pathway.value?.title ?? 'Article'}
+          </Text>
+          {placement && placement.position > 0 ? (
+            <Text className="font-mono text-[13px] tracking-[0.5px] text-ink-muted">
+              {`${placement.position}/${placement.total}`}
+            </Text>
+          ) : null}
         </View>
 
         {state.status === 'loading' ? (
@@ -122,17 +157,20 @@ export function ArticleScreen({
           <View className="flex-1">
             <ArticleRenderer
               document={state.document}
-              onReachedEnd={sectionId ? reachedEnd : undefined}
+              onReachedEnd={sectionId ? markComplete : undefined}
             />
           </View>
         )}
 
         {placement && state.status === 'ready' ? (
-          <SectionStrip
-            chapterTitle={placement.chapter.title}
-            position={placement.position}
-            total={placement.total}
+          <SectionBar
+            // Keyed so that Next, which replaces the route rather than pushing one, cannot leave
+            // the bar showing the last section's finished face over an unread one.
+            key={sectionId}
             complete={complete}
+            onMarkComplete={markComplete}
+            onPrevious={previousHref ? () => router.replace(previousHref) : undefined}
+            onNext={nextHref ? () => router.replace(nextHref) : undefined}
           />
         ) : null}
       </View>

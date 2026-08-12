@@ -1,7 +1,9 @@
-import { Pressable, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 
+import { Button } from '@/components/Button';
 import { useFace } from '@/components/CornerFace';
 import { FadingHScroll } from '@/components/FadingHScroll';
+import { SelectableChips, type ChipItem } from '@/components/SelectableChip';
 import { toAccidentalGlyphs } from '@/lib/accidentals';
 import {
   chordTypeById,
@@ -59,44 +61,31 @@ export function QualityPicker({ quality, onChange, extraGroup }: Props) {
   return (
     <View>
       <FadingHScroll contentClassName="flex-row gap-[6px] px-[18px]">
-        {groups.map((id) => {
-          const selected = id === group;
-          return (
-            <Pressable
-              key={id}
-              onPress={() => openGroup(id)}
-              accessibilityRole="button"
-              accessibilityState={{ selected }}
-              className="h-[30px] justify-center px-[2px] active:opacity-60"
-            >
-              <Text
-                className={`font-mono text-[10px] font-semibold uppercase tracking-[1.6px] ${
-                  selected ? 'text-accent' : 'text-ink-faint'
-                }`}
-              >
-                {labelFor(id)}
-              </Text>
-            </Pressable>
-          );
-        })}
+        {groups.map((id) => (
+          <Button
+            key={id}
+            variant={id === group ? 'link' : 'ghost'}
+            size="inline"
+            text="mono"
+            hitSlop={6}
+            className="h-[30px]"
+            onPress={() => openGroup(id)}
+          >
+            {labelFor(id)}
+          </Button>
+        ))}
       </FadingHScroll>
 
       <View className="mt-[10px] px-[18px]">
         {extraGroup && group === extraGroup.id ? (
           <GroupNote description={extraGroup.description} />
         ) : (
-          <View className="flex-row flex-wrap gap-[6px]">
-            {chordTypesByFamily(group as ChordFamily).map((type) => (
-              <QualityChip
-                key={type.id}
-                name={type.name}
-                /* A major triad's suffix is empty, and a blank chip is unreadable. */
-                symbol={type.symbol === '' ? 'maj' : toAccidentalGlyphs(type.symbol)}
-                selected={type.id === quality}
-                onPress={() => onChange(type.id)}
-              />
-            ))}
-          </View>
+          <SelectableChips
+            items={qualityChips(group as ChordFamily)}
+            value={quality}
+            onChange={onChange}
+            chipClassName="min-w-[52px]"
+          />
         )}
       </View>
     </View>
@@ -114,35 +103,12 @@ function GroupNote({ description }: { description: string }) {
   );
 }
 
-function QualityChip({
-  name,
-  symbol,
-  selected,
-  onPress,
-}: {
-  name: string;
-  symbol: string;
-  selected: boolean;
-  onPress: () => void;
-}) {
-  const face = useFace(selected ? 'accent' : 'card', 11);
-
-  return (
-    <Pressable
-      onPress={onPress}
-      accessibilityRole="button"
-      accessibilityState={{ selected }}
-      accessibilityLabel={name}
-      className={`h-[42px] min-w-[52px] items-center justify-center rounded-[11px] px-[12px] active:opacity-70 ${face.className}`}
-    >
-      {face.paint}
-      <Text
-        className={`text-[14px] font-medium tracking-[-0.2px] ${
-          selected ? 'text-accent' : 'text-ink'
-        }`}
-      >
-        {symbol}
-      </Text>
-    </Pressable>
-  );
+/** The chips a family opens onto — the suffix on the face, the name read out. */
+function qualityChips(family: ChordFamily): ChipItem[] {
+  return chordTypesByFamily(family).map((type) => ({
+    id: type.id,
+    /* A major triad's suffix is empty, and a blank chip is unreadable. */
+    label: type.symbol === '' ? 'maj' : toAccidentalGlyphs(type.symbol),
+    accessibilityLabel: type.name,
+  }));
 }

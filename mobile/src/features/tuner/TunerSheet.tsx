@@ -1,12 +1,5 @@
 import { useEffect, useImperativeHandle, useRef, useState, type Ref } from 'react';
-import {
-  InteractionManager,
-  Linking,
-  Pressable,
-  Text,
-  View,
-  type LayoutChangeEvent,
-} from 'react-native';
+import { InteractionManager, Linking, Text, View, type LayoutChangeEvent } from 'react-native';
 import { useAnimatedStyle } from 'react-native-reanimated';
 
 import { AnimatedView } from '@/components/AnimatedView';
@@ -204,17 +197,20 @@ function StatusPill({
           : 'Tap to start';
 
   return (
-    <Pressable
-      onPress={() => (denied ? void Linking.openSettings() : void onStart())}
+    <Button
+      variant="quiet"
+      size="md"
+      radius={999}
+      // The pill goes on saying what the tuner is doing while it is doing it;
+      // there is just nothing to press until it stops.
       disabled={listening || status === 'starting' || status === 'unavailable'}
-      accessibilityRole="button"
       accessibilityLabel={label}
-      className="flex-row items-center gap-[9px] rounded-full border border-x-line-soft border-t-edge-top border-b-edge-bottom bg-surface px-[18px] py-[11px]"
+      onPress={() => (denied ? void Linking.openSettings() : void onStart())}
     >
       <View className={`h-[8px] w-[8px] rounded-full ${dotClass}`} />
       <Text className="font-mono text-[10.5px] uppercase tracking-[1.5px] text-ink-muted">
         {label}
       </Text>
-    </Pressable>
+    </Button>
   );
 }

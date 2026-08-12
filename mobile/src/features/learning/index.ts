@@ -9,4 +9,4 @@ export { PathwayActions, type PathwayAction } from './PathwayActions';
 export { PathwayMenuSheet, type PathwayMenuSheetRef } from './PathwayMenuSheet';
 export { ProgressRing } from './ProgressRing';
 export { ProgressTrack } from './ProgressTrack';
-export { SectionStrip } from './SectionStrip';
+export { SectionBar } from './SectionBar';
