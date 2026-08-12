@@ -42,7 +42,13 @@ export {
   type SectionNeighbours,
   type SectionPlacement,
 } from './placement';
-export { checkpointHref, nextStepHref, pathwayHref, sectionHref } from './hrefs';
+export {
+  checkpointHref,
+  nextStepHref,
+  pathwayHref,
+  sectionHref,
+  type ReaderHop,
+} from './hrefs';
 
 export { dropEvictedPathways, dropPathway, startPathway, touchPathway } from './enrollment';
 export { recordSectionComplete } from './completion';

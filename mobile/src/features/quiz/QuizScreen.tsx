@@ -6,6 +6,8 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { BackLink } from '@/components/BackLink';
 import { Button } from '@/components/Button';
+import { FadeIn } from '@/components/FadeIn';
+import { ReaderHeader } from '@/components/ReaderHeader';
 import { contentRepository } from '@/features/articles';
 import { ArticleLinkProvider } from '@/features/articles/links';
 import { useSession } from '@/lib/auth';
@@ -29,6 +31,14 @@ interface Props {
   sectionId?: string;
   /** From `?threshold=` — overrides the document's own `passThresholdPct`. */
   thresholdPct?: number;
+  /**
+   * From `?chapter=` and `?enter=fade` — set when the reader paged here rather than pushing.
+   *
+   * The header is then the one the article was already showing, unchanged, and the body fades up
+   * under it in place of a stack animation. See `ReaderHop`.
+   */
+  chapterTitle?: string;
+  paged?: boolean;
 }
 
 /**
@@ -45,7 +55,7 @@ function resolveSectionId(document: QuizDocument, sectionId: string | undefined)
   return document.meta.kind === 'checkpoint' ? null : document.meta.slug;
 }
 
-export function QuizScreen({ slug, sectionId, thresholdPct }: Props) {
+export function QuizScreen({ slug, sectionId, thresholdPct, chapterTitle, paged = false }: Props) {
   const insets = useSafeAreaInsets();
   const router = useRouter();
   const muted = useToken('--ink-muted', '#9aa0aa');
@@ -117,42 +127,48 @@ export function QuizScreen({ slug, sectionId, thresholdPct }: Props) {
 
   return (
     <View className="flex-1 bg-bg" style={{ paddingTop: Math.max(insets.top - 6, 0) }}>
-      <View className="h-[42px] flex-row items-center px-[18px]">
-        <BackLink title={title} />
-      </View>
-
-      {state.status === 'loading' ? (
-        <View className="flex-1 items-center justify-center">
-          <ActivityIndicator color={muted} />
-        </View>
-      ) : state.status === 'error' ? (
-        <View className="flex-1 items-center justify-center gap-[16px] px-[32px]">
-          <Text className="text-center text-[13px] leading-[19px] text-ink-muted">
-            {state.message}
-          </Text>
-          <Button
-            variant="secondary"
-            size="xs"
-            text="mono"
-            radius={999}
-            accessibilityLabel="Try loading the quiz again"
-            onPress={retry}
-          >
-            Retry
-          </Button>
+      {chapterTitle === undefined ? (
+        <View className="h-[42px] flex-row items-center px-[18px]">
+          <BackLink title={title} />
         </View>
       ) : (
-        <ArticleLinkProvider value={handleLink}>
-          <QuizRunner
-            document={state.document}
-            sectionId={recordUnder}
-            thresholdPct={thresholdPct ?? state.document.meta.passThresholdPct}
-            previousBestPct={previousBestPct}
-            userId={session?.user.id ?? null}
-            onDone={() => router.back()}
-          />
-        </ArticleLinkProvider>
+        <ReaderHeader title={chapterTitle} />
       )}
+
+      <FadeIn active={paged} className="flex-1">
+        {state.status === 'loading' ? (
+          <View className="flex-1 items-center justify-center">
+            <ActivityIndicator color={muted} />
+          </View>
+        ) : state.status === 'error' ? (
+          <View className="flex-1 items-center justify-center gap-[16px] px-[32px]">
+            <Text className="text-center text-[13px] leading-[19px] text-ink-muted">
+              {state.message}
+            </Text>
+            <Button
+              variant="secondary"
+              size="xs"
+              text="mono"
+              radius={999}
+              accessibilityLabel="Try loading the quiz again"
+              onPress={retry}
+            >
+              Retry
+            </Button>
+          </View>
+        ) : (
+          <ArticleLinkProvider value={handleLink}>
+            <QuizRunner
+              document={state.document}
+              sectionId={recordUnder}
+              thresholdPct={thresholdPct ?? state.document.meta.passThresholdPct}
+              previousBestPct={previousBestPct}
+              userId={session?.user.id ?? null}
+              onDone={() => router.back()}
+            />
+          </ArticleLinkProvider>
+        )}
+      </FadeIn>
     </View>
   );
 }

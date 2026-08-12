@@ -1,17 +1,9 @@
 import { SymbolView } from 'expo-symbols';
-import { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
-import {
-  useAnimatedStyle,
-  useSharedValue,
-  withDelay,
-  withSequence,
-  withTiming,
-} from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { AnimatedView } from '@/components/AnimatedView';
 import { Button } from '@/components/Button';
+import { Swap } from '@/components/Swap';
 import { useToken } from '@/lib/tokens';
 
 // The footer under an article opened from a pathway: the way back a step, and the one thing this
@@ -20,77 +12,89 @@ import { useToken } from '@/lib/tokens';
 // It sits below the article rather than over it so the last paragraph is never hidden behind it,
 // which matters more here than anywhere else: reaching that last paragraph is one of the two ways
 // the section marks itself done.
+//
+// Nothing in here moves. Both controls change identity — Previous appears and disappears with the
+// section, Mark Complete becomes Next — and each does it by fading out and back in where it stands,
+// so the bar itself reads as one fixed thing the reader is paging content past.
 
-/** Each half of the swap. The gap between them is what makes it read as a replacement, not a fade. */
-const FADE_MS = 150;
-const PAUSE_MS = 50;
+/** What the right-hand control currently is. Changing it is what runs the swap. */
+type Face = 'mark' | 'next' | 'done';
 
-interface Props {
+/** The pause the completion swap holds at zero opacity, long enough to read as a replacement. */
+const COMPLETE_HOLD_MS = 50;
+
+export function SectionBar({
+  complete,
+  onMarkComplete,
+  onPrevious,
+  onNext,
+  fadeMs = 150,
+  paging = false,
+}: {
   complete: boolean;
-  /** Marks the section read. Absent once there is nothing left to mark. */
   onMarkComplete: () => void;
   /** Omitted at the start of a chapter, where the control is not shown rather than disabled. */
   onPrevious?: () => void;
   /** Omitted when the chapter ends here — see `sectionNeighbours`. */
   onNext?: () => void;
-}
-
-export function SectionBar({ complete, onMarkComplete, onPrevious, onNext }: Props) {
+  /** Half of the transition the controls are keeping time with. */
+  fadeMs?: number;
+  /**
+   * Whether the change on its way is a page rather than a completion.
+   *
+   * A completion holds a beat between the two halves because one control is being *replaced* by
+   * another and the gap is what says so. A page has no gap: the controls are keeping time with
+   * content sliding past, and a pause in the middle of that reads as a stutter.
+   */
+  paging?: boolean;
+}) {
   const insets = useSafeAreaInsets();
   const accent = useToken('--accent', '#5ec8c2');
 
-  // What the right-hand slot is showing. Seeded from `complete` so a section opened already read
-  // starts on its finished face instead of animating into it.
-  const [settled, setSettled] = useState(complete);
-  const swap = useSharedValue(1);
-
-  useEffect(() => {
-    if (!complete || settled) return;
-
-    swap.value = withSequence(
-      withTiming(0, { duration: FADE_MS }),
-      withDelay(PAUSE_MS, withTiming(1, { duration: FADE_MS })),
-    );
-    // Swapped in the dark, halfway through, so neither face is ever seen crossing the other.
-    const timer = setTimeout(() => setSettled(true), FADE_MS + PAUSE_MS);
-
-    return () => clearTimeout(timer);
-  }, [complete, settled, swap]);
-
-  const style = useAnimatedStyle(() => ({ opacity: swap.value }));
+  const face: Face = !complete ? 'mark' : onNext ? 'next' : 'done';
 
   return (
     <View
       className="flex-row items-center justify-between border-t border-t-line-soft bg-tray px-[18px] pt-[10px]"
       style={{ paddingBottom: insets.bottom + 10 }}
     >
-      {onPrevious ? (
-        <Button variant="ghost" size="inline" icon="chevron.left" onPress={onPrevious}>
-          Previous
-        </Button>
-      ) : (
-        <View />
-      )}
+      <Swap
+        id={onPrevious ? 'previous' : 'none'}
+        fadeMs={fadeMs}
+        holdMs={0}
+        render={(id) =>
+          id === 'previous' && onPrevious ? (
+            <Button variant="ghost" size="inline" icon="chevron.left" onPress={onPrevious}>
+              Previous
+            </Button>
+          ) : null
+        }
+      />
 
-      <AnimatedView style={style}>
-        {!settled ? (
-          <Button variant="ghost" size="inline" onPress={onMarkComplete}>
-            Mark Complete
-          </Button>
-        ) : onNext ? (
-          <Button variant="link" size="inline" accessibilityLabel="Next section" onPress={onNext}>
-            <Text className="text-[15px] font-medium tracking-[-0.2px] text-accent">Next</Text>
-            <SymbolView name="chevron.right" size={15} weight="semibold" tintColor={accent} />
-          </Button>
-        ) : (
-          <View className="flex-row items-center gap-[6px] py-[6px]">
-            <SymbolView name="checkmark" size={10} weight="bold" tintColor={accent} />
-            <Text className="font-mono text-[9.5px] font-semibold uppercase tracking-[2px] text-accent">
-              Done
-            </Text>
-          </View>
-        )}
-      </AnimatedView>
+      <Swap
+        id={face}
+        fadeMs={fadeMs}
+        holdMs={paging ? 0 : COMPLETE_HOLD_MS}
+        render={(id) =>
+          id === 'mark' ? (
+            <Button variant="ghost" size="inline" onPress={onMarkComplete}>
+              Mark Complete
+            </Button>
+          ) : id === 'next' && onNext ? (
+            <Button variant="link" size="inline" accessibilityLabel="Next section" onPress={onNext}>
+              <Text className="text-[15px] font-medium tracking-[-0.2px] text-accent">Next</Text>
+              <SymbolView name="chevron.right" size={15} weight="semibold" tintColor={accent} />
+            </Button>
+          ) : (
+            <View className="flex-row items-center gap-[6px] py-[6px]">
+              <SymbolView name="checkmark" size={10} weight="bold" tintColor={accent} />
+              <Text className="font-mono text-[9.5px] font-semibold uppercase tracking-[2px] text-accent">
+                Done
+              </Text>
+            </View>
+          )
+        }
+      />
     </View>
   );
 }

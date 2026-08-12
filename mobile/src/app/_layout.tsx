@@ -13,6 +13,20 @@ import { SyncProvider } from '@/lib/sync';
 
 const GestureRoot = withUniwind(GestureHandlerRootView);
 
+/**
+ * A screen the reader pages into rather than pushes.
+ *
+ * The article has already slid its own content and footer away under a header that stayed put, so
+ * the stack must not slide anything: the destination appears in place and fades its body in (see
+ * `ReaderHop`). Read off the route rather than set globally, because the same quiz opened from the
+ * pathway screen is an ordinary push and should still arrive like one.
+ */
+const pagedInto = ({ route }: { route: { params?: object } }) =>
+  ({
+    animation:
+      (route.params as { enter?: string } | undefined)?.enter === 'fade' ? 'none' : 'default',
+  }) as const;
+
 export default function RootLayout() {
   // Nothing is rendered for this and nothing waits on it — the app is usable while it runs, and
   // usable if it fails. See the hook (BACKEND_PLAN.md §5).
@@ -37,7 +51,10 @@ export default function RootLayout() {
                     headerShown: false,
                     contentStyle: { backgroundColor: '#0c0d10' },
                   }}
-                />
+                >
+                  <Stack.Screen name="quiz/[slug]" options={pagedInto} />
+                  <Stack.Screen name="activity/[slug]" options={pagedInto} />
+                </Stack>
               </ThemeProvider>
             </BottomSheetModalProvider>
           </GestureRoot>
