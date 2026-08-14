@@ -17,7 +17,8 @@ export type ToolId =
   | 'bpm-finder'
   | 'drone'
   | 'chord-shapes'
-  | 'scale-visualizer';
+  | 'scale-visualizer'
+  | 'rhythm-trainer';
 
 // A mark in a card emblem. Both emblems are the same primitive drawn from
 // different data: the tuner's is a calibration scale, the metronome's is one bar
@@ -93,9 +94,21 @@ interface Section {
   tools: Tool[];
 }
 
-// Listen = takes the mic and tells you what it hears. Reference = something you
-// consult or play against.
+// Practice = something you play along with that answers back. Listen = takes the
+// mic and tells you what it hears. Reference = something you consult or play
+// against.
 const SECTIONS: Section[] = [
+  {
+    label: 'Practice',
+    tools: [
+      {
+        id: 'rhythm-trainer',
+        icon: 'music.note',
+        title: 'Rhythm Trainer',
+        subtitle: 'Play written rhythms against a click',
+      },
+    ],
+  },
   {
     label: 'Listen',
     tools: [
@@ -236,6 +249,7 @@ const ROUTES: Partial<Record<ToolId, Href>> = {
   metronome: '/metronome',
   drone: '/drone',
   'scale-visualizer': '/scale-visualizer',
+  'rhythm-trainer': '/rhythm-trainer',
 };
 
 export function ToolsTab() {

@@ -8,12 +8,9 @@ export { ActivityIntro, type ModeChoice } from './ActivityIntro';
 export { ActivityScreen } from './ActivityScreen';
 export { ActivitySummary } from './ActivitySummary';
 export { ActivityUnavailable } from './ActivityUnavailable';
-export { MicGate, useMicStatus } from './MicGate';
 export { recordActivityCompletion } from './record';
 export { runnerFor, type ActivityRunnerEntry } from './registry';
 export { RoundCountdown } from './RoundCountdown';
 
 export { NotePlayRunner, type NotePlayRunnerProps } from './note-play/NotePlayRunner';
 export { RhythmRunner, type RhythmRunnerProps } from './rhythm/RhythmRunner';
-export { buildGrid, type RhythmGrid } from './rhythm/rhythmGrid';
-export { grade, type RoundResult, type Verdict } from './rhythm/rhythmGrading';

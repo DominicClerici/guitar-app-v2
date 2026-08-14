@@ -3,7 +3,7 @@ import { useAnimatedStyle, useSharedValue, type SharedValue } from 'react-native
 
 import { AnimatedView } from '@/components/AnimatedView';
 
-import type { Verdict } from './rhythmGrading';
+import type { RoundResult, Verdict } from './rhythmGrading';
 import { barsOf, describePattern, type GridSlot, type RhythmGrid } from './rhythmGrid';
 
 /**
@@ -43,6 +43,30 @@ interface Props {
   marks: readonly PlayedMark[];
   /** Filled in once the round has been graded; null while it is still being played. */
   verdicts: ReadonlyMap<number, Verdict> | null;
+}
+
+/** A graded pass as the grid's two inputs: what each written hit was worth… */
+export function verdictMap(result: RoundResult): Map<number, Verdict> {
+  return new Map(result.hits.map((hit) => [hit.slotIndex, hit.verdict]));
+}
+
+/** …and where every stroke actually landed, replacing the live marks once there is a judgement. */
+export function gradedMarks(result: RoundResult): PlayedMark[] {
+  const marks: PlayedMark[] = [];
+
+  for (const hit of result.hits) {
+    if (hit.playedAtMs === null) continue;
+    marks.push({
+      id: marks.length,
+      atMs: hit.playedAtMs,
+      tone: hit.verdict === 'on' ? 'on' : 'off',
+    });
+  }
+  for (const extra of result.extras) {
+    marks.push({ id: marks.length, atMs: extra, tone: 'extra' });
+  }
+
+  return marks;
 }
 
 export function SlotGrid({ grid, progress, marks, verdicts }: Props) {

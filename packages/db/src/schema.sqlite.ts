@@ -180,6 +180,27 @@ export const cachedCurriculum = sqliteTable('cached_curriculum', {
   fetchedAt: integer('fetched_at', { mode: 'timestamp_ms' }).notNull(),
 });
 
+/**
+ * Where a tool remembers how it was left — the rhythm trainer's note values, tempo and input mode,
+ * so far (§6).
+ *
+ * Device-local and not synced, and that is the decision rather than an omission: these are the
+ * settings of one practice session on one phone, not something an account owns, so there is nothing
+ * to merge and no reason for a tempo chosen on a tablet to arrive on a phone mid-drill. A tool that
+ * later wants its settings to follow the user belongs in `user_preferences` instead, with the four
+ * declarations §7 asks for.
+ *
+ * `body` is the tool's own JSON as text, parsed and validated by that tool at its boundary. One row
+ * per tool rather than one per setting: nothing here merges, so there is no reason to split a
+ * tool's settings into rows that could disagree, and a body written by a newer build degrades to
+ * defaults under the tool's own parser rather than breaking an older one.
+ */
+export const toolSettings = sqliteTable('tool_settings', {
+  tool: text('tool').primaryKey(),
+  body: text('body').notNull(),
+  updatedAt: integer('updated_at', { mode: 'timestamp_ms' }).notNull(),
+});
+
 export const syncState = sqliteTable('sync_state', {
   id: integer('id').primaryKey(),
   userId: text('user_id'),

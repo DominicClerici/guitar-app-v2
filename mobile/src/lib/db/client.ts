@@ -17,6 +17,7 @@ import {
   quizAttempts,
   sectionProgress,
   syncState,
+  toolSettings,
   userPreferences,
 } from '@guitar/db/schema.sqlite';
 import { drizzle } from 'drizzle-orm/expo-sqlite';
@@ -31,6 +32,7 @@ export const schema = {
   cachedDocuments,
   cachedChapters,
   cachedCurriculum,
+  toolSettings,
 };
 
 /**

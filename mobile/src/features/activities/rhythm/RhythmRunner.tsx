@@ -1,60 +1,37 @@
-import { useEffect, useState, type ReactNode } from 'react';
+import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react';
 import { ActivityIndicator, ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import {
-  Easing,
-  useSharedValue,
-  withDelay,
-  withTiming,
-  type SharedValue,
-} from 'react-native-reanimated';
+import type { SharedValue } from 'react-native-reanimated';
 
 import { Button } from '@/components/Button';
+import { MicGate } from '@/components/MicGate';
 import { RichText } from '@/features/articles/RichText';
+import {
+  buildGrid,
+  describeBias,
+  describeBreakdown,
+  describeScore,
+  describeHeadroom,
+  gradedMarks,
+  SlotGrid,
+  summariseRun,
+  useRhythmDrill,
+  verdictMap,
+  type Calibration,
+  type HeadroomReason,
+  type PlayedMark,
+  type RhythmGrid,
+  type RoundResult,
+} from '@/features/rhythm';
 import type { ActivityDocument, RhythmActivity, RhythmRound } from '@/lib/content';
 import { runnableRounds } from '@/lib/content';
-import {
-  acquire,
-  configureOnsets,
-  getStatus,
-  release,
-  subscribeOnsets,
-  subscribeRawFrames,
-  subscribeStatus,
-  type OnsetEvent,
-} from '@/lib/mic';
+import { getStatus, subscribeStatus } from '@/lib/mic';
 import { useToken } from '@/lib/tokens';
 
 import { ActivityIntro } from '../ActivityIntro';
 import { ActivitySummary } from '../ActivitySummary';
-import { MicGate, useMicStatus } from '../MicGate';
 import { recordActivityCompletion } from '../record';
 import { RoundCountdown } from '../RoundCountdown';
-import {
-  CALIBRATION_BARS,
-  CALIBRATION_REFRACTORY_MS,
-  CALIBRATION_THRESHOLD,
-  deriveCalibration,
-  describeHeadroom,
-  pairClicks,
-  pairWindowMs,
-  refractoryMsFor,
-  type Calibration,
-  type HeadroomReason,
-} from './calibration';
-import { disposeClock, startClicks, stopClicks } from './rhythmClock';
-import {
-  describeBias,
-  describeBreakdown,
-  describeScore,
-  grade,
-  onsetAtMs,
-  summariseRun,
-  type RoundResult,
-  type Verdict,
-} from './rhythmGrading';
-import { buildGrid, type RhythmGrid } from './rhythmGrid';
-import { SlotGrid, type PlayedMark } from './SlotGrid';
 
 // Play a written rhythm against a steady click, and be told when you played it.
 //
@@ -64,16 +41,13 @@ import { SlotGrid, type PlayedMark } from './SlotGrid';
 // pitch detector would be measuring the detector. Nothing here cares what was played, which
 // is also why the exercise asks for muted strings.
 //
-// Everything decidable lives in `rhythmGrid`, `rhythmGrading` and `calibration`, all pure and
-// all tested. This file is the part that cannot be: the audio, the microphone, and the order
-// the two are allowed to be started in.
+// The audio, the microphone and the order the two may be started in live in
+// `features/rhythm/useRhythmDrill`, which the standalone trainer runs on as well. What is left
+// here is what a PATHWAY activity is: an intro card, a fixed list of authored rounds, a countdown
+// between them, and the one local write that finishing leaves behind.
 
 /** How long a round's result stays up on its own before the next countdown. */
 const RESULT_MS = 4000;
-/** Let the last click ring out, and give a late onset time to be delivered. */
-const ROUND_TAIL_MS = 350;
-/** Same, for the calibration bars. */
-const CALIBRATION_TAIL_MS = 400;
 
 export interface RhythmRunnerProps {
   document: ActivityDocument;
@@ -96,226 +70,90 @@ type Phase =
   | { kind: 'summary' };
 
 /**
- * A `setTimeout` that can be abandoned. A round waits out its own length; a phase that ends
- * early has to stop waiting without leaving an async function parked on a timer that will
- * still fire, and without leaving that function parked forever either.
- */
-function createWaiter() {
-  let timer: ReturnType<typeof setTimeout> | null = null;
-  let finish: (() => void) | null = null;
-
-  return {
-    until(ms: number): Promise<void> {
-      return new Promise<void>((resolve) => {
-        finish = resolve;
-        timer = setTimeout(resolve, Math.max(ms, 0));
-      });
-    },
-    cancel() {
-      if (timer) clearTimeout(timer);
-      timer = null;
-      finish?.();
-      finish = null;
-    },
-  };
-}
-
-/**
  * `activity.rounds` is guaranteed to hold at least one runnable round: the registry checks
  * `runnableRounds` before this is ever rendered, so nothing here has to handle an empty
  * activity.
  */
 export function RhythmRunner({ document, activity, sectionId, userId, onDone }: RhythmRunnerProps) {
   const insets = useSafeAreaInsets();
-  const micStatus = useMicStatus();
   const muted = useToken('--ink-muted', '#9aa0aa');
 
-  const rounds = runnableRounds(activity.rounds);
-  const grids = rounds.map(buildGrid);
+  const rounds = useMemo(() => runnableRounds(activity.rounds), [activity]);
+  const grids = useMemo(() => rounds.map(buildGrid), [rounds]);
 
   const [phase, setPhase] = useState<Phase>({ kind: 'intro' });
-  const [calibration, setCalibration] = useState<Calibration | null>(null);
   const [results, setResults] = useState<RoundResult[]>([]);
-  const [marks, setMarks] = useState<PlayedMark[]>([]);
-  const [countingIn, setCountingIn] = useState(false);
 
-  // 0 at the downbeat, 1 at the end of the last bar; below zero parks the playhead offscreen.
-  // Owned here because the runner is what knows when a round starts, and written only from
-  // effects — never from a render, and never by the grid it is handed to.
-  const progress = useSharedValue(-1);
-
-  const needsMic =
+  const engaged =
     phase.kind === 'calibrating' ||
     phase.kind === 'countdown' ||
     phase.kind === 'playing' ||
     phase.kind === 'result' ||
     phase.kind === 'interrupted';
 
-  // THE ORDER HERE IS THE FEATURE. The iOS audio session is process-wide, and the microphone
-  // is what puts it into a category that can play as well as record. So the lease is taken
-  // before any AudioContext exists, and given back after the context is gone.
-  useEffect(() => {
-    if (!needsMic) return;
-    void acquire();
-
-    return () => {
-      void configureOnsets({ enabled: false, threshold: 1, refractoryMs: 0 });
-      disposeClock();
-      release();
-    };
-  }, [needsMic]);
-
-  // ─ calibration ─
-  useEffect(() => {
-    if (phase.kind !== 'calibrating' || micStatus !== 'listening') return;
-
-    const first = runnableRounds(activity.rounds)[0];
-    const grid = buildGrid({ ...first, bars: CALIBRATION_BARS, countInBars: 0, slots: [] });
-    const waiter = createWaiter();
-    const noiseRms: number[] = [];
-    const onsets: OnsetEvent[] = [];
-    let cancelled = false;
-
-    const offFrames = subscribeRawFrames((frame) => noiseRms.push(frame.rms));
-    const offOnsets = subscribeOnsets((event) => onsets.push(event));
-
-    const run = async () => {
-      // Deliberately far too sensitive: during calibration every click bleeding back through
-      // the speaker must fire, because a click we do not hear is a click we cannot measure a
-      // round trip from.
-      await configureOnsets({
-        enabled: true,
-        threshold: CALIBRATION_THRESHOLD,
-        refractoryMs: CALIBRATION_REFRACTORY_MS,
-      });
-      if (cancelled) return;
-
-      const timing = await startClicks(grid.clicks);
-      if (cancelled) return;
-
-      await waiter.until(timing.endsAtEpochMs - Date.now() + CALIBRATION_TAIL_MS);
-      if (cancelled) return;
-      stopClicks();
-      // Disarmed rather than left at the calibration threshold, which is low enough that the
-      // countdown before the first round would fire onsets at a chair moving.
-      await configureOnsets({ enabled: false, threshold: 1, refractoryMs: 0 });
-      if (cancelled) return;
-
-      const result = deriveCalibration({
-        noiseRms,
-        pairs: pairClicks(timing.clickEpochMs, onsets, pairWindowMs(grid.beatMs)),
-      });
-      setCalibration(result);
-
-      if (!result.headroom.ok) {
-        setPhase({ kind: 'blocked', reason: result.headroom.reason });
-        return;
-      }
-      setPhase({ kind: 'countdown', round: 0 });
-    };
-
-    void run();
-
-    return () => {
-      cancelled = true;
-      waiter.cancel();
-      offFrames();
-      offOnsets();
-      stopClicks();
-    };
-  }, [phase, micStatus, activity]);
-
-  // ─ one round ─
-  useEffect(() => {
-    if (phase.kind !== 'playing' || !calibration || micStatus !== 'listening') return;
-
-    const round = runnableRounds(activity.rounds)[phase.round];
-    const grid = buildGrid(round);
-    const waiter = createWaiter();
-    const onsets: OnsetEvent[] = [];
-    let anchorEpochMs: number | null = null;
-    let cancelled = false;
-    let countIn: ReturnType<typeof setTimeout> | null = null;
-
-    const offOnsets = subscribeOnsets((event) => {
-      onsets.push(event);
-      // Drawn the moment it arrives, so the plan and the playing are one picture while the
-      // round is still going. What it is worth is decided at the end, all at once.
-      if (anchorEpochMs === null) return;
-      const atMs = onsetAtMs(event.at, anchorEpochMs, calibration.latencyMs);
-      setMarks((current) => [...current, { id: current.length, atMs, tone: 'pending' }]);
+  // The drill hands back three things, and each of them is a phase change here rather than
+  // something to watch for in an effect: a pass was graded, the room was measured, or the
+  // microphone went away mid-round.
+  const onPass = useCallback((result: RoundResult) => {
+    setPhase((current) => {
+      if (current.kind !== 'playing') return current;
+      setResults((all) => [...all.slice(0, current.round), result]);
+      return { kind: 'result', round: current.round, result };
     });
+  }, []);
 
-    // `lib/mic` suspends the session when the app goes to the background, and a round that
-    // stopped being listened to cannot be graded. Watched here rather than off the rendered
-    // status so the round gives up before the effect that owns it is torn down.
-    const offStatus = subscribeStatus(() => {
-      if (getStatus() !== 'listening') setPhase({ kind: 'interrupted', round: phase.round });
-    });
+  // A room the drill cannot hear a pick in stops the activity rather than grading through it: a run
+  // judged in one would mark hits missed that were played perfectly well.
+  const onCalibrated = useCallback((calibration: Calibration) => {
+    setPhase(
+      calibration.headroom.ok
+        ? { kind: 'countdown', round: 0 }
+        : { kind: 'blocked', reason: calibration.headroom.reason },
+    );
+  }, []);
 
-    const run = async () => {
-      setMarks([]);
-      setCountingIn(grid.countInBars > 0);
+  const onInterrupted = useCallback(() => {
+    setPhase((current) =>
+      current.kind === 'playing' ? { kind: 'interrupted', round: current.round } : current,
+    );
+  }, []);
 
-      await configureOnsets({
-        enabled: true,
-        threshold: calibration.threshold,
-        refractoryMs: refractoryMsFor(grid.slotMs),
-      });
-      if (cancelled) return;
+  const drill = useRhythmDrill({
+    input: 'mic',
+    engaged,
+    onPass,
+    onCalibrated,
+    onInterrupted,
+  });
+  const { calibrate, start } = drill;
 
-      const timing = await startClicks(grid.clicks);
-      if (cancelled) return;
-      anchorEpochMs = timing.anchorEpochMs;
+  // The live marks while a round is being played; the graded ones the moment it has been judged.
+  // Derived rather than handed back to the drill, which has no business knowing that a round is
+  // being looked at rather than played.
+  const marks = useMemo(
+    () => (phase.kind === 'result' ? gradedMarks(phase.result) : drill.marks),
+    [phase, drill.marks],
+  );
 
-      // The playhead is one straight line across the pattern. All the UI thread needs from
-      // this side is how long until the downbeat, as a plain number — reading a clock inside
-      // the animation is what the purity rule forbids, and what would make it lie anyway.
-      const untilDownbeat = Math.max(timing.anchorEpochMs - Date.now(), 0);
-      progress.value = 0;
-      progress.value = withDelay(
-        untilDownbeat,
-        withTiming(1, { duration: grid.patternMs, easing: Easing.linear }),
-      );
-      countIn = setTimeout(() => setCountingIn(false), untilDownbeat);
+  useEffect(() => {
+    if (phase.kind !== 'calibrating') return;
+    calibrate({ bpm: rounds[0].bpm, beatsPerBar: rounds[0].beatsPerBar });
+  }, [phase.kind, rounds, calibrate]);
 
-      await waiter.until(timing.endsAtEpochMs - Date.now() + ROUND_TAIL_MS);
-      if (cancelled) return;
-      stopClicks();
+  useEffect(() => {
+    if (phase.kind !== 'playing') return;
+    start(grids[phase.round]);
+  }, [phase, grids, start]);
 
-      const result = grade({
-        grid,
-        anchorEpochMs: timing.anchorEpochMs,
-        latencyMs: calibration.latencyMs,
-        onsets,
-      });
-
-      progress.value = -1;
-      setMarks(markRound(result));
-      setResults((current) => [...current.slice(0, phase.round), result]);
-      setPhase({ kind: 'result', round: phase.round, result });
-    };
-
-    void run();
-
-    return () => {
-      cancelled = true;
-      waiter.cancel();
-      if (countIn) clearTimeout(countIn);
-      offOnsets();
-      offStatus();
-      stopClicks();
-    };
-  }, [phase, micStatus, activity, calibration, progress]);
-
-  // The other half of the interruption: once the session is back, the round is counted in
-  // again from the top rather than resumed. The clicks kept their schedule while the app was
-  // away, but nothing was listening, so there is no grid left worth grading against.
+  // The other half of the interruption. Watched through the session itself rather than the
+  // rendered status, so the round resumes the moment the microphone is back rather than a render
+  // later — and so the phase change happens in a callback, where one belongs.
   useEffect(() => {
     if (phase.kind !== 'interrupted') return;
 
+    const round = phase.round;
     const resume = () => {
-      if (getStatus() === 'listening') setPhase({ kind: 'countdown', round: phase.round });
+      if (getStatus() === 'listening') setPhase({ kind: 'countdown', round });
     };
     const offStatus = subscribeStatus(resume);
     // The session can come back between the round giving up and this subscribing.
@@ -331,7 +169,7 @@ export function RhythmRunner({ document, activity, sectionId, userId, onDone }: 
   // on it only spends the wait early.
   useEffect(() => {
     if (phase.kind !== 'result') return;
-    const last = runnableRounds(activity.rounds).length - 1;
+    const last = rounds.length - 1;
     const timer = setTimeout(() => {
       setPhase(
         phase.round >= last ? { kind: 'summary' } : { kind: 'countdown', round: phase.round + 1 },
@@ -339,7 +177,7 @@ export function RhythmRunner({ document, activity, sectionId, userId, onDone }: 
     }, RESULT_MS);
 
     return () => clearTimeout(timer);
-  }, [phase, activity]);
+  }, [phase, rounds]);
 
   useEffect(() => {
     if (phase.kind !== 'summary') return;
@@ -354,7 +192,11 @@ export function RhythmRunner({ document, activity, sectionId, userId, onDone }: 
         startLabel="Start"
         onStart={() => {
           setResults([]);
-          setPhase(calibration ? { kind: 'countdown', round: 0 } : { kind: 'calibrating' });
+          setPhase(
+            drill.calibration?.headroom.ok
+              ? { kind: 'countdown', round: 0 }
+              : { kind: 'calibrating' },
+          );
         }}
       >
         <Explainer rounds={rounds} />
@@ -401,7 +243,10 @@ export function RhythmRunner({ document, activity, sectionId, userId, onDone }: 
         ) : phase.kind === 'blocked' ? (
           <Blocked
             reason={phase.reason}
-            onRetry={() => setPhase({ kind: 'calibrating' })}
+            onRetry={() => {
+              drill.forget();
+              setPhase({ kind: 'calibrating' });
+            }}
             onDone={onDone}
           />
         ) : phase.kind === 'interrupted' ? (
@@ -426,11 +271,11 @@ export function RhythmRunner({ document, activity, sectionId, userId, onDone }: 
             grid={grids[phase.round]}
             index={phase.round}
             total={rounds.length}
-            progress={progress}
+            progress={drill.progress}
             marks={marks}
-            countingIn={phase.kind === 'playing' && countingIn}
+            countingIn={phase.kind === 'playing' && drill.countingIn}
             result={phase.kind === 'result' ? phase.result : null}
-            nominalLatency={calibration?.latencySource === 'nominal'}
+            nominalLatency={drill.calibration?.latencySource === 'nominal'}
             onSkip={
               phase.kind === 'result'
                 ? () =>
@@ -584,7 +429,12 @@ function Blocked({
       </Text>
 
       <View className="mt-[22px] flex-row gap-[10px]">
-        <Button variant="secondary" size="md" accessibilityLabel="Leave the activity" onPress={onDone}>
+        <Button
+          variant="secondary"
+          size="md"
+          accessibilityLabel="Leave the activity"
+          onPress={onDone}
+        >
           Back
         </Button>
         <Button variant="primary" size="md" accessibilityLabel="Calibrate again" onPress={onRetry}>
@@ -597,27 +447,4 @@ function Blocked({
 
 function Centred({ children }: { children: ReactNode }) {
   return <View className="flex-1 items-center justify-center px-[32px]">{children}</View>;
-}
-
-function verdictMap(result: RoundResult): Map<number, Verdict> {
-  return new Map(result.hits.map((hit) => [hit.slotIndex, hit.verdict]));
-}
-
-/** The live marks, replaced by the graded ones once the round has been judged. */
-function markRound(result: RoundResult): PlayedMark[] {
-  const marks: PlayedMark[] = [];
-
-  for (const hit of result.hits) {
-    if (hit.playedAtMs === null) continue;
-    marks.push({
-      id: marks.length,
-      atMs: hit.playedAtMs,
-      tone: hit.verdict === 'on' ? 'on' : 'off',
-    });
-  }
-  for (const extra of result.extras) {
-    marks.push({ id: marks.length, atMs: extra, tone: 'extra' });
-  }
-
-  return marks;
 }

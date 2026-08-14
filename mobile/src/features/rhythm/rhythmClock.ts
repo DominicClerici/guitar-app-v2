@@ -1,4 +1,4 @@
-import { AudioContext, type GainNode } from 'react-native-audio-api';
+import { AudioContext, AudioManager, type GainNode } from 'react-native-audio-api';
 
 import { DEFAULT_VOICE, renderClick } from '@/features/metronome/clickVoices';
 
@@ -18,12 +18,21 @@ import type { ClickBeat } from './rhythmGrid';
  * so a round cannot drift; and a master fade on stop, because clicks already handed to the
  * audio thread cannot be recalled.
  *
- * THE AUDIO SESSION. The iOS session is process-wide. The microphone configures it as
- * `.playAndRecord` when it starts (`modules/expo-pitch-detector/ios/AudioEngine.swift`), which
- * is the only reason a click and a live microphone can coexist at all. So nothing in this
- * file calls `AudioManager` — not `setAudioSessionOptions`, not `setAudioSessionActivity` —
- * and callers must hold a microphone lease BEFORE `startClicks`, so the category is already
- * right when the context is created and the first click is scheduled.
+ * THE AUDIO SESSION. The iOS session is process-wide, and who configures it depends on whether
+ * anything is listening:
+ *
+ *   · With the microphone — the drill's original shape — the mic puts the session into
+ *     `.playAndRecord` when it starts (`modules/expo-pitch-detector/ios/AudioEngine.swift`), which
+ *     is the only reason a click and a live microphone can coexist at all. Callers must hold the
+ *     lease BEFORE `startClicks`, so the category is already right when the context is created,
+ *     and this file must not touch `AudioManager`: setting the category under a running mic is how
+ *     you stop it recording mid-round.
+ *
+ *   · Tapping the screen instead — no lease, nothing listening, and so nobody has configured the
+ *     session at all. Then the clock configures it itself, exactly as `metronomeEngine` does.
+ *
+ * `startClicks` is told which of the two it is rather than guessing, because the answer is the
+ * caller's own input mode and a wrong guess is silent in both directions.
  */
 
 /** Everything inside this window is already on the audio thread. */
@@ -38,6 +47,8 @@ const STOP_FADE = 0.01;
 let ctx: AudioContext | null = null;
 let master: GainNode | null = null;
 let timer: ReturnType<typeof setInterval> | null = null;
+/** Whether this module activated the audio session, and so owes it a deactivation. */
+let ownsSession = false;
 
 // The round, as a segment. `anchorAudioTime` is the AudioContext time of the pattern's
 // downbeat — millisecond zero of the grid — and every click is one multiply-add away from it.
@@ -110,8 +121,29 @@ function pump() {
  * addition, so it cannot drift; across rounds it is re-established, which is the right place
  * for the two clocks to have wandered apart.
  */
-export async function startClicks(clicks: readonly ClickBeat[]): Promise<RoundTiming> {
+export async function startClicks(
+  clicks: readonly ClickBeat[],
+  /** True when no microphone lease is held, so the session is this module's to configure. */
+  withoutMic = false,
+): Promise<RoundTiming> {
   const context = ensureContext();
+
+  if (withoutMic && !ownsSession) {
+    try {
+      // Mixing rather than solo, the same as the metronome: a click that stops a backing track is
+      // a click you cannot practise along to.
+      AudioManager.setAudioSessionOptions({
+        iosCategory: 'playback',
+        iosMode: 'default',
+        iosOptions: ['mixWithOthers'],
+      });
+      await AudioManager.setAudioSessionActivity(true);
+      ownsSession = true;
+    } catch {
+      // A session the system refused still leaves the context worth trying.
+    }
+  }
+
   if (context.state !== 'running') await context.resume();
 
   const out = master;
@@ -172,4 +204,11 @@ export function disposeClock(): void {
   void context?.close().catch(() => {
     // A context the system already tore down is still gone, which is all this asked for.
   });
+
+  if (ownsSession) {
+    ownsSession = false;
+    void AudioManager.setAudioSessionActivity(false).catch(() => {
+      // Same: a session that is already down is down.
+    });
+  }
 }

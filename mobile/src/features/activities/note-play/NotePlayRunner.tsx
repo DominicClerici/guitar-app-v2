@@ -28,7 +28,7 @@ import { useToken } from '@/lib/tokens';
 
 import { ActivityIntro } from '../ActivityIntro';
 import { ActivitySummary } from '../ActivitySummary';
-import { MicGate } from '../MicGate';
+import { MicGate } from '@/components/MicGate';
 import { recordActivityCompletion } from '../record';
 import { RoundCountdown } from '../RoundCountdown';
 
