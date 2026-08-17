@@ -7,6 +7,7 @@ export {
 } from './client';
 export { describeAuthError, type AuthErrorLike } from './errors';
 export { useEnsureGuestSession } from './guest';
+export { useKnownSession, type KnownSession } from './session';
 export {
   SOCIAL_CANCELLED,
   canUseApple,

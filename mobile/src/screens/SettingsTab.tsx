@@ -5,7 +5,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AccountActions, AccountHeader } from '@/features/account';
 import { OnboardingPitch, startOnboarding } from '@/features/onboarding';
 import { PreferenceSettings } from '@/features/settings';
-import { useSession } from '@/lib/auth';
+import { useKnownSession } from '@/lib/auth';
 import { useToken } from '@/lib/tokens';
 
 /**
@@ -16,14 +16,15 @@ import { useToken } from '@/lib/tokens';
  * are stored and synced the same way, and are carried over if they later sign up (§5).
  */
 export function SettingsTab() {
-  const { data: session, isPending } = useSession();
+  const { session, unknown } = useKnownSession();
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const faint = useToken('--ink-faint', '#62666e');
 
   // The first read comes off the device keychain, so this is brief — but rendering the pitch
-  // during it would sell an account to someone who already has one.
-  if (isPending) {
+  // during it would sell an account to someone who already has one. Only the first: every read
+  // after it has an answer to show, including the ones signing out sets off (see `useKnownSession`).
+  if (unknown) {
     return (
       <View className="flex-1 items-center justify-center bg-bg">
         <ActivityIndicator size="small" color={faint} />
