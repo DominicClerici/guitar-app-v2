@@ -18,10 +18,18 @@ APPLE_CLIENT_SECRET=
 GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_SECRET=
 
-# Resend, for email verification and password reset. With either of these unset, links are logged
-# to the console instead of sent, so email + password works locally without a Resend account.
+# Resend, for email verification, password reset, and the sign-in code. With either of these unset,
+# links and codes are logged to the console instead of sent, so email sign-up works locally without
+# a Resend account.
 RESEND_API_KEY=
 EMAIL_FROM=Guitar App <noreply@example.com>
+
+# Twilio, for the phone sign-in code. With any of these unset the code is logged to the console
+# instead of sent, so phone sign-up works locally without a Twilio account. The number is the one
+# messages are sent from, in E.164.
+TWILIO_ACCOUNT_SID=
+TWILIO_AUTH_TOKEN=
+TWILIO_FROM_NUMBER=
 
 # Guest accounts are not configured here — ENABLE_ANONYMOUS_AUTH is not a secret and lives in
 # wrangler.jsonc. Setting it in this file would override that and silently disable them locally.

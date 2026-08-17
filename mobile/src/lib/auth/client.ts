@@ -1,6 +1,11 @@
 import { expoClient } from '@better-auth/expo/client';
 import type { BetterAuthClientPlugin } from 'better-auth';
-import { anonymousClient } from 'better-auth/client/plugins';
+import {
+  anonymousClient,
+  emailOTPClient,
+  inferAdditionalFields,
+  phoneNumberClient,
+} from 'better-auth/client/plugins';
 import { createAuthClient } from 'better-auth/react';
 import * as SecureStore from 'expo-secure-store';
 
@@ -57,7 +62,23 @@ export const authClient = createAuthClient({
   // user, which is what tells the Account tab apart a guest from someone with a real account
   // (BACKEND_PLAN.md §5). Linking a guest to a real account is entirely server-side — the ordinary
   // sign-in and sign-up calls trigger it, so nothing on this side has to ask for it.
-  plugins: [expoPlugin, anonymousClient()],
+  plugins: [
+    expoPlugin,
+    anonymousClient(),
+    // Onboarding's two passwordless paths (BACKEND_PLAN.md §5): `emailOtp.sendVerificationOtp` /
+    // `signIn.emailOtp`, and `phoneNumber.sendOtp` / `phoneNumber.verify`. Both create the account
+    // if there isn't one, and both are matched by the anonymous plugin's linking hook — so a guest
+    // signing in this way takes their rows with them without either side asking for it.
+    emailOTPClient(),
+    phoneNumberClient(),
+    // Mirrors the server's `user.additionalFields` so the session's user carries it. Declared
+    // rather than inferred from the server's `Auth` type: `@guitar/api` is a type-only entrypoint
+    // that deliberately exposes the router alone, and widening it to reach the auth instance would
+    // pull the Worker's whole dependency graph into the device's TypeScript program.
+    inferAdditionalFields({
+      user: { oauthProfile: { type: 'json', required: false } },
+    }),
+  ],
 });
 
 export const { useSession, signIn, signUp, signOut } = authClient;

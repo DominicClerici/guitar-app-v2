@@ -6,6 +6,11 @@ import expo.modules.kotlin.modules.ModuleDefinition
 
 class ExpoPitchDetectorModule : Module() {
   private var capture: AudioCapture? = null
+  // Deliberately still 22050 while iOS runs at 48000: `windowSize` and OnsetDetector's
+  // hop are sample counts, so raising the rate here without doubling both would halve
+  // the analysis window and cost the low strings their NSDF reliability. Raise all
+  // three together, or not at all — and note that a `sampleRate` passed from JS reaches
+  // both platforms, so it would hit exactly that trap.
   private var sampleRate: Int = 22050
   private val windowSize = 2048
   private val hop = 1024

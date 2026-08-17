@@ -18,6 +18,9 @@ final class AudioEngine {
   private var priorCategory: AVAudioSession.Category?
   private var priorMode: AVAudioSession.Mode?
   private var priorOptions: AVAudioSession.CategoryOptions?
+  // The IO buffer duration is process-wide too, and a 5ms buffer means more wakeups for
+  // whoever is playing audio. Restored with the category for the same reason.
+  private var priorIOBufferDuration: TimeInterval?
 
   // Host time -> epoch is anchored once per session, and every later timestamp is
   // derived from the converted-frame count instead. Reading the wall clock per buffer
@@ -37,6 +40,7 @@ final class AudioEngine {
     priorCategory = session.category
     priorMode = session.mode
     priorOptions = session.categoryOptions
+    priorIOBufferDuration = session.preferredIOBufferDuration
     // `.playAndRecord` rather than `.record` so a click track can play while we listen;
     // `.defaultToSpeaker` keeps that click on the speaker instead of the earpiece, and
     // `.mixWithOthers` keeps a backing track alive underneath it.
@@ -48,6 +52,12 @@ final class AudioEngine {
     try session.setCategory(.playAndRecord,
                             mode: .measurement,
                             options: [.defaultToSpeaker, .mixWithOthers])
+    // Without this the session keeps its default IO buffer (~23ms at 48kHz), which is
+    // coarser than the module's 15ms analysis tick — a third of ticks would re-analyze a
+    // window the tap had not refreshed, paying full NSDF cost for a duplicate answer.
+    // A preference, not a guarantee: the OS clamps it to what the hardware allows, and a
+    // refusal only costs us the latency we were trying to save.
+    try? session.setPreferredIOBufferDuration(0.005)
     try session.setActive(true)
 
     mach_timebase_info(&timebase)
@@ -74,7 +84,10 @@ final class AudioEngine {
     self.converterTarget = target
 
     input.removeTap(onBus: 0)
-    input.installTap(onBus: 0, bufferSize: 1024, format: nativeFormat) { [weak self] inBuf, when in
+    // Sized to match the IO buffer requested above rather than the old 1024 (21ms at
+    // 48kHz): the tap can only deliver as often as the hardware fills, so leaving this
+    // large would have kept the coarse cadence the preferred duration is meant to break.
+    input.installTap(onBus: 0, bufferSize: 256, format: nativeFormat) { [weak self] inBuf, when in
       guard let self,
             let converter = self.converter,
             let targetFormat = self.converterTarget else { return }
@@ -138,8 +151,12 @@ final class AudioEngine {
     if let category = priorCategory {
       try? session.setCategory(category, mode: priorMode ?? .default, options: priorOptions ?? [])
     }
+    if let duration = priorIOBufferDuration {
+      try? session.setPreferredIOBufferDuration(duration)
+    }
     priorCategory = nil
     priorMode = nil
     priorOptions = nil
+    priorIOBufferDuration = nil
   }
 }

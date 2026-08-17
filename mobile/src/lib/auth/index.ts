@@ -7,3 +7,11 @@ export {
 } from './client';
 export { describeAuthError, type AuthErrorLike } from './errors';
 export { useEnsureGuestSession } from './guest';
+export {
+  SOCIAL_CANCELLED,
+  canUseApple,
+  canUseGoogle,
+  signInWithApple,
+  signInWithGoogle,
+  type SocialResult,
+} from './social';

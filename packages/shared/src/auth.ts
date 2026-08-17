@@ -35,6 +35,39 @@ export const displayName = z
   .min(1, 'Enter your name')
   .max(64, 'Use at most 64 characters');
 
+/**
+ * Passwordless sign-in (BACKEND_PLAN.md §5). Onboarding sends a code to an address or a number and
+ * takes the code back; the constants are shared so the field that collects six boxes and the plugin
+ * that issues six digits cannot disagree about how many there are.
+ */
+export const OTP_LENGTH = 6;
+/** Ten minutes. Long enough to switch apps, fetch the code, and come back. */
+export const OTP_TTL_SECONDS = 600;
+/** Better Auth's default, restated because the copy for a spent code depends on it. */
+export const OTP_MAX_ATTEMPTS = 3;
+
+/**
+ * E.164: a `+`, a country code that cannot start at zero, and at most fifteen digits all told.
+ * Twilio rejects anything else outright, so this is the one shape a number is ever stored or sent
+ * in — the country prefix and the national number are only ever separate in the input UI.
+ */
+export const E164_PATTERN = /^\+[1-9]\d{1,14}$/;
+
+export function isE164(value: string): boolean {
+  return E164_PATTERN.test(value);
+}
+
+export const phoneNumber = z
+  .string()
+  .trim()
+  .min(1, 'Enter your phone number')
+  .refine(isE164, 'That does not look like a phone number');
+
+export const otpCode = z
+  .string()
+  .trim()
+  .regex(new RegExp(`^\\d{${OTP_LENGTH}}$`), `Enter the ${OTP_LENGTH}-digit code`);
+
 /** Sign-in only checks that something was typed — length rules belong to sign-up. */
 export const signInInput = z.object({
   email,

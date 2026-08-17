@@ -1,5 +1,5 @@
 import { freqToNote, IN_TUNE_CENTS, type NoteInfo } from './freqToNote';
-import { Ema, Median3 } from './smoothing';
+import { Ema } from './smoothing';
 
 export type GateFrame = {
   frequency: number;
@@ -26,12 +26,11 @@ export type GateOptions = {
   emaAlpha?: number;
 };
 
-const DEFAULTS = { rmsFloor: 0.01, holdMs: 300, emaAlpha: 0.4 };
+const DEFAULTS = { rmsFloor: 0.002, holdMs: 300, emaAlpha: 0.5 };
 
 export class TunerGate {
   private readonly rmsFloor: number;
   private readonly holdMs: number;
-  private readonly median = new Median3();
   private readonly ema: Ema;
   private lastMidi: number | null = null;
   private lastRms = 0;
@@ -81,7 +80,11 @@ export class TunerGate {
     this.lastMidi = info.midi;
     this.lastRms = frame.rms;
 
-    const cents = this.ema.push(this.median.push(info.cents));
+    // The EMA is the only smoothing stage: a 3-frame median used to sit in front of it,
+    // but at a 15ms tick it cost 30ms of step response to reject outliers the octave
+    // guard above already catches, and a single bad frame is now short enough for the
+    // EMA to absorb on its own.
+    const cents = this.ema.push(info.cents);
     const note: NoteInfo = { ...info, cents, inTune: Math.abs(cents) < IN_TUNE_CENTS };
 
     this.lastGoodAt = frame.timestamp;
@@ -93,7 +96,6 @@ export class TunerGate {
   }
 
   reset(): void {
-    this.median.reset();
     this.ema.reset();
     this.lastMidi = null;
     this.lastRms = 0;

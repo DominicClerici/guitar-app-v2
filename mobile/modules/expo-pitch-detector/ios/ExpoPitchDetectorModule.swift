@@ -3,8 +3,13 @@ import Accelerate
 import ExpoModulesCore
 
 public class ExpoPitchDetectorModule: Module {
-  private let windowSize = 2048
-  private let defaultSampleRate: Double = 22050
+  // 48kHz is the hardware rate on every modern iPhone, so the converter in AudioEngine
+  // passes samples through instead of resampling. The window is sized in *time*, not
+  // samples: NSDF needs several periods of the lowest note in view, so halving the
+  // window duration to keep 2048 samples would cost the low strings their reliability.
+  // 4096 @ 48kHz = 85ms, which holds ~4.7 periods of the 55Hz `minFreq` floor.
+  private let windowSize = 4096
+  private let defaultSampleRate: Double = 48000
 
   // engine/ring/detector/timer are owned by processingQueue: they are only read or written
   // from it (in tick, startProcessing, and the publish/teardown blocks). The real-time audio
@@ -91,15 +96,19 @@ public class ExpoPitchDetectorModule: Module {
   // Must be called on processingQueue.
   private func startProcessing() {
     let t = DispatchSource.makeTimerSource(queue: processingQueue)
-    t.schedule(deadline: .now() + .milliseconds(30),
-               repeating: .milliseconds(30),
-               leeway: .milliseconds(5))
+    // 15ms rather than 30 because the JS filter chain downstream (Median3, then the EMA
+    // in TunerGate) is measured in *frames*, not milliseconds — halving the period
+    // halves their wall-clock latency too, which is most of what this buys. Leeway
+    // shrinks with it; at 15ms a 5ms slip is a third of the period.
+    t.schedule(deadline: .now() + .milliseconds(15),
+               repeating: .milliseconds(15),
+               leeway: .milliseconds(2))
     t.setEventHandler { [weak self] in self?.tick() }
     self.timer = t
     t.resume()
   }
 
-  // Runs on processingQueue at ~30ms cadence. Always analyzes the freshest window; the timer
+  // Runs on processingQueue at ~15ms cadence. Always analyzes the freshest window; the timer
   // coalesces missed firings, so a slow tick can't pile up a backlog of catch-up work.
   private func tick() {
     // Drained ahead of the pitch guard below: onsets must not wait on the ring filling,

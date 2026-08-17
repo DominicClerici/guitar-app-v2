@@ -11,9 +11,14 @@ import {
 import { AnimatedView } from '@/components/AnimatedView';
 
 import { CENTS_STOPS, MAX_CENTS, centsRamp, useTunerColors, type TunerColors } from './tunerColors';
+import { FRAME_PERIOD_MS } from './tunerEngine';
 
 const ROWS = 60;
 const BAR_HEIGHT = 3;
+// One row per 30ms holds ROWS at a 1.8s window. Decoupled from the native tick so that
+// speeding the detector up buys latency rather than silently halving the visible history.
+const ROW_PERIOD_MS = 30;
+const FRAMES_PER_ROW = Math.max(1, Math.round(ROW_PERIOD_MS / FRAME_PERIOD_MS));
 // Bar width scales with pitch error: 12px in tune, +1px per cent off.
 const MIN_BAR_WIDTH = 12;
 const MAX_BAR_WIDTH = MIN_BAR_WIDTH + MAX_CENTS;
@@ -31,11 +36,19 @@ function SeismographChartImpl({ centsSV, presenceSV, frameSV, width, height }: C
   // One shared array holds the rolling window; NaN marks a row with no reading.
   const samples = useSharedValue<number[]>(new Array(ROWS).fill(NaN));
 
+  // Counts native frames toward the next row. Local to the chart, so the engine's own
+  // counter stays a plain monotonic pulse that every consumer can read its own way.
+  const sinceRow = useSharedValue(0);
+
   // Advance on the engine's frame counter rather than on `centsSV`, so the trace keeps
   // scrolling through a silence that would otherwise hold cents at a constant 0.
   useAnimatedReaction(
     () => frameSV.value,
     () => {
+      sinceRow.value += 1;
+      if (sinceRow.value < FRAMES_PER_ROW) return;
+      sinceRow.value = 0;
+
       const value = presenceSV.value > 0 ? centsSV.value : NaN;
       const next = new Array(ROWS);
       const prev = samples.value;

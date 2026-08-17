@@ -12,8 +12,14 @@ import { type NoteInfo } from './freqToNote';
 import { TunerGate } from './tunerGate';
 
 const TEXT_THROTTLE_MS = 100;
-const HOLD_MS = 300;
-const EMA_ALPHA = 0.4;
+
+/**
+ * The native tick period, mirrored from the module's own timer. Anything downstream that
+ * measures in frames rather than milliseconds — the seismograph's scroll rate — derives
+ * its own constants from this, so changing the native cadence rescales those instead of
+ * silently changing what they display.
+ */
+export const FRAME_PERIOD_MS = 15;
 
 // The mic session is owned by `@/lib/mic`; the tuner is one of its readers. Leasing it
 // is still done through here so consumers of this feature never have to know that.
@@ -36,13 +42,13 @@ export const rmsSV = makeMutable(0);
 // 1 while a note is being read, 0 during silence. Distinguishes "dead on" from
 // "nothing there" — both of which leave `centsSV` at 0.
 export const presenceSV = makeMutable(0);
-// Ticks once per native frame (~30ms). The seismograph advances off this rather than
-// off `centsSV`, so it keeps scrolling through a silence that holds cents at 0.
+// Ticks once per native frame (FRAME_PERIOD_MS). The seismograph advances off this rather
+// than off `centsSV`, so it keeps scrolling through a silence that holds cents at 0.
 export const frameSV = makeMutable(0);
 
 /**
- * One gated reading, delivered at the native frame rate (~30ms) rather than at the
- * snapshot's 100ms throttle. `frequency` is the raw detected pitch after the octave
+ * One gated reading, delivered at the native frame rate (FRAME_PERIOD_MS) rather than at
+ * the snapshot's 100ms throttle. `frequency` is the raw detected pitch after the octave
  * guard — what a measurement should average, as opposed to `note.cents`, which is
  * smoothed for the display.
  */
@@ -54,7 +60,10 @@ export type TunerFrame = {
   timestamp: number;
 };
 
-const gate = new TunerGate({ holdMs: HOLD_MS, emaAlpha: EMA_ALPHA });
+// Constructed bare on purpose: the gate's own DEFAULTS are the single source of truth for
+// the filter constants. Passing them from here shadowed them silently — an `emaAlpha`
+// edited in TunerGate had no effect while this file re-supplied the old value.
+const gate = new TunerGate();
 const listeners = new Set<() => void>();
 const frameListeners = new Set<(frame: TunerFrame) => void>();
 

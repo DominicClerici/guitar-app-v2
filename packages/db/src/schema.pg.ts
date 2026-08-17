@@ -70,6 +70,17 @@ export const user = pgTable('user', {
   emailVerified: boolean('email_verified').notNull().default(false),
   image: text('image'),
   isAnonymous: boolean('is_anonymous').notNull().default(false),
+  phoneNumber: text('phone_number').unique(),
+  phoneNumberVerified: boolean('phone_number_verified').notNull().default(false),
+  /**
+   * What Apple or Google said about this person, kept apart from the columns the app owns.
+   *
+   * `name` is deliberately not filled from a provider (see `mapProfileToUser` in
+   * `packages/api/src/auth.ts`): onboarding asks for a display name whichever way someone signs
+   * in, and a provider's version is a suggestion to prefill that field with, not an answer. Its
+   * own column so the two can never be confused, and JSON so a second hint costs no migration.
+   */
+  oauthProfile: jsonb('oauth_profile').$type<{ name?: string; image?: string }>(),
   ...timestamps(),
 });
 

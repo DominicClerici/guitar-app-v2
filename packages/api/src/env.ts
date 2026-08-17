@@ -29,6 +29,15 @@ export interface Env {
   EMAIL_FROM?: string;
 
   /**
+   * Twilio, for the phone sign-in code. All three or none: with any of them missing the code is
+   * logged rather than sent, which is what lets phone sign-up be tested without an account.
+   */
+  TWILIO_ACCOUNT_SID?: string;
+  TWILIO_AUTH_TOKEN?: string;
+  /** The sending number, in E.164 (`+15551234567`). */
+  TWILIO_FROM_NUMBER?: string;
+
+  /**
    * Better Auth's anonymous plugin (BACKEND_PLAN.md §5), on unless this is exactly `'false'`. It
    * is set in wrangler.jsonc rather than being a secret, and exists as a kill switch: turning it
    * off stops new guest accounts being created without a deploy of the app, and the guest rows

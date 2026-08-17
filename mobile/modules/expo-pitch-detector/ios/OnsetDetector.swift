@@ -13,11 +13,13 @@ struct Onset {
 ///
 /// The hop size is fixed in the *target* sample-rate domain, so it must be fed from the
 /// converter's output rather than from `SampleRing` — the ring only ever holds the
-/// freshest 2048 samples and would silently drop hops between reads.
+/// freshest 4096 samples and would silently drop hops between reads.
 final class OnsetDetector {
-  private let hopSize = 256
+  /// Sized to hold the hop near 10ms across sample-rate changes: the rhythm feature's
+  /// calibration is tuned against that duration, not against a sample count.
+  private let hopSize = 512
   /// `peak` spans the crossing hop and the two after it, which defers emission by
-  /// ~23ms at 22050 Hz. Late with an honest `atMs` beats prompt with a peak measured
+  /// ~21ms at 48000 Hz. Late with an honest `atMs` beats prompt with a peak measured
   /// before the transient finished rising.
   private let peakHops = 3
   /// A consumer that stops draining must not turn into unbounded memory. The oldest
@@ -25,7 +27,7 @@ final class OnsetDetector {
   private let maxQueued = 64
 
   private let lock = NSLock()
-  private var sampleRate: Double = 22050
+  private var sampleRate: Double = 48000
   private var enabled = false
   private var threshold: Float = 0
   private var refractoryMs: Double = 0

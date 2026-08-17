@@ -25,8 +25,11 @@ const TICKS = Array.from({ length: 25 }, (_, i) => i);
 const CENTER = 12;
 
 // Light enough to track a wobbling string, damped enough that a noisy frame doesn't
-// make the needle twitch.
-const SPRING = { damping: 22, stiffness: 190, mass: 0.6 } as const;
+// make the needle twitch. Damping ratio is the number that matters here, not the three
+// constants: at 2*sqrt(stiffness*mass) = 24.5 this sits at 1.02, a hair overdamped, so
+// the needle never overshoots and read a hair sharp before settling back. Keep it just
+// above 1.0 if you retune — the extra stiffness buys speed, the ratio buys the manner.
+const SPRING = { damping: 25, stiffness: 500, mass: 0.3 } as const;
 
 // Cents error at which the centre mark has fully gone dark again.
 const CENTER_LIT_CENTS = 5;

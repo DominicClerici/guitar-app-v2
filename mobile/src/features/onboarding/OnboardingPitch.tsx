@@ -92,7 +92,15 @@ export function OnboardingPitch({
         Or continue with
       </Text>
 
-      <ProviderButtons className="mt-[12px]" />
+      {/* All three open the flow rather than starting a provider from here. The buttons that do
+          the actual signing in are its first step, which is also the only place a provider's
+          failure has somewhere to be shown — a sheet that has already closed has not. */}
+      <ProviderButtons
+        className="mt-[12px]"
+        onGoogle={onCreateAccount}
+        onApple={onCreateAccount}
+        onEmail={onCreateAccount}
+      />
     </View>
   );
 }
