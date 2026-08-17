@@ -1,0 +1,400 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "quiz_minor-caged-ch1-checkpoint",
+    "slug": "minor-caged-ch1-checkpoint",
+    "title": "Checkpoint: Where Minor Comes From",
+    "summary": "Two roads to minor, the note that carries the quality, what decides which note is home, and the one window that answers to two names.",
+    "kind": "checkpoint",
+    "passThresholdPct": 70
+  },
+  "questions": [
+    {
+      "id": "q_minor-caged-ch1-checkpoint.same-seven-notes",
+      "kind": "choice",
+      "prompt": [
+        { "text": "C major and A natural minor hold exactly the same seven notes — " },
+        { "text": "A B C D E F G", "marks": ["code"] },
+        { "text": ", no sharps and no flats either way. So what is different about them?" }
+      ],
+      "options": [
+        { "id": "a", "spans": [{ "text": "Which note the music treats as home." }] },
+        {
+          "id": "b",
+          "spans": [{ "text": "A natural minor lowers three of C major's notes by a semitone." }]
+        },
+        {
+          "id": "c",
+          "spans": [{ "text": "A natural minor sounds three semitones lower than C major." }]
+        },
+        { "id": "d", "spans": [{ "text": "Nothing — they are two names for one scale." }] }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "Nothing is added and nothing is removed: A natural minor is C major read from its sixth degree, so the only thing that changes is which note everything is measured from. Lowering three notes by a semitone is the "
+        },
+        { "text": "other", "marks": ["italic"] },
+        {
+          "text": " derivation, the one between A major and A minor. And the three-semitone distance places A minor's root below C — it does not drop the whole scale in pitch. Calling them one scale under two names is the trap: they share every note and still are not interchangeable."
+        }
+      ]
+    },
+    {
+      "id": "q_minor-caged-ch1-checkpoint.which-question",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "You already play something in A major and you want to know what will actually "
+        },
+        { "text": "change about the sound", "marks": ["bold"] },
+        { "text": " if you take it to A minor. Which derivation answers that?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "The parallel one — keep the root, and " },
+            { "text": "3", "marks": ["code"] },
+            { "text": ", " },
+            { "text": "6", "marks": ["code"] },
+            { "text": " and " },
+            { "text": "7", "marks": ["code"] },
+            { "text": " each drop a semitone." }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "The relative one — the same seven notes, read from a different degree." }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [{ "text": "Either one; they are two ways of saying the same thing." }]
+        },
+        {
+          "id": "d",
+          "spans": [{ "text": "Neither; the difference lives in the chords, not in the scales." }]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "Parallel keeps the home and moves the notes, so it is the one that can tell you what changed about the sound. Relative keeps the notes and moves the home, so it answers where the notes are and has nothing to say about the sound — in its own terms nothing changed at all. Both are true, and keeping straight which question each one answers is the whole job of this chapter."
+        }
+      ]
+    },
+    {
+      "id": "q_minor-caged-ch1-checkpoint.three-that-drop",
+      "kind": "multi-select",
+      "prompt": [
+        {
+          "text": "Going from A major to A natural minor, which scale degrees drop by a semitone? Select every one that does."
+        }
+      ],
+      "options": [
+        { "id": "two", "spans": [{ "text": "2", "marks": ["code"] }] },
+        { "id": "three", "spans": [{ "text": "3", "marks": ["code"] }] },
+        { "id": "four", "spans": [{ "text": "4", "marks": ["code"] }] },
+        { "id": "six", "spans": [{ "text": "6", "marks": ["code"] }] },
+        { "id": "seven", "spans": [{ "text": "7", "marks": ["code"] }] }
+      ],
+      "answerIds": ["three", "six", "seven"],
+      "explanation": [
+        { "text": "A major is " },
+        { "text": "A B C# D E F# G#", "marks": ["code"] },
+        { "text": " and A minor is " },
+        { "text": "A B C D E F G", "marks": ["code"] },
+        { "text": ": " },
+        { "text": "C#", "marks": ["code"] },
+        { "text": " to " },
+        { "text": "C", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "F#", "marks": ["code"] },
+        { "text": " to " },
+        { "text": "F", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "G#", "marks": ["code"] },
+        { "text": " to " },
+        { "text": "G", "marks": ["code"] },
+        { "text": ". In degrees that is " },
+        { "text": "3→b3", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "6→b6", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "7→b7", "marks": ["code"] },
+        { "text": ". The root, the " },
+        { "text": "2", "marks": ["code"] },
+        { "text": ", the " },
+        { "text": "4", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "5", "marks": ["code"] },
+        { "text": " are identical in both." }
+      ]
+    },
+    {
+      "id": "q_minor-caged-ch1-checkpoint.what-makes-it-minor",
+      "kind": "choice",
+      "prompt": [
+        { "text": "A passage stays on " },
+        { "text": "1", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "b3", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "5", "marks": ["code"] },
+        { "text": " and never touches the " },
+        { "text": "b6", "marks": ["code"] },
+        { "text": " or the " },
+        { "text": "b7", "marks": ["code"] },
+        { "text": ". Is it minor?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "Yes — the " },
+            { "text": "b3", "marks": ["code"] },
+            { "text": " is the note that decides it, and the other two are colour." }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "No — all three flattened degrees have to be present before it counts as minor."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "No — without the " },
+            { "text": "b7", "marks": ["code"] },
+            { "text": " it is a major scale with one note borrowed." }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [{ "text": "Only if the root is the lowest note being played." }]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "Those three notes are the minor triad, " },
+        { "text": "1 b3 5", "marks": ["code"] },
+        {
+          "text": ", and the third is the only one of them free to carry the quality — the root names the chord and the fifth is the same either way. The "
+        },
+        { "text": "b6", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "b7", "marks": ["code"] },
+        {
+          "text": " live in the scale around the chord, not in the chord. \"Three flattened degrees\" describes the whole natural minor scale; it is not the definition of minor."
+        }
+      ]
+    },
+    {
+      "id": "q_minor-caged-ch1-checkpoint.what-decides-home",
+      "kind": "choice",
+      "setup": [
+        {
+          "type": "table",
+          "header": [[{ "text": "Loop" }], [{ "text": "What the Key Detector calls it" }]],
+          "rows": [
+            [[{ "text": "C  F  G  C", "marks": ["code"] }], [{ "text": "C major, confidently" }]],
+            [[{ "text": "Am  F  G  Am", "marks": ["code"] }], [{ "text": "A minor, confidently" }]]
+          ]
+        }
+      ],
+      "prompt": [
+        {
+          "text": "Both loops are built from nothing but the seven notes C major and A minor share, and their two middle chords are identical. Why do they come out as different keys?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "Because the chord a loop starts and ends on is one of the things the ear takes its home from."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "Because " },
+            { "text": "Am", "marks": ["code"] },
+            { "text": " and " },
+            { "text": "C", "marks": ["code"] },
+            { "text": " are drawn from different scales." }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "Because a group of notes sounds minor as soon as one minor chord is in it."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [{ "text": "Because the second loop starts on a lower note." }]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "A set of notes has no key of its own. What the bass sits on, what the chords are built from, where a phrase lands and where it stops are what decide it — and here the only difference between the two loops is the chord they open and close on. Both chords come from the same seven notes, so no scale changed. And counting minor chords is not the test either: the second loop holds exactly one, at its two ends, and the two major chords in the middle of it are the same two the first loop uses."
+        }
+      ]
+    },
+    {
+      "id": "q_minor-caged-ch1-checkpoint.the-objection",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "Plenty of good teachers say there is no such thing as minor CAGED: learn the five major forms and re-root them. What is the honest verdict on that?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [{ "text": "Right about the notes, wrong about the chords." }]
+        },
+        {
+          "id": "b",
+          "spans": [{ "text": "Right about the chords, wrong about the notes." }]
+        },
+        {
+          "id": "c",
+          "spans": [{ "text": "Right about both — minor really is only a relabelling." }]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "Wrong about both — A minor's notes are not the same notes as C major's." }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "Every dot of A natural minor is a dot you already have from C major, so if all you want is which notes are available, re-rooting really is enough. It does not hand you a chord. A C major form arranges "
+        },
+        { "text": "C E G", "marks": ["code"] },
+        { "text": " around a " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " root, and to play " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " you need a shape rooted on " },
+        { "text": "A", "marks": ["code"] },
+        { "text": " with a " },
+        { "text": "b3", "marks": ["code"] },
+        { "text": " in it. The note " },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": " sits in both chords; what differs is its job — the root in one, the flat third in the other."
+        }
+      ]
+    },
+    {
+      "id": "q_minor-caged-ch1-checkpoint.two-windows",
+      "kind": "choice",
+      "prompt": [
+        { "text": "Frets " },
+        { "text": "4–8", "marks": ["code"] },
+        { "text": " are one window that answers to two names. Which two?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [{ "text": "C major's G form and A minor's E form." }]
+        },
+        {
+          "id": "b",
+          "spans": [{ "text": "C major's E form and A minor's G form." }]
+        },
+        {
+          "id": "c",
+          "spans": [{ "text": "C major's G form and A minor's G form." }]
+        },
+        {
+          "id": "d",
+          "spans": [{ "text": "C major's A form and A minor's E form." }]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "C major's G form runs " },
+        { "text": "4–8", "marks": ["code"] },
+        { "text": " and A minor's E form runs " },
+        { "text": "4–8", "marks": ["code"] },
+        {
+          "text": " — the same seventeen dots, labelled twice. C major's E form is higher up, at "
+        },
+        { "text": "7–11", "marks": ["code"] },
+        { "text": ", and A minor's G form is lower, at " },
+        { "text": "1–5", "marks": ["code"] },
+        {
+          "text": ". The letters do not match across the two readings, which is exactly why this window is worth knowing."
+        }
+      ]
+    },
+    {
+      "id": "q_minor-caged-ch1-checkpoint.why-only-two",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "C major and A natural minor put identical notes on the neck, and yet only two of their five windows land on the same frets. Why?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "A window is anchored on its own root, and " },
+            { "text": "A", "marks": ["code"] },
+            { "text": " is three semitones below " },
+            { "text": "C", "marks": ["code"] },
+            {
+              "text": ", so each A minor window sits three frets lower than the C major window with the same letter."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "A minor's windows are wider than C major's, so most of them cannot line up."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [{ "text": "The two scales only have two notes in common." }]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "The neck runs out of frets before the remaining three windows can meet." }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "The dots on the neck are identical, but a window is positioned by the root of the chord it belongs to, so the whole ladder shifts three frets. Two spans happen to coincide anyway — "
+        },
+        { "text": "4–8", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "9–13", "marks": ["code"] },
+        {
+          "text": " — because those are the only places where two of C major's windows already sit three frets apart. The other three land where nothing is waiting for them."
+        }
+      ]
+    }
+  ]
+}

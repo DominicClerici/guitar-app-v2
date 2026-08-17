@@ -1,0 +1,548 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_minor-caged-the-raised-seventh",
+    "slug": "minor-caged-the-raised-seventh",
+    "title": "The Note That Pulls Home",
+    "summary": "Raise Em's third one semitone and it becomes E major, adding a note a semitone below home — the single note that names harmonic minor.",
+    "tags": ["caged", "minor"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Play these two in a row before reading on. Same four bars, one chord swapped:"
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "progression-player",
+      "props": {
+        "chords": ["Am", "Dm", "Em", "Am"],
+        "bpm": 84,
+        "caption": "i–iv–v–i — the v as natural minor spells it"
+      }
+    },
+    {
+      "type": "live",
+      "component": "progression-player",
+      "props": {
+        "chords": ["Am", "Dm", "E", "Am"],
+        "bpm": 84,
+        "caption": "i–iv–V–i — the same four bars, with the v turned major"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "In the first loop, "
+        },
+        {
+          "text": "Em",
+          "marks": ["code"]
+        },
+        {
+          "text": " to "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": " — the "
+        },
+        {
+          "text": "v",
+          "marks": ["code"]
+        },
+        {
+          "text": " going to the "
+        },
+        {
+          "text": "i",
+          "marks": ["code"]
+        },
+        {
+          "text": " — arrives without pulling. The second loop is the same four bars, the same three chords either side, and one chord swapped in the middle. It lands differently, and this lesson is the whole reason why."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here's why, in one accounting. "
+        },
+        {
+          "text": "Em",
+          "marks": ["code"]
+        },
+        {
+          "text": " is "
+        },
+        {
+          "text": "E G B",
+          "marks": ["code"]
+        },
+        {
+          "text": ". The note in it nearest home is "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": ", and "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " sits a whole step below "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": " — two frets. Nothing in the chord sits next door to the tonic, so nothing leans on it. A whole step is a comfortable distance to sit at; it doesn't ask to move."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Raise it. "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " → "
+        },
+        {
+          "text": "G#",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": ", one semitone, and "
+        },
+        {
+          "text": "Em",
+          "marks": ["code"]
+        },
+        {
+          "text": " becomes "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": " major — "
+        },
+        {
+          "text": "E G# B",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Now the chord holds a note one fret below "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": ". That note has a name that says what it does: the "
+        },
+        {
+          "text": "leading tone",
+          "marks": ["bold"]
+        },
+        {
+          "text": ". A semitone is a much tighter distance than a whole step, and closing it means landing on "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": "."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        {
+          "text": "Open "
+        },
+        {
+          "text": "Em",
+          "marks": ["code"]
+        },
+        {
+          "text": " is "
+        },
+        {
+          "text": "0 2 2 0 0 0",
+          "marks": ["code"]
+        },
+        {
+          "text": "; open "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": " is "
+        },
+        {
+          "text": "0 2 2 1 0 0",
+          "marks": ["code"]
+        },
+        {
+          "text": ". String 3, fret 0 to fret 1 — one finger. Chapter 2 was five windows of a third moving one fret "
+        },
+        {
+          "text": "down",
+          "marks": ["italic"]
+        },
+        {
+          "text": " to make a chord minor; this is a third moving one fret "
+        },
+        {
+          "text": "up",
+          "marks": ["italic"]
+        },
+        {
+          "text": ", on the chord built on the fifth degree."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That raised seventh has a name of its own, and it is worth bounding in the same breath. A minor with it is "
+        },
+        {
+          "text": "A B C D E F ",
+          "marks": ["code"]
+        },
+        {
+          "text": "G#",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": ", and that scale is called "
+        },
+        {
+          "text": "harmonic minor",
+          "marks": ["bold"]
+        },
+        {
+          "text": " — named for harmony, because harmony is what wanted the leading tone."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "scale-compare",
+      "props": {
+        "root": "A",
+        "scales": ["minor", "harmonic-minor"]
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Natural minor is the reference card, so the one note the second card adds is tinted "
+        },
+        {
+          "text": "amber",
+          "marks": [
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": " — six of the seven notes are identical, and the seventh is the whole story."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The scope, stated plainly rather than hidden: this is one note, not a new system. It appears when a progression wants that pull, and it usually goes away again — the rest of a minor-key song is still built from "
+        },
+        {
+          "text": "the seven chords the key gives you",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-the-chords-of-the-key"
+          }
+        },
+        {
+          "text": ". This pathway names harmonic minor, shows what it adds and stops here. There is a great deal more behind it, and none of it is in this pathway."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Where the "
+        },
+        {
+          "text": "G#",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": "s are, in the window you already own. In frets "
+        },
+        {
+          "text": "4–8",
+          "marks": ["code"]
+        },
+        {
+          "text": " — the "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": " barre's own window — they sit at "
+        },
+        {
+          "text": "6·4",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "4·6",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "1·4",
+          "marks": ["code"]
+        },
+        {
+          "text": ". "
+        },
+        {
+          "text": "6·4",
+          "marks": ["code"]
+        },
+        {
+          "text": " sits one fret below the barre's own root at "
+        },
+        {
+          "text": "6·5",
+          "marks": ["code"]
+        },
+        {
+          "text": ": the leading tone is directly under the shape you're already holding. Play the barre, then "
+        },
+        {
+          "text": "6·4",
+          "marks": ["code"]
+        },
+        {
+          "text": ", then let it fall to "
+        },
+        {
+          "text": "6·5",
+          "marks": ["code"]
+        },
+        {
+          "text": "."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One careful sentence about fret 4, because chapter 4 made a claim there: it found fret 4 carrying exactly one note of A natural minor. Raise the seventh and it carries three — "
+        },
+        {
+          "text": "1·4",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "3·4",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "6·4",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Chapter 4's claim was about natural minor and is still true — this is the scale changing underfoot, not a contradiction."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One honest style note. In classical, jazz and flamenco harmony the major "
+        },
+        {
+          "text": "V",
+          "marks": ["code"]
+        },
+        {
+          "text": " is the norm in a minor key, and the minor "
+        },
+        {
+          "text": "v",
+          "marks": ["code"]
+        },
+        {
+          "text": " is comparatively rare. In a great deal of pop and rock the "
+        },
+        {
+          "text": "VII",
+          "marks": ["code"]
+        },
+        {
+          "text": " — "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " — does the pulling instead, and the "
+        },
+        {
+          "text": "G#",
+          "marks": ["code"]
+        },
+        {
+          "text": " never turns up at all. Both are A minor. Neither is correct — and neither is promised to feel different to you. What's true is only what the notes do."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Practical: "
+        },
+        {
+          "text": "Chord Shapes",
+          "link": {
+            "kind": "screen",
+            "href": "/chord-shapes"
+          }
+        },
+        {
+          "text": " for other voicings of "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": "; hold a sustained "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": " on the "
+        },
+        {
+          "text": "Drone",
+          "link": {
+            "kind": "screen",
+            "href": "/drone"
+          }
+        },
+        {
+          "text": " and play "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": ", then "
+        },
+        {
+          "text": "G#",
+          "marks": ["code"]
+        },
+        {
+          "text": ", against it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That is as far as a note from outside the key goes here. Next comes the opposite move: two keys reached without changing a single note, in "
+        },
+        {
+          "text": "the same hand position",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-switching-relatives"
+          }
+        },
+        {
+          "text": "."
+        }
+      ]
+    }
+  ]
+}

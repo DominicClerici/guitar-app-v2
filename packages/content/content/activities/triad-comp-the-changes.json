@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "act_triad-comp-the-changes",
+    "slug": "triad-comp-the-changes",
+    "title": "Drill: Comp the Changes",
+    "summary": "Four rhythms for the four-chord loop, from quarter notes to a sixteenth-note figure. Mute the strings — nothing here listens to which chord you played."
+  },
+  "activity": {
+    "kind": "rhythm",
+    "rounds": [
+      {
+        "kind": "pattern",
+        "id": "r_triad-comp-the-changes.on-the-beat",
+        "prompt": [
+          {
+            "text": "Rest your fretting hand flat across strings 1, 2 and 3 so nothing rings out — this drill only hears "
+          },
+          { "text": "when", "marks": ["italic"] },
+          {
+            "text": " you strike. Four bars of quarter notes, one bar per chord. Change grip on every downbeat even though the drill can't hear it: that is the part you are actually building."
+          }
+        ],
+        "bpm": 80,
+        "beatsPerBar": 4,
+        "subdivision": 1,
+        "bars": 4,
+        "slots": [
+          "accent",
+          "hit",
+          "hit",
+          "hit",
+          "accent",
+          "hit",
+          "hit",
+          "hit",
+          "accent",
+          "hit",
+          "hit",
+          "hit",
+          "accent",
+          "hit",
+          "hit",
+          "hit"
+        ],
+        "countInBars": 1
+      },
+      {
+        "kind": "pattern",
+        "id": "r_triad-comp-the-changes.two-and-four",
+        "prompt": [
+          {
+            "text": "Strings still muted. Two bars, and only beats 2 and 4 get struck — the backbeat, and nothing else. Everything between them is silence you have to hold, which is the hard part."
+          }
+        ],
+        "bpm": 90,
+        "beatsPerBar": 4,
+        "subdivision": 2,
+        "bars": 2,
+        "slots": [
+          "rest",
+          "rest",
+          "accent",
+          "rest",
+          "rest",
+          "rest",
+          "accent",
+          "rest",
+          "rest",
+          "rest",
+          "accent",
+          "rest",
+          "rest",
+          "rest",
+          "accent",
+          "rest"
+        ],
+        "countInBars": 1
+      },
+      {
+        "kind": "pattern",
+        "id": "r_triad-comp-the-changes.the-offbeat",
+        "prompt": [
+          { "text": "Muted again. Count " },
+          { "text": "one and two and", "marks": ["code"] },
+          { "text": " out loud and strike only on the " },
+          { "text": "ands", "marks": ["bold"] },
+          {
+            "text": ". Four strikes a bar, none of them on a beat. This is where a comping part stops sounding like strumming."
+          }
+        ],
+        "bpm": 90,
+        "beatsPerBar": 4,
+        "subdivision": 2,
+        "bars": 2,
+        "slots": [
+          "rest",
+          "accent",
+          "rest",
+          "hit",
+          "rest",
+          "hit",
+          "rest",
+          "hit",
+          "rest",
+          "accent",
+          "rest",
+          "hit",
+          "rest",
+          "hit",
+          "rest",
+          "hit"
+        ],
+        "countInBars": 2
+      },
+      {
+        "kind": "pattern",
+        "id": "r_triad-comp-the-changes.sixteenths",
+        "prompt": [
+          {
+            "text": "One bar, sixteenth notes, strings muted. The hand keeps moving the whole bar; only some of those strokes land on the strings. Slower than you think you need."
+          }
+        ],
+        "bpm": 84,
+        "beatsPerBar": 4,
+        "subdivision": 4,
+        "bars": 1,
+        "slots": [
+          "accent",
+          "rest",
+          "hit",
+          "hit",
+          "rest",
+          "hit",
+          "rest",
+          "hit",
+          "rest",
+          "rest",
+          "hit",
+          "hit",
+          "rest",
+          "hit",
+          "hit",
+          "rest"
+        ],
+        "countInBars": 2
+      }
+    ]
+  }
+}

@@ -1,0 +1,428 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_modes-two-you-already-play",
+    "slug": "modes-two-you-already-play",
+    "title": "Two of Them Are Already Yours",
+    "summary": "There are seven modes and they're one family — and two of them, Ionian and Aeolian, are the major and natural minor scales you already play under other names.",
+    "tags": ["modes", "theory"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-15"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "There are seven modes, and two of them you already play under other names. Ionian is the major scale. Aeolian is the natural minor scale that CAGED in a Minor Key spent five chapters on."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That pathway deliberately said \"natural minor\" the whole way through and never once used the word Aeolian, so the rename needs saying once: both names point at the same seven notes. This pathway uses the modal name because the whole point of it is that the two scales you already own are members of a family of seven."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "What the app actually prints matters here. The scale cards head themselves "
+        },
+        {
+          "text": "A Major",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "A Natural minor",
+          "marks": ["code"]
+        },
+        {
+          "text": " — not \"A Ionian\", not \"A Aeolian\". The word \"Aeolian\" shows up only in the small line under the natural-minor card, \"The plain minor scale — Aeolian\", and the major card's line reads \"The reference the others are heard against\". So the app prints the plain name and tucks the modal name underneath — it's on screen either way, just not where you'd expect it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here are all seven, on "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": ", in the order they're conventionally listed:"
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [
+          {
+            "text": "Mode"
+          }
+        ],
+        [
+          {
+            "text": "Notes"
+          }
+        ],
+        [
+          {
+            "text": "Characteristic note"
+          }
+        ]
+      ],
+      "rows": [
+        [
+          [
+            {
+              "text": "Ionian"
+            }
+          ],
+          [
+            {
+              "text": "A B C# D E F# G#",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "—"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Dorian"
+            }
+          ],
+          [
+            {
+              "text": "A B C D E F# G",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "6",
+              "marks": [
+                "code",
+                {
+                  "type": "color",
+                  "tone": "amber"
+                }
+              ]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Phrygian"
+            }
+          ],
+          [
+            {
+              "text": "A Bb C D E F G",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "b2",
+              "marks": [
+                "code",
+                {
+                  "type": "color",
+                  "tone": "rose"
+                }
+              ]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Lydian"
+            }
+          ],
+          [
+            {
+              "text": "A B C# D# E F# G#",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "#4",
+              "marks": [
+                "code",
+                {
+                  "type": "color",
+                  "tone": "violet"
+                }
+              ]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Mixolydian"
+            }
+          ],
+          [
+            {
+              "text": "A B C# D E F# G",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "b7",
+              "marks": [
+                "code",
+                {
+                  "type": "color",
+                  "tone": "amber"
+                }
+              ]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Aeolian"
+            }
+          ],
+          [
+            {
+              "text": "A B C D E F G",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "—"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Locrian"
+            }
+          ],
+          [
+            {
+              "text": "A Bb C D Eb F G",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "b5",
+              "marks": [
+                "code",
+                {
+                  "type": "color",
+                  "tone": "rose"
+                }
+              ]
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That is the order the names are conventionally listed in — the order you meet them walking up a major scale, one mode per degree — and it is nothing more than that. It says nothing about how any of these sound. Chapter 2 puts them in an order that does."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Every mode but two carries a "
+        },
+        {
+          "text": "characteristic note",
+          "marks": ["bold"]
+        },
+        {
+          "text": " — the one tone that separates it from its nearest plain relative. The app tints it on the neck, and this pathway tints it the same way in prose: Dorian's "
+        },
+        {
+          "text": "6",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": " and Mixolydian's "
+        },
+        {
+          "text": "b7",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": " are amber; Phrygian's "
+        },
+        {
+          "text": "b2",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "rose"
+            }
+          ]
+        },
+        {
+          "text": " and Locrian's "
+        },
+        {
+          "text": "b5",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "rose"
+            }
+          ]
+        },
+        {
+          "text": " are rose; Lydian's "
+        },
+        {
+          "text": "#4",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "violet"
+            }
+          ]
+        },
+        {
+          "text": " is violet. Ionian and Aeolian have none — not a gap, but a fact about them: they're the two everything else here is measured against."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "And these are not jazz-only material, whatever you have been told. Ionian, Aeolian, Dorian and Mixolydian turn up constantly in rock."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Play the two you own side by side."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "scale-compare",
+      "props": {
+        "root": "A",
+        "scales": ["major", "minor"],
+        "drone": true
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Three chips light amber: "
+        },
+        {
+          "text": "C",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "F",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "G",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": " — exactly the three notes "
+        },
+        {
+          "text": "The Three Notes That Drop",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-the-three-that-drop"
+          }
+        },
+        {
+          "text": " taught you change when A major becomes A minor. Everything else in the set holds still."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Two down, five to go. And the obvious next worry is the one you're probably already having: five more scales to learn on the neck."
+        }
+      ]
+    }
+  ]
+}

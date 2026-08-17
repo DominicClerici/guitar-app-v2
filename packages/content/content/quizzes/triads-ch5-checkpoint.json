@@ -1,0 +1,956 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "quiz_triads-ch5-checkpoint",
+    "slug": "triads-ch5-checkpoint",
+    "title": "Checkpoint: Playing with Triads",
+    "summary": "Voice leading named, the major scale harmonised, crossing between sets, hearing an inversion, and who actually owns the bass note.",
+    "kind": "checkpoint",
+    "passThresholdPct": 70
+  },
+  "questions": [
+    {
+      "id": "q_triads-ch5-checkpoint.what-moves-least",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "You are comping on one string set and the next chord is coming. What does voice leading tell you to do first?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "Look for a note both chords contain and leave that finger exactly where it is — then move everything else the shortest distance it can go."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "Move all three fingers the same distance, so the shape arrives intact."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "Go to the next chord's root position, wherever it sits on the neck."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "Take the inversion that keeps the same note in the bass as the chord before it."
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "It is one idea rather than two rules: the smallest possible move is no move at all, so a shared note — a common tone — gets held, and only then does the rest of the hand travel, as little as it can. Moving all three fingers the same distance is what happens when there is "
+        },
+        {
+          "text": "nothing",
+          "marks": ["italic"]
+        },
+        {
+          "text": " to hold, which is the "
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": " to "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " change in chapter 2's progression, not the general rule. Heading for the next chord's root position wherever it sits is the barre-chord habit this whole chapter is built against."
+        }
+      ]
+    },
+    {
+      "id": "q_triads-ch5-checkpoint.nothing-to-hold",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "Going from "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": " second inversion, "
+        },
+        {
+          "text": "x x x 0 1 0",
+          "marks": ["code"]
+        },
+        {
+          "text": ", to "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " first inversion, "
+        },
+        {
+          "text": "x x x 4 3 3",
+          "marks": ["code"]
+        },
+        {
+          "text": ", all three strings move: "
+        },
+        {
+          "text": "+4 +2 +3",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Both chords contain a "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Why can't that note be held?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "In the "
+            },
+            {
+              "text": "C",
+              "marks": ["code"]
+            },
+            {
+              "text": " grip the shared note is "
+            },
+            {
+              "text": "G3",
+              "marks": ["code"]
+            },
+            {
+              "text": " on string 3; in the "
+            },
+            {
+              "text": "G",
+              "marks": ["code"]
+            },
+            {
+              "text": " grip it is "
+            },
+            {
+              "text": "G4",
+              "marks": ["code"]
+            },
+            {
+              "text": " on string 1. A common tone can only be held if it is the same pitch on the same string."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "They don't really share a note — the "
+            },
+            {
+              "text": "G",
+              "marks": ["code"]
+            },
+            {
+              "text": " in "
+            },
+            {
+              "text": "C",
+              "marks": ["code"]
+            },
+            {
+              "text": " major is a fifth and the "
+            },
+            {
+              "text": "G",
+              "marks": ["code"]
+            },
+            {
+              "text": " in "
+            },
+            {
+              "text": "G",
+              "marks": ["code"]
+            },
+            {
+              "text": " major is a root."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "There is a nearer copy of "
+            },
+            {
+              "text": "G",
+              "marks": ["code"]
+            },
+            {
+              "text": " on strings 1-2-3 that would have kept it; "
+            },
+            {
+              "text": "x x x 4 3 3",
+              "marks": ["code"]
+            },
+            {
+              "text": " is the wrong choice."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "Common tones can only be held between chords a fourth or a fifth apart."
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "The rule is about pitches in voices, not about note names. "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " major's three grips on this set sit at frets 3–4, 7–8 and 10–12, and none of them contains "
+        },
+        {
+          "text": "G3",
+          "marks": ["code"]
+        },
+        {
+          "text": " — so there was no nearer copy that would have kept it. Calling them different notes because one is a fifth and the other a root confuses the degree a note plays in a chord with the note itself; the pitch class is the same either way. When there is genuinely nothing to hold, you slide, and that is the rule reporting honestly rather than failing."
+        }
+      ]
+    },
+    {
+      "id": "q_triads-ch5-checkpoint.why-v-is-uppercase",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "The seven triads of C major are written "
+        },
+        {
+          "text": "I ii iii IV V vi vii°",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Why is "
+        },
+        {
+          "text": "V",
+          "marks": ["code"]
+        },
+        {
+          "text": " uppercase?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "Because the chord built on "
+            },
+            {
+              "text": "G",
+              "marks": ["code"]
+            },
+            {
+              "text": " is major. Case carries quality and nothing else."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "Because it is the most important chord in the key after "
+            },
+            {
+              "text": "I",
+              "marks": ["code"]
+            },
+            {
+              "text": "."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "Because it is the chord that leads back to "
+            },
+            {
+              "text": "I",
+              "marks": ["code"]
+            },
+            {
+              "text": "."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "Because odd-numbered scale degrees are written uppercase."
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "Case tracks what the chord sounds like, never what job it does: "
+        },
+        {
+          "text": "I",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "IV",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "V",
+          "marks": ["code"]
+        },
+        {
+          "text": " are uppercase because those three triads come out major; "
+        },
+        {
+          "text": "ii",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "iii",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "vi",
+          "marks": ["code"]
+        },
+        {
+          "text": " are lowercase because those come out minor. The odd-degrees-are-uppercase idea falls apart on "
+        },
+        {
+          "text": "iii",
+          "marks": ["code"]
+        },
+        {
+          "text": " — an odd degree, written lowercase, because the chord on the third degree of a major scale is minor."
+        }
+      ]
+    },
+    {
+      "id": "q_triads-ch5-checkpoint.which-inversion-fits",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "Harmonised on strings 1-2-3 in second inversion, the whole C major scale fits between the nut and fret 13. Try the same run in root position and it runs off the end of the neck. Why?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "Root position starts at fret 5 and climbs an octave, so the chord on the seventh degree would need fret 16 — past the end of a 15-fret neck. Second inversion starts at the nut because its bass is the fifth, and the fifth of "
+            },
+            {
+              "text": "C",
+              "marks": ["code"]
+            },
+            {
+              "text": " is the open third string."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "Root-position grips are wider, so the run gives out on hand span before it gives out on neck."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "There is no root-position grip for "
+            },
+            {
+              "text": "Bdim",
+              "marks": ["code"]
+            },
+            {
+              "text": " on strings 1-2-3 at all."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "Root position puts the third on top, and the high "
+            },
+            {
+              "text": "e",
+              "marks": ["code"]
+            },
+            {
+              "text": " string can't reach it."
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "Both runs climb an octave; they just start in different places. Second inversion gets to open at fret 0 because the note it puts underneath is "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": ", which is what string 3 is already tuned to. It is not that "
+        },
+        {
+          "text": "Bdim",
+          "marks": ["code"]
+        },
+        {
+          "text": " root position has no grip on this set — it does exist, at "
+        },
+        {
+          "text": "x x x 4 3 1",
+          "marks": ["code"]
+        },
+        {
+          "text": ", perfectly playable; it is only the copy an octave up, at fret 16, that doesn't exist. And the high e string is never asked for the third: in root position the degrees run "
+        },
+        {
+          "text": "1 3 5",
+          "marks": ["code"]
+        },
+        {
+          "text": ", so it is the fifth on top, not the third."
+        }
+      ]
+    },
+    {
+      "id": "q_triads-ch5-checkpoint.grips-change-moves-dont",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "You have been comping "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": " on strings 1-2-3 between frets 3 and 6. You move the whole thing down to strings 3-4-5, same inversions. What changes?"
+        }
+      ],
+      "setup": [
+        {
+          "type": "table",
+          "header": [
+            [
+              {
+                "text": "Set"
+              }
+            ],
+            [
+              {
+                "text": "C",
+                "marks": ["code"]
+              }
+            ],
+            [
+              {
+                "text": "G",
+                "marks": ["code"]
+              }
+            ],
+            [
+              {
+                "text": "Am",
+                "marks": ["code"]
+              }
+            ],
+            [
+              {
+                "text": "F",
+                "marks": ["code"]
+              }
+            ]
+          ],
+          "rows": [
+            [
+              [
+                {
+                  "text": "1-2-3"
+                }
+              ],
+              [
+                {
+                  "text": "x x x 5 5 3",
+                  "marks": ["code"]
+                }
+              ],
+              [
+                {
+                  "text": "x x x 4 3 3",
+                  "marks": ["code"]
+                }
+              ],
+              [
+                {
+                  "text": "x x x 5 5 5",
+                  "marks": ["code"]
+                }
+              ],
+              [
+                {
+                  "text": "x x x 5 6 5",
+                  "marks": ["code"]
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "text": "3-4-5"
+                }
+              ],
+              [
+                {
+                  "text": "x 3 2 0 x x",
+                  "marks": ["code"]
+                }
+              ],
+              [
+                {
+                  "text": "x 2 0 0 x x",
+                  "marks": ["code"]
+                }
+              ],
+              [
+                {
+                  "text": "x 3 2 2 x x",
+                  "marks": ["code"]
+                }
+              ],
+              [
+                {
+                  "text": "x 3 3 2 x x",
+                  "marks": ["code"]
+                }
+              ]
+            ]
+          ]
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "Every grip is different, but the number of frets each string moves on every change is exactly the same."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "Both change — the B string shifts one of the notes, so the movement has to be relearned."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "Neither changes: strings 3-4-5 hold the identical charts, five frets lower."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "The chords change, because a progression played on a lower set is a progression in a lower key."
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "Read it off the table: the charts share nothing, but "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": " → "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " is "
+        },
+        {
+          "text": "−1 −2 0",
+          "marks": ["code"]
+        },
+        {
+          "text": " on both rows, and so is every other change. The "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " → "
+        },
+        {
+          "text": "B",
+          "marks": ["code"]
+        },
+        {
+          "text": " lift belongs to the set, so it applies to both chords in a change equally and cancels when you subtract one grip from the next — which is why the B string never forces you to relearn the movement. It holds as long as the run stays inside one octave copy of the shapes."
+        }
+      ]
+    },
+    {
+      "id": "q_triads-ch5-checkpoint.the-slash-that-isnt",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "A chart prints "
+        },
+        {
+          "text": "C/D",
+          "marks": ["code"]
+        },
+        {
+          "text": ". What is it asking for?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "A "
+            },
+            {
+              "text": "C",
+              "marks": ["code"]
+            },
+            {
+              "text": " major triad with a "
+            },
+            {
+              "text": "D",
+              "marks": ["code"]
+            },
+            {
+              "text": " underneath it. "
+            },
+            {
+              "text": "D",
+              "marks": ["code"]
+            },
+            {
+              "text": " isn't one of that chord's three notes, so this isn't an inversion at all — just a bass note the arranger wants."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "C",
+              "marks": ["code"]
+            },
+            {
+              "text": " major in second inversion."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "Two chords in the bar, "
+            },
+            {
+              "text": "C",
+              "marks": ["code"]
+            },
+            {
+              "text": " then "
+            },
+            {
+              "text": "D",
+              "marks": ["code"]
+            },
+            {
+              "text": "."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "A misprint — the note after a slash is always one of the chord's own notes."
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "Everything left of the slash is the chord; everything right of it is the single lowest note, and nothing more. Sometimes that note is already in the chord — "
+        },
+        {
+          "text": "C/E",
+          "marks": ["code"]
+        },
+        {
+          "text": " is first inversion, "
+        },
+        {
+          "text": "C/G",
+          "marks": ["code"]
+        },
+        {
+          "text": " is second — and sometimes, as here, it isn't. "
+        },
+        {
+          "text": "C/G",
+          "marks": ["code"]
+        },
+        {
+          "text": " would have been the second inversion — the reading this one is most often confused with."
+        }
+      ]
+    },
+    {
+      "id": "q_triads-ch5-checkpoint.hear-the-inversion",
+      "kind": "listen",
+      "audio": {
+        "kind": "notes",
+        "notes": ["G3", "C4", "E4"],
+        "mode": "chord"
+      },
+      "prompt": [
+        {
+          "text": "A C major triad on strings 1-2-3, with nothing sounding underneath it. Which inversion is it?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "Root position."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "First inversion."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "Second inversion."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "There is no way to tell — the three inversions of a chord all sound the same."
+            }
+          ]
+        }
+      ],
+      "answerId": "c",
+      "explanation": [
+        {
+          "text": "The lowest note is "
+        },
+        {
+          "text": "G3",
+          "marks": ["code"]
+        },
+        {
+          "text": " — the fifth — so the fifth is in the bass and this is second inversion, "
+        },
+        {
+          "text": "x x x 0 1 0",
+          "marks": ["code"]
+        },
+        {
+          "text": ". The idea that the three inversions all sound alike is worth ruling out for good: inversion is audible to trained and untrained listeners alike, and it ranks in one direction every time, with tension rising and consonance falling from root position through first to second."
+        }
+      ]
+    },
+    {
+      "id": "q_triads-ch5-checkpoint.over-a-bass-and-in-time",
+      "kind": "multi-select",
+      "prompt": [
+        {
+          "text": "Which of these are true about playing a three-string triad in a band? Select every one that applies."
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "With a bass player in the room, a chart's slash is addressed to them — the chord above it is your job."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "Put a "
+            },
+            {
+              "text": "C",
+              "marks": ["code"]
+            },
+            {
+              "text": " underneath "
+            },
+            {
+              "text": "x x x 0 1 0",
+              "marks": ["code"]
+            },
+            {
+              "text": " and the room hears C major in root position, even though the lowest note of your own grip is the fifth."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "Working the same three strings for a whole passage, rather than roving, is what makes the muting reliable."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "A comping part should land a chord on every beat; the gaps between chords are dead space."
+            }
+          ]
+        },
+        {
+          "id": "e",
+          "spans": [
+            {
+              "text": "Moving a progression down to a lower string set changes which chords you are playing."
+            }
+          ]
+        }
+      ],
+      "answerIds": ["a", "b", "c"],
+      "explanation": [
+        {
+          "text": "Inversion is decided by the lowest sounding note, so once someone else is playing lower than you, the inversion is theirs and what is left to you is register and how little your hand moves. The muting point is the practical reason three-string triads became a rhythm-guitar habit at all. A chord on every beat has it backwards — a comping part is mostly silence with chords placed into it. And moving down a string set confuses register with harmony: a lower set is the same chords, further down."
+        }
+      ]
+    }
+  ]
+}

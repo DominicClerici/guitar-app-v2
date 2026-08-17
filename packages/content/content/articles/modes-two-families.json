@@ -1,0 +1,484 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_modes-two-families",
+    "slug": "modes-two-families",
+    "title": "Two Homes, Two Dials Each",
+    "summary": "The ladder splits into a major-home family and a minor-home family at the point where the 3 flattens — so there are not seven scales to learn, there are two homes with two dials each.",
+    "tags": ["modes", "theory"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-15"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One of those six one-note steps changes more than a colour. Mixolydian to Dorian is where the "
+        },
+        {
+          "text": "3",
+          "marks": ["code"]
+        },
+        {
+          "text": " flattens, and the "
+        },
+        {
+          "text": "3",
+          "marks": ["code"]
+        },
+        {
+          "text": " is the note that decides whether the chord under your hand is major or minor. Everything above that step on the ladder has a major home chord; everything below it has a minor one, until you reach Locrian."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Above the split: Lydian, Ionian, Mixolydian, all with "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": " for a home chord — "
+        },
+        {
+          "text": "A C# E",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "1 3 5",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Below it: Dorian, Aeolian, Phrygian, all with "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": " — "
+        },
+        {
+          "text": "A C E",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "1 b3 5",
+          "marks": ["code"]
+        },
+        {
+          "text": "."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Locrian sits outside both, because its fifth flattens too: its home chord is "
+        },
+        {
+          "text": "Adim",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "A C Eb",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "1 b3 b5",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Whether a chord with no perfect fifth can actually hold down a home is a question a later chapter takes up; for now, just the chord."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [
+          {
+            "text": "Family"
+          }
+        ],
+        [
+          {
+            "text": "Home chord"
+          }
+        ],
+        [
+          {
+            "text": "Home chord's notes"
+          }
+        ],
+        [
+          {
+            "text": "The dials"
+          }
+        ],
+        [
+          {
+            "text": "Bright → dark"
+          }
+        ]
+      ],
+      "rows": [
+        [
+          [
+            {
+              "text": "Major"
+            }
+          ],
+          [
+            {
+              "text": "A",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "A C# E",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "the "
+            },
+            {
+              "text": "4",
+              "marks": ["code"]
+            },
+            {
+              "text": " and the "
+            },
+            {
+              "text": "7",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "Lydian "
+            },
+            {
+              "text": "#4 7",
+              "marks": ["code"]
+            },
+            {
+              "text": " · Ionian "
+            },
+            {
+              "text": "4 7",
+              "marks": ["code"]
+            },
+            {
+              "text": " · Mixolydian "
+            },
+            {
+              "text": "4 b7",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Minor"
+            }
+          ],
+          [
+            {
+              "text": "Am",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "A C E",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "the "
+            },
+            {
+              "text": "6",
+              "marks": ["code"]
+            },
+            {
+              "text": " and the "
+            },
+            {
+              "text": "2",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "Dorian "
+            },
+            {
+              "text": "2 6",
+              "marks": ["code"]
+            },
+            {
+              "text": " · Aeolian "
+            },
+            {
+              "text": "2 b6",
+              "marks": ["code"]
+            },
+            {
+              "text": " · Phrygian "
+            },
+            {
+              "text": "b2 b6",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "—"
+            }
+          ],
+          [
+            {
+              "text": "Adim",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "A C Eb",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "—"
+            }
+          ],
+          [
+            {
+              "text": "Locrian"
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Which turns the whole roster into something much smaller: two homes, two dials each. In the major family, the dials are the "
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": " and the "
+        },
+        {
+          "text": "7",
+          "marks": ["code"]
+        },
+        {
+          "text": " — Lydian raises the first, Ionian sits at the reference setting, Mixolydian lowers the second. In the minor family, the dials are the "
+        },
+        {
+          "text": "6",
+          "marks": ["code"]
+        },
+        {
+          "text": " and the "
+        },
+        {
+          "text": "2",
+          "marks": ["code"]
+        },
+        {
+          "text": " — Dorian raises the first, Aeolian sits at the reference setting, Phrygian lowers the second. Turn one dial and you move exactly one rung on the ladder. Seven scales on "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": " collapse into two chords and four switches — which is the whole reason this pathway stays on one root the whole way through."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Ionian and Aeolian sit at the middle setting of their own family — the reference each family is heard against, which is exactly why neither one carries a characteristic note. There's nothing to point at that isn't also true of the reference itself."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Chapter 3 takes the top row, one mode at a time; chapter 4 takes the bottom row the same way. Neither happens here — this lesson is the map, not the tour."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Hear the two homes back to back."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "progression-player",
+      "props": {
+        "chords": ["A", "Am"],
+        "bpm": 66,
+        "caption": "The two homes — everything above the split, then everything below"
+      }
+    },
+    {
+      "type": "live",
+      "component": "scale-compare",
+      "props": {
+        "root": "A",
+        "scales": ["lydian", "major", "mixolydian"],
+        "drone": true
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The major family: reference is Lydian, so amber marks what the darker two have and Lydian doesn't — "
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": " on the card headed A Major, "
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " on the Mixolydian card."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "scale-compare",
+      "props": {
+        "root": "A",
+        "scales": ["dorian", "minor", "phrygian"],
+        "drone": true
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The minor family: reference is Dorian, so amber is "
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": " on the card headed A Natural minor, "
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "Bb",
+          "marks": ["code"]
+        },
+        {
+          "text": " on the Phrygian card."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Both home chords, "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": ", are sitting in "
+        },
+        {
+          "text": "Chord Shapes",
+          "link": {
+            "kind": "screen",
+            "href": "/chord-shapes"
+          }
+        },
+        {
+          "text": " whenever you want to hold one down and try a dial for yourself."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The families explain why one home is major and the other minor. They don't yet explain why a mode leaning on its home sounds different from one floating above it — for that, you need to see exactly where the half steps fall."
+        }
+      ]
+    }
+  ]
+}

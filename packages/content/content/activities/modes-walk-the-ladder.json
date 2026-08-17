@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "act_modes-walk-the-ladder",
+    "slug": "modes-walk-the-ladder",
+    "title": "Walk the Ladder",
+    "summary": "Find the note that leaves at each step down the brightness ladder, then the four dials the two families turn."
+  },
+  "activity": {
+    "kind": "note-play",
+    "modes": ["easy", "hard"],
+    "board": { "fretFrom": 0, "fretTo": 12 },
+    "rounds": [
+      {
+        "kind": "targets",
+        "id": "r_modes-walk-the-ladder.the-chain",
+        "prompt": [
+          { "text": "One note leaves the set at each step down the ladder: " },
+          { "text": "D#", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "G#", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "C#", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "F#", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "B", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "E", "marks": ["code"] },
+          {
+            "text": ". Play them in that order, starting at string 5, fret 6. Each one is a fourth above the last — the same fret, one string over — until the B string moves it up a fret, and the last one is a fifth up on the top string. Six notes, one chain."
+          }
+        ],
+        "targets": [
+          { "string": 5, "fret": 6 },
+          { "string": 4, "fret": 6 },
+          { "string": 3, "fret": 6 },
+          { "string": 2, "fret": 7 },
+          { "string": 1, "fret": 7 },
+          { "string": 1, "fret": 12 }
+        ],
+        "ordered": true
+      },
+      {
+        "kind": "targets",
+        "id": "r_modes-walk-the-ladder.major-dials",
+        "prompt": [
+          { "text": "The major family's two dials, both settings. The fourth first — " },
+          { "text": "D#", "marks": ["code"] },
+          { "text": " then " },
+          { "text": "D", "marks": ["code"] },
+          { "text": " on string 5 — then the seventh, " },
+          { "text": "G#", "marks": ["code"] },
+          { "text": " then " },
+          { "text": "G", "marks": ["code"] },
+          {
+            "text": " on string 4. Two pairs of neighbouring frets — and the three modes with an A for a home chord are three settings of those two dials."
+          }
+        ],
+        "targets": [
+          { "string": 5, "fret": 6 },
+          { "string": 5, "fret": 5 },
+          { "string": 4, "fret": 6 },
+          { "string": 4, "fret": 5 }
+        ],
+        "ordered": true
+      },
+      {
+        "kind": "targets",
+        "id": "r_modes-walk-the-ladder.minor-dials",
+        "prompt": [
+          { "text": "Now the minor family's two dials. The sixth first — " },
+          { "text": "F#", "marks": ["code"] },
+          { "text": " then " },
+          { "text": "F", "marks": ["code"] },
+          { "text": " on string 4 — then the second, " },
+          { "text": "B", "marks": ["code"] },
+          { "text": " then " },
+          { "text": "Bb", "marks": ["code"] },
+          {
+            "text": " on string 5. Same idea, one family down: two pairs of neighbouring frets, and the three modes with an Am for a home chord are three settings of them."
+          }
+        ],
+        "targets": [
+          { "string": 4, "fret": 4 },
+          { "string": 4, "fret": 3 },
+          { "string": 5, "fret": 2 },
+          { "string": 5, "fret": 1 }
+        ],
+        "ordered": true
+      }
+    ]
+  }
+}

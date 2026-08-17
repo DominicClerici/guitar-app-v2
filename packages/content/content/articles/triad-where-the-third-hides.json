@@ -1,0 +1,180 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_triad-where-the-third-hides",
+    "slug": "triad-where-the-third-hides",
+    "title": "Twelve More Grips You Already Knew",
+    "summary": "Every C minor grip on one page, the rule that builds any of them run backwards to read one instead, and a shortcut for naming a bare three-string barre on sight.",
+    "tags": ["triads", "chords", "fretboard"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Twelve grips, and you have already built every one of them, one string set at a time. This page's only job is to put them side by side, and to show that the rule which builds a grip also reads one back."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "spans": [{ "text": "All twelve, in one table" }]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Set" }],
+        [{ "text": "Root position" }],
+        [{ "text": "First inversion" }],
+        [{ "text": "Second inversion" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "1-2-3" }],
+          [{ "text": "x x x 5 4 3", "marks": ["code"] }],
+          [{ "text": "x x x 8 8 8", "marks": ["code"] }],
+          [{ "text": "x x x 12 13 11", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "2-3-4" }],
+          [{ "text": "x x 10 8 8 x", "marks": ["code"] }],
+          [{ "text": "x x 1 0 1 x", "marks": ["code"] }],
+          [{ "text": "x x 5 5 4 x", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "3-4-5" }],
+          [{ "text": "x 3 1 0 x x", "marks": ["code"] }],
+          [{ "text": "x 6 5 5 x x", "marks": ["code"] }],
+          [{ "text": "x 10 10 8 x x", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "4-5-6" }],
+          [{ "text": "8 6 5 x x x", "marks": ["code"] }],
+          [{ "text": "11 10 10 x x x", "marks": ["code"] }],
+          [{ "text": "3 3 1 x x x", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One idea does all twelve at once, and it runs both directions. Name the inversion, and that tells you which voice is the third: root position, the middle note; first inversion, the bass; second inversion, the top. Drop that voice a fret and you're in minor; raise it a fret and you're back in major. Nothing else in the grip moves. That's the whole reason this chapter needed no new shapes — twelve grips you already had, plus one rule about where the third hides."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Run the rule along a whole neck rather than at one fret, and a set can surprise you about where its cycle starts. On strings 1-2-3, C major's ladder opens at the nut with second inversion. C minor's ladder has no second inversion there at all: it opens on root position, up at fret 3, and the second inversion doesn't arrive until frets 11 to 13 — three bands where major drew four, because the grip that used to sit at the nut had nowhere to go but up."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-ladder",
+      "props": {
+        "root": "C",
+        "quality": "minor",
+        "strings": "1-2-3",
+        "caption": "C minor's inversions on strings 1-2-3 — root position opens the set, not second inversion."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The cycle's order round the set — root, first, second — is exactly what major's is; only where it starts on the neck has moved. That's the relocation from earlier in the chapter, seen along the whole fretboard instead of at a single fret."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Strings 2-3-4 make the calmer case, because nothing there relocated."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-ladder",
+      "props": {
+        "root": "C",
+        "quality": "minor",
+        "strings": "2-3-4",
+        "caption": "C minor's inversions on strings 2-3-4 — same order and starting inversion as major's."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "First inversion opens at the nut, same as major's; second inversion follows, then root position further up, then first inversion again as the set repeats. Two ladders, one contrast: one set's cycle moved house, the other's didn't budge. Both are silent, same as every ladder before them — no play button, just the shape of the climb."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "spans": [{ "text": "Reading a grip instead of building one" }]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "There's a shortcut hiding in one of these shapes. Every minor first inversion on strings 1-2-3 is flush — all three notes at a single fret. That means a small three-string barre anywhere up there is always "
+        },
+        { "text": "some", "marks": ["italic"] },
+        {
+          "text": " minor chord with its third in the bass, and you can name it just by reading the fret."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "x x x 0 0 0", "marks": ["code"] },
+        { "text": " is the top three open strings, " },
+        { "text": "G3 B3 E4", "marks": ["code"] },
+        { "text": " — that's " },
+        { "text": "Em", "marks": ["code"] },
+        { "text": ". " },
+        { "text": "x x x 5 5 5", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": ". " },
+        { "text": "x x x 8 8 8", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "Cm", "marks": ["code"] },
+        {
+          "text": ". Verified for all twelve roots — but it's a claim about this one set only. The flush shape doesn't repeat on 2-3-4, 3-4-5, or 4-5-6, so don't reach for the same trick there."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Any of these twelve will sit alongside every other way to play the same chord in "
+        },
+        { "text": "Chord Shapes", "link": { "kind": "screen", "href": "/chord-shapes" } },
+        {
+          "text": " — a useful check that the grip under your fingers is the chord you think it is."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The third has done the whole chapter's work — one note, dropped a fret, twelve times over. What's left still standing is the fifth. Chapter 4 moves that one instead, into the diminished and augmented triads, and that's next."
+        }
+      ]
+    }
+  ]
+}

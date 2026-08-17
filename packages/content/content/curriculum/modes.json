@@ -1,0 +1,448 @@
+{
+  "id": "path_modes",
+  "slug": "modes",
+  "title": "The Modes, and Why They Sound Like That",
+  "summary": "Seven modes on one root, and the single note that separates each from the next. What actually makes a mode a mode rather than a scale started in an odd place, why each one sounds the way it does — and how to find every one of them in windows you already own.",
+  "tags": ["modes", "theory", "ear", "fretboard"],
+  "difficulty": "advanced",
+  "estimatedMin": 259,
+  "chapters": [
+    {
+      "id": "modes.ch1",
+      "slug": "what-a-mode-is",
+      "title": "What a Mode Actually Is",
+      "summary": "A mode is a set of notes plus a decision about which one is home — and you already play two of them, in windows you already own.",
+      "sections": [
+        {
+          "id": "modes.ch1.what-a-mode-is",
+          "slug": "modes-what-a-mode-is",
+          "title": "What a Mode Actually Is",
+          "kind": "article",
+          "ref": "modes-what-a-mode-is",
+          "estimatedMin": 5
+        },
+        {
+          "id": "modes.ch1.two-you-already-play",
+          "slug": "modes-two-you-already-play",
+          "title": "Two of Them Are Already Yours",
+          "kind": "article",
+          "ref": "modes-two-you-already-play",
+          "estimatedMin": 5
+        },
+        {
+          "id": "modes.ch1.no-new-shapes",
+          "slug": "modes-no-new-shapes",
+          "title": "Nothing New to Learn on the Neck",
+          "kind": "article",
+          "ref": "modes-no-new-shapes",
+          "estimatedMin": 5
+        },
+        {
+          "id": "modes.ch1.hold-the-drone",
+          "slug": "modes-hold-the-drone",
+          "title": "Hold One Note and Listen",
+          "kind": "article",
+          "ref": "modes-hold-the-drone",
+          "estimatedMin": 6
+        },
+        {
+          "id": "modes.ch1.two-roads",
+          "slug": "modes-two-roads",
+          "title": "Two Roads to the Same Mode",
+          "kind": "article",
+          "ref": "modes-two-roads",
+          "estimatedMin": 5
+        },
+        {
+          "id": "modes.ch1.when-the-harmony-moves",
+          "slug": "modes-when-the-harmony-moves",
+          "title": "When the Harmony Moves",
+          "kind": "article",
+          "ref": "modes-when-the-harmony-moves",
+          "estimatedMin": 5
+        },
+        {
+          "id": "modes.ch1.same-notes-new-home",
+          "slug": "modes-same-notes-new-home",
+          "title": "Drill: Same Notes, New Home",
+          "kind": "activity",
+          "ref": "modes-same-notes-new-home",
+          "optional": true,
+          "estimatedMin": 8
+        }
+      ],
+      "checkpoint": {
+        "ref": "modes-ch1-checkpoint",
+        "passThresholdPct": 70,
+        "title": "What a Mode Actually Is"
+      }
+    },
+    {
+      "id": "modes.ch2",
+      "slug": "the-brightness-ladder",
+      "title": "The Brightness Ladder",
+      "summary": "Put the seven in an order that means something: one note between each neighbouring pair, two homes with two dials each, and an honest account of what \"brighter\" is worth.",
+      "sections": [
+        {
+          "id": "modes.ch2.the-ladder",
+          "slug": "modes-the-ladder",
+          "title": "The Seven, in an Order That Means Something",
+          "kind": "article",
+          "ref": "modes-the-ladder",
+          "estimatedMin": 6
+        },
+        {
+          "id": "modes.ch2.one-note-apart",
+          "slug": "modes-one-note-apart",
+          "title": "One Note Between Neighbours",
+          "kind": "article",
+          "ref": "modes-one-note-apart",
+          "estimatedMin": 5
+        },
+        {
+          "id": "modes.ch2.two-families",
+          "slug": "modes-two-families",
+          "title": "Two Homes, Two Dials Each",
+          "kind": "article",
+          "ref": "modes-two-families",
+          "estimatedMin": 5
+        },
+        {
+          "id": "modes.ch2.half-steps",
+          "slug": "modes-half-steps",
+          "title": "Where the Half Steps Fall",
+          "kind": "article",
+          "ref": "modes-half-steps",
+          "estimatedMin": 5
+        },
+        {
+          "id": "modes.ch2.the-tritone",
+          "slug": "modes-the-tritone",
+          "title": "Where the Tritone Lands",
+          "kind": "article",
+          "ref": "modes-the-tritone",
+          "estimatedMin": 5
+        },
+        {
+          "id": "modes.ch2.what-brighter-means",
+          "slug": "modes-what-brighter-means",
+          "title": "What \"Brighter\" Actually Means",
+          "kind": "article",
+          "ref": "modes-what-brighter-means",
+          "estimatedMin": 6
+        },
+        {
+          "id": "modes.ch2.walk-the-ladder",
+          "slug": "modes-walk-the-ladder",
+          "title": "Drill: Walk the Ladder",
+          "kind": "activity",
+          "ref": "modes-walk-the-ladder",
+          "optional": true,
+          "estimatedMin": 8
+        }
+      ],
+      "checkpoint": {
+        "ref": "modes-ch2-checkpoint",
+        "passThresholdPct": 70,
+        "title": "The Brightness Ladder"
+      }
+    },
+    {
+      "id": "modes.ch3",
+      "slug": "the-major-family",
+      "title": "The Major Family",
+      "summary": "Ionian, Lydian and Mixolydian: one home chord, two dials, and one note each to lean on — plus the note in the major scale that has been fighting your chords for years.",
+      "sections": [
+        {
+          "id": "modes.ch3.ionian-sound",
+          "slug": "modes-ionian-sound",
+          "title": "The Reference You Already Own",
+          "kind": "article",
+          "ref": "modes-ionian-sound",
+          "estimatedMin": 5
+        },
+        {
+          "id": "modes.ch3.the-avoid-note",
+          "slug": "modes-the-avoid-note",
+          "title": "The Note That Fights the Chord",
+          "kind": "article",
+          "ref": "modes-the-avoid-note",
+          "estimatedMin": 6
+        },
+        {
+          "id": "modes.ch3.lydian-sound",
+          "slug": "modes-lydian-sound",
+          "title": "Lydian: Major With the Fourth Raised",
+          "kind": "article",
+          "ref": "modes-lydian-sound",
+          "estimatedMin": 6
+        },
+        {
+          "id": "modes.ch3.lydian-neck",
+          "slug": "modes-lydian-neck",
+          "title": "Lydian in a Window You Already Own",
+          "kind": "article",
+          "ref": "modes-lydian-neck",
+          "estimatedMin": 5
+        },
+        {
+          "id": "modes.ch3.mixolydian-sound",
+          "slug": "modes-mixolydian-sound",
+          "title": "Mixolydian: Where the Leading Tone Goes",
+          "kind": "article",
+          "ref": "modes-mixolydian-sound",
+          "estimatedMin": 6
+        },
+        {
+          "id": "modes.ch3.mixolydian-neck",
+          "slug": "modes-mixolydian-neck",
+          "title": "Mixolydian, and What the Window's Edges Do",
+          "kind": "article",
+          "ref": "modes-mixolydian-neck",
+          "estimatedMin": 6
+        },
+        {
+          "id": "modes.ch3.one-home-three-ways",
+          "slug": "modes-one-home-three-ways",
+          "title": "One Home Chord, Three Ways",
+          "kind": "article",
+          "ref": "modes-one-home-three-ways",
+          "estimatedMin": 5
+        },
+        {
+          "id": "modes.ch3.find-the-dial",
+          "slug": "modes-find-the-dial",
+          "title": "Drill: Find the Dial",
+          "kind": "activity",
+          "ref": "modes-find-the-dial",
+          "optional": true,
+          "estimatedMin": 8
+        }
+      ],
+      "checkpoint": {
+        "ref": "modes-ch3-checkpoint",
+        "passThresholdPct": 70,
+        "title": "The Major Family"
+      }
+    },
+    {
+      "id": "modes.ch4",
+      "slug": "the-minor-family",
+      "title": "The Minor Family",
+      "summary": "Dorian, Aeolian and Phrygian: one minor home chord, two dials, and one note each to lean on — plus the move this whole pathway has been building to, made with the drone still sounding.",
+      "sections": [
+        {
+          "id": "modes.ch4.aeolian-sound",
+          "slug": "modes-aeolian-sound",
+          "title": "The Minor You Already Own",
+          "kind": "article",
+          "ref": "modes-aeolian-sound",
+          "estimatedMin": 5
+        },
+        {
+          "id": "modes.ch4.the-ache",
+          "slug": "modes-the-ache",
+          "title": "The Ache Above the Fifth",
+          "kind": "article",
+          "ref": "modes-the-ache",
+          "estimatedMin": 6
+        },
+        {
+          "id": "modes.ch4.dorian-sound",
+          "slug": "modes-dorian-sound",
+          "title": "Dorian: Minor Without the Ache",
+          "kind": "article",
+          "ref": "modes-dorian-sound",
+          "estimatedMin": 5
+        },
+        {
+          "id": "modes.ch4.dorian-neck",
+          "slug": "modes-dorian-neck",
+          "title": "Raise the Sixth With the Drone Still Going",
+          "kind": "article",
+          "ref": "modes-dorian-neck",
+          "estimatedMin": 6
+        },
+        {
+          "id": "modes.ch4.phrygian-sound",
+          "slug": "modes-phrygian-sound",
+          "title": "Phrygian: The Note Above Home",
+          "kind": "article",
+          "ref": "modes-phrygian-sound",
+          "estimatedMin": 6
+        },
+        {
+          "id": "modes.ch4.phrygian-neck",
+          "slug": "modes-phrygian-neck",
+          "title": "Phrygian, and the Dot That Falls Off the Nut",
+          "kind": "article",
+          "ref": "modes-phrygian-neck",
+          "estimatedMin": 5
+        },
+        {
+          "id": "modes.ch4.one-minor-three-ways",
+          "slug": "modes-one-minor-three-ways",
+          "title": "One Minor Home, Three Ways",
+          "kind": "article",
+          "ref": "modes-one-minor-three-ways",
+          "estimatedMin": 5
+        },
+        {
+          "id": "modes.ch4.raise-the-sixth",
+          "slug": "modes-raise-the-sixth",
+          "title": "Drill: Raise the Sixth",
+          "kind": "activity",
+          "ref": "modes-raise-the-sixth",
+          "optional": true,
+          "estimatedMin": 8
+        }
+      ],
+      "checkpoint": {
+        "ref": "modes-ch4-checkpoint",
+        "passThresholdPct": 70,
+        "title": "The Minor Family"
+      }
+    },
+    {
+      "id": "modes.ch5",
+      "slug": "when-a-mode-collapses",
+      "title": "Locrian, and When a Mode Collapses",
+      "summary": "The one mode whose home will not hold — and what that says about what the other six needed all along: a chord you can stand on, harmony that stays still, and clashes that belong to the chord rather than the scale.",
+      "sections": [
+        {
+          "id": "modes.ch5.locrian",
+          "slug": "modes-locrian",
+          "title": "Locrian, and the Home That Won't Hold",
+          "kind": "article",
+          "ref": "modes-locrian",
+          "estimatedMin": 6
+        },
+        {
+          "id": "modes.ch5.what-home-needs",
+          "slug": "modes-what-home-needs",
+          "title": "What a Tonic Actually Needs",
+          "kind": "article",
+          "ref": "modes-what-home-needs",
+          "estimatedMin": 5
+        },
+        {
+          "id": "modes.ch5.avoid-notes-everywhere",
+          "slug": "modes-avoid-notes-everywhere",
+          "title": "The Clash Belongs to the Chord",
+          "kind": "article",
+          "ref": "modes-avoid-notes-everywhere",
+          "estimatedMin": 6
+        },
+        {
+          "id": "modes.ch5.when-a-progression-functions",
+          "slug": "modes-when-a-progression-functions",
+          "title": "When the Progression Starts to Function",
+          "kind": "article",
+          "ref": "modes-when-a-progression-functions",
+          "estimatedMin": 5
+        },
+        {
+          "id": "modes.ch5.a-different-question",
+          "slug": "modes-a-different-question",
+          "title": "Two Questions That Sound Alike",
+          "kind": "article",
+          "ref": "modes-a-different-question",
+          "estimatedMin": 5
+        },
+        {
+          "id": "modes.ch5.the-fifth-that-left",
+          "slug": "modes-the-fifth-that-left",
+          "title": "Drill: The Fifth That Left",
+          "kind": "activity",
+          "ref": "modes-the-fifth-that-left",
+          "optional": true,
+          "estimatedMin": 8
+        }
+      ],
+      "checkpoint": {
+        "ref": "modes-ch5-checkpoint",
+        "passThresholdPct": 70,
+        "title": "Locrian, and When a Mode Collapses"
+      }
+    },
+    {
+      "id": "modes.ch6",
+      "slug": "playing-modally",
+      "title": "Playing Modally",
+      "summary": "The applied chapter: what the second chord of a vamp is actually for, playing over one across the whole neck, landing on the note that makes a mode sound like itself — and writing a two-chord vamp of your own, on any root.",
+      "sections": [
+        {
+          "id": "modes.ch6.the-vamp-rule",
+          "slug": "modes-the-vamp-rule",
+          "title": "What the Second Chord Is For",
+          "kind": "article",
+          "ref": "modes-the-vamp-rule",
+          "estimatedMin": 6
+        },
+        {
+          "id": "modes.ch6.through-the-windows",
+          "slug": "modes-through-the-windows",
+          "title": "Playing It Through the Windows",
+          "kind": "article",
+          "ref": "modes-through-the-windows",
+          "estimatedMin": 6
+        },
+        {
+          "id": "modes.ch6.lean-on-it",
+          "slug": "modes-lean-on-it",
+          "title": "Landing On It, Not Just Including It",
+          "kind": "article",
+          "ref": "modes-lean-on-it",
+          "estimatedMin": 6
+        },
+        {
+          "id": "modes.ch6.name-it-by-ear",
+          "slug": "modes-name-it-by-ear",
+          "title": "Hearing a Mode Cold",
+          "kind": "article",
+          "ref": "modes-name-it-by-ear",
+          "estimatedMin": 6
+        },
+        {
+          "id": "modes.ch6.write-a-vamp",
+          "slug": "modes-write-a-vamp",
+          "title": "Write Your Own Two-Chord Vamp",
+          "kind": "article",
+          "ref": "modes-write-a-vamp",
+          "estimatedMin": 6
+        },
+        {
+          "id": "modes.ch6.seven-homes-one-neck",
+          "slug": "modes-seven-homes-one-neck",
+          "title": "Seven Homes, One Neck",
+          "kind": "article",
+          "ref": "modes-seven-homes-one-neck",
+          "estimatedMin": 6
+        },
+        {
+          "id": "modes.ch6.land-on-the-note",
+          "slug": "modes-land-on-the-note",
+          "title": "Drill: Land on the Note",
+          "kind": "activity",
+          "ref": "modes-land-on-the-note",
+          "optional": true,
+          "estimatedMin": 8
+        },
+        {
+          "id": "modes.ch6.hold-the-vamp",
+          "slug": "modes-hold-the-vamp",
+          "title": "Drill: Hold the Vamp",
+          "kind": "activity",
+          "ref": "modes-hold-the-vamp",
+          "optional": true,
+          "estimatedMin": 8
+        }
+      ],
+      "checkpoint": {
+        "ref": "modes-ch6-checkpoint",
+        "passThresholdPct": 70,
+        "title": "Playing Modally"
+      }
+    }
+  ]
+}

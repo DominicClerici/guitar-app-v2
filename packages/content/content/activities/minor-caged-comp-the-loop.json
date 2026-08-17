@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "act_minor-caged-comp-the-loop",
+    "slug": "minor-caged-comp-the-loop",
+    "title": "Drill: Comp the Loop in Time",
+    "summary": "Four strumming patterns for Am F C G, one chord per bar. Mute the strings — this drill hears when you strike, not what."
+  },
+  "activity": {
+    "kind": "rhythm",
+    "rounds": [
+      {
+        "kind": "pattern",
+        "id": "r_minor-caged-comp-the-loop.one-per-bar",
+        "prompt": [
+          {
+            "text": "Rest your fretting hand flat across the strings so nothing rings out — this drill only hears "
+          },
+          { "text": "when", "marks": ["italic"] },
+          { "text": " you strike. One strum a bar, four bars: " },
+          { "text": "Am", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "F", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "C", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "G", "marks": ["code"] },
+          {
+            "text": ". Change the shape under the mute anyway — that is the part that has to get quick."
+          }
+        ],
+        "bpm": 76,
+        "beatsPerBar": 4,
+        "subdivision": 1,
+        "bars": 4,
+        "slots": [
+          "accent",
+          "rest",
+          "rest",
+          "rest",
+          "accent",
+          "rest",
+          "rest",
+          "rest",
+          "accent",
+          "rest",
+          "rest",
+          "rest",
+          "accent",
+          "rest",
+          "rest",
+          "rest"
+        ],
+        "countInBars": 1
+      },
+      {
+        "kind": "pattern",
+        "id": "r_minor-caged-comp-the-loop.four-to-the-bar",
+        "prompt": [
+          {
+            "text": "Same four bars, same muted strings, four downstrokes to the bar. The accent lands on beat one, which is where the chord changes."
+          }
+        ],
+        "bpm": 84,
+        "beatsPerBar": 4,
+        "subdivision": 1,
+        "bars": 4,
+        "slots": [
+          "accent",
+          "hit",
+          "hit",
+          "hit",
+          "accent",
+          "hit",
+          "hit",
+          "hit",
+          "accent",
+          "hit",
+          "hit",
+          "hit",
+          "accent",
+          "hit",
+          "hit",
+          "hit"
+        ],
+        "countInBars": 1
+      },
+      {
+        "kind": "pattern",
+        "id": "r_minor-caged-comp-the-loop.the-common-pattern",
+        "prompt": [
+          { "text": "Two bars of the pattern most versions of this loop actually use. Count " },
+          { "text": "one and two and three and four and", "marks": ["code"] },
+          { "text": " out loud, then strike on " },
+          { "text": "one", "marks": ["bold"] },
+          { "text": ", on " },
+          { "text": "two", "marks": ["bold"] },
+          { "text": " and the and after it, the and after " },
+          { "text": "three", "marks": ["bold"] },
+          { "text": ", and " },
+          { "text": "four", "marks": ["bold"] },
+          {
+            "text": " with the and after it. Down, down-up, up, down-up — six strikes a bar, and nothing on the and of one or on three. Strings stay muted."
+          }
+        ],
+        "bpm": 80,
+        "beatsPerBar": 4,
+        "subdivision": 2,
+        "bars": 2,
+        "slots": [
+          "accent",
+          "rest",
+          "hit",
+          "hit",
+          "rest",
+          "hit",
+          "hit",
+          "hit",
+          "accent",
+          "rest",
+          "hit",
+          "hit",
+          "rest",
+          "hit",
+          "hit",
+          "hit"
+        ],
+        "countInBars": 1
+      },
+      {
+        "kind": "pattern",
+        "id": "r_minor-caged-comp-the-loop.the-push",
+        "prompt": [
+          {
+            "text": "The hard one, and the one that makes a loop move: the chord change arrives an eighth "
+          },
+          { "text": "early", "marks": ["italic"] },
+          { "text": ". Strike on " },
+          { "text": "one", "marks": ["bold"] },
+          {
+            "text": ", the and of two, the and of three, and the and of four — that last strike is the next chord, landing before its bar does. Two bars of clicks first; use them."
+          }
+        ],
+        "bpm": 84,
+        "beatsPerBar": 4,
+        "subdivision": 2,
+        "bars": 2,
+        "slots": [
+          "accent",
+          "rest",
+          "rest",
+          "hit",
+          "rest",
+          "hit",
+          "rest",
+          "hit",
+          "accent",
+          "rest",
+          "rest",
+          "hit",
+          "rest",
+          "hit",
+          "rest",
+          "hit"
+        ],
+        "countInBars": 2
+      }
+    ]
+  }
+}

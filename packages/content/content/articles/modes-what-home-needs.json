@@ -1,0 +1,364 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_modes-what-home-needs",
+    "slug": "modes-what-home-needs",
+    "title": "What a Tonic Actually Needs",
+    "summary": "A mode needs two things, not one — something outside the scale holding home, and a home that is a chord you can actually stand on.",
+    "tags": ["modes", "theory"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-15"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "A mode, as this pathway defined it back at the start, is a set of notes plus a decision about which one is home — and that decision has to be made audible by something the scale itself can't supply. "
+        },
+        {
+          "text": "What a Mode Actually Is",
+          "link": {
+            "kind": "article",
+            "slug": "modes-what-a-mode-is"
+          }
+        },
+        {
+          "text": " settled that half: something outside the scale, a drone or a bass or a chord that won't move, has to hold the tonic still. That's been true since the first lesson."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "What was never said is what it takes for that held note to actually work as home — and A Locrian is exactly the case that shows the definition was only half finished. Something can hold "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": " underneath, and the mode still won't settle there."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "So there's a second requirement, and it's this lesson's whole point: the home being held has to be a chord you can stand on. What makes a chord stand is a perfect fifth."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The case for that is a chord you have played a thousand times. "
+        },
+        {
+          "text": "A5",
+          "marks": ["code"]
+        },
+        {
+          "text": " is "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": " and nothing else — root and fifth, no third at all. Take away the third and the chord stops being major or minor and still names "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Every rock guitarist has been leaning on that fact for decades. The third is the note you can drop."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Flatten the fifth instead and there's no longer a chord that settles on anything. "
+        },
+        {
+          "text": "Adim",
+          "marks": ["code"]
+        },
+        {
+          "text": " is a real chord with a real name — but the note it's named after isn't the note it settles on, which is what "
+        },
+        {
+          "text": "Locrian, and the Home That Won't Hold",
+          "link": {
+            "kind": "article",
+            "slug": "modes-locrian"
+          }
+        },
+        {
+          "text": " worked through in full."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "progression-player",
+      "props": {
+        "chords": ["A5", "Am", "Adim"],
+        "bpm": 66,
+        "caption": "The fifth alone, then the third added, then the fifth itself gone"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The fifth alone still names "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Add the third and it still names "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": ", now as major or minor. Flatten the fifth and the ground goes out from under it. Of the seven modes in this pathway, Locrian is the only one without a perfect fifth over its own tonic."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "This is the same tritone from another angle. In every other mode the tritone leaves at least one note of the tonic triad alone, and in Ionian and Aeolian it misses the triad altogether. In Locrian both of its notes are inside the triad — the two outer notes of home itself — "
+        },
+        {
+          "text": "Where the Tritone Lands",
+          "link": {
+            "kind": "article",
+            "slug": "modes-the-tritone"
+          }
+        },
+        {
+          "text": " already showed the address; this is what that address costs."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Look back over every vamp this pathway has put in front of you: "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "B",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "Bb",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Every one of them opens on a chord with a perfect fifth in it — a chord you can sit on. That's what let a second chord move against it and leave a single note exposed as the mode's own colour."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "progression-player",
+      "props": {
+        "chords": ["Am", "Adim"],
+        "bpm": 66,
+        "caption": "The same diminished chord, now behaving itself"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "None of this makes "
+        },
+        {
+          "text": "Adim",
+          "marks": ["code"]
+        },
+        {
+          "text": " a bad chord. Play "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": " and then "
+        },
+        {
+          "text": "Adim",
+          "marks": ["code"]
+        },
+        {
+          "text": " and the ear stays right where it was — "
+        },
+        {
+          "text": "Key Detector",
+          "link": {
+            "kind": "screen",
+            "href": "/key-detector"
+          }
+        },
+        {
+          "text": " reads that pair as "
+        },
+        {
+          "text": "Likely",
+          "marks": ["bold"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "A minor",
+          "marks": ["code"]
+        },
+        {
+          "text": ". A diminished triad works perfectly well as colour inside a key something else is holding. What it can't do is hold that key by itself. If you want the chord built up from scratch, "
+        },
+        {
+          "text": "The Note That Hasn't Moved",
+          "link": {
+            "kind": "article",
+            "slug": "triad-the-flat-fifth"
+          }
+        },
+        {
+          "text": " is where the triads pathway drops the fifth as well as the third."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That closes the definition properly, three things instead of one: a set of notes, a tonic asserted from outside the scale, and a home worth asserting in the first place. All three have to hold for a mode to be more than a row of notes on a page. Try it on "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "Adim",
+          "marks": ["code"]
+        },
+        {
+          "text": " yourself — "
+        },
+        {
+          "text": "Chord Shapes",
+          "link": {
+            "kind": "screen",
+            "href": "/chord-shapes"
+          }
+        },
+        {
+          "text": " has both, and "
+        },
+        {
+          "text": "Drone",
+          "link": {
+            "kind": "screen",
+            "href": "/drone"
+          }
+        },
+        {
+          "text": " will hold "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": " underneath either one."
+        }
+      ]
+    }
+  ]
+}

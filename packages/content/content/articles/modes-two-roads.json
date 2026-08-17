@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_modes-two-roads",
+    "slug": "modes-two-roads",
+    "title": "Two Roads to the Same Mode",
+    "summary": "Relative tells you where a mode's notes are; parallel tells you what changed about its sound — and this pathway leads with the one that actually answers what you came for.",
+    "tags": ["modes", "theory"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-15"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Ask where a mode's notes live and you get one answer. Ask what changed about how it sounds and you get a completely different one — and mixing the two up is why \"just think of the parent scale\" leaves so many players able to name a mode's notes and unable to make it sound like anything. This pathway leads with the second question and treats the first as a shortcut worth knowing, not a destination."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Relative", "marks": ["bold"] },
+        {
+          "text": " keeps the notes and moves the home. A Dorian and G major share every letter — "
+        },
+        { "text": "A B C D E F# G", "marks": ["code"] },
+        {
+          "text": " — so if you already know G major's shapes, you already know A Dorian's notes, full stop. On a guitar that's worth a fortune: no new fingers, no new fretboard geography, just a different note to call home. You met this move already, for minor, in "
+        },
+        {
+          "text": "The Same Seven Notes",
+          "link": { "kind": "article", "slug": "minor-caged-the-same-seven-notes" }
+        },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Parallel", "marks": ["bold"] },
+        { "text": " keeps the home and moves the notes. A Dorian is A Aeolian with its " },
+        { "text": "b6", "marks": ["code"] },
+        { "text": " raised to a natural " },
+        { "text": "6", "marks": ["code"] },
+        {
+          "text": " — same root, six shared notes, one moved. You met this move too, for minor, in "
+        },
+        {
+          "text": "The Three Notes That Drop",
+          "link": { "kind": "article", "slug": "minor-caged-the-three-that-drop" }
+        },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The relative road needs one lookup, and here it is for all seven — the major scale each mode on "
+        },
+        { "text": "A", "marks": ["code"] },
+        { "text": " borrows its notes from:" }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [[{ "text": "Mode" }], [{ "text": "Parent major" }]],
+      "rows": [
+        [[{ "text": "Ionian" }], [{ "text": "A", "marks": ["code"] }]],
+        [[{ "text": "Dorian" }], [{ "text": "G", "marks": ["code"] }]],
+        [[{ "text": "Phrygian" }], [{ "text": "F", "marks": ["code"] }]],
+        [[{ "text": "Lydian" }], [{ "text": "E", "marks": ["code"] }]],
+        [[{ "text": "Mixolydian" }], [{ "text": "D", "marks": ["code"] }]],
+        [[{ "text": "Aeolian" }], [{ "text": "C", "marks": ["code"] }]],
+        [[{ "text": "Locrian" }], [{ "text": "Bb", "marks": ["code"] }]]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "A parent scale is worth naming only when you're using the relative road to find notes fast. It's never how you identify a mode by ear, and nothing in that table tells you what any of these seven sound like."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "scale-compare",
+      "props": { "root": "G", "scales": ["major"], "drone": true }
+    },
+    {
+      "type": "live",
+      "component": "scale-compare",
+      "props": { "root": "A", "scales": ["dorian"], "drone": true }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Both cards above hold exactly the same seven pitches — A Dorian's parent really is G major, note for note. Hold "
+        },
+        { "text": "G", "marks": ["code"] },
+        { "text": " underneath the first and it's G major. Hold " },
+        { "text": "A", "marks": ["code"] },
+        {
+          "text": " underneath the second and it's A Dorian. The note list never moved an inch; only what it was measured against did. That G card is the only scale in this chapter built on a root other than "
+        },
+        { "text": "A", "marks": ["code"] },
+        {
+          "text": ", and it's here on purpose — a parent scale can't be demonstrated without playing it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Now put the parent scale down. Use relative to find A Dorian's notes fast if you need to, then stop thinking in G. A player holding \"this is G major\" in their head while trying to sound like A Dorian is aiming at the wrong note, and the shapes will keep pulling the ear back toward G — exactly what "
+        },
+        {
+          "text": "Same Notes, Different Home",
+          "link": { "kind": "article", "slug": "minor-caged-what-decides-home" }
+        },
+        {
+          "text": " warned about for C major and A minor. That's the real reason this pathway stays on one root: seven modes on "
+        },
+        { "text": "A", "marks": ["code"] },
+        {
+          "text": " can be compared note against note, and that comparison is the lesson relative can't give you."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "If you want the relative shortcut drilled further, " },
+        {
+          "text": "Same Hand, Different Key",
+          "link": { "kind": "article", "slug": "minor-caged-switching-relatives" }
+        },
+        { "text": " is a fair detour — same move, just practised across more keys." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "You can now find any mode's notes, and you know which road answers which question. So once actual chords are playing underneath — not just a held root — what keeps the ear at home at all?"
+        }
+      ]
+    }
+  ]
+}

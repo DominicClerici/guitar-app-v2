@@ -47,6 +47,7 @@
   --rose: #e0788f;
   --rose-wash: rgba(224, 120, 143, 0.12); /* rose counterpart to --accent-wash */
   --violet: #9b8cf0;
+  --violet-wash: rgba(155, 140, 240, 0.12); /* violet counterpart to --accent-wash */
 }
 
 /* Bridge the Aurora tokens above into Tailwind colour utilities (bg-surface,
@@ -80,4 +81,5 @@
   --color-rose: var(--rose);
   --color-rose-wash: var(--rose-wash);
   --color-violet: var(--violet);
+  --color-violet-wash: var(--violet-wash);
 }

@@ -1,0 +1,284 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_minor-caged-scale-c-form",
+    "slug": "minor-caged-scale-c-form",
+    "title": "The C Form: The Hole in the Neck",
+    "summary": "Fret 11 carries no note of A natural minor on any string, and the C form is the only one of the five windows that contains it — which is why its seventeen dots split into two clusters.",
+    "tags": ["caged", "minor"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "One reminder, since the shorthand carries the rest of this chapter: " },
+        { "text": "5·3", "marks": ["code"] },
+        { "text": " means string 5, fret 3 — string 1 is the high " },
+        { "text": "e", "marks": ["code"] },
+        { "text": ", string 6 the low " },
+        { "text": "E", "marks": ["code"] },
+        { "text": ". The C form's window is frets " },
+        { "text": "9–13", "marks": ["code"] },
+        {
+          "text": ", the highest of the five and the least friendly to a whole hand — chapter 2 said as much, and this is the same window, filled all the way in. Seventeen dots now sit inside it."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "C",
+        "quality": "minor",
+        "show": "scale",
+        "caption": "The C form's window, natural minor — seventeen dots on frets 9, 10, 12 and 13."
+      }
+    },
+    {
+      "type": "table",
+      "header": [[{ "text": "String" }], [{ "text": "Frets 9–10" }], [{ "text": "Frets 12–13" }]],
+      "rows": [
+        [
+          [{ "text": "6" }],
+          [
+            { "text": "6·10 ", "marks": ["code"] },
+            { "text": "4", "marks": ["code"] },
+            { "text": " (D)" }
+          ],
+          [
+            { "text": "6·12 ", "marks": ["code"] },
+            { "text": "5", "marks": ["code"] },
+            { "text": " (E), " },
+            { "text": "6·13 ", "marks": ["code"] },
+            { "text": "b6", "marks": ["code", { "type": "color", "tone": "amber" }] },
+            { "text": " (F)" }
+          ]
+        ],
+        [
+          [{ "text": "5" }],
+          [
+            { "text": "5·10 ", "marks": ["code"] },
+            { "text": "b7", "marks": ["code"] },
+            { "text": " (G)" }
+          ],
+          [
+            { "text": "5·12 ", "marks": ["code"] },
+            { "text": "1", "marks": ["code"] },
+            { "text": " (A)" }
+          ]
+        ],
+        [
+          [{ "text": "4" }],
+          [
+            { "text": "4·9 ", "marks": ["code"] },
+            { "text": "2", "marks": ["code", { "type": "color", "tone": "amber" }] },
+            { "text": " (B), " },
+            { "text": "4·10 ", "marks": ["code"] },
+            { "text": "b3", "marks": ["code"] },
+            { "text": " (C)" }
+          ],
+          [
+            { "text": "4·12 ", "marks": ["code"] },
+            { "text": "4", "marks": ["code"] },
+            { "text": " (D)" }
+          ]
+        ],
+        [
+          [{ "text": "3" }],
+          [
+            { "text": "3·9 ", "marks": ["code"] },
+            { "text": "5", "marks": ["code"] },
+            { "text": " (E), " },
+            { "text": "3·10 ", "marks": ["code"] },
+            { "text": "b6", "marks": ["code", { "type": "color", "tone": "amber" }] },
+            { "text": " (F)" }
+          ],
+          [
+            { "text": "3·12 ", "marks": ["code"] },
+            { "text": "b7", "marks": ["code"] },
+            { "text": " (G)" }
+          ]
+        ],
+        [
+          [{ "text": "2" }],
+          [
+            { "text": "2·10 ", "marks": ["code"] },
+            { "text": "1", "marks": ["code"] },
+            { "text": " (A)" }
+          ],
+          [
+            { "text": "2·12 ", "marks": ["code"] },
+            { "text": "2", "marks": ["code", { "type": "color", "tone": "amber" }] },
+            { "text": " (B), " },
+            { "text": "2·13 ", "marks": ["code"] },
+            { "text": "b3", "marks": ["code"] },
+            { "text": " (C)" }
+          ]
+        ],
+        [
+          [{ "text": "1" }],
+          [
+            { "text": "1·10 ", "marks": ["code"] },
+            { "text": "4", "marks": ["code"] },
+            { "text": " (D)" }
+          ],
+          [
+            { "text": "1·12 ", "marks": ["code"] },
+            { "text": "5", "marks": ["code"] },
+            { "text": " (E), " },
+            { "text": "1·13 ", "marks": ["code"] },
+            { "text": "b6", "marks": ["code", { "type": "color", "tone": "amber" }] },
+            { "text": " (F)" }
+          ]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Chapter 3 already noticed fret 11 sits empty here and left it as a property of a five-note scale — as if a fuller scale might fill it in. It doesn't. Checked string by string, no string carries a note of A natural minor at fret 11 at all. With all seven degrees now in play, the emptiness is a genuine hole in the neck, not a gap in a five-note shape. It's the only fret in the first fifteen like that, and the C form is the only one of the five windows that contains it."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "spans": [
+        {
+          "text": "Fret 11 carries no note of this scale on any string. This window doesn't settle under one hand because the neck itself has a gap in it — not because your reach is short."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The two clusters are fuller than they were, and unevenly so. Frets 9–10 now hold eight dots, frets 12–13 hold nine. Chapter 3 found a root in each — "
+        },
+        { "text": "2·10", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "5·12", "marks": ["code"] },
+        { "text": " — and that hasn't moved. What's changed is that each cluster now carries a " },
+        { "text": "b6", "marks": ["code"] },
+        { "text": " too: " },
+        { "text": "3·10", "marks": ["code"] },
+        { "text": " in the lower one, " },
+        { "text": "6·13", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "1·13", "marks": ["code"] },
+        { "text": " in the upper." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "And now each cluster is complete on its own. Count the degrees in frets 9–10 and you get all seven; count them in frets 12–13 and you get all seven again. Neither is a fragment waiting for the other. Play the lower one and you have the whole scale in two frets, with a "
+        },
+        { "text": "b6", "marks": ["code"] },
+        {
+          "text": " in it; shift past the dead fret and you have the whole scale again. The hole at fret 11 splits this window into two small, complete positions rather than leaving either one thin."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "What's new since chapter 3: " },
+        { "text": "6·13", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "b6", "marks": ["code"] },
+        { "text": "), " },
+        { "text": "4·9", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "2", "marks": ["code"] },
+        { "text": "), " },
+        { "text": "3·10", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "b6", "marks": ["code"] },
+        { "text": "), " },
+        { "text": "2·12", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "2", "marks": ["code"] },
+        { "text": "), and " },
+        { "text": "1·13", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "b6", "marks": ["code"] },
+        { "text": "). Three of the five are " },
+        { "text": "b6", "marks": ["code"] },
+        { "text": "s — three, as many as any window holds. Where they sit against the " },
+        { "text": "5", "marks": ["code"] },
+        { "text": "s: " },
+        { "text": "3·10", "marks": ["code"] },
+        { "text": " is one fret above " },
+        { "text": "3·9", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "6·13", "marks": ["code"] },
+        { "text": " one above " },
+        { "text": "6·12", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "1·13", "marks": ["code"] },
+        { "text": " one above " },
+        { "text": "1·12", "marks": ["code"] },
+        { "text": " — three identical one-fret pairs, all " },
+        { "text": "5", "marks": ["code"] },
+        { "text": "→" },
+        { "text": "b6", "marks": ["code"] },
+        { "text": ", on strings 3, 6 and 1." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The short string is string 5, carrying only " },
+        { "text": "5·10", "marks": ["code"] },
+        { "text": " " },
+        { "text": "b7", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "5·12", "marks": ["code"] },
+        { "text": " " },
+        { "text": "1", "marks": ["code"] },
+        { "text": " — the one string here that gains nothing at this layer." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "One of those dots is worth carrying forward. " },
+        { "text": "3·10", "marks": ["code"] },
+        { "text": " is a " },
+        { "text": "b6", "marks": ["code"] },
+        {
+          "text": ", and it turns out to be the reason fret 10 behaves differently from the fret-5 row chapter 3 made so much of. The closer is where that gets explained."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Chapter 2 lit seven dots in this window, chapter 3 lit twelve — see " },
+        {
+          "text": "the pentatonic C form",
+          "link": { "kind": "article", "slug": "minor-caged-pentatonic-c-form" }
+        },
+        {
+          "text": " for that stage — and this lights seventeen. Same window every time, and page through it yourself in the "
+        },
+        { "text": "Scale Visualizer", "link": { "kind": "screen", "href": "/scale-visualizer" } },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Next: " },
+        { "text": "the A form", "link": { "kind": "article", "slug": "minor-caged-scale-a-form" } },
+        { "text": ", the opposite of this window in almost every respect." }
+      ]
+    }
+  ]
+}

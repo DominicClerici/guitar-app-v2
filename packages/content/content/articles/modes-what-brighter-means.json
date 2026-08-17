@@ -1,0 +1,176 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_modes-what-brighter-means",
+    "slug": "modes-what-brighter-means",
+    "title": "What \"Brighter\" Actually Means",
+    "summary": "The ladder is an exact structural fact, not a perceptual measurement — and where the two have been compared, the ordering mostly holds, with one repeated exception: Lydian.",
+    "tags": ["modes", "ear", "theory"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-15"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "\"Each step down the ladder flattens one more degree\" is exact and checkable — you spent this whole chapter checking it. \"Each step down sounds darker\" is a different kind of sentence entirely, and it's the one every guitar site states as if it were the first kind. It's time to pull those two claims apart, because they don't always agree, and where they disagree is genuinely interesting."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "It has actually been measured. David Temperley and Daphne Tan",
+          "link": { "kind": "footnote", "id": "fn-temperley-tan-caveats" }
+        },
+        { "text": " (2013) played listeners the " },
+        { "text": "same melody", "marks": ["italic"] },
+        { "text": " in two different modes — always on a tonic of " },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": ", with only the key signature changed — and asked a binary question: which one sounds happier? Locrian was left out of the study, for reasons chapter 5 takes up, so six modes went in and 15 pairs came out."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The result, plainly: the ordering broadly holds. Here's the proportion of trials each mode was judged the happier of its pair."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [[{ "text": "Mode" }], [{ "text": "Judged happier" }]],
+      "rows": [
+        [[{ "text": "Ionian" }], [{ "text": ".83", "marks": ["code"] }]],
+        [[{ "text": "Mixolydian" }], [{ "text": ".64", "marks": ["code"] }]],
+        [[{ "text": "Lydian" }], [{ "text": ".58", "marks": ["code"] }]],
+        [[{ "text": "Dorian" }], [{ "text": ".40", "marks": ["code"] }]],
+        [[{ "text": "Aeolian" }], [{ "text": ".34", "marks": ["code"] }]],
+        [[{ "text": "Phrygian" }], [{ "text": ".21", "marks": ["code"] }]]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Now the anomaly, which is the actual lesson. Lydian is the "
+        },
+        { "text": "brightest mode on the ladder", "marks": ["bold"] },
+        { "text": " — every degree it has is as raised as a degree gets. And it lands " },
+        { "text": "third of six", "marks": ["bold"] },
+        {
+          "text": " in judged happiness, between Mixolydian and Dorian, not first and not second. It isn't even significantly different from either neighbour."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Twelve of the fifteen pairs did come out significantly different — most of the ladder behaves exactly as you'd expect. The three that didn't: Lydian/Mixolydian, Lydian/Dorian, and Dorian/Aeolian. Two of those three involve Lydian, which is itself part of the evidence that something is off about its position. (A pair not reaching significance isn't a \"hard\" comparison for a listener — it just means the study didn't find a reliable difference there. Read it as data, not difficulty.)"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "And it replicates. Ramos, Bueno and Bigand (2011) — a different lab, a different population — found the same shape: Ionian rated significantly higher than Lydian, and Lydian not distinguishable from Mixolydian. Two independent studies landing on the same anomaly is the genuinely interesting result here, and it's the honest correction to the internet's \"Lydian is the brightest and happiest mode\" — it's the brightest on the ladder. It is not the happiest in anyone's data."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "scale-compare",
+      "props": { "root": "A", "scales": ["lydian", "major"], "drone": true }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The ladder says the first card is brighter. Listeners in two labs put the second one ahead. Play both against the drone and decide for yourself — you're now doing something the internet's version of this ladder doesn't let you do, which is check it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Why the ordering runs this way is genuinely unsettled. Temperley and Tan point to a mix of two things: familiarity — happiness falls off with distance from Ionian, by far the most common mode — and \"sharpness\", where a mode's tonic sits on the line of fifths. Familiarity alone would put Mixolydian above Lydian, which it does, but for almost half their listeners the reverse held. Neither explanation is settled; the pattern in the numbers is solid, the cause behind it is not."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One more thing worth naming honestly. \"Lydian is wonder\", \"Phrygian is Spanish\" — moods like these are real and worth knowing, but they're "
+        },
+        { "text": "repertoire associations", "marks": ["bold"] },
+        {
+          "text": ", not psychoacoustic findings. Phrygian sounds Spanish because flamenco is built on it, not because a "
+        },
+        { "text": "b2", "marks": ["code", { "type": "color", "tone": "rose" }] },
+        {
+          "text": " is inherently Spanish. Chapters 3 and 4 will use associations like these as they go — true and useful framed as \"this is where you've heard it\", false framed as \"this is what the interval does\"."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        {
+          "text": "The ladder is a good map of the notes and a rough map of the feeling. Trust it for the first. Hold it loosely for the second."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That's chapter 2. You can put all seven in order — Lydian, Ionian, Mixolydian, Dorian, Aeolian, Phrygian, Locrian — and name the single note that separates any two neighbours: "
+        },
+        { "text": "D", "marks": ["code"] },
+        { "text": " between Lydian and Ionian, " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " between Ionian and Mixolydian, " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " between Mixolydian and Dorian, " },
+        { "text": "F", "marks": ["code"] },
+        { "text": " between Dorian and Aeolian, " },
+        { "text": "Bb", "marks": ["code"] },
+        { "text": " between Aeolian and Phrygian, " },
+        { "text": "Eb", "marks": ["code"] },
+        {
+          "text": " between Phrygian and Locrian. Lydian, Ionian and Mixolydian have a major home chord; Dorian, Aeolian and Phrygian have a minor one; Locrian's is "
+        },
+        { "text": "Adim", "marks": ["code"] },
+        { "text": ", on its own." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Chapter 3 takes the top row — Ionian, Lydian and Mixolydian — one mode at a time, and starts spending everything this chapter built: which note each one leans on, and what it actually does to your ear when you lean on it too."
+        }
+      ]
+    }
+  ],
+  "footnotes": [
+    {
+      "id": "fn-temperley-tan-caveats",
+      "spans": [
+        {
+          "text": "17 nonmusician undergraduates at one university, using a binary forced choice between unaccompanied, single-line melodies, all on a tonic of C. It's a careful study and a small one. Tempo was not a variable here — the tempo-crossed replication is a separate study, Ramos, Bueno & Bigand (2011)."
+        }
+      ]
+    }
+  ]
+}

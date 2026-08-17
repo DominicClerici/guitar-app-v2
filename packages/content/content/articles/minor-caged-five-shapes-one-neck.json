@@ -1,0 +1,305 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_minor-caged-five-shapes-one-neck",
+    "slug": "minor-caged-five-shapes-one-neck",
+    "title": "Five Shapes, One Neck",
+    "summary": "Every overlap between neighbouring A-minor windows holds a complete 1 b3 5 on three adjacent strings, so there is nowhere on the neck where an Am chord isn't under your hand.",
+    "tags": ["caged", "minor"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [{ "text": "Five forms, five windows. Here they are side by side." }]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Form" }],
+        [{ "text": "Window" }],
+        [{ "text": "Grip" }],
+        [{ "text": "Degrees low → high" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "C" }],
+          [{ "text": "9–13", "marks": ["code"] }],
+          [{ "text": "x 12 10 9 10 x", "marks": ["code"] }],
+          [{ "text": "x 1 b3 5 1 x", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "A" }],
+          [{ "text": "0–3", "marks": ["code"] }],
+          [{ "text": "x 0 2 2 1 0", "marks": ["code"] }],
+          [{ "text": "x 1 5 1 b3 5", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "G" }],
+          [{ "text": "1–5", "marks": ["code"] }],
+          [{ "text": "5 3 2 2 1 5", "marks": ["code"] }],
+          [{ "text": "1 b3 5 1 b3 1", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "E" }],
+          [{ "text": "4–8", "marks": ["code"] }],
+          [{ "text": "5 7 7 5 5 5", "marks": ["code"] }],
+          [{ "text": "1 5 1 b3 5 1", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "D" }],
+          [{ "text": "6–10", "marks": ["code"] }],
+          [{ "text": "x x 7 9 10 8", "marks": ["code"] }],
+          [{ "text": "x x 1 5 1 b3", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The same five, with where their roots sit and how you'd actually reach for them."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Form" }],
+        [{ "text": "Roots on strings" }],
+        [{ "text": "How it's actually played" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "C" }],
+          [{ "text": "5, 2" }],
+          [{ "text": "Fragments — the four-string grip, or strings 4-3-2" }]
+        ],
+        [
+          [{ "text": "A" }],
+          [{ "text": "5, 3" }],
+          [
+            { "text": "Whole — the open " },
+            { "text": "Am", "marks": ["code"] },
+            { "text": ", or the cleanest barre of the five elsewhere" }
+          ]
+        ],
+        [
+          [{ "text": "G" }],
+          [{ "text": "6, 3, 1" }],
+          [{ "text": "Never whole — three separate three-string pieces" }]
+        ],
+        [
+          [{ "text": "E" }],
+          [{ "text": "6, 4, 1" }],
+          [{ "text": "Whole — the barre at fret 5, the most-played minor shape on the instrument" }]
+        ],
+        [
+          [{ "text": "D" }],
+          [{ "text": "4, 2" }],
+          [{ "text": "Four strings from the start, or the top three" }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Look at the pattern in that second table. Two forms — A and E — you can play start to finish, barre and all: the open "
+        },
+        { "text": "Am", "marks": ["code"] },
+        {
+          "text": " and the fret-5 barre, the two the opener handed you for free. The other three live in pieces, and every fragment worth reaching for out of them has already turned up in this chapter — none of it is new here."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One more table, and it's the one this whole chapter has been building toward: where the "
+        },
+        { "text": "b3", "marks": ["code"] },
+        {
+          "text": " sits inside each grip — the note you can put a finger on, without counting, to know a shape is minor rather than major."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Form" }],
+        [{ "text": "The " }, { "text": "b3", "marks": ["code"] }, { "text": " in the grip" }]
+      ],
+      "rows": [
+        [[{ "text": "C" }], [{ "text": "string 4, fret 10" }]],
+        [[{ "text": "A" }], [{ "text": "string 2, fret 1" }]],
+        [[{ "text": "G" }], [{ "text": "string 5, fret 3 and string 2, fret 1" }]],
+        [[{ "text": "E" }], [{ "text": "string 3, fret 5" }]],
+        [[{ "text": "D" }], [{ "text": "string 1, fret 8" }]]
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "spans": [{ "text": "One Neck, No Gaps" }]
+    },
+    {
+      "type": "paragraph",
+      "spans": [{ "text": "Now the whole neck at once, in roots. Two ladders, back to back." }]
+    },
+    {
+      "type": "live",
+      "component": "caged-ladder",
+      "props": { "root": "A" }
+    },
+    {
+      "type": "live",
+      "component": "caged-ladder",
+      "props": { "root": "A", "quality": "minor" }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Look closely and the two are identical. Same five bands, same frets, same roots lit — the only thing that changes is the caption. That's not the component being lazy; it's "
+        },
+        {
+          "text": "the window stays, the third moves",
+          "link": { "kind": "article", "slug": "minor-caged-the-window-stays-put" }
+        },
+        {
+          "text": ", made in a single picture instead of in words. A window is anchored on the root, and the root never moved when the quality did. (One reminder, since it's easy to go looking: the ladder marks roots only. There's no "
+        },
+        { "text": "b3", "marks": ["code"] },
+        { "text": " to find on it — the tables above are where that lives.)" }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Now look at where neighbouring windows overlap, because that's where the last piece falls into place."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Seam" }],
+        [{ "text": "Frets" }],
+        [{ "text": "Strings · frets" }],
+        [{ "text": "Degrees" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "A ∩ G" }],
+          [{ "text": "1–3", "marks": ["code"] }],
+          [{ "text": "4-3-2 · 2 2 1", "marks": ["code"] }],
+          [{ "text": "5 1 b3", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "G ∩ E" }],
+          [{ "text": "4–5", "marks": ["code"] }],
+          [{ "text": "3-2-1 · 5 5 5", "marks": ["code"] }],
+          [{ "text": "b3 5 1", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "E ∩ D" }],
+          [{ "text": "6–8", "marks": ["code"] }],
+          [{ "text": "6-5-4 · 8 7 7", "marks": ["code"] }],
+          [{ "text": "b3 5 1", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "D ∩ C" }],
+          [{ "text": "9–10", "marks": ["code"] }],
+          [{ "text": "4-3-2 · 10 9 10", "marks": ["code"] }],
+          [{ "text": "b3 5 1", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Every one of those four seams holds a complete "
+        },
+        { "text": "1 b3 5", "marks": ["code"] },
+        {
+          "text": " on three adjacent strings — nothing to stretch for, in any of them. Two you have already met: the first is the fretted part of the open "
+        },
+        { "text": "Am", "marks": ["code"] },
+        { "text": ", and the second is the one-finger grip at fret " },
+        { "text": "5", "marks": ["code"] },
+        {
+          "text": ". No two of the four are quite the same fret pattern, though — three of them cross the "
+        },
+        { "text": "G → B", "marks": ["code"] },
+        {
+          "text": " break, where standard tuning's one major third shifts everything a fret, and they don't all sit in the same inversion either. What they share is the part that matters: three strings, a whole chord, no stretch."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "info",
+      "spans": [
+        {
+          "text": "You are never between forms. Wherever your hand lands on this neck, the notes under it belong to two windows at once, and there's a whole "
+        },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " sitting right there." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Everything repeats at fret 12, the same as it does in major. The A form comes back as a barre there — "
+        },
+        { "text": "x 12 14 14 13 12", "marks": ["code"] },
+        { "text": " — and the ladder above wraps exactly the way it looks like it's about to." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Play that barre at fret 12 and it's the same "
+        },
+        { "text": "Am", "marks": ["code"] },
+        {
+          "text": " you played open, an octave up, the same finger doing the same job on the same string. Nothing about the shape or the reasoning changes; the neck just runs out of new territory and starts giving you the first five windows again."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        {
+          "text": "The same five windows carry the next layer too. Chapter 3 adds the "
+        },
+        { "text": "4", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "b7", "marks": ["code"] },
+        { "text": " to each one — no new shape is ever asked for." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Page through all five windows with root " },
+        { "text": "A", "marks": ["code"] },
+        { "text": " in the " },
+        { "text": "Scale Visualizer", "link": { "kind": "screen", "href": "/scale-visualizer" } },
+        { "text": ", or check any fragment from this chapter against " },
+        { "text": "Chord Detector", "link": { "kind": "screen", "href": "/chord-detector" } },
+        { "text": " and confirm what comes out is still " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": "." }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,307 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_minor-caged-what-the-third-was-worth",
+    "slug": "minor-caged-what-the-third-was-worth",
+    "title": "What the Third Was Worth",
+    "summary": "Five chapters never asked for a sixth shape, because the whole pathway was five windows already on the neck with one note in each of them lowered a fret.",
+    "tags": ["caged", "minor"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Five windows. That was the inventory from chapter 2, and it never grew. Chapter 2 put "
+        },
+        {
+          "text": "1 b3 5",
+          "marks": ["code"]
+        },
+        {
+          "text": " in them; chapter 3 added the "
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": " and the "
+        },
+        {
+          "text": "b7",
+          "marks": ["code"]
+        },
+        {
+          "text": "; chapter 4 added the "
+        },
+        {
+          "text": "2",
+          "marks": ["code"]
+        },
+        {
+          "text": " and the "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": "; this chapter turned them into chords. No sixth shape was ever asked for, and chapters 2, 3 and 4 each promised exactly that in turn. Five hand positions, filled in three times over and then read as chords, is the entire inventory this pathway ever drew on."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "There is a deeper accounting, and it is the one this lesson is named for. The five windows were not new either: they are the same five the caged-fretboard pathway drew, moved three frets and re-rooted, and every dot in them was already on the neck. What the whole pathway actually cost was one note — the "
+        },
+        {
+          "text": "b3",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Lower a third by a fret and a chord changes quality; do it in five windows and a second reading of the whole neck opens up. "
+        },
+        {
+          "text": "The Note That Makes It Minor",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-the-flat-third"
+          }
+        },
+        {
+          "text": " gave that third its job in print, back in chapter 1. This is the invoice."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "info",
+      "spans": [
+        {
+          "text": "The whole pathway cost one note. Everything else was already on the neck."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "What you can do now, laid out plainly, and nothing on this list needed a new shape to get you there:"
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        [
+          {
+            "text": "Play an "
+          },
+          {
+            "text": "Am",
+            "marks": ["code"]
+          },
+          {
+            "text": " chord in five places without travelling further than the next window."
+          }
+        ],
+        [
+          {
+            "text": "Play A natural minor anywhere on the neck and say what any note under your hand is doing."
+          }
+        ],
+        [
+          {
+            "text": "Name the seven chords a minor key gives you and find any one's root without counting."
+          }
+        ],
+        [
+          {
+            "text": "Put a minor loop wherever your hand already is instead of going back to the nut."
+          }
+        ],
+        [
+          {
+            "text": "Raise the seventh when a progression asks for a leading tone, and say why it asked."
+          }
+        ],
+        [
+          {
+            "text": "Move between a minor key and its relative major without moving your hand."
+          }
+        ],
+        [
+          {
+            "text": "Take all of it to any minor key."
+          }
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The honest limits are worth stating just as plainly as the wins. Triads only — no seventh chords, no minor sevenths, no dominant sevenths, and those are a real part of minor-key harmony this pathway never touched. The raised seventh was one note, not a system: there's a great deal behind harmonic minor and none of it is here. And knowing where a chord sits is not the same as your hand arriving there in time without looking — that half is hours on the instrument, not another lesson, and no article was ever going to substitute for it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Two questions, one last time, because they're the pathway's whole spine. Relative — same notes, different home — is why this pathway was cheap: nothing in it ever asked you to learn a new note. Parallel — same home, three notes lowered — is why every individual shape made sense: a minor form is its major form with the third dropped a fret. "
+        },
+        {
+          "text": "The Three Notes That Drop",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-the-three-that-drop"
+          }
+        },
+        {
+          "text": " named both; this is what they bought. Relative is why the map was already in your hands. Parallel is why every single shape on it made sense the moment you looked at it."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-ladder",
+      "props": {
+        "root": "D",
+        "quality": "minor"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "A key this pathway has never once drawn, and its nut-most form is the D form — the four-string fragment chapter 2 said was the D form's normal state, here cut to frets 0 to 3 by the nut. Same five bands, same order, same overlaps, a key you have not seen before, and you can read it cold: the root, the form names, the way neighbouring bands trade off as they climb. That is what the five chapters were for."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "A few places to take it from here, each with a job the articles couldn't do:"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Scale Visualizer",
+          "link": {
+            "kind": "screen",
+            "href": "/scale-visualizer"
+          }
+        },
+        {
+          "text": " — the five windows live, in any minor key, with the same form names you've used the whole way through."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Chord Shapes",
+          "link": {
+            "kind": "screen",
+            "href": "/chord-shapes"
+          }
+        },
+        {
+          "text": " — which of a window's notes a hand can actually hold at once, the question the diagrams in this pathway never answered."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Drone",
+          "link": {
+            "kind": "screen",
+            "href": "/drone"
+          }
+        },
+        {
+          "text": " — a sustained root to play a window against."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Chord Detector",
+          "link": {
+            "kind": "screen",
+            "href": "/chord-detector"
+          }
+        },
+        {
+          "text": " — play a barre somewhere unfamiliar and check what comes out."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Two pathways, if you want to keep going. The "
+        },
+        {
+          "text": "triads",
+          "marks": ["italic"]
+        },
+        {
+          "text": " pathway, starting from "
+        },
+        {
+          "text": "Three Notes Is the Whole Chord",
+          "link": {
+            "kind": "article",
+            "slug": "triad-three-notes"
+          }
+        },
+        {
+          "text": ": three-note chords on four string sets, the natural next step from a chord being five windows. And "
+        },
+        {
+          "text": "caged-fretboard",
+          "marks": ["italic"]
+        },
+        {
+          "text": ", starting from "
+        },
+        {
+          "text": "What the Letter Actually Names",
+          "link": {
+            "kind": "article",
+            "slug": "caged-what-the-letter-means"
+          }
+        },
+        {
+          "text": ", for anyone who took this pathway cold."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One note, lowered a fret, in five windows. That is what turned a neck you already knew into a second one, and it is the whole reason five chapters were enough."
+        }
+      ]
+    }
+  ]
+}

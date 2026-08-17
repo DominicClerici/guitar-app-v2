@@ -1,0 +1,270 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_triad-hearing-the-inversion",
+    "slug": "triad-hearing-the-inversion",
+    "title": "Which Note Is on the Bottom",
+    "summary": "Inversion is audible to anyone and ranks one way — root, then first, then second — and a chart's slash writes the exact same fact down.",
+    "tags": ["triads", "chords"],
+    "readingTimeMin": 5,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Play " },
+        { "text": "x x x 5 5 3", "marks": ["code"] },
+        { "text": ", then play " },
+        { "text": "x x x 0 1 0", "marks": ["code"] },
+        {
+          "text": ". Same chord, same three note names, and the second one obviously sounds different. That difference is not a specialist's perception — inversion is audible to trained and untrained listeners alike, and it ranks in one direction every time. Root position is the most settled. First inversion is less so. Second inversion is the least: energy and tension go up as the bass note climbs the chord, and the sense of the chord being at rest goes down."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "For the practical question — which one is this? — the useful handles are the outer voices, the bass note and the top note. That is advice rather than a finding, but it lines up with something "
+        },
+        {
+          "text": "chapter 3 already established",
+          "link": { "kind": "article", "slug": "triad-hearing-major-and-minor" }
+        },
+        {
+          "text": ": attention goes to the outside of a chord, and the inner voice is the hardest of the three to isolate. Ask your ear for the bottom and the top, and it is being asked for what it already tracks."
+        }
+      ]
+    },
+    { "type": "heading", "level": 1, "spans": [{ "text": "How to train it" }] },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "There is real evidence about what makes ear training transfer, and it points at four things. They are not laws — they are what the studies that exist found."
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        [
+          { "text": "Name it, don't compare it.", "marks": ["bold"] },
+          {
+            "text": " Identifying the chord you just heard transfers better than answering \"same or different?\" about a pair."
+          }
+        ],
+        [
+          { "text": "Shuffle.", "marks": ["bold"] },
+          {
+            "text": " Interleave the three inversions instead of doing ten of one and then ten of the next."
+          }
+        ],
+        [
+          { "text": "Keep feedback minimal.", "marks": ["bold"] },
+          {
+            "text": " Right or wrong, then move on. Explaining every miss to yourself doesn't help."
+          }
+        ],
+        [
+          { "text": "Train it in context from the start.", "marks": ["bold"] },
+          {
+            "text": " There is no evidence that drilling isolated chords carries over to hearing chords inside a progression, so put them in a progression now rather than treating that as a later level."
+          }
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The drill itself is three grips. C major on strings 1-2-3: " },
+        { "text": "x x x 0 1 0", "marks": ["code"] },
+        { "text": " is second inversion, " },
+        { "text": "x x x 5 5 3", "marks": ["code"] },
+        { "text": " is root position, " },
+        { "text": "x x x 9 8 8", "marks": ["code"] },
+        {
+          "text": " is first inversion. Shuffle them, play one without looking, and name the inversion out loud before you check."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Then put the " },
+        { "text": "Drone", "link": { "kind": "screen", "href": "/drone" } },
+        { "text": " on " },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": " underneath the drill. Not because a drone sharpens your ear — that is a claim nobody has demonstrated. It is task design: the drone nails the root down, so you cannot solve the exercise by tracking whatever the lowest note happens to be. What is left to listen to is the chord's own arrangement, which is the thing you're trying to hear."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Now the part the fourth item asks for. Take the " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " " },
+        { "text": "F", "marks": ["code"] },
+        { "text": " loop from " },
+        {
+          "text": "crossing the sets",
+          "link": { "kind": "article", "slug": "triad-crossing-the-sets" }
+        },
+        {
+          "text": " and play it twice: once voice-led between frets 3 and 6, taking the nearest copy of each chord, and once deliberately grabbing a different copy of each. The harmony is identical both times. The register and the tension are not, and that gap is exactly what an inversion sounds like. The "
+        },
+        { "text": "Ear Trainer", "link": { "kind": "screen", "href": "/ear-trainer" } },
+        { "text": " will randomise it for you once the three grips stop being a guess." }
+      ]
+    },
+    { "type": "heading", "level": 1, "spans": [{ "text": "The same fact, written down" }] },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Chapter 1 " },
+        {
+          "text": "named slash notation",
+          "link": { "kind": "article", "slug": "triad-inversion" }
+        },
+        {
+          "text": " once. What is new here is what a slash is actually instructing. Everything to the left of it is the chord. Everything to the right is one thing only: the single lowest note."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "spans": [
+        {
+          "text": "A slash chord is not always an inversion. When the note after the slash is one of the chord's own notes — "
+        },
+        { "text": "C/E", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "C/G", "marks": ["code"] },
+        { "text": " — it is an inversion, first and second. When it isn't — " },
+        { "text": "C/D", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "F/G", "marks": ["code"] },
+        {
+          "text": " — it is not an inversion at all, just a bass note the arranger wants underneath the chord."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "There are three standard reasons a chart prints one, and nobody has counted which is commonest, so take them as a set rather than a ranking: to spell a bass line that moves by step, to hold one note underneath changing chords, or as shorthand so a rhythm section reads a triad it already knows."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Here is the first of those, worked. The chart says " },
+        { "text": "G", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "D/F#", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "Em", "marks": ["code"] },
+        { "text": " — the bass walking down by step, " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " " },
+        { "text": "F#", "marks": ["code"] },
+        { "text": " " },
+        { "text": "E", "marks": ["code"] },
+        {
+          "text": ". On strings 1-2-3 you take whichever copy of each chord is nearest, and you never touch an "
+        },
+        { "text": "F#", "marks": ["code"] },
+        {
+          "text": " in the bass at all, because up on the top three strings that note isn't yours to play."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Chart says" }],
+        [{ "text": "You play" }],
+        [{ "text": "Chart" }],
+        [{ "text": "Notes" }],
+        [{ "text": "Movement" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "G", "marks": ["code"] }],
+          [{ "text": "G, first inversion" }],
+          [{ "text": "x x x 4 3 3", "marks": ["code"] }],
+          [{ "text": "B3 D4 G4", "marks": ["code"] }],
+          [{ "text": "—" }]
+        ],
+        [
+          [{ "text": "D/F#", "marks": ["code"] }],
+          [{ "text": "D, second inversion" }],
+          [{ "text": "x x x 2 3 2", "marks": ["code"] }],
+          [{ "text": "A3 D4 F#4", "marks": ["code"] }],
+          [
+            { "text": "−2 0 −1", "marks": ["code"] },
+            { "text": " — " },
+            { "text": "D4", "marks": ["code"] },
+            { "text": " held" }
+          ]
+        ],
+        [
+          [{ "text": "Em", "marks": ["code"] }],
+          [{ "text": "Em, first inversion" }],
+          [{ "text": "x x x 0 0 0", "marks": ["code"] }],
+          [{ "text": "G3 B3 E4", "marks": ["code"] }],
+          [{ "text": "−2 −3 −2", "marks": ["code"] }, { "text": " — nothing shared" }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Both of those last two grips are already in your hands. " },
+        { "text": "x x x 2 3 2", "marks": ["code"] },
+        { "text": " is the top three strings of an open D chord, and " },
+        { "text": "x x x 0 0 0", "marks": ["code"] },
+        { "text": " is the top three " },
+        { "text": "open", "marks": ["italic"] },
+        { "text": " strings — which " },
+        {
+          "text": "chapter 3 named",
+          "link": { "kind": "article", "slug": "triad-where-the-third-hides" }
+        },
+        { "text": " as " },
+        { "text": "Em", "marks": ["code"] },
+        { "text": ", the flush minor shape read straight off the fret." }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "E",
+        "quality": "minor",
+        "strings": "1-2-3",
+        "inversion": "first",
+        "caption": "E minor, first inversion, strings 1-2-3 — the three open strings, with G in the bass."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Which raises the obvious problem with the whole lesson. If the bass note in that chart was never yours to play, then whatever inversion the room hears was not your decision either. So whose was it?"
+        }
+      ]
+    }
+  ]
+}

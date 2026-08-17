@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_modes-what-a-mode-is",
+    "slug": "modes-what-a-mode-is",
+    "title": "What a Mode Actually Is",
+    "summary": "A mode is not a scale started somewhere else — it's a set of notes plus a decision about which one is home, and only something outside the scale can make that decision audible.",
+    "tags": ["modes", "theory"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-15"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here is the sentence almost everyone learns first, and it is the single most damaging sentence in guitar pedagogy: a mode is the major scale started on a different degree. It is "
+        },
+        { "text": "true about the notes", "marks": ["bold"] },
+        { "text": " and " },
+        { "text": "silent about the sound", "marks": ["bold"] },
+        {
+          "text": " — which is exactly why a learner who believes it practises the wrong thing for months, and correctly concludes that modes are useless."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Take A Dorian. Its seven notes are " },
+        { "text": "A B C D E F# G", "marks": ["code"] },
+        {
+          "text": " — and those are also G major's seven notes, letter for letter. Run them from "
+        },
+        { "text": "A", "marks": ["code"] },
+        {
+          "text": " into silence, nothing else sounding, and your ear will reliably hear G major. There is nothing in the note list that tells the two apart, because there is nothing in the note list to tell apart. The letter you happened to start on doesn't decide anything by itself."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "So the real definition has two halves, and both are load-bearing. The "
+        },
+        { "text": "notes", "marks": ["bold"] },
+        {
+          "text": ": seven of them, the same seven as some major scale. The "
+        },
+        { "text": "tonic", "marks": ["bold"] },
+        {
+          "text": ": which one of those seven everything else gets heard against — "
+        },
+        { "text": "home", "marks": ["bold"] },
+        {
+          "text": ". A mode is a set of notes plus a decision about which one is home, and that decision has to be made audible by something the scale itself cannot provide."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "What can supply a tonic: a held root, a bass holding a note down, a chord that refuses to move. What cannot: the scale by itself, run in any order, at any tempo. Take the tonic away and the mode evaporates — there's no in-between state where a bare scale is \"sort of\" a mode. Either something is naming home, or nothing is."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "spans": [
+        {
+          "text": "The test to keep applying, for the whole of this pathway: if nothing outside the scale is holding a home down, you are not playing a mode — whatever note you started on."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "This chapter leans on two lessons directly, and both are strongly recommended before going further: "
+        },
+        {
+          "text": "What the Letter Actually Names",
+          "link": { "kind": "article", "slug": "caged-what-the-letter-means" }
+        },
+        {
+          "text": ", which taught that the five CAGED letters name shapes and not chords, and "
+        },
+        {
+          "text": "Same Notes, Different Home",
+          "link": { "kind": "article", "slug": "minor-caged-what-decides-home" }
+        },
+        {
+          "text": ", which taught that a note set has no key of its own — the bass, the chords and where a phrase lands are what turn seven notes into a key. That's this lesson's natural companion. What decided C major against A minor there is exactly what's about to decide G major against A Dorian here."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Hear it for yourself. Play the run below with the drone stopped — same seven notes, nothing naming home — and it sounds like a scale in search of a key. Then press the drone bar, hold it, and play the run again. Nothing about the notes changed. Everything about what they mean did."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "scale-compare",
+      "props": { "root": "A", "scales": ["dorian"], "drone": true }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "So how many of these are there — and since the notes alone were never going to tell you, is it possible you already play some of them under a different name?"
+        }
+      ]
+    }
+  ]
+}

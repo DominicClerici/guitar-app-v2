@@ -1,0 +1,299 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_triad-minor-strings-4-5-6",
+    "slug": "triad-minor-strings-4-5-6",
+    "title": "The Bottom Set, Where Minor Runs Out First",
+    "summary": "The same one-fret move as every other set, except down here minor's narrow gap sits at the bottom of the grip, exactly where the neck's room runs out first.",
+    "tags": ["triads", "chords", "fretboard"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One more set, one more fret dropped — and this is the set where that fret costs something. The third still comes down a semitone, same as it has all chapter. What's different on strings 4-5-6 is how little room is left when it does."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "C",
+        "quality": "minor",
+        "strings": "4-5-6",
+        "inversion": "second",
+        "caption": "Second inversion, strings 4-5-6."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "3 3 1 x x x", "marks": ["code"] },
+        { "text": ": " },
+        { "text": "6·3", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "G", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "5·3", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "C", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "4·1", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "Eb", "marks": ["code"] },
+        { "text": ". Degrees " },
+        { "text": "5 1 b3", "marks": ["code"] },
+        { "text": ", bass note " },
+        { "text": "G", "marks": ["code"] },
+        { "text": ". Major was " },
+        { "text": "3 3 2 x x x", "marks": ["code"] },
+        {
+          "text": " — the top note back a fret, which is where a second inversion always keeps its third."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "C",
+        "quality": "minor",
+        "strings": "4-5-6",
+        "inversion": "root",
+        "caption": "Root position, strings 4-5-6."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "8 6 5 x x x", "marks": ["code"] },
+        { "text": ": " },
+        { "text": "6·8", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "C", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "5·6", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "Eb", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "4·5", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "G", "marks": ["code"] },
+        { "text": ". Degrees " },
+        { "text": "1 b3 5", "marks": ["code"] },
+        { "text": ", bass note " },
+        { "text": "C", "marks": ["code"] },
+        { "text": ". Major was " },
+        { "text": "8 7 5 x x x", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "C",
+        "quality": "minor",
+        "strings": "4-5-6",
+        "inversion": "first",
+        "caption": "First inversion, strings 4-5-6 — the one that lands lower than its major counterpart."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "11 10 10 x x x", "marks": ["code"] },
+        { "text": ": " },
+        { "text": "6·11", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "Eb", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "5·10", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "G", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "4·10", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "C", "marks": ["code"] },
+        { "text": ". Degrees " },
+        { "text": "b3 5 1", "marks": ["code"] },
+        { "text": ", bass note " },
+        { "text": "Eb", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That first inversion is worth a closer look, because it sits one fret lower than "
+        },
+        {
+          "text": "major's grip on this set",
+          "link": { "kind": "article", "slug": "triad-major-strings-4-5-6" }
+        },
+        {
+          "text": ", and the reason is nearby but not the same reason. Major's first inversion can't come down below fret 12: "
+        },
+        { "text": "E2", "marks": ["code"] },
+        { "text": ", the open string 6, is available, but the " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " that has to sit just above it is " },
+        { "text": "G2", "marks": ["code"] },
+        { "text": " — and string 5's lowest note is " },
+        { "text": "A2", "marks": ["code"] },
+        { "text": ", already past it. The grip waits for " },
+        { "text": "E3", "marks": ["code"] },
+        { "text": ", at " },
+        { "text": "6·12", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Minor's reason is not that reason. "
+        },
+        { "text": "Eb2", "marks": ["code"] },
+        { "text": " sits a semitone below the open low " },
+        { "text": "E", "marks": ["code"] },
+        {
+          "text": ", so string 6 can't sound it at any fret — the lowest "
+        },
+        { "text": "Eb", "marks": ["code"] },
+        { "text": " that string has is " },
+        { "text": "Eb3", "marks": ["code"] },
+        { "text": ", at " },
+        { "text": "6·11", "marks": ["code"] },
+        { "text": ". The " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " just above that, " },
+        { "text": "G3", "marks": ["code"] },
+        { "text": " at " },
+        { "text": "5·10", "marks": ["code"] },
+        {
+          "text": ", is comfortably in reach. Major is held up by the note above the bass; minor is held up by the bass note itself. That's why minor's grip lands one fret lower, not because it's some easier version of the same shape."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Time to be precise about mud, because down here it's easy to overstate the danger. The app's voicing engine rejects two adjacent notes sitting too close together too low: below "
+        },
+        { "text": "A2", "marks": ["code"] },
+        { "text": " it wants at least a major third between them, below " },
+        { "text": "C3", "marks": ["code"] },
+        { "text": " at least three semitones, below " },
+        { "text": "A3", "marks": ["code"] },
+        {
+          "text": " at least two. Every one of C minor's twelve grips passes every one of those rules, exactly as every one of C major's does. None of them are muddy. What is true is how little room is left."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "What actually differs, and it's the whole lesson: minor stacks its two gaps in the opposite order from major's. Major's root position goes 4 semitones then 3, bass to third to fifth. Minor goes 3 then 4 — the narrow gap moves down to the bottom of the grip, and the bottom is exactly where the mud rule is strictest. "
+        },
+        { "text": "Cm", "marks": ["code"] },
+        { "text": " root position here is " },
+        { "text": "C3 Eb3 G3", "marks": ["code"] },
+        { "text": ": the " },
+        { "text": "C3", "marks": ["code"] },
+        { "text": "-to-" },
+        { "text": "Eb3", "marks": ["code"] },
+        { "text": " gap clears its floor by one semitone, where " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " major's " },
+        { "text": "C3", "marks": ["code"] },
+        { "text": "-to-" },
+        { "text": "E3", "marks": ["code"] },
+        { "text": " gap clears its own by two." }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "info",
+      "spans": [
+        {
+          "text": "Chapter 2's floor on this set was G major root position, both gaps sitting exactly on the app's limit. Minor's floor sits two semitones higher, and it isn't a C chord — worth leaving the anchor key for one example, same as chapter 2 did."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "A",
+        "quality": "minor",
+        "strings": "4-5-6",
+        "inversion": "root",
+        "caption": "Root position, strings 4-5-6, A minor — the floor for this shape."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "5 3 2 x x x", "marks": ["code"] },
+        { "text": ": " },
+        { "text": "A2 C3 E3", "marks": ["code"] },
+        { "text": ". The bass gap, " },
+        { "text": "A2", "marks": ["code"] },
+        { "text": " to " },
+        { "text": "C3", "marks": ["code"] },
+        {
+          "text": ", is three semitones — exactly the minimum the rule allows below "
+        },
+        { "text": "C3", "marks": ["code"] },
+        {
+          "text": ". Go one root lower and the voicing fails outright: "
+        },
+        { "text": "Gm", "marks": ["code"] },
+        { "text": " root position on this set would be " },
+        { "text": "G2 Bb2 D3", "marks": ["code"] },
+        { "text": " — a minor third where the rule below " },
+        { "text": "A2", "marks": ["code"] },
+        { "text": " wants a major third — and " },
+        { "text": "G#m", "marks": ["code"] },
+        {
+          "text": " fails the same way. Of the twelve root-position minor triads on strings 4-5-6, "
+        },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " is the lowest the app's rule accepts, with nothing to spare." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "When to reach for this set at all, chapter 2 already made the arrangement case — a bass player's register, filling the bottom when you're playing alone — and it applies to minor just as much. What's specific to minor: the "
+        },
+        { "text": "b3", "marks": ["code"] },
+        {
+          "text": " sits a semitone closer to the bass than a major third does, so a low minor triad asks more of the room it's sitting in than the major one at the same pitch."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Four sets, one rule, and the map is twice the size it was a chapter ago for no extra memorising. Next, "
+        },
+        {
+          "text": "all twelve minor grips on one page",
+          "link": { "kind": "article", "slug": "triad-where-the-third-hides" }
+        },
+        { "text": "." }
+      ]
+    }
+  ]
+}

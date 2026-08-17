@@ -1,0 +1,270 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_modes-the-ladder",
+    "slug": "modes-the-ladder",
+    "title": "The Seven, in an Order That Means Something",
+    "summary": "Ordered from brightest to darkest, each step down the ladder flattens exactly one more degree — Lydian, Ionian, Mixolydian, Dorian, Aeolian, Phrygian, Locrian — and the degrees flatten in a fixed sequence.",
+    "tags": ["modes", "theory"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-15"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Chapter 1 gave you the seven modes in the order everyone lists them — Ionian, Dorian, Phrygian, Lydian, Mixolydian, Aeolian, Locrian — and said, on purpose, that the order meant nothing. It's just the order you meet them walking up a major scale one degree at a time. There's a different order, and it does mean something: put the seven from brightest to darkest and each step down changes exactly one note."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Bright to dark, the order is Lydian, Ionian, Mixolydian, Dorian, Aeolian, Phrygian, Locrian. The principle behind it is nothing more mysterious than how raised the degrees are — Lydian has the most degrees pushed up a half step past the major scale's, Locrian has the most pulled down."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here is every degree of all seven, in that order. The bold cell in each row is the one degree that dropped a half step from the row above it — Lydian's row has none, because nothing sits above Lydian."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Mode" }],
+        [{ "text": "1" }],
+        [{ "text": "2" }],
+        [{ "text": "3" }],
+        [{ "text": "4" }],
+        [{ "text": "5" }],
+        [{ "text": "6" }],
+        [{ "text": "7" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "Lydian" }],
+          [{ "text": "1", "marks": ["code"] }],
+          [{ "text": "2", "marks": ["code"] }],
+          [{ "text": "3", "marks": ["code"] }],
+          [{ "text": "#4", "marks": ["code"] }],
+          [{ "text": "5", "marks": ["code"] }],
+          [{ "text": "6", "marks": ["code"] }],
+          [{ "text": "7", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "Ionian" }],
+          [{ "text": "1", "marks": ["code"] }],
+          [{ "text": "2", "marks": ["code"] }],
+          [{ "text": "3", "marks": ["code"] }],
+          [{ "text": "4", "marks": ["code", "bold"] }],
+          [{ "text": "5", "marks": ["code"] }],
+          [{ "text": "6", "marks": ["code"] }],
+          [{ "text": "7", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "Mixolydian" }],
+          [{ "text": "1", "marks": ["code"] }],
+          [{ "text": "2", "marks": ["code"] }],
+          [{ "text": "3", "marks": ["code"] }],
+          [{ "text": "4", "marks": ["code"] }],
+          [{ "text": "5", "marks": ["code"] }],
+          [{ "text": "6", "marks": ["code"] }],
+          [{ "text": "b7", "marks": ["code", "bold"] }]
+        ],
+        [
+          [{ "text": "Dorian" }],
+          [{ "text": "1", "marks": ["code"] }],
+          [{ "text": "2", "marks": ["code"] }],
+          [{ "text": "b3", "marks": ["code", "bold"] }],
+          [{ "text": "4", "marks": ["code"] }],
+          [{ "text": "5", "marks": ["code"] }],
+          [{ "text": "6", "marks": ["code"] }],
+          [{ "text": "b7", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "Aeolian" }],
+          [{ "text": "1", "marks": ["code"] }],
+          [{ "text": "2", "marks": ["code"] }],
+          [{ "text": "b3", "marks": ["code"] }],
+          [{ "text": "4", "marks": ["code"] }],
+          [{ "text": "5", "marks": ["code"] }],
+          [{ "text": "b6", "marks": ["code", "bold"] }],
+          [{ "text": "b7", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "Phrygian" }],
+          [{ "text": "1", "marks": ["code"] }],
+          [{ "text": "b2", "marks": ["code", "bold"] }],
+          [{ "text": "b3", "marks": ["code"] }],
+          [{ "text": "4", "marks": ["code"] }],
+          [{ "text": "5", "marks": ["code"] }],
+          [{ "text": "b6", "marks": ["code"] }],
+          [{ "text": "b7", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "Locrian" }],
+          [{ "text": "1", "marks": ["code"] }],
+          [{ "text": "b2", "marks": ["code"] }],
+          [{ "text": "b3", "marks": ["code"] }],
+          [{ "text": "4", "marks": ["code"] }],
+          [{ "text": "b5", "marks": ["code", "bold"] }],
+          [{ "text": "b6", "marks": ["code"] }],
+          [{ "text": "b7", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Read down the table and the rule is exact: each step down the ladder flattens exactly one more degree, and the degrees flatten in a fixed order — "
+        },
+        { "text": "4", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "7", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "6", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "2", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "5", "marks": ["code"] },
+        {
+          "text": " — one at a time, never two at once, never out of order. That isn't a mnemonic someone invented to make the seven easier to remember; it's pinned in the app's own test suite as a fact about the scales themselves."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Follow just the note that leaves at each step, on " },
+        { "text": "A", "marks": ["code"] },
+        { "text": ": " },
+        { "text": "D# G# C# F# B E", "marks": ["code"] },
+        {
+          "text": " — a chain of descending perfect fifths. Follow the note that arrives instead and it's another one: "
+        },
+        { "text": "D G C F Bb Eb", "marks": ["code"] },
+        { "text": ". Two chains, both exact, both running the same direction." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Two Roads to the Same Mode",
+          "link": { "kind": "article", "slug": "modes-two-roads" }
+        },
+        {
+          "text": " already showed you a third version of this without naming it as one: each mode's parent major, read in ladder order — "
+        },
+        { "text": "E, A, D, G, C, F, Bb", "marks": ["code"] },
+        {
+          "text": " — is also a fifth below the last, each one step further round toward the flats. Same fact, told three ways: by which note leaves, by which note replaces it, and by which major scale you'd borrow the notes from."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One thing this rule does not say. \"Each step flattens one more note\" is a claim about neighbours on the ladder — it says nothing about how far any single mode sits from the two scales you already own. "
+        },
+        {
+          "text": "Nothing New to Learn on the Neck",
+          "link": { "kind": "article", "slug": "modes-no-new-shapes" }
+        },
+        {
+          "text": " already worked that out: six of the seven need exactly one changed degree from major or natural minor, but Locrian needs two. The ladder explains the neighbours; it doesn't collapse the whole family down to one dot each."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Start with the top half of the ladder. One thing to know before you read the cards: the app heads them with the plain names, so Ionian's card says "
+        },
+        { "text": "A Major", "marks": ["code"] },
+        { "text": " and Aeolian's says " },
+        { "text": "A Natural minor", "marks": ["code"] },
+        {
+          "text": ". The other five are headed with the modal name. Same seven modes either way."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "scale-compare",
+      "props": { "root": "A", "scales": ["lydian", "major", "mixolydian", "dorian"], "drone": true }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The amber accumulates left to right, because amber marks whatever a later card has that the first, reference card lacks: "
+        },
+        { "text": "D", "marks": ["code"] },
+        { "text": " alone on the Ionian card, " },
+        { "text": "D", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " on Mixolydian, " },
+        { "text": "D", "marks": ["code"] },
+        { "text": " " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " " },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": " on Dorian. Every one of those is a note that has already left by the time you reach that card."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [{ "text": "Now the bottom half." }]
+    },
+    {
+      "type": "live",
+      "component": "scale-compare",
+      "props": { "root": "A", "scales": ["dorian", "minor", "phrygian", "locrian"], "drone": true }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Same pattern: " },
+        { "text": "F", "marks": ["code"] },
+        { "text": " on Aeolian, " },
+        { "text": "F", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "Bb", "marks": ["code"] },
+        { "text": " on Phrygian, " },
+        { "text": "F", "marks": ["code"] },
+        { "text": " " },
+        { "text": "Bb", "marks": ["code"] },
+        { "text": " " },
+        { "text": "Eb", "marks": ["code"] },
+        { "text": " on Locrian." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Open the " },
+        { "text": "Drone", "link": { "kind": "screen", "href": "/drone" } },
+        { "text": ", hold a bare " },
+        { "text": "A", "marks": ["code"] },
+        {
+          "text": ", and play straight down the ladder, one mode at a time. Something shifts on every step. What exactly is shifting, and whether \"brighter\" is even the right word for it, is the question this chapter ends on, once the rest of the structure is on the table. For now: if each step moves exactly one note, then any two neighbours on the ladder are one note apart. Which note, for any given pair?"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,509 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_minor-caged-two-more-notes",
+    "slug": "minor-caged-two-more-notes",
+    "title": "Two More Notes in the Same Five Windows",
+    "summary": "The minor pentatonic is chapter 2's Am triad with a 4 and a b7 added to the same five windows, so three of its five notes are the chord and two are not.",
+    "tags": ["caged", "minor"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Chapter 2 closed on a promise: "
+        },
+        {
+          "text": "the same five windows carry the next layer too",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-five-shapes-one-neck"
+          }
+        },
+        {
+          "text": ", and no new shape is ever asked for. Here's the layer. The minor pentatonic is the triad you already own — "
+        },
+        {
+          "text": "1 b3 5",
+          "marks": ["code"]
+        },
+        {
+          "text": " — with two notes added: the "
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": " and the "
+        },
+        {
+          "text": "b7",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Five degrees to the octave, "
+        },
+        {
+          "text": "1 b3 4 5 b7",
+          "marks": ["code"]
+        },
+        {
+          "text": ", which in A is "
+        },
+        {
+          "text": "A C D E G",
+          "marks": ["code"]
+        },
+        {
+          "text": "."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here's the trap, and it's worth naming before anything else. Chapter 1 taught that "
+        },
+        {
+          "text": "three notes drop",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-the-three-that-drop"
+          }
+        },
+        {
+          "text": " when A major becomes A minor: "
+        },
+        {
+          "text": "3→b3",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "6→b6",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "7→b7",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Only two of those three live in this layer. The minor pentatonic has the "
+        },
+        {
+          "text": "b3",
+          "marks": ["code"]
+        },
+        {
+          "text": " and the "
+        },
+        {
+          "text": "b7",
+          "marks": ["code"]
+        },
+        {
+          "text": " and no "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": " at all. \"The three notes that drop\" is a fact about the whole seven-note scale — reach for it here and you'll go looking for a note that isn't in the window."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "spans": [
+        {
+          "text": "The minor pentatonic has no "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": ". \"The three notes that drop\" describes chapter 1's seven-note scale — it does not hold for this five-note layer."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "What it leaves out: of natural minor's seven degrees, the pentatonic keeps five and drops two — the "
+        },
+        {
+          "text": "2",
+          "marks": ["code"]
+        },
+        {
+          "text": " and the "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Chapter 4 puts both back. Neither gets a position or a character here; they're just the two notes this layer isn't teaching yet."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "scale-compare",
+      "props": {
+        "root": "A",
+        "scales": ["minor", "minor-pentatonic"]
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Play both cards. The first is chapter 1's seven-note scale; the second is what's left after two notes come out. Same root, and this time nothing is tinted — the pentatonic doesn't add a note the scale doesn't already have, it only takes two away."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [
+          {
+            "text": "Degree"
+          }
+        ],
+        [
+          {
+            "text": "Note"
+          }
+        ],
+        [
+          {
+            "text": "In the "
+          },
+          {
+            "text": "Am",
+            "marks": ["code"]
+          },
+          {
+            "text": " chord?"
+          }
+        ]
+      ],
+      "rows": [
+        [
+          [
+            {
+              "text": "1",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "A"
+            }
+          ],
+          [
+            {
+              "text": "yes"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "b3",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "C"
+            }
+          ],
+          [
+            {
+              "text": "yes"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "4",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "D"
+            }
+          ],
+          [
+            {
+              "text": "no"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "5",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "E"
+            }
+          ],
+          [
+            {
+              "text": "yes"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "b7",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "G"
+            }
+          ],
+          [
+            {
+              "text": "no"
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The split is the whole point of this chapter, so here it is plainly. Three of these five degrees — "
+        },
+        {
+          "text": "1",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "b3",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": " — are the "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": " chord chapter 2 spent seven lessons on. Two — the "
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": " and the "
+        },
+        {
+          "text": "b7",
+          "marks": ["code"]
+        },
+        {
+          "text": " — aren't in that chord at all. A player who can tell which dot is which can end a phrase on a note the chord is actually made of; a player who only knows the shape just runs up and down it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One thing worth knowing if this looks familiar from the major side: in that pathway's version of this chapter, the pentatonic most guitarists already knew was the minor one, and the lesson had to explain why it wasn't the scale being taught. Here it is the scale being taught. The "
+        },
+        {
+          "text": "b3",
+          "marks": ["code"]
+        },
+        {
+          "text": " and the "
+        },
+        {
+          "text": "b7",
+          "marks": ["code"]
+        },
+        {
+          "text": " slot into the window you already own, and the five-note shape most players learn first turns out to be the third layer of a system you've been building for two chapters."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One convention, restated from chapter 2 and then turned around. A window diagram still lights every note of the layer inside the window, not one grip a hand could hold — that part hasn't changed. What's changed is the arithmetic. At the triad layer that meant more dots than a hand could reach at once. At this layer it mostly means the opposite: two dots per string across three or four frets is close to what a hand plays, so for most of the five forms the diagram now reads as the shape. Two of the five still spread wider than that, and their own lessons will say so plainly."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here's the proof, in the window chapter 2 already drew once. The C form's triad, then the same window with the pentatonic filled in:"
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "C",
+        "quality": "minor",
+        "show": "triad",
+        "caption": "The C form's window, triad layer — seven dots, chapter 2's shape."
+      }
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "C",
+        "quality": "minor",
+        "show": "pentatonic",
+        "caption": "The same window, pentatonic layer — twelve dots, five of them new."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Seven dots, then twelve. The seven sit exactly where chapter 2 left them — nothing about the triad moved. Five more have appeared around them: "
+        },
+        {
+          "text": "6·10",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "1·10",
+          "marks": ["code"]
+        },
+        {
+          "text": ", both a "
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": "; "
+        },
+        {
+          "text": "5·10",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "3·12",
+          "marks": ["code"]
+        },
+        {
+          "text": ", both a "
+        },
+        {
+          "text": "b7",
+          "marks": ["code"]
+        },
+        {
+          "text": "; and "
+        },
+        {
+          "text": "4·12",
+          "marks": ["code"]
+        },
+        {
+          "text": ", another "
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Those five are this chapter's whole subject, and the next lesson is where they get a fingering."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That's also why this chapter opens where it does. Strict C-A-G-E-D order sends the C form first — the highest of the five windows and, as chapter 2 found, the least friendly to a whole hand. Same order, same reasoning as before. Explore any window with root "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": " in the "
+        },
+        {
+          "text": "Scale Visualizer",
+          "link": {
+            "kind": "screen",
+            "href": "/scale-visualizer"
+          }
+        },
+        {
+          "text": ", or go straight to "
+        },
+        {
+          "text": "the C form",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-pentatonic-c-form"
+          }
+        },
+        {
+          "text": " and the first of the two windows that spread."
+        }
+      ]
+    }
+  ]
+}

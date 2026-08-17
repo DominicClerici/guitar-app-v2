@@ -1,0 +1,558 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_modes-seven-homes-one-neck",
+    "slug": "modes-seven-homes-one-neck",
+    "title": "Seven Homes, One Neck",
+    "summary": "All seven modes on this root live inside the same five windows, and what actually separates them is one decision about home and one note leaned against it.",
+    "tags": ["modes", "fretboard", "ear", "theory"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-15"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Every one of the seven modes in this pathway happened inside the same five windows, on the same root, using hand positions two other pathways already put in your fingers. "
+        },
+        {
+          "text": "One Map, Any Key",
+          "link": {
+            "kind": "article",
+            "slug": "caged-the-whole-neck"
+          }
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "What the Third Was Worth",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-what-the-third-was-worth"
+          }
+        },
+        {
+          "text": " are where those two pathways ended. This is where all three of them meet."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here it is twice, frets 4 to 8, the E form — first filled with the brightest of the seven, then with the darkest."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "E",
+        "scale": "lydian",
+        "caption": "The bright end of the ladder — no note in this box asks to be avoided over the chord it's built on"
+      }
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "E",
+        "scale": "locrian",
+        "caption": "The dark end, the same five frets — the chord underneath still won't hold"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Both boxes draw every note in the window, not a grip a hand would hold at once — true of every one of these diagrams this pathway has shown you, and easy to forget staring at a fretboard full of dots. What matters here isn't how many of them there are. It's that the frame holding them — same form, same frets, same root — never moved once to get from the brightest mode to the darkest, even though almost every degree inside it did."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [
+          {
+            "text": "Mode"
+          }
+        ],
+        [
+          {
+            "text": "Characteristic note"
+          }
+        ],
+        [
+          {
+            "text": "Home chord"
+          }
+        ],
+        [
+          {
+            "text": "Vamp"
+          }
+        ],
+        [
+          {
+            "text": "Lean on"
+          }
+        ]
+      ],
+      "rows": [
+        [
+          [
+            {
+              "text": "Lydian"
+            }
+          ],
+          [
+            {
+              "text": "#4",
+              "marks": [
+                "code",
+                {
+                  "type": "color",
+                  "tone": "violet"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "text": "A",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "A",
+              "marks": ["code"]
+            },
+            {
+              "text": "–"
+            },
+            {
+              "text": "B",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "the "
+            },
+            {
+              "text": "#4",
+              "marks": [
+                "code",
+                {
+                  "type": "color",
+                  "tone": "violet"
+                }
+              ]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Ionian"
+            }
+          ],
+          [
+            {
+              "text": "none"
+            }
+          ],
+          [
+            {
+              "text": "A",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "—"
+            }
+          ],
+          [
+            {
+              "text": "nothing — move through the "
+            },
+            {
+              "text": "4",
+              "marks": ["code"]
+            },
+            {
+              "text": " instead"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Mixolydian"
+            }
+          ],
+          [
+            {
+              "text": "b7",
+              "marks": [
+                "code",
+                {
+                  "type": "color",
+                  "tone": "amber"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "text": "A",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "A",
+              "marks": ["code"]
+            },
+            {
+              "text": "–"
+            },
+            {
+              "text": "G",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "the "
+            },
+            {
+              "text": "b7",
+              "marks": [
+                "code",
+                {
+                  "type": "color",
+                  "tone": "amber"
+                }
+              ]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Dorian"
+            }
+          ],
+          [
+            {
+              "text": "6",
+              "marks": [
+                "code",
+                {
+                  "type": "color",
+                  "tone": "amber"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "text": "Am",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "Am",
+              "marks": ["code"]
+            },
+            {
+              "text": "–"
+            },
+            {
+              "text": "D",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "the "
+            },
+            {
+              "text": "6",
+              "marks": [
+                "code",
+                {
+                  "type": "color",
+                  "tone": "amber"
+                }
+              ]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Aeolian"
+            }
+          ],
+          [
+            {
+              "text": "none"
+            }
+          ],
+          [
+            {
+              "text": "Am",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "Am",
+              "marks": ["code"]
+            },
+            {
+              "text": "–"
+            },
+            {
+              "text": "F",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "nothing — move through the "
+            },
+            {
+              "text": "b6",
+              "marks": ["code"]
+            },
+            {
+              "text": " instead"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Phrygian"
+            }
+          ],
+          [
+            {
+              "text": "b2",
+              "marks": [
+                "code",
+                {
+                  "type": "color",
+                  "tone": "rose"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "text": "Am",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "Am",
+              "marks": ["code"]
+            },
+            {
+              "text": "–"
+            },
+            {
+              "text": "Bb",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "the "
+            },
+            {
+              "text": "b2",
+              "marks": [
+                "code",
+                {
+                  "type": "color",
+                  "tone": "rose"
+                }
+              ]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Locrian"
+            }
+          ],
+          [
+            {
+              "text": "b5",
+              "marks": [
+                "code",
+                {
+                  "type": "color",
+                  "tone": "rose"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "text": "Adim",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "—"
+            }
+          ],
+          [
+            {
+              "text": "nowhere — the home won't hold"
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One more fact belongs in that table without belonging on either diagram above: every one of the five windows this pathway ever drew already holds a copy of whichever note a mode is named for. "
+        },
+        {
+          "text": "Playing It Through the Windows",
+          "link": {
+            "kind": "article",
+            "slug": "modes-through-the-windows"
+          }
+        },
+        {
+          "text": " has the positions written out window by window; the short version is that wherever your hand already is, the note is already under it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "So here's what the whole pathway actually spent on seven modes: not the shapes, which never changed; not the positions, which never moved; not even how many notes fill a box, which differed from window to window and mode to mode. Every hand position in the table above was already yours before this pathway started — a form from one CAGED pathway, a lowered third from the other. One decision about which chord gets to be home. One note landed on rather than merely included, which is what "
+        },
+        {
+          "text": "Landing On It, Not Just Including It",
+          "link": {
+            "kind": "article",
+            "slug": "modes-lean-on-it"
+          }
+        },
+        {
+          "text": " was about. That's the entire difference between the brightest mode on this neck and the darkest."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "There's no new shape anywhere in this pathway — not one, across seven modes and five windows. What changed from mode to mode was degrees, and not the same number of them each time: getting from the natural minor you already owned to Locrian took two changed notes, where every other mode needed at most one. What never changed, in any of the seven, was the shape holding those notes — the box, the form, the fret span your hand already knew before this pathway started."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "What you can do now, and it's all action rather than knowledge:"
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        [
+          {
+            "text": "Hear a static vamp and name the mode it's asking for."
+          }
+        ],
+        [
+          {
+            "text": "Play any of the six over its own vamp, moving across the neck instead of staying boxed into one window."
+          }
+        ],
+        [
+          {
+            "text": "Make a mode sound like itself instead of like the scale it's nearest to."
+          }
+        ],
+        [
+          {
+            "text": "Write a two-chord vamp on any root, and know why it circles instead of arriving somewhere."
+          }
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "This pathway ends where it started: a held root, and one note leaned against it. Start "
+        },
+        {
+          "text": "Drone",
+          "link": {
+            "kind": "screen",
+            "href": "/drone"
+          }
+        },
+        {
+          "text": " on a held "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": ", or move to whatever root you like — the method doesn't care which one. Page through any of the seven on "
+        },
+        {
+          "text": "Scale Visualizer",
+          "link": {
+            "kind": "screen",
+            "href": "/scale-visualizer"
+          }
+        },
+        {
+          "text": " to see it drawn out in full, or open "
+        },
+        {
+          "text": "Free Play",
+          "link": {
+            "kind": "screen",
+            "href": "/ear-trainer"
+          }
+        },
+        {
+          "text": " and find out how fast you can name one with nothing but your ear."
+        }
+      ]
+    }
+  ]
+}

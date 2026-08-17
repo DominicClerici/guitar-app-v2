@@ -1,0 +1,779 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_minor-caged-a-loop-up-the-neck",
+    "slug": "minor-caged-a-loop-up-the-neck",
+    "title": "The Loop That Follows Your Hand",
+    "summary": "Am F C G is i–VI–III–VII, and because each of its four chords has five forms, the loop can be played wherever your hand already is instead of back at the nut.",
+    "tags": ["caged", "minor"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Am F C G",
+          "marks": ["code"]
+        },
+        {
+          "text": " is "
+        },
+        {
+          "text": "i–VI–III–VII",
+          "marks": ["code"]
+        },
+        {
+          "text": ", one of the most common loops in minor-key popular music. Every one of its four chords comes straight from "
+        },
+        {
+          "text": "the seven the key gives you",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-the-chords-of-the-key"
+          }
+        },
+        {
+          "text": " — nothing here is borrowed. Play it once before anything else, so what follows is about a sound you've already heard rather than a table you haven't."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "There's no "
+        },
+        {
+          "text": "G#",
+          "marks": ["code"]
+        },
+        {
+          "text": " anywhere in this loop. The "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " at the end is the "
+        },
+        {
+          "text": "VII",
+          "marks": ["code"]
+        },
+        {
+          "text": ", and it's exactly the chord that does the pulling in music that never raises its seventh at all."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here's the loop played straight, in the shapes almost everyone already knows:"
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "progression-player",
+      "props": {
+        "chords": ["Am", "F", "C", "G"],
+        "bpm": 88,
+        "caption": "Am F C G, straight through in open position."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Look at what is actually on those four chips and there is a small surprise waiting: these are four different CAGED forms, not one shape moved around."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [
+          {
+            "text": "Chord"
+          }
+        ],
+        [
+          {
+            "text": "Form"
+          }
+        ],
+        [
+          {
+            "text": "Grip"
+          }
+        ]
+      ],
+      "rows": [
+        [
+          [
+            {
+              "text": "Am",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "A form ("
+            },
+            {
+              "text": "0–3",
+              "marks": ["code"]
+            },
+            {
+              "text": ")"
+            }
+          ],
+          [
+            {
+              "text": "x 0 2 2 1 0",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "F",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "E form ("
+            },
+            {
+              "text": "0–4",
+              "marks": ["code"]
+            },
+            {
+              "text": "), barred at fret "
+            },
+            {
+              "text": "1",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "1 3 3 2 1 1",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "C",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "C form ("
+            },
+            {
+              "text": "0–4",
+              "marks": ["code"]
+            },
+            {
+              "text": ")"
+            }
+          ],
+          [
+            {
+              "text": "x 3 2 0 1 0",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "G",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "G form ("
+            },
+            {
+              "text": "0–3",
+              "marks": ["code"]
+            },
+            {
+              "text": ")"
+            }
+          ],
+          [
+            {
+              "text": "3 2 0 0 0 3",
+              "marks": ["code"]
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "info",
+      "spans": [
+        {
+          "text": "Four chords everybody plays in the first three frets, and four different forms — and the "
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": ", barred at fret 1, is the only one of them that is not an open shape."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Nobody ever points that out, and it is why the "
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": " always felt like the odd one out among four supposedly equal beginner chords: it is the only barre in the set."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Each of those four chords has five forms, not one, so this loop isn't really four places on the neck — it's twenty, and open position is just the one you were shown first. Every window, recomputed:"
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [
+          {
+            "text": "Chord"
+          }
+        ],
+        [
+          {
+            "text": "C form"
+          }
+        ],
+        [
+          {
+            "text": "A form"
+          }
+        ],
+        [
+          {
+            "text": "G form"
+          }
+        ],
+        [
+          {
+            "text": "E form"
+          }
+        ],
+        [
+          {
+            "text": "D form"
+          }
+        ]
+      ],
+      "rows": [
+        [
+          [
+            {
+              "text": "Am",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "9–13",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "0–3",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "1–5",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "4–8",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "6–10",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "F",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "5–9",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "7–11",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "9–13",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "0–4",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "2–6",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "C",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "0–4",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "2–6",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "4–8",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "7–11",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "9–13",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "G",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "7–11",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "9–13",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "0–3",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "2–6",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "4–8",
+              "marks": ["code"]
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Read down that table for a span every chord shares. Three of the four have a window at exactly frets "
+        },
+        {
+          "text": "2–6",
+          "marks": ["code"]
+        },
+        {
+          "text": " — "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": "'s A form, "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": "'s E form, and "
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": "'s D form. "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": " doesn't; its nearest is the E form at "
+        },
+        {
+          "text": "4–8",
+          "marks": ["code"]
+        },
+        {
+          "text": ". That gives a second route, tighter than the first:"
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [
+          {
+            "text": "Chord"
+          }
+        ],
+        [
+          {
+            "text": "Form"
+          }
+        ],
+        [
+          {
+            "text": "Grip"
+          }
+        ],
+        [
+          {
+            "text": "Frets used"
+          }
+        ]
+      ],
+      "rows": [
+        [
+          [
+            {
+              "text": "Am",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "E form, barre at "
+            },
+            {
+              "text": "5",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "5 7 7 5 5 5",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "5–7",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "F",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "D form"
+            }
+          ],
+          [
+            {
+              "text": "x x 3 5 6 5",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "3–6",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "C",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "A form, barre at "
+            },
+            {
+              "text": "3",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "x 3 5 5 5 3",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "3–5",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "G",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "E form, barre at "
+            },
+            {
+              "text": "3",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "3 5 5 4 3 3",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "3–5",
+              "marks": ["code"]
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The "
+        },
+        {
+          "text": "i",
+          "marks": ["code"]
+        },
+        {
+          "text": " is the one that moves — two frets further up than the other three settle. The reason is "
+        },
+        {
+          "text": "the same one chapter 2 found",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-triad-g-form"
+          }
+        },
+        {
+          "text": ": the G form of a minor chord can't be barred, so "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": "'s window at "
+        },
+        {
+          "text": "1–5",
+          "marks": ["code"]
+        },
+        {
+          "text": " isn't an option, and the E form's barre at fret "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": " is the nearest thing standing in for it."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "C",
+        "form": "A",
+        "show": "triad",
+        "caption": "The A form of C, frets 2–6."
+      }
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "G",
+        "form": "E",
+        "show": "triad",
+        "caption": "The E form of G, frets 2–6."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Both windows are the same five frets, "
+        },
+        {
+          "text": "2–6",
+          "marks": ["code"]
+        },
+        {
+          "text": ", lit up with two different chords' worth of dots. The usual convention still holds: the diagram lights every note of the chord inside the window, not the single grip the table above gives — a hand finds a route through it, same as always."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The real point is not which route is better. No one form gives all four of these chords the same window — read down any column of the table above and the four spans never line up — so there is no third route hiding behind the two above. What you already own is five shapes for each of these four chords, twenty places in total, so this loop was never asking you to learn a place on the neck. It is asking which of the twenty you are nearest to right now."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Try it against a "
+        },
+        {
+          "text": "Metronome",
+          "link": {
+            "kind": "screen",
+            "href": "/metronome"
+          }
+        },
+        {
+          "text": " at a slow comping tempo, changing chord on the bar, and check any of the barred grips against "
+        },
+        {
+          "text": "Chord Shapes",
+          "link": {
+            "kind": "screen",
+            "href": "/chord-shapes"
+          }
+        },
+        {
+          "text": " for other voicings."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "What is left is whether any of this holds up outside A minor — whether the whole loop, forms and all, moves the same way into "
+        },
+        {
+          "text": "a key you have not played it in yet",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-any-minor-key"
+          }
+        },
+        {
+          "text": "."
+        }
+      ]
+    }
+  ]
+}

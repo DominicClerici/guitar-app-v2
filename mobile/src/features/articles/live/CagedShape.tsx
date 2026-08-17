@@ -6,8 +6,16 @@ import { Button } from '@/components/Button';
 import { pluck, prepare, release } from '@/features/scale-visualizer';
 import { toAccidentalGlyphs } from '@/lib/accidentals';
 import { isRootName, type RootName } from '@/lib/chord-library';
-import { CAGED_FORMS, cagedFormWindow, cagedMarks, type CagedMark } from '@/lib/guitar-positions';
-import { noteToPitchClass } from '@/lib/scale-library';
+import {
+  CAGED_FORMS,
+  CAGED_QUALITIES,
+  cagedFillMarks,
+  cagedFormWindow,
+  cagedMarks,
+  type CagedMark,
+  type CagedQuality,
+} from '@/lib/guitar-positions';
+import { noteToPitchClass, scaleTypeById, type ScaleType } from '@/lib/scale-library';
 import { midiAt } from '@/lib/theory';
 
 import { claimPlayback, releasePlayback } from '../playbackBus';
@@ -19,11 +27,28 @@ import { claimPlayback, releasePlayback } from '../playbackBus';
 // pentatonic ⊂ scale — so a pathway can hand the learner the same window four
 // times and let them watch it fill in, rather than teaching four unrelated
 // diagrams. Chapters 1–4 of the CAGED pathway are exactly that progression.
+//
+// `quality` runs the same progression in minor, and deliberately leaves the
+// window alone: a form is a fret span anchored on the root, so A minor's E form
+// covers the frets A major's does. Only the dots move, which is the minor CAGED
+// pathway's central claim and is worth seeing rather than being told.
+//
+// `scale` generalises that last step: any scale in the catalogue can fill the
+// window instead of a chord layer, and the tone the catalogue names the scale for
+// is tinted in the hue the neck already tints it. A mode is its parent minor or
+// major window with one dot moved, and the modes pathway needs that drawn rather
+// than asserted — the window stays put for the same reason it does in minor.
 
 export const cagedShapePropsSchema = z.object({
   root: z.string().refine(isRootName, 'not a root the chord library can spell'),
   form: z.enum(CAGED_FORMS),
+  quality: z.enum(CAGED_QUALITIES).default('major'),
   show: z.enum(['roots', 'triad', 'pentatonic', 'scale']).default('triad'),
+  /** A scale-library id. Fills the window with that scale, ignoring quality/show. */
+  scale: z
+    .string()
+    .refine((id) => scaleTypeById(id) !== undefined, 'not a scale in the catalogue')
+    .optional(),
   /** Overrides the line under the heading, which otherwise names the layer. */
   caption: z.string().optional(),
 });
@@ -33,11 +58,19 @@ export type CagedShapeProps = z.infer<typeof cagedShapePropsSchema>;
 /** Matches ScaleCompare, which matches the scale visualizer's practice speed. */
 const STEP_MS = 340;
 
-const LAYER_CAPTION: Record<CagedShapeProps['show'], string> = {
-  roots: 'Every root in the window',
-  triad: 'Root, third and fifth',
-  pentatonic: 'The major pentatonic',
-  scale: 'The whole major scale',
+const LAYER_CAPTION: Record<CagedQuality, Record<CagedShapeProps['show'], string>> = {
+  major: {
+    roots: 'Every root in the window',
+    triad: 'Root, third and fifth',
+    pentatonic: 'The major pentatonic',
+    scale: 'The whole major scale',
+  },
+  minor: {
+    roots: 'Every root in the window',
+    triad: 'Root, flat third and fifth',
+    pentatonic: 'The minor pentatonic',
+    scale: 'The whole natural minor scale',
+  },
 };
 
 // Geometry. Tailwind classes have to be static strings, so these numbers exist
@@ -52,7 +85,19 @@ const SINGLE_INLAYS = new Set([3, 5, 7, 9, 15]);
 
 const markKey = (mark: Pick<CagedMark, 'string' | 'fret'>) => `${mark.string}-${mark.fret}`;
 
-export function CagedShape({ root, form, show, caption }: CagedShapeProps) {
+/**
+ * Tinting for the tone a scale is named for, matching the hues the neck already
+ * tints it. Border and ink are separate strings because a Text does not inherit
+ * colour through a View.
+ */
+const ACCENT_CLASS: Record<NonNullable<ScaleType['accent']>['hue'], { edge: string; ink: string }> =
+  {
+    amber: { edge: 'border-amber bg-amber-wash', ink: 'text-amber' },
+    rose: { edge: 'border-rose bg-rose-wash', ink: 'text-rose' },
+    violet: { edge: 'border-violet bg-violet-wash', ink: 'text-violet' },
+  };
+
+export function CagedShape({ root, form, quality, show, scale: scaleId, caption }: CagedShapeProps) {
   const [sounding, setSounding] = useState<string | null>(null);
   const [playing, setPlaying] = useState(false);
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -79,7 +124,17 @@ export function CagedShape({ root, form, show, caption }: CagedShapeProps) {
   const formWindow = cagedFormWindow(rootPc, form);
   if (!formWindow) return null;
 
-  const marks = cagedMarks(rootPc, formWindow, show);
+  const scaleType = scaleId === undefined ? undefined : scaleTypeById(scaleId);
+
+  const marks = scaleType
+    ? cagedFillMarks(rootPc, formWindow, {
+        semitones: scaleType.semitones,
+        degrees: scaleType.degrees,
+        accentDegree: scaleType.accent?.degree,
+      })
+    : cagedMarks(rootPc, formWindow, show, quality);
+
+  const accentClass = scaleType?.accent ? ACCENT_CLASS[scaleType.accent.hue] : null;
   const byPosition = new Map(marks.map((mark) => [markKey(mark), mark]));
   const frets = Array.from(
     { length: formWindow.to - formWindow.from + 1 },
@@ -112,7 +167,7 @@ export function CagedShape({ root, form, show, caption }: CagedShapeProps) {
     timer.current = setInterval(tick, STEP_MS);
   };
 
-  const name = `${toAccidentalGlyphs(root)} major`;
+  const name = `${toAccidentalGlyphs(root)} ${scaleType ? scaleType.name : quality}`;
 
   return (
     <View className="mt-[18px] rounded-[13px] border border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface p-[14px]">
@@ -123,7 +178,7 @@ export function CagedShape({ root, form, show, caption }: CagedShapeProps) {
             <Text className="text-ink-faint">{`  ·  ${name}`}</Text>
           </Text>
           <Text className="mt-[2px] text-[11px] leading-[15px] text-ink-faint">
-            {caption ?? LAYER_CAPTION[show]}
+            {caption ?? (scaleType ? scaleType.character : LAYER_CAPTION[quality][show])}
           </Text>
         </View>
         <Button
@@ -160,6 +215,7 @@ export function CagedShape({ root, form, show, caption }: CagedShapeProps) {
                   key={fret}
                   fret={fret}
                   mark={byPosition.get(`${string}-${fret}`)}
+                  accentClass={accentClass}
                   sounding={sounding === `${string}-${fret}`}
                 />
               ))}
@@ -187,10 +243,13 @@ export function CagedShape({ root, form, show, caption }: CagedShapeProps) {
 function Cell({
   fret,
   mark,
+  accentClass,
   sounding,
 }: {
   fret: number;
   mark: CagedMark | undefined;
+  /** Edge and ink classes for the scale's characteristic tone, when it has one. */
+  accentClass: { edge: string; ink: string } | null;
   sounding: boolean;
 }) {
   const frame = `${colClass(fret)} h-full items-center justify-center ${
@@ -199,13 +258,21 @@ function Cell({
 
   if (!mark) return <View className={frame} />;
 
+  // The root outranks the accent: a tinted dot says "this is the note the scale
+  // is named for", and a scale whose accent sat on its own root would have
+  // nothing to be named against.
+  const tinted = accentClass !== null && mark.isAccent && !mark.isRoot;
+
   const face = sounding
     ? 'bg-accent-bright'
     : mark.isRoot
       ? 'bg-accent'
-      : 'border border-line bg-surface-raised';
+      : tinted
+        ? `border ${accentClass.edge}`
+        : 'border border-line bg-surface-raised';
 
-  const ink = sounding || mark.isRoot ? 'text-on-accent' : 'text-ink-muted';
+  const ink =
+    sounding || mark.isRoot ? 'text-on-accent' : tinted ? accentClass.ink : 'text-ink-muted';
 
   return (
     <View className={frame}>

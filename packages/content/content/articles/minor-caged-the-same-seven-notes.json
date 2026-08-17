@@ -1,0 +1,176 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_minor-caged-the-same-seven-notes",
+    "slug": "minor-caged-the-same-seven-notes",
+    "title": "The Same Seven Notes",
+    "summary": "A natural minor is C major read from its sixth degree — the same seven pitches, nothing added or removed.",
+    "tags": ["caged", "minor"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The notes of A natural minor are " },
+        { "text": "A B C D E F G", "marks": ["code"] },
+        {
+          "text": ". Not a sharp or a flat among them. It is the C major scale, note for note, just started somewhere else."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Write out C major: " },
+        { "text": "C D E F G A B", "marks": ["code"] },
+        { "text": ". Count to its sixth note — " },
+        { "text": "A", "marks": ["code"] },
+        { "text": " — and read from there, wrapping back around to the start once you run out: " },
+        { "text": "A B C D E F G", "marks": ["code"] },
+        { "text": ". Same seven pitches, nothing added, nothing removed. This is called the " },
+        { "text": "relative", "marks": ["bold"] },
+        { "text": " relationship — A minor is C major's " },
+        { "text": "relative minor", "marks": ["bold"] },
+        { "text": ", and C major is A minor's " },
+        { "text": "relative major", "marks": ["bold"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The distance between them is a rule you can reuse in any key: a major scale's relative minor starts three semitones — a minor third — "
+        },
+        { "text": "below", "marks": ["bold"] },
+        { "text": " its root. " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " down three semitones is " },
+        { "text": "A", "marks": ["code"] },
+        { "text": ". Every major key has one, and it always sits there." }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [[{ "text": "Scale" }], [{ "text": "Notes" }], [{ "text": "Degrees" }]],
+      "rows": [
+        [
+          [{ "text": "C major" }],
+          [{ "text": "C D E F G A B", "marks": ["code"] }],
+          [{ "text": "1 2 3 4 5 6 7", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "A natural minor" }],
+          [{ "text": "A B C D E F G", "marks": ["code"] }],
+          [{ "text": "1 2 b3 4 5 b6 b7", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "info",
+      "spans": [
+        {
+          "text": "Relative answers where are the notes — nothing more. It says nothing about why the two scales sound different, because they don't have different notes to sound different with."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "If you've worked through "
+        },
+        {
+          "text": "What the Letter Actually Names",
+          "link": { "kind": "article", "slug": "caged-what-the-letter-means" }
+        },
+        {
+          "text": ", you already have every note in this pathway on the neck — that pathway is strongly recommended before this one, since this one leans on it throughout."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That's what makes this pathway cheap. The dots you already know from C major don't move. What changes is not the map but which dot the map is drawn around. Nothing in this chapter asks you to learn a new note — only to look at the familiar ones differently, and to get comfortable calling the sixth one home instead of the first."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here's the two scales side by side. Same seven letters, rotated to a new starting point — watch the small degree label under each chip change even though the letters don't."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "scale-compare",
+      "props": { "root": "C", "scales": ["major"] }
+    },
+    {
+      "type": "live",
+      "component": "scale-compare",
+      "props": { "root": "A", "scales": ["minor"] }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Play both. The chips hold the same seven letters in both cards, just rotated — the thing that actually changed is the row of small labels underneath: "
+        },
+        { "text": "1 2 3 4 5 6 7", "marks": ["code"] },
+        { "text": " against " },
+        { "text": "1 2 b3 4 5 b6 b7", "marks": ["code"] },
+        { "text": ". The second card names its own scale " },
+        {
+          "text": "\"Natural minor — Aeolian\"",
+          "link": { "kind": "footnote", "id": "fn-aeolian" }
+        },
+        { "text": " — that's the app's own label, not a new term to learn." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Try it on the neck yourself in the "
+        },
+        { "text": "Scale Visualizer", "link": { "kind": "screen", "href": "/scale-visualizer" } },
+        { "text": ": set the root to " },
+        { "text": "A", "marks": ["code"] },
+        {
+          "text": " and the scale to natural minor, and it's the same board as C major with a different note lit as home."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "But the same-notes story has a hole in it. It cannot explain why A minor sounds different from C major, because as far as this derivation is concerned, they're not different — they're the same seven notes wearing a different label. Something else has to account for the sound, and it isn't going to come from comparing C major and A minor to each other, since they don't disagree about anything. It comes from comparing A minor to something that shares its root instead. "
+        },
+        {
+          "text": "The second derivation",
+          "link": { "kind": "article", "slug": "minor-caged-the-three-that-drop" }
+        },
+        { "text": " keeps the home in place and moves the notes instead." }
+      ]
+    }
+  ],
+  "footnotes": [
+    {
+      "id": "fn-aeolian",
+      "spans": [
+        {
+          "text": "Both names point at the same seven notes. This pathway says natural minor throughout, so that is the only one you need."
+        }
+      ]
+    }
+  ]
+}

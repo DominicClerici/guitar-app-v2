@@ -1,0 +1,328 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_minor-caged-scale-a-form",
+    "slug": "minor-caged-scale-a-form",
+    "title": "The A Form: All Six Open Strings",
+    "summary": "Every open string on the guitar is a note of A natural minor, so the A form's four-fret window holds seventeen dots — more per fret than any other window in the chapter.",
+    "tags": ["caged", "minor"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The window is frets " },
+        { "text": "0–3", "marks": ["code"] },
+        {
+          "text": " — four frets, not five, because the nut cuts it short, as chapters 1 through 3 all said. Chapter 2 called this the friendliest shape on the neck, and that hasn't changed: seventeen dots live inside those four frets, and every fret in the window carries something."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "A",
+        "quality": "minor",
+        "show": "scale",
+        "caption": "The A form's window, natural minor — seventeen dots on frets 0, 1, 2 and 3."
+      }
+    },
+    {
+      "type": "table",
+      "header": [[{ "text": "String" }], [{ "text": "Frets 0–1" }], [{ "text": "Frets 2–3" }]],
+      "rows": [
+        [
+          [{ "text": "6" }],
+          [
+            { "text": "6·0 ", "marks": ["code"] },
+            { "text": "5", "marks": ["code"] },
+            { "text": " (E), " },
+            { "text": "6·1 ", "marks": ["code"] },
+            { "text": "b6", "marks": ["code", { "type": "color", "tone": "amber" }] },
+            { "text": " (F)" }
+          ],
+          [
+            { "text": "6·3 ", "marks": ["code"] },
+            { "text": "b7", "marks": ["code"] },
+            { "text": " (G)" }
+          ]
+        ],
+        [
+          [{ "text": "5" }],
+          [
+            { "text": "5·0 ", "marks": ["code"] },
+            { "text": "1", "marks": ["code"] },
+            { "text": " (A)" }
+          ],
+          [
+            { "text": "5·2 ", "marks": ["code"] },
+            { "text": "2", "marks": ["code", { "type": "color", "tone": "amber" }] },
+            { "text": " (B), " },
+            { "text": "5·3 ", "marks": ["code"] },
+            { "text": "b3", "marks": ["code"] },
+            { "text": " (C)" }
+          ]
+        ],
+        [
+          [{ "text": "4" }],
+          [
+            { "text": "4·0 ", "marks": ["code"] },
+            { "text": "4", "marks": ["code"] },
+            { "text": " (D)" }
+          ],
+          [
+            { "text": "4·2 ", "marks": ["code"] },
+            { "text": "5", "marks": ["code"] },
+            { "text": " (E), " },
+            { "text": "4·3 ", "marks": ["code"] },
+            { "text": "b6", "marks": ["code", { "type": "color", "tone": "amber" }] },
+            { "text": " (F)" }
+          ]
+        ],
+        [
+          [{ "text": "3" }],
+          [
+            { "text": "3·0 ", "marks": ["code"] },
+            { "text": "b7", "marks": ["code"] },
+            { "text": " (G)" }
+          ],
+          [
+            { "text": "3·2 ", "marks": ["code"] },
+            { "text": "1", "marks": ["code"] },
+            { "text": " (A)" }
+          ]
+        ],
+        [
+          [{ "text": "2" }],
+          [
+            { "text": "2·0 ", "marks": ["code"] },
+            { "text": "2", "marks": ["code", { "type": "color", "tone": "amber" }] },
+            { "text": " (B), " },
+            { "text": "2·1 ", "marks": ["code"] },
+            { "text": "b3", "marks": ["code"] },
+            { "text": " (C)" }
+          ],
+          [
+            { "text": "2·3 ", "marks": ["code"] },
+            { "text": "4", "marks": ["code"] },
+            { "text": " (D)" }
+          ]
+        ],
+        [
+          [{ "text": "1" }],
+          [
+            { "text": "1·0 ", "marks": ["code"] },
+            { "text": "5", "marks": ["code"] },
+            { "text": " (E), " },
+            { "text": "1·1 ", "marks": ["code"] },
+            { "text": "b6", "marks": ["code", { "type": "color", "tone": "amber" }] },
+            { "text": " (F)" }
+          ],
+          [
+            { "text": "1·3 ", "marks": ["code"] },
+            { "text": "b7", "marks": ["code"] },
+            { "text": " (G)" }
+          ]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Chapter 3's A form lesson had to say string 2's open " },
+        { "text": "B", "marks": ["code"] },
+        {
+          "text": " sits out, because it isn't one of the pentatonic's five notes. It's one of the scale's seven — it's the "
+        },
+        { "text": "2", "marks": ["code"] },
+        { "text": ", at " },
+        { "text": "2·0", "marks": ["code"] },
+        { "text": ". Which means every open string on the guitar is a note of A natural minor: " },
+        { "text": "E A D G B E", "marks": ["code"] },
+        { "text": ", degrees " },
+        { "text": "5 1 4 b7 2 5", "marks": ["code"] },
+        {
+          "text": ". Six strings, five different degrees — the two the open strings don't give you are the "
+        },
+        { "text": "b3", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "b6", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Seventeen dots, four frets. The C and E forms hold seventeen across five frets, the G and D forms eighteen across five. This window packs more dots into each fret than any other, and the nut does the work: every one of the six strings now has its lowest dot at fret 0, where at the pentatonic layer string 2 had to be fretted."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The quality gap here is the biggest in the chapter, and by a wide margin. A " },
+        { "text": "major", "marks": ["italic"] },
+        {
+          "text": " scale in this same span holds thirteen dots; A minor holds seventeen — four more, where every other window in the chapter differs by one or none. That's the chapter-2 edge effect at its loudest. The reason is simply which pitch classes land inside frets "
+        },
+        { "text": "0–3", "marks": ["code"] },
+        {
+          "text": ": A natural minor is all naturals, and open position is where the naturals live — it isn't that the nut itself favours minor over major."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "What's new since chapter 3: " },
+        { "text": "6·1", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "b6", "marks": ["code"] },
+        { "text": "), " },
+        { "text": "5·2", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "2", "marks": ["code"] },
+        { "text": "), " },
+        { "text": "4·3", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "b6", "marks": ["code"] },
+        { "text": "), " },
+        { "text": "2·0", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "2", "marks": ["code"] },
+        { "text": "), and " },
+        { "text": "1·1", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "b6", "marks": ["code"] },
+        { "text": "). Three " },
+        { "text": "b6", "marks": ["code"] },
+        { "text": "s and two " },
+        { "text": "2", "marks": ["code"] },
+        { "text": "s. Two of them sit under the first finger at fret 1 — " },
+        { "text": "6·1", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "1·1", "marks": ["code"] },
+        { "text": ", the same note two octaves apart, each a fret above an open " },
+        { "text": "E", "marks": ["code"] },
+        {
+          "text": " string — the chapter's central pair, twice, before you've even shifted your hand."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        { "text": "Play " },
+        { "text": "6·1", "marks": ["code"] },
+        { "text": " and let it fall to the open low " },
+        { "text": "E", "marks": ["code"] },
+        { "text": ". That's the " },
+        { "text": "b6", "marks": ["code"] },
+        { "text": " leaning down onto the " },
+        { "text": "5", "marks": ["code"] },
+        { "text": " — and here the " },
+        { "text": "5", "marks": ["code"] },
+        { "text": " costs no finger at all." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The other new note does the same thing pointing the other way, and this window is the cheapest place on the neck to hear it. "
+        },
+        { "text": "2·0", "marks": ["code"] },
+        { "text": " is the open " },
+        { "text": "B", "marks": ["code"] },
+        { "text": " — the " },
+        { "text": "2", "marks": ["code"] },
+        { "text": " — and " },
+        { "text": "2·1", "marks": ["code"] },
+        { "text": " is the " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " one fret above it, the " },
+        { "text": "b3", "marks": ["code"] },
+        { "text": ". Open string, then one finger, and the " },
+        { "text": "2", "marks": ["code"] },
+        {
+          "text": " leans up into the note that makes the chord minor. The same pair sits on string 5 at "
+        },
+        { "text": "5·2", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "5·3", "marks": ["code"] },
+        {
+          "text": ". Play both pairs back to back and the difference between the two new notes is obvious: one wants to fall, the other wants to climb."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The short string is string 3, carrying only " },
+        { "text": "3·0", "marks": ["code"] },
+        { "text": " " },
+        { "text": "b7", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "3·2", "marks": ["code"] },
+        { "text": " " },
+        { "text": "1", "marks": ["code"] },
+        {
+          "text": " — the one string here that gains nothing at this layer, same as it was at the pentatonic one."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The open " },
+        { "text": "Am", "marks": ["code"] },
+        {
+          "text": " chord is still inside this window exactly where chapter 2 left it, with the rest of the scale filled in around it — the same five notes you already know, now sitting inside the densest window in the chapter."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Take it to the " },
+        { "text": "Drone", "link": { "kind": "screen", "href": "/drone" } },
+        { "text": " on a sustained " },
+        { "text": "A", "marks": ["code"] },
+        { "text": ". Play the window and stop on " },
+        { "text": "1·1", "marks": ["code"] },
+        { "text": " — the " },
+        { "text": "b6", "marks": ["code"] },
+        { "text": ", the whole colour of this chapter in one note. Then stop on " },
+        { "text": "1·0", "marks": ["code"] },
+        { "text": " and hear it settle." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Chapter 2 lit seven dots in this window, chapter 3 lit twelve — see " },
+        {
+          "text": "the pentatonic A form",
+          "link": { "kind": "article", "slug": "minor-caged-pentatonic-a-form" }
+        },
+        { "text": " for that stage — and this lights seventeen. Page through it in the " },
+        { "text": "Scale Visualizer", "link": { "kind": "screen", "href": "/scale-visualizer" } },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Next: " },
+        { "text": "the G form", "link": { "kind": "article", "slug": "minor-caged-scale-g-form" } },
+        { "text": ", the window that turns out to hold three of every flattened degree at once." }
+      ]
+    }
+  ]
+}

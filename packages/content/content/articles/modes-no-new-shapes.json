@@ -1,0 +1,163 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_modes-no-new-shapes",
+    "slug": "modes-no-new-shapes",
+    "title": "Nothing New to Learn on the Neck",
+    "summary": "Every mode in this pathway is a CAGED window you already own with a degree or two moved — there is no new shape anywhere in six chapters.",
+    "tags": ["modes", "fretboard"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-15"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "You already know the five CAGED windows of A major and the five of A minor. That's all ten, and every mode in this pathway is one of them with a degree moved — six of the seven need exactly one moved, and Locrian, the odd one out, needs two. There is no new shape anywhere in six chapters."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "A window is anchored on the root, not the quality — " },
+        {
+          "text": "The Window Stays, the Third Moves",
+          "link": { "kind": "article", "slug": "minor-caged-the-window-stays-put" }
+        },
+        {
+          "text": " taught you that for major against minor, and it holds here too. A Dorian's E form covers the same frets, 4 to 8, that A minor's E form does."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here's the E form of each, drawn as everything in the window rather than as a grip a hand would actually hold. The first card heads itself A minor, which is Aeolian under the name the app prints:"
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "E",
+        "quality": "minor",
+        "show": "scale",
+        "caption": "Every dot in the window — not a grip a hand would hold"
+      }
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "E",
+        "scale": "dorian",
+        "caption": "Same window, one degree raised"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here's the honest part, and it matters more than the shapes themselves. The two scales differ by exactly one degree — every "
+        },
+        { "text": "b6", "marks": ["code"] },
+        { "text": " becomes a " },
+        { "text": "6", "marks": ["code", { "type": "color", "tone": "amber" }] },
+        {
+          "text": " — but \"the same picture with one dot moved\" is false as a caption for what you just saw. Both windows above hold seventeen dots. Equal counts. Different picture."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Positions below are written string, then fret — string 1 is the high e, string 6 the low E, the numbering the app uses everywhere. A Aeolian's "
+        },
+        { "text": "b6", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "F", "marks": ["code"] },
+        { "text": ") sits at string 2, fret 6 — written " },
+        { "text": "2·6", "marks": ["code"] },
+        { "text": " — and again at " },
+        { "text": "5·8", "marks": ["code"] },
+        { "text": ". A Dorian's " },
+        { "text": "6", "marks": ["code", { "type": "color", "tone": "amber" }] },
+        { "text": " (" },
+        { "text": "F#", "marks": ["code"] },
+        { "text": ") sits at " },
+        { "text": "2·7", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "4·4", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Inside the window, "
+        },
+        { "text": "2·6", "marks": ["code"] },
+        { "text": " simply steps up one fret to " },
+        { "text": "2·7", "marks": ["code"] },
+        { "text": ". But " },
+        { "text": "5·8", "marks": ["code"] },
+        { "text": " would need to raise to " },
+        { "text": "5·9", "marks": ["code"] },
+        {
+          "text": ", which is off the top of the window entirely — so that copy drops out of the picture — while the "
+        },
+        { "text": "6", "marks": ["code", { "type": "color", "tone": "amber" }] },
+        { "text": " that shows up at " },
+        { "text": "4·4", "marks": ["code"] },
+        {
+          "text": " steps in from below instead. One dot fell off the top edge while a different one climbed in at the bottom, which is how the count comes out equal. So don't count dots to tell the two apart: a window is a fixed span of frets, and how many dots land inside it depends on where its edges happen to fall. In this window it comes to seventeen either way. In the D form, the next window up the neck at frets 6 to 10, it comes to eighteen for Aeolian and seventeen for Dorian."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "What that costs you in practice: nothing. Same span of frets, same roots, and wherever you were reaching for an "
+        },
+        { "text": "F", "marks": ["code"] },
+        { "text": " you reach one fret higher for an " },
+        { "text": "F#", "marks": ["code", { "type": "color", "tone": "amber" }] },
+        { "text": " instead. Same finger." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "See it move under your own hands in the " },
+        { "text": "Scale Visualizer", "link": { "kind": "screen", "href": "/scale-visualizer" } },
+        { "text": ". Set the root to " },
+        { "text": "A", "marks": ["code"] },
+        {
+          "text": " and the scale to Dorian, and it pages through \"C form\", \"A form\", \"G form\"… the same form names all three pathways have used. (For a reminder of what those ten windows already hold between them, "
+        },
+        {
+          "text": "Nothing Left to Add",
+          "link": { "kind": "article", "slug": "minor-caged-nothing-left-to-add" }
+        },
+        { "text": " is worth a re-read.)" }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The shapes are free. Which means the entire cost of this pathway is in your ear — which is where the rest of this chapter goes."
+        }
+      ]
+    }
+  ]
+}

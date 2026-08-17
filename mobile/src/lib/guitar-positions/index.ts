@@ -19,16 +19,36 @@ import { boxPositions, cagedPositions } from './windows';
 export {
   CAGED_FORM_OFFSETS,
   CAGED_FORMS,
+  CAGED_QUALITIES,
+  cagedFillMarks,
   cagedFormWindow,
   cagedFormWindows,
   cagedLadderLanes,
   cagedMarks,
+  type CagedFill,
   type CagedForm,
   type CagedLayer,
   type CagedMark,
+  type CagedQuality,
   type CagedWindow,
 } from './caged';
 export { nextScalePitch, positionKey, scaleKeys, stringPitches } from './neck';
+export {
+  STRING_SET_INDICES,
+  STRING_SETS,
+  TRIAD_INVERSIONS,
+  TRIAD_QUALITIES,
+  TRIAD_SYMBOL,
+  triadLadder,
+  triadLadderLanes,
+  triadVoicing,
+  triadVoicings,
+  type StringSet,
+  type TriadInversion,
+  type TriadNote,
+  type TriadQuality,
+  type TriadVoicing,
+} from './triads';
 export type { Position, PositionSystem } from './types';
 
 /** Which systems this scale can be carved into, in the order a toggle shows them. */

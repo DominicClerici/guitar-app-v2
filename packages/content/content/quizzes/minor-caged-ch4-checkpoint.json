@@ -1,0 +1,547 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "quiz_minor-caged-ch4-checkpoint",
+    "slug": "minor-caged-ch4-checkpoint",
+    "title": "Checkpoint: The Whole Natural Minor Scale",
+    "summary": "The two notes this layer adds, why the pentatonic left exactly those two out, what each of the five windows ended up holding, and what the b6 does over an Am.",
+    "kind": "checkpoint",
+    "passThresholdPct": 70
+  },
+  "questions": [
+    {
+      "id": "q_minor-caged-ch4-checkpoint.the-two-notes",
+      "kind": "choice",
+      "prompt": [
+        { "text": "Chapter 3 put the minor pentatonic — " },
+        { "text": "1 b3 4 5 b7", "marks": ["code"] },
+        {
+          "text": " — into all five windows. Which two degrees does natural minor add to that, and what is notable about them?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "The " },
+            { "text": "2", "marks": ["code"] },
+            { "text": " and the " },
+            { "text": "b6", "marks": ["code"] },
+            { "text": " — and the " },
+            { "text": "b6", "marks": ["code"] },
+            {
+              "text": " is the last of the three notes that drop when A major becomes A minor to arrive on the neck."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "The " },
+            { "text": "2", "marks": ["code"] },
+            { "text": " and the " },
+            { "text": "6", "marks": ["code"] },
+            { "text": " — the two notes A minor keeps unchanged from A major." }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "The " },
+            { "text": "b6", "marks": ["code"] },
+            { "text": " and a second " },
+            { "text": "b3", "marks": ["code"] },
+            { "text": " — the scale needs the flattened third twice to sound properly minor." }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "The " },
+            { "text": "b2", "marks": ["code"] },
+            { "text": " and the " },
+            { "text": "b6", "marks": ["code"] },
+            { "text": " — the two darkest notes available above the root." }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "Natural minor is " },
+        { "text": "1 2 b3 4 5 b6 b7", "marks": ["code"] },
+        { "text": " — in A, " },
+        { "text": "A B C D E F G", "marks": ["code"] },
+        { "text": ". Chapter 1 named three notes that drop from A major: the " },
+        { "text": "b3", "marks": ["code"] },
+        { "text": " arrived in chapter 2, the " },
+        { "text": "b7", "marks": ["code"] },
+        { "text": " in chapter 3, and the " },
+        { "text": "b6", "marks": ["code"] },
+        { "text": " here. The " },
+        { "text": "2", "marks": ["code"] },
+        { "text": " is the other new note, and it never dropped at all — " },
+        { "text": "1", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "2", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "4", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "5", "marks": ["code"] },
+        { "text": " are identical in A major and A minor. There is no " },
+        { "text": "b2", "marks": ["code"] },
+        { "text": " in this scale, and no natural " },
+        { "text": "6", "marks": ["code"] },
+        { "text": " either." }
+      ]
+    },
+    {
+      "id": "q_minor-caged-ch4-checkpoint.why-the-pentatonic-left-them",
+      "kind": "choice",
+      "prompt": [
+        { "text": "The minor pentatonic could have left out any two of the seven. Why are the " },
+        { "text": "2", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "b6", "marks": ["code"] },
+        { "text": " the two it drops?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "They are the only two notes of the scale that sit a semitone from a chord tone — one fret below the "
+            },
+            { "text": "b3", "marks": ["code"] },
+            { "text": " and one fret above the " },
+            { "text": "5", "marks": ["code"] },
+            {
+              "text": ". Everything the pentatonic keeps is at least two frets from every note of the chord."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "They are the two hardest notes to reach — they fall outside the five-fret window in most of the forms."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "They are the two notes that changed when A major became A minor, so leaving them out keeps the shape usable over either quality."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "There is no reason in the notes themselves — five is simply a convenient number and any two could have gone."
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "Measured against " },
+        { "text": "1 b3 5", "marks": ["code"] },
+        { "text": ", the " },
+        { "text": "4", "marks": ["code"] },
+        { "text": " sits two frets from both the " },
+        { "text": "b3", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "5", "marks": ["code"] },
+        { "text": ", and the " },
+        { "text": "b7", "marks": ["code"] },
+        { "text": " two frets from the " },
+        { "text": "1", "marks": ["code"] },
+        { "text": ". The " },
+        { "text": "2", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "b6", "marks": ["code"] },
+        {
+          "text": " are the only two a single fret away from anything in the chord. That is the whole difference between a scale that is safe over an "
+        },
+        { "text": "Am", "marks": ["code"] },
+        {
+          "text": " and one with a note in it that is not. Both new notes sit comfortably inside every window, so reach is not the issue."
+        }
+      ]
+    },
+    {
+      "id": "q_minor-caged-ch4-checkpoint.c-form-fret-eleven",
+      "kind": "choice",
+      "prompt": [
+        { "text": "The C form's window runs frets " },
+        { "text": "9–13", "marks": ["code"] },
+        {
+          "text": ", but its seventeen dots sit only on frets 9, 10, 12 and 13. What is going on at fret 11?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "No string carries a note of A natural minor at fret 11 at all — it is the one fret in the first fifteen like that, and the C form is the only window that contains it."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "Fret 11 does carry scale notes, but they belong to the D form's window instead, so the diagram leaves them out."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "The gap only appeared at this layer — the pentatonic filled fret 11 and the extra notes pushed those dots outwards."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "Fret 11 is too far from the roots at " },
+            { "text": "5·12", "marks": ["code"] },
+            { "text": " and " },
+            { "text": "2·10", "marks": ["code"] },
+            { "text": " to be worth drawing." }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "Checked string by string, fret 11 holds no note of A natural minor anywhere on the neck — so this is a hole in the neck rather than a gap in a shape. It was already empty at the pentatonic layer and all seven degrees do not fill it. The D form's window runs "
+        },
+        { "text": "6–10", "marks": ["code"] },
+        {
+          "text": " and never reaches fret 11; the C form is the only one of the five that contains it. That is why this window plays as two clusters — frets 9–10 and frets 12–13 — and each of those clusters holds all seven degrees on its own."
+        }
+      ]
+    },
+    {
+      "id": "q_minor-caged-ch4-checkpoint.a-form-open-strings",
+      "kind": "choice",
+      "prompt": [
+        { "text": "Chapter 3 had to tell you that string 2's open " },
+        { "text": "B", "marks": ["code"] },
+        {
+          "text": " sits out of the A form window, because it is not one of the pentatonic's five notes. What changes at this layer?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "The open " },
+            { "text": "B", "marks": ["code"] },
+            { "text": " is the " },
+            { "text": "2", "marks": ["code"] },
+            { "text": ", so every one of the six open strings is now a note of A natural minor." }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "Nothing — the open " },
+            { "text": "B", "marks": ["code"] },
+            {
+              "text": " still sits out, and string 2 remains the one string in this window with no open note in the scale."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "The open " },
+            { "text": "B", "marks": ["code"] },
+            { "text": " becomes the " },
+            { "text": "b6", "marks": ["code"] },
+            { "text": ", which is why the open position sounds darker than the rest of the neck." }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "The window widens to five frets to take the extra notes in, so it stops being the odd one out."
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "Low to high the open strings are " },
+        { "text": "E A D G B E", "marks": ["code"] },
+        { "text": " — degrees " },
+        { "text": "5 1 4 b7 2 5", "marks": ["code"] },
+        { "text": ". All six are in the scale; the two degrees they do not give you are the " },
+        { "text": "b3", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "b6", "marks": ["code"] },
+        { "text": ". The window is still four frets wide, " },
+        { "text": "0–3", "marks": ["code"] },
+        {
+          "text": ", because the nut cuts it short — and it packs seventeen dots into them, more per fret than any other window."
+        }
+      ]
+    },
+    {
+      "id": "q_minor-caged-ch4-checkpoint.g-form-three-flats",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "The G form window holds eighteen dots. What makes it the darkest-sounding of the five?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "It holds three " },
+            { "text": "b3", "marks": ["code"] },
+            { "text": "s, three " },
+            { "text": "b6", "marks": ["code"] },
+            { "text": "s and three " },
+            { "text": "b7", "marks": ["code"] },
+            {
+              "text": "s — nine of its eighteen dots are one of the three flattened degrees, more than any other window in count or proportion."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "It is the only window with eighteen dots, so it simply has more of everything than the other four."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "It holds more " },
+            { "text": "b6", "marks": ["code"] },
+            { "text": "s than any other window — four, where the rest hold three or fewer." }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "It is the only window with no root in it, so nothing in the shape resolves."
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "Exactly half the G form's dots are a " },
+        { "text": "b3", "marks": ["code"] },
+        { "text": ", a " },
+        { "text": "b6", "marks": ["code"] },
+        { "text": " or a " },
+        { "text": "b7", "marks": ["code"] },
+        {
+          "text": " — the three notes chapter 1 said drop when A major becomes A minor, three of each. Eighteen dots is not unique to it: the D form holds eighteen too, and those two are the windows with three dots on every string. Three "
+        },
+        { "text": "b6", "marks": ["code"] },
+        {
+          "text": "s is not unique either — the C, A and D forms all hold three. And it carries three roots, at "
+        },
+        { "text": "6·5", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3·2", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "1·5", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "id": "q_minor-caged-ch4-checkpoint.e-form-two-frets",
+      "kind": "fretboard",
+      "prompt": [
+        {
+          "text": "At the pentatonic layer the fret-5 box left frets 4 and 6 completely empty. The whole scale puts exactly one note on each — and each of those is the only note of A natural minor at that fret anywhere on the neck. Mark both."
+        }
+      ],
+      "frets": 8,
+      "answer": [
+        { "string": 3, "fret": 4 },
+        { "string": 2, "fret": 6 }
+      ],
+      "explanation": [
+        { "text": "The two dots are " },
+        { "text": "3·4", "marks": ["code"] },
+        { "text": ", a " },
+        { "text": "2", "marks": ["code"] },
+        { "text": ", and " },
+        { "text": "2·6", "marks": ["code"] },
+        { "text": ", a " },
+        { "text": "b6", "marks": ["code"] },
+        {
+          "text": " — the two sparsest non-empty frets on the neck, one note each, and both of them new at this layer. The E form is the only one of the five windows that contains both: the G form reaches fret 4 and stops, the D form starts at fret 6. "
+        },
+        { "text": "2·6", "marks": ["code"] },
+        { "text": " is the one worth having under your hand — hold the " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " barre at fret 5 and it is one fret above " },
+        { "text": "2·5", "marks": ["code"] },
+        { "text": ", under the finger you are already using." }
+      ]
+    },
+    {
+      "id": "q_minor-caged-ch4-checkpoint.d-form-every-string",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "Four of the five windows gain five dots at this layer. The D form gains six. What follows from that?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "It is the only window where every one of the six strings picks up a new note — the other four each leave one string exactly as it was."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "It ends up with more dots than any other window, since five plus one beats every other total."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "It is the only window that has to widen past five frets to take the extra note in."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "It gains two dots on one string and none on another, which is what makes it uneven."
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "The six are " },
+        { "text": "6·7", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "5·8", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "4·9", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3·10", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "2·6", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "1·7", "marks": ["code"] },
+        {
+          "text": " — one per string, which no other window manages. It ends at eighteen dots, which ties the G form rather than beating it, and its window is still five frets, "
+        },
+        { "text": "6–10", "marks": ["code"] },
+        { "text": ". Three of the six new dots are " },
+        { "text": "b6", "marks": ["code"] },
+        {
+          "text": "s, against only two roots — which is why this window sounds restless if you run it without deciding where to stop."
+        }
+      ]
+    },
+    {
+      "id": "q_minor-caged-ch4-checkpoint.sitting-on-the-sixth",
+      "kind": "choice",
+      "prompt": [
+        { "text": "You are holding the " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " barre at fret 5 and you let it ring while you play " },
+        { "text": "5·8", "marks": ["code"] },
+        { "text": " over the top of it. What happens, and why?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "It grates, because the " },
+            { "text": "b6", "marks": ["code"] },
+            { "text": " sits one fret above the " },
+            { "text": "5", "marks": ["code"] },
+            { "text": " the chord is built on. Drop it to " },
+            { "text": "5·7", "marks": ["code"] },
+            { "text": " and it settles." }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "It settles, because the " },
+            { "text": "b6", "marks": ["code"] },
+            {
+              "text": " is what makes the chord minor — it is the note the whole quality rests on."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "Nothing much, because " },
+            { "text": "5·8", "marks": ["code"] },
+            {
+              "text": " is a chord tone — every note inside a window belongs to the chord the window is named for."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "It grates, because the " },
+            { "text": "b6", "marks": ["code"] },
+            { "text": " sits one fret below the root and pulls upward into it." }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "The " },
+        { "text": "b6", "marks": ["code"] },
+        { "text": " is a semitone above the " },
+        { "text": "5", "marks": ["code"] },
+        { "text": " — " },
+        { "text": "F", "marks": ["code"] },
+        { "text": " above " },
+        { "text": "E", "marks": ["code"] },
+        { "text": " — and " },
+        { "text": "E", "marks": ["code"] },
+        {
+          "text": " is in the chord. Place it, lean on it, move: that is the whole character of the darkest note in the scale. It is not what makes the chord minor — chapter 1 gave that job to the "
+        },
+        { "text": "b3", "marks": ["code"] },
+        {
+          "text": ", the only one of the three flattened notes that lives inside the triad itself. And nothing sits a fret below the root here: the note under the "
+        },
+        { "text": "1", "marks": ["code"] },
+        { "text": " in this scale is the " },
+        { "text": "b7", "marks": ["code"] },
+        { "text": ", a whole step down." }
+      ]
+    }
+  ]
+}

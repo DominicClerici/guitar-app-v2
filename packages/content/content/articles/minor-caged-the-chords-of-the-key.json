@@ -1,0 +1,1005 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_minor-caged-the-chords-of-the-key",
+    "slug": "minor-caged-the-chords-of-the-key",
+    "title": "The Chords A Minor Gives You",
+    "summary": "Harmonising A natural minor gives seven chords, three minor, three major, one diminished, and every root is already on your low E and A strings.",
+    "tags": ["caged", "minor"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Take each note of "
+        },
+        {
+          "text": "A B C D E F G",
+          "marks": ["code"]
+        },
+        {
+          "text": " in turn. On each one, stack a third and a fifth, using only those seven notes — no note from outside the scale is allowed in. Seven chords fall out the other end, and no choices were made along the way. The scale did all of it."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [
+          {
+            "text": "Degree"
+          }
+        ],
+        [
+          {
+            "text": "i",
+            "marks": ["code"]
+          }
+        ],
+        [
+          {
+            "text": "ii°",
+            "marks": ["code"]
+          }
+        ],
+        [
+          {
+            "text": "III",
+            "marks": ["code"]
+          }
+        ],
+        [
+          {
+            "text": "iv",
+            "marks": ["code"]
+          }
+        ],
+        [
+          {
+            "text": "v",
+            "marks": ["code"]
+          }
+        ],
+        [
+          {
+            "text": "VI",
+            "marks": ["code"]
+          }
+        ],
+        [
+          {
+            "text": "VII",
+            "marks": ["code"]
+          }
+        ]
+      ],
+      "rows": [
+        [
+          [
+            {
+              "text": "Chord"
+            }
+          ],
+          [
+            {
+              "text": "Am",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "Bdim",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "C",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "Dm",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "Em",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "F",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "G",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Notes"
+            }
+          ],
+          [
+            {
+              "text": "A C E",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "B D F",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "C E G",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "D F A",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "E G B",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "F A C",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "G B D",
+              "marks": ["code"]
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Three minor, three major, one diminished, and the mix of them is the surprise: "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "Dm",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "Em",
+          "marks": ["code"]
+        },
+        {
+          "text": " are minor; "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " are major; "
+        },
+        {
+          "text": "Bdim",
+          "marks": ["code"]
+        },
+        {
+          "text": " is neither. A minor key is not made of minor chords."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "info",
+      "spans": [
+        {
+          "text": "Three chords in the key are minor, three are major, one is diminished. A minor key is not made of minor chords."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One naming convention, defined once and used for the rest of this chapter: lowercase for a minor chord ("
+        },
+        {
+          "text": "i",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "iv",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "v",
+          "marks": ["code"]
+        },
+        {
+          "text": "), uppercase for a major one ("
+        },
+        {
+          "text": "III",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "VI",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "VII",
+          "marks": ["code"]
+        },
+        {
+          "text": "), and "
+        },
+        {
+          "text": "°",
+          "marks": ["code"]
+        },
+        {
+          "text": " for diminished ("
+        },
+        {
+          "text": "ii°",
+          "marks": ["code"]
+        },
+        {
+          "text": "). These are Roman numerals, and this chapter uses them the whole way through — the numeral tells you the degree and its case tells you the quality, so you never have to say both."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Now harmonise C major the same way — stack thirds on "
+        },
+        {
+          "text": "C D E F G A B",
+          "marks": ["code"]
+        },
+        {
+          "text": " — and you get "
+        },
+        {
+          "text": "C Dm Em F G Am Bdim",
+          "marks": ["code"]
+        },
+        {
+          "text": ": the identical seven chords, started from the sixth. "
+        },
+        {
+          "text": "The Same Seven Notes",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-the-same-seven-notes"
+          }
+        },
+        {
+          "text": " proved the two keys share seven notes; this is the same fact one level up. The chords of a minor key were never a second thing to learn."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [
+          {
+            "text": "C major"
+          }
+        ],
+        [
+          {
+            "text": "I",
+            "marks": ["code"]
+          },
+          {
+            "text": " / "
+          },
+          {
+            "text": "C",
+            "marks": ["code"]
+          }
+        ],
+        [
+          {
+            "text": "ii",
+            "marks": ["code"]
+          },
+          {
+            "text": " / "
+          },
+          {
+            "text": "Dm",
+            "marks": ["code"]
+          }
+        ],
+        [
+          {
+            "text": "iii",
+            "marks": ["code"]
+          },
+          {
+            "text": " / "
+          },
+          {
+            "text": "Em",
+            "marks": ["code"]
+          }
+        ],
+        [
+          {
+            "text": "IV",
+            "marks": ["code"]
+          },
+          {
+            "text": " / "
+          },
+          {
+            "text": "F",
+            "marks": ["code"]
+          }
+        ],
+        [
+          {
+            "text": "V",
+            "marks": ["code"]
+          },
+          {
+            "text": " / "
+          },
+          {
+            "text": "G",
+            "marks": ["code"]
+          }
+        ],
+        [
+          {
+            "text": "vi",
+            "marks": ["code"]
+          },
+          {
+            "text": " / "
+          },
+          {
+            "text": "Am",
+            "marks": ["code"]
+          }
+        ],
+        [
+          {
+            "text": "vii°",
+            "marks": ["code"]
+          },
+          {
+            "text": " / "
+          },
+          {
+            "text": "Bdim",
+            "marks": ["code"]
+          }
+        ]
+      ],
+      "rows": [
+        [
+          [
+            {
+              "text": "A minor"
+            }
+          ],
+          [
+            {
+              "text": "III",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "iv",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "v",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "VI",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "VII",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "i",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "ii°",
+              "marks": ["code"]
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Now the practical payload: where each chord actually is. One notation reminder — "
+        },
+        {
+          "text": "5·3",
+          "marks": ["code"]
+        },
+        {
+          "text": " means string 5, fret 3, and string 1 is the high "
+        },
+        {
+          "text": "e",
+          "marks": ["code"]
+        },
+        {
+          "text": "."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Every chord's root is a note of the scale, so the roots are rows you already have from the whole natural minor scale: the low E string gives "
+        },
+        {
+          "text": "6·1",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "6·3",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "6·5",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "6·7",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "6·8",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "6·10",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "6·12",
+          "marks": ["code"]
+        },
+        {
+          "text": ", and the A string gives "
+        },
+        {
+          "text": "5·0",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "5·2",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "5·3",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "5·5",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "5·7",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "5·8",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "5·10",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Put an E-shape barre — the E form — on a low-E root, or an A-shape barre — the A form — on an A-string root, and you have the chord."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [
+          {
+            "text": "Chord"
+          }
+        ],
+        [
+          {
+            "text": "Numeral"
+          }
+        ],
+        [
+          {
+            "text": "E form barre"
+          }
+        ],
+        [
+          {
+            "text": "A form barre"
+          }
+        ]
+      ],
+      "rows": [
+        [
+          [
+            {
+              "text": "Am",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "i",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "fret 5 — "
+            },
+            {
+              "text": "5 7 7 5 5 5",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "open "
+            },
+            {
+              "text": "Am",
+              "marks": ["code"]
+            },
+            {
+              "text": ", or fret 12"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Bdim",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "ii°",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "none"
+            }
+          ],
+          [
+            {
+              "text": "none"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "C",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "III",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "fret 8"
+            }
+          ],
+          [
+            {
+              "text": "fret 3 — "
+            },
+            {
+              "text": "x 3 5 5 5 3",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Dm",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "iv",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "fret 10"
+            }
+          ],
+          [
+            {
+              "text": "fret 5"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Em",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "v",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "open "
+            },
+            {
+              "text": "Em",
+              "marks": ["code"]
+            },
+            {
+              "text": ", or fret 12"
+            }
+          ],
+          [
+            {
+              "text": "fret 7"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "F",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "VI",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "fret 1 — "
+            },
+            {
+              "text": "1 3 3 2 1 1",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "fret 8 — "
+            },
+            {
+              "text": "x 8 10 10 10 8",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "G",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "VII",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "fret 3 — "
+            },
+            {
+              "text": "3 5 5 4 3 3",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "fret 10"
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That is the whole of this lesson's work: the two forms that hold as full barres — the A form and "
+        },
+        {
+          "text": "the E form",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-triad-e-form"
+          }
+        },
+        {
+          "text": ", the two chapter 2 handed you for free — are enough to play every chord in the key, twice over, without learning a new shape."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The exception is the honest one. "
+        },
+        {
+          "text": "Bdim",
+          "marks": ["code"]
+        },
+        {
+          "text": " is "
+        },
+        {
+          "text": "B D F",
+          "marks": ["code"]
+        },
+        {
+          "text": " — two minor thirds stacked, but the interval from "
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": " back up to "
+        },
+        {
+          "text": "B",
+          "marks": ["code"]
+        },
+        {
+          "text": " is a tritone rather than a third, so it isn't the endlessly-repeating shape the four-note diminished-seventh chord is. There is no barre form of it, which is the practical, unglamorous reason "
+        },
+        {
+          "text": "ii°",
+          "marks": ["code"]
+        },
+        {
+          "text": " is the least-used chord in the key. "
+        },
+        {
+          "text": "The Note That Hasn't Moved",
+          "link": {
+            "kind": "article",
+            "slug": "triad-the-flat-fifth"
+          }
+        },
+        {
+          "text": " covers the shape itself; this chapter doesn't need to."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here's the whole key, in order, returning home:"
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "progression-player",
+      "props": {
+        "chords": ["Am", "Bdim", "C", "Dm", "Em", "F", "G", "Am"],
+        "bpm": 80,
+        "caption": "The seven chords of A minor, in order, back to Am"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Listen for three that sound minor, three that sound major, and one that sounds like neither. One honest note on that last chip: the "
+        },
+        {
+          "text": "Bdim",
+          "marks": ["code"]
+        },
+        {
+          "text": " grip drawn there is an awkward one to hold — that's the voicing engine's curated pick and it's a fair reflection of the chord, not a mistake. "
+        },
+        {
+          "text": "Chord Shapes",
+          "link": {
+            "kind": "screen",
+            "href": "/chord-shapes"
+          }
+        },
+        {
+          "text": " has friendlier ones."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Play any of the barres from the table above and check them against the "
+        },
+        {
+          "text": "Chord Detector",
+          "link": {
+            "kind": "screen",
+            "href": "/chord-detector"
+          }
+        },
+        {
+          "text": "."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That leaves the "
+        },
+        {
+          "text": "v",
+          "marks": ["code"]
+        },
+        {
+          "text": ". "
+        },
+        {
+          "text": "Em",
+          "marks": ["code"]
+        },
+        {
+          "text": " is minor, and it is the one chord in that list an enormous amount of minor-key music quietly changes."
+        }
+      ]
+    }
+  ]
+}

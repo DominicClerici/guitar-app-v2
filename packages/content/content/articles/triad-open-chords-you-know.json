@@ -1,0 +1,219 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_triad-open-chords-you-know",
+    "slug": "triad-open-chords-you-know",
+    "title": "You Already Play These",
+    "summary": "The open C chord dissected into three overlapping triads, plus open A and open D on the same strings — and the one open chord that isn't a triad at all.",
+    "tags": ["triads", "chords"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Open C — " },
+        { "text": "x 3 2 0 1 0", "marks": ["code"] },
+        {
+          "text": ", the chord from your first month — isn't one triad. It's three of them, stacked inside the same five fingers, on three overlapping string sets, in all three inversions."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Strings" }],
+        [{ "text": "Frets" }],
+        [{ "text": "Notes" }],
+        [{ "text": "Reading" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "5-4-3" }],
+          [{ "text": "3 2 0", "marks": ["code"] }],
+          [{ "text": "C E G", "marks": ["code"] }],
+          [{ "text": "root position, set 3-4-5" }]
+        ],
+        [
+          [{ "text": "4-3-2" }],
+          [{ "text": "2 0 1", "marks": ["code"] }],
+          [{ "text": "E G C", "marks": ["code"] }],
+          [{ "text": "first inversion, set 2-3-4" }]
+        ],
+        [
+          [{ "text": "3-2-1" }],
+          [{ "text": "0 1 0", "marks": ["code"] }],
+          [{ "text": "G C E", "marks": ["code"] }],
+          [{ "text": "second inversion, set 1-2-3" }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "None of this is new material — it's a new way of reading chords you've had under your fingers for years. Every reading above uses the same vocabulary from earlier in this chapter: root position, first inversion, second inversion, named the same way no matter which strings they land on."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The middle reading — " },
+        { "text": "2 0 1", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "E G C", "marks": ["code"] },
+        { "text": " — is the " },
+        { "text": "C/E", "marks": ["code"] },
+        {
+          "text": " grip from the inversion lesson: the same first inversion, read straight out of a chord you already knew by heart before you knew what it was."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Open A does the same trick with no overlap to explain. " },
+        { "text": "x 0 2 2 2 0", "marks": ["code"] },
+        { "text": " — its top three strings, " },
+        { "text": "2 2 0", "marks": ["code"] },
+        { "text": " — are " },
+        { "text": "A", "marks": ["code"] },
+        { "text": " " },
+        { "text": "C#", "marks": ["code"] },
+        { "text": " " },
+        { "text": "E", "marks": ["code"] },
+        {
+          "text": ": an A major triad in root position on strings 1-2-3, the same shape as C's root position, moved to a new root."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "A",
+        "strings": "1-2-3",
+        "inversion": "root",
+        "caption": "Open A's top three strings: A major, root position."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "3·2", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "A", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "2·2", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "C#", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "1·0", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "E", "marks": ["code"] },
+        { "text": ". Degrees " },
+        { "text": "1 3 5", "marks": ["code"] },
+        { "text": ", bass note " },
+        { "text": "A", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Open D borrows the same three strings for a different inversion. " },
+        { "text": "x x 0 2 3 2", "marks": ["code"] },
+        { "text": " — top three strings " },
+        { "text": "2 3 2", "marks": ["code"] },
+        { "text": " — are " },
+        { "text": "A", "marks": ["code"] },
+        { "text": " " },
+        { "text": "D", "marks": ["code"] },
+        { "text": " " },
+        { "text": "F#", "marks": ["code"] },
+        { "text": ". The bass is " },
+        { "text": "A", "marks": ["code"] },
+        { "text": ", but the chord is still " },
+        { "text": "D", "marks": ["code"] },
+        { "text": ": a " },
+        { "text": "D/A", "marks": ["code"] },
+        { "text": ", second inversion, the fifth sitting underneath." }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "D",
+        "strings": "1-2-3",
+        "inversion": "second",
+        "caption": "Open D's top three strings: D major, second inversion."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "3·2", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "A", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "2·3", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "D", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "1·2", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "F#", "marks": ["code"] },
+        { "text": ". Degrees " },
+        { "text": "5 1 3", "marks": ["code"] },
+        { "text": ", bass note " },
+        { "text": "A", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "spans": [
+        { "text": "Not every open chord works this way. Open G is " },
+        { "text": "3 2 0 0 0 3", "marks": ["code"] },
+        { "text": "; its top three strings, " },
+        { "text": "0 0 3", "marks": ["code"] },
+        { "text": ", are " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " " },
+        { "text": "B", "marks": ["code"] },
+        { "text": " " },
+        { "text": "G", "marks": ["code"] },
+        {
+          "text": " — root, third, root. No fifth, and a doubled root: not a triad. A doubled root can sound full and still be missing a note. Read the top three strings of any chord you like, but check before you trust it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "See these grips sitting alongside every other way to play the same chord in "
+        },
+        { "text": "Chord Shapes", "link": { "kind": "screen", "href": "/chord-shapes" } },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Next: " },
+        {
+          "text": "why rhythm playing chooses these three strings",
+          "link": { "kind": "article", "slug": "triad-why-the-top-set" }
+        },
+        {
+          "text": " — the set open C, open A and open D all put a triad on, out of the four available."
+        }
+      ]
+    }
+  ]
+}

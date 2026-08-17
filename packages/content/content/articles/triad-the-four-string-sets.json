@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_triad-the-four-string-sets",
+    "slug": "triad-the-four-string-sets",
+    "title": "Four Sets of Three Strings",
+    "summary": "A close triad lives on three adjacent strings, and there are exactly four such sets — picking one is a decision about register.",
+    "tags": ["triads", "fretboard"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Every grip so far has packed its three notes as tight as they go — no gaps, no skipped strings. That's a "
+        },
+        { "text": "close voicing", "marks": ["bold"] },
+        {
+          "text": ": the root, third, and fifth stacked as close together as the neck allows. On a guitar, packing a triad close means playing it on three "
+        },
+        { "text": "adjacent", "marks": ["italic"] },
+        {
+          "text": " strings — skip a string and the voicing opens up into something looser, which is a different topic for a later chapter."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "A guitar has six strings, so there are exactly four ways to pick three adjacent ones. Named high string first, the way this pathway always names a set: strings "
+        },
+        { "text": "1-2-3", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "2-3-4", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3-4-5", "marks": ["code"] },
+        { "text": ", and " },
+        { "text": "4-5-6", "marks": ["code"] },
+        { "text": ". String 1 is the high " },
+        { "text": "e", "marks": ["code"] },
+        { "text": "; string 6 is the low " },
+        { "text": "E", "marks": ["code"] },
+        {
+          "text": ". Every one of these four sets can hold a full C major triad, in any inversion — the same three note names, in four different neighbourhoods of the neck."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [[{ "text": "Set" }], [{ "text": "Character" }]],
+      "rows": [
+        [
+          [{ "text": "1-2-3", "marks": ["code"] }],
+          [{ "text": "highest and thinnest — where rhythm parts live" }]
+        ],
+        [[{ "text": "2-3-4", "marks": ["code"] }], [{ "text": "sits just below that" }]],
+        [
+          [{ "text": "3-4-5", "marks": ["code"] }],
+          [{ "text": "the middle of the guitar — a fuller sound" }]
+        ],
+        [
+          [{ "text": "4-5-6", "marks": ["code"] }],
+          [{ "text": "the lowest — register becomes a real question here" }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Which set you reach for isn't just whatever your hand happens to be near. It's a decision about register, and register is not taste — it's physics. Take the same chord, the same inversion, an octave apart. Root position C major on strings 1-2-3 is "
+        },
+        { "text": "C", "marks": ["code"] },
+        { "text": " " },
+        { "text": "E", "marks": ["code"] },
+        { "text": " " },
+        { "text": "G", "marks": ["code"] },
+        {
+          "text": " up high. Root position C major on strings 4-5-6 is the identical chord and the identical inversion, an octave lower."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "C",
+        "strings": "4-5-6",
+        "inversion": "root",
+        "caption": "The same chord an octave down."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Play that low grip next to the high one and the difference isn't subtle — the low version sounds thicker, murkier, closer to mud. That's not a matter of taste; it's a rule this app's own voicing engine enforces: the lower a close triad sits, the wider the gaps between its notes have to be before it stays legible. Near the bottom of the neck, the app tightens what it allows the further down the notes go."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That doesn't make a low close triad wrong. This one clears the bar — it's still a legible, playable chord, just a chord standing close to the edge of legibility. It's marginal, not forbidden."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The high sets don't have that problem. Up on strings 1-2-3, the same three notes have room to spare — thin, clear, and out of the way of everything else happening in a band: the bass player's low notes, the singer's melody. That's the real reason so much rhythm playing lives up there. It isn't the easy set because it's simple to reach; it's the set that stays out of everyone else's way."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "info",
+      "spans": [
+        {
+          "text": "The grips on these four sets aren't identical copies of each other slid to a new spot — the shapes actually change from set to set, and chapter 2 explains why."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "For now, that's the whole map: four sets, one triad, a choice about where on the neck — and how low — you want it to sit. Next: the three grips that live on strings 1-2-3, the set you'll use the most."
+        }
+      ]
+    }
+  ]
+}

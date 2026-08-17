@@ -1,0 +1,1132 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "quiz_modes-ch6-checkpoint",
+    "slug": "modes-ch6-checkpoint",
+    "title": "Playing Modally",
+    "summary": "Eight questions on what the second chord of a vamp is for, playing across the windows, landing on the characteristic note rather than including it, naming a mode by ear, and writing a vamp of your own.",
+    "kind": "checkpoint",
+    "passThresholdPct": 70
+  },
+  "questions": [
+    {
+      "id": "q_modes-ch6-checkpoint.the-rule",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "A modal vamp is two chords. The first one is home. What decides which chord goes second?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "It has to contain the mode's characteristic note — the second chord is the only place in the loop where the harmony itself asserts that note"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "It has to be the chord a fourth above home, which is where a second chord always comes from"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "It has to share no notes with the home chord, so the two stay clearly separate"
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "It has to be drawn from the mode's parent major scale rather than from the mode itself"
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "Play home alone and you have stated where home is; add a chord carrying the characteristic note and you have stated what makes this particular home sound the way it does. The fourth is not the answer — over a major home the fourth is exactly the chord to avoid, because the loop settles there instead of circling. Sharing no notes is true of "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "B",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "Bb",
+          "marks": ["code"]
+        },
+        {
+          "text": ", and false of "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": ", which both share an "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": " with home — so it cannot be the rule. And the parent major holds exactly the same seven notes as the mode, so naming it settles nothing at all."
+        }
+      ]
+    },
+    {
+      "id": "q_modes-ch6-checkpoint.both-chords",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "A loop rocks between "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": " and refuses to go anywhere else. The "
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": " chord is "
+        },
+        {
+          "text": "D F# A",
+          "marks": ["code"]
+        },
+        {
+          "text": ". What has that second chord told you, and what has it not?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "It carries the "
+            },
+            {
+              "text": "6",
+              "marks": ["code"]
+            },
+            {
+              "text": ", which rules out Aeolian and Phrygian — but it also sits inside Ionian and Mixolydian, and what rules those two out is the minor home chord underneath"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "It carries the "
+            },
+            {
+              "text": "6",
+              "marks": ["code"]
+            },
+            {
+              "text": " and sits inside Dorian and no other mode on this root, so the second chord names the mode on its own"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "It rules out every mode but Dorian, because an "
+            },
+            {
+              "text": "F#",
+              "marks": ["code"]
+            },
+            {
+              "text": " appears in no other mode built on "
+            },
+            {
+              "text": "A",
+              "marks": ["code"]
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "It narrows nothing — only the home chord ever decides which mode a loop is in"
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "Three of the seven modes on "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": " contain "
+        },
+        {
+          "text": "D F# A",
+          "marks": ["code"]
+        },
+        {
+          "text": " — Ionian, Mixolydian and Dorian — so the chord narrows the field to three and the minor home chord finishes the job. The "
+        },
+        {
+          "text": "F#",
+          "marks": ["code"]
+        },
+        {
+          "text": " is not rare either: Lydian, Ionian and Mixolydian all have one. Only one vamp in this pathway is settled by its second chord alone, and it is "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "B",
+          "marks": ["code"]
+        },
+        {
+          "text": ", because "
+        },
+        {
+          "text": "B D# F#",
+          "marks": ["code"]
+        },
+        {
+          "text": " fits Lydian and none of the other six."
+        }
+      ]
+    },
+    {
+      "id": "q_modes-ch6-checkpoint.the-edges",
+      "kind": "multi-select",
+      "prompt": [
+        {
+          "text": "Which of these are true of the rule that the second chord carries the characteristic note?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "Ionian gets no vamp at all, because it has no characteristic note for a second chord to carry"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "Locrian gets no vamp either, because it has no first chord to stand on"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "Aeolian gets a real loop in "
+            },
+            {
+              "text": "Am",
+              "marks": ["code"]
+            },
+            {
+              "text": "–"
+            },
+            {
+              "text": "F",
+              "marks": ["code"]
+            },
+            {
+              "text": ", but the "
+            },
+            {
+              "text": "b6",
+              "marks": ["code"]
+            },
+            {
+              "text": " that chord carries is the note Dorian gives up rather than one Aeolian is named for, so the loop cannot pin Aeolian down"
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "Every vamp's second chord fits its own mode and no other, which is what makes the rule work"
+            }
+          ]
+        },
+        {
+          "id": "e",
+          "spans": [
+            {
+              "text": "A mode with no characteristic note borrows the characteristic note of the mode next to it on the ladder"
+            }
+          ]
+        }
+      ],
+      "answerIds": ["a", "b", "c"],
+      "explanation": [
+        {
+          "text": "The rule has three edges and all three are worth knowing. Ionian's vamp row was already empty when the major family was laid side by side — no characteristic note means no second chord that could assert one. Locrian fails one step earlier: its home chord has no perfect fifth, so there is nothing for a second chord to move against. Aeolian is the subtle one — the loop exists, the "
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": " really does carry the "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": ", and it still only gets as far as \"not Dorian\", because Phrygian has an "
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": " too. The claim that every second chord fits only its own mode is false four times over: "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "Bb",
+          "marks": ["code"]
+        },
+        {
+          "text": " each fit two or three of the seven. And nothing borrows a characteristic note from a neighbour — having none is what makes Ionian and Aeolian the references everything else is measured against."
+        }
+      ]
+    },
+    {
+      "id": "q_modes-ch6-checkpoint.across-the-neck",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "You are playing over "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": " and you want to move out of the window your hand started in. What does the neck already give you?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "Every one of the five windows already holds the "
+            },
+            {
+              "text": "6",
+              "marks": ["code"]
+            },
+            {
+              "text": ", usually two or three times — so wherever your hand goes, the note you are aiming at is already inside the box"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "The "
+            },
+            {
+              "text": "6",
+              "marks": ["code"]
+            },
+            {
+              "text": " sits in exactly one window, so playing Dorian means staying where that window is"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "A Dorian has its own five windows, sitting a fret higher than A natural minor's, because the sixth is raised"
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "Only the windows above fret 5 hold a "
+            },
+            {
+              "text": "6",
+              "marks": ["code"]
+            },
+            {
+              "text": " at all, so crossing downward means leaving it behind"
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "In A Dorian the "
+        },
+        {
+          "text": "6",
+          "marks": ["code"]
+        },
+        {
+          "text": " turns up in all five windows, and a copy sits on every join between neighbouring ones — "
+        },
+        {
+          "text": "4·4",
+          "marks": ["code"]
+        },
+        {
+          "text": " belongs to the G form and the E form, "
+        },
+        {
+          "text": "2·7",
+          "marks": ["code"]
+        },
+        {
+          "text": " to the E form and the D form — so the note you cross on is the note you were aiming at. A window is a fixed span of frets anchored on the root: it does not shift when a degree inside it does, and there is no separate set of shapes for a mode anywhere in this pathway. The nut-most window, frets 0 to 3, holds two copies of it."
+        }
+      ]
+    },
+    {
+      "id": "q_modes-ch6-checkpoint.lean",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "You play every note of A Dorian over "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": ", up and down, and end every phrase on "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": " or "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": ". What comes out?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "A minor with a passing "
+            },
+            {
+              "text": "F#",
+              "marks": ["code"]
+            },
+            {
+              "text": " — the note was there the whole time and was never arrived at, and arriving is what makes a mode sound like itself"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "A Dorian, because the "
+            },
+            {
+              "text": "F#",
+              "marks": ["code"]
+            },
+            {
+              "text": " is in every phrase, and having it there is what makes it Dorian"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "G major, because those are G major's seven notes and a note set cannot be overridden by two chords"
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "Nothing identifiable — a scale run up and down has no mode either way"
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "Including the characteristic note is not the same as leaning on it. Where a phrase stops, what it holds and what it starts from are what decide the colour, exactly as emphasis is what decides the tonic. This is not G major either — the loop is holding "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": " as home, and harmony that will not move is precisely what settles that question. And the notes do land somewhere identifiable: they land on the plain minor the mode is nearest to, which is the whole problem."
+        }
+      ]
+    },
+    {
+      "id": "q_modes-ch6-checkpoint.phrygian-collision",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "Phrygian's "
+        },
+        {
+          "text": "b2",
+          "marks": ["code"]
+        },
+        {
+          "text": " is the note the mode is named for, and it is also one of the two notes that fight an "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": ". So where do you actually land on it?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "While the "
+            },
+            {
+              "text": "Bb",
+              "marks": ["code"]
+            },
+            {
+              "text": " chord is sounding, where it is that chord's own root and nothing in A Phrygian clashes with it — over the "
+            },
+            {
+              "text": "Am",
+              "marks": ["code"]
+            },
+            {
+              "text": ", keep moving through it"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "Nowhere — a note that fights the home chord can never be a note you lean on"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "Anywhere in the loop, because a clash is a property of the scale and A Phrygian's is the "
+            },
+            {
+              "text": "b6",
+              "marks": ["code"]
+            },
+            {
+              "text": " rather than the "
+            },
+            {
+              "text": "b2",
+              "marks": ["code"]
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "Over the "
+            },
+            {
+              "text": "Am",
+              "marks": ["code"]
+            },
+            {
+              "text": ", because that is the only chord it can be heard against as a half step above home"
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "A clash belongs to the pairing of a scale with a chord, not to the scale on its own — so it moves when the chord does. Over "
+        },
+        {
+          "text": "Bb",
+          "marks": ["code"]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "Bb D F",
+          "marks": ["code"]
+        },
+        {
+          "text": ") the "
+        },
+        {
+          "text": "b2",
+          "marks": ["code"]
+        },
+        {
+          "text": " is the root of the chord under your hand, and nothing in A Phrygian sits a half step above any of that chord's three notes. Over "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": " it does grind, and Phrygian has two notes that do so there — the "
+        },
+        {
+          "text": "b2",
+          "marks": ["code"]
+        },
+        {
+          "text": " over the root and the "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": " over the fifth — so naming only the second of those has half the picture. Phrygian is the one mode of the seven where the note to lean on is also a note to move through, and the second chord is where that stops being a problem."
+        }
+      ]
+    },
+    {
+      "id": "q_modes-ch6-checkpoint.name-it",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "A loop rocks between "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": " and a second chord you cannot name, and it never resolves. You try an "
+        },
+        {
+          "text": "F#",
+          "marks": ["code"]
+        },
+        {
+          "text": " over it and it fits; you try a "
+        },
+        {
+          "text": "Bb",
+          "marks": ["code"]
+        },
+        {
+          "text": " and it clashes. Which mode, and how do you know?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "Dorian — the minor home leaves Dorian, Aeolian and Phrygian, and of those three only Dorian has an "
+            },
+            {
+              "text": "F#",
+              "marks": ["code"]
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "Aeolian — it is the reference of the minor family, so it is what you land on once you have tried a candidate note"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "Phrygian — a "
+            },
+            {
+              "text": "Bb",
+              "marks": ["code"]
+            },
+            {
+              "text": " that clashes means there is a "
+            },
+            {
+              "text": "b2",
+              "marks": ["code"]
+            },
+            {
+              "text": " somewhere you have not found yet"
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "You cannot tell without hearing the second chord — the three minor-home modes share their note set"
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "Two steps and you are done. A minor home narrows seven modes to three, and one candidate note picks between them: A Dorian is the only one of the three with an "
+        },
+        {
+          "text": "F#",
+          "marks": ["code"]
+        },
+        {
+          "text": ", where the other two have an "
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Aeolian is what you get when neither candidate note fits, which is not this case. A "
+        },
+        {
+          "text": "Bb",
+          "marks": ["code"]
+        },
+        {
+          "text": " that clashes is a "
+        },
+        {
+          "text": "Bb",
+          "marks": ["code"]
+        },
+        {
+          "text": " outside the scale, which is the opposite of Phrygian. And the three do not share a note set: Dorian has a "
+        },
+        {
+          "text": "6",
+          "marks": ["code"]
+        },
+        {
+          "text": " where the other two have a "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": ", and Phrygian a "
+        },
+        {
+          "text": "b2",
+          "marks": ["code"]
+        },
+        {
+          "text": " where the other two have a "
+        },
+        {
+          "text": "2",
+          "marks": ["code"]
+        },
+        {
+          "text": "."
+        }
+      ]
+    },
+    {
+      "id": "q_modes-ch6-checkpoint.write-one",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "You want a vamp in G Mixolydian — "
+        },
+        {
+          "text": "G A B C D E F",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Which pair of chords, and what is wrong with reaching for "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": " instead?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": ""
+            },
+            {
+              "text": "G",
+              "marks": ["code"]
+            },
+            {
+              "text": "–"
+            },
+            {
+              "text": "F",
+              "marks": ["code"]
+            },
+            {
+              "text": ", because "
+            },
+            {
+              "text": "F A C",
+              "marks": ["code"]
+            },
+            {
+              "text": " carries the "
+            },
+            {
+              "text": "b7",
+              "marks": ["code"]
+            },
+            {
+              "text": ". "
+            },
+            {
+              "text": "G",
+              "marks": ["code"]
+            },
+            {
+              "text": "–"
+            },
+            {
+              "text": "C",
+              "marks": ["code"]
+            },
+            {
+              "text": " is not a vamp: "
+            },
+            {
+              "text": "G",
+              "marks": ["code"]
+            },
+            {
+              "text": " is the dominant of "
+            },
+            {
+              "text": "C",
+              "marks": ["code"]
+            },
+            {
+              "text": ", so the loop arrives on the second chord instead of circling"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": ""
+            },
+            {
+              "text": "G",
+              "marks": ["code"]
+            },
+            {
+              "text": "–"
+            },
+            {
+              "text": "C",
+              "marks": ["code"]
+            },
+            {
+              "text": " is fine — the fourth is the safest second chord there is, because it belongs to every major-home mode"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": ""
+            },
+            {
+              "text": "G",
+              "marks": ["code"]
+            },
+            {
+              "text": "–"
+            },
+            {
+              "text": "D",
+              "marks": ["code"]
+            },
+            {
+              "text": ", because the fifth asserts home harder than any other chord, which is what a vamp needs"
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": ""
+            },
+            {
+              "text": "G",
+              "marks": ["code"]
+            },
+            {
+              "text": "–"
+            },
+            {
+              "text": "Am",
+              "marks": ["code"]
+            },
+            {
+              "text": ", because a minor second chord under a major home is what stops a loop resolving"
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "G Mixolydian's "
+        },
+        {
+          "text": "b7",
+          "marks": ["code"]
+        },
+        {
+          "text": " is the "
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": ", and the chord that holds it is "
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "F A C",
+          "marks": ["code"]
+        },
+        {
+          "text": "). Reaching for the fourth is the trap: a major triad is the dominant of the triad a perfect fourth above it, so the loop leans into the second chord and settles there — a cadence with the chords in the wrong order. "
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "D F# A",
+          "marks": ["code"]
+        },
+        {
+          "text": ") fails a different check: the "
+        },
+        {
+          "text": "F#",
+          "marks": ["code"]
+        },
+        {
+          "text": " is the note this mode gives up, so that chord is not inside G Mixolydian at all and changes the note set rather than colouring it. And "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": " is inside the mode but carries no "
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": ", so nothing in that loop asserts the "
+        },
+        {
+          "text": "b7",
+          "marks": ["code"]
+        },
+        {
+          "text": "."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,336 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_modes-a-different-question",
+    "slug": "modes-a-different-question",
+    "title": "Two Questions That Sound Alike",
+    "summary": "Chord-scale theory and this pathway's modes use the same seven names for two different questions, and a three-line test tells you which one you're actually answering.",
+    "tags": ["modes", "theory"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-15"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Play D Dorian over the "
+        },
+        {
+          "text": "Dm",
+          "marks": ["code"]
+        },
+        {
+          "text": ", G Mixolydian over the "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": ", C Ionian over the "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": ". That's the shape this question takes once you're actually playing — one mode name reaching for each chord in a moving progression, drawn from all seven names this pathway has spent five chapters teaching. You'll meet it everywhere once you go looking: real charts, backing tracks, other guitarists talking through a tune."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Take it seriously before pulling it apart, because it's a real practice with a real job. A chord that's on its way somewhere else still has notes available over it in the moment it's sounding, and chord-scale theory is the name for labelling them, one chord at a time. It borrows this pathway's mode names because the note sets genuinely are the same — D Dorian and C major share every note there is."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here's exactly what's different, in this pathway's own terms. A mode, the way this pathway uses the word, is a claim about home: a note set, plus a tonic asserted from outside the scale, plus a home solid enough to be worth asserting — "
+        },
+        {
+          "text": "What a Tonic Actually Needs",
+          "link": {
+            "kind": "article",
+            "slug": "modes-what-home-needs"
+          }
+        },
+        {
+          "text": " has that in full"
+        },
+        {
+          "text": ". Over "
+        },
+        {
+          "text": "Dm",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": " there's one home, and it's "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": " — "
+        },
+        {
+          "text": "When the Progression Starts to Function",
+          "link": {
+            "kind": "article",
+            "slug": "modes-when-a-progression-functions"
+          }
+        },
+        {
+          "text": " just showed the Key Detector agreeing without a second thought. So \"D Dorian over the Dm\" isn't a claim that the music is in D Dorian. It's a label for the notes available over one chord, inside a key something else entirely is naming. The mode is doing no work there as a home — none at all."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "And here's the blunt version, because it's the whole point of this pathway: a note set with no home isn't a mode. Calling both things \"Dorian\" is exactly what makes modes feel confusing for years — one use of the word names a home, the other labels a scrap of scale over a chord that's about to move on, and nothing in the syllables tells you which one you're hearing. Neither version of the word is wrong; they're just answering two different questions. Chord-scale theory is a real skill and a genuine topic — it's just not this one. It assumes chords that keep moving, where a mode needs a home that holds still."
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        [
+          {
+            "text": "Is something holding one home still, rather than moving through several?"
+          }
+        ],
+        [
+          {
+            "text": "Is that home a chord you can stand on?"
+          }
+        ],
+        [
+          {
+            "text": "Which single note are you leaning on against it?"
+          }
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Answer yes to the first two and the third has an answer — you're playing a mode. Answer no to the first, and you're playing in a key, and the mode names hovering over each chord are labels, not homes."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here's the accounting, mode by mode — the same seven home chords this pathway has been building since chapter 2, and whether each one is a home a scale can actually hold onto."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [
+          {
+            "text": "Mode"
+          }
+        ],
+        [
+          {
+            "text": "Home chord"
+          }
+        ],
+        [
+          {
+            "text": "Does home hold?"
+          }
+        ]
+      ],
+      "rows": [
+        [
+          [
+            {
+              "text": "Lydian"
+            }
+          ],
+          [
+            {
+              "text": "A",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "Yes"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Ionian"
+            }
+          ],
+          [
+            {
+              "text": "A",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "Yes"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Mixolydian"
+            }
+          ],
+          [
+            {
+              "text": "A",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "Yes"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Dorian"
+            }
+          ],
+          [
+            {
+              "text": "Am",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "Yes"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Aeolian"
+            }
+          ],
+          [
+            {
+              "text": "Am",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "Yes"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Phrygian"
+            }
+          ],
+          [
+            {
+              "text": "Am",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "Yes"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Locrian"
+            }
+          ],
+          [
+            {
+              "text": "Adim",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "No — no perfect fifth"
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Only one row says no, and by now you know exactly why — no perfect fifth over "
+        },
+        {
+          "text": "Adim",
+          "marks": ["code"]
+        },
+        {
+          "text": ", nothing to stand on, so a vamp built on it hands the tonic to some other note before it ever gets the chance to be Locrian. "
+        },
+        {
+          "text": "Locrian, and the Home That Won't Hold",
+          "link": {
+            "kind": "article",
+            "slug": "modes-locrian"
+          }
+        },
+        {
+          "text": " has the whole story."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Five chapters in, and that's the whole test, plus every home chord in one place. What's left is playing: taking each vamp you already know, finding the characteristic note inside a window your hands have held since long before this pathway, and leaning on it until it's unmistakable. Chapter 6 is where that happens."
+        }
+      ]
+    }
+  ]
+}

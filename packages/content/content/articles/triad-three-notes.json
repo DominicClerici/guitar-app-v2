@@ -1,0 +1,230 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_triad-three-notes",
+    "slug": "triad-three-notes",
+    "title": "Three Notes Is the Whole Chord",
+    "summary": "A triad is a complete chord, not a fragment of one — root, third and fifth, and nothing missing.",
+    "tags": ["triads", "chords"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Three notes is a whole chord. Not a sketch of one, not the easy version you play until you learn the real thing — the real thing itself. If you think of a chord as a shape your fingers make, this is the lesson that replaces that picture with a shorter, truer one: a chord is a set of notes, and the smallest set that counts is three."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "That set is called a " },
+        { "text": "triad", "marks": ["bold"] },
+        { "text": ": a root, a third above it, and a fifth above the root. Over " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " that's " },
+        { "text": "C", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "E", "marks": ["code"] },
+        { "text": ", and " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " — degrees " },
+        { "text": "1", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3", "marks": ["code"] },
+        { "text": ", and " },
+        { "text": "5", "marks": ["code"] },
+        {
+          "text": ". The chords you already play are built around a three-note core like this one; everything else added on top is decoration."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "What decides whether a triad sounds major, minor, diminished, or augmented is not a different shape — it's two stacked intervals. Major stacks "
+        },
+        { "text": "4", "marks": ["code"] },
+        { "text": " semitones then " },
+        { "text": "3", "marks": ["code"] },
+        { "text": ". Minor, diminished, and augmented are " },
+        { "text": "3+4", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3+3", "marks": ["code"] },
+        { "text": ", and " },
+        { "text": "4+4", "marks": ["code"] },
+        { "text": " — chapters 3 and 4 take those apart." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here's C major on the top three strings, root position — three dots, three notes, nothing left out."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "C",
+        "strings": "1-2-3",
+        "inversion": "root",
+        "caption": "C major, root position, strings 1-2-3 — three dots are the whole chord."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Those three dots aren't a summary of the chord. They're the chord. Nothing about this grip is incomplete — it has a root, a third, and a fifth, which is the entire definition of a major triad."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "So what's a six-string barre chord, if three notes is already everything? The same three notes, some of them repeated. Take an "
+        },
+        { "text": "E", "marks": ["code"] },
+        { "text": "-shape barre chord for " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " at fret 8: " },
+        { "text": "8 10 10 9 8 8", "marks": ["code"] },
+        { "text": ", low string to high. Read the pitches and you get " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " " },
+        { "text": "E", "marks": ["code"] },
+        { "text": " " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " — six voices, but only three names." }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "String" }],
+        [{ "text": "Fret" }],
+        [{ "text": "Note" }],
+        [{ "text": "Degree" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "6" }],
+          [{ "text": "8" }],
+          [{ "text": "C", "marks": ["code"] }],
+          [{ "text": "1", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "5" }],
+          [{ "text": "10" }],
+          [{ "text": "G", "marks": ["code"] }],
+          [{ "text": "5", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "4" }],
+          [{ "text": "10" }],
+          [{ "text": "C", "marks": ["code"] }],
+          [{ "text": "1", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "3" }],
+          [{ "text": "9" }],
+          [{ "text": "E", "marks": ["code"] }],
+          [{ "text": "3", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "2" }],
+          [{ "text": "8" }],
+          [{ "text": "G", "marks": ["code"] }],
+          [{ "text": "5", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "1" }],
+          [{ "text": "8" }],
+          [{ "text": "C", "marks": ["code"] }],
+          [{ "text": "1", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Three " },
+        { "text": "C", "marks": ["code"] },
+        { "text": "s, two " },
+        { "text": "G", "marks": ["code"] },
+        { "text": "s, one " },
+        { "text": "E", "marks": ["code"] },
+        {
+          "text": ". The barre chord doesn't add a fourth note name to the triad — it doubles three of the ones already there, spread across six strings for volume and weight. The three-note grip above and this six-string barre are the same chord. One of them is just louder."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "info",
+      "spans": [
+        {
+          "text": "A three-string chord isn't a fragment of a \"real\" six-string chord. It's the other way round: the barre chord is the triad with some of its notes copied."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "This pathway leans on one notation, established here so it never needs re-explaining. A grip is written as a six-slot chart, low E first, with "
+        },
+        { "text": "x", "marks": ["code"] },
+        { "text": " for a string that isn't played. The root-position grip above is " },
+        { "text": "x x x 5 5 3", "marks": ["code"] },
+        { "text": " — always six slots, even though only three of them have a number in them." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "A single position inside a grip is written string, then fret: " },
+        { "text": "3·5", "marks": ["code"] },
+        {
+          "text": " means string 3, fret 5 — spelled out in words this once so the shorthand is never ambiguous again. String 1 is the high "
+        },
+        { "text": "e", "marks": ["code"] },
+        { "text": "; string 6 is the low " },
+        { "text": "E", "marks": ["code"] },
+        { "text": ". Every chart and every diagram in this pathway counts strings that same way." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "If you've worked through " },
+        { "text": "CAGED", "link": { "kind": "article", "slug": "caged-what-the-letter-means" } },
+        {
+          "text": ", you already know the neck is a map you can move around on — that's a recommended head start here, not a requirement, and nothing in this pathway assumes you've done it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Next: a triad's three notes don't have to stack root-third-fifth from the bottom up. Which one ends up lowest changes where the grip sits on the neck — but not, as it turns out, what the chord is called."
+        }
+      ]
+    }
+  ]
+}

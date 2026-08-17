@@ -1,0 +1,530 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "quiz_modes-ch2-checkpoint",
+    "slug": "modes-ch2-checkpoint",
+    "title": "The Brightness Ladder",
+    "summary": "Eight questions on the order of the seven, the note between each neighbouring pair, the two families and their dials, where the half steps and the tritone fall, and what \"brighter\" is actually worth.",
+    "kind": "checkpoint",
+    "passThresholdPct": 70
+  },
+  "questions": [
+    {
+      "id": "q_modes-ch2-checkpoint.the-order",
+      "kind": "choice",
+      "prompt": [{ "text": "Put the seven modes in brightness order, brightest first." }],
+      "options": [
+        {
+          "id": "a",
+          "spans": [{ "text": "Lydian, Ionian, Mixolydian, Dorian, Aeolian, Phrygian, Locrian" }]
+        },
+        {
+          "id": "b",
+          "spans": [{ "text": "Ionian, Dorian, Phrygian, Lydian, Mixolydian, Aeolian, Locrian" }]
+        },
+        {
+          "id": "c",
+          "spans": [{ "text": "Ionian, Mixolydian, Lydian, Dorian, Aeolian, Phrygian, Locrian" }]
+        },
+        {
+          "id": "d",
+          "spans": [{ "text": "Lydian, Ionian, Mixolydian, Aeolian, Dorian, Phrygian, Locrian" }]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "The principle is how raised the degrees are: Lydian has every degree as raised as it gets, Locrian has the most of them pulled down. Two of the wrong answers are real orderings of something else. The one starting Ionian, Dorian, Phrygian is the conventional listing order — the order you meet the modes walking up a major scale one degree at a time — and it says nothing about brightness. The one starting Ionian, Mixolydian, Lydian is the order listeners actually judged them happiest in, which is the subject of this chapter's last lesson and is not the structural ladder. And Dorian sits above Aeolian, not below it: Dorian's "
+        },
+        { "text": "6", "marks": ["code"] },
+        { "text": " is natural where Aeolian's is a " },
+        { "text": "b6", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "id": "q_modes-ch2-checkpoint.the-sequence",
+      "kind": "choice",
+      "prompt": [
+        { "text": "Going down the ladder, the degrees flatten in a fixed order: " },
+        { "text": "4", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "7", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "6", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "2", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "5", "marks": ["code"] },
+        { "text": ". You have just gone from Ionian to Mixolydian by flattening the " },
+        { "text": "7", "marks": ["code"] },
+        { "text": ". What moves at the next step down, and where does it land you?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "The " },
+            { "text": "3", "marks": ["code"] },
+            { "text": " flattens, giving Dorian" }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "The " },
+            { "text": "6", "marks": ["code"] },
+            { "text": " flattens, giving Aeolian" }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "The " },
+            { "text": "3", "marks": ["code"] },
+            { "text": " and the " },
+            { "text": "6", "marks": ["code"] },
+            { "text": " both flatten, giving Aeolian" }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "The " },
+            { "text": "2", "marks": ["code"] },
+            { "text": " flattens, giving Phrygian" }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "One degree at a time, never two at once, never out of order. Mixolydian is "
+        },
+        { "text": "1 2 3 4 5 6 b7", "marks": ["code"] },
+        { "text": " and Dorian is " },
+        { "text": "1 2 b3 4 5 6 b7", "marks": ["code"] },
+        {
+          "text": " — the "
+        },
+        { "text": "3", "marks": ["code"] },
+        {
+          "text": " is the only thing that moved. Flattening the "
+        },
+        { "text": "6", "marks": ["code"] },
+        {
+          "text": " is the step after that one, Dorian to Aeolian; the "
+        },
+        { "text": "2", "marks": ["code"] },
+        {
+          "text": " is two steps further still. And nothing on the ladder ever moves two degrees in a single step — that is exactly the property that makes the ladder worth having."
+        }
+      ]
+    },
+    {
+      "id": "q_modes-ch2-checkpoint.neighbours",
+      "kind": "choice",
+      "prompt": [
+        { "text": "You are on " },
+        { "text": "A", "marks": ["code"] },
+        {
+          "text": ". Which note do you change to get from Dorian to Aeolian — and does the same one-note rule hold for any pair of modes you pick?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "F#", "marks": ["code"] },
+            { "text": " becomes " },
+            { "text": "F", "marks": ["code"] },
+            { "text": ", the " },
+            { "text": "6", "marks": ["code"] },
+            { "text": " dropping to a " },
+            { "text": "b6", "marks": ["code"] },
+            { "text": " — and the rule holds only between neighbours on the ladder" }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "F#", "marks": ["code"] },
+            { "text": " becomes " },
+            { "text": "F", "marks": ["code"] },
+            { "text": ", the " },
+            { "text": "6", "marks": ["code"] },
+            { "text": " dropping to a " },
+            { "text": "b6", "marks": ["code"] },
+            { "text": " — and any two modes are one note apart in the same way" }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "C", "marks": ["code"] },
+            { "text": " becomes " },
+            { "text": "C#", "marks": ["code"] },
+            { "text": ", the " },
+            { "text": "b3", "marks": ["code"] },
+            { "text": " rising to a " },
+            { "text": "3", "marks": ["code"] },
+            { "text": " — and the rule holds only between neighbours" }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "B", "marks": ["code"] },
+            { "text": " becomes " },
+            { "text": "Bb", "marks": ["code"] },
+            { "text": ", the " },
+            { "text": "2", "marks": ["code"] },
+            { "text": " dropping to a " },
+            { "text": "b2", "marks": ["code"] },
+            { "text": " — and the rule holds only between neighbours" }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "A Dorian is " },
+        { "text": "A B C D E F# G", "marks": ["code"] },
+        { "text": " and A Aeolian is " },
+        { "text": "A B C D E F G", "marks": ["code"] },
+        {
+          "text": ": one note, the sixth. The half of the question that catches people is the second half — \"one note apart\" is a fact about adjacent rungs and nothing else. Lydian against Dorian is three notes changed, and Lydian against Locrian is six, every degree but the root. The "
+        },
+        { "text": "C", "marks": ["code"] },
+        { "text": " to " },
+        { "text": "C#", "marks": ["code"] },
+        { "text": " move is the Mixolydian-to-Dorian step run backwards, and " },
+        { "text": "B", "marks": ["code"] },
+        { "text": " to " },
+        { "text": "Bb", "marks": ["code"] },
+        { "text": " is the Aeolian-to-Phrygian one." }
+      ]
+    },
+    {
+      "id": "q_modes-ch2-checkpoint.the-split",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "Where does the ladder split into a major-home family and a minor-home family, and why there?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "Between Mixolydian and Dorian, because that is the step where the " },
+            { "text": "3", "marks": ["code"] },
+            { "text": " flattens" }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "Between Ionian and Mixolydian, because a " },
+            { "text": "b7", "marks": ["code"] },
+            { "text": " is what turns a home chord minor" }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "Between Dorian and Aeolian, because Aeolian is the natural minor scale and everything from there down is minor"
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "Between Phrygian and Locrian, because that is where the " },
+            { "text": "5", "marks": ["code"] },
+            { "text": " flattens" }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "The " },
+        { "text": "3", "marks": ["code"] },
+        {
+          "text": " is the degree that decides whether a chord is major or minor, and on the ladder it flattens exactly once. Lydian, Ionian and Mixolydian all take "
+        },
+        { "text": "A", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "A C# E", "marks": ["code"] },
+        { "text": ") for a home chord; Dorian, Aeolian and Phrygian all take " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "A C E", "marks": ["code"] },
+        { "text": "). A " },
+        { "text": "b7", "marks": ["code"] },
+        {
+          "text": " never touches the triad at all. Dorian's home chord is already minor, so Aeolian is not the boundary — it is the middle setting of the family it sits in. And the "
+        },
+        { "text": "5", "marks": ["code"] },
+        {
+          "text": " flattening at Phrygian to Locrian is what takes Locrian out of the minor family into "
+        },
+        { "text": "Adim", "marks": ["code"] },
+        { "text": " — a different question from where major becomes minor." }
+      ]
+    },
+    {
+      "id": "q_modes-ch2-checkpoint.dials",
+      "kind": "multi-select",
+      "prompt": [{ "text": "Which of these are true of the two families?" }],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "The major family's two dials are the " },
+            { "text": "4", "marks": ["code"] },
+            { "text": " and the " },
+            { "text": "7", "marks": ["code"] }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "The minor family's two dials are the " },
+            { "text": "6", "marks": ["code"] },
+            { "text": " and the " },
+            { "text": "2", "marks": ["code"] }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "Ionian and Aeolian each sit at the middle setting of their own family, which is why neither carries a characteristic note"
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "Locrian belongs to the minor family, since its " },
+            { "text": "3", "marks": ["code"] },
+            { "text": " is flat" }
+          ]
+        },
+        {
+          "id": "e",
+          "spans": [{ "text": "Turning one dial moves you two rungs down the ladder" }]
+        }
+      ],
+      "answerIds": ["a", "b", "c"],
+      "explanation": [
+        { "text": "Lydian " },
+        { "text": "#4 7", "marks": ["code"] },
+        { "text": ", Ionian " },
+        { "text": "4 7", "marks": ["code"] },
+        { "text": ", Mixolydian " },
+        { "text": "4 b7", "marks": ["code"] },
+        { "text": " — one home chord, two switches. Dorian " },
+        { "text": "2 6", "marks": ["code"] },
+        { "text": ", Aeolian " },
+        { "text": "2 b6", "marks": ["code"] },
+        { "text": ", Phrygian " },
+        { "text": "b2 b6", "marks": ["code"] },
+        {
+          "text": " — the same again, one family down. Ionian and Aeolian are the reference setting of each row, which is exactly why the app tints no chip on their cards. Locrian does have a flat third, but its fifth is flat too, so its home chord is "
+        },
+        { "text": "Adim", "marks": ["code"] },
+        {
+          "text": " and it sits outside both families. And a dial is worth exactly one rung: turn one and you have moved to the neighbouring mode, not past it."
+        }
+      ]
+    },
+    {
+      "id": "q_modes-ch2-checkpoint.half-steps",
+      "kind": "choice",
+      "prompt": [
+        { "text": "Which modes have a half step immediately above the tonic — a " },
+        { "text": "b2", "marks": ["code"] },
+        { "text": " leaning on home from above?" }
+      ],
+      "options": [
+        { "id": "a", "spans": [{ "text": "Phrygian and Locrian" }] },
+        { "id": "b", "spans": [{ "text": "Phrygian only" }] },
+        { "id": "c", "spans": [{ "text": "Aeolian, Phrygian and Locrian" }] },
+        { "id": "d", "spans": [{ "text": "Lydian and Ionian" }] }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "A " },
+        { "text": "b2", "marks": ["code"] },
+        { "text": " is a half step above the root, and only A Phrygian (" },
+        { "text": "A Bb C D E F G", "marks": ["code"] },
+        { "text": ") and A Locrian (" },
+        { "text": "A Bb C D Eb F G", "marks": ["code"] },
+        {
+          "text": ") have one. The other two answers are each the right membership list for a different half step. Lydian and Ionian are the two with a half step immediately "
+        },
+        { "text": "below", "marks": ["italic"] },
+        {
+          "text": " home — the major "
+        },
+        { "text": "7", "marks": ["code"] },
+        { "text": " pulling up into it; every other mode has a " },
+        { "text": "b7", "marks": ["code"] },
+        {
+          "text": " a whole step below instead. And the half step above the fifth, the "
+        },
+        { "text": "b6", "marks": ["code"] },
+        {
+          "text": ", belongs to Aeolian and Phrygian only — Locrian has a "
+        },
+        { "text": "b6", "marks": ["code"] },
+        { "text": " too, but its fifth is already a " },
+        { "text": "b5", "marks": ["code"] },
+        { "text": ", so that gap is a whole step." }
+      ]
+    },
+    {
+      "id": "q_modes-ch2-checkpoint.tritone",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "Every mode contains exactly one tritone. Which two degrees does Mixolydian's fall on, and what does that explain?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "3", "marks": ["code"] },
+            { "text": " and " },
+            { "text": "b7", "marks": ["code"] },
+            { "text": " — on " },
+            { "text": "A", "marks": ["code"] },
+            { "text": " that is " },
+            { "text": "C#", "marks": ["code"] },
+            { "text": " and " },
+            { "text": "G", "marks": ["code"] },
+            {
+              "text": ", the two notes that make a dominant seventh what it is, so the chord and the mode are the same idea"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "4", "marks": ["code"] },
+            { "text": " and " },
+            { "text": "7", "marks": ["code"] },
+            { "text": " — both outside the tonic triad, which is why Mixolydian is the stable one" }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "b3", "marks": ["code"] },
+            { "text": " and " },
+            { "text": "6", "marks": ["code"] },
+            { "text": " — the two notes that define it, rubbing against each other" }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "1", "marks": ["code"] },
+            { "text": " and " },
+            { "text": "b5", "marks": ["code"] },
+            { "text": " — home is itself a tritone" }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "A7", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "A C# E G", "marks": ["code"] },
+        {
+          "text": ", and its "
+        },
+        { "text": "C#", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "G", "marks": ["code"] },
+        {
+          "text": " are exactly Mixolydian's tritone — the chord carries the mode's most unsettled interval, which is why the two are one idea rather than two. Each of the other answers is a real row from the same table: "
+        },
+        { "text": "4", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "7", "marks": ["code"] },
+        {
+          "text": " is Ionian's, and Ionian and Aeolian are the only two whose tritone misses the tonic triad completely; "
+        },
+        { "text": "b3", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "6", "marks": ["code"] },
+        { "text": " is Dorian's; " },
+        { "text": "1", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "b5", "marks": ["code"] },
+        { "text": " is Locrian's." }
+      ]
+    },
+    {
+      "id": "q_modes-ch2-checkpoint.the-anomaly",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "The ladder puts Lydian at the very top. When listeners were played the same melody in two modes and asked which sounded happier, where did Lydian actually land?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "Third of the six tested, between Mixolydian and Dorian — and not significantly different from either of them"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [{ "text": "First, exactly as the ladder predicts" }]
+        },
+        {
+          "id": "c",
+          "spans": [{ "text": "Second, just behind Ionian" }]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "Last of the six, because a " },
+            { "text": "#4", "marks": ["code"] },
+            { "text": " is the harshest degree in the set" }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "The proportions were Ionian "
+        },
+        { "text": ".83", "marks": ["code"] },
+        { "text": ", Mixolydian " },
+        { "text": ".64", "marks": ["code"] },
+        { "text": ", Lydian " },
+        { "text": ".58", "marks": ["code"] },
+        { "text": ", Dorian " },
+        { "text": ".40", "marks": ["code"] },
+        { "text": ", Aeolian " },
+        { "text": ".34", "marks": ["code"] },
+        { "text": ", Phrygian " },
+        { "text": ".21", "marks": ["code"] },
+        {
+          "text": ". The ordering broadly follows the ladder and Lydian is the exception — brightest structurally, third in judged happiness, and two of the three pairs that never reached significance involved it. A second study, in a different lab with a different population, found the same thing. So the honest version of \"Lydian is the brightest and happiest mode\" is that it is the brightest on the ladder and it is not the happiest in anyone's data. Why the ordering runs this way at all is still unsettled — the pattern is solid, the cause is not."
+        }
+      ]
+    }
+  ]
+}

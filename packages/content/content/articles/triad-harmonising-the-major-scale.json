@@ -1,0 +1,383 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_triad-harmonising-the-major-scale",
+    "slug": "triad-harmonising-the-major-scale",
+    "title": "Seven Chords the Key Gives You",
+    "summary": "Stack the C major scale's own notes into seven triads, name them with Roman numerals, then play the whole run in second inversion up strings 1-2-3 from the nut to fret 13.",
+    "tags": ["triads", "chords", "fretboard"],
+    "readingTimeMin": 5,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Take every note of the C major scale as a root, and stack the next two scale notes above it in thirds — nothing borrowed from outside the scale, nothing chromatic. Seven notes, seven triads, and their qualities are decided entirely by which notes the scale happens to contain."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Degree" }],
+        [{ "text": "Chord" }],
+        [{ "text": "Notes" }],
+        [{ "text": "Quality" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "1" }],
+          [{ "text": "C", "marks": ["code"] }],
+          [{ "text": "C E G", "marks": ["code"] }],
+          [{ "text": "major" }]
+        ],
+        [
+          [{ "text": "2" }],
+          [{ "text": "Dm", "marks": ["code"] }],
+          [{ "text": "D F A", "marks": ["code"] }],
+          [{ "text": "minor" }]
+        ],
+        [
+          [{ "text": "3" }],
+          [{ "text": "Em", "marks": ["code"] }],
+          [{ "text": "E G B", "marks": ["code"] }],
+          [{ "text": "minor" }]
+        ],
+        [
+          [{ "text": "4" }],
+          [{ "text": "F", "marks": ["code"] }],
+          [{ "text": "F A C", "marks": ["code"] }],
+          [{ "text": "major" }]
+        ],
+        [
+          [{ "text": "5" }],
+          [{ "text": "G", "marks": ["code"] }],
+          [{ "text": "G B D", "marks": ["code"] }],
+          [{ "text": "major" }]
+        ],
+        [
+          [{ "text": "6" }],
+          [{ "text": "Am", "marks": ["code"] }],
+          [{ "text": "A C E", "marks": ["code"] }],
+          [{ "text": "minor" }]
+        ],
+        [
+          [{ "text": "7" }],
+          [{ "text": "Bdim", "marks": ["code"] }],
+          [{ "text": "B D F", "marks": ["code"] }],
+          [{ "text": "diminished" }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "There's a compact way to name these seven chords that works in every major key, not just C, and it's worth learning properly. A Roman numeral names a chord by the scale degree it's built on, so the numeral "
+        },
+        { "text": "I", "marks": ["code"] },
+        { "text": " means \"the chord on the first degree,\" whatever the key is — " },
+        { "text": "I", "marks": ["code"] },
+        { "text": " in C major is " },
+        { "text": "C", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "I", "marks": ["code"] },
+        { "text": " in G major is " },
+        { "text": "G", "marks": ["code"] },
+        {
+          "text": ". Case carries quality, and nothing else: uppercase is major, lowercase is minor, lowercase with a small circle is diminished — "
+        },
+        { "text": "I ii iii IV V vi vii°", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "info",
+      "spans": [
+        {
+          "text": "One correction worth making explicitly, because it's an easy one to get backwards: "
+        },
+        { "text": "V", "marks": ["code"] },
+        { "text": " is uppercase because the chord built on " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " is major — not because " },
+        { "text": "V", "marks": ["code"] },
+        {
+          "text": " is somehow the most important chord in the key. Case tracks what the chord sounds like, not what job it does in the progression."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The sequence of qualities is fixed for every major key: major, minor, minor, major, major, minor, diminished. Run the same construction in G major and the result is "
+        },
+        { "text": "G Am Bm C D Em F#dim", "marks": ["code"] },
+        {
+          "text": " — the identical pattern, four letters over. Learn the pattern once and you can build the seven chords of any major key straight from its key signature."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "This also answers a question chapter 4 raised without fully explaining: "
+        },
+        {
+          "text": "Bdim",
+          "link": { "kind": "article", "slug": "triad-the-flat-fifth" }
+        },
+        {
+          "text": " is the one diminished triad whose notes are entirely inside C major, and no augmented triad fits inside a major scale at all. Both are true for the same reason — "
+        },
+        { "text": "Bdim", "marks": ["code"] },
+        {
+          "text": " is simply the triad built on the seventh degree, and a major scale never places a flat fifth or a sharp fifth on any other degree."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here's what the pattern looks like in your hands. Harmonise the whole scale on strings 1-2-3, keeping every chord in "
+        },
+        { "text": "second inversion", "marks": ["bold"] },
+        { "text": " — the same rotation throughout, nothing else changing. The starting grip, " },
+        { "text": "x x x 0 1 0", "marks": ["code"] },
+        { "text": ", is the very first shape this pathway taught." }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Chord" }],
+        [{ "text": "Numeral" }],
+        [{ "text": "Chart" }],
+        [{ "text": "Notes" }],
+        [{ "text": "Bass note" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "C", "marks": ["code"] }],
+          [{ "text": "I", "marks": ["code"] }],
+          [{ "text": "x x x 0 1 0", "marks": ["code"] }],
+          [{ "text": "G3 C4 E4", "marks": ["code"] }],
+          [{ "text": "G", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "Dm", "marks": ["code"] }],
+          [{ "text": "ii", "marks": ["code"] }],
+          [{ "text": "x x x 2 3 1", "marks": ["code"] }],
+          [{ "text": "A3 D4 F4", "marks": ["code"] }],
+          [{ "text": "A", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "Em", "marks": ["code"] }],
+          [{ "text": "iii", "marks": ["code"] }],
+          [{ "text": "x x x 4 5 3", "marks": ["code"] }],
+          [{ "text": "B3 E4 G4", "marks": ["code"] }],
+          [{ "text": "B", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "F", "marks": ["code"] }],
+          [{ "text": "IV", "marks": ["code"] }],
+          [{ "text": "x x x 5 6 5", "marks": ["code"] }],
+          [{ "text": "C4 F4 A4", "marks": ["code"] }],
+          [{ "text": "C", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "G", "marks": ["code"] }],
+          [{ "text": "V", "marks": ["code"] }],
+          [{ "text": "x x x 7 8 7", "marks": ["code"] }],
+          [{ "text": "D4 G4 B4", "marks": ["code"] }],
+          [{ "text": "D", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "Am", "marks": ["code"] }],
+          [{ "text": "vi", "marks": ["code"] }],
+          [{ "text": "x x x 9 10 8", "marks": ["code"] }],
+          [{ "text": "E4 A4 C5", "marks": ["code"] }],
+          [{ "text": "E", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "Bdim", "marks": ["code"] }],
+          [{ "text": "vii°", "marks": ["code"] }],
+          [{ "text": "x x x 10 12 10", "marks": ["code"] }],
+          [{ "text": "F4 B4 D5", "marks": ["code"] }],
+          [{ "text": "F", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "C", "marks": ["code"] }],
+          [{ "text": "I", "marks": ["code"] }],
+          [{ "text": "x x x 12 13 12", "marks": ["code"] }],
+          [{ "text": "G4 C5 E5", "marks": ["code"] }],
+          [{ "text": "G", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Three of those eight are worth drawing: the chord the run reaches first after leaving the nut, the one after it, and the odd one at the top."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "D",
+        "quality": "minor",
+        "strings": "1-2-3",
+        "inversion": "second",
+        "caption": "Dm, second inversion, strings 1-2-3 — the ii chord, second step of the run."
+      }
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "E",
+        "quality": "minor",
+        "strings": "1-2-3",
+        "inversion": "second",
+        "caption": "Em, second inversion, strings 1-2-3 — the iii chord."
+      }
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "B",
+        "quality": "diminished",
+        "strings": "1-2-3",
+        "inversion": "second",
+        "caption": "Bdim, second inversion, strings 1-2-3 — the vii° chord, and the one grip in the run whose middle note pokes up two frets instead of one."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Two things this run makes visible. First: the bass voice, string 3, walks the scale itself — "
+        },
+        { "text": "G A B C D E F G", "marks": ["code"] },
+        { "text": " at frets " },
+        { "text": "0 2 4 5 7 9 10 12", "marks": ["code"] },
+        {
+          "text": ". It's the fifth of every chord, because second inversion always puts the fifth in the bass. For "
+        },
+        { "text": "Bdim", "marks": ["code"] },
+        { "text": " that fifth is the flatted one, " },
+        { "text": "F", "marks": ["code"] },
+        { "text": " — the same rule holding even where the chord itself is unusual." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [{ "text": "Second: every voice moves up by one or two frets and never more." }]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Change" }],
+        [{ "text": "String 3" }],
+        [{ "text": "String 2" }],
+        [{ "text": "String 1" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "C → Dm", "marks": ["code"] }],
+          [{ "text": "+2", "marks": ["code"] }],
+          [{ "text": "+2", "marks": ["code"] }],
+          [{ "text": "+1", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "Dm → Em", "marks": ["code"] }],
+          [{ "text": "+2", "marks": ["code"] }],
+          [{ "text": "+2", "marks": ["code"] }],
+          [{ "text": "+2", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "Em → F", "marks": ["code"] }],
+          [{ "text": "+1", "marks": ["code"] }],
+          [{ "text": "+1", "marks": ["code"] }],
+          [{ "text": "+2", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "F → G", "marks": ["code"] }],
+          [{ "text": "+2", "marks": ["code"] }],
+          [{ "text": "+2", "marks": ["code"] }],
+          [{ "text": "+2", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "G → Am", "marks": ["code"] }],
+          [{ "text": "+2", "marks": ["code"] }],
+          [{ "text": "+2", "marks": ["code"] }],
+          [{ "text": "+1", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "Am → Bdim", "marks": ["code"] }],
+          [{ "text": "+1", "marks": ["code"] }],
+          [{ "text": "+2", "marks": ["code"] }],
+          [{ "text": "+2", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "Bdim → C", "marks": ["code"] }],
+          [{ "text": "+2", "marks": ["code"] }],
+          [{ "text": "+1", "marks": ["code"] }],
+          [{ "text": "+2", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Only second inversion fits this run on this neck, and that's worth saying plainly rather than hiding. Root position would start at fret 5 and need "
+        },
+        { "text": "Bdim", "marks": ["code"] },
+        { "text": " at fret 16; first inversion starts at fret 9 and needs " },
+        { "text": "G", "marks": ["code"] },
+        {
+          "text": " at fret 16 too. The neck has 15 frets, so both run off the end. Second inversion starts at the nut for a specific reason: its bass note is always the fifth, and the fifth of "
+        },
+        { "text": "C", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " — the open third string." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Loop it against the "
+        },
+        { "text": "Metronome", "link": { "kind": "screen", "href": "/metronome" } },
+        {
+          "text": ", one chord per bar, slow, up the scale and back down — say the numeral out loud rather than the letter, since the numeral is the name that survives a key change. Then look at the "
+        },
+        { "text": "Scale Visualizer", "link": { "kind": "screen", "href": "/scale-visualizer" } },
+        {
+          "text": " to see the scale these seven chords are built from. It draws the scale, not the grips, so use it for that and nothing else."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Seven chords with numbers on them is what makes a progression something you can carry into another key. Which one you actually play, and on which strings, is a separate question — and it's the next one."
+        }
+      ]
+    }
+  ]
+}

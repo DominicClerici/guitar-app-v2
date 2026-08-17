@@ -1,0 +1,448 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "quiz_triads-ch1-checkpoint",
+    "slug": "triads-ch1-checkpoint",
+    "title": "Checkpoint: What a Triad Is",
+    "summary": "Three notes is a whole chord, the bass note doesn't rename it, and C major sits in three places on strings 1-2-3.",
+    "kind": "checkpoint",
+    "passThresholdPct": 70
+  },
+  "questions": [
+    {
+      "id": "q_triads-ch1-checkpoint.bass-is-not-the-root",
+      "kind": "choice",
+      "prompt": [
+        { "text": "You hold " },
+        { "text": "x x 2 0 1 x", "marks": ["code"] },
+        { "text": ". The three notes, low to high, are " },
+        { "text": "E", "marks": ["code"] },
+        { "text": " " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " " },
+        { "text": "C", "marks": ["code"] },
+        { "text": ". What chord is it?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "E", "marks": ["code"] },
+            { "text": " major — the lowest note names the chord." }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "C", "marks": ["code"] },
+            { "text": " major, first inversion — " },
+            { "text": "C/E", "marks": ["code"] },
+            { "text": "." }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "Em", "marks": ["code"] },
+            { "text": " — the bottom two notes, " },
+            { "text": "E", "marks": ["code"] },
+            { "text": " and " },
+            { "text": "G", "marks": ["code"] },
+            { "text": ", are a minor third apart." }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "It only counts as " },
+            { "text": "C", "marks": ["code"] },
+            { "text": " once you add a " },
+            { "text": "C", "marks": ["code"] },
+            { "text": " underneath it." }
+          ]
+        }
+      ],
+      "answerId": "b",
+      "explanation": [
+        { "text": "The notes are " },
+        { "text": "E", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " — a " },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": " major triad with the third in the bass. A chord is named by its root wherever the root happens to sit, so the bass note is a fact about the voicing, not the name. Play it into Chord Detector and it comes back "
+        },
+        { "text": "C/E", "marks": ["code"] },
+        { "text": ". Answering " },
+        { "text": "Em", "marks": ["code"] },
+        { "text": " reads two of the three notes and stops; " },
+        { "text": "Em", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "E", "marks": ["code"] },
+        { "text": " " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " " },
+        { "text": "B", "marks": ["code"] },
+        { "text": ", and there is no " },
+        { "text": "B", "marks": ["code"] },
+        { "text": " here." }
+      ]
+    },
+    {
+      "id": "q_triads-ch1-checkpoint.barre-doubles",
+      "kind": "choice",
+      "prompt": [
+        { "text": "The E-shape barre chord for " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " at fret 8 is " },
+        { "text": "8 10 10 9 8 8", "marks": ["code"] },
+        {
+          "text": ". Six strings ring. How many different note names are sounding?"
+        }
+      ],
+      "options": [
+        { "id": "a", "spans": [{ "text": "Three." }] },
+        { "id": "b", "spans": [{ "text": "Four." }] },
+        { "id": "c", "spans": [{ "text": "Five." }] },
+        { "id": "d", "spans": [{ "text": "Six — one per string." }] }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "Low to high the pitches are " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " " },
+        { "text": "E", "marks": ["code"] },
+        { "text": " " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " — three " },
+        { "text": "C", "marks": ["code"] },
+        { "text": "s, two " },
+        { "text": "G", "marks": ["code"] },
+        { "text": "s, one " },
+        { "text": "E", "marks": ["code"] },
+        {
+          "text": ". Six voices, three names. The barre chord doesn't add a note to the triad; it doubles the notes already there. That's the whole reason a three-string grip isn't a fragment of anything."
+        }
+      ]
+    },
+    {
+      "id": "q_triads-ch1-checkpoint.same-triad-lower",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "You play a root-position C major triad on strings 1-2-3, then the same root-position C major triad on strings 4-5-6. What changed?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "Nothing but the register — the same chord, the same inversion, an octave lower and closer to the edge of legibility."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "The inversion — dropping to a lower set puts a different note in the bass."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "Nothing at all — the two grips are the identical shape slid across the strings."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "The chord — three notes that low can only be part of a bigger chord."
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "Same three note names, same note in the bass, an octave down. Low close voicings are marginal rather than forbidden — the lower a triad sits, the wider the gaps between its notes have to be before it stays legible, which is why so much rhythm playing happens on the high sets instead. The grips are also not the identical shape moved across: they genuinely differ from set to set, and chapter 2 explains why."
+        }
+      ]
+    },
+    {
+      "id": "q_triads-ch1-checkpoint.neck-order",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "Starting at the nut and climbing strings 1-2-3, in what order do the three C major inversions appear?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [{ "text": "Root position, first inversion, second inversion." }]
+        },
+        {
+          "id": "b",
+          "spans": [{ "text": "Second inversion, root position, first inversion." }]
+        },
+        {
+          "id": "c",
+          "spans": [{ "text": "First inversion, second inversion, root position." }]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "There's no fixed order — you can play any of the three anywhere on the set."
+            }
+          ]
+        }
+      ],
+      "answerId": "b",
+      "explanation": [
+        { "text": "The open grip " },
+        { "text": "x x x 0 1 0", "marks": ["code"] },
+        { "text": " is the second inversion, five frets up is root position " },
+        { "text": "x x x 5 5 3", "marks": ["code"] },
+        { "text": ", and four frets past that is the first inversion " },
+        { "text": "x x x 9 8 8", "marks": ["code"] },
+        { "text": ". At fret 12 the second inversion returns as " },
+        { "text": "x x x 12 13 12", "marks": ["code"] },
+        {
+          "text": " — the cycle doesn't run out, it starts over. Each inversion has one place on the set per octave, which is what makes an inversion a location on a guitar rather than a voicing choice."
+        }
+      ]
+    },
+    {
+      "id": "q_triads-ch1-checkpoint.play-root-position",
+      "kind": "fretboard",
+      "prompt": [
+        { "text": "Tap the three notes of C major in " },
+        { "text": "root position", "marks": ["bold"] },
+        { "text": " on strings 1-2-3." }
+      ],
+      "frets": 12,
+      "answer": [
+        { "string": 3, "fret": 5 },
+        { "string": 2, "fret": 5 },
+        { "string": 1, "fret": 3 }
+      ],
+      "explanation": [
+        { "text": "The chart is " },
+        { "text": "x x x 5 5 3", "marks": ["code"] },
+        { "text": ": " },
+        { "text": "3·5", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "C", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "2·5", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "E", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "1·3", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "G", "marks": ["code"] },
+        { "text": ". Degrees " },
+        { "text": "1 3 5", "marks": ["code"] },
+        { "text": ", with the root in the bass — that's what makes it root position." }
+      ]
+    },
+    {
+      "id": "q_triads-ch1-checkpoint.open-c-top-three",
+      "kind": "choice",
+      "prompt": [
+        { "text": "The open C chord is " },
+        { "text": "x 3 2 0 1 0", "marks": ["code"] },
+        { "text": ". Read only its top three strings, " },
+        { "text": "0 1 0", "marks": ["code"] },
+        { "text": ". What have you got?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "C", "marks": ["code"] },
+            { "text": " " },
+            { "text": "E", "marks": ["code"] },
+            { "text": " " },
+            { "text": "G", "marks": ["code"] },
+            { "text": " — C major in root position." }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "G", "marks": ["code"] },
+            { "text": " " },
+            { "text": "C", "marks": ["code"] },
+            { "text": " " },
+            { "text": "E", "marks": ["code"] },
+            { "text": " — C major in second inversion." }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "G", "marks": ["code"] },
+            { "text": " " },
+            { "text": "C", "marks": ["code"] },
+            { "text": " " },
+            { "text": "E", "marks": ["code"] },
+            { "text": " — a G chord, because " },
+            { "text": "G", "marks": ["code"] },
+            { "text": " is on the bottom." }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "Two thirds of a chord — the top of an open chord is never a complete triad on its own."
+            }
+          ]
+        }
+      ],
+      "answerId": "b",
+      "explanation": [
+        { "text": "String 3 open is " },
+        { "text": "G", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "2·1", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "C", "marks": ["code"] },
+        { "text": ", string 1 open is " },
+        { "text": "E", "marks": ["code"] },
+        { "text": " — degrees " },
+        { "text": "5 1 3", "marks": ["code"] },
+        {
+          "text": ", the fifth in the bass, so it's the second inversion on strings 1-2-3. It's one of three complete triads hiding in that one open chord, and you've been playing it since your first month."
+        }
+      ]
+    },
+    {
+      "id": "q_triads-ch1-checkpoint.open-g-is-not-a-triad",
+      "kind": "choice",
+      "prompt": [
+        { "text": "Open G is " },
+        { "text": "3 2 0 0 0 3", "marks": ["code"] },
+        { "text": ". Its top three strings, " },
+        { "text": "0 0 3", "marks": ["code"] },
+        { "text": ", sound " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " " },
+        { "text": "B", "marks": ["code"] },
+        { "text": " " },
+        { "text": "G", "marks": ["code"] },
+        { "text": ". Why isn't that a triad?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "The root is doubled and the fifth is missing — two note names, not three."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [{ "text": "The third is missing." }]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "It is a triad — any three strings of a major chord spell that chord."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "The root is in the bass, and a triad has to be inverted to count."
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "String 3 open is " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " (the root), string 2 open is " },
+        { "text": "B", "marks": ["code"] },
+        { "text": " (the third), and " },
+        { "text": "1·3", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " again. There's no " },
+        { "text": "D", "marks": ["code"] },
+        {
+          "text": ", so the fifth never sounds. Reading three strings at a time is a useful habit, but it isn't a guarantee — check the note names before you trust it."
+        }
+      ]
+    },
+    {
+      "id": "q_triads-ch1-checkpoint.why-the-top-set",
+      "kind": "multi-select",
+      "prompt": [
+        {
+          "text": "Which of these are real reasons rhythm parts favour strings 1-2-3? Select every one that applies."
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "They sit above the bass and above most vocal melodies, so the chord doesn't fight either one for space."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "Three fingers, no barre — there's nothing to set up before the next chord." }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "Changing chords means sliding a couple of frets rather than crossing the neck."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [{ "text": "It's the only string set that can hold a complete major triad." }]
+        },
+        {
+          "id": "e",
+          "spans": [{ "text": "The lower sets can't be played in every inversion." }]
+        }
+      ],
+      "answerIds": ["a", "b", "c"],
+      "explanation": [
+        {
+          "text": "Register, hands and movement — those three, and none of them is a consolation prize. The last two options are the misconception this chapter was built against: all four sets hold a complete major triad in all three inversions. Strings 1-2-3 win on register and comfort, not on being the only option."
+        }
+      ]
+    }
+  ]
+}

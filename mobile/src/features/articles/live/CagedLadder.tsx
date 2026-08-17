@@ -4,7 +4,13 @@ import { z } from 'zod';
 import { FadingHScroll } from '@/components/FadingHScroll';
 import { toAccidentalGlyphs } from '@/lib/accidentals';
 import { isRootName, type RootName } from '@/lib/chord-library';
-import { CAGED_FORMS, cagedFormWindows, cagedLadderLanes, cagedMarks } from '@/lib/guitar-positions';
+import {
+  CAGED_FORMS,
+  CAGED_QUALITIES,
+  cagedFormWindows,
+  cagedLadderLanes,
+  cagedMarks,
+} from '@/lib/guitar-positions';
 import { noteToPitchClass } from '@/lib/scale-library';
 import { FRET_COUNT, STRING_COUNT } from '@/lib/theory';
 
@@ -19,6 +25,12 @@ import { FRET_COUNT, STRING_COUNT } from '@/lib/theory';
 
 export const cagedLadderPropsSchema = z.object({
   root: z.string().refine(isRootName, 'not a root the chord library can spell'),
+  /**
+   * Names the ladder major or minor. The bands themselves do not move — a window
+   * is anchored on the root, not on the quality — and the roots it marks are the
+   * same either way. That the two ladders coincide is the point of drawing it.
+   */
+  quality: z.enum(CAGED_QUALITIES).default('major'),
   /** Draws this form lit and the other four quiet. Omit to weight them equally. */
   highlight: z.enum(CAGED_FORMS).optional(),
 });
@@ -39,7 +51,7 @@ const SINGLE_INLAYS = [3, 5, 7, 9, 15];
 const DOUBLE_INLAY = 12;
 const MARKED_FRETS = new Set([...SINGLE_INLAYS, DOUBLE_INLAY]);
 
-export function CagedLadder({ root, highlight }: CagedLadderProps) {
+export function CagedLadder({ root, quality, highlight }: CagedLadderProps) {
   const rootPc = noteToPitchClass(root as RootName);
   const windows = cagedFormWindows(rootPc);
 
@@ -54,7 +66,7 @@ export function CagedLadder({ root, highlight }: CagedLadderProps) {
   return (
     <View className="mt-[18px]">
       <Text className="px-[2px] text-[11px] leading-[15px] text-ink-faint">
-        {`The five forms of ${toAccidentalGlyphs(root)} major, and every root they hold.`}
+        {`The five forms of ${toAccidentalGlyphs(root)} ${quality}, and every root they hold.`}
       </Text>
 
       <FadingHScroll contentClassName="px-[18px] py-[8px]">

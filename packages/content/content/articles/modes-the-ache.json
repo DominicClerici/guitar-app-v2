@@ -1,0 +1,515 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_modes-the-ache",
+    "slug": "modes-the-ache",
+    "title": "The Ache Above the Fifth",
+    "summary": "Aeolian's only avoid note is the b6 sitting a half step above the 5; Dorian removes it by raising that degree a whole tone, and each of the two mode families turns out to hold exactly one mode — the one with the raised dial — that has no avoid note at all.",
+    "tags": ["modes", "theory", "ear"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-15"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Hold the "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": " barre at fret 5 and let it ring. Add "
+        },
+        {
+          "text": "5·8",
+          "marks": ["code"]
+        },
+        {
+          "text": " over the top — the "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": " — and it grates. Let it fall to "
+        },
+        {
+          "text": "5·7",
+          "marks": ["code"]
+        },
+        {
+          "text": ", the "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": ", and it settles. "
+        },
+        {
+          "text": "The Last Two Notes",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-the-last-two-notes"
+          }
+        },
+        {
+          "text": " already put you through that move, a whole pathway ago. That grate was an avoid note. It just didn't have a name yet."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The definition already exists: an avoid note is a scale tone sitting a half step above a chord tone — a note to move through, not one to land on and hold. "
+        },
+        {
+          "text": "The Note That Fights the Chord",
+          "link": {
+            "kind": "article",
+            "slug": "modes-the-avoid-note"
+          }
+        },
+        {
+          "text": " is where that got worked out in full; this lesson puts it to work on a minor tonic."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Work it out on "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "A C E",
+          "marks": ["code"]
+        },
+        {
+          "text": "), every note. "
+        },
+        {
+          "text": "B",
+          "marks": ["code"]
+        },
+        {
+          "text": " is a whole step above "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": ". "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": " is a chord tone. "
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": " is a whole step above "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": ". "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": " is a chord tone. "
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": " sits a half step above "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": " — the avoid note. "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " is a whole step below home and a half step above nothing in the chord. Exactly one avoid note in Aeolian, over "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": "."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The Last Two Notes",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-the-last-two-notes"
+          }
+        },
+        {
+          "text": " found two notes of A natural minor sitting a semitone from a chord tone — the "
+        },
+        {
+          "text": "2",
+          "marks": ["code"]
+        },
+        {
+          "text": " and the "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": " — and that's exactly why the minor pentatonic left both out. Only one of them turns out to be an avoid note, because direction matters. The "
+        },
+        {
+          "text": "2",
+          "marks": ["code"]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "B",
+          "marks": ["code"]
+        },
+        {
+          "text": ") sits a half step below the "
+        },
+        {
+          "text": "b3",
+          "marks": ["code"]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": ") and leans up into it. The "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": ") sits a half step above the "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": ") and sits on top of it. Same distance, opposite behaviour — the identical shape "
+        },
+        {
+          "text": "The Note That Fights the Chord",
+          "link": {
+            "kind": "article",
+            "slug": "modes-the-avoid-note"
+          }
+        },
+        {
+          "text": " used for Ionian's "
+        },
+        {
+          "text": "G#",
+          "marks": ["code"]
+        },
+        {
+          "text": " leaning up into the root."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Dorian removes it, and that's the turn. Raise the "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": " to a "
+        },
+        {
+          "text": "6",
+          "marks": ["code"]
+        },
+        {
+          "text": " and it sits a whole tone above the "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": " instead of a half step. Nothing in "
+        },
+        {
+          "text": "A B C D E F# G",
+          "marks": ["code"]
+        },
+        {
+          "text": " sits a half step above "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": " or "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Dorian has no avoid note over a static "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": "."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The Note That Fights the Chord",
+          "link": {
+            "kind": "article",
+            "slug": "modes-the-avoid-note"
+          }
+        },
+        {
+          "text": " called Lydian the only one of its three modes without an avoid note, and scoped that claim on purpose — because Dorian has none either. Across the six modes of the two families, each family holds exactly one mode with no avoid note over its own tonic triad — and in both cases it's the mode with the raised dial: Lydian raises the "
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": ", Dorian raises the "
+        },
+        {
+          "text": "6",
+          "marks": ["code"]
+        },
+        {
+          "text": ". That is a fact about these six, and about the seventh it says nothing at all."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Phrygian has two — one above the root, one above the fifth — the only one of the six that does. Why that matters is Phrygian's own business, and it comes later."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "scale-compare",
+      "props": {
+        "root": "A",
+        "scales": ["minor", "dorian"],
+        "drone": true
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Start the drone. On the card headed "
+        },
+        {
+          "text": "A Natural minor",
+          "marks": ["code"]
+        },
+        {
+          "text": ", tap "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": ", then tap "
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": " — a fret apart. Then on the Dorian card, tap "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": ", then the amber chip "
+        },
+        {
+          "text": "F#",
+          "marks": ["code"]
+        },
+        {
+          "text": " — two frets apart."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Be honest about what that tests: the drone holds the root, not the full chord, so tapping two chips in a row isn't the clash itself. For that, hold a real "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": " — "
+        },
+        {
+          "text": "Chord Shapes",
+          "link": {
+            "kind": "screen",
+            "href": "/chord-shapes"
+          }
+        },
+        {
+          "text": " has it — and let an "
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": " ring over it."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        {
+          "text": "A "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": " sits one fret above every "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": " on the same string — "
+        },
+        {
+          "text": "Nothing Left to Add",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-nothing-left-to-add"
+          }
+        },
+        {
+          "text": " already gave you the rule. Every avoid note in this scale is already located, on every string, in every window."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "So what is Dorian actually like, once the ache is gone? "
+        },
+        {
+          "text": "Dorian: Minor Without the Ache",
+          "link": {
+            "kind": "article",
+            "slug": "modes-dorian-sound"
+          }
+        },
+        {
+          "text": " is where that gets answered."
+        }
+      ]
+    }
+  ]
+}

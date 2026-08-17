@@ -1,0 +1,1059 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "quiz_triads-ch4-checkpoint",
+    "slug": "triads-ch4-checkpoint",
+    "title": "Checkpoint: Diminished and Augmented",
+    "summary": "The fifth moved this chapter — down for diminished, up for augmented. Eight questions on where it sits, where these two chords turn up, and which of them repeats its shape.",
+    "kind": "checkpoint",
+    "passThresholdPct": 70
+  },
+  "questions": [
+    {
+      "id": "q_triads-ch4-checkpoint.where-the-fifth-sits",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "C major, second inversion, on strings 2-3-4 is "
+        },
+        {
+          "text": "x x 5 5 5 x",
+          "marks": ["code"]
+        },
+        {
+          "text": " — "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": ", low to high. Which note is the fifth, and where does it go to make the chord augmented?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "The bass note, up one fret — "
+            },
+            {
+              "text": "x x 6 5 5 x",
+              "marks": ["code"]
+            },
+            {
+              "text": "."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "The top note, up one fret — "
+            },
+            {
+              "text": "x x 5 5 6 x",
+              "marks": ["code"]
+            },
+            {
+              "text": "."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "The middle note, up one fret — "
+            },
+            {
+              "text": "x x 5 6 5 x",
+              "marks": ["code"]
+            },
+            {
+              "text": "."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "The bass note, down one fret — "
+            },
+            {
+              "text": "x x 4 5 5 x",
+              "marks": ["code"]
+            },
+            {
+              "text": "."
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "In a second inversion the degrees run "
+        },
+        {
+          "text": "5 1 3",
+          "marks": ["code"]
+        },
+        {
+          "text": ", so the fifth is the bass note — and where the fifth sits depends only on the inversion, never on the string set. Augmented raises it a fret, which gives "
+        },
+        {
+          "text": "x x 6 5 5 x",
+          "marks": ["code"]
+        },
+        {
+          "text": ": "
+        },
+        {
+          "text": "G#",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Diminished would drop the same note instead. The other three answers all move a voice that isn't the fifth."
+        }
+      ]
+    },
+    {
+      "id": "q_triads-ch4-checkpoint.drop-the-fifth",
+      "kind": "fretboard",
+      "frets": 12,
+      "prompt": [
+        {
+          "text": "Here is C minor in root position on strings 1-2-3: "
+        },
+        {
+          "text": "x x x 5 4 3",
+          "marks": ["code"]
+        },
+        {
+          "text": " — "
+        },
+        {
+          "text": "C4",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "Eb4",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "G4",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Tap the single position your finger moves to in order to make it "
+        },
+        {
+          "text": "Cdim",
+          "marks": ["code"]
+        },
+        {
+          "text": "."
+        }
+      ],
+      "answer": [
+        {
+          "string": 1,
+          "fret": 2
+        }
+      ],
+      "explanation": [
+        {
+          "text": "Diminished is minor with the fifth dropped a fret, and in root position the fifth is the top note. "
+        },
+        {
+          "text": "1·3",
+          "marks": ["code"]
+        },
+        {
+          "text": " goes back to "
+        },
+        {
+          "text": "1·2",
+          "marks": ["code"]
+        },
+        {
+          "text": ", turning "
+        },
+        {
+          "text": "G4",
+          "marks": ["code"]
+        },
+        {
+          "text": " into "
+        },
+        {
+          "text": "Gb4",
+          "marks": ["code"]
+        },
+        {
+          "text": ", and the grip becomes "
+        },
+        {
+          "text": "x x x 5 4 2",
+          "marks": ["code"]
+        },
+        {
+          "text": ". The root at "
+        },
+        {
+          "text": "3·5",
+          "marks": ["code"]
+        },
+        {
+          "text": " and the flat third at "
+        },
+        {
+          "text": "2·4",
+          "marks": ["code"]
+        },
+        {
+          "text": " both stay exactly where they were."
+        }
+      ]
+    },
+    {
+      "id": "q_triads-ch4-checkpoint.rootless-dominant",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "In the key of C, "
+        },
+        {
+          "text": "B diminished",
+          "marks": ["code"]
+        },
+        {
+          "text": " is "
+        },
+        {
+          "text": "B",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": " — which is "
+        },
+        {
+          "text": "G7",
+          "marks": ["code"]
+        },
+        {
+          "text": " with its root taken away, so it carries the same leaning notes. Why is it still not a drop-in replacement for "
+        },
+        {
+          "text": "G7",
+          "marks": ["code"]
+        },
+        {
+          "text": " at the end of a phrase?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "It has none of the bass leap that makes a dominant land, so it works as a connecting chord mid-phrase rather than as a full stop."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "It has lost the note that pulls to "
+            },
+            {
+              "text": "C",
+              "marks": ["code"]
+            },
+            {
+              "text": ", so nothing leans anywhere."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "Three notes is a fragment; a chord needs four to finish a phrase."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "It belongs to a different key — "
+            },
+            {
+              "text": "B diminished",
+              "marks": ["code"]
+            },
+            {
+              "text": " has a note outside C major."
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "The tension is all still there: "
+        },
+        {
+          "text": "B",
+          "marks": ["code"]
+        },
+        {
+          "text": " a semitone under "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": " a semitone above "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": ". What is missing is the root underneath it, so the chord has nothing to step down from. It is not that nothing leans — "
+        },
+        {
+          "text": "B",
+          "marks": ["code"]
+        },
+        {
+          "text": " is exactly the note that leans. Calling three notes a fragment contradicts the first thing this pathway said: three notes is a whole chord. And it is not out of key: "
+        },
+        {
+          "text": "B",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": " are all in C major; that is why it is the one diminished triad the key has."
+        }
+      ]
+    },
+    {
+      "id": "q_triads-ch4-checkpoint.the-grip-that-waits",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "C minor in root position on strings 3-4-5 is "
+        },
+        {
+          "text": "x 3 1 0 x x",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Dropping the fifth a fret should make it diminished — but the diminished grip on that set sits at "
+        },
+        {
+          "text": "x 15 13 11 x x",
+          "marks": ["code"]
+        },
+        {
+          "text": " instead, on the last fret of the neck. Why?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "The "
+            },
+            {
+              "text": "Gb",
+              "marks": ["code"]
+            },
+            {
+              "text": " it needs would sit a semitone below the open "
+            },
+            {
+              "text": "G",
+              "marks": ["code"]
+            },
+            {
+              "text": " string, and string 3 can't sound it at any fret — so the close voicing waits for the next octave."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "A close triad that low would break the app's rule about muddy voicings, so it is pushed up until it passes."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "The diminished shape repeats every three frets, so fret 15 is simply the copy that got drawn."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "Strings 3-4-5 can't hold a diminished triad in root position at all; the grip shown is a different inversion."
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "String 3's lowest note is the open "
+        },
+        {
+          "text": "G3",
+          "marks": ["code"]
+        },
+        {
+          "text": ", and the chord wants "
+        },
+        {
+          "text": "Gb3",
+          "marks": ["code"]
+        },
+        {
+          "text": " — one semitone lower, which no fret can produce. Its next "
+        },
+        {
+          "text": "Gb",
+          "marks": ["code"]
+        },
+        {
+          "text": " is an octave up at "
+        },
+        {
+          "text": "3·11",
+          "marks": ["code"]
+        },
+        {
+          "text": ", far too far from fret 1 for a hand, so the whole voicing waits for the next "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": " on string 5. The same obstruction stranded C major's first inversion on strings 4-5-6 at fret 12 and C minor's second inversion on strings 1-2-3 at fret 11. The trap here is the idea that the shape repeats every three frets: the diminished triad does not repeat."
+        }
+      ]
+    },
+    {
+      "id": "q_triads-ch4-checkpoint.which-one-repeats",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "One of the two new qualities gives back the same shape every time you rotate it, and the other doesn't. Which, and why?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "Augmented. Its gaps are "
+            },
+            {
+              "text": "4 + 4 + 4",
+              "marks": ["code"]
+            },
+            {
+              "text": ", so every rotation has the same structure. Diminished's are "
+            },
+            {
+              "text": "3 + 3 + 6",
+              "marks": ["code"]
+            },
+            {
+              "text": " — three different shapes."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "Diminished. Two stacked minor thirds make it symmetrical, so the shape slides in minor thirds. Augmented's inversions are three different shapes."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "Both. Any triad built from two equal intervals repeats, and both of these are."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "Neither. A triad's three inversions are always three different shapes on the neck."
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "Two equal gaps isn't enough — the gap that wraps back round to the root has to match as well. Diminished stacks "
+        },
+        {
+          "text": "3",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "3",
+          "marks": ["code"]
+        },
+        {
+          "text": " but leaves "
+        },
+        {
+          "text": "6",
+          "marks": ["code"]
+        },
+        {
+          "text": " to get home, so its ladder draws three unevenly spaced bands with a different shape under each. Calling diminished the symmetrical one is the single most common error written about these chords: it describes the four-note diminished seventh, which is "
+        },
+        {
+          "text": "3 + 3 + 3 + 3",
+          "marks": ["code"]
+        },
+        {
+          "text": " and genuinely symmetrical, not the three-note triad."
+        }
+      ]
+    },
+    {
+      "id": "q_triads-ch4-checkpoint.one-shape-three-names",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "The grip "
+        },
+        {
+          "text": "x x x 1 1 0",
+          "marks": ["code"]
+        },
+        {
+          "text": " on strings 1-2-3 sounds "
+        },
+        {
+          "text": "G#3",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "C4",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "E4",
+          "marks": ["code"]
+        },
+        {
+          "text": ". How many chords is it?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "Three — "
+            },
+            {
+              "text": "Caug",
+              "marks": ["code"]
+            },
+            {
+              "text": " in second inversion, "
+            },
+            {
+              "text": "Eaug",
+              "marks": ["code"]
+            },
+            {
+              "text": " in first, and "
+            },
+            {
+              "text": "G#aug",
+              "marks": ["code"]
+            },
+            {
+              "text": " in root position, all at once."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "One — "
+            },
+            {
+              "text": "Caug",
+              "marks": ["code"]
+            },
+            {
+              "text": " in second inversion. The other two readings would need different notes."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "One — it's "
+            },
+            {
+              "text": "Ab",
+              "marks": ["code"]
+            },
+            {
+              "text": " major with "
+            },
+            {
+              "text": "C",
+              "marks": ["code"]
+            },
+            {
+              "text": " in the bass, "
+            },
+            {
+              "text": "Ab/C",
+              "marks": ["code"]
+            },
+            {
+              "text": "."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "Two — "
+            },
+            {
+              "text": "Caug",
+              "marks": ["code"]
+            },
+            {
+              "text": " and "
+            },
+            {
+              "text": "Eaug",
+              "marks": ["code"]
+            },
+            {
+              "text": ". "
+            },
+            {
+              "text": "G#",
+              "marks": ["code"]
+            },
+            {
+              "text": " is really "
+            },
+            {
+              "text": "Ab",
+              "marks": ["code"]
+            },
+            {
+              "text": ", so it can't act as a root."
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "Three equal gaps means every rotation is the same chord structure, so the shape has no root of its own — context supplies one. Whichever note the bass plays, or whichever chord the music just came from, is the root the ear hears. One near miss is worth knowing: "
+        },
+        {
+          "text": "Ab/C",
+          "marks": ["code"]
+        },
+        {
+          "text": " is "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "Eb",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "G#",
+          "marks": ["code"]
+        },
+        {
+          "text": " — a flat third, not the "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": " this grip actually sounds."
+        }
+      ]
+    },
+    {
+      "id": "q_triads-ch4-checkpoint.hear-the-quality",
+      "kind": "listen",
+      "audio": {
+        "kind": "notes",
+        "notes": ["C4", "E4", "G#4"],
+        "mode": "chord"
+      },
+      "prompt": [
+        {
+          "text": "All four C triads sit in root position on strings 1-2-3 with the root fixed at "
+        },
+        {
+          "text": "3·5",
+          "marks": ["code"]
+        },
+        {
+          "text": ". This is one of them. Which?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "x x x 5 5 3",
+              "marks": ["code"]
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "x x x 5 4 3",
+              "marks": ["code"]
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "x x x 5 4 2",
+              "marks": ["code"]
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "x x x 5 5 4",
+              "marks": ["code"]
+            }
+          ]
+        }
+      ],
+      "answerId": "d",
+      "explanation": [
+        {
+          "text": "That is C augmented — "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "G#",
+          "marks": ["code"]
+        },
+        {
+          "text": ", the major grip with the top note pushed up a fret. The third is still major, which rules out "
+        },
+        {
+          "text": "x x x 5 4 3",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "x x x 5 4 2",
+          "marks": ["code"]
+        },
+        {
+          "text": "; the fifth is wide rather than plain, which rules out "
+        },
+        {
+          "text": "x x x 5 5 3",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Augmented is the easiest of the four to pick out by ear, because two equal thirds give it nothing to settle on."
+        }
+      ]
+    },
+    {
+      "id": "q_triads-ch4-checkpoint.the-whole-system",
+      "kind": "multi-select",
+      "prompt": [
+        {
+          "text": "Which of these are true about the four triad qualities? Select every one that applies."
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "A triad is two stacked thirds and each third is either "
+            },
+            {
+              "text": "4",
+              "marks": ["code"]
+            },
+            {
+              "text": " semitones or "
+            },
+            {
+              "text": "3",
+              "marks": ["code"]
+            },
+            {
+              "text": ", which is why there are exactly four qualities and not five."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "Raising "
+            },
+            {
+              "text": "G",
+              "marks": ["code"]
+            },
+            {
+              "text": "'s fifth to "
+            },
+            {
+              "text": "D#",
+              "marks": ["code"]
+            },
+            {
+              "text": " makes the change into "
+            },
+            {
+              "text": "C",
+              "marks": ["code"]
+            },
+            {
+              "text": " lean harder, because "
+            },
+            {
+              "text": "D#",
+              "marks": ["code"]
+            },
+            {
+              "text": " sits a semitone below "
+            },
+            {
+              "text": "E",
+              "marks": ["code"]
+            },
+            {
+              "text": ", the third of "
+            },
+            {
+              "text": "C",
+              "marks": ["code"]
+            },
+            {
+              "text": "."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "Augmented is a major triad with the fifth raised one fret, and that works on every set in every inversion without the grip moving."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "Diminished is a minor triad with the fifth dropped one fret, and all twelve grips stay exactly where the minor one was."
+            }
+          ]
+        },
+        {
+          "id": "e",
+          "spans": [
+            {
+              "text": "There are twelve different augmented triads, one for each root."
+            }
+          ]
+        }
+      ],
+      "answerIds": ["a", "b", "c"],
+      "explanation": [
+        {
+          "text": "Augmented never relocates — every major grip has its augmented twin one fret away in the same place. Diminished does relocate twice: on strings 3-4-5 in root position and on strings 2-3-4 in first inversion, both because the "
+        },
+        {
+          "text": "Gb",
+          "marks": ["code"]
+        },
+        {
+          "text": " they want falls a semitone below the open G string. And there are only four different augmented triads in all — "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": "/"
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": "/"
+        },
+        {
+          "text": "G#",
+          "marks": ["code"]
+        },
+        {
+          "text": " is one chord with three names — where diminished has twelve, one for every root."
+        }
+      ]
+    }
+  ]
+}

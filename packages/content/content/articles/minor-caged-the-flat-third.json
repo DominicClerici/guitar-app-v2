@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_minor-caged-the-flat-third",
+    "slug": "minor-caged-the-flat-third",
+    "title": "The Note That Makes It Minor",
+    "summary": "Of the three notes that drop from A major to A minor, only the third — the b3 — decides whether a chord is minor; the b6 and b7 colour a key without it.",
+    "tags": ["caged", "minor"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Three notes dropped going from A major to A minor, and they are not equal partners. Drop only the third and everything already sounds minor. Drop only the sixth, on its own, and it doesn't — the chord underneath hasn't moved at all."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here's why, in terms you already have from the CAGED pathway: a chord is a root, a third and a fifth. The root names the chord. The fifth is identical in both — "
+        },
+        { "text": "E", "marks": ["code"] },
+        {
+          "text": " above an A root, major or minor, doesn't move. That leaves the third as the only note free to carry the difference: "
+        },
+        { "text": "A C# E", "marks": ["code"] },
+        { "text": " against " },
+        { "text": "A C E", "marks": ["code"] },
+        {
+          "text": ". It isn't a metaphor. It's an accounting — two notes are pinned down, and only one is left to do anything at all. The root has to stay the root or the chord has a different name entirely; the fifth barely varies chord to chord in the first place. That leaves the third holding the entire question of major versus minor by itself."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "That gives you the minor triad: " },
+        { "text": "1 b3 5", "marks": ["code"] },
+        {
+          "text": ". Hold onto that shorthand — a later chapter puts it into five windows across the neck."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        {
+          "text": "The third is the note to listen for. It's the only one of the three that lives inside the chord itself, not just the scale around it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The " },
+        { "text": "b6", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "b7", "marks": ["code"] },
+        {
+          "text": " are colour, not identity. They live in the scale, not in the triad, and a piece that only ever touches "
+        },
+        { "text": "1 b3 5", "marks": ["code"] },
+        {
+          "text": " is already minor without either of them. Take them away and the chord doesn't stop being minor; take away the "
+        },
+        { "text": "b3", "marks": ["code"] },
+        {
+          "text": " instead and it does, no matter how much of the surrounding scale you leave in place."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "So what do major and minor actually name? Two chords on the same root, with the third sitting three semitones up instead of four. Said plainly and without overclaiming: the acoustic difference is real — a minor triad is slightly rougher and less fused than a major triad on the same root, and its root reads as a touch less clearly defined. What that difference "
+        },
+        { "text": "means", "marks": ["italic"] },
+        {
+          "text": " is a separate question. The familiar claim that minor sounds sad is mostly something a listener learns from the music around them, not something the notes themselves contain, and this pathway isn't going to hand it to you as settled fact."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "info",
+      "spans": [
+        {
+          "text": "The rougher, less settled sound of a minor triad against a major one is measurable. What a listener decides that roughness means is learned, and it isn't the same lesson."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Two places to put an ear on this. " },
+        { "text": "Ear Trainer", "link": { "kind": "screen", "href": "/ear-trainer" } },
+        {
+          "text": " drills the interval itself — major third against minor third, isolated from everything else. "
+        },
+        { "text": "Chord Detector", "link": { "kind": "screen", "href": "/chord-detector" } },
+        { "text": " listens to what you actually played and tells you whether it came out minor." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Knowing which note makes a chord minor is only half the story, though. It doesn't explain why seven notes that never change — the ones this chapter opened with — can sound like they belong to two different keys, C major one moment and A minor the next, with nothing in the note list to tell them apart. "
+        },
+        {
+          "text": "That's next",
+          "link": { "kind": "article", "slug": "minor-caged-what-decides-home" }
+        },
+        { "text": "." }
+      ]
+    }
+  ]
+}

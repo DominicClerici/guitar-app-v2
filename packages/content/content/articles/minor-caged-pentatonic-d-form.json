@@ -1,0 +1,782 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_minor-caged-pentatonic-d-form",
+    "slug": "minor-caged-pentatonic-d-form",
+    "title": "The D Form: The Way Out of the Box",
+    "summary": "The D form shares six dots with the fret-5 box across frets 7–8 and six more with the C form across frets 9–10, so it is the window you move through rather than settle in.",
+    "tags": ["caged", "minor"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The D form of A minor is "
+        },
+        {
+          "text": "the Dm shape at fret 7",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-triad-d-form"
+          }
+        },
+        {
+          "text": ". Its pentatonic window runs frets "
+        },
+        {
+          "text": "6–10",
+          "marks": ["code"]
+        },
+        {
+          "text": ", and its twelve dots sit on frets "
+        },
+        {
+          "text": "7",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "8",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "9",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "10",
+          "marks": ["code"]
+        },
+        {
+          "text": " — nothing at fret "
+        },
+        {
+          "text": "6",
+          "marks": ["code"]
+        },
+        {
+          "text": "."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [
+          {
+            "text": "String"
+          }
+        ],
+        [
+          {
+            "text": "Lower dot"
+          }
+        ],
+        [
+          {
+            "text": "Upper dot"
+          }
+        ]
+      ],
+      "rows": [
+        [
+          [
+            {
+              "text": "6"
+            }
+          ],
+          [
+            {
+              "text": "6·8 — b3 (C)",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "6·10 — 4 (D)",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "5"
+            }
+          ],
+          [
+            {
+              "text": "5·7 — 5 (E)",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "5·10 — b7 (G)",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "4"
+            }
+          ],
+          [
+            {
+              "text": "4·7 — 1 (A)",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "4·10 — b3 (C)",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "3"
+            }
+          ],
+          [
+            {
+              "text": "3·7 — 4 (D)",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "3·9 — 5 (E)",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "2"
+            }
+          ],
+          [
+            {
+              "text": "2·8 — b7 (G)",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "2·10 — 1 (A)",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "1"
+            }
+          ],
+          [
+            {
+              "text": "1·8 — b3 (C)",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "1·10 — 4 (D)",
+              "marks": ["code"]
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "D",
+        "quality": "minor",
+        "show": "pentatonic",
+        "caption": "Twelve dots on frets 7, 8, 9 and 10 — the window that bridges the fret-5 box to the C form above it."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The seam with the window you just learned comes first. The E form's window ends at fret "
+        },
+        {
+          "text": "8",
+          "marks": ["code"]
+        },
+        {
+          "text": " and this one starts at fret "
+        },
+        {
+          "text": "6",
+          "marks": ["code"]
+        },
+        {
+          "text": ", so frets "
+        },
+        {
+          "text": "6–8",
+          "marks": ["code"]
+        },
+        {
+          "text": " belong to both. Six dots live there — "
+        },
+        {
+          "text": "6·8",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "b3",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "5·7",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "4·7",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "1",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "3·7",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "2·8",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "b7",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "1·8",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "b3",
+          "marks": ["code"]
+        },
+        {
+          "text": " — one on every string, all five notes of the scale between them. Every one of those six is a dot the fret-5 box already handed you, because the E form's window reaches all the way to fret "
+        },
+        {
+          "text": "8",
+          "marks": ["code"]
+        },
+        {
+          "text": ". That is the point rather than a disappointment: the overlap is not a new shape, it is the top of the box you were already standing in. What is genuinely new starts at fret "
+        },
+        {
+          "text": "9",
+          "marks": ["code"]
+        },
+        {
+          "text": "."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Fret "
+        },
+        {
+          "text": "7",
+          "marks": ["code"]
+        },
+        {
+          "text": "'s row is the hinge — "
+        },
+        {
+          "text": "5·7",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "4·7",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "1",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "3·7",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": ". It belongs to both windows at once, and "
+        },
+        {
+          "text": "4·7",
+          "marks": ["code"]
+        },
+        {
+          "text": " is a root in both — one of the E form's three, one of this window's two. Keep a finger on it and your hand can travel two frets up the neck without the scale changing underneath it."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        {
+          "text": "4·7",
+          "marks": ["code"]
+        },
+        {
+          "text": " is a root in both windows at once. It is the note to hold on to while your hand moves from one to the other."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "There's a second seam above it. Frets "
+        },
+        {
+          "text": "9–10",
+          "marks": ["code"]
+        },
+        {
+          "text": " belong to this window and to the C form's at once, and hold six more dots — "
+        },
+        {
+          "text": "6·10",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "5·10",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "b7",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "4·10",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "b3",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "3·9",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "2·10",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "1",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "1·10",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": " — again one per string, again all five notes. This window has a doorway at each end, which is exactly what makes it the bridge."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Seven of the twelve dots are "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": ": "
+        },
+        {
+          "text": "6·8",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "5·7",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "4·7",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "4·10",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "3·9",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "2·10",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "1·8",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Five aren't: "
+        },
+        {
+          "text": "6·10",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "5·10",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "3·7",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "2·8",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "1·10",
+          "marks": ["code"]
+        },
+        {
+          "text": "."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Its character is in where the roots sit. Both — "
+        },
+        {
+          "text": "4·7",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "2·10",
+          "marks": ["code"]
+        },
+        {
+          "text": " — are on inside strings; there's no root on string 6 or string 1 anywhere in this window. Combined with three "
+        },
+        {
+          "text": "b3",
+          "marks": ["code"]
+        },
+        {
+          "text": "s and three "
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": "s, that means the outside of the hand never lands home here: strings 6 and 1 each offer a "
+        },
+        {
+          "text": "b3",
+          "marks": ["code"]
+        },
+        {
+          "text": " and a "
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": " and nothing else. That's why this window feels unfinished on its own, and why it works best as a passage between the two either side of it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "In reach it's compact: its three-fret strings are 5 and 4, right in the middle of the hand, and its dots sit on four consecutive frets — "
+        },
+        {
+          "text": "7",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "8",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "9",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "10",
+          "marks": ["code"]
+        },
+        {
+          "text": " — with none of them skipped. Only the open-position window manages that too. The C form leaves fret "
+        },
+        {
+          "text": "11",
+          "marks": ["code"]
+        },
+        {
+          "text": " empty, the G form leaves fret "
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": ", and the fret-5 box uses only three frets of the four it spans."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Play from "
+        },
+        {
+          "text": "6·5",
+          "marks": ["code"]
+        },
+        {
+          "text": " in the fret-5 box up to "
+        },
+        {
+          "text": "2·10",
+          "marks": ["code"]
+        },
+        {
+          "text": " in this window without stopping, and notice that the only thing that happened was your hand moving two frets. Page from one window to the next in the "
+        },
+        {
+          "text": "Scale Visualizer",
+          "link": {
+            "kind": "screen",
+            "href": "/scale-visualizer"
+          }
+        },
+        {
+          "text": " and watch the overlap for yourself."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That's five windows done. One question is left: what the app's other toggle is showing when it calls the same dots something else."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Next: "
+        },
+        {
+          "text": "Boxes and Forms",
+          "marks": ["bold"],
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-boxes-and-forms"
+          }
+        },
+        {
+          "text": " — the closer."
+        }
+      ]
+    }
+  ]
+}

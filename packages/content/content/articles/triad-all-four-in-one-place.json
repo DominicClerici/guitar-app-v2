@@ -1,0 +1,513 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_triad-all-four-in-one-place",
+    "slug": "triad-all-four-in-one-place",
+    "title": "Four Chords, One Hand",
+    "summary": "Major, minor, diminished and augmented sit under one hand with the root held still — the whole quality system is two fingers, moved one fret at a time.",
+    "tags": ["triads", "chords", "fretboard"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Major, minor, diminished and augmented are not four different chords to learn. They are one shape, with the root held still and two fingers moved a fret at a time, into four different chords."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here they are on strings 1-2-3, root position, the root fixed at "
+        },
+        {
+          "text": "3·5",
+          "marks": ["code"]
+        },
+        {
+          "text": ":"
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [
+          {
+            "text": "Quality"
+          }
+        ],
+        [
+          {
+            "text": "Chart"
+          }
+        ],
+        [
+          {
+            "text": "Notes"
+          }
+        ],
+        [
+          {
+            "text": "Move from major"
+          }
+        ]
+      ],
+      "rows": [
+        [
+          [
+            {
+              "text": "major"
+            }
+          ],
+          [
+            {
+              "text": "x x x 5 5 3",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "C E G",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "—"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "minor"
+            }
+          ],
+          [
+            {
+              "text": "x x x 5 4 3",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "C Eb G",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "middle note down one"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "diminished"
+            }
+          ],
+          [
+            {
+              "text": "x x x 5 4 2",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "C Eb Gb",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "middle and top down one"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "augmented"
+            }
+          ],
+          [
+            {
+              "text": "x x x 5 5 4",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "C E G#",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "top note up one"
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "C",
+        "strings": "1-2-3",
+        "inversion": "root",
+        "caption": "C major, root position, strings 1-2-3 — degrees 1 3 5."
+      }
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "C",
+        "quality": "minor",
+        "strings": "1-2-3",
+        "inversion": "root",
+        "caption": "C minor, root position, strings 1-2-3 — degrees 1 b3 5, the third down a fret from major."
+      }
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "C",
+        "quality": "diminished",
+        "strings": "1-2-3",
+        "inversion": "root",
+        "caption": "C diminished, root position, strings 1-2-3 — degrees 1 b3 b5, third and fifth both down a fret from major."
+      }
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "C",
+        "quality": "augmented",
+        "strings": "1-2-3",
+        "inversion": "root",
+        "caption": "C augmented, root position, strings 1-2-3 — degrees 1 3 #5, the fifth up a fret from major."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The third and the fifth are two separate voices, and each moves by one fret entirely on its own: the third is either "
+        },
+        {
+          "text": "3",
+          "marks": ["code"]
+        },
+        {
+          "text": " or "
+        },
+        {
+          "text": "b3",
+          "marks": ["code"]
+        },
+        {
+          "text": "; the fifth is "
+        },
+        {
+          "text": "b5",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": ", or "
+        },
+        {
+          "text": "#5",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Which note in the grip is which depends only on the inversion — the same two rules from earlier in this chapter, side by side: the third is the middle note in root position, the bass in first inversion, the top in second; the fifth is the top note in root position, the middle in first inversion, the bass in second."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "This closes a loop from the very start of the pathway. A triad is two stacked thirds, and a third is either "
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": " semitones or "
+        },
+        {
+          "text": "3",
+          "marks": ["code"]
+        },
+        {
+          "text": " — two slots, two choices, four combinations: "
+        },
+        {
+          "text": "4+3",
+          "marks": ["code"]
+        },
+        {
+          "text": " is major, "
+        },
+        {
+          "text": "3+4",
+          "marks": ["code"]
+        },
+        {
+          "text": " is minor, "
+        },
+        {
+          "text": "3+3",
+          "marks": ["code"]
+        },
+        {
+          "text": " is diminished, "
+        },
+        {
+          "text": "4+4",
+          "marks": ["code"]
+        },
+        {
+          "text": " is augmented. That's the complete list, and it's complete for a reason rather than by convention. The two leftover combinations don't make new chords: "
+        },
+        {
+          "text": "1 b3 #5",
+          "marks": ["code"]
+        },
+        {
+          "text": " over "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": " is "
+        },
+        {
+          "text": "C Eb G#",
+          "marks": ["code"]
+        },
+        {
+          "text": ", which is just "
+        },
+        {
+          "text": "Ab",
+          "marks": ["code"]
+        },
+        {
+          "text": " major with "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": " in the bass — "
+        },
+        {
+          "text": "Ab/C",
+          "marks": ["code"]
+        },
+        {
+          "text": ". And "
+        },
+        {
+          "text": "1 3 b5",
+          "marks": ["code"]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "C E Gb",
+          "marks": ["code"]
+        },
+        {
+          "text": ") doesn't stack in thirds at all; it has no triad name."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The four qualities share a bass fret in root position on three of the four sets: strings 1-2-3 at fret 5, strings 2-3-4 at fret 10, strings 4-5-6 at fret 8. Not on strings 3-4-5, where "
+        },
+        {
+          "text": "Cdim",
+          "marks": ["code"]
+        },
+        {
+          "text": " can't sit at fret 3 — "
+        },
+        {
+          "text": "the "
+        },
+        {
+          "text": "Gb",
+          "marks": ["code"]
+        },
+        {
+          "text": " it needs falls a semitone below the open "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " string"
+        },
+        {
+          "text": " — and is stranded at "
+        },
+        {
+          "text": "x 15 13 11 x x",
+          "marks": ["code"]
+        },
+        {
+          "text": " instead."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [
+          {
+            "text": "Quality"
+          }
+        ],
+        [
+          {
+            "text": "Chart on strings 4-5-6"
+          }
+        ]
+      ],
+      "rows": [
+        [
+          [
+            {
+              "text": "major"
+            }
+          ],
+          [
+            {
+              "text": "8 7 5 x x x",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "minor"
+            }
+          ],
+          [
+            {
+              "text": "8 6 5 x x x",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "diminished"
+            }
+          ],
+          [
+            {
+              "text": "8 6 4 x x x",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "augmented"
+            }
+          ],
+          [
+            {
+              "text": "8 7 6 x x x",
+              "marks": ["code"]
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Hold the root at "
+        },
+        {
+          "text": "3·5",
+          "marks": ["code"]
+        },
+        {
+          "text": " and cycle the other two fingers through all four qualities without letting the root move — say the quality out loud each time. Then check yourself against "
+        },
+        {
+          "text": "Chord Detector",
+          "link": {
+            "kind": "screen",
+            "href": "/chord-detector"
+          }
+        },
+        {
+          "text": ": play each one and see whether the app agrees. "
+        },
+        {
+          "text": "Chord Shapes",
+          "link": {
+            "kind": "screen",
+            "href": "/chord-shapes"
+          }
+        },
+        {
+          "text": " puts every one of them beside every other way to play the same chord."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Four chapters of shapes, and the whole quality system turned out to be two fingers. Chapter 5 is next: it stops building chords and starts playing them — moving between them with the fewest fingers, crossing string sets mid-progression, and comping a whole progression. "
+        },
+        {
+          "text": "B diminished",
+          "marks": ["code"]
+        },
+        {
+          "text": " makes one more appearance there."
+        }
+      ]
+    }
+  ]
+}

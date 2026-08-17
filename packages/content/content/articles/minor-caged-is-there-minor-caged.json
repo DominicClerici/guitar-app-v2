@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_minor-caged-is-there-minor-caged",
+    "slug": "minor-caged-is-there-minor-caged",
+    "title": "Is There Even Such a Thing?",
+    "summary": "The objection that minor CAGED doesn't exist is right about the shared notes and wrong about the chords, because no C major form contains a b3.",
+    "tags": ["caged", "minor"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Many good teachers say there is no such thing as minor CAGED. Learn the five major forms, and if you want A minor, play the C major forms and think of A as home. They have a real point, and it's worth taking seriously rather than waving away."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here's where they're right. Every dot of A natural minor is a dot you already have from C major — nothing new to learn, nothing extra to memorise. If all you want is which notes are available anywhere on the neck, re-rooting really is enough, and the earlier lessons proved it twice over: once by keeping the notes and moving the home, once by keeping the home and moving three of the notes."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Here's where they're wrong, and it's this lesson's claim. CAGED is a " },
+        { "text": "chord", "marks": ["bold"] },
+        {
+          "text": " system first — the five letters name five open chord shapes, and a form is a place a chord's root, third and fifth sit across the strings. There is no "
+        },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " chord anywhere in a " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " major form, because a " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " major form arranges " },
+        { "text": "C E G", "marks": ["code"] },
+        { "text": " around a " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " root. To play " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " you need a shape whose root is " },
+        { "text": "A", "marks": ["code"] },
+        { "text": " and which contains a " },
+        { "text": "b3", "marks": ["code"] },
+        { "text": " — a " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " sitting a minor third above that root, not a major third above a " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " root." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Here's the sharp version. The note " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " is in both chords. What differs is what it's " },
+        { "text": "doing", "marks": ["italic"] },
+        { "text": ": in a " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " chord it's the root; in an " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " chord it's the " },
+        { "text": "b3", "marks": ["code"] },
+        {
+          "text": ". Same fret, different job. That's why the two need different shapes even though they share every note — a shape is defined by what its notes are doing, not just by which notes they are."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "So there are five. Five shapes rooted on " },
+        { "text": "A", "marks": ["code"] },
+        { "text": ", each containing a " },
+        { "text": "b3", "marks": ["code"] },
+        { "text": ", one per window — that's not a new " },
+        { "text": "map", "link": { "kind": "article", "slug": "caged-root-ladder" } },
+        {
+          "text": ", it's a second set of chord shapes drawn on the map you already have. One of the five, worth knowing now, is a chord you've already been playing since your first week on the guitar — which one, the next chapter hands you, and it will feel like getting something for free."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Here's the destination — every " },
+        { "text": "A", "marks": ["code"] },
+        { "text": " minor chord shape at once, along the whole neck:" }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-ladder",
+      "props": { "root": "A", "quality": "minor" }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Five labelled bands, every " },
+        { "text": "A", "marks": ["code"] },
+        {
+          "text": " on the neck marked. Don't try to read it yet — that's the next chapter's job, and five overlapping bands is a lot to take in at once. Notice one thing, though: the bands sit exactly where "
+        },
+        { "text": "A", "marks": ["code"] },
+        {
+          "text": " major's would. A window is a fret span anchored on its root, and the root didn't move. Only the notes marked inside it change, which is the whole answer to the objection in picture form."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One naming note, since the diagram prints it: this pathway keeps the form letter bare and puts the quality on the chord — \"the E form of A minor\", never \"the Em form\"."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "info",
+      "spans": [
+        {
+          "text": "Right about the notes, wrong about the chords. That's the whole of the objection, answered."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Curious what an " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " looks like beyond these five windows? " },
+        { "text": "Chord Shapes", "link": { "kind": "screen", "href": "/chord-shapes" } },
+        { "text": " has every voicing worth knowing, this pathway's five and plenty besides." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The notes are shared and the chords are not. Which raises an obvious question about the windows themselves: "
+        },
+        {
+          "text": "do they even line up",
+          "link": { "kind": "article", "slug": "minor-caged-one-window-two-names" }
+        },
+        { "text": "?" }
+      ]
+    }
+  ]
+}

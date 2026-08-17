@@ -1,0 +1,400 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_minor-caged-the-last-two-notes",
+    "slug": "minor-caged-the-last-two-notes",
+    "title": "The Last Two Notes",
+    "summary": "The 2 and the b6 are the only two notes of A natural minor that sit a semitone from a chord tone, which is exactly why the pentatonic left them out and exactly how to find them.",
+    "tags": ["caged", "minor"],
+    "readingTimeMin": 5,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Same five windows, two notes left, and after this chapter there is no further layer. You have not been handed a new shape since chapter 2, and you will not be handed one again — everything from here is the windows you already know, filling all the way in."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Natural minor is " },
+        { "text": "1 2 b3 4 5 b6 b7", "marks": ["code"] },
+        { "text": " — in A, " },
+        { "text": "A B C D E F G", "marks": ["code"] },
+        { "text": ". Chapter 3's pentatonic had " },
+        { "text": "1 b3 4 5 b7", "marks": ["code"] },
+        { "text": ". What's left is the " },
+        { "text": "2", "marks": ["code", { "type": "color", "tone": "amber" }] },
+        { "text": " and the " },
+        { "text": "b6", "marks": ["code", { "type": "color", "tone": "amber" }] },
+        { "text": " — " },
+        { "text": "B", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "F", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The " },
+        { "text": "b6", "marks": ["code", { "type": "color", "tone": "amber" }] },
+        { "text": " closes an account chapter 1 opened: " },
+        {
+          "text": "the three notes that drop",
+          "link": { "kind": "article", "slug": "minor-caged-the-three-that-drop" }
+        },
+        { "text": " when A major becomes A minor — " },
+        { "text": "3→b3", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "6→b6", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "7→b7", "marks": ["code"] },
+        { "text": ". The " },
+        { "text": "b3", "marks": ["code"] },
+        { "text": " arrived in chapter 2, the " },
+        { "text": "b7", "marks": ["code"] },
+        { "text": " in chapter 3, and the " },
+        { "text": "b6", "marks": ["code", { "type": "color", "tone": "amber" }] },
+        { "text": " arrives now — the first layer where all three sit on the neck at once." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The " },
+        { "text": "2", "marks": ["code", { "type": "color", "tone": "amber" }] },
+        { "text": " never dropped. " },
+        { "text": "1", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "2", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "4", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "5", "marks": ["code"] },
+        {
+          "text": " are identical in A major and A minor, so this is the one note this chapter adds that has nothing to do with the scale being minor. It's a whole step above home, it's consonant over an "
+        },
+        { "text": "Am", "marks": ["code"] },
+        {
+          "text": ", and it's what turns a pentatonic run into something that moves by steps instead of leaps. Without it, "
+        },
+        { "text": "1", "marks": ["code"] },
+        { "text": " to " },
+        { "text": "b3", "marks": ["code"] },
+        { "text": " is a jump of three frets. With it, the first three notes of the scale walk." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The " },
+        { "text": "b6", "marks": ["code", { "type": "color", "tone": "amber" }] },
+        { "text": " is the chapter's real subject. It's the semitone above the " },
+        { "text": "5", "marks": ["code"] },
+        { "text": " — " },
+        { "text": "F", "marks": ["code"] },
+        { "text": " above " },
+        { "text": "E", "marks": ["code"] },
+        {
+          "text": " — and it's the darkest note in the scale: what natural minor has that the five notes you've been playing don't. Chapter 1 already gave the "
+        },
+        { "text": "b3", "marks": ["code"] },
+        { "text": " the job of deciding whether a chord is minor. The " },
+        { "text": "b6", "marks": ["code"] },
+        { "text": " doesn't do that. It colours the key." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here's why the pentatonic left exactly these two out. Measure every degree of natural minor against the chord tones "
+        },
+        { "text": "1 b3 5", "marks": ["code"] },
+        { "text": ":" }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Degree" }],
+        [{ "text": "Nearest chord tone" }],
+        [{ "text": "Distance" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "4", "marks": ["code"] }],
+          [
+            { "text": "b3", "marks": ["code"] },
+            { "text": " / " },
+            { "text": "5", "marks": ["code"] }
+          ],
+          [{ "text": "two frets, either side" }]
+        ],
+        [
+          [{ "text": "b7", "marks": ["code"] }],
+          [{ "text": "1", "marks": ["code"] }],
+          [{ "text": "two frets" }]
+        ],
+        [
+          [{ "text": "2", "marks": ["code", { "type": "color", "tone": "amber" }] }],
+          [{ "text": "b3", "marks": ["code"] }],
+          [{ "text": "one fret" }]
+        ],
+        [
+          [{ "text": "b6", "marks": ["code", { "type": "color", "tone": "amber" }] }],
+          [{ "text": "5", "marks": ["code"] }],
+          [{ "text": "one fret" }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The minor pentatonic is exactly the notes of natural minor that are not a semitone from a chord tone. No pentatonic note sits a fret from "
+        },
+        { "text": "1", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "b3", "marks": ["code"] },
+        { "text": " or " },
+        { "text": "5", "marks": ["code"] },
+        {
+          "text": " — both of the notes it left out do. That's why the pentatonic is safe over an "
+        },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " and why the whole scale has a note in it that isn't." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Try it in hand. Play the " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " barre at fret 5 and let it ring, then add " },
+        { "text": "5·8", "marks": ["code"] },
+        { "text": " — the " },
+        { "text": "b6", "marks": ["code"] },
+        { "text": " — over the top. It sits one fret above the " },
+        { "text": "E", "marks": ["code"] },
+        { "text": " the chord is built on, and it grates. Let it fall to " },
+        { "text": "5·7", "marks": ["code"] },
+        { "text": ", the " },
+        { "text": "5", "marks": ["code"] },
+        { "text": ", and it settles: place it, lean on it, move. Do the same with the " },
+        { "text": "2", "marks": ["code"] },
+        { "text": " at " },
+        { "text": "6·7", "marks": ["code"] },
+        { "text": " and nothing fights at all." }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        { "text": "Hold the barre against a sustained " },
+        { "text": "A", "marks": ["code"] },
+        { "text": " on the " },
+        { "text": "Drone", "link": { "kind": "screen", "href": "/drone" } },
+        { "text": " and repeat the fall from " },
+        { "text": "5·8", "marks": ["code"] },
+        { "text": " to " },
+        { "text": "5·7", "marks": ["code"] },
+        { "text": " until you can hear it coming before you play it." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "That grate-and-settle is the finding rule, everywhere on the neck: a " },
+        { "text": "b6", "marks": ["code"] },
+        { "text": " sits one fret above every " },
+        { "text": "5", "marks": ["code"] },
+        { "text": " on the same string, and a " },
+        { "text": "2", "marks": ["code"] },
+        { "text": " sits one fret below every " },
+        { "text": "b3", "marks": ["code"] },
+        {
+          "text": " on the same string — no new map, only the fret next door. One exception, honestly: a window's fixed edges can cut a pair, so its partner falls just outside the frame. Two of the five windows have dots like that, and their own lessons say so."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Wherever chapter 3's pentatonic left a three-fret step on one string, this layer drops exactly one new note into the middle of it — and it is always the same one: a "
+        },
+        { "text": "1", "marks": ["code"] },
+        { "text": "→" },
+        { "text": "b3", "marks": ["code"] },
+        { "text": " gap takes the " },
+        { "text": "2", "marks": ["code"] },
+        { "text": "; a " },
+        { "text": "5", "marks": ["code"] },
+        { "text": "→" },
+        { "text": "b7", "marks": ["code"] },
+        { "text": " gap takes the " },
+        { "text": "b6", "marks": ["code"] },
+        {
+          "text": ". The rest land at the window's edges instead — why the totals come out at seventeen and eighteen, not an even number all round."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "And that's the death of chapter 3's tidiest fact. Twelve dots, two on every string, held in four of the five windows, with the G form the odd one out at thirteen. That pattern is gone:"
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Form" }],
+        [{ "text": "Window" }],
+        [{ "text": "Dots" }],
+        [{ "text": "Short string" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "C" }],
+          [{ "text": "9–13", "marks": ["code"] }],
+          [{ "text": "17" }],
+          [{ "text": "5" }]
+        ],
+        [
+          [{ "text": "A" }],
+          [{ "text": "0–3", "marks": ["code"] }],
+          [{ "text": "17" }],
+          [{ "text": "3" }]
+        ],
+        [
+          [{ "text": "G" }],
+          [{ "text": "1–5", "marks": ["code"] }],
+          [{ "text": "18" }],
+          [{ "text": "none" }]
+        ],
+        [
+          [{ "text": "E" }],
+          [{ "text": "4–8", "marks": ["code"] }],
+          [{ "text": "17" }],
+          [{ "text": "4" }]
+        ],
+        [
+          [{ "text": "D" }],
+          [{ "text": "6–10", "marks": ["code"] }],
+          [{ "text": "18" }],
+          [{ "text": "none" }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The C, A and E forms hold seventeen, each with one string carrying only two dots. The G and D forms hold eighteen, and those are exactly the two windows with three dots on every string. The layer that felt tidy was the incomplete one."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Hear the two notes before you look for them. The pentatonic is the reference card, so the notes minor's full scale adds are tinted "
+        },
+        { "text": "amber", "marks": [{ "type": "color", "tone": "amber" }] },
+        { "text": " on the second one." }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "scale-compare",
+      "props": { "root": "A", "scales": ["minor-pentatonic", "minor"] }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Now the C form's window, the same one chapters 2 and 3 already worked, filling in the rest of the way:"
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "C",
+        "quality": "minor",
+        "show": "pentatonic",
+        "caption": "The C form's window, pentatonic layer — twelve dots."
+      }
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "C",
+        "quality": "minor",
+        "show": "scale",
+        "caption": "The same window, natural minor — seventeen dots, five of them new."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Twelve dots, then seventeen. Five are new: " },
+        { "text": "6·13", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "4·9", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3·10", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "2·12", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "1·13", "marks": ["code"] },
+        { "text": ". What each one is like to play is the " },
+        {
+          "text": "C form",
+          "link": { "kind": "article", "slug": "minor-caged-scale-c-form" }
+        },
+        { "text": "'s job." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One convention, restated once for the chapter. The window diagram lights every note of the layer inside the window, not one grip a hand could hold. At this layer that's the whole scale inside the whole window."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Strict C-A-G-E-D order sends the C form first, same as chapters 2 and 3. What "
+        },
+        {
+          "text": "chapter 3's Boxes reconciliation",
+          "link": { "kind": "article", "slug": "minor-caged-boxes-and-forms" }
+        },
+        { "text": " told you still holds. On to " },
+        { "text": "the C form", "link": { "kind": "article", "slug": "minor-caged-scale-c-form" } },
+        { "text": ", or explore any window with root " },
+        { "text": "A", "marks": ["code"] },
+        { "text": " in the " },
+        { "text": "Scale Visualizer", "link": { "kind": "screen", "href": "/scale-visualizer" } },
+        { "text": " first." }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,236 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_triad-the-b-string-shift",
+    "slug": "triad-the-b-string-shift",
+    "title": "The B String Explains All of It",
+    "summary": "Why moving a grip from set to set gives three different outcomes — one string pair breaks the guitar's pattern of fourths, and its effect is completely predictable.",
+    "tags": ["triads", "chords", "fretboard"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One note moved, then a different note moved, then nothing moved at all. Crossing the neck one string set at a time gave three different outcomes, and all three come from the same single fact about how the guitar is strung."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Standard tuning is five string-to-string jumps, and four of them are identical. Low "
+        },
+        { "text": "E", "marks": ["code"] },
+        { "text": " to " },
+        { "text": "A", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "A", "marks": ["code"] },
+        { "text": " to " },
+        { "text": "D", "marks": ["code"] },
+        { "text": ", and " },
+        { "text": "D", "marks": ["code"] },
+        { "text": " to " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " are each a fourth — five semitones apart. " },
+        { "text": "B", "marks": ["code"] },
+        { "text": " up to the high " },
+        { "text": "e", "marks": ["code"] },
+        {
+          "text": " is a fourth too — five semitones again. The one exception sits in the middle: "
+        },
+        { "text": "G", "marks": ["code"] },
+        { "text": " to " },
+        { "text": "B", "marks": ["code"] },
+        {
+          "text": " is a major third, four semitones — one less than everywhere else on the neck."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That missing semitone has a direct consequence. Any note on a string above the "
+        },
+        { "text": "G", "marks": ["code"] },
+        { "text": "-to-" },
+        { "text": "B", "marks": ["code"] },
+        {
+          "text": " break has to be fretted one fret higher than an all-fourths guitar would need it, to land on the same pitch. Strings 2 and 1 both sit above that break, so both are affected — and by one fret each, not one then two. There is only a single irregular jump on the neck to inherit, and string 1 inherits the same one string 2 does."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Count how many of a set's strings sit above the break, and you have exactly how many notes in its grips get lifted a fret out of the plain shape:"
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Set" }],
+        [{ "text": "Strings used, low → high" }],
+        [{ "text": "Above the break" }],
+        [{ "text": "Lift, low → high" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "4-5-6" }],
+          [{ "text": "6, 5, 4" }],
+          [{ "text": "none" }],
+          [{ "text": "(0, 0, 0)", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "3-4-5" }],
+          [{ "text": "5, 4, 3" }],
+          [{ "text": "none" }],
+          [{ "text": "(0, 0, 0)", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "2-3-4" }],
+          [{ "text": "4, 3, 2" }],
+          [{ "text": "string 2" }],
+          [{ "text": "(0, 0, +1)", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "1-2-3" }],
+          [{ "text": "3, 2, 1" }],
+          [{ "text": "strings 2 and 1" }],
+          [{ "text": "(0, +1, +1)", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That table also settles the puzzle the three set lessons left open. Moving from strings 1-2-3 down to strings 2-3-4 changed only the middle note — even though strings 1-2-3 has two lifted notes rather than one. The reason is that both sets have their top note lifted, so the lift on top cancels between them and the middle note is the only difference left over."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The same subtraction explains the rest. Moving from strings 2-3-4 down to strings 3-4-5, only the top note is left over, because 2-3-4 has one lifted note and 3-4-5 has none. Moving from strings 3-4-5 down to strings 4-5-6, neither set has a lifted note, so nothing is left over and the shapes are identical. Three geometries, not four, from one cause."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Seen as frets measured from the bass note, the effect is exactly this table, and it holds for every inversion on every set:"
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Set" }],
+        [{ "text": "Root" }],
+        [{ "text": "First" }],
+        [{ "text": "Second" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "4-5-6" }],
+          [{ "text": "0 −1 −3", "marks": ["code"] }],
+          [{ "text": "0 −2 −2", "marks": ["code"] }],
+          [{ "text": "0 0 −1", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "3-4-5" }],
+          [{ "text": "0 −1 −3", "marks": ["code"] }],
+          [{ "text": "0 −2 −2", "marks": ["code"] }],
+          [{ "text": "0 0 −1", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "2-3-4" }],
+          [{ "text": "0 −1 −2", "marks": ["code"] }],
+          [{ "text": "0 −2 −1", "marks": ["code"] }],
+          [{ "text": "0 0 0", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "1-2-3" }],
+          [{ "text": "0 0 −2", "marks": ["code"] }],
+          [{ "text": "0 −1 −1", "marks": ["code"] }],
+          [{ "text": "0 +1 0", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The strings 3-4-5 and strings 4-5-6 rows are identical, in every inversion — the two sets built entirely below the break are the same shape wherever you put your hand, which is exactly what sliding "
+        },
+        {
+          "text": "one of them straight onto the other",
+          "link": { "kind": "article", "slug": "triad-major-strings-4-5-6" }
+        },
+        {
+          "text": " already showed."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "x x 5 5 5 x", "marks": ["code"] },
+        {
+          "text": " is not a coincidence, either. On a guitar tuned in fourths the whole way up, a second inversion would sit at "
+        },
+        { "text": "0 0 −1", "marks": ["code"] },
+        {
+          "text": " relative to its bass — the top note one fret back from the other two. The "
+        },
+        { "text": "B", "marks": ["code"] },
+        { "text": " string lifts that top note by exactly one fret, and it lands flush: " },
+        { "text": "0 0 0", "marks": ["code"] },
+        {
+          "text": ", three notes at the same fret. The one grip in this chapter that sits flush across a single fret exists because of the tuning's one irregularity, not despite it."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "C",
+        "strings": "2-3-4",
+        "inversion": "second",
+        "caption": "Second inversion, strings 2-3-4 — flush at one fret because the B string's shortfall lifts the top note back into line."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The same trick shows up on strings 1-2-3, just doubled. Two notes are lifted there instead of one, so the all-fourths "
+        },
+        { "text": "0 0 −1", "marks": ["code"] },
+        { "text": " second inversion becomes " },
+        { "text": "0 +1 0", "marks": ["code"] },
+        { "text": " — the " },
+        { "text": "x x x 0 1 0", "marks": ["code"] },
+        { "text": " grip that pokes up in the middle rather than dipping at the top." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Three shapes, not twelve, and one string pair is the whole reason. Next: all twelve grips laid out on one map, worth having even now that you know why they're related."
+        }
+      ]
+    }
+  ]
+}

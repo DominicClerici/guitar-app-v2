@@ -1,0 +1,264 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_modes-the-avoid-note",
+    "slug": "modes-the-avoid-note",
+    "title": "The Note That Fights the Chord",
+    "summary": "An avoid note is a scale tone a half step above a chord tone — Ionian has exactly one over A, Mixolydian keeps it, and Lydian's raised fourth is the only one of this chapter's three modes without it.",
+    "tags": ["modes", "theory", "ear"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-15"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Hold an "
+        },
+        { "text": "A", "marks": ["code"] },
+        { "text": " chord that refuses to move, and reach for a " },
+        { "text": "D", "marks": ["code"] },
+        { "text": ". It grinds. You've been playing over this note for years — " },
+        {
+          "text": "The Two Notes That Lean",
+          "link": { "kind": "article", "slug": "caged-fourths-and-sevenths" }
+        },
+        { "text": " already told you the " },
+        { "text": "4", "marks": ["code"] },
+        {
+          "text": " \"grates\" and is a note to move through rather than rest on. This lesson gives that feeling a name and a reason."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "An " },
+        { "text": "avoid note", "marks": ["bold"] },
+        {
+          "text": " is a scale tone sitting a half step above a note of the chord underneath. That is not a note you may never play — it's a note that fights the chord if you land on it and hold it. Passing through on the way somewhere else is fine. Landing and staying is the whole difference."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Work it out on " },
+        { "text": "A", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "A C# E", "marks": ["code"] },
+        { "text": "). " },
+        { "text": "D", "marks": ["code"] },
+        { "text": " sits one fret above " },
+        { "text": "C#", "marks": ["code"] },
+        {
+          "text": ", and the "
+        },
+        { "text": "C#", "marks": ["code"] },
+        {
+          "text": " is the chord's third — that's the clash. Check the rest of the scale so it's clear this is the only one: "
+        },
+        { "text": "B", "marks": ["code"] },
+        { "text": " is a whole step above " },
+        { "text": "A", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "F#", "marks": ["code"] },
+        { "text": " a whole step above " },
+        { "text": "E", "marks": ["code"] },
+        { "text": ", both fine. " },
+        { "text": "G#", "marks": ["code"] },
+        {
+          "text": " sits a half step below "
+        },
+        { "text": "A", "marks": ["code"] },
+        {
+          "text": ", which leans up into home instead of sitting on top of it. Exactly one avoid note in Ionian, over "
+        },
+        { "text": "A", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Lydian's "
+        },
+        { "text": "#4", "marks": ["code", { "type": "color", "tone": "violet" }] },
+        { "text": " doesn't have this problem, and that's the turn this lesson makes. " },
+        { "text": "D#", "marks": ["code", { "type": "color", "tone": "violet" }] },
+        { "text": " sits a whole step above the " },
+        { "text": "3", "marks": ["code"] },
+        { "text": " and a half step below the " },
+        { "text": "5", "marks": ["code"] },
+        {
+          "text": " — and a half step below a chord tone leans up into it, the same shape "
+        },
+        { "text": "G#", "marks": ["code"] },
+        { "text": " made leaning into the root. Nothing in " },
+        { "text": "A C# E", "marks": ["code"] },
+        { "text": " sits a half step under " },
+        { "text": "D#", "marks": ["code"] },
+        {
+          "text": ". So Lydian, over a static "
+        },
+        { "text": "A", "marks": ["code"] },
+        {
+          "text": ", has nothing that fights. It's the only one of this chapter's three modes with that property — deliberately a claim about these three over this chord, not about all seven."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Lydian's tension didn't vanish, it moved. The "
+        },
+        { "text": "#4", "marks": ["code", { "type": "color", "tone": "violet" }] },
+        { "text": " sits a tritone off the root itself — " },
+        {
+          "text": "Where the Tritone Lands",
+          "link": { "kind": "article", "slug": "modes-the-tritone" }
+        },
+        {
+          "text": " already gave that address. It doesn't grind against a chord tone; it sits at the widest possible distance from home instead. Different tension, differently placed."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The same fact shows up twice. Ionian's two half steps are "
+        },
+        { "text": "3", "marks": ["code"] },
+        { "text": "→" },
+        { "text": "4", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "7", "marks": ["code"] },
+        { "text": "→" },
+        { "text": "1", "marks": ["code"] },
+        { "text": "; Lydian's are " },
+        { "text": "#4", "marks": ["code"] },
+        { "text": "→" },
+        { "text": "5", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "7", "marks": ["code"] },
+        { "text": "→" },
+        { "text": "1", "marks": ["code"] },
+        {
+          "text": ". Both of Lydian's point up into a chord tone. Ionian's "
+        },
+        { "text": "3", "marks": ["code"] },
+        { "text": "→" },
+        { "text": "4", "marks": ["code"] },
+        {
+          "text": " is the one that points the other way — the tight spot sits on top of a chord tone instead of leading into one. "
+        },
+        {
+          "text": "Where the Half Steps Fall",
+          "link": { "kind": "article", "slug": "modes-half-steps" }
+        },
+        { "text": " has the full picture." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here's the tension worth sitting with, and it's the actual reason Lydian is worth knowing. Over a static "
+        },
+        { "text": "A", "marks": ["code"] },
+        {
+          "text": " chord, Lydian is the more consonant of the two — nothing in it fights the chord the way Ionian's "
+        },
+        { "text": "4", "marks": ["code"] },
+        { "text": " does. And listeners still judge Ionian happier by a wide margin: " },
+        {
+          "text": "What \"Brighter\" Actually Means",
+          "link": { "kind": "article", "slug": "modes-what-brighter-means" }
+        },
+        { "text": " has the numbers — Ionian at " },
+        { "text": ".83", "marks": ["code"] },
+        { "text": " against Lydian's " },
+        { "text": ".58", "marks": ["code"] },
+        {
+          "text": ", third of six. Consonance against a chord and judged happiness aren't the same measurement, and the ladder was never claiming to measure either one."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The honest half: Mixolydian keeps the natural "
+        },
+        { "text": "4", "marks": ["code"] },
+        { "text": ", so it keeps this exact avoid note, over " },
+        { "text": "A", "marks": ["code"] },
+        { "text": " and over " },
+        { "text": "A7", "marks": ["code"] },
+        {
+          "text": " alike. Not every mode in this chapter escapes it — only the one that raised the note instead of leaving it alone."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "scale-compare",
+      "props": { "root": "A", "scales": ["major", "lydian"], "drone": true }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Start the drone. On the card headed " },
+        { "text": "A Major", "marks": ["code"] },
+        { "text": ", tap " },
+        { "text": "C#", "marks": ["code"] },
+        { "text": ", then tap " },
+        { "text": "D", "marks": ["code"] },
+        {
+          "text": " — a fret apart, and you'll hear why one grates. Then on the Lydian card, tap "
+        },
+        { "text": "C#", "marks": ["code"] },
+        { "text": ", then the amber chip " },
+        { "text": "D#", "marks": ["code"] },
+        { "text": " — two frets apart, and nothing grates at all." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Be honest about what that actually tests: the drone holds the root, not the full chord, so tapping two chips in a row isn't the clash itself. For that, hold a real "
+        },
+        { "text": "A", "marks": ["code"] },
+        { "text": " chord — " },
+        { "text": "Chord Shapes", "link": { "kind": "screen", "href": "/chord-shapes" } },
+        { "text": " has it — and let a " },
+        { "text": "D", "marks": ["code"] },
+        {
+          "text": " ring over it. Ten seconds, and you'll hear exactly what this lesson has been describing."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "spans": [
+        {
+          "text": "\"Avoid note\" is a bad name for a real thing. Nothing here is forbidden. It's a note to move through, not a note to land on."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Avoid notes turn out to be a general idea, not just an Ionian quirk — a later chapter takes that up properly, once more than one has been met. For now: of this chapter's three modes, only Lydian escapes it."
+        }
+      ]
+    }
+  ]
+}

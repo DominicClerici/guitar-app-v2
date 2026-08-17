@@ -1,0 +1,225 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_triad-minor-strings-2-3-4",
+    "slug": "triad-minor-strings-2-3-4",
+    "title": "The Flush Shape Loses Its Flush",
+    "summary": "The one-fret drop survives strings 2-3-4 untouched, and chapter 2's flattest grip, x x 5 5 5 x, turns out to be one fret from minor.",
+    "tags": ["triads", "chords", "fretboard"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Same rule, new set. Before looking at the diagrams below, predict: name the inversion, name which voice the rule points at, drop it a fret, then check. Nothing about strings 2-3-4 should change the answer — the rule reads the inversion, not the strings it happens to be sitting on. Neck order here starts with first inversion, down at the nut, then climbs through second inversion to root position."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "C",
+        "quality": "minor",
+        "strings": "2-3-4",
+        "inversion": "first",
+        "caption": "C minor, first inversion, strings 2-3-4."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "x x 1 0 1 x", "marks": ["code"] },
+        { "text": " — " },
+        { "text": "4·1", "marks": ["code"] },
+        { "text": " " },
+        { "text": "Eb3", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3·0", "marks": ["code"] },
+        { "text": " " },
+        { "text": "G3", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "2·1", "marks": ["code"] },
+        { "text": " " },
+        { "text": "C4", "marks": ["code"] },
+        { "text": ". Degrees " },
+        { "text": "b3 5 1", "marks": ["code"] },
+        { "text": ", bass " },
+        { "text": "Eb", "marks": ["code"] },
+        {
+          "text": ". In a first inversion the third is the bass, so that's the finger that moves: major's "
+        },
+        { "text": "x x 2 0 1 x", "marks": ["code"] },
+        { "text": ", the " },
+        { "text": "C/E", "marks": ["code"] },
+        { "text": " grip and " },
+        {
+          "text": "the middle of the open C chord",
+          "link": { "kind": "article", "slug": "triad-open-chords-you-know" }
+        },
+        { "text": ", comes back one fret to " },
+        { "text": "Eb", "marks": ["code"] },
+        { "text": ". Same idea, same slash: " },
+        { "text": "Cm/Eb", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "C",
+        "strings": "2-3-4",
+        "inversion": "second",
+        "caption": "C major, second inversion, strings 2-3-4 — three notes, one fret."
+      }
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "C",
+        "quality": "minor",
+        "strings": "2-3-4",
+        "inversion": "second",
+        "caption": "C minor, second inversion, strings 2-3-4 — one fret off the flush shape."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "This is the lesson's centrepiece. Chapter 2's flattest grip, " },
+        { "text": "x x 5 5 5 x", "marks": ["code"] },
+        {
+          "text": ", is three notes flat across one fret — three fingers in a row, or one small barre. Minor is one fret from it, and only on the top string of the three. "
+        },
+        { "text": "x x 5 5 4 x", "marks": ["code"] },
+        { "text": ": " },
+        { "text": "4·5", "marks": ["code"] },
+        { "text": " " },
+        { "text": "G3", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3·5", "marks": ["code"] },
+        { "text": " " },
+        { "text": "C4", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "2·4", "marks": ["code"] },
+        { "text": " " },
+        { "text": "Eb4", "marks": ["code"] },
+        { "text": ". Degrees " },
+        { "text": "5 1 b3", "marks": ["code"] },
+        { "text": ", bass " },
+        { "text": "G", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "C",
+        "quality": "minor",
+        "strings": "2-3-4",
+        "inversion": "root",
+        "caption": "C minor, root position, strings 2-3-4."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Root position, " },
+        { "text": "x x 10 8 8 x", "marks": ["code"] },
+        { "text": ": " },
+        { "text": "4·10", "marks": ["code"] },
+        { "text": " " },
+        { "text": "C4", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3·8", "marks": ["code"] },
+        { "text": " " },
+        { "text": "Eb4", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "2·8", "marks": ["code"] },
+        { "text": " " },
+        { "text": "G4", "marks": ["code"] },
+        { "text": ". Degrees " },
+        { "text": "1 b3 5", "marks": ["code"] },
+        { "text": ", bass " },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": ". The middle note is the one that drops, and here it lands level with the top: two notes share fret 8, one sits alone at fret 10."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "A learner who absorbed chapter 2 will expect the " },
+        { "text": "B", "marks": ["code"] },
+        {
+          "text": " string to complicate this the way it complicated the major grid. It doesn't. The lift the "
+        },
+        { "text": "G", "marks": ["code"] },
+        { "text": "→" },
+        { "text": "B", "marks": ["code"] },
+        {
+          "text": " break causes is already baked into the major grip you're comparing against — the minor move is measured against that grip, not against an all-fourths guitar built from scratch. Every set gets the same one-fret drop, this one included, and the three grips above just proved it three times over."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Inversion" }],
+        [{ "text": "Major" }],
+        [{ "text": "Minor" }],
+        [{ "text": "Notes" }],
+        [{ "text": "Degrees" }],
+        [{ "text": "Bass" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "first" }],
+          [{ "text": "x x 2 0 1 x", "marks": ["code"] }],
+          [{ "text": "x x 1 0 1 x", "marks": ["code"] }],
+          [{ "text": "Eb3 G3 C4", "marks": ["code"] }],
+          [{ "text": "b3 5 1", "marks": ["code"] }],
+          [{ "text": "Eb", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "second" }],
+          [{ "text": "x x 5 5 5 x", "marks": ["code"] }],
+          [{ "text": "x x 5 5 4 x", "marks": ["code"] }],
+          [{ "text": "G3 C4 Eb4", "marks": ["code"] }],
+          [{ "text": "5 1 b3", "marks": ["code"] }],
+          [{ "text": "G", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "root" }],
+          [{ "text": "x x 10 9 8 x", "marks": ["code"] }],
+          [{ "text": "x x 10 8 8 x", "marks": ["code"] }],
+          [{ "text": "C4 Eb4 G4", "marks": ["code"] }],
+          [{ "text": "1 b3 5", "marks": ["code"] }],
+          [{ "text": "C", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One set tested, and the rule came through untouched — a good sign that it's a fact about the third's position, not a fact that happens to be true on strings 1-2-3. Next: "
+        },
+        {
+          "text": "the middle of the guitar",
+          "link": { "kind": "article", "slug": "triad-minor-strings-3-4-5" }
+        },
+        {
+          "text": " — the register the open C chord already lives in — where the minor move turns out to hide inside a chord you've played since your first month."
+        }
+      ]
+    }
+  ]
+}

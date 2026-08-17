@@ -24,10 +24,16 @@ describe('the authored corpus', () => {
   it('loads, validates, and resolves every reference', async () => {
     const { documents, pathways } = await loadContent();
 
-    expect(documents.filter((document) => document.kind === 'article')).toHaveLength(36);
-    expect(documents.filter((document) => document.kind === 'quiz')).toHaveLength(8);
-    expect(documents.filter((document) => document.kind === 'activity')).toHaveLength(7);
-    expect(pathways.map((pathway) => pathway.slug)).toEqual(['caged-fretboard', 'fundamentals']);
+    expect(documents.filter((document) => document.kind === 'article')).toHaveLength(136);
+    expect(documents.filter((document) => document.kind === 'quiz')).toHaveLength(24);
+    expect(documents.filter((document) => document.kind === 'activity')).toHaveLength(32);
+    expect(pathways.map((pathway) => pathway.slug)).toEqual([
+      'caged-fretboard',
+      'fundamentals',
+      'minor-caged',
+      'modes',
+      'triads',
+    ]);
   });
 
   it('versions every document and pathway with the hash of its canonical body', async () => {
@@ -66,6 +72,31 @@ describe('the authored corpus', () => {
       'caged-climb-one-string',
       'find-the-a-notes',
       'eighth-note-timing',
+      'minor-caged-play-both-roads',
+      'minor-caged-play-the-five-shapes',
+      'minor-caged-triads-in-the-seams',
+      'minor-caged-play-the-five-windows',
+      'minor-caged-which-ones-are-the-chord',
+      'minor-caged-find-the-sixth',
+      'minor-caged-the-whole-window',
+      'minor-caged-the-chord-roots',
+      'minor-caged-comp-the-loop',
+      'modes-same-notes-new-home',
+      'modes-walk-the-ladder',
+      'modes-find-the-dial',
+      'modes-raise-the-sixth',
+      'modes-the-fifth-that-left',
+      'modes-land-on-the-note',
+      'modes-hold-the-vamp',
+      'triad-play-the-inversions',
+      'triad-one-chord-four-sets',
+      'triad-play-the-changes',
+      'triad-move-the-third',
+      'triad-play-the-minor-changes',
+      'triad-where-they-pull',
+      'triad-four-qualities',
+      'triad-harmonise-the-scale',
+      'triad-comp-the-changes',
     ]);
 
     for (const section of activities) {
@@ -86,6 +117,31 @@ describe('the authored corpus', () => {
       'caged-play-the-chord-tones',
       'eighth-note-timing',
       'find-the-a-notes',
+      'minor-caged-comp-the-loop',
+      'minor-caged-find-the-sixth',
+      'minor-caged-play-both-roads',
+      'minor-caged-play-the-five-shapes',
+      'minor-caged-play-the-five-windows',
+      'minor-caged-the-chord-roots',
+      'minor-caged-the-whole-window',
+      'minor-caged-triads-in-the-seams',
+      'minor-caged-which-ones-are-the-chord',
+      'modes-find-the-dial',
+      'modes-hold-the-vamp',
+      'modes-land-on-the-note',
+      'modes-raise-the-sixth',
+      'modes-same-notes-new-home',
+      'modes-the-fifth-that-left',
+      'modes-walk-the-ladder',
+      'triad-comp-the-changes',
+      'triad-four-qualities',
+      'triad-harmonise-the-scale',
+      'triad-move-the-third',
+      'triad-one-chord-four-sets',
+      'triad-play-the-changes',
+      'triad-play-the-inversions',
+      'triad-play-the-minor-changes',
+      'triad-where-they-pull',
     ]);
 
     for (const { slug, activity } of activities) {

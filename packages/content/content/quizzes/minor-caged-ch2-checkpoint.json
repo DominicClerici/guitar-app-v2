@@ -1,0 +1,426 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "quiz_minor-caged-ch2-checkpoint",
+    "slug": "minor-caged-ch2-checkpoint",
+    "title": "Checkpoint: The Five Minor Forms",
+    "summary": "Where the windows sit, why the dot counts differ, and which string carries the b3 in each of the five shapes.",
+    "kind": "checkpoint",
+    "passThresholdPct": 70
+  },
+  "questions": [
+    {
+      "id": "q_minor-caged-ch2-checkpoint.window-does-not-move",
+      "kind": "choice",
+      "prompt": [
+        { "text": "You know where A major's five CAGED windows sit. Where do A " },
+        { "text": "minor", "marks": ["italic"] },
+        { "text": "'s five windows sit?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [{ "text": "In exactly the same five places — the window doesn't move at all." }]
+        },
+        { "id": "b", "spans": [{ "text": "Three frets lower, all five of them." }] },
+        { "id": "c", "spans": [{ "text": "One fret lower, because the third drops one fret." }] },
+        {
+          "id": "d",
+          "spans": [{ "text": "In five new places, since a minor chord needs a different shape." }]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "A window is a fret span positioned by the chord's " },
+        { "text": "root", "marks": ["bold"] },
+        {
+          "text": ", not by its quality, and the root didn't change. So A minor's windows are A major's windows: "
+        },
+        { "text": "A 0–3", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "G 1–5", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "E 4–8", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "D 6–10", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "C 9–13", "marks": ["code"] },
+        {
+          "text": ". Three frets lower is the shift between C major's ladder and A minor's, which is a different comparison entirely."
+        }
+      ]
+    },
+    {
+      "id": "q_minor-caged-ch2-checkpoint.already-know-two",
+      "kind": "multi-select",
+      "prompt": [
+        {
+          "text": "Two of the five minor forms are chords most players already own before they meet CAGED. Which two? Select both."
+        }
+      ],
+      "options": [
+        { "id": "c-form", "spans": [{ "text": "The C form" }] },
+        { "id": "a-form", "spans": [{ "text": "The A form" }] },
+        { "id": "g-form", "spans": [{ "text": "The G form" }] },
+        { "id": "e-form", "spans": [{ "text": "The E form" }] },
+        { "id": "d-form", "spans": [{ "text": "The D form" }] }
+      ],
+      "answerIds": ["a-form", "e-form"],
+      "explanation": [
+        { "text": "The A form of A minor is the open " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " chord, " },
+        { "text": "x 0 2 2 1 0", "marks": ["code"] },
+        { "text": ". The E form is the " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " barre at fret 5, " },
+        { "text": "5 7 7 5 5 5", "marks": ["code"] },
+        {
+          "text": ". Those are also the only two of the five you hold whole — the C, G and D forms live as fragments."
+        }
+      ]
+    },
+    {
+      "id": "q_minor-caged-ch2-checkpoint.dot-count",
+      "kind": "choice",
+      "prompt": [
+        { "text": "The C form's window, frets " },
+        { "text": "9–13", "marks": ["code"] },
+        { "text": ", holds eight dots in A major and only seven in A minor. Why the difference?" }
+      ],
+      "setup": [
+        {
+          "type": "table",
+          "header": [
+            [{ "text": "Form" }],
+            [{ "text": "Frets" }],
+            [{ "text": "Major dots" }],
+            [{ "text": "Minor dots" }]
+          ],
+          "rows": [
+            [
+              [{ "text": "C" }],
+              [{ "text": "9–13", "marks": ["code"] }],
+              [{ "text": "8" }],
+              [{ "text": "7" }]
+            ],
+            [
+              [{ "text": "A" }],
+              [{ "text": "0–3", "marks": ["code"] }],
+              [{ "text": "6" }],
+              [{ "text": "7" }]
+            ],
+            [
+              [{ "text": "G" }],
+              [{ "text": "1–5", "marks": ["code"] }],
+              [{ "text": "7" }],
+              [{ "text": "8" }]
+            ],
+            [
+              [{ "text": "E" }],
+              [{ "text": "4–8", "marks": ["code"] }],
+              [{ "text": "7" }],
+              [{ "text": "8" }]
+            ],
+            [
+              [{ "text": "D" }],
+              [{ "text": "6–10", "marks": ["code"] }],
+              [{ "text": "7" }],
+              [{ "text": "7" }]
+            ]
+          ]
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "The window's edges are fixed frets, so a " },
+            { "text": "3", "marks": ["code"] },
+            { "text": " on the bottom fret flattens to a " },
+            { "text": "b3", "marks": ["code"] },
+            { "text": " outside the picture." }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [{ "text": "A minor triad has fewer notes in it than a major triad." }]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "The minor window is one fret narrower, because every " },
+            { "text": "3", "marks": ["code"] },
+            { "text": " moved down a fret." }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [{ "text": "Some roots and fifths drop out when the chord turns minor." }]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "Every " },
+        { "text": "3", "marks": ["code"] },
+        {
+          "text": " steps down one fret and roots and fifths never move — both qualities have the same "
+        },
+        { "text": "1 b3 5", "marks": ["code"] },
+        {
+          "text": " count of note types. But the window doesn't move with the note. In the C form, "
+        },
+        { "text": "6·9", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "1·9", "marks": ["code"] },
+        {
+          "text": " sit on the bottom fret, so their flattened versions land at fret 8, outside the frame — and only one new "
+        },
+        { "text": "b3", "marks": ["code"] },
+        { "text": " steps in from above the top. Eight becomes seven." }
+      ]
+    },
+    {
+      "id": "q_minor-caged-ch2-checkpoint.a-form-one-finger",
+      "kind": "choice",
+      "prompt": [
+        { "text": "Open " },
+        { "text": "A", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "x 0 2 2 2 0", "marks": ["code"] },
+        { "text": " and open " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "x 0 2 2 1 0", "marks": ["code"] },
+        { "text": ". What did that one finger do?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "Stepped the " },
+            { "text": "3", "marks": ["code"] },
+            { "text": " on string 2 down a fret to a " },
+            { "text": "b3", "marks": ["code"] },
+            { "text": "." }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "Stepped the " },
+            { "text": "5", "marks": ["code"] },
+            { "text": " on string 2 down a fret." }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [{ "text": "Moved the root down a fret, which re-roots the whole shape." }]
+        },
+        {
+          "id": "d",
+          "spans": [{ "text": "Removed a note, leaving a root and a fifth with no third at all." }]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "String 2, fret 2 is a " },
+        { "text": "C#", "marks": ["code"] },
+        { "text": " — the " },
+        { "text": "3", "marks": ["code"] },
+        { "text": ". Fret 1 is a " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " — the " },
+        { "text": "b3", "marks": ["code"] },
+        {
+          "text": ". Nothing else in the chord moves, which is the chapter's whole rule under a single finger. The other four notes are two roots and two fifths, and roots and fifths never move."
+        }
+      ]
+    },
+    {
+      "id": "q_minor-caged-ch2-checkpoint.g-form-below-the-barre",
+      "kind": "choice",
+      "prompt": [
+        { "text": "A major's G form is " },
+        { "text": "5 4 2 2 2 5", "marks": ["code"] },
+        { "text": " with its barre at fret 2. A minor's is " },
+        { "text": "5 3 2 2 1 5", "marks": ["code"] },
+        { "text": ". Why can't that be barred at all?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "The " },
+            { "text": "b3", "marks": ["code"] },
+            { "text": " on string 2 lands at fret 1, below the barre itself." }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [{ "text": "The root ends up more than five frets above the barre." }]
+        },
+        {
+          "id": "c",
+          "spans": [{ "text": "The shape only has four strings once the third is flattened." }]
+        },
+        {
+          "id": "d",
+          "spans": [{ "text": "The B string forces string 2 a fret higher than its neighbours." }]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "The " },
+        { "text": "3", "marks": ["code"] },
+        { "text": " on " },
+        { "text": "2·2", "marks": ["code"] },
+        { "text": " sits right at the barre, so flattening it puts the " },
+        { "text": "b3", "marks": ["code"] },
+        { "text": " at " },
+        { "text": "2·1", "marks": ["code"] },
+        {
+          "text": " — a fret behind the finger that is supposed to be holding the shape down. The grip ends up spanning frets 1 to 5, the full width of its own window, and gets played as three separate three-string triads instead."
+        }
+      ]
+    },
+    {
+      "id": "q_minor-caged-ch2-checkpoint.e-form-one-string",
+      "kind": "fretboard",
+      "prompt": [
+        { "text": "The " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " barre at fret 5 is " },
+        { "text": "5 7 7 5 5 5", "marks": ["code"] },
+        { "text": ", degrees " },
+        { "text": "1 5 1 b3 5 1", "marks": ["code"] },
+        { "text": ". Mark the one note in it that is the " },
+        { "text": "b3", "marks": ["code"] },
+        { "text": " — the note making the whole chord minor rather than major." }
+      ],
+      "frets": 8,
+      "answer": [{ "string": 3, "fret": 5 }],
+      "explanation": [
+        { "text": "String 3, fret 5 is a " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " — the only " },
+        { "text": "b3", "marks": ["code"] },
+        {
+          "text": " in the shape. The other five strings are three roots and two fifths, so the entire quality of the most-played minor barre on the guitar rests on that one string. A major's barre here is "
+        },
+        { "text": "5 7 7 6 5 5", "marks": ["code"] },
+        { "text": " — the same six strings with that one note a fret higher." }
+      ]
+    },
+    {
+      "id": "q_minor-caged-ch2-checkpoint.d-form-top-note",
+      "kind": "choice",
+      "prompt": [
+        { "text": "The D form of A minor is " },
+        { "text": "x x 7 9 10 8", "marks": ["code"] },
+        { "text": ". What happens if you drop the top string and play strings 4-3-2 alone?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "You are left with " },
+            { "text": "1 5 1", "marks": ["code"] },
+            { "text": " — no third at all, so no quality either way." }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [{ "text": "You get a smaller but still complete minor triad." }]
+        },
+        {
+          "id": "c",
+          "spans": [{ "text": "You lose the root, so the chord stops being an A chord." }]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "The chord turns major, because the remaining third is the " },
+            { "text": "3", "marks": ["code"] },
+            { "text": "." }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "The D form is the only one of the five whose highest note is the " },
+        { "text": "b3", "marks": ["code"] },
+        { "text": " — " },
+        { "text": "1·8", "marks": ["code"] },
+        { "text": ", a " },
+        { "text": "C", "marks": ["code"] },
+        { "text": ". Strings 4-3-2 at " },
+        { "text": "7 9 10", "marks": ["code"] },
+        { "text": " are " },
+        { "text": "A", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "E", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "A", "marks": ["code"] },
+        {
+          "text": " — a root-fifth-root shell. The usable high fragment keeps the top string instead: strings 3-2-1 at "
+        },
+        { "text": "9 10 8", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "id": "q_minor-caged-ch2-checkpoint.seam-triad",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "Your hand stops at fret 5, between the G form's window and the E form's. What is under it?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "A complete " },
+            { "text": "Am", "marks": ["code"] },
+            { "text": " — strings 3-2-1, all three at fret 5." }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [{ "text": "A gap; you have to shift to one form or the other first." }]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "Two roots and a fifth, with the " },
+            { "text": "b3", "marks": ["code"] },
+            { "text": " a window away in either direction." }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [{ "text": "Half of each form, so neither chord is playable there." }]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "Strings 3-2-1 at fret 5 are " },
+        { "text": "C", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "E", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "A", "marks": ["code"] },
+        { "text": " — a whole " },
+        { "text": "Am", "marks": ["code"] },
+        {
+          "text": " under one finger. Every seam between neighbouring windows works this way: all four hold a complete "
+        },
+        { "text": "1 b3 5", "marks": ["code"] },
+        {
+          "text": " on three adjacent strings, so you are never between forms."
+        }
+      ]
+    }
+  ]
+}

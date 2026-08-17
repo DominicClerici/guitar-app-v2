@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_modes-when-the-harmony-moves",
+    "slug": "modes-when-the-harmony-moves",
+    "title": "When the Harmony Moves",
+    "summary": "A functional chord progression names its own tonic and overrides whatever mode you had in mind — what holds a mode up instead is a vamp.",
+    "tags": ["modes", "theory"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-15"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "A functional chord progression names its own tonic, and it does that no matter what mode you had in mind. Play something that actually resolves and the ear finds the key fast — usually within two chords — and wanting it to be A Dorian doesn't change that. Over harmony that functions, there is no mode. There's just a key."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Am", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "D", "marks": ["code"] },
+        { "text": " by themselves are a " },
+        { "text": "i", "marks": ["code"] },
+        { "text": "–" },
+        { "text": "IV", "marks": ["code"] },
+        { "text": ": two chords that go nowhere, circling back to " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " every time. Add a " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " and the same loop becomes " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": "–" },
+        { "text": "D", "marks": ["code"] },
+        { "text": "–" },
+        { "text": "G", "marks": ["code"] },
+        { "text": " — a " },
+        { "text": "ii", "marks": ["code"] },
+        { "text": "–" },
+        { "text": "V", "marks": ["code"] },
+        { "text": "–" },
+        { "text": "I", "marks": ["code"] },
+        { "text": " in G major — and the ear lands on " },
+        { "text": "G", "marks": ["code"] },
+        {
+          "text": " before the loop even makes it back around. The chords barely changed. Home moved completely."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "progression-player",
+      "props": {
+        "chords": ["Am", "D"],
+        "bpm": 66,
+        "caption": "Two chords that go nowhere — Am refuses to resolve anywhere else"
+      }
+    },
+    {
+      "type": "live",
+      "component": "progression-player",
+      "props": {
+        "chords": ["Am", "D", "G"],
+        "bpm": 66,
+        "caption": "One chord added, and G takes over as home"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Both are played slow on purpose, one chord per beat, twice around, so you hear them settling as harmony rather than strumming along with a riff."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Take both loops to the " },
+        { "text": "Key Detector", "link": { "kind": "screen", "href": "/key-detector" } },
+        { "text": " and it tells the same story. Play " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": "–" },
+        { "text": "D", "marks": ["code"] },
+        { "text": " round a few times and the readout comes back " },
+        { "text": "Ambiguous", "marks": ["bold"] },
+        { "text": ", with two keys offered side by side at roughly 52% and 48% — " },
+        { "text": "D", "marks": ["code"] },
+        { "text": " major and " },
+        { "text": "A", "marks": ["code"] },
+        {
+          "text": " minor — and an invitation to pick one yourself. It will not commit, and its leading guess isn't even rooted on "
+        },
+        { "text": "A", "marks": ["code"] },
+        { "text": ". Add the " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " and play " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": "–" },
+        { "text": "D", "marks": ["code"] },
+        { "text": "–" },
+        { "text": "G", "marks": ["code"] },
+        { "text": " and it reads " },
+        { "text": "Likely", "marks": ["bold"] },
+        { "text": " — " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " major, one answer, no choice offered." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The detector only knows 24 keys — twelve major, twelve minor — and has no name for A Dorian at all. Its refusal on the bare "
+        },
+        { "text": "Am", "marks": ["code"] },
+        { "text": "–" },
+        { "text": "D", "marks": ["code"] },
+        {
+          "text": " loop isn't the detector saying \"this isn't Dorian.\" It's saying this vamp doesn't name a tonic the way a functional progression does — which is exactly the point. A mode needs harmony that holds still, not harmony that resolves."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "That still harmony has a name: a " },
+        { "text": "vamp", "marks": ["bold"] },
+        {
+          "text": " — one or two chords that assert the tonic and refuse to go anywhere else. That is what a mode actually needs underneath it, and it's the word the rest of this pathway uses for it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "One thing worth noticing about this particular vamp: the " },
+        { "text": "D", "marks": ["code"] },
+        { "text": " chord is where the " },
+        { "text": "F#", "marks": ["code", { "type": "color", "tone": "amber" }] },
+        { "text": " lives, which is why " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": "–" },
+        { "text": "D", "marks": ["code"] },
+        { "text": " says Dorian rather than Aeolian." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That's the shape of the chapter. A mode is a note set plus a tonic made audible from outside the scale; you already own two of them under other names, and every window they live in was already in your hands. A drone makes the tonic real with nothing else sounding, the parent scale finds the notes fast if you put it down afterward, and a vamp is what makes the tonic real once chords enter the picture."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Chapter 2 puts all seven of these in an order that actually means something." }
+      ]
+    }
+  ]
+}

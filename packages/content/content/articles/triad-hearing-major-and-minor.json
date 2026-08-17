@@ -1,0 +1,222 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_triad-hearing-major-and-minor",
+    "slug": "triad-hearing-major-and-minor",
+    "title": "Hearing the One Note",
+    "summary": "Train the ear on the note that moves rather than on the chord's mood, then put a minor triad into a progression on strings 1-2-3 that never leaves the first five frets.",
+    "tags": ["triads", "chords"],
+    "readingTimeMin": 5,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "You can build every grip in this chapter and still not hear which one you are playing. That is a separate skill, and the usual advice for it — major sounds happy, minor sounds sad — is a poor place to start, because it asks your ear for a feeling instead of a fact."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Two problems with mood as a listening target. The first is that it is at least partly "
+        },
+        { "text": "learned", "marks": ["italic"] },
+        {
+          "text": " rather than acoustic: the happy/sad association is strong and early in listeners raised on Western music, and much weaker as a universal than it is usually presented. The second is more practical — it falls apart in real music. A minor chord in the right spot sounds bright and lifting; a major chord in the wrong one sounds wistful. The mood belongs to the passage, not to the chord."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "What is reliably there every single time is the note. The root is the same, the fifth is the same, and the third sits three semitones above the root instead of four. That is the entire acoustic difference between the two chords, and it is what your ear should be reaching for."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "info",
+      "spans": [
+        {
+          "text": "In root position the third is the middle note — the inner voice, and the hardest of the three to pick out. Outer voices are simply louder to attention. That is exactly why people fall back on \"it sounds sad\": the note doing the work is the one the ear least wants to isolate."
+        }
+      ]
+    },
+    { "type": "heading", "level": 1, "spans": [{ "text": "The drill: same root, one finger" }] },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Take the two grips from the start of this chapter: " },
+        { "text": "x x x 5 5 3", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "x x x 5 4 3", "marks": ["code"] },
+        {
+          "text": ". Alternate them slowly, and listen to nothing but string 2. Everything else is a constant; the only thing changing in the whole sound is that one voice moving by a semitone. Learn what that motion sounds like and you have learned the difference."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Put a " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " underneath it with the " },
+        { "text": "Drone", "link": { "kind": "screen", "href": "/drone" } },
+        {
+          "text": ", so the root is nailed down and the third is genuinely the only variable. Then close your eyes and let the finger land at random — you should be able to call it before the chord has finished ringing."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "spans": [
+        {
+          "text": "Do not stop there. Same-root pairs are a scaffold, and practised alone they teach your ear the absolute pitch of one note rather than the interval. Once the C pair is easy, change the root between attempts — the "
+        },
+        { "text": "Ear Trainer", "link": { "kind": "screen", "href": "/ear-trainer" } },
+        { "text": " will do that for you, and it is a noticeably harder exercise than it sounds." }
+      ]
+    },
+    { "type": "heading", "level": 1, "spans": [{ "text": "Four chords, one of them minor" }] },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Now hear it in context. Four chords in C — A minor, F, C and G — all on strings 1-2-3, each one the nearest inversion to the last, and the whole loop living between fret 0 and fret 4."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Chord" }],
+        [{ "text": "Inversion" }],
+        [{ "text": "Chart" }],
+        [{ "text": "Notes" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "Am", "marks": ["code"] }],
+          [{ "text": "root" }],
+          [{ "text": "x x x 2 1 0", "marks": ["code"] }],
+          [{ "text": "A3 C4 E4", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "F", "marks": ["code"] }],
+          [{ "text": "first" }],
+          [{ "text": "x x x 2 1 1", "marks": ["code"] }],
+          [{ "text": "A3 C4 F4", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "C", "marks": ["code"] }],
+          [{ "text": "second" }],
+          [{ "text": "x x x 0 1 0", "marks": ["code"] }],
+          [{ "text": "G3 C4 E4", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "G", "marks": ["code"] }],
+          [{ "text": "first" }],
+          [{ "text": "x x x 4 3 3", "marks": ["code"] }],
+          [{ "text": "B3 D4 G4", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "A",
+        "quality": "minor",
+        "strings": "1-2-3",
+        "inversion": "root",
+        "caption": "A minor, root position, strings 1-2-3 — the only minor chord in the loop."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "That grip is not new to you either. Open A minor is " },
+        { "text": "x 0 2 2 1 0", "marks": ["code"] },
+        { "text": ", and its top three strings — " },
+        { "text": "3·2", "marks": ["code"] },
+        { "text": " " },
+        { "text": "A3", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "2·1", "marks": ["code"] },
+        { "text": " " },
+        { "text": "C4", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "1·0", "marks": ["code"] },
+        { "text": " " },
+        { "text": "E4", "marks": ["code"] },
+        { "text": " — are exactly it. The same trick " },
+        {
+          "text": "chapter 1 pulled with open C, A and D",
+          "link": { "kind": "article", "slug": "triad-open-chords-you-know" }
+        },
+        { "text": ", now in minor." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The first change is the one to spend time on. Going from " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " to " },
+        { "text": "F", "marks": ["code"] },
+        { "text": ", exactly one note moves and it moves one fret: string 1, " },
+        { "text": "E4", "marks": ["code"] },
+        { "text": " to " },
+        { "text": "F4", "marks": ["code"] },
+        { "text": ". Two fingers do not move at all, because " },
+        { "text": "A", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": " are in both chords. That is the same size of move this whole chapter has been about — except this time it is between two different chords rather than two qualities of one, and the note that shifts is the fifth of "
+        },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " becoming the root of " },
+        { "text": "F", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Loop the four chords against the " },
+        { "text": "Metronome", "link": { "kind": "screen", "href": "/metronome" } },
+        {
+          "text": ", one chord per bar, slow. Then sing or hum string 1 through the first change — it is the only voice moving, so your voice has nothing to compete with. Then the ear test: play the loop with the diagram out of sight and name the minor chord as it goes past."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        { "text": "C major is " },
+        { "text": "C E G", "marks": ["code"] },
+        { "text": " and A minor is " },
+        { "text": "A C E", "marks": ["code"] },
+        {
+          "text": " — two of the three notes are shared, which is a large part of why they sit so comfortably next to each other. They do not share shapes, though: each chord has its own twelve grips, and A minor's are nowhere near C major's on the neck."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The third has carried this entire chapter — one note, dropped one fret, in every grip on every set. The note that has not moved once is the fifth. Chapter 4 takes that one."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "act_minor-caged-the-whole-window",
+    "slug": "minor-caged-the-whole-window",
+    "title": "Drill: The Whole Scale in One Window",
+    "summary": "A natural minor, complete, one window at a time and in neck order — the chapter's claim turned into something your hands do rather than something you read."
+  },
+  "activity": {
+    "kind": "note-play",
+    "modes": ["easy", "hard"],
+    "board": { "fretFrom": 0, "fretTo": 13 },
+    "rounds": [
+      {
+        "kind": "targets",
+        "id": "r_minor-caged-the-whole-window.a-form",
+        "prompt": [
+          {
+            "text": "Open position, frets 0 to 3 — the A form. All seventeen notes, in any order. Every open string is one of them."
+          }
+        ],
+        "targets": [
+          { "string": 6, "fret": 0 },
+          { "string": 6, "fret": 1 },
+          { "string": 6, "fret": 3 },
+          { "string": 5, "fret": 0 },
+          { "string": 5, "fret": 2 },
+          { "string": 5, "fret": 3 },
+          { "string": 4, "fret": 0 },
+          { "string": 4, "fret": 2 },
+          { "string": 4, "fret": 3 },
+          { "string": 3, "fret": 0 },
+          { "string": 3, "fret": 2 },
+          { "string": 2, "fret": 0 },
+          { "string": 2, "fret": 1 },
+          { "string": 2, "fret": 3 },
+          { "string": 1, "fret": 0 },
+          { "string": 1, "fret": 1 },
+          { "string": 1, "fret": 3 }
+        ],
+        "ordered": false,
+        "board": { "fretFrom": 0, "fretTo": 3 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_minor-caged-the-whole-window.g-form",
+        "prompt": [
+          { "text": "Frets 1 to 5 — the G form. Seventeen of its eighteen notes: " },
+          { "text": "2·1", "marks": ["code"] },
+          { "text": " is left out because it sounds the same pitch as " },
+          { "text": "3·5", "marks": ["code"] },
+          { "text": ", and the microphone cannot tell two identical pitches apart." }
+        ],
+        "targets": [
+          { "string": 6, "fret": 1 },
+          { "string": 6, "fret": 3 },
+          { "string": 6, "fret": 5 },
+          { "string": 5, "fret": 2 },
+          { "string": 5, "fret": 3 },
+          { "string": 5, "fret": 5 },
+          { "string": 4, "fret": 2 },
+          { "string": 4, "fret": 3 },
+          { "string": 4, "fret": 5 },
+          { "string": 3, "fret": 2 },
+          { "string": 3, "fret": 4 },
+          { "string": 3, "fret": 5 },
+          { "string": 2, "fret": 3 },
+          { "string": 2, "fret": 5 },
+          { "string": 1, "fret": 1 },
+          { "string": 1, "fret": 3 },
+          { "string": 1, "fret": 5 }
+        ],
+        "ordered": false,
+        "board": { "fretFrom": 1, "fretTo": 5 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_minor-caged-the-whole-window.e-form",
+        "prompt": [
+          { "text": "Frets 4 to 8 — the E form, the window around the " },
+          { "text": "Am", "marks": ["code"] },
+          {
+            "text": " barre. All seventeen, and this time frets 4 and 6 are in play: one note each, and the box you already knew had neither."
+          }
+        ],
+        "targets": [
+          { "string": 6, "fret": 5 },
+          { "string": 6, "fret": 7 },
+          { "string": 6, "fret": 8 },
+          { "string": 5, "fret": 5 },
+          { "string": 5, "fret": 7 },
+          { "string": 5, "fret": 8 },
+          { "string": 4, "fret": 5 },
+          { "string": 4, "fret": 7 },
+          { "string": 3, "fret": 4 },
+          { "string": 3, "fret": 5 },
+          { "string": 3, "fret": 7 },
+          { "string": 2, "fret": 5 },
+          { "string": 2, "fret": 6 },
+          { "string": 2, "fret": 8 },
+          { "string": 1, "fret": 5 },
+          { "string": 1, "fret": 7 },
+          { "string": 1, "fret": 8 }
+        ],
+        "ordered": false,
+        "board": { "fretFrom": 4, "fretTo": 8 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_minor-caged-the-whole-window.d-form",
+        "prompt": [
+          { "text": "Frets 6 to 10 — the D form. Seventeen of its eighteen: " },
+          { "text": "2·6", "marks": ["code"] },
+          { "text": " is left out because it sounds the same pitch as " },
+          { "text": "3·10", "marks": ["code"] },
+          { "text": ", and both of them are " },
+          { "text": "b6", "marks": ["code"] },
+          { "text": "s." }
+        ],
+        "targets": [
+          { "string": 6, "fret": 7 },
+          { "string": 6, "fret": 8 },
+          { "string": 6, "fret": 10 },
+          { "string": 5, "fret": 7 },
+          { "string": 5, "fret": 8 },
+          { "string": 5, "fret": 10 },
+          { "string": 4, "fret": 7 },
+          { "string": 4, "fret": 9 },
+          { "string": 4, "fret": 10 },
+          { "string": 3, "fret": 7 },
+          { "string": 3, "fret": 9 },
+          { "string": 3, "fret": 10 },
+          { "string": 2, "fret": 8 },
+          { "string": 2, "fret": 10 },
+          { "string": 1, "fret": 7 },
+          { "string": 1, "fret": 8 },
+          { "string": 1, "fret": 10 }
+        ],
+        "ordered": false,
+        "board": { "fretFrom": 6, "fretTo": 10 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_minor-caged-the-whole-window.c-form",
+        "prompt": [
+          {
+            "text": "Frets 9 to 13 — the C form, the highest of the five. All seventeen, and nothing at all at fret 11: no string carries a note of this scale there."
+          }
+        ],
+        "targets": [
+          { "string": 6, "fret": 10 },
+          { "string": 6, "fret": 12 },
+          { "string": 6, "fret": 13 },
+          { "string": 5, "fret": 10 },
+          { "string": 5, "fret": 12 },
+          { "string": 4, "fret": 9 },
+          { "string": 4, "fret": 10 },
+          { "string": 4, "fret": 12 },
+          { "string": 3, "fret": 9 },
+          { "string": 3, "fret": 10 },
+          { "string": 3, "fret": 12 },
+          { "string": 2, "fret": 10 },
+          { "string": 2, "fret": 12 },
+          { "string": 2, "fret": 13 },
+          { "string": 1, "fret": 10 },
+          { "string": 1, "fret": 12 },
+          { "string": 1, "fret": 13 }
+        ],
+        "ordered": false,
+        "board": { "fretFrom": 9, "fretTo": 13 }
+      }
+    ]
+  }
+}

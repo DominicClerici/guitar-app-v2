@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_minor-caged-triad-d-form",
+    "slug": "minor-caged-triad-d-form",
+    "title": "The D Form: The Flat Third on Top",
+    "summary": "The D form's highest note is the b3, the only one of the five forms like that, which is why dropping the top string leaves a chord with no third in it at all.",
+    "tags": ["caged", "minor"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The D form of A minor is the " },
+        { "text": "Dm", "marks": ["code"] },
+        { "text": " shape at fret " },
+        { "text": "7", "marks": ["code"] },
+        { "text": ": " },
+        { "text": "x x 7 9 10 8", "marks": ["code"] },
+        { "text": ", degrees " },
+        { "text": "x x 1 5 1 b3", "marks": ["code"] },
+        { "text": ". Its window runs frets " },
+        { "text": "6–10", "marks": ["code"] },
+        { "text": ", with roots on strings 4 (" },
+        { "text": "7", "marks": ["code"] },
+        { "text": ") and 2 (" },
+        { "text": "10", "marks": ["code"] },
+        {
+          "text": "). Four strings is the whole shape here, not a fragment of a bigger one — the open "
+        },
+        { "text": "Dm", "marks": ["code"] },
+        {
+          "text": " mutes the bottom two strings, and moving it up the neck doesn't change that."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The " },
+        { "text": "b3", "marks": ["code"] },
+        { "text": " is the top note — " },
+        { "text": "1·8", "marks": ["code"] },
+        { "text": ", a " },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": ". It's the only one of the five forms whose highest note is the third rather than the root or the fifth, which is why the shape reads "
+        },
+        { "text": "thin and pointed", "marks": ["bold"] },
+        {
+          "text": ", and why it's the standard grab whenever you need a high minor voicing instead of a low one."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The B string bites here too. " },
+        {
+          "text": "A major's D form",
+          "link": { "kind": "article", "slug": "caged-triad-d-form" }
+        },
+        { "text": " is " },
+        { "text": "x x 7 9 10 9", "marks": ["code"] },
+        { "text": ": strings 3 and 1 share fret " },
+        { "text": "9", "marks": ["code"] },
+        {
+          "text": ", and string 2 sits one fret higher. Flatten the third and string 1 drops to fret "
+        },
+        { "text": "8", "marks": ["code"] },
+        {
+          "text": ", so the four fretted notes now sit at four different frets — "
+        },
+        { "text": "7, 9, 10, 8", "marks": ["code"] },
+        { "text": ". " },
+        { "text": "G → B", "marks": ["code"] },
+        {
+          "text": " is the one major third in standard tuning, and it's why this grip was never a flat barre to begin with — minor even less than major."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "D",
+        "quality": "minor",
+        "show": "triad",
+        "caption": "x x 7 9 10 8 — four strings, four different frets. The b3 is the top note."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Drop the top string and the chord loses its quality outright. Strings 4-3-2 at "
+        },
+        { "text": "7 9 10", "marks": ["code"] },
+        { "text": " are " },
+        { "text": "1 5 1", "marks": ["code"] },
+        {
+          "text": " — a root-fifth-root shell with no third in it at all. In the E form the "
+        },
+        { "text": "b3", "marks": ["code"] },
+        {
+          "text": " sits in the middle of the shape, where most fragments keep it; here it sits right on the edge, and the fragment that drops it is the easy one to reach for. The usable high fragment is strings 3-2-1 at "
+        },
+        { "text": "9 10 8", "marks": ["code"] },
+        { "text": " — " },
+        { "text": "5 1 b3", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "E A C", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "info",
+      "spans": [
+        { "text": "The D form's " },
+        { "text": "b3", "marks": ["code"] },
+        {
+          "text": " is its own top note. Drop it, and what's left isn't a minor chord at all — just a root and a fifth."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The window's dot count doesn't move: seven in major, seven in minor — the only one of the five forms where the two counts match. Three "
+        },
+        { "text": "3", "marks": ["code"] },
+        { "text": "s leave and three " },
+        { "text": "b3", "marks": ["code"] },
+        {
+          "text": "s arrive, but only two of those are the same note stepping down inside the frame ("
+        },
+        { "text": "6·9 → 6·8", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "1·9 → 1·8", "marks": ["code"] },
+        { "text": "). One steps out the bottom — " },
+        { "text": "3·6", "marks": ["code"] },
+        { "text": " would land at " },
+        { "text": "3·5", "marks": ["code"] },
+        { "text": ", below the window — and one steps in from above the top: " },
+        { "text": "4·11", "marks": ["code"] },
+        { "text": " arrives as " },
+        { "text": "4·10", "marks": ["code"] },
+        {
+          "text": ". Net zero, which is why \"one dot moved\" happens to look true here, and is still the wrong way to think about it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Three window dots never make it into the grip: " },
+        { "text": "6·8", "marks": ["code"] },
+        { "text": " " },
+        { "text": "b3", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "5·7", "marks": ["code"] },
+        { "text": " " },
+        { "text": "5", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "4·10", "marks": ["code"] },
+        { "text": " " },
+        { "text": "b3", "marks": ["code"] },
+        { "text": ". Two of those belong to a neighbour — " },
+        { "text": "5·7", "marks": ["code"] },
+        { "text": " to the E form's grip, " },
+        { "text": "4·10", "marks": ["code"] },
+        { "text": " to the C form's. Seams on both sides, and the closer picks them up." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "All five forms are on the table now. " },
+        {
+          "text": "Five Shapes, One Neck",
+          "marks": ["bold"],
+          "link": { "kind": "article", "slug": "minor-caged-five-shapes-one-neck" }
+        },
+        { "text": " ties them together." }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "act_modes-same-notes-new-home",
+    "slug": "modes-same-notes-new-home",
+    "title": "Same Notes, New Home",
+    "summary": "Walk one set of seven notes from two different starting points, and hear that the note list alone decides nothing."
+  },
+  "activity": {
+    "kind": "note-play",
+    "modes": ["easy", "hard"],
+    "board": { "fretFrom": 0, "fretTo": 5 },
+    "rounds": [
+      {
+        "kind": "targets",
+        "id": "r_modes-same-notes-new-home.from-g",
+        "prompt": [
+          { "text": "Play G major, one octave, from " },
+          { "text": "G", "marks": ["code"] },
+          { "text": " on string 6, fret 3 up to " },
+          { "text": "G", "marks": ["code"] },
+          {
+            "text": " on the open third string. Nothing new here — this is the scale, in order, low to high."
+          }
+        ],
+        "targets": [
+          { "string": 6, "fret": 3 },
+          { "string": 5, "fret": 0 },
+          { "string": 5, "fret": 2 },
+          { "string": 5, "fret": 3 },
+          { "string": 4, "fret": 0 },
+          { "string": 4, "fret": 2 },
+          { "string": 4, "fret": 4 },
+          { "string": 3, "fret": 0 }
+        ],
+        "ordered": true
+      },
+      {
+        "kind": "targets",
+        "id": "r_modes-same-notes-new-home.from-a",
+        "prompt": [
+          { "text": "The same seven notes, started from " },
+          { "text": "A", "marks": ["code"] },
+          { "text": " on the open fifth string: " },
+          { "text": "A B C D E F# G A", "marks": ["code"] },
+          {
+            "text": ". That is A Dorian's note list — and played into silence it still sounds like G major, which is the whole point."
+          }
+        ],
+        "targets": [
+          { "string": 5, "fret": 0 },
+          { "string": 5, "fret": 2 },
+          { "string": 5, "fret": 3 },
+          { "string": 4, "fret": 0 },
+          { "string": 4, "fret": 2 },
+          { "string": 4, "fret": 4 },
+          { "string": 3, "fret": 0 },
+          { "string": 3, "fret": 2 }
+        ],
+        "ordered": true
+      },
+      {
+        "kind": "targets",
+        "id": "r_modes-same-notes-new-home.two-octaves",
+        "prompt": [
+          { "text": "Now open the Drone, set it to " },
+          { "text": "A", "marks": ["code"] },
+          { "text": " and leave it running — or just let an open " },
+          { "text": "A", "marks": ["code"] },
+          {
+            "text": " ring. Then walk the same notes two octaves, from the open fifth string up to string 1, fret 5. Same notes as the round before. Different thing entirely."
+          }
+        ],
+        "targets": [
+          { "string": 5, "fret": 0 },
+          { "string": 5, "fret": 2 },
+          { "string": 5, "fret": 3 },
+          { "string": 4, "fret": 0 },
+          { "string": 4, "fret": 2 },
+          { "string": 4, "fret": 4 },
+          { "string": 3, "fret": 0 },
+          { "string": 3, "fret": 2 },
+          { "string": 2, "fret": 0 },
+          { "string": 2, "fret": 1 },
+          { "string": 2, "fret": 3 },
+          { "string": 1, "fret": 0 },
+          { "string": 1, "fret": 2 },
+          { "string": 1, "fret": 3 },
+          { "string": 1, "fret": 5 }
+        ],
+        "ordered": true
+      }
+    ]
+  }
+}

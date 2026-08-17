@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_modes-ionian-sound",
+    "slug": "modes-ionian-sound",
+    "title": "The Reference You Already Own",
+    "summary": "Ionian is the major scale you already play with both of this chapter's dials at their plain setting, and having no characteristic note is exactly what makes it the mode everything else here gets heard against.",
+    "tags": ["modes", "theory", "ear"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-15"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Three modes share one home chord in this chapter — " },
+        { "text": "A", "marks": ["code"] },
+        { "text": " — and what tells them apart is two dials: the " },
+        { "text": "4", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "7", "marks": ["code"] },
+        {
+          "text": ". Ionian is where both dials sit at their plain, unturned setting, which makes it the natural place to start before either one gets touched."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Ionian is the major scale: " },
+        { "text": "A B C# D E F# G#", "marks": ["code"] },
+        { "text": ", degrees " },
+        { "text": "1 2 3 4 5 6 7", "marks": ["code"] },
+        { "text": ", home chord " },
+        { "text": "A", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "A C# E", "marks": ["code"] },
+        {
+          "text": "). Its parent major is itself — the one mode in the whole family where the relative road goes nowhere, because Ionian already is the scale you'd be borrowing notes from."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "It has no characteristic note. No chip lights amber on its scale card, no dot gets outlined in its windows on the neck. That isn't a gap — a characteristic note is whatever separates a scale from its nearest plain relative, and Ionian is the plain relative, the thing every other mode in this pathway gets measured against."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "scale-compare",
+      "props": { "root": "A", "scales": ["major"], "drone": true }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Play it against the drone. One card, and nothing on it lights up — that absence is half of this lesson, heard rather than read."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Both of this chapter's dials sit at their reference setting here: the " },
+        { "text": "4", "marks": ["code"] },
+        { "text": " natural, the " },
+        { "text": "7", "marks": ["code"] },
+        {
+          "text": " natural. Lydian, next, raises the first. Mixolydian, after that, lowers the second. Ionian is what's left when neither dial has been turned."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The " },
+        { "text": "7", "marks": ["code"] },
+        { "text": " is a leading tone — a half step below home, pulling up into it. " },
+        {
+          "text": "Where the Half Steps Fall",
+          "link": { "kind": "article", "slug": "modes-half-steps" }
+        },
+        {
+          "text": " already counted who has one: only Lydian and Ionian, out of all seven. The other five sit a whole step under home instead, with a "
+        },
+        { "text": "b7", "marks": ["code"] },
+        { "text": ". Your hand already knows this particular note by feel: " },
+        {
+          "text": "The Two Notes That Lean",
+          "link": { "kind": "article", "slug": "caged-fourths-and-sevenths" }
+        },
+        { "text": " pointed out that every " },
+        { "text": "1", "marks": ["code"] },
+        { "text": " has a " },
+        { "text": "7", "marks": ["code"] },
+        { "text": " sitting one fret below it, on the same string, inside the window." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Its tritone falls on the " },
+        { "text": "4", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "7", "marks": ["code"] },
+        { "text": " — " },
+        { "text": "D – G#", "marks": ["code"] },
+        { "text": " — and misses the tonic triad completely. " },
+        {
+          "text": "Where the Tritone Lands",
+          "link": { "kind": "article", "slug": "modes-the-tritone" }
+        },
+        {
+          "text": " already showed that Ionian and Aeolian are the only two of the seven modes where that's true, which is the structural reason both function as references rather than as colour."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "None of this is jazz-only material, whatever you've heard. Writers on rock harmony broadly agree that Ionian, Mixolydian, Dorian and Aeolian are the common modes of the repertoire, with Phrygian turning up in metal — Everett and Moore among them, and it is a settled reading of the music rather than a measurement, "
+        },
+        { "text": "not a count of songs", "link": { "kind": "footnote", "id": "fn-rock-corpus" } },
+        {
+          "text": ". Two of those four are in this chapter — Ionian and Mixolydian — and the other two belong to chapter 4. Lydian isn't on the list at all, which is part of why it needs a lesson of its own rather than a mention."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "progression-player",
+      "props": {
+        "chords": ["A", "Amaj7"],
+        "bpm": 66,
+        "caption": "The tonic, then the seventh chord Ionian gives you — A C# E G#"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Ionian also hands you a seventh chord: " },
+        { "text": "Amaj7", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "A C# E G#", "marks": ["code"] },
+        { "text": ", and the " },
+        { "text": "G#", "marks": ["code"] },
+        {
+          "text": " sitting inside it is precisely the note the next mode down the ladder gives up. Naming the chord here is fair game; what you'd do with a seventh chord beyond naming it is a different topic."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "For a scale everyone calls the safe one, there is exactly one note in it that fights the chord underneath when you land on it and hold. It has a name, a reason, and an exact place in the scale — all of which is what "
+        },
+        {
+          "text": "The Note That Fights the Chord",
+          "link": { "kind": "article", "slug": "modes-the-avoid-note" }
+        },
+        {
+          "text": " is for."
+        }
+      ]
+    }
+  ],
+  "footnotes": [
+    {
+      "id": "fn-rock-corpus",
+      "spans": [
+        {
+          "text": "Temperley and Tan also derive a scale-degree distribution from de Clercq and Temperley's harmonic analyses of the 200-song rock_corpus dataset, and note that the seven major-scale degrees occur more often than any others — which suggests Ionian predominates specifically. That's an inference from how often individual degrees turn up, not a count of how many songs use each mode."
+        }
+      ]
+    }
+  ]
+}

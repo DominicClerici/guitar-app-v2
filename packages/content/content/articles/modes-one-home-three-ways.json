@@ -1,0 +1,192 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_modes-one-home-three-ways",
+    "slug": "modes-one-home-three-ways",
+    "title": "One Home Chord, Three Ways",
+    "summary": "Lydian, Ionian and Mixolydian are one home chord at three settings of two dials, and what tells them apart in playing is which single note you lean on.",
+    "tags": ["modes", "ear", "theory"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-15"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Three settings, one home chord. Put Lydian, Ionian and Mixolydian side by side and the two dials this chapter has been turning — the "
+        },
+        { "text": "4", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "7", "marks": ["code"] },
+        {
+          "text": " — turn out to be the whole story. Lydian raises the first, Mixolydian lowers the second, and Ionian is what both dials look like left alone."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Mode" }],
+        [{ "text": "Degrees" }],
+        [{ "text": "Characteristic note" }],
+        [{ "text": "Vamp" }],
+        [{ "text": "The second chord carries" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "Lydian" }],
+          [{ "text": "1 2 3 #4 5 6 7", "marks": ["code"] }],
+          [
+            { "text": "#4", "marks": ["code", { "type": "color", "tone": "violet" }] },
+            { "text": " (" },
+            { "text": "D#", "marks": ["code", { "type": "color", "tone": "violet" }] },
+            { "text": ")" }
+          ],
+          [{ "text": "A", "marks": ["code"] }, { "text": "–" }, { "text": "B", "marks": ["code"] }],
+          [
+            { "text": "B", "marks": ["code"] },
+            { "text": " = " },
+            { "text": "B D# F#", "marks": ["code"] },
+            { "text": " — the " },
+            { "text": "#4", "marks": ["code", { "type": "color", "tone": "violet" }] }
+          ]
+        ],
+        [
+          [{ "text": "Ionian" }],
+          [{ "text": "1 2 3 4 5 6 7", "marks": ["code"] }],
+          [{ "text": "none" }],
+          [{ "text": "—" }],
+          [{ "text": "it has none to carry" }]
+        ],
+        [
+          [{ "text": "Mixolydian" }],
+          [{ "text": "1 2 3 4 5 6 b7", "marks": ["code"] }],
+          [
+            { "text": "b7", "marks": ["code", { "type": "color", "tone": "amber" }] },
+            { "text": " (" },
+            { "text": "G", "marks": ["code", { "type": "color", "tone": "amber" }] },
+            { "text": ")" }
+          ],
+          [{ "text": "A", "marks": ["code"] }, { "text": "–" }, { "text": "G", "marks": ["code"] }],
+          [
+            { "text": "G", "marks": ["code"] },
+            { "text": " = " },
+            { "text": "G B D", "marks": ["code"] },
+            { "text": " — the " },
+            { "text": "b7", "marks": ["code", { "type": "color", "tone": "amber" }] }
+          ]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Ionian's empty row is content, not a gap. It has no characteristic note, so there's no second chord that could assert one — what makes it Ionian is precisely that neither dial has been turned, not that something is missing from the table. That reference status is exactly why it was possible to measure Lydian and Mixolydian against it in the first place, note by note and chip by chip."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "What separates the three when you're actually playing is one note apiece, not a different set of shapes — the windows underneath are the same five you've always had. Lean on the "
+        },
+        { "text": "#4", "marks": ["code", { "type": "color", "tone": "violet" }] },
+        { "text": " and you're in Lydian. Lean on the " },
+        { "text": "b7", "marks": ["code", { "type": "color", "tone": "amber" }] },
+        {
+          "text": " and you're in Mixolydian. Ionian gives you nothing to lean on, which is the point of it — what makes it Ionian is that neither of those notes is there to reach for, and the one note you move through rather than land on is the "
+        },
+        { "text": "4", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "scale-compare",
+      "props": { "root": "A", "scales": ["major", "lydian", "mixolydian"], "drone": true }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Start the drone and run all three. With " },
+        { "text": "A Major", "marks": ["code"] },
+        { "text": " first, the Lydian card lights exactly one amber chip — " },
+        { "text": "D#", "marks": ["code"] },
+        { "text": " — and the Mixolydian card lights exactly one — " },
+        { "text": "G", "marks": ["code"] },
+        {
+          "text": ". Each card's single amber chip is precisely its characteristic note, because ordering the reference scale first is what makes the tint land on exactly the note the mode is named for. That's the whole chapter in one block."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "progression-player",
+      "props": {
+        "chords": ["A", "B", "A", "G"],
+        "bpm": 66,
+        "caption": "Both vamps back to back — I–II, then I–bVII, over the same home chord"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Both vamps back to back: " },
+        { "text": "A", "marks": ["code"] },
+        { "text": "–" },
+        { "text": "B", "marks": ["code"] },
+        { "text": ", the " },
+        { "text": "II", "marks": ["code"] },
+        { "text": " that carries the " },
+        { "text": "#4", "marks": ["code", { "type": "color", "tone": "violet" }] },
+        { "text": ", then " },
+        { "text": "A", "marks": ["code"] },
+        { "text": "–" },
+        { "text": "G", "marks": ["code"] },
+        { "text": ", the " },
+        { "text": "bVII", "marks": ["code"] },
+        { "text": " that carries the " },
+        { "text": "b7", "marks": ["code", { "type": "color", "tone": "amber" }] },
+        { "text": " — the same home chord both times, leaning two different directions off it." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One honest caveat before you move on, because this chapter has been careful about it in both directions already. Including a characteristic note in a scale isn't the same as leaning on it in a phrase — actually landing there rather than passing through on the way somewhere else. Making that difference audible on purpose is work for a later chapter; for now, know that the target exists, has a name, and sits at an exact fret whenever you go looking for it."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-ladder",
+      "props": { "root": "A", "quality": "major" }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One more diagram, and it's worth being precise about what it shows. It draws the five windows and their roots, not any mode's notes — that block only knows a quality, major or minor, not a scale, so it can't tell Lydian from Mixolydian apart. That's exactly the point here: the bands and the roots are identical for all three modes in this chapter, because a window is anchored on the root, not on which degree inside it has been raised or lowered. Whichever of the three you're playing, your hand never has to relearn where home is."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Chapter 4 takes the same shape one row down — " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " for a home chord, and two different dials, the " },
+        { "text": "6", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "2", "marks": ["code"] },
+        {
+          "text": ", turned the same two ways — one raised, one lowered. Two home chords, two dials each: that's the pattern chapter 2 laid out, and chapter 4 finishes it."
+        }
+      ]
+    }
+  ]
+}

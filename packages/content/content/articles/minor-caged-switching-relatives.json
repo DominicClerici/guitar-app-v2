@@ -1,0 +1,672 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_minor-caged-switching-relatives",
+    "slug": "minor-caged-switching-relatives",
+    "title": "Same Hand, Different Key",
+    "summary": "C major and A minor share a window, half their chords, and a note set — so moving between them costs no hand movement, only where you stop.",
+    "tags": ["caged", "minor"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Frets "
+        },
+        {
+          "text": "4–8",
+          "marks": ["code"]
+        },
+        {
+          "text": " are C major's G form and A minor's E form — the same five frets, the same dots, two names. "
+        },
+        {
+          "text": "One Window, Two Names",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-one-window-two-names"
+          }
+        },
+        {
+          "text": " proved it. This lesson is what it's for: \"changing key\" sounds like it should mean going somewhere else on the neck. Here it means nothing of the kind."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here are both windows, drawn separately — the diagrams caption themselves "
+        },
+        {
+          "text": "E form · A minor",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "G form · C major",
+          "marks": ["code"]
+        },
+        {
+          "text": ":"
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "E",
+        "quality": "minor",
+        "show": "scale",
+        "caption": "A minor's E form, frets 4–8"
+      }
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "C",
+        "form": "G",
+        "show": "scale",
+        "caption": "C major's G form, frets 4–8"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Both windows are frets "
+        },
+        {
+          "text": "4–8",
+          "marks": ["code"]
+        },
+        {
+          "text": " and both hold seventeen dots. The dots are in the same places; every label is different. Play the first diagram and you're inside A minor's E form. Play the second and, without moving a finger to a new fret, you're inside C major's G form."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "What actually changes is where you stop. In that window C major's "
+        },
+        {
+          "text": "1",
+          "marks": ["code"]
+        },
+        {
+          "text": "s are "
+        },
+        {
+          "text": "6·8",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "3·5",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "1·8",
+          "marks": ["code"]
+        },
+        {
+          "text": "; A minor's "
+        },
+        {
+          "text": "1",
+          "marks": ["code"]
+        },
+        {
+          "text": "s are "
+        },
+        {
+          "text": "6·5",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "4·7",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "1·5",
+          "marks": ["code"]
+        },
+        {
+          "text": "."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [
+          {
+            "text": "Key"
+          }
+        ],
+        [
+          {
+            "text": "The 1s in frets 4–8"
+          }
+        ]
+      ],
+      "rows": [
+        [
+          [
+            {
+              "text": "C major"
+            }
+          ],
+          [
+            {
+              "text": "6·8  3·5  1·8",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "A minor"
+            }
+          ],
+          [
+            {
+              "text": "6·5  4·7  1·5",
+              "marks": ["code"]
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Six positions, and choosing between them is most of the act of changing key. A phrase that keeps arriving on one of C major's three is being pointed at C; one that keeps arriving on A minor's three, in the exact same five frets, is being pointed at A minor. Nothing about the window decides it — what the phrase leans on and where it stops does, which is the same account of home chapter 1 gave."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        {
+          "text": "The dots do not change. The chord underneath and the note you stop on do."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The chords are shared too, and this is new. Every major chord in the key has a minor chord three semitones below it sharing two of its three notes:"
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [
+          {
+            "text": "Major"
+          }
+        ],
+        [
+          {
+            "text": "Minor"
+          }
+        ],
+        [
+          {
+            "text": "Shared notes"
+          }
+        ]
+      ],
+      "rows": [
+        [
+          [
+            {
+              "text": "C",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "Am",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "C E",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "F",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "Dm",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "F A",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "G",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "Em",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "G B",
+              "marks": ["code"]
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "So the two keys don't merely share a note set — they share three chord pairs, each pair one note apart. What's "
+        },
+        {
+          "text": "I",
+          "marks": ["code"]
+        },
+        {
+          "text": " in C major is "
+        },
+        {
+          "text": "III",
+          "marks": ["code"]
+        },
+        {
+          "text": " in A minor; "
+        },
+        {
+          "text": "vi",
+          "marks": ["code"]
+        },
+        {
+          "text": " becomes "
+        },
+        {
+          "text": "i",
+          "marks": ["code"]
+        },
+        {
+          "text": "; "
+        },
+        {
+          "text": "IV",
+          "marks": ["code"]
+        },
+        {
+          "text": " becomes "
+        },
+        {
+          "text": "VI",
+          "marks": ["code"]
+        },
+        {
+          "text": "; "
+        },
+        {
+          "text": "V",
+          "marks": ["code"]
+        },
+        {
+          "text": " becomes "
+        },
+        {
+          "text": "VII",
+          "marks": ["code"]
+        },
+        {
+          "text": " — "
+        },
+        {
+          "text": "The Chords A Minor Gives You",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-the-chords-of-the-key"
+          }
+        },
+        {
+          "text": " owns the full table; this lesson isn't reprinting it. So a chord you already know how to play, sitting under your fingers right now, is simultaneously a chord of both keys — it's the numeral, not the shape, that decides which one you're calling it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here's the demonstration, and it is sharper than chapter 1's version of the same idea. Take the same four chords and rotate them:"
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "progression-player",
+      "props": {
+        "chords": ["C", "G", "Am", "F"],
+        "bpm": 86,
+        "caption": "Starts and ends on C"
+      }
+    },
+    {
+      "type": "live",
+      "component": "progression-player",
+      "props": {
+        "chords": ["Am", "F", "C", "G"],
+        "bpm": 86,
+        "caption": "Same four chords, starts and ends on Am"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Identical chord set, identical shapes, different starting point. "
+        },
+        {
+          "text": "Same Notes, Different Home",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-what-decides-home"
+          }
+        },
+        {
+          "text": "'s pair swapped a chord; this one swaps nothing at all. Every grip your hand plays is identical in both clips — only the order changes, and with it, which chord you rest on last."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Run both against the app's own engine. The first loop comes back "
+        },
+        {
+          "text": "C major",
+          "marks": ["bold"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "confident",
+          "marks": ["code"]
+        },
+        {
+          "text": ". The second comes back "
+        },
+        {
+          "text": "A minor",
+          "marks": ["bold"]
+        },
+        {
+          "text": ", but the engine calls it "
+        },
+        {
+          "text": "ambiguous",
+          "marks": ["code"]
+        },
+        {
+          "text": ", with C major right behind it."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [
+          {
+            "text": "Loop"
+          }
+        ],
+        [
+          {
+            "text": "Key Detector calls it"
+          }
+        ]
+      ],
+      "rows": [
+        [
+          [
+            {
+              "text": "C",
+              "marks": ["code"]
+            },
+            {
+              "text": " "
+            },
+            {
+              "text": "G",
+              "marks": ["code"]
+            },
+            {
+              "text": " "
+            },
+            {
+              "text": "Am",
+              "marks": ["code"]
+            },
+            {
+              "text": " "
+            },
+            {
+              "text": "F",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "C major, confident"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Am",
+              "marks": ["code"]
+            },
+            {
+              "text": " "
+            },
+            {
+              "text": "F",
+              "marks": ["code"]
+            },
+            {
+              "text": " "
+            },
+            {
+              "text": "C",
+              "marks": ["code"]
+            },
+            {
+              "text": " "
+            },
+            {
+              "text": "G",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "A minor, but ambiguous"
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That's not a defect to hide. Rotating a loop moves the key without settling it — exactly the honest limit "
+        },
+        {
+          "text": "Same Notes, Different Home",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-what-decides-home"
+          }
+        },
+        {
+          "text": " already printed: a bare scale run or a two-chord loop can be genuinely ambiguous. A four-chord loop can be too. Real music settles the question with time, repetition and where the phrase actually stops — the engine is being honest about a real limit, not failing at its job."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Try both in the "
+        },
+        {
+          "text": "Key Detector",
+          "link": {
+            "kind": "screen",
+            "href": "/key-detector"
+          }
+        },
+        {
+          "text": " yourself."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One more clause: frets "
+        },
+        {
+          "text": "9–13",
+          "marks": ["code"]
+        },
+        {
+          "text": " are the second shared window — C major's D form and A minor's C form. Chapter 1 owns the derivation; this lesson just names it. Every claim above about frets 4–8 has a twin sitting up there, and it isn't worth re-deriving twice."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Practical: hold an "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": " on the "
+        },
+        {
+          "text": "Drone",
+          "link": {
+            "kind": "screen",
+            "href": "/drone"
+          }
+        },
+        {
+          "text": ", play the "
+        },
+        {
+          "text": "4–8",
+          "marks": ["code"]
+        },
+        {
+          "text": " window, and land on "
+        },
+        {
+          "text": "6·5",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Then hold a "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": " and land on "
+        },
+        {
+          "text": "6·8",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Nothing in the hand changes. What you hear will."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Next, the same four chords put to work as "
+        },
+        {
+          "text": "a loop you can play wherever your hand already is",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-a-loop-up-the-neck"
+          }
+        },
+        {
+          "text": "."
+        }
+      ]
+    }
+  ]
+}

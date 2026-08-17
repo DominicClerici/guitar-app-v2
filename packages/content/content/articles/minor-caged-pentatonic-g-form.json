@@ -1,0 +1,602 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_minor-caged-pentatonic-g-form",
+    "slug": "minor-caged-pentatonic-g-form",
+    "title": "The G Form: Thirteen Dots",
+    "summary": "The G form holds thirteen pentatonic dots instead of twelve because string 2 carries three of the scale's five notes, and that extra dot makes it the second window that asks for a shift.",
+    "tags": ["caged", "minor"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The window is frets "
+        },
+        {
+          "text": "1–5",
+          "marks": ["code"]
+        },
+        {
+          "text": " — the widest grip chapter 2 handed you, and now the fullest window this chapter has to offer. Fret 4 holds nothing; the dots sit on frets 1, 2, 3 and 5."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "G",
+        "quality": "minor",
+        "show": "pentatonic",
+        "caption": "The G form's window, pentatonic layer — thirteen dots on frets 1, 2, 3 and 5."
+      }
+    },
+    {
+      "type": "table",
+      "header": [
+        [
+          {
+            "text": "String"
+          }
+        ],
+        [
+          {
+            "text": "Dots"
+          }
+        ]
+      ],
+      "rows": [
+        [
+          [
+            {
+              "text": "6"
+            }
+          ],
+          [
+            {
+              "text": "6·3 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "b7",
+              "marks": ["code"]
+            },
+            {
+              "text": " (G) · "
+            },
+            {
+              "text": "6·5 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "1",
+              "marks": ["code"]
+            },
+            {
+              "text": " (A)"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "5"
+            }
+          ],
+          [
+            {
+              "text": "5·3 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "b3",
+              "marks": ["code"]
+            },
+            {
+              "text": " (C) · "
+            },
+            {
+              "text": "5·5 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "4",
+              "marks": ["code"]
+            },
+            {
+              "text": " (D)"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "4"
+            }
+          ],
+          [
+            {
+              "text": "4·2 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "5",
+              "marks": ["code"]
+            },
+            {
+              "text": " (E) · "
+            },
+            {
+              "text": "4·5 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "b7",
+              "marks": ["code"]
+            },
+            {
+              "text": " (G)"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "3"
+            }
+          ],
+          [
+            {
+              "text": "3·2 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "1",
+              "marks": ["code"]
+            },
+            {
+              "text": " (A) · "
+            },
+            {
+              "text": "3·5 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "b3",
+              "marks": ["code"]
+            },
+            {
+              "text": " (C)"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "2"
+            }
+          ],
+          [
+            {
+              "text": "2·1 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "b3",
+              "marks": ["code"]
+            },
+            {
+              "text": " (C) · "
+            },
+            {
+              "text": "2·3 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "4",
+              "marks": ["code"]
+            },
+            {
+              "text": " (D) · "
+            },
+            {
+              "text": "2·5 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "5",
+              "marks": ["code"]
+            },
+            {
+              "text": " (E) — three"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "1"
+            }
+          ],
+          [
+            {
+              "text": "1·3 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "b7",
+              "marks": ["code"]
+            },
+            {
+              "text": " (G) · "
+            },
+            {
+              "text": "1·5 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "1",
+              "marks": ["code"]
+            },
+            {
+              "text": " (A)"
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Thirteen, not twelve — and that's the lesson. Every other window in this chapter holds twelve dots, two on each of the six strings. This one holds thirteen, because string 2 carries three: "
+        },
+        {
+          "text": "2·1",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "b3",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "2·3",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "2·5",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Three of the scale's five notes on one string inside five frets."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "info",
+      "spans": [
+        {
+          "text": "Thirteen dots, and the thirteenth is on string 2."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Why it happens, without re-teaching the B string. "
+        },
+        {
+          "text": "b3",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": " are the three notes of this scale that sit closest together — two frets apart each — and on the B string in this span all three land inside the window at once: the "
+        },
+        {
+          "text": "b3",
+          "marks": ["code"]
+        },
+        {
+          "text": " at fret 1, the "
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": " at fret 3, the "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": " at fret 5. Every other string in every other window catches only two. The outer two of those three sit four frets apart, wider than any other string is asked to cover anywhere in this chapter — though you never stretch for it, since each step is only two frets."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The consequence: this is the second window that spreads. Its dots run from fret 1 to fret 5 — five frets — so like the C form it's a shift rather than a settled hand. "
+        },
+        {
+          "text": "The C form lesson",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-pentatonic-c-form"
+          }
+        },
+        {
+          "text": " named the other one; this is the second, and between them the claim is complete: two of the five spread, three sit under one hand. The other three — the A, E and D forms — are windows you settle into. This one and the C form are windows you move through."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "What's new since chapter 2: "
+        },
+        {
+          "text": "6·3",
+          "marks": ["code"]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "b7",
+          "marks": ["code"]
+        },
+        {
+          "text": "), "
+        },
+        {
+          "text": "5·5",
+          "marks": ["code"]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": "), "
+        },
+        {
+          "text": "4·5",
+          "marks": ["code"]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "b7",
+          "marks": ["code"]
+        },
+        {
+          "text": "), "
+        },
+        {
+          "text": "2·3",
+          "marks": ["code"]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": "), and "
+        },
+        {
+          "text": "1·3",
+          "marks": ["code"]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "b7",
+          "marks": ["code"]
+        },
+        {
+          "text": "). Chapter 2's three little triads out of this form are all still here, untouched, with the new notes sitting between them."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Chord tones and the rest. Eight of the thirteen are "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": ": "
+        },
+        {
+          "text": "6·5, 5·3, 4·2, 3·2, 3·5, 2·1, 2·5, 1·5",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Five are not: "
+        },
+        {
+          "text": "6·3, 5·5, 4·5, 2·3, 1·3",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Three roots — "
+        },
+        {
+          "text": "6·5, 3·2, 1·5",
+          "marks": ["code"]
+        },
+        {
+          "text": " — which is as many as any window in this chapter has."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Character, in the count. With thirteen dots over five notes, this is the only window that triples three degrees at once: the "
+        },
+        {
+          "text": "1",
+          "marks": ["code"]
+        },
+        {
+          "text": ", the "
+        },
+        {
+          "text": "b3",
+          "marks": ["code"]
+        },
+        {
+          "text": " and the "
+        },
+        {
+          "text": "b7",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Three roots and three flat thirds means this window states the chord's quality more often than any other in the chapter states anything, which is part of why it sounds settled and minor even though it's awkward to hold whole. In practice you take it in pieces — the low strings clustered around the root at "
+        },
+        {
+          "text": "6·5",
+          "marks": ["code"]
+        },
+        {
+          "text": ", the high strings clustered around the root at "
+        },
+        {
+          "text": "1·5",
+          "marks": ["code"]
+        },
+        {
+          "text": " — the same way chapter 2 already told you to hold the triad out of this form."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The top edge is fret 5, where every string carries a note of the scale. One clause here; "
+        },
+        {
+          "text": "the E form",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-pentatonic-e-form"
+          }
+        },
+        {
+          "text": " is where that fret's full story actually lives."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Look it over against the "
+        },
+        {
+          "text": "G form's triad",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-triad-g-form"
+          }
+        },
+        {
+          "text": " for the shape these dots grew out of, or page the window in the "
+        },
+        {
+          "text": "Scale Visualizer",
+          "link": {
+            "kind": "screen",
+            "href": "/scale-visualizer"
+          }
+        },
+        {
+          "text": " to see all thirteen drawn out."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Next: "
+        },
+        {
+          "text": "the E form",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-pentatonic-e-form"
+          }
+        },
+        {
+          "text": " — the one you may already have been playing for years."
+        }
+      ]
+    }
+  ]
+}

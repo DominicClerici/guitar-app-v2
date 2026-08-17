@@ -1,0 +1,349 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_minor-caged-one-window-two-names",
+    "slug": "minor-caged-one-window-two-names",
+    "title": "One Window, Two Names",
+    "summary": "A minor's five windows sit three frets lower than C major's same-lettered ones, and exactly two spans — frets 4–8 and 9–13 — belong to both maps at once.",
+    "tags": ["caged", "minor"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "If the notes are identical, surely the boxes are too. They aren't. Three of the five sit somewhere else entirely, and the two that do coincide are worth naming precisely, because they're the bridge between everything you already know and everything this pathway is about to teach."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Here's why. A window is a fret span positioned by the chord's " },
+        { "text": "root", "marks": ["bold"] },
+        { "text": ", the same anchoring rule the " },
+        { "text": "root ladder", "link": { "kind": "article", "slug": "caged-root-ladder" } },
+        { "text": " used, and " },
+        { "text": "A", "marks": ["code"] },
+        { "text": " sits three semitones below " },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": ". So every A minor window sits three frets lower on the neck than the C major window with the same letter — nothing about the neck itself changed, only where each letter's window starts."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The two ladders, form by form. One notation note first: " },
+        { "text": "5·3", "marks": ["code"] },
+        { "text": " means string 5, fret 3 — string 1 is the high " },
+        { "text": "e", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [[{ "text": "Form" }], [{ "text": "C major" }], [{ "text": "A minor" }]],
+      "rows": [
+        [
+          [{ "text": "C" }],
+          [{ "text": "0–4", "marks": ["code"] }],
+          [{ "text": "9–13", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "A" }],
+          [{ "text": "2–6", "marks": ["code"] }],
+          [{ "text": "0–3", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "G" }],
+          [{ "text": "4–8", "marks": ["code"] }],
+          [{ "text": "1–5", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "E" }],
+          [{ "text": "7–11", "marks": ["code"] }],
+          [{ "text": "4–8", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "D" }],
+          [{ "text": "9–13", "marks": ["code"] }],
+          [{ "text": "6–10", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Nine of those ten spans are five frets wide. The odd one out is A minor's A form: it would start a fret behind the nut, so it runs "
+        },
+        { "text": "0–3", "marks": ["code"] },
+        {
+          "text": " with one fret of it missing. Same form, less room — and this chapter does not need it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Same neck, same dots underneath — two different sets of bands. Compare the edges, not the roots: it's where each band starts and ends that tells the real story here."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-ladder",
+      "props": { "root": "C" }
+    },
+    {
+      "type": "live",
+      "component": "caged-ladder",
+      "props": { "root": "A", "quality": "minor" }
+    },
+    {
+      "type": "paragraph",
+      "spans": [{ "text": "Exactly two spans coincide, checked across all twenty-five pairs:" }]
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        [
+          { "text": "Frets " },
+          { "text": "4–8", "marks": ["code"] },
+          { "text": " are C major's " },
+          { "text": "G form", "marks": ["bold"] },
+          { "text": " and A minor's " },
+          { "text": "E form", "marks": ["bold"] },
+          { "text": "." }
+        ],
+        [
+          { "text": "Frets " },
+          { "text": "9–13", "marks": ["code"] },
+          { "text": " are C major's " },
+          { "text": "D form", "marks": ["bold"] },
+          { "text": " and A minor's " },
+          { "text": "C form", "marks": ["bold"] },
+          { "text": "." }
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Nothing else lines up, and it's worth seeing why rather than just taking the two coincidences on faith. Shift the whole C major ladder down three frets, and each form lands on the span of whichever form sits three frets above it in C. Reading C major's window starts — "
+        },
+        { "text": "0, 2, 4, 7, 9", "marks": ["code"] },
+        { "text": ", then " },
+        { "text": "12", "marks": ["code"] },
+        { "text": " — the only gaps of three are " },
+        { "text": "G→E", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "D→C", "marks": ["code"] },
+        {
+          "text": ". So exactly two forms find a partner; the other three land in gaps of two, where nothing is waiting for them."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Take the " },
+        { "text": "4–8", "marks": ["code"] },
+        {
+          "text": " window and read it twice. Seventeen positions, identical dots, two different sets of labels:"
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Position" }],
+        [{ "text": "Note" }],
+        [{ "text": "In C major" }],
+        [{ "text": "In A minor" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "6·5", "marks": ["code"] }],
+          [{ "text": "A", "marks": ["code"] }],
+          [{ "text": "6", "marks": ["code"] }],
+          [{ "text": "1", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "6·7", "marks": ["code"] }],
+          [{ "text": "B", "marks": ["code"] }],
+          [{ "text": "7", "marks": ["code"] }],
+          [{ "text": "2", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "6·8", "marks": ["code"] }],
+          [{ "text": "C", "marks": ["code"] }],
+          [{ "text": "1", "marks": ["code"] }],
+          [{ "text": "b3", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "5·5", "marks": ["code"] }],
+          [{ "text": "D", "marks": ["code"] }],
+          [{ "text": "2", "marks": ["code"] }],
+          [{ "text": "4", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "5·7", "marks": ["code"] }],
+          [{ "text": "E", "marks": ["code"] }],
+          [{ "text": "3", "marks": ["code"] }],
+          [{ "text": "5", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "5·8", "marks": ["code"] }],
+          [{ "text": "F", "marks": ["code"] }],
+          [{ "text": "4", "marks": ["code"] }],
+          [{ "text": "b6", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "4·5", "marks": ["code"] }],
+          [{ "text": "G", "marks": ["code"] }],
+          [{ "text": "5", "marks": ["code"] }],
+          [{ "text": "b7", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "4·7", "marks": ["code"] }],
+          [{ "text": "A", "marks": ["code"] }],
+          [{ "text": "6", "marks": ["code"] }],
+          [{ "text": "1", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "3·4", "marks": ["code"] }],
+          [{ "text": "B", "marks": ["code"] }],
+          [{ "text": "7", "marks": ["code"] }],
+          [{ "text": "2", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "3·5", "marks": ["code"] }],
+          [{ "text": "C", "marks": ["code"] }],
+          [{ "text": "1", "marks": ["code"] }],
+          [{ "text": "b3", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "3·7", "marks": ["code"] }],
+          [{ "text": "D", "marks": ["code"] }],
+          [{ "text": "2", "marks": ["code"] }],
+          [{ "text": "4", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "2·5", "marks": ["code"] }],
+          [{ "text": "E", "marks": ["code"] }],
+          [{ "text": "3", "marks": ["code"] }],
+          [{ "text": "5", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "2·6", "marks": ["code"] }],
+          [{ "text": "F", "marks": ["code"] }],
+          [{ "text": "4", "marks": ["code"] }],
+          [{ "text": "b6", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "2·8", "marks": ["code"] }],
+          [{ "text": "G", "marks": ["code"] }],
+          [{ "text": "5", "marks": ["code"] }],
+          [{ "text": "b7", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "1·5", "marks": ["code"] }],
+          [{ "text": "A", "marks": ["code"] }],
+          [{ "text": "6", "marks": ["code"] }],
+          [{ "text": "1", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "1·7", "marks": ["code"] }],
+          [{ "text": "B", "marks": ["code"] }],
+          [{ "text": "7", "marks": ["code"] }],
+          [{ "text": "2", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "1·8", "marks": ["code"] }],
+          [{ "text": "C", "marks": ["code"] }],
+          [{ "text": "1", "marks": ["code"] }],
+          [{ "text": "b3", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " at " },
+        { "text": "6·8", "marks": ["code"] },
+        { "text": " was C major's " },
+        { "text": "1", "marks": ["code"] },
+        { "text": "; here it's A minor's " },
+        { "text": "b3", "marks": ["code"] },
+        { "text": ". The " },
+        { "text": "A", "marks": ["code"] },
+        { "text": " at " },
+        { "text": "6·5", "marks": ["code"] },
+        { "text": " was the " },
+        { "text": "6", "marks": ["code"] },
+        { "text": "; here it's the " },
+        { "text": "1", "marks": ["code"] },
+        {
+          "text": ". Every one of the seventeen positions works the same way — same fret, same finger, different name — because the label was never a property of the dot. It's a property of which chord you're calling home."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [{ "text": "The dots do not move; the labels do." }]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One paragraph on a shape inside that same window you may already know. On frets "
+        },
+        { "text": "5", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "7", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "8", "marks": ["code"] },
+        {
+          "text": " — twelve dots — sits the five-note version almost every self-taught guitarist already plays, the one they call \"the A minor pentatonic at fret 5\". It's the same dots as CAGED's G form of C major, note for note, fret for fret. Two things you may have known separately for years — a pentatonic box and a CAGED form — turn out to be one thing wearing two names. That's as far as this chapter goes with it — the pentatonic itself, and what its five notes actually give you, waits for its own chapter."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "You don't have to take any of this on trust. Check it yourself in the " },
+        { "text": "Scale Visualizer", "link": { "kind": "screen", "href": "/scale-visualizer" } },
+        { "text": ": set the root to " },
+        { "text": "A", "marks": ["code"] },
+        {
+          "text": " and the scale to natural minor, leave the position system on CAGED, and page through — the pager labels frets "
+        },
+        { "text": "4–8", "marks": ["code"] },
+        { "text": " \"E form\". Switch the root to " },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": " and the scale to major and page again; the same span is now labelled \"G form\". The app agrees with this lesson by construction."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Five windows, carved differently from C major's five but built from the exact same notes, and five A minor chord shapes waiting inside them. The only thing that has to move to find any of them is the third. That's Chapter 2."
+        }
+      ]
+    }
+  ]
+}

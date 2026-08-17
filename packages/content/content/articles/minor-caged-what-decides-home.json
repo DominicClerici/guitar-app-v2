@@ -1,0 +1,210 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_minor-caged-what-decides-home",
+    "slug": "minor-caged-what-decides-home",
+    "title": "Same Notes, Different Home",
+    "summary": "A note set has no key of its own — the bass, the chords, and where a phrase lands and stops are what make seven shared notes sound like C major or like A minor.",
+    "tags": ["caged", "minor"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "\"A minor is just C major starting on A\" gets half of this right and stops there. Right: the notes really are the same seven. Wrong: starting the same scale from a different note does not, by itself, make anything sound minor. A set of notes has no key of its own — it's just seven pitches sitting there, waiting to be pointed somewhere, and pointing them takes more than picking a different starting letter."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "What decides whether seven notes sound like C major or like A minor is not the note list — it's what the music leans on. This is well established: a listener's sense of home comes from duration and repetition, from what the harmony and the bass carry, not from which pitches are technically available. Four things, in practice, do the deciding:"
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        [{ "text": "What the bass sits on" }],
+        [{ "text": "What the chords underneath are built from" }],
+        [{ "text": "Which note a phrase keeps landing on" }],
+        [{ "text": "Which note the music stops on" }]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "None of that is guesswork, and it is close to how this app's own key detector scores a progression: the chords themselves count for more than the bare list of pitches, and where a chord sits in the loop — first, last — counts on top of that. Which is why the same seven notes can come out as two different keys."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here's the demonstration, and it's the centre of this lesson. Two four-chord loops, built from nothing but the seven notes C major and A minor share, differing only in which chord opens and closes the loop:"
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [[{ "text": "Loop" }], [{ "text": "Key Detector calls it" }]],
+      "rows": [
+        [
+          [
+            { "text": "C", "marks": ["code"] },
+            { "text": " " },
+            { "text": "F", "marks": ["code"] },
+            { "text": " " },
+            { "text": "G", "marks": ["code"] },
+            { "text": " " },
+            { "text": "C", "marks": ["code"] }
+          ],
+          [{ "text": "C major, confidently" }]
+        ],
+        [
+          [
+            { "text": "Am", "marks": ["code"] },
+            { "text": " " },
+            { "text": "F", "marks": ["code"] },
+            { "text": " " },
+            { "text": "G", "marks": ["code"] },
+            { "text": " " },
+            { "text": "Am", "marks": ["code"] }
+          ],
+          [{ "text": "A minor, confidently" }]
+        ]
+      ]
+    },
+    {
+      "type": "live",
+      "component": "progression-player",
+      "props": {
+        "chords": ["C", "F", "G", "C"],
+        "bpm": 84,
+        "caption": "The major loop — opens and closes on C"
+      }
+    },
+    {
+      "type": "live",
+      "component": "progression-player",
+      "props": {
+        "chords": ["Am", "F", "G", "Am"],
+        "bpm": 84,
+        "caption": "The minor loop — same middle two chords, opens and closes on Am"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Play them one after the other. Nothing in the middle of the loop changes — the same "
+        },
+        { "text": "F", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "G", "marks": ["code"] },
+        {
+          "text": " go past either way — and yet the second one arrives somewhere else. That is the whole lesson, and it is worth hearing twice before reading on."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The two middle chords are " },
+        { "text": "identical", "marks": ["bold"] },
+        { "text": " — " },
+        { "text": "F", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "G", "marks": ["code"] },
+        {
+          "text": ", both times. Only the chord the loop starts and ends on differs, and that's enough to move the key. This is checked against the "
+        },
+        { "text": "Key Detector", "link": { "kind": "screen", "href": "/key-detector" } },
+        { "text": " itself: enter each loop and it names the first " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " major and the second " },
+        { "text": "A", "marks": ["code"] },
+        { "text": " minor, both confidently." }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        {
+          "text": "The two loops share their two middle chords. Only the chord they start and end on changes, and that alone is enough to move the key."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Hold an " },
+        { "text": "A", "marks": ["code"] },
+        { "text": " with the " },
+        { "text": "Drone", "link": { "kind": "screen", "href": "/drone" } },
+        {
+          "text": " running and play only the seven shared notes over it. The drone pins the root down, so you can't cheat by tracking the bass — the task is built so the only thing telling you it's minor is what you hear, not some other note you're using as a crutch. Then hold a "
+        },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": " with the same drone and play the same seven notes again. Nothing changes in your hand. Everything changes in the sound."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "This is why the next four chapters exist. If the home is " },
+        { "text": "A", "marks": ["code"] },
+        { "text": ", the chord underneath has to be an " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " chord, and the notes you lean on have to be its notes. Shapes rooted on " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " keep pulling the ear back toward " },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": " — relabelling the map you already have is not enough on its own. You need a shape that actually puts an "
+        },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " chord under your fingers, not a " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " major shape read with different intentions." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One honest limit, because none of this should be oversold: a bare scale run or a two-chord loop can be genuinely ambiguous, and the loops above were picked precisely because they aren't. Real music settles the question with time, repetition, and where the phrase actually stops — the same four things named above, just at the scale of a whole song instead of a four-bar loop."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "So if the chords are what decide it, and there's no " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " chord anywhere in the " },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": " major shapes you already know — "
+        },
+        {
+          "text": "is there even such a thing as minor CAGED",
+          "link": { "kind": "article", "slug": "minor-caged-is-there-minor-caged" }
+        },
+        {
+          "text": "? A lot of good teachers say no, and they deserve a straight answer, not a dodge."
+        }
+      ]
+    }
+  ]
+}

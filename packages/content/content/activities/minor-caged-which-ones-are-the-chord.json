@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "act_minor-caged-which-ones-are-the-chord",
+    "slug": "minor-caged-which-ones-are-the-chord",
+    "title": "Drill: Which Ones Are the Chord?",
+    "summary": "The same window twice — first the notes an Am chord is built from, then the two that are not — so the difference stops being something you read and starts being something your hand knows."
+  },
+  "activity": {
+    "kind": "note-play",
+    "modes": ["easy", "hard"],
+    "board": { "fretFrom": 0, "fretTo": 13 },
+    "rounds": [
+      {
+        "kind": "targets",
+        "id": "r_minor-caged-which-ones-are-the-chord.e-form-chord-tones",
+        "prompt": [
+          { "text": "Inside the box at fret 5, play only the notes an " },
+          { "text": "Am", "marks": ["code"] },
+          { "text": " chord is made of — every " },
+          { "text": "1", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "b3", "marks": ["code"] },
+          { "text": " and " },
+          { "text": "5", "marks": ["code"] },
+          { "text": " in the window. Eight of its twelve notes." }
+        ],
+        "targets": [
+          { "string": 6, "fret": 5 },
+          { "string": 6, "fret": 8 },
+          { "string": 5, "fret": 7 },
+          { "string": 4, "fret": 7 },
+          { "string": 3, "fret": 5 },
+          { "string": 2, "fret": 5 },
+          { "string": 1, "fret": 5 },
+          { "string": 1, "fret": 8 }
+        ],
+        "ordered": false,
+        "board": { "fretFrom": 4, "fretTo": 8 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_minor-caged-which-ones-are-the-chord.e-form-the-other-two",
+        "prompt": [
+          { "text": "Now the four that are not in the chord — the two " },
+          { "text": "4", "marks": ["code"] },
+          { "text": "s and the two " },
+          { "text": "b7", "marks": ["code"] },
+          { "text": "s. Play them and hear how none of them wants to be the last note." }
+        ],
+        "targets": [
+          { "string": 5, "fret": 5 },
+          { "string": 4, "fret": 5 },
+          { "string": 3, "fret": 7 },
+          { "string": 2, "fret": 8 }
+        ],
+        "ordered": false,
+        "board": { "fretFrom": 4, "fretTo": 8 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_minor-caged-which-ones-are-the-chord.a-form-chord-tones",
+        "prompt": [
+          { "text": "Same job in open position, frets " },
+          { "text": "0–3", "marks": ["code"] },
+          { "text": ": only the notes of " },
+          { "text": "Am", "marks": ["code"] },
+          { "text": ". Five of the seven are the open chord you already play." }
+        ],
+        "targets": [
+          { "string": 6, "fret": 0 },
+          { "string": 5, "fret": 0 },
+          { "string": 5, "fret": 3 },
+          { "string": 4, "fret": 2 },
+          { "string": 3, "fret": 2 },
+          { "string": 2, "fret": 1 },
+          { "string": 1, "fret": 0 }
+        ],
+        "ordered": false,
+        "board": { "fretFrom": 0, "fretTo": 3 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_minor-caged-which-ones-are-the-chord.every-flat-seven",
+        "prompt": [
+          { "text": "One of the two notes this chapter added. Play a " },
+          { "text": "b7", "marks": ["code"] },
+          { "text": " in each octave, low to high: " },
+          { "text": "6·3", "marks": ["code"] },
+          { "text": ", then " },
+          { "text": "4·5", "marks": ["code"] },
+          { "text": ", then " },
+          { "text": "1·3", "marks": ["code"] },
+          { "text": "." }
+        ],
+        "targets": [
+          { "string": 6, "fret": 3 },
+          { "string": 4, "fret": 5 },
+          { "string": 1, "fret": 3 }
+        ],
+        "ordered": true,
+        "board": { "fretFrom": 0, "fretTo": 13 }
+      }
+    ]
+  }
+}

@@ -1,0 +1,759 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_minor-caged-nothing-left-to-add",
+    "slug": "minor-caged-nothing-left-to-add",
+    "title": "Nothing Left to Add",
+    "summary": "The five windows now hold all seven degrees of A natural minor, and none of it needs memorising dot by dot: the roots plus two one-fret rules regenerate the whole scale.",
+    "tags": ["caged", "minor"],
+    "readingTimeMin": 5,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Five windows, seven degrees in every one of them, and nothing left to add. You have not been handed a new shape since chapter 2, and you will not be handed one now — five shapes, learned once, filled in four times over, the same hand positions the whole way."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here is where all five ended up."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [
+          {
+            "text": "Form"
+          }
+        ],
+        [
+          {
+            "text": "Window"
+          }
+        ],
+        [
+          {
+            "text": "Dots"
+          }
+        ],
+        [
+          {
+            "text": "Frets the dots use"
+          }
+        ],
+        [
+          {
+            "text": "String carrying only two"
+          }
+        ]
+      ],
+      "rows": [
+        [
+          [
+            {
+              "text": "C"
+            }
+          ],
+          [
+            {
+              "text": "9–13",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "17"
+            }
+          ],
+          [
+            {
+              "text": "9, 10, 12, 13",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "5"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "A"
+            }
+          ],
+          [
+            {
+              "text": "0–3",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "17"
+            }
+          ],
+          [
+            {
+              "text": "0, 1, 2, 3",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "3"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "G"
+            }
+          ],
+          [
+            {
+              "text": "1–5",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "18"
+            }
+          ],
+          [
+            {
+              "text": "1, 2, 3, 4, 5",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "none"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "E"
+            }
+          ],
+          [
+            {
+              "text": "4–8",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "17"
+            }
+          ],
+          [
+            {
+              "text": "4, 5, 6, 7, 8",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "4"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "D"
+            }
+          ],
+          [
+            {
+              "text": "6–10",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "18"
+            }
+          ],
+          [
+            {
+              "text": "6, 7, 8, 9, 10",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "none"
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Two eighteens, three seventeens — and the two eighteens are exactly the two windows that carry three dots on every string."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "None of that has to be memorised dot by dot. The roots came from the caged-fretboard pathway; "
+        },
+        {
+          "text": "1",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "b3",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": " came from chapter 2; the "
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": " and the "
+        },
+        {
+          "text": "b7",
+          "marks": ["code"]
+        },
+        {
+          "text": " came from chapter 3. This chapter added two rules, not twenty-six new dots: a "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": " sits one fret above every "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": ", and a "
+        },
+        {
+          "text": "2",
+          "marks": ["code"]
+        },
+        {
+          "text": " sits one fret below every "
+        },
+        {
+          "text": "b3",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Find a chord tone and both new notes are already located, on every string, in every window. Honestly: a window's fixed edges can cut a pair apart, so the note it locates falls outside the frame — that happens four times in the G form, once in the D form, and nowhere else."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "info",
+      "spans": [
+        {
+          "text": "A "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": " is one fret above every "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": ". A "
+        },
+        {
+          "text": "2",
+          "marks": ["code"]
+        },
+        {
+          "text": " is one fret below every "
+        },
+        {
+          "text": "b3",
+          "marks": ["code"]
+        },
+        {
+          "text": ". That's the whole scale, once you already know the chord tones."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-ladder",
+      "props": {
+        "root": "A",
+        "quality": "minor"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The ladder marks roots only, whatever the layer — there's no "
+        },
+        {
+          "text": "2",
+          "marks": ["code"]
+        },
+        {
+          "text": " or "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": " to find on it, and there never will be. That's no longer a limitation. From a root, the two rules above generate everything else, so the minimal map is now enough."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "What each degree is actually for:"
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        [
+          {
+            "text": "1",
+            "marks": ["code"]
+          },
+          {
+            "text": ", "
+          },
+          {
+            "text": "b3",
+            "marks": ["code"]
+          },
+          {
+            "text": " and "
+          },
+          {
+            "text": "5",
+            "marks": ["code"]
+          },
+          {
+            "text": " — the chord. Where a phrase arrives."
+          }
+        ],
+        [
+          {
+            "text": "4",
+            "marks": ["code"]
+          },
+          {
+            "text": " and "
+          },
+          {
+            "text": "b7",
+            "marks": ["code"]
+          },
+          {
+            "text": " — never closer than two frets to any chord tone. They move a line without arguing with anything."
+          }
+        ],
+        [
+          {
+            "text": "2",
+            "marks": ["code"]
+          },
+          {
+            "text": " — a whole step above home and a fret below the "
+          },
+          {
+            "text": "b3",
+            "marks": ["code"]
+          },
+          {
+            "text": ". Consonant over an "
+          },
+          {
+            "text": "Am",
+            "marks": ["code"]
+          },
+          {
+            "text": ". It leans up, and it's what lets a line walk instead of jump."
+          }
+        ],
+        [
+          {
+            "text": "b6",
+            "marks": ["code"]
+          },
+          {
+            "text": " — a fret above the "
+          },
+          {
+            "text": "5",
+            "marks": ["code"]
+          },
+          {
+            "text": ". The darkest note in the scale, and the one that will fight an "
+          },
+          {
+            "text": "Am",
+            "marks": ["code"]
+          },
+          {
+            "text": " if you sit on it. Place it, then move."
+          }
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Chapter 3 found one fret where all six strings sound a note of the scale: fret 5, and only fret 5. With every degree in play there are four such frets — "
+        },
+        {
+          "text": "0",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "10",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "12",
+          "marks": ["code"]
+        },
+        {
+          "text": ", and "
+        },
+        {
+          "text": "12",
+          "marks": ["code"]
+        },
+        {
+          "text": " is "
+        },
+        {
+          "text": "0",
+          "marks": ["code"]
+        },
+        {
+          "text": " again, an octave up. The reason fret 5 stood alone before is now visible: frets "
+        },
+        {
+          "text": "0",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "12",
+          "marks": ["code"]
+        },
+        {
+          "text": " both carry a "
+        },
+        {
+          "text": "2",
+          "marks": ["code"]
+        },
+        {
+          "text": " — the open "
+        },
+        {
+          "text": "B",
+          "marks": ["code"]
+        },
+        {
+          "text": " string, and its octave — and fret "
+        },
+        {
+          "text": "10",
+          "marks": ["code"]
+        },
+        {
+          "text": " carries a "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": ", at "
+        },
+        {
+          "text": "3·10",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Fret 5 is the one fret whose six notes dodge both of the notes this chapter added, which is exactly why it always felt like the safe place to stand."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One seam is short a degree. Three of the four overlaps between neighbouring windows hold all seven degrees. The fourth — frets "
+        },
+        {
+          "text": "4–5",
+          "marks": ["code"]
+        },
+        {
+          "text": ", where the G form meets the E form — holds only six, and the missing one is the "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": ": no "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": " sits at fret 4 or fret 5 on any string. The safest corner of the neck, the one every self-taught player already stands in, turns out to be the one corner the darkest note in the scale can't reach."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here's what this chapter has actually been building toward. A natural minor and C major are the same seven notes, so every dot drawn in this chapter is also a dot on the C major neck the caged-fretboard pathway mapped — same frets, same fingers, seven different names. "
+        },
+        {
+          "text": "One Window, Two Names",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-one-window-two-names"
+          }
+        },
+        {
+          "text": " proved it for a single span; it's true of the whole neck now. And the two semitones are the same two frets either way: "
+        },
+        {
+          "text": "B",
+          "marks": ["code"]
+        },
+        {
+          "text": " to "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": ", and "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": " to "
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": ". In C major, that "
+        },
+        {
+          "text": "B",
+          "marks": ["code"]
+        },
+        {
+          "text": " is the "
+        },
+        {
+          "text": "7",
+          "marks": ["code"]
+        },
+        {
+          "text": " leaning up into the "
+        },
+        {
+          "text": "1",
+          "marks": ["code"]
+        },
+        {
+          "text": ", and that "
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": " is the "
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": " leaning on the "
+        },
+        {
+          "text": "3",
+          "marks": ["code"]
+        },
+        {
+          "text": ". In A minor, the same "
+        },
+        {
+          "text": "B",
+          "marks": ["code"]
+        },
+        {
+          "text": " is the "
+        },
+        {
+          "text": "2",
+          "marks": ["code"]
+        },
+        {
+          "text": " leaning up into the "
+        },
+        {
+          "text": "b3",
+          "marks": ["code"]
+        },
+        {
+          "text": ", and the same "
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": " is the "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": " leaning on the "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": ". The leaning notes never moved. What changed is which chord tone is sitting underneath them."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Take it to the "
+        },
+        {
+          "text": "Scale Visualizer",
+          "link": {
+            "kind": "screen",
+            "href": "/scale-visualizer"
+          }
+        },
+        {
+          "text": ": root "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": ", scale set to natural minor, position system on CAGED — the same five windows this whole chapter used, now complete. Hold a sustained "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": " on the "
+        },
+        {
+          "text": "Drone",
+          "link": {
+            "kind": "screen",
+            "href": "/drone"
+          }
+        },
+        {
+          "text": " and play any of them against it, ending wherever you like and listening for whether it settles or fights. The visualizer's other toggle there, "
+        },
+        {
+          "text": "3/str",
+          "marks": ["code"]
+        },
+        {
+          "text": ", carves the same notes a different way; this pathway doesn't teach it. The next chapter turns this scale into chords."
+        }
+      ]
+    }
+  ]
+}

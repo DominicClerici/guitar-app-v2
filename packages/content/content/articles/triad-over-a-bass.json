@@ -1,0 +1,226 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_triad-over-a-bass",
+    "slug": "triad-over-a-bass",
+    "title": "Someone Else Owns the Bass Note",
+    "summary": "Hold a triad on the top three strings with something lower sounding and you are not choosing the inversion — the bass is, leaving you only register and motion to decide.",
+    "tags": ["triads", "chords", "fretboard"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Hold " },
+        { "text": "x x x 0 1 0", "marks": ["code"] },
+        { "text": " on its own and it is " },
+        { "text": "G3 C4 E4", "marks": ["code"] },
+        {
+          "text": " — C major, second inversion, the fifth on the bottom. Now put a bass under it and read what the room actually hears."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Bass note" }],
+        [{ "text": "Lowest sounding note" }],
+        [{ "text": "The chord" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "C", "marks": ["code"] }],
+          [{ "text": "the root" }],
+          [{ "text": "C major, root position" }]
+        ],
+        [
+          [{ "text": "E", "marks": ["code"] }],
+          [{ "text": "the third" }],
+          [{ "text": "C/E", "marks": ["code"] }, { "text": " — first inversion" }]
+        ],
+        [
+          [{ "text": "G", "marks": ["code"] }],
+          [{ "text": "the fifth" }],
+          [{ "text": "C/G", "marks": ["code"] }, { "text": " — second inversion" }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Your grip never changed a note. Inversion is about the lowest "
+        },
+        { "text": "sounding", "marks": ["italic"] },
+        {
+          "text": " note, not the lowest note of whatever you happen to be holding — and on a top-set triad, with a band around you, that note is somebody else's."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Which settles who a " },
+        {
+          "text": "slash is addressed to",
+          "link": { "kind": "article", "slug": "triad-hearing-the-inversion" }
+        },
+        {
+          "text": ". It specifies one lowest note, so it is written at whoever is going to play the lowest note — normally the bassist. Comping up here with a bass player in the room, you do not have to honour it at all; the chord above it is your job. Playing alone, nobody else is going to play it, so it is yours."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That leaves you exactly two decisions, and they are the two this chapter has been building: "
+        },
+        {
+          "text": "which set",
+          "link": { "kind": "article", "slug": "triad-choosing-a-set" }
+        },
+        { "text": " — the register the chord sits in — and " },
+        {
+          "text": "which copy",
+          "link": { "kind": "article", "slug": "triad-voice-leading" }
+        },
+        {
+          "text": " — how little your hand has to move to get there. Not what the chord is called."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The register argument pays off here. A bass guitar's lowest string is tuned a full octave below the guitar's "
+        },
+        { "text": "E2", "marks": ["code"] },
+        { "text": ", while strings 1-2-3 hold C major from " },
+        { "text": "G3", "marks": ["code"] },
+        { "text": " up to " },
+        { "text": "C5", "marks": ["code"] },
+        {
+          "text": ". A compact triad up there hands the whole low register to the bass and sits at or above the top of most sung melodies — nobody is standing on anybody. That is the standard way a rhythm section divides the range up, and it makes the three-string triad one of the most widely used textures in rhythm guitar: not the only one, but the default wherever a guitarist shares a rhythm section with a bass player."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Chapter 4 left a grip hanging on exactly this point. " },
+        { "text": "x x x 1 1 0", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "G#3 C4 E4", "marks": ["code"] },
+        { "text": ", and it is " },
+        {
+          "text": "three chords at once",
+          "link": { "kind": "article", "slug": "triad-augmented-has-no-root" }
+        },
+        {
+          "text": " — the augmented shape has no root of its own, and context supplies one. Here is the context, concretely: put a "
+        },
+        { "text": "C", "marks": ["code"] },
+        { "text": " underneath and it is " },
+        { "text": "Caug", "marks": ["code"] },
+        { "text": "; an " },
+        { "text": "E", "marks": ["code"] },
+        { "text": ", and it is " },
+        { "text": "Eaug", "marks": ["code"] },
+        { "text": "; a " },
+        { "text": "G#", "marks": ["code"] },
+        { "text": ", and it is " },
+        { "text": "G#aug", "marks": ["code"] },
+        { "text": ". The bass note " },
+        { "text": "is", "marks": ["italic"] },
+        { "text": " the context." }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "C",
+        "quality": "augmented",
+        "strings": "1-2-3",
+        "inversion": "second",
+        "caption": "The same three frets chapter 4 drew — but which of the three names it takes is decided by whatever is playing underneath it, not by anything in the grip."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The same trick runs the other way with a chord you already play: chapter 4 showed that "
+        },
+        { "text": "B D F", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "G7", "marks": ["code"] },
+        { "text": " with its root taken away, so put the " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " back underneath and you have " },
+        { "text": "G7", "marks": ["code"] },
+        { "text": " again." }
+      ]
+    },
+    { "type": "heading", "level": 1, "spans": [{ "text": "Getting a bass under it" }] },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        [{ "text": "A bass player, which is the case the whole lesson is about." }],
+        [
+          { "text": "The " },
+          { "text": "Drone", "link": { "kind": "screen", "href": "/drone" } },
+          { "text": ", when you're practising alone." }
+        ],
+        [
+          {
+            "text": "Your own thumb on string 6 or string 5, with the strings in between muted. Be clear about what that is: a triad "
+          },
+          { "text": "plus", "marks": ["italic"] },
+          {
+            "text": " a bass note, with the three notes on top completely unchanged — not a wider voicing of the same chord."
+          }
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "To hear it, set the " },
+        { "text": "Drone", "link": { "kind": "screen", "href": "/drone" } },
+        { "text": " to " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " and hold each of the three C major grips on strings 1-2-3 in turn — " },
+        { "text": "x x x 0 1 0", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "x x x 5 5 3", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "x x x 9 8 8", "marks": ["code"] },
+        {
+          "text": ". Three grips, one bass, and the chord is root-position C every single time. What changes is the register and which note is on top. Then move the drone to "
+        },
+        { "text": "E", "marks": ["code"] },
+        { "text": ", and to " },
+        { "text": "G", "marks": ["code"] },
+        { "text": ", and hear the same three grips turn into " },
+        { "text": "C/E", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "C/G", "marks": ["code"] },
+        { "text": " without your hand doing anything." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "So: the chords, the shapes, the register, the movement and the bass are all accounted for. Everything is in place except time."
+        }
+      ]
+    }
+  ]
+}

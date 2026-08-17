@@ -1,0 +1,222 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_modes-lydian-sound",
+    "slug": "modes-lydian-sound",
+    "title": "Lydian: Major With the Fourth Raised",
+    "summary": "Lydian is A major with one degree raised, its characteristic note is the #4, and its vamp is two major triads a whole tone apart that share no notes at all.",
+    "tags": ["modes", "ear", "theory"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-15"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The avoid-note lesson left this exactly here: Lydian's raised fourth is the one degree in this chapter that removes Ionian's clash altogether. So what is Lydian actually like, once that one liability is gone? Start with what changed."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The parallel road, as always in this pathway: A Lydian is A major with the "
+        },
+        { "text": "4", "marks": ["code"] },
+        { "text": " raised to a " },
+        { "text": "#4", "marks": ["code", { "type": "color", "tone": "violet" }] },
+        { "text": " — " },
+        { "text": "D", "marks": ["code"] },
+        { "text": " becomes " },
+        { "text": "D#", "marks": ["code"] },
+        { "text": ". " },
+        { "text": "A B C# D# E F# G#", "marks": ["code"] },
+        { "text": ", degrees " },
+        { "text": "1 2 3 #4 5 6 7", "marks": ["code"] },
+        { "text": ". One degree moves. Everything else holds still." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The relative road, named once and put down: A Lydian's parent major is "
+        },
+        { "text": "E", "marks": ["code"] },
+        { "text": ". That's the fast way to find the notes if you ever need it, and " },
+        {
+          "text": "Two Roads to the Same Mode",
+          "link": { "kind": "article", "slug": "modes-two-roads" }
+        },
+        { "text": " already made the case for using it sparingly — thinking in " },
+        { "text": "E", "marks": ["code"] },
+        {
+          "text": " major while trying to sound like A Lydian is the trap this pathway keeps warning about."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The characteristic note is the " },
+        { "text": "#4", "marks": ["code", { "type": "color", "tone": "violet" }] },
+        { "text": " (" },
+        { "text": "D#", "marks": ["code"] },
+        {
+          "text": ") — tinted violet in prose here, and outlined violet wherever the neck draws it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Lydian keeps the leading tone. It and Ionian are the only two of the seven modes with a "
+        },
+        { "text": "7", "marks": ["code"] },
+        { "text": " sitting a half step below home — " },
+        {
+          "text": "Where the Half Steps Fall",
+          "link": { "kind": "article", "slug": "modes-half-steps" }
+        },
+        {
+          "text": " counted that membership already. Raising the fourth cost Lydian nothing on that front: the leading tone is untouched, the same note in the same place Ionian keeps it. So Lydian isn't major loosened up — it's major with the leading tone still there, minus the one note that used to grate."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Its tritone is measured off the root itself, "
+        },
+        { "text": "1", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "#4", "marks": ["code", { "type": "color", "tone": "violet" }] },
+        { "text": " — " },
+        { "text": "A", "marks": ["code"] },
+        { "text": " against " },
+        { "text": "D#", "marks": ["code"] },
+        { "text": ". " },
+        {
+          "text": "Where the Tritone Lands",
+          "link": { "kind": "article", "slug": "modes-the-tritone" }
+        },
+        {
+          "text": " already gave this address: Lydian is the only one of this chapter's three whose tritone touches the tonic at all. (Locrian's does too, elsewhere in the family — that's not a claim about all seven.) Ionian's tritone missed the tonic triad completely; Lydian's sits right on the root, which is a very different kind of tension to carry into a chord that isn't moving."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The vamp is " },
+        { "text": "A", "marks": ["code"] },
+        { "text": "–" },
+        { "text": "B", "marks": ["code"] },
+        { "text": ", a " },
+        { "text": "I", "marks": ["code"] },
+        { "text": "–" },
+        { "text": "II", "marks": ["code"] },
+        { "text": ". " },
+        { "text": "B", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "B D# F#", "marks": ["code"] },
+        { "text": ", and the " },
+        { "text": "D#", "marks": ["code"] },
+        { "text": " inside it is the " },
+        { "text": "#4", "marks": ["code", { "type": "color", "tone": "violet" }] },
+        { "text": ". Two facts worth sitting with, both checked against every mode on " },
+        { "text": "A", "marks": ["code"] },
+        { "text": ": " },
+        { "text": "A", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "A C# E", "marks": ["code"] },
+        { "text": ") and " },
+        { "text": "B", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "B D# F#", "marks": ["code"] },
+        {
+          "text": ") share no notes at all — two major triads a whole tone apart with nothing in common. And "
+        },
+        { "text": "B", "marks": ["code"] },
+        { "text": " major fits inside Lydian and inside none of the other six modes on " },
+        { "text": "A", "marks": ["code"] },
+        { "text": "; Ionian needs a " },
+        { "text": "D", "marks": ["code"] },
+        { "text": " where " },
+        { "text": "B", "marks": ["code"] },
+        { "text": " needs a " },
+        { "text": "D#", "marks": ["code"] },
+        { "text": ". So this vamp's second chord asserts the " },
+        { "text": "#4", "marks": ["code", { "type": "color", "tone": "violet" }] },
+        {
+          "text": " and rules out that neighbour in one gesture. Loop between the two indefinitely and nothing pulls toward a third chord — that's what a vamp is for."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The app's own line for this card is \"Major with a ♯4 — weightless, floating\", and that's the register worth borrowing: film scoring and a strand of rock are where you've actually heard this, not a property the interval carries on its own. "
+        },
+        {
+          "text": "What \"Brighter\" Actually Means",
+          "link": { "kind": "article", "slug": "modes-what-brighter-means" }
+        },
+        {
+          "text": " has the fuller discipline on that distinction: an association is worth teaching as an association, and worthless dressed up as a property of the interval."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "scale-compare",
+      "props": { "root": "A", "scales": ["major", "lydian"], "drone": true }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Start the drone and play both runs end to end, listening for what the fourth note does as it passes rather than tapping it in isolation."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "progression-player",
+      "props": {
+        "chords": ["A", "B"],
+        "bpm": 66,
+        "caption": "A–B, a I–II — two major triads a whole tone apart that share no notes at all"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Go play it. Hold the " },
+        { "text": "A", "marks": ["code"] },
+        { "text": " on " },
+        { "text": "Drone", "link": { "kind": "screen", "href": "/drone" } },
+        { "text": " and reach for the " },
+        { "text": "#4", "marks": ["code", { "type": "color", "tone": "violet" }] },
+        { "text": " against it, or grab a " },
+        { "text": "B", "marks": ["code"] },
+        { "text": " from " },
+        { "text": "Chord Shapes", "link": { "kind": "screen", "href": "/chord-shapes" } },
+        { "text": " and rock between the two chords yourself." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One degree raised is the whole story in the ear. Next: exactly what that same raised degree does inside a window you already own on the neck."
+        }
+      ]
+    }
+  ]
+}

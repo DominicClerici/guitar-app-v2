@@ -1,0 +1,627 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_modes-phrygian-sound",
+    "slug": "modes-phrygian-sound",
+    "title": "Phrygian: The Note Above Home",
+    "summary": "Phrygian is A natural minor with the 2 lowered, which puts a note a half step above home — the strongest single darkening move in the set — and its vamp is two chords a semitone apart.",
+    "tags": ["modes", "ear", "theory"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-15"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "A Phrygian is A natural minor with the "
+        },
+        {
+          "text": "2",
+          "marks": ["code"]
+        },
+        {
+          "text": " lowered to a "
+        },
+        {
+          "text": "b2",
+          "marks": ["code"]
+        },
+        {
+          "text": " — "
+        },
+        {
+          "text": "B",
+          "marks": ["code"]
+        },
+        {
+          "text": " becomes "
+        },
+        {
+          "text": "Bb",
+          "marks": ["code"]
+        },
+        {
+          "text": ", and nothing else moves. "
+        },
+        {
+          "text": "A Bb C D E F G",
+          "marks": ["code"]
+        },
+        {
+          "text": ", degrees "
+        },
+        {
+          "text": "1 b2 b3 4 5 b6 b7",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Spell it "
+        },
+        {
+          "text": "Bb",
+          "marks": ["code"]
+        },
+        {
+          "text": ", never "
+        },
+        {
+          "text": "A#",
+          "marks": ["code"]
+        },
+        {
+          "text": " — that's what the app's own scale builder prints, and the chip beside this prose says the same. Its parent major is "
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": ", named once and put down."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The characteristic note is the "
+        },
+        {
+          "text": "b2",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "rose"
+            }
+          ]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "Bb",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "rose"
+            }
+          ]
+        },
+        {
+          "text": ") — tinted rose here, and outlined rose wherever the neck draws it. The chip that lights on the scale card below is amber, though: the app tints every difference amber, whatever hue the scale itself carries."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "scale-compare",
+      "props": {
+        "root": "A",
+        "scales": ["minor", "phrygian"],
+        "drone": true
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Start the drone, then play both runs from the bottom, one after the other. The "
+        },
+        {
+          "text": "second",
+          "marks": ["bold"]
+        },
+        {
+          "text": " note is where they part — a whole step from home on the "
+        },
+        {
+          "text": "A Natural minor",
+          "marks": ["code"]
+        },
+        {
+          "text": " card, one fret from home on the "
+        },
+        {
+          "text": "A Phrygian",
+          "marks": ["code"]
+        },
+        {
+          "text": " card. The first step you take away from home is the whole mode."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "A half step sitting directly above the tonic is the strongest single darkening move available in the whole set — "
+        },
+        {
+          "text": "Where the Half Steps Fall",
+          "link": {
+            "kind": "article",
+            "slug": "modes-half-steps"
+          }
+        },
+        {
+          "text": " already counted exactly which two of the seven modes have one, and Phrygian is one of them. Here's the sharper fact, and it's this chapter's to say: of the five modes that carry a characteristic note, the "
+        },
+        {
+          "text": "b2",
+          "marks": ["code"]
+        },
+        {
+          "text": " is the only one that sits a half step from home. Lydian's "
+        },
+        {
+          "text": "#4",
+          "marks": ["code"]
+        },
+        {
+          "text": " is six semitones off, Mixolydian's "
+        },
+        {
+          "text": "b7",
+          "marks": ["code"]
+        },
+        {
+          "text": " is two, Dorian's "
+        },
+        {
+          "text": "6",
+          "marks": ["code"]
+        },
+        {
+          "text": " is three, and the one mode this pathway hasn't reached yet is six as well. Nothing else in the set leans on home this hard."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Phrygian also carries two avoid notes, not one — the "
+        },
+        {
+          "text": "b2",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "rose"
+            }
+          ]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "Bb",
+          "marks": ["code"]
+        },
+        {
+          "text": ") sits a half step above the root itself, and the "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": ") still sits a half step above the "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": " — the ache Phrygian never lost. "
+        },
+        {
+          "text": "The Ache Above the Fifth",
+          "link": {
+            "kind": "article",
+            "slug": "modes-the-ache"
+          }
+        },
+        {
+          "text": " already did the arithmetic for that second one; it's the only mode of the six across both families that carries two."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Its tritone falls between the "
+        },
+        {
+          "text": "b2",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "rose"
+            }
+          ]
+        },
+        {
+          "text": " and the "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": " — "
+        },
+        {
+          "text": "Bb",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": " — and it touches the "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Chapter 2 gave the address; "
+        },
+        {
+          "text": "Where the Tritone Lands",
+          "link": {
+            "kind": "article",
+            "slug": "modes-the-tritone"
+          }
+        },
+        {
+          "text": " has it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The vamp is "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "Bb",
+          "marks": ["code"]
+        },
+        {
+          "text": ", a "
+        },
+        {
+          "text": "i",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "bII",
+          "marks": ["code"]
+        },
+        {
+          "text": ". "
+        },
+        {
+          "text": "Bb",
+          "marks": ["code"]
+        },
+        {
+          "text": " is "
+        },
+        {
+          "text": "Bb D F",
+          "marks": ["code"]
+        },
+        {
+          "text": ", and the "
+        },
+        {
+          "text": "Bb",
+          "marks": ["code"]
+        },
+        {
+          "text": " in it is the "
+        },
+        {
+          "text": "b2",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "rose"
+            }
+          ]
+        },
+        {
+          "text": ". It's two chords unlike anything else you've played in this pathway."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "progression-player",
+      "props": {
+        "chords": ["Am", "Bb"],
+        "bpm": 66,
+        "caption": "Am to Bb — two chords a semitone apart that share no notes at all"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The two chords share no notes at all — "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": " is "
+        },
+        {
+          "text": "A C E",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "Bb",
+          "marks": ["code"]
+        },
+        {
+          "text": " is "
+        },
+        {
+          "text": "Bb D F",
+          "marks": ["code"]
+        },
+        {
+          "text": " — but that alone isn't what makes this vamp unusual; chapter 3's "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "B",
+          "marks": ["code"]
+        },
+        {
+          "text": " vamp for Lydian shares nothing either. What's actually unique is the roots: "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "Bb",
+          "marks": ["code"]
+        },
+        {
+          "text": " sit a semitone apart, the only vamp in this pathway where that's true."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Harmonise A natural minor and the chord built on the "
+        },
+        {
+          "text": "2",
+          "marks": ["code"]
+        },
+        {
+          "text": " is "
+        },
+        {
+          "text": "Bdim",
+          "marks": ["code"]
+        },
+        {
+          "text": " — "
+        },
+        {
+          "text": "The Chords A Minor Gives You",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-the-chords-of-the-key"
+          }
+        },
+        {
+          "text": " called it the key's least useful chord, with no barre shape at all. Lower the "
+        },
+        {
+          "text": "2",
+          "marks": ["code"]
+        },
+        {
+          "text": " to a "
+        },
+        {
+          "text": "b2",
+          "marks": ["code"]
+        },
+        {
+          "text": " and a "
+        },
+        {
+          "text": "major",
+          "marks": ["bold"]
+        },
+        {
+          "text": " triad, "
+        },
+        {
+          "text": "Bb",
+          "marks": ["code"]
+        },
+        {
+          "text": ", stands in exactly that spot instead."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One more thing worth knowing before you write this off as a curiosity: "
+        },
+        {
+          "text": "Bb",
+          "marks": ["code"]
+        },
+        {
+          "text": " major also fits inside one other mode of the seven, and its home chord isn't "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": ". So this vamp still does the job of pinning Phrygian down."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The associations are real, and worth naming as exactly that — associations. Phrygian sounds Spanish because flamenco is built on it, not because a "
+        },
+        {
+          "text": "b2",
+          "marks": ["code"]
+        },
+        {
+          "text": " is inherently Spanish; "
+        },
+        {
+          "text": "What \"Brighter\" Actually Means",
+          "link": {
+            "kind": "article",
+            "slug": "modes-what-brighter-means"
+          }
+        },
+        {
+          "text": " already made that case. Its place in heavy metal is the same kind of claim: the settled reading of the theory literature about what the repertoire does, not something anyone measured. And in the one place this pathway has actual listener data, Phrygian was judged the happier of its pair in just "
+        },
+        {
+          "text": ".21",
+          "marks": ["code"]
+        },
+        {
+          "text": " of trials, the lowest of the six tested. The app's own line for it: \"Minor with a ♭2 leaning on the root — Spanish, dark.\""
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Hold an "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": " on "
+        },
+        {
+          "text": "Drone",
+          "link": {
+            "kind": "screen",
+            "href": "/drone"
+          }
+        },
+        {
+          "text": " and reach for a "
+        },
+        {
+          "text": "Bb",
+          "marks": ["code"]
+        },
+        {
+          "text": " against it, or grab a "
+        },
+        {
+          "text": "Bb",
+          "marks": ["code"]
+        },
+        {
+          "text": " from "
+        },
+        {
+          "text": "Chord Shapes",
+          "link": {
+            "kind": "screen",
+            "href": "/chord-shapes"
+          }
+        },
+        {
+          "text": " and rock between the two chords yourself."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,735 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "quiz_triads-ch2-checkpoint",
+    "slug": "triads-ch2-checkpoint",
+    "title": "Checkpoint: Major Triads Everywhere",
+    "summary": "The other three string sets, the one string pair that changes every shape, the twelve-grip map, and a progression that never leaves five frets.",
+    "kind": "checkpoint",
+    "passThresholdPct": 70
+  },
+  "questions": [
+    {
+      "id": "q_triads-ch2-checkpoint.the-naive-slide",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "You know C major on strings 1-2-3 in root position: "
+        },
+        {
+          "text": "x x x 5 5 3",
+          "marks": ["code"]
+        },
+        {
+          "text": ". You slide it down one set with the frets unchanged — "
+        },
+        {
+          "text": "x x 5 5 3 x",
+          "marks": ["code"]
+        },
+        {
+          "text": " — and it sounds wrong. Why?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "The middle note is a fret too high: you get "
+            },
+            {
+              "text": "G",
+              "marks": ["code"]
+            },
+            {
+              "text": " "
+            },
+            {
+              "text": "C",
+              "marks": ["code"]
+            },
+            {
+              "text": " "
+            },
+            {
+              "text": "D",
+              "marks": ["code"]
+            },
+            {
+              "text": ", and a "
+            },
+            {
+              "text": "D",
+              "marks": ["code"]
+            },
+            {
+              "text": " is not in a C major triad."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "The whole grip is in the wrong octave — the notes are right, the register isn't."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "Nothing is wrong with the notes; the lower strings are just too thick for a close triad."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "It's a C major triad in a different inversion, so the bass note moved."
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "Low to high, "
+        },
+        {
+          "text": "x x 5 5 3 x",
+          "marks": ["code"]
+        },
+        {
+          "text": " sounds "
+        },
+        {
+          "text": "G3 C4 D4",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Two of the three notes survived the move; the middle one landed on a "
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": " instead of an "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": ". A shape does not simply slide across the strings, and the fix on strings 2-3-4 is always the same: the middle note comes down one fret, in every inversion."
+        }
+      ]
+    },
+    {
+      "id": "q_triads-ch2-checkpoint.the-flush-grip",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "C major, second inversion, on strings 2-3-4 is "
+        },
+        {
+          "text": "x x 5 5 5 x",
+          "marks": ["code"]
+        },
+        {
+          "text": " — all three notes at one fret. Where have you already played this shape?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "The top three strings of an open A chord."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "The middle three strings of an open A chord — strings 4, 3 and 2 at fret 2."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "The bottom three strings of an open C chord."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "Nowhere — it's the one grip in this chapter with no open-chord equivalent."
+            }
+          ]
+        }
+      ],
+      "answerId": "b",
+      "explanation": [
+        {
+          "text": "Open A is "
+        },
+        {
+          "text": "x 0 2 2 2 0",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Strings 4, 3 and 2 all sit at fret 2 and sound "
+        },
+        {
+          "text": "E3 A3 C#4",
+          "marks": ["code"]
+        },
+        {
+          "text": " — an A major triad, second inversion, on strings 2-3-4. Same three-notes-one-fret shape, different root. Open A's "
+        },
+        {
+          "text": "top",
+          "marks": ["italic"]
+        },
+        {
+          "text": " three strings are a different grip: an A major root position on strings 1-2-3."
+        }
+      ]
+    },
+    {
+      "id": "q_triads-ch2-checkpoint.which-note-moves",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "Moving a grip from strings 1-2-3 down to strings 2-3-4, the middle note drops a fret. Moving it down again, from strings 2-3-4 to strings 3-4-5, which note moves?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "The middle note again — the same correction repeats each time."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "The top note, down one fret."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "The bass note, down one fret."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "Nothing moves — those two sets hold the identical shape."
+            }
+          ]
+        }
+      ],
+      "answerId": "b",
+      "explanation": [
+        {
+          "text": "The top note comes down a fret and the middle one stays where strings 2-3-4 put it. It is the third move down — strings 3-4-5 to strings 4-5-6 — where nothing moves at all, because neither of those sets uses a string above the "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": "-to-"
+        },
+        {
+          "text": "B",
+          "marks": ["code"]
+        },
+        {
+          "text": " break. Three moves, three different outcomes, one cause."
+        }
+      ]
+    },
+    {
+      "id": "q_triads-ch2-checkpoint.why-fret-twelve",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "C major's first inversion on strings 4-5-6 is "
+        },
+        {
+          "text": "12 10 10 x x x",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Why can't it be held down near the nut?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "It can — the app just prefers to draw grips higher up where they sound clearer."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "The bass note has to be the third, and there is no way to sound a third on string 6."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "The bass would be "
+            },
+            {
+              "text": "E2",
+              "marks": ["code"]
+            },
+            {
+              "text": ", and the "
+            },
+            {
+              "text": "G",
+              "marks": ["code"]
+            },
+            {
+              "text": " that has to sit just above it is "
+            },
+            {
+              "text": "G2",
+              "marks": ["code"]
+            },
+            {
+              "text": " — lower than string 5's open A, so string 5 can't play it at all."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "Three notes that low would break the app's rule about close voicings, so the grip is pushed up until it passes."
+            }
+          ]
+        }
+      ],
+      "answerId": "c",
+      "explanation": [
+        {
+          "text": "First inversion needs the third, "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": ", in the bass, and the lowest one on string 6 is the open string, "
+        },
+        {
+          "text": "E2",
+          "marks": ["code"]
+        },
+        {
+          "text": ". A close voicing then wants the next "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " above it — "
+        },
+        {
+          "text": "G2",
+          "marks": ["code"]
+        },
+        {
+          "text": " — but string 5 open is "
+        },
+        {
+          "text": "A2",
+          "marks": ["code"]
+        },
+        {
+          "text": ", already higher, so string 5 cannot produce that note. Its lowest G is "
+        },
+        {
+          "text": "G3",
+          "marks": ["code"]
+        },
+        {
+          "text": " at fret 10, a tenth above the bass rather than a minor third — no longer close, and no hand spans it. So the grip waits until the "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": " on string 6 is at fret 12. It isn't a mud problem: every C major grip on strings 4-5-6 clears the app's thresholds."
+        }
+      ]
+    },
+    {
+      "id": "q_triads-ch2-checkpoint.the-b-string-rule",
+      "kind": "multi-select",
+      "prompt": [
+        {
+          "text": "Standard tuning is all fourths except "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " to "
+        },
+        {
+          "text": "B",
+          "marks": ["code"]
+        },
+        {
+          "text": ", which is a major third. Which of these follow from that? Select every one that applies."
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "Strings 3-4-5 and strings 4-5-6 hold identical shapes, because neither uses a string above the break."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "A note on a string above the break has to be fretted one fret higher than an all-fourths guitar would need."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "Strings 1-2-3 have two notes lifted a fret, and strings 2-3-4 have one."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "String 1 is lifted two frets, because it sits two strings above the break."
+            }
+          ]
+        },
+        {
+          "id": "e",
+          "spans": [
+            {
+              "text": "There are four different geometries to learn, one for each string set."
+            }
+          ]
+        }
+      ],
+      "answerIds": ["a", "b", "c"],
+      "explanation": [
+        {
+          "text": "There is only one irregular jump on the whole neck, so nothing is ever lifted by more than a single fret — string 1 inherits exactly the same shortfall string 2 does. Count the strings a set uses above the break and you have the number of its notes that get lifted: none on strings 3-4-5 and 4-5-6, one on strings 2-3-4, two on strings 1-2-3. That leaves "
+        },
+        {
+          "text": "three",
+          "marks": ["bold"]
+        },
+        {
+          "text": " geometries across the four sets, not four."
+        }
+      ]
+    },
+    {
+      "id": "q_triads-ch2-checkpoint.find-the-third",
+      "kind": "fretboard",
+      "prompt": [
+        {
+          "text": "Here is C major, first inversion, on strings 1-2-3: "
+        },
+        {
+          "text": "x x x 9 8 8",
+          "marks": ["code"]
+        },
+        {
+          "text": " — "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": ", low to high. Tap the note that is the "
+        },
+        {
+          "text": "third",
+          "marks": ["bold"]
+        },
+        {
+          "text": "."
+        }
+      ],
+      "frets": 12,
+      "answer": [
+        {
+          "string": 3,
+          "fret": 9
+        }
+      ],
+      "explanation": [
+        {
+          "text": "In a first inversion the degrees run "
+        },
+        {
+          "text": "3 5 1",
+          "marks": ["code"]
+        },
+        {
+          "text": ", so the third is the "
+        },
+        {
+          "text": "lowest",
+          "marks": ["bold"]
+        },
+        {
+          "text": " note — here "
+        },
+        {
+          "text": "3·9",
+          "marks": ["code"]
+        },
+        {
+          "text": ", an "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Where the third sits depends only on the inversion, never on the string set: the middle note in root position, the lowest in first inversion, the highest in second. Worth having cold — chapter 3 moves exactly that note."
+        }
+      ]
+    },
+    {
+      "id": "q_triads-ch2-checkpoint.choosing-a-set",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "You're comping behind a singer, with a bass player and a drummer. Which string set is the safest first choice, and why?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "Strings 4-5-6 — the lowest set gives the fullest, most supportive sound under a voice."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "Strings 1-2-3 — they sit at the top of or above most sung melodies and well clear of the bass, so nothing fights for the same space."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "Whichever one your hand is nearest — the set is a reach decision, and the inversion is the musical one."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "Strings 3-4-5 — it's the fullest-sounding set, so it works in any arrangement."
+            }
+          ]
+        }
+      ],
+      "answerId": "b",
+      "explanation": [
+        {
+          "text": "The set decides how the chord sits in the music; the inversion decides how far your hand travels — in that order — reaching for whichever set is nearest and calling the inversion the musical choice has it backwards. Strings 4-5-6 is the set most likely to collide with a bass player. Strings 3-4-5 is genuinely the fullest, and that is exactly why it is the first thing you give up when a piano or a second guitar is already there."
+        }
+      ]
+    },
+    {
+      "id": "q_triads-ch2-checkpoint.what-stays-put",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "Comping on strings 1-2-3, you go from C in second inversion, "
+        },
+        {
+          "text": "x x x 0 1 0",
+          "marks": ["code"]
+        },
+        {
+          "text": ", to F in first inversion, "
+        },
+        {
+          "text": "x x x 2 1 1",
+          "marks": ["code"]
+        },
+        {
+          "text": ". What happens to your hand?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "All three fingers move up two frets together."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "Two strings move — string 3 by two frets, string 1 by one — and string 2 doesn't move at all, because "
+            },
+            {
+              "text": "C",
+              "marks": ["code"]
+            },
+            {
+              "text": " is in both chords."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "The hand shifts to a different string set, because F can't be played where C was."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "Nothing stays put — different chords never share a note."
+            }
+          ]
+        }
+      ],
+      "answerId": "b",
+      "explanation": [
+        {
+          "text": "C major is "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " and F major is "
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": " — they share a "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": ", and taking the nearest inversion of F keeps that "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": " on the same string at the same fret. The parallel two-fret slide is the F to G change, not this one. Pick the copy of the next chord nearest your hand and a finger will often already be home."
+        }
+      ]
+    }
+  ]
+}

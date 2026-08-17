@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "act_triad-four-qualities",
+    "slug": "triad-four-qualities",
+    "title": "Drill: Four Qualities, One Hand",
+    "summary": "All four C triads in root position on strings 1-2-3 with the root never moving, then the fifth walking through all three of its positions."
+  },
+  "activity": {
+    "kind": "note-play",
+    "modes": ["easy", "hard"],
+    "board": { "fretFrom": 0, "fretTo": 5 },
+    "rounds": [
+      {
+        "kind": "targets",
+        "id": "r_triad-four-qualities.major",
+        "prompt": [
+          { "text": "C major: " },
+          { "text": "x x x 5 5 3", "marks": ["code"] },
+          { "text": " — " },
+          { "text": "C", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "E", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "G", "marks": ["code"] },
+          {
+            "text": ". The chord everything else in this drill is measured against. Note where the root sits and leave that finger down for all four rounds."
+          }
+        ],
+        "targets": [
+          { "string": 3, "fret": 5 },
+          { "string": 2, "fret": 5 },
+          { "string": 1, "fret": 3 }
+        ]
+      },
+      {
+        "kind": "targets",
+        "id": "r_triad-four-qualities.minor",
+        "prompt": [
+          { "text": "C minor: " },
+          { "text": "x x x 5 4 3", "marks": ["code"] },
+          { "text": " — " },
+          { "text": "C", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "Eb", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "G", "marks": ["code"] },
+          {
+            "text": ". The middle note back one fret. The root and the fifth have not moved."
+          }
+        ],
+        "targets": [
+          { "string": 3, "fret": 5 },
+          { "string": 2, "fret": 4 },
+          { "string": 1, "fret": 3 }
+        ]
+      },
+      {
+        "kind": "targets",
+        "id": "r_triad-four-qualities.diminished",
+        "prompt": [
+          { "text": "C diminished: " },
+          { "text": "x x x 5 4 2", "marks": ["code"] },
+          { "text": " — " },
+          { "text": "C", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "Eb", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "Gb", "marks": ["code"] },
+          {
+            "text": ". The minor grip with the top note back one more fret. Two fingers away from major, and the root still has not moved."
+          }
+        ],
+        "targets": [
+          { "string": 3, "fret": 5 },
+          { "string": 2, "fret": 4 },
+          { "string": 1, "fret": 2 }
+        ]
+      },
+      {
+        "kind": "targets",
+        "id": "r_triad-four-qualities.augmented",
+        "prompt": [
+          { "text": "C augmented: " },
+          { "text": "x x x 5 5 4", "marks": ["code"] },
+          { "text": " — " },
+          { "text": "C", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "E", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "G#", "marks": ["code"] },
+          {
+            "text": ". Back to the major grip, and this time the top note goes up instead of down."
+          }
+        ],
+        "targets": [
+          { "string": 3, "fret": 5 },
+          { "string": 2, "fret": 5 },
+          { "string": 1, "fret": 4 }
+        ]
+      },
+      {
+        "kind": "targets",
+        "id": "r_triad-four-qualities.the-fifth-walking",
+        "prompt": [
+          { "text": "One string, three notes, in this order: " },
+          { "text": "1·2", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "1·3", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "1·4", "marks": ["code"] },
+          { "text": " — the fifth flattened, natural, then raised: " },
+          { "text": "b5", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "5", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "#5", "marks": ["code"] },
+          {
+            "text": ". Play it slowly. This chapter is three frets on one string, and this is them."
+          }
+        ],
+        "targets": [
+          { "string": 1, "fret": 2 },
+          { "string": 1, "fret": 3 },
+          { "string": 1, "fret": 4 }
+        ],
+        "ordered": true
+      }
+    ]
+  }
+}

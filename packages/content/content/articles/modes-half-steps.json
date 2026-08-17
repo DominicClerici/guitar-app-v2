@@ -1,0 +1,494 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_modes-half-steps",
+    "slug": "modes-half-steps",
+    "title": "Where the Half Steps Fall",
+    "summary": "Every mode has the same five whole steps and two half steps — a mode is decided by where the two tight spots sit next to home.",
+    "tags": ["modes", "theory", "ear"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-15"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Seven notes, five whole steps, two half steps — every one of the seven modes has exactly that ingredient list, and it never changes. What changes from mode to mode is where the two tight spots sit relative to the note you're calling home. That's the whole lesson: not how many half steps a mode has, but their address."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [
+          {
+            "text": "Mode"
+          }
+        ],
+        [
+          {
+            "text": "Its two half steps"
+          }
+        ]
+      ],
+      "rows": [
+        [
+          [
+            {
+              "text": "Lydian"
+            }
+          ],
+          [
+            {
+              "text": "#4",
+              "marks": ["code"]
+            },
+            {
+              "text": " → "
+            },
+            {
+              "text": "5",
+              "marks": ["code"]
+            },
+            {
+              "text": "  ·  "
+            },
+            {
+              "text": "7",
+              "marks": ["code"]
+            },
+            {
+              "text": " → "
+            },
+            {
+              "text": "1",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Ionian"
+            }
+          ],
+          [
+            {
+              "text": "3",
+              "marks": ["code"]
+            },
+            {
+              "text": " → "
+            },
+            {
+              "text": "4",
+              "marks": ["code"]
+            },
+            {
+              "text": "  ·  "
+            },
+            {
+              "text": "7",
+              "marks": ["code"]
+            },
+            {
+              "text": " → "
+            },
+            {
+              "text": "1",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Mixolydian"
+            }
+          ],
+          [
+            {
+              "text": "3",
+              "marks": ["code"]
+            },
+            {
+              "text": " → "
+            },
+            {
+              "text": "4",
+              "marks": ["code"]
+            },
+            {
+              "text": "  ·  "
+            },
+            {
+              "text": "6",
+              "marks": ["code"]
+            },
+            {
+              "text": " → "
+            },
+            {
+              "text": "b7",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Dorian"
+            }
+          ],
+          [
+            {
+              "text": "2",
+              "marks": ["code"]
+            },
+            {
+              "text": " → "
+            },
+            {
+              "text": "b3",
+              "marks": ["code"]
+            },
+            {
+              "text": "  ·  "
+            },
+            {
+              "text": "6",
+              "marks": ["code"]
+            },
+            {
+              "text": " → "
+            },
+            {
+              "text": "b7",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Aeolian"
+            }
+          ],
+          [
+            {
+              "text": "2",
+              "marks": ["code"]
+            },
+            {
+              "text": " → "
+            },
+            {
+              "text": "b3",
+              "marks": ["code"]
+            },
+            {
+              "text": "  ·  "
+            },
+            {
+              "text": "5",
+              "marks": ["code"]
+            },
+            {
+              "text": " → "
+            },
+            {
+              "text": "b6",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Phrygian"
+            }
+          ],
+          [
+            {
+              "text": "1",
+              "marks": ["code"]
+            },
+            {
+              "text": " → "
+            },
+            {
+              "text": "b2",
+              "marks": ["code"]
+            },
+            {
+              "text": "  ·  "
+            },
+            {
+              "text": "5",
+              "marks": ["code"]
+            },
+            {
+              "text": " → "
+            },
+            {
+              "text": "b6",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Locrian"
+            }
+          ],
+          [
+            {
+              "text": "1",
+              "marks": ["code"]
+            },
+            {
+              "text": " → "
+            },
+            {
+              "text": "b2",
+              "marks": ["code"]
+            },
+            {
+              "text": "  ·  "
+            },
+            {
+              "text": "4",
+              "marks": ["code"]
+            },
+            {
+              "text": " → "
+            },
+            {
+              "text": "b5",
+              "marks": ["code"]
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "A half step immediately above the tonic — "
+        },
+        {
+          "text": "1",
+          "marks": ["code"]
+        },
+        {
+          "text": " → "
+        },
+        {
+          "text": "b2",
+          "marks": ["code"]
+        },
+        {
+          "text": " — belongs to Phrygian and Locrian only. It leans on home from above, and it's the strongest single darkening move available in the whole set. (What that leaning actually sounds like in Phrygian is a chapter 4 question; here it's just a position on the map.)"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "A half step immediately below the tonic — the major "
+        },
+        {
+          "text": "7",
+          "marks": ["code"]
+        },
+        {
+          "text": ", a leading tone — belongs to Lydian and Ionian only, and it pulls up into home. Every other mode has a "
+        },
+        {
+          "text": "b7",
+          "marks": ["code"]
+        },
+        {
+          "text": " there instead, a whole step below — that's five modes, Mixolydian, Dorian, Aeolian, Phrygian and Locrian, and none of them get tugged toward home the way a major key does."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "A half step immediately above the fifth — the "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": " — belongs to Aeolian and Phrygian only, and this is the one worth slowing down for. Locrian has a "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": " too, but Locrian's fifth is already a "
+        },
+        {
+          "text": "b5",
+          "marks": ["code"]
+        },
+        {
+          "text": ", so the gap between them is a whole step, not a half — Locrian doesn't belong on this list. Dorian's whole point is that it has no half step above the fifth at all: its "
+        },
+        {
+          "text": "6",
+          "marks": ["code"]
+        },
+        {
+          "text": " sits a whole tone above the "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": ", where natural minor puts a semitone."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Counted rather than eyeballed: two modes have a half step directly below home (Lydian, Ionian), two have one directly above home (Phrygian, Locrian), three have neither (Mixolydian, Dorian, Aeolian) — and none has both."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "scale-compare",
+      "props": {
+        "root": "A",
+        "scales": ["major", "mixolydian"],
+        "drone": true
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Start the drone, then tap "
+        },
+        {
+          "text": "G#",
+          "marks": ["code"]
+        },
+        {
+          "text": " on the card headed A Major, then "
+        },
+        {
+          "text": "G",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": " on the Mixolydian card."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One of those is a half step under home; the other is a whole step under it. That difference — a leading tone that pulls versus a "
+        },
+        {
+          "text": "b7",
+          "marks": ["code"]
+        },
+        {
+          "text": " that doesn't — is a half step in the scale but a real difference in how strongly the note wants to move."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "scale-compare",
+      "props": {
+        "root": "A",
+        "scales": ["minor", "phrygian"],
+        "drone": true
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Tap the "
+        },
+        {
+          "text": "Bb",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "rose"
+            }
+          ]
+        },
+        {
+          "text": " chip against the held "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": ". That's a half step above home — the darkening move Phrygian and Locrian share and nothing else does."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Play the same two comparisons on your own with a held open "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": ", or open "
+        },
+        {
+          "text": "Drone",
+          "link": {
+            "kind": "screen",
+            "href": "/drone"
+          }
+        },
+        {
+          "text": " and do it hands-free."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Half steps say where the tension sits next to home. There's one more piece of structure that says where the tension sits inside the scale itself — and unlike the two half steps, there's only one of it."
+        }
+      ]
+    }
+  ]
+}

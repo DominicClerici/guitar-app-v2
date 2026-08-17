@@ -1,0 +1,827 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_minor-caged-scale-e-form",
+    "slug": "minor-caged-scale-e-form",
+    "title": "The E Form: The Two Frets the Box Skipped",
+    "summary": "The fret-5 box left frets 4 and 6 empty; the whole scale puts exactly one note on each, and the E form is the only window that contains both of the neck's two sparsest frets.",
+    "tags": ["caged", "minor"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The window is frets "
+        },
+        {
+          "text": "4–8",
+          "marks": ["code"]
+        },
+        {
+          "text": " — the "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": " barre at fret 5's own window, and the shape most self-taught players already own before they know there's a system underneath it. Seventeen dots, and for the first time in this window they use all five frets."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [
+          {
+            "text": "String"
+          }
+        ],
+        [
+          {
+            "text": "Dots"
+          }
+        ]
+      ],
+      "rows": [
+        [
+          [
+            {
+              "text": "6"
+            }
+          ],
+          [
+            {
+              "text": "6·5 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "1",
+              "marks": ["code"]
+            },
+            {
+              "text": " (A)"
+            },
+            {
+              "text": " · "
+            },
+            {
+              "text": "6·7 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "2",
+              "marks": ["code"]
+            },
+            {
+              "text": " (B)"
+            },
+            {
+              "text": " · "
+            },
+            {
+              "text": "6·8 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "b3",
+              "marks": ["code"]
+            },
+            {
+              "text": " (C)"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "5"
+            }
+          ],
+          [
+            {
+              "text": "5·5 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "4",
+              "marks": ["code"]
+            },
+            {
+              "text": " (D)"
+            },
+            {
+              "text": " · "
+            },
+            {
+              "text": "5·7 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "5",
+              "marks": ["code"]
+            },
+            {
+              "text": " (E)"
+            },
+            {
+              "text": " · "
+            },
+            {
+              "text": "5·8 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "b6",
+              "marks": ["code"]
+            },
+            {
+              "text": " (F)"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "4"
+            }
+          ],
+          [
+            {
+              "text": "4·5 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "b7",
+              "marks": ["code"]
+            },
+            {
+              "text": " (G)"
+            },
+            {
+              "text": " · "
+            },
+            {
+              "text": "4·7 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "1",
+              "marks": ["code"]
+            },
+            {
+              "text": " (A)"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "3"
+            }
+          ],
+          [
+            {
+              "text": "3·4 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "2",
+              "marks": ["code"]
+            },
+            {
+              "text": " (B)"
+            },
+            {
+              "text": " · "
+            },
+            {
+              "text": "3·5 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "b3",
+              "marks": ["code"]
+            },
+            {
+              "text": " (C)"
+            },
+            {
+              "text": " · "
+            },
+            {
+              "text": "3·7 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "4",
+              "marks": ["code"]
+            },
+            {
+              "text": " (D)"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "2"
+            }
+          ],
+          [
+            {
+              "text": "2·5 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "5",
+              "marks": ["code"]
+            },
+            {
+              "text": " (E)"
+            },
+            {
+              "text": " · "
+            },
+            {
+              "text": "2·6 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "b6",
+              "marks": ["code"]
+            },
+            {
+              "text": " (F)"
+            },
+            {
+              "text": " · "
+            },
+            {
+              "text": "2·8 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "b7",
+              "marks": ["code"]
+            },
+            {
+              "text": " (G)"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "1"
+            }
+          ],
+          [
+            {
+              "text": "1·5 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "1",
+              "marks": ["code"]
+            },
+            {
+              "text": " (A)"
+            },
+            {
+              "text": " · "
+            },
+            {
+              "text": "1·7 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "2",
+              "marks": ["code"]
+            },
+            {
+              "text": " (B)"
+            },
+            {
+              "text": " · "
+            },
+            {
+              "text": "1·8 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "b3",
+              "marks": ["code"]
+            },
+            {
+              "text": " (C)"
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "E",
+        "quality": "minor",
+        "show": "scale",
+        "caption": "The E form's window, natural minor — seventeen dots, now filling every fret from 4 to 8."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here's the change. "
+        },
+        {
+          "text": "The pentatonic layer",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-pentatonic-e-form"
+          }
+        },
+        {
+          "text": " packed this window's twelve dots onto only three frets — "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "7",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "8",
+          "marks": ["code"]
+        },
+        {
+          "text": " — with nothing at fret 4 and nothing at fret 6. The scale puts exactly one dot on each of those two frets: "
+        },
+        {
+          "text": "3·4",
+          "marks": ["code"]
+        },
+        {
+          "text": ", a "
+        },
+        {
+          "text": "2",
+          "marks": ["code"]
+        },
+        {
+          "text": ", and "
+        },
+        {
+          "text": "2·6",
+          "marks": ["code"]
+        },
+        {
+          "text": ", a "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Two notes turn chapter 3's most compact window into a shape that fills all five frets — of the five windows, this one's dots grew the most in span, three frets to five."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Those two frets weren't empty by accident. Fret 4 carries exactly one note of A natural minor anywhere on the neck, and fret 6 carries exactly one too — the two sparsest non-empty frets there are, checked fret by fret rather than assumed. Both of those single notes are new at this layer, and the E form is the only one of the five windows that contains both of those frets. The G form has fret 4 and stops there; the D form has fret 6 and stops there; only this window has both."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The pair on string 2 is the chapter's central move, and it sits inside the most-played window on the instrument. "
+        },
+        {
+          "text": "2·5",
+          "marks": ["code"]
+        },
+        {
+          "text": " is the "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": "; "
+        },
+        {
+          "text": "2·6",
+          "marks": ["code"]
+        },
+        {
+          "text": " is the "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": ", one fret above it, on the string right under the barre finger. Hold the "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": " barre at fret 5 and add "
+        },
+        {
+          "text": "2·6",
+          "marks": ["code"]
+        },
+        {
+          "text": " — that's the note the pentatonic never gave you. Let it fall back to "
+        },
+        {
+          "text": "2·5",
+          "marks": ["code"]
+        },
+        {
+          "text": " and feel it settle."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        {
+          "text": "Hold the "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": " barre at fret 5 and add "
+        },
+        {
+          "text": "2·6",
+          "marks": ["code"]
+        },
+        {
+          "text": ", the "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": " one fret above "
+        },
+        {
+          "text": "2·5",
+          "marks": ["code"]
+        },
+        {
+          "text": ". That single note is the whole chapter, under a finger you're already using."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Chapter 1 already drew this window's seventeen positions, reading frets "
+        },
+        {
+          "text": "4–8",
+          "marks": ["code"]
+        },
+        {
+          "text": " twice — once as C major's G form, once as A minor's E form — and it had already labelled "
+        },
+        {
+          "text": "5·8",
+          "marks": ["code"]
+        },
+        {
+          "text": " a "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "3·4",
+          "marks": ["code"]
+        },
+        {
+          "text": " a "
+        },
+        {
+          "text": "2",
+          "marks": ["code"]
+        },
+        {
+          "text": ", before this pathway had taught a single layer of A minor at all. See "
+        },
+        {
+          "text": "One Window, Two Names",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-one-window-two-names"
+          }
+        },
+        {
+          "text": " for the full table; it isn't reprinted here — what was a table of names then is a shape under your hand now."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "This window's dot count doesn't move between qualities — A major's version of this span holds seventeen dots and so does A minor's, the only window in the chapter where that's true."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "What's new since chapter 3: "
+        },
+        {
+          "text": "6·7",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "2",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "5·8",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "3·4",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "2",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "2·6",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "1·7",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "2",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Three of those are "
+        },
+        {
+          "text": "2",
+          "marks": ["code"]
+        },
+        {
+          "text": "s — as many as any window holds, tied with the D form — and only two are "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": "s, the fewest of the five. The box everyone already plays turns out to hold the least of the chapter's darkest note, which is worth sitting with alongside the "
+        },
+        {
+          "text": "2·5",
+          "marks": ["code"]
+        },
+        {
+          "text": " / "
+        },
+        {
+          "text": "2·6",
+          "marks": ["code"]
+        },
+        {
+          "text": " pair above."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The short string is string 4, carrying only "
+        },
+        {
+          "text": "4·5",
+          "marks": ["code"]
+        },
+        {
+          "text": ", a "
+        },
+        {
+          "text": "b7",
+          "marks": ["code"]
+        },
+        {
+          "text": ", and "
+        },
+        {
+          "text": "4·7",
+          "marks": ["code"]
+        },
+        {
+          "text": ", a "
+        },
+        {
+          "text": "1",
+          "marks": ["code"]
+        },
+        {
+          "text": " — the one string here that gains nothing at this layer, and one of its two dots is a root."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Three roots — "
+        },
+        {
+          "text": "6·5",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "4·7",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "1·5",
+          "marks": ["code"]
+        },
+        {
+          "text": " — chapter 2's "
+        },
+        {
+          "text": "6 → 4 → 1",
+          "marks": ["code"]
+        },
+        {
+          "text": " map, unchanged three chapters later. Low, middle and high: wherever a phrase ends, home is under a finger without moving your hand."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Hold a sustained "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": " on the "
+        },
+        {
+          "text": "Drone",
+          "link": {
+            "kind": "screen",
+            "href": "/drone"
+          }
+        },
+        {
+          "text": ", run frets 4 to 8 without shifting your hand, and land on "
+        },
+        {
+          "text": "6·5",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "4·7",
+          "marks": ["code"]
+        },
+        {
+          "text": " or "
+        },
+        {
+          "text": "1·5",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Then try stopping on "
+        },
+        {
+          "text": "5·8",
+          "marks": ["code"]
+        },
+        {
+          "text": " instead and hear what it does."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Page through the full window in the "
+        },
+        {
+          "text": "Scale Visualizer",
+          "link": {
+            "kind": "screen",
+            "href": "/scale-visualizer"
+          }
+        },
+        {
+          "text": ", then move to "
+        },
+        {
+          "text": "the D form",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-scale-d-form"
+          }
+        },
+        {
+          "text": " — the last window this chapter fills in, and the one where every single string picks up something new."
+        }
+      ]
+    }
+  ]
+}

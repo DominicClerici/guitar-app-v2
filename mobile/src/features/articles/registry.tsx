@@ -3,7 +3,10 @@ import type { ZodType } from 'zod';
 
 import { CagedLadder, cagedLadderPropsSchema } from './live/CagedLadder';
 import { CagedShape, cagedShapePropsSchema } from './live/CagedShape';
+import { ProgressionPlayer, progressionPlayerPropsSchema } from './live/ProgressionPlayer';
 import { ScaleCompare, scaleComparePropsSchema } from './live/ScaleCompare';
+import { TriadLadder, triadLadderPropsSchema } from './live/TriadLadder';
+import { TriadShape, triadShapePropsSchema } from './live/TriadShape';
 
 // The live component registry — the ONE file to touch when adding a new kind
 // of interactive article content (besides the component itself). A `live`
@@ -33,5 +36,8 @@ function define<P extends object>(
 export const LIVE_COMPONENTS: Record<string, LiveComponentEntry> = {
   'caged-ladder': define(cagedLadderPropsSchema, CagedLadder),
   'caged-shape': define(cagedShapePropsSchema, CagedShape),
+  'progression-player': define(progressionPlayerPropsSchema, ProgressionPlayer),
   'scale-compare': define(scaleComparePropsSchema, ScaleCompare),
+  'triad-ladder': define(triadLadderPropsSchema, TriadLadder),
+  'triad-shape': define(triadShapePropsSchema, TriadShape),
 };

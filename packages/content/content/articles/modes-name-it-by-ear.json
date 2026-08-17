@@ -1,0 +1,465 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_modes-name-it-by-ear",
+    "slug": "modes-name-it-by-ear",
+    "title": "Hearing a Mode Cold",
+    "summary": "A two-step test — is home major or minor, then which single note fits — names any of the six playable modes from nothing but a static vamp.",
+    "tags": ["modes", "ear", "theory"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-15"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Someone starts playing two chords, back and forth, and never tells you what they're doing. You already have everything you need to work it out — it comes down to two questions, asked in order."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "First: is the chord that keeps coming back major or minor? That's the whole question, and the "
+        },
+        {
+          "text": "3",
+          "marks": ["code"]
+        },
+        {
+          "text": " is what answers it. A major "
+        },
+        {
+          "text": "3",
+          "marks": ["code"]
+        },
+        {
+          "text": " puts you in Lydian, Ionian or Mixolydian; a "
+        },
+        {
+          "text": "b3",
+          "marks": ["code"]
+        },
+        {
+          "text": " puts you in Dorian, Aeolian or Phrygian. "
+        },
+        {
+          "text": "Two Homes, Two Dials Each",
+          "link": {
+            "kind": "article",
+            "slug": "modes-two-families"
+          }
+        },
+        {
+          "text": " already drew that exact line through the seven — you're just listening for it now instead of reading it off a table."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Second: try a candidate note against the loop and find out whether it belongs. You don't need to name what you're hearing — you only need to know whether it fits, grates, or isn't in the scale at all."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Over a major home, on "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": ": play "
+        },
+        {
+          "text": "D#",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "violet"
+            }
+          ]
+        },
+        {
+          "text": ". If it fits, you're in Lydian. If it doesn't, play "
+        },
+        {
+          "text": "G",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": ". If that one fits, Mixolydian. If neither fits, you're in Ionian — the one mode on this side you reach by elimination rather than recognition."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Over a minor home: play "
+        },
+        {
+          "text": "F#",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": ". If it fits, Dorian. If it doesn't, play "
+        },
+        {
+          "text": "Bb",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "rose"
+            }
+          ]
+        },
+        {
+          "text": ". If that one fits, Phrygian. If neither fits, Aeolian — found the same way Ionian was, and no less an answer for it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Four notes, tried in order, settle all six."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "spans": [
+        {
+          "text": "Or Read It Off the Second Chord"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "There's a second way in. "
+        },
+        {
+          "text": "What the Second Chord Is For",
+          "link": {
+            "kind": "article",
+            "slug": "modes-the-vamp-rule"
+          }
+        },
+        {
+          "text": " works just as well backwards: whatever chord the loop leans on besides home is carrying the note the mode is named for."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [
+          {
+            "text": "Home"
+          }
+        ],
+        [
+          {
+            "text": "Second chord's root, from home"
+          }
+        ],
+        [
+          {
+            "text": "Mode"
+          }
+        ]
+      ],
+      "rows": [
+        [
+          [
+            {
+              "text": "Major"
+            }
+          ],
+          [
+            {
+              "text": "a whole tone up"
+            }
+          ],
+          [
+            {
+              "text": "Lydian"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Major"
+            }
+          ],
+          [
+            {
+              "text": "a whole tone down"
+            }
+          ],
+          [
+            {
+              "text": "Mixolydian"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Minor"
+            }
+          ],
+          [
+            {
+              "text": "a perfect fourth up"
+            }
+          ],
+          [
+            {
+              "text": "Dorian"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Minor"
+            }
+          ],
+          [
+            {
+              "text": "a semitone up"
+            }
+          ],
+          [
+            {
+              "text": "Phrygian"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Minor"
+            }
+          ],
+          [
+            {
+              "text": "a minor sixth up"
+            }
+          ],
+          [
+            {
+              "text": "Aeolian"
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That last row doesn't finish the job by itself. A major chord a minor sixth above a minor home also turns up in Phrygian, so hearing it there only rules out Dorian — reach for the "
+        },
+        {
+          "text": "Bb",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "rose"
+            }
+          ]
+        },
+        {
+          "text": " as well and find out which of the two you actually have."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "progression-player",
+      "props": {
+        "chords": ["A", "G", "A", "G"],
+        "bpm": 66,
+        "caption": "A major home leaning a whole tone down — the same test, written out instead of played cold"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Written out, the test is almost too easy: the chord that keeps returning is "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": ", a major triad, so home is major. The second chord is "
+        },
+        {
+          "text": "G",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": ", a whole tone below home — exactly the Mixolydian row above. But the names are sitting right there on the page, which makes this the test done by reading. The version that actually matters is when nobody hands you the chart."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Free Play",
+          "link": {
+            "kind": "screen",
+            "href": "/ear-trainer"
+          }
+        },
+        {
+          "text": " is built for that version. It holds a drone on a tonic and draws a ring of all twelve chromatic degrees around it — tap one and it sounds against the held root; switch on training and it plays one back and asks you to name it. The default set is the tonic triad, "
+        },
+        {
+          "text": "1",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "3",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": "; switch on "
+        },
+        {
+          "text": "b2",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "rose"
+            }
+          ]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "#4",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "violet"
+            }
+          ]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "6",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "b7",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": " instead and you're training on exactly the four notes this test runs on. One thing worth knowing going in: the ring labels its sixth semitone "
+        },
+        {
+          "text": "#4",
+          "marks": ["code"]
+        },
+        {
+          "text": ", so Lydian's note and Locrian's share a button there."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Two of the six are answers by elimination rather than recognition — Ionian and Aeolian are what's left once neither candidate note fits, and that's a real answer, not a weaker one. None of this works if the loop won't hold still, either: a progression that arrives somewhere names a key instead of a mode, and the mode names hanging over its chords turn into labels for whichever one is sounding. "
+        },
+        {
+          "text": "Two Questions That Sound Alike",
+          "link": {
+            "kind": "article",
+            "slug": "modes-a-different-question"
+          }
+        },
+        {
+          "text": " has the rest of that story."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "You can name someone else's loop now. Writing one of your own is the same table, read from the other end."
+        }
+      ]
+    }
+  ]
+}

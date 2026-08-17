@@ -1,0 +1,488 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "quiz_modes-ch5-checkpoint",
+    "slug": "modes-ch5-checkpoint",
+    "title": "Locrian, and When a Mode Collapses",
+    "summary": "Seven questions on the home chord that will not hold, what a tonic actually needs, why the notes that clash belong to the chord rather than the scale, and what happens the moment a progression arrives somewhere.",
+    "kind": "checkpoint",
+    "passThresholdPct": 70
+  },
+  "questions": [
+    {
+      "id": "q_modes-ch5-checkpoint.no-fifth",
+      "kind": "choice",
+      "prompt": [
+        { "text": "A Locrian's home chord is " },
+        { "text": "Adim", "marks": ["code"] },
+        { "text": " — " },
+        { "text": "A C Eb", "marks": ["code"] },
+        { "text": ". What is it about that chord that stops it holding home?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "Its fifth is flattened, so there is no perfect fifth over the root — and the tritone that every scale contains is sitting between the chord's own two outer notes."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "Its third is flattened, which makes it a minor chord, and a minor chord is a weaker home than a major one."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "It only has three notes, so there is not enough of it to establish a key." }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "It contains a note from outside A Locrian, so the chord and the scale disagree."
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "Every other mode of the seven builds its tonic on a perfect " },
+        { "text": "5", "marks": ["code"] },
+        {
+          "text": "; Locrian is the only one that does not have one. The flattened fifth also puts the tritone "
+        },
+        { "text": "1", "marks": ["code"] },
+        { "text": "–" },
+        { "text": "b5", "marks": ["code"] },
+        {
+          "text": " inside the tonic triad itself. A flattened third is not the problem — Dorian, Aeolian and Phrygian all have one and all hold home perfectly well. And three notes is a triad, which is what five of the other six home chords are. Every note of "
+        },
+        { "text": "A C Eb", "marks": ["code"] },
+        { "text": " is in A Locrian." }
+      ]
+    },
+    {
+      "id": "q_modes-ch5-checkpoint.no-vamp",
+      "kind": "choice",
+      "prompt": [
+        { "text": "Every other mode in this pathway got a two-chord vamp. Play " },
+        { "text": "Adim", "marks": ["code"] },
+        { "text": "–" },
+        { "text": "Bb", "marks": ["code"] },
+        { "text": " into the Key Detector and what comes back?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "Likely", "marks": ["bold"] },
+            { "text": ", " },
+            { "text": "Bb major", "marks": ["code"] },
+            { "text": " — one answer, and it is not rooted on " },
+            { "text": "A", "marks": ["code"] },
+            { "text": " at all." }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "Ambiguous", "marks": ["bold"] },
+            { "text": ", with A Locrian offered as one of the two candidates." }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "Likely", "marks": ["bold"] },
+            { "text": ", " },
+            { "text": "A minor", "marks": ["code"] },
+            { "text": " — the closest major or minor key to A Locrian." }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "Ambiguous", "marks": ["bold"] },
+            { "text": ", with " },
+            { "text": "A minor", "marks": ["code"] },
+            { "text": " and " },
+            { "text": "Bb major", "marks": ["code"] },
+            { "text": " side by side at about 52% and 48%." }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "The reading is confident, and " },
+        { "text": "Bb", "marks": ["code"] },
+        {
+          "text": " is A Locrian's own parent major — reach for the second chord that looks like it belongs to the mode and the tonic goes straight to the scale you were reading from. Nothing hesitates, so no candidate cards and no percentages appear at all. The detector ranks 24 major and minor keys and has no name for any mode, so it can never offer A Locrian as a candidate."
+        }
+      ]
+    },
+    {
+      "id": "q_modes-ch5-checkpoint.what-home-needs",
+      "kind": "multi-select",
+      "prompt": [
+        { "text": "Which of these does a mode actually need? Select every one that applies." }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "Something outside the scale holding one note as home — a drone, a bass, or a chord that will not move."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "A home chord with a perfect fifth in it, so it is a chord you can stand on."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [{ "text": "A characteristic note — the one tone the mode is named for." }]
+        },
+        {
+          "id": "d",
+          "spans": [{ "text": "A progression that resolves, so the ear is told where home is." }]
+        }
+      ],
+      "answerIds": ["a", "b"],
+      "explanation": [
+        {
+          "text": "Those two are the definition, and it took until Locrian to see that the second one was missing from it. A characteristic note is not required: Ionian and Aeolian have none and are still modes. And a progression that resolves does the opposite of what a mode needs — it names its own tonic by arriving somewhere, which is exactly what a vamp refuses to do."
+        }
+      ]
+    },
+    {
+      "id": "q_modes-ch5-checkpoint.avoid-general",
+      "kind": "choice",
+      "prompt": [
+        { "text": "Over " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": ", A natural minor's one avoid note is the " },
+        { "text": "b6", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "F", "marks": ["code"] },
+        { "text": "). In the vamp " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": "–" },
+        { "text": "F", "marks": ["code"] },
+        { "text": ", what happens to that note while the " },
+        { "text": "F", "marks": ["code"] },
+        { "text": " chord is sounding?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "It stops being an avoid note — it is the root of the chord you are now over, and nothing else in the scale sits a half step above "
+            },
+            { "text": "F", "marks": ["code"] },
+            { "text": ", " },
+            { "text": "A", "marks": ["code"] },
+            { "text": " or " },
+            { "text": "C", "marks": ["code"] },
+            { "text": " either." }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "Nothing changes. The scale has not changed, so its avoid note has not either."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "It becomes a worse clash, because now it is sounding against its own chord."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "It leaves the scale, because the " },
+            { "text": "F", "marks": ["code"] },
+            { "text": " chord pulls the mode toward Phrygian." }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "An avoid note is a scale tone a half step above a note of the chord underneath — so it is a property of the pairing, not of the scale. Change the chord and the answer changes. The "
+        },
+        { "text": "b6", "marks": ["code"] },
+        { "text": " you had to keep moving through over " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " is a note you can land on and hold over " },
+        { "text": "F", "marks": ["code"] },
+        { "text": ". Dorian is the same story in reverse: nothing fights over " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": ", but over the " },
+        { "text": "D", "marks": ["code"] },
+        { "text": " chord the " },
+        { "text": "b7", "marks": ["code"] },
+        { "text": " sits a half step above the " },
+        { "text": "F#", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "id": "q_modes-ch5-checkpoint.locrian-b6",
+      "kind": "choice",
+      "prompt": [
+        { "text": "Aeolian's " },
+        { "text": "b6", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "F", "marks": ["code"] },
+        { "text": ") is an avoid note over " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": ". A Locrian holds the same " },
+        { "text": "b6", "marks": ["code"] },
+        { "text": ", the same distance above the root. Why is it not an avoid note there?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "Locrian's home chord is " },
+            { "text": "A C Eb", "marks": ["code"] },
+            { "text": ", and " },
+            { "text": "F", "marks": ["code"] },
+            { "text": " sits a whole step above the " },
+            { "text": "Eb", "marks": ["code"] },
+            {
+              "text": ", not a half step. The only scale tone a half step above any of those three is the "
+            },
+            { "text": "b2", "marks": ["code"] },
+            { "text": "." }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "Locrian has no avoid notes at all — nothing in it can clash with a chord that unstable."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "The " },
+            { "text": "b6", "marks": ["code"] },
+            { "text": " is a chord tone of " },
+            { "text": "Adim", "marks": ["code"] },
+            { "text": ", and a chord tone is never an avoid note." }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "A mode's characteristic note takes the place of its avoid note, and Locrian's characteristic note is the "
+            },
+            { "text": "b5", "marks": ["code"] },
+            { "text": "." }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "This is the whole chapter in one row. The " },
+        { "text": "b6", "marks": ["code"] },
+        {
+          "text": " is an avoid note in Aeolian and Phrygian because both of those sit it a half step above a perfect "
+        },
+        { "text": "5", "marks": ["code"] },
+        {
+          "text": ". Locrian's fifth is already flattened, so the gap is a whole step. A half step above "
+        },
+        { "text": "A C Eb", "marks": ["code"] },
+        { "text": " lands on " },
+        { "text": "Bb", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "C#", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "E", "marks": ["code"] },
+        { "text": " — and only the " },
+        { "text": "Bb", "marks": ["code"] },
+        { "text": " is in the scale. Locrian has exactly one avoid note, and " },
+        { "text": "Adim", "marks": ["code"] },
+        { "text": " holds " },
+        { "text": "A", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "Eb", "marks": ["code"] },
+        { "text": " — not the " },
+        { "text": "F", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "id": "q_modes-ch5-checkpoint.arrival",
+      "kind": "choice",
+      "prompt": [
+        { "text": "The Key Detector reads " },
+        { "text": "Dm", "marks": ["code"] },
+        { "text": "–" },
+        { "text": "G", "marks": ["code"] },
+        { "text": " as " },
+        { "text": "Ambiguous", "marks": ["bold"] },
+        { "text": ", and " },
+        { "text": "Dm", "marks": ["code"] },
+        { "text": "–" },
+        { "text": "G", "marks": ["code"] },
+        { "text": "–" },
+        { "text": "C", "marks": ["code"] },
+        { "text": " as " },
+        { "text": "Likely", "marks": ["bold"] },
+        { "text": ", " },
+        { "text": "C major", "marks": ["code"] },
+        { "text": ". What made the difference?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "The " },
+            { "text": "C", "marks": ["code"] },
+            {
+              "text": " is an arrival — somewhere the first two chords were leaning, and somewhere the loop comes to rest. A progression that arrives names its own tonic."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "Three chords is the minimum the detector needs before it will commit to a key."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "C major is D Dorian's parent scale, so the detector switches to naming the parent once its chord shows up."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "The longer the loop, the stronger the reading — more chords always means more certainty."
+            }
+          ]
+        }
+      ],
+      "explanation": [
+        { "text": "It is not the chord count. " },
+        { "text": "Dm", "marks": ["code"] },
+        { "text": "–" },
+        { "text": "G", "marks": ["code"] },
+        {
+          "text": " on its own is still a vamp: two chords going nowhere, two candidate keys offered at about 52% and 48%, and the strength meter barely lit. The "
+        },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": " is where the other two were leaning, and once it arrives there is one answer and no percentages at all. That is why there is no D Dorian in "
+        },
+        { "text": "Dm", "marks": ["code"] },
+        { "text": "–" },
+        { "text": "G", "marks": ["code"] },
+        { "text": "–" },
+        { "text": "C", "marks": ["code"] },
+        { "text": " — there is C major, and a piece that starts on its second degree." }
+      ],
+      "answerId": "a"
+    },
+    {
+      "id": "q_modes-ch5-checkpoint.two-questions",
+      "kind": "choice",
+      "prompt": [
+        { "text": "Someone tells you to play D Dorian over the " },
+        { "text": "Dm", "marks": ["code"] },
+        { "text": " in " },
+        { "text": "Dm", "marks": ["code"] },
+        { "text": "–" },
+        { "text": "G", "marks": ["code"] },
+        { "text": "–" },
+        { "text": "C", "marks": ["code"] },
+        { "text": ". How does that relate to what this pathway means by a mode?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "It is a label for the notes available over one chord, inside a key something else is naming. The piece is in C major; nothing there is holding "
+            },
+            { "text": "D", "marks": ["code"] },
+            { "text": " as home." }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "It is the same claim. A mode is a set of notes, and the set of notes is identical either way."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "It means the piece is in D Dorian, because " },
+            { "text": "Dm", "marks": ["code"] },
+            { "text": " is the chord it starts on." }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "It is bad advice — those notes do not fit a " },
+            { "text": "Dm", "marks": ["code"] },
+            { "text": " chord." }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "Two questions, one vocabulary. Labelling the notes available over a chord that is on its way somewhere else is a real practice with a real job, and it borrows the mode names because the note sets genuinely are the same. But a mode, in this pathway's sense, is a claim about home — notes, plus a tonic asserted from outside the scale, plus a home solid enough to be worth asserting. Over "
+        },
+        { "text": "Dm", "marks": ["code"] },
+        { "text": "–" },
+        { "text": "G", "marks": ["code"] },
+        { "text": "–" },
+        { "text": "C", "marks": ["code"] },
+        { "text": " there is one home and it is " },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": ", so the mode name is doing no work there as a home. The notes fit the chord fine; that was never the question."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,178 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "act_minor-caged-play-the-five-windows",
+    "slug": "minor-caged-play-the-five-windows",
+    "title": "Drill: The Five Windows",
+    "summary": "A minor pentatonic in each of the five CAGED windows, low to high, and then the one fret that holds the whole scale."
+  },
+  "activity": {
+    "kind": "note-play",
+    "modes": ["easy", "hard"],
+    "board": { "fretFrom": 0, "fretTo": 13 },
+    "rounds": [
+      {
+        "kind": "targets",
+        "id": "r_minor-caged-play-the-five-windows.a-form",
+        "prompt": [
+          { "text": "The A form's window, frets " },
+          { "text": "0–3", "marks": ["code"] },
+          {
+            "text": " — the open-position minor pentatonic. Twelve notes, two on every string, and five of the six lower notes are open strings."
+          }
+        ],
+        "targets": [
+          { "string": 6, "fret": 0 },
+          { "string": 6, "fret": 3 },
+          { "string": 5, "fret": 0 },
+          { "string": 5, "fret": 3 },
+          { "string": 4, "fret": 0 },
+          { "string": 4, "fret": 2 },
+          { "string": 3, "fret": 0 },
+          { "string": 3, "fret": 2 },
+          { "string": 2, "fret": 1 },
+          { "string": 2, "fret": 3 },
+          { "string": 1, "fret": 0 },
+          { "string": 1, "fret": 3 }
+        ],
+        "ordered": false,
+        "board": { "fretFrom": 0, "fretTo": 3 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_minor-caged-play-the-five-windows.g-form",
+        "prompt": [
+          { "text": "The G form's window, frets " },
+          { "text": "1–5", "marks": ["code"] },
+          { "text": ". Twelve of its thirteen notes — " },
+          { "text": "2·1", "marks": ["code"] },
+          { "text": " is left out because it sounds the same pitch as " },
+          { "text": "3·5", "marks": ["code"] },
+          { "text": " and the microphone cannot tell them apart. Nothing sits at fret " },
+          { "text": "4", "marks": ["code"] },
+          { "text": "." }
+        ],
+        "targets": [
+          { "string": 6, "fret": 3 },
+          { "string": 6, "fret": 5 },
+          { "string": 5, "fret": 3 },
+          { "string": 5, "fret": 5 },
+          { "string": 4, "fret": 2 },
+          { "string": 4, "fret": 5 },
+          { "string": 3, "fret": 2 },
+          { "string": 3, "fret": 5 },
+          { "string": 2, "fret": 3 },
+          { "string": 2, "fret": 5 },
+          { "string": 1, "fret": 3 },
+          { "string": 1, "fret": 5 }
+        ],
+        "ordered": false,
+        "board": { "fretFrom": 1, "fretTo": 5 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_minor-caged-play-the-five-windows.e-form",
+        "prompt": [
+          { "text": "The E form's window, frets " },
+          { "text": "4–8", "marks": ["code"] },
+          {
+            "text": " — the box at fret 5. Twelve notes on three frets, and it is very likely the first scale shape you ever learned."
+          }
+        ],
+        "targets": [
+          { "string": 6, "fret": 5 },
+          { "string": 6, "fret": 8 },
+          { "string": 5, "fret": 5 },
+          { "string": 5, "fret": 7 },
+          { "string": 4, "fret": 5 },
+          { "string": 4, "fret": 7 },
+          { "string": 3, "fret": 5 },
+          { "string": 3, "fret": 7 },
+          { "string": 2, "fret": 5 },
+          { "string": 2, "fret": 8 },
+          { "string": 1, "fret": 5 },
+          { "string": 1, "fret": 8 }
+        ],
+        "ordered": false,
+        "board": { "fretFrom": 4, "fretTo": 8 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_minor-caged-play-the-five-windows.d-form",
+        "prompt": [
+          { "text": "The D form's window, frets " },
+          { "text": "6–10", "marks": ["code"] },
+          { "text": " — the window directly above the box. Its bottom row, fret " },
+          { "text": "7", "marks": ["code"] },
+          { "text": ", is the way in." }
+        ],
+        "targets": [
+          { "string": 6, "fret": 8 },
+          { "string": 6, "fret": 10 },
+          { "string": 5, "fret": 7 },
+          { "string": 5, "fret": 10 },
+          { "string": 4, "fret": 7 },
+          { "string": 4, "fret": 10 },
+          { "string": 3, "fret": 7 },
+          { "string": 3, "fret": 9 },
+          { "string": 2, "fret": 8 },
+          { "string": 2, "fret": 10 },
+          { "string": 1, "fret": 8 },
+          { "string": 1, "fret": 10 }
+        ],
+        "ordered": false,
+        "board": { "fretFrom": 6, "fretTo": 10 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_minor-caged-play-the-five-windows.c-form",
+        "prompt": [
+          { "text": "The C form's window, frets " },
+          { "text": "9–13", "marks": ["code"] },
+          { "text": " — the highest of the five. Fret " },
+          { "text": "11", "marks": ["code"] },
+          {
+            "text": " holds nothing at all, so this one comes in two clusters rather than one hand position."
+          }
+        ],
+        "targets": [
+          { "string": 6, "fret": 10 },
+          { "string": 6, "fret": 12 },
+          { "string": 5, "fret": 10 },
+          { "string": 5, "fret": 12 },
+          { "string": 4, "fret": 10 },
+          { "string": 4, "fret": 12 },
+          { "string": 3, "fret": 9 },
+          { "string": 3, "fret": 12 },
+          { "string": 2, "fret": 10 },
+          { "string": 2, "fret": 13 },
+          { "string": 1, "fret": 10 },
+          { "string": 1, "fret": 12 }
+        ],
+        "ordered": false,
+        "board": { "fretFrom": 9, "fretTo": 13 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_minor-caged-play-the-five-windows.fret-five",
+        "prompt": [
+          { "text": "One finger flat across fret " },
+          { "text": "5", "marks": ["code"] },
+          { "text": ", all six strings. Every one of them is a note of A minor pentatonic — " },
+          { "text": "1 4 b7 b3 5 1", "marks": ["code"] },
+          { "text": " from the low string up — and no other fret on the neck does that." }
+        ],
+        "targets": [
+          { "string": 6, "fret": 5 },
+          { "string": 5, "fret": 5 },
+          { "string": 4, "fret": 5 },
+          { "string": 3, "fret": 5 },
+          { "string": 2, "fret": 5 },
+          { "string": 1, "fret": 5 }
+        ],
+        "ordered": false,
+        "board": { "fretFrom": 4, "fretTo": 6 }
+      }
+    ]
+  }
+}

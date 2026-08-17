@@ -1,0 +1,231 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_minor-caged-triad-c-form",
+    "slug": "minor-caged-triad-c-form",
+    "title": "The C Form: The Shape Does Not Slide",
+    "summary": "Flattening the C form's thirds forces two fingers to swap places and drops a third note out of the window entirely, so the minor grip is not the major grip with one finger moved back.",
+    "tags": ["caged", "minor"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "A major's C form is "
+        },
+        { "text": "x 12 11 9 10 9", "marks": ["code"] },
+        { "text": ", degrees " },
+        { "text": "x 1 3 5 1 3", "marks": ["code"] },
+        {
+          "text": ", and it fingers beautifully. The four fretted notes climb one fret at a time: index on "
+        },
+        { "text": "3·9", "marks": ["code"] },
+        { "text": ", middle on " },
+        { "text": "2·10", "marks": ["code"] },
+        { "text": ", ring on " },
+        { "text": "4·11", "marks": ["code"] },
+        { "text": ", little finger on " },
+        { "text": "5·12", "marks": ["code"] },
+        { "text": ". One finger per fret, in order." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Now flatten the thirds and watch that order fall apart. "
+        },
+        { "text": "4·11", "marks": ["code"] },
+        { "text": " drops to " },
+        { "text": "4·10", "marks": ["code"] },
+        { "text": " — the same fret as " },
+        { "text": "2·10", "marks": ["code"] },
+        { "text": ", with " },
+        { "text": "3·9", "marks": ["code"] },
+        {
+          "text": " sitting between them a fret lower. You can't barre across that. The two fingers that used to climb in order now have to swap."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "And the other third leaves outright. "
+        },
+        { "text": "1·9", "marks": ["code"] },
+        {
+          "text": " sits on the window's bottom fret; flattened, it would land at fret 8 — outside the window, below the root at "
+        },
+        { "text": "5·12", "marks": ["code"] },
+        {
+          "text": ". So string 1 drops out of the grip entirely. The C form of "
+        },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " is four strings: " },
+        { "text": "x 12 10 9 10 x", "marks": ["code"] },
+        { "text": ", degrees " },
+        { "text": "x 1 b3 5 1 x", "marks": ["code"] },
+        { "text": " — " },
+        { "text": "A C E A", "marks": ["code"] },
+        { "text": ", a complete minor triad with the root doubled." }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "C",
+        "quality": "minor",
+        "show": "triad",
+        "caption": "Seven dots in the window; the grip plays four of them."
+      }
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        [
+          { "text": "6·12 → ", "marks": ["code"] },
+          { "text": "5", "marks": ["code"] },
+          { "text": " (E)" }
+        ],
+        [
+          { "text": "5·12 → ", "marks": ["code"] },
+          { "text": "1", "marks": ["code"] },
+          { "text": " (A)" }
+        ],
+        [
+          { "text": "4·10 → ", "marks": ["code"] },
+          { "text": "b3", "marks": ["code"] },
+          { "text": " (C)" }
+        ],
+        [
+          { "text": "3·9 → ", "marks": ["code"] },
+          { "text": "5", "marks": ["code"] },
+          { "text": " (E)" }
+        ],
+        [
+          { "text": "2·10 → ", "marks": ["code"] },
+          { "text": "1", "marks": ["code"] },
+          { "text": " (A)" }
+        ],
+        [
+          { "text": "2·13 → ", "marks": ["code"] },
+          { "text": "b3", "marks": ["code"] },
+          { "text": " (C)" }
+        ],
+        [
+          { "text": "1·12 → ", "marks": ["code"] },
+          { "text": "5", "marks": ["code"] },
+          { "text": " (E)" }
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Three of those seven dots aren't in the grip at all — "
+        },
+        { "text": "6·12", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "2·13", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "1·12", "marks": ["code"] },
+        {
+          "text": ". And here's the number that makes the edge effect real rather than abstract: A major's C form window holds eight dots, A minor's holds seven — the only one of the five that ends up with "
+        },
+        { "text": "fewer", "marks": ["italic"] },
+        { "text": " dots in minor than in major." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "There's a practical payoff to all this rearranging, and it's the point of the lesson. In major, the compact triad here is strings 3-2-1 at frets "
+        },
+        { "text": "9 10 9", "marks": ["code"] },
+        { "text": " — " },
+        { "text": "5 1 3", "marks": ["code"] },
+        {
+          "text": ". In minor that fragment doesn't exist, because the note on string 1 left the window. What you take instead is strings 4-3-2 at frets "
+        },
+        { "text": "10 9 10", "marks": ["code"] },
+        { "text": " — " },
+        { "text": "b3 5 1", "marks": ["code"] },
+        { "text": ", the notes " },
+        { "text": "C E A", "marks": ["code"] },
+        {
+          "text": ". Three adjacent strings, nothing to stretch for, and it's the shape most players actually reach for out of this form."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        {
+          "text": "Strings 4-3-2 at frets "
+        },
+        { "text": "10 9 10", "marks": ["code"] },
+        { "text": " is the whole chord — three adjacent strings, no stretch." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "This is where the C form lives: frets "
+        },
+        { "text": "9–13", "marks": ["code"] },
+        {
+          "text": ", the highest of A minor's five windows. Its two roots sit at "
+        },
+        { "text": "5·12", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "2·10", "marks": ["code"] },
+        {
+          "text": ". Nobody bars this form whole in either quality; in minor it isn't even a candidate — the root would be stranded past a full barre's reach."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That's the real lesson under the fingering shuffle. \"The minor form is the major form with one finger moved back\" turns out to be true of three of the five grips in this chapter — the next one is the cleanest of them, with a single string carrying the entire change. It's false here. Two fingers swap places, a whole string disappears from the grip, and the fragment you end up playing lives on a different set of strings altogether. Chapter order put the C form first on purpose: it's where that easy intuition breaks before it has a chance to calcify."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Compare it against " },
+        {
+          "text": "the major C form",
+          "link": { "kind": "article", "slug": "caged-triad-c-form" }
+        },
+        { "text": " if you want the fingering laid out in full — " },
+        { "text": "Chord Shapes", "link": { "kind": "screen", "href": "/chord-shapes" } },
+        { "text": " has both voicings to try side by side." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Next: " },
+        {
+          "text": "the A form",
+          "link": { "kind": "article", "slug": "minor-caged-triad-a-form" }
+        },
+        { "text": ", and the good news — you already play it." }
+      ]
+    }
+  ]
+}

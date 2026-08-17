@@ -1,0 +1,739 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_modes-write-a-vamp",
+    "slug": "modes-write-a-vamp",
+    "title": "Write Your Own Two-Chord Vamp",
+    "summary": "Three steps and one check build a modal vamp on any root, and the check is that the loop has to refuse to arrive anywhere.",
+    "tags": ["modes", "theory", "ear"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-15"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Every vamp in this pathway was built to one rule, and "
+        },
+        {
+          "text": "What the Second Chord Is For",
+          "link": {
+            "kind": "article",
+            "slug": "modes-the-vamp-rule"
+          }
+        },
+        {
+          "text": " is where it got stated. Turning it into something you can run on any root takes three steps."
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        [
+          {
+            "text": "Pick home — a chord you can actually stand on, major or minor, with a perfect fifth in it. That choice alone puts you in one of the two families."
+          }
+        ],
+        [
+          {
+            "text": "Pick the note — the single tone you want to lean on. That choice is the mode."
+          }
+        ],
+        [
+          {
+            "text": "Find the chord of that mode which contains the note, and make it the second chord of the loop."
+          }
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Every mode in this pathway has lived on "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": " — comparing seven modes note against note only works from one root. A recipe only earns the name if it runs somewhere besides the root it was built on, so here it goes on four others."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [
+          {
+            "text": "Mode"
+          }
+        ],
+        [
+          {
+            "text": "Notes"
+          }
+        ],
+        [
+          {
+            "text": "Vamp"
+          }
+        ],
+        [
+          {
+            "text": "Second chord carries"
+          }
+        ]
+      ],
+      "rows": [
+        [
+          [
+            {
+              "text": "D Dorian"
+            }
+          ],
+          [
+            {
+              "text": "D E F G A B C",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "Dm",
+              "marks": ["code"]
+            },
+            {
+              "text": "–"
+            },
+            {
+              "text": "G",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "the "
+            },
+            {
+              "text": "6",
+              "marks": [
+                "code",
+                {
+                  "type": "color",
+                  "tone": "amber"
+                }
+              ]
+            },
+            {
+              "text": " ("
+            },
+            {
+              "text": "B",
+              "marks": [
+                "code",
+                {
+                  "type": "color",
+                  "tone": "amber"
+                }
+              ]
+            },
+            {
+              "text": ")"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "E Phrygian"
+            }
+          ],
+          [
+            {
+              "text": "E F G A B C D",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "Em",
+              "marks": ["code"]
+            },
+            {
+              "text": "–"
+            },
+            {
+              "text": "F",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "the "
+            },
+            {
+              "text": "b2",
+              "marks": [
+                "code",
+                {
+                  "type": "color",
+                  "tone": "rose"
+                }
+              ]
+            },
+            {
+              "text": " ("
+            },
+            {
+              "text": "F",
+              "marks": [
+                "code",
+                {
+                  "type": "color",
+                  "tone": "rose"
+                }
+              ]
+            },
+            {
+              "text": ")"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "G Mixolydian"
+            }
+          ],
+          [
+            {
+              "text": "G A B C D E F",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "G",
+              "marks": ["code"]
+            },
+            {
+              "text": "–"
+            },
+            {
+              "text": "F",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "the "
+            },
+            {
+              "text": "b7",
+              "marks": [
+                "code",
+                {
+                  "type": "color",
+                  "tone": "amber"
+                }
+              ]
+            },
+            {
+              "text": " ("
+            },
+            {
+              "text": "F",
+              "marks": [
+                "code",
+                {
+                  "type": "color",
+                  "tone": "amber"
+                }
+              ]
+            },
+            {
+              "text": ")"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "C Lydian"
+            }
+          ],
+          [
+            {
+              "text": "C D E F# G A B",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "C",
+              "marks": ["code"]
+            },
+            {
+              "text": "–"
+            },
+            {
+              "text": "D",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "the "
+            },
+            {
+              "text": "#4",
+              "marks": [
+                "code",
+                {
+                  "type": "color",
+                  "tone": "violet"
+                }
+              ]
+            },
+            {
+              "text": " ("
+            },
+            {
+              "text": "F#",
+              "marks": [
+                "code",
+                {
+                  "type": "color",
+                  "tone": "violet"
+                }
+              ]
+            },
+            {
+              "text": ")"
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Two of these rows land on the same second chord — "
+        },
+        {
+          "text": "Em",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": " — and they're different modes anyway. "
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": " carries the "
+        },
+        {
+          "text": "b2",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "rose"
+            }
+          ]
+        },
+        {
+          "text": " in one and the "
+        },
+        {
+          "text": "b7",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": " in the other; what tells them apart is the home chord underneath, minor in one case and major in the other, doing exactly the other half of the work it did on "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": "."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "progression-player",
+      "props": {
+        "chords": ["Em", "F"],
+        "bpm": 66,
+        "caption": "E Phrygian's vamp — a chord a semitone above home, on a root this pathway never used before"
+      }
+    },
+    {
+      "type": "live",
+      "component": "progression-player",
+      "props": {
+        "chords": ["C", "D"],
+        "bpm": 66,
+        "caption": "C Lydian's vamp — a chord a whole tone above home, the brightest mode off its usual root"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The first of those four is a loop you have already heard. "
+        },
+        {
+          "text": "When the Progression Starts to Function",
+          "link": {
+            "kind": "article",
+            "slug": "modes-when-a-progression-functions"
+          }
+        },
+        {
+          "text": " built "
+        },
+        {
+          "text": "Dm",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " from scratch, played it with nowhere confirmed as home, and only settled it into "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": " major once a third chord arrived on the end."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Before you commit to a pair of chords, run one check that has nothing to do with which note you're after: does the loop actually circle, or does it quietly arrive somewhere? Every major triad is the dominant of the triad a perfect fourth above it — a "
+        },
+        {
+          "text": "V",
+          "marks": ["code"]
+        },
+        {
+          "text": " looking for its "
+        },
+        {
+          "text": "I",
+          "marks": ["code"]
+        },
+        {
+          "text": " — so "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " all settle on that second chord instead of circling back — you've written a cadence with the chords in the wrong order, not a vamp. That's exactly why neither major-family vamp on "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": " used the fourth: "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "B",
+          "marks": ["code"]
+        },
+        {
+          "text": " goes a whole tone up and "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " a whole tone down, because "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": " is the dominant of neither."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "A minor "
+        },
+        {
+          "text": "i",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "IV",
+          "marks": ["code"]
+        },
+        {
+          "text": " doesn't have this problem — "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": " isn't the dominant of "
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": ", which is the whole reason "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": " works as Dorian's own vamp instead of arriving anywhere. "
+        },
+        {
+          "text": "When the Progression Starts to Function",
+          "link": {
+            "kind": "article",
+            "slug": "modes-when-a-progression-functions"
+          }
+        },
+        {
+          "text": " is where arriving got its own definition, if the distinction still feels abstract."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "There's a second, plainer check: the second chord has to be inside the mode. A chord carrying a note the mode doesn't have hasn't coloured the loop — it's changed the note set underneath it entirely."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "None of this makes the second chord the only one that would work. In A Dorian, three of the seven diatonic triads hold the "
+        },
+        {
+          "text": "F#",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": " — "
+        },
+        {
+          "text": "Bm",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "F#dim",
+          "marks": ["code"]
+        },
+        {
+          "text": " — and "
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": " is the one this pathway keeps reaching for because it's the plainest chord a hand can hold down for a whole bar, not because the other two don't exist. "
+        },
+        {
+          "text": "Dorian: Minor Without the Ache",
+          "link": {
+            "kind": "article",
+            "slug": "modes-dorian-sound"
+          }
+        },
+        {
+          "text": " already showed "
+        },
+        {
+          "text": "Dm",
+          "marks": ["code"]
+        },
+        {
+          "text": " turning into "
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": " by raising one note; which of those three to build a vamp on is a separate decision from finding the note itself."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "A two-chord loop is as far as any of this goes — building it into a longer progression, or a whole song, is a different craft with its own rules. One more thing worth naming before you close this out: borrowing a chord from a parallel mode into a key that's still functioning is called modal interchange, and it's the natural next thing once a vamp like this one feels obvious."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Pick your own root, run the three steps, and go find out whether it actually circles. "
+        },
+        {
+          "text": "Chord Shapes",
+          "link": {
+            "kind": "screen",
+            "href": "/chord-shapes"
+          }
+        },
+        {
+          "text": " has whichever two chords you land on, and a slow, even click from "
+        },
+        {
+          "text": "Metronome",
+          "link": {
+            "kind": "screen",
+            "href": "/metronome"
+          }
+        },
+        {
+          "text": " is enough to tell a real vamp from one that's already halfway to arriving."
+        }
+      ]
+    }
+  ]
+}

@@ -116,22 +116,53 @@ export function cagedLadderLanes(rootPitchClass: number): CagedWindow[][] {
  */
 export type CagedLayer = 'roots' | 'triad' | 'pentatonic' | 'scale';
 
-const LAYER_SEMITONES: Record<CagedLayer, readonly number[]> = {
-  roots: [0],
-  triad: [0, 4, 7],
-  pentatonic: [0, 2, 4, 7, 9],
-  scale: [0, 2, 4, 5, 7, 9, 11],
+export const CAGED_QUALITIES = ['major', 'minor'] as const;
+
+/**
+ * Which family of degrees fills the window.
+ *
+ * The window itself does not know about quality — it is a fret span anchored on
+ * the root, so A minor's five forms sit exactly where A major's do. What changes
+ * is the notes marked inside them, and the layers nest for minor exactly as they
+ * do for major, which is what lets one component teach both pathways.
+ */
+export type CagedQuality = (typeof CAGED_QUALITIES)[number];
+
+const LAYER_SEMITONES: Record<CagedQuality, Record<CagedLayer, readonly number[]>> = {
+  major: {
+    roots: [0],
+    triad: [0, 4, 7],
+    pentatonic: [0, 2, 4, 7, 9],
+    scale: [0, 2, 4, 5, 7, 9, 11],
+  },
+  minor: {
+    roots: [0],
+    triad: [0, 3, 7],
+    pentatonic: [0, 3, 5, 7, 10],
+    scale: [0, 2, 3, 5, 7, 8, 10],
+  },
 };
 
-/** Major-scale degree names, by semitones above the root. */
-const DEGREE_BY_SEMITONE: Record<number, string> = {
-  0: '1',
-  2: '2',
-  4: '3',
-  5: '4',
-  7: '5',
-  9: '6',
-  11: '7',
+/** Degree names, by semitones above the root, spelled against the parent scale. */
+const DEGREE_BY_SEMITONE: Record<CagedQuality, Record<number, string>> = {
+  major: {
+    0: '1',
+    2: '2',
+    4: '3',
+    5: '4',
+    7: '5',
+    9: '6',
+    11: '7',
+  },
+  minor: {
+    0: '1',
+    2: '2',
+    3: 'b3',
+    5: '4',
+    7: '5',
+    8: 'b6',
+    10: 'b7',
+  },
 };
 
 export interface CagedMark {
@@ -141,37 +172,78 @@ export interface CagedMark {
   /** '1', '3', '5' … — what the dot says. */
   degree: string;
   isRoot: boolean;
+  /** The tone a scale is named for, when the fill nominated one. */
+  isAccent: boolean;
 }
 
 /**
- * Every position inside a window belonging to a layer, in reading order (high e
+ * What fills a window, as semitones above the root and the label each one wears.
+ *
+ * The quality tables above are two instances of this; a scale from the catalogue
+ * is any other. Keeping it a plain pair of arrays is what stops `guitar-positions`
+ * having to know about `scale-library`, the same trade `windows.ts` makes when it
+ * takes pitch classes rather than a `Scale`.
+ */
+export interface CagedFill {
+  /** Semitones above the root, ascending from 0. */
+  semitones: readonly number[];
+  /** One label per semitone, parallel to it. */
+  degrees: readonly string[];
+  /** Label of the tone the scale is named for, if it has one. */
+  accentDegree?: string;
+}
+
+/**
+ * Every position inside a window belonging to a fill, in reading order (high e
  * first, then up the neck).
  *
  * This is deliberately "everything in the window", not one playable voicing: the
  * point of a CAGED diagram is the shape the window holds, and which of those notes
  * a hand can reach at once is a different question that `/chord-shapes` answers.
  */
-export function cagedMarks(
+export function cagedFillMarks(
   rootPitchClass: number,
   window: CagedWindow,
-  layer: CagedLayer,
+  fill: CagedFill,
 ): CagedMark[] {
-  const wanted = new Set(LAYER_SEMITONES[layer]);
+  const degrees = new Map<number, string>();
+  fill.semitones.forEach((semitone, index) => {
+    if (!degrees.has(semitone % 12)) degrees.set(semitone % 12, fill.degrees[index]);
+  });
+
   const marks: CagedMark[] = [];
 
   for (let string = 0; string < STRING_COUNT; string += 1) {
     for (let fret = window.from; fret <= window.to; fret += 1) {
       const semitones = (((pitchClassAt(string, fret) - rootPitchClass) % 12) + 12) % 12;
-      if (!wanted.has(semitones)) continue;
+      const degree = degrees.get(semitones);
+      if (degree === undefined) continue;
 
       marks.push({
         string,
         fret,
-        degree: DEGREE_BY_SEMITONE[semitones],
+        degree,
         isRoot: semitones === 0,
+        isAccent: fill.accentDegree !== undefined && degree === fill.accentDegree,
       });
     }
   }
 
   return marks;
+}
+
+/** The same question asked of one of the two built-in chord layers. */
+export function cagedMarks(
+  rootPitchClass: number,
+  window: CagedWindow,
+  layer: CagedLayer,
+  quality: CagedQuality = 'major',
+): CagedMark[] {
+  const semitones = LAYER_SEMITONES[quality][layer];
+  const names = DEGREE_BY_SEMITONE[quality];
+
+  return cagedFillMarks(rootPitchClass, window, {
+    semitones,
+    degrees: semitones.map((semitone) => names[semitone]),
+  });
 }

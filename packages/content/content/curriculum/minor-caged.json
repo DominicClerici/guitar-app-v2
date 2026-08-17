@@ -1,0 +1,421 @@
+{
+  "id": "path_minor-caged",
+  "slug": "minor-caged",
+  "title": "CAGED in a Minor Key",
+  "summary": "The same five windows you already know, rooted somewhere else. Where the minor scale comes from, the one note that moves to make a form minor, and how to play in a minor key anywhere on the neck.",
+  "tags": ["caged", "minor", "fretboard", "theory"],
+  "difficulty": "core",
+  "estimatedMin": 235,
+  "chapters": [
+    {
+      "id": "minor-caged.ch1",
+      "slug": "where-minor-comes-from",
+      "title": "Where Minor Comes From",
+      "summary": "Two roads from C major to A minor, the one note that carries the quality, and the window that is C major's G form and A minor's E form at the same time.",
+      "sections": [
+        {
+          "id": "minor-caged.ch1.the-same-seven-notes",
+          "slug": "minor-caged-the-same-seven-notes",
+          "title": "The Same Seven Notes",
+          "kind": "article",
+          "ref": "minor-caged-the-same-seven-notes",
+          "estimatedMin": 4
+        },
+        {
+          "id": "minor-caged.ch1.the-three-that-drop",
+          "slug": "minor-caged-the-three-that-drop",
+          "title": "The Three Notes That Drop",
+          "kind": "article",
+          "ref": "minor-caged-the-three-that-drop",
+          "estimatedMin": 4
+        },
+        {
+          "id": "minor-caged.ch1.the-flat-third",
+          "slug": "minor-caged-the-flat-third",
+          "title": "The Note That Makes It Minor",
+          "kind": "article",
+          "ref": "minor-caged-the-flat-third",
+          "estimatedMin": 4
+        },
+        {
+          "id": "minor-caged.ch1.what-decides-home",
+          "slug": "minor-caged-what-decides-home",
+          "title": "Same Notes, Different Home",
+          "kind": "article",
+          "ref": "minor-caged-what-decides-home",
+          "estimatedMin": 5
+        },
+        {
+          "id": "minor-caged.ch1.is-there-minor-caged",
+          "slug": "minor-caged-is-there-minor-caged",
+          "title": "Is There Even Such a Thing?",
+          "kind": "article",
+          "ref": "minor-caged-is-there-minor-caged",
+          "estimatedMin": 4
+        },
+        {
+          "id": "minor-caged.ch1.one-window-two-names",
+          "slug": "minor-caged-one-window-two-names",
+          "title": "One Window, Two Names",
+          "kind": "article",
+          "ref": "minor-caged-one-window-two-names",
+          "estimatedMin": 5
+        },
+        {
+          "id": "minor-caged.ch1.play-both-roads",
+          "slug": "minor-caged-play-both-roads",
+          "title": "Drill: Play Both Roads",
+          "kind": "activity",
+          "ref": "minor-caged-play-both-roads",
+          "optional": true,
+          "estimatedMin": 8
+        }
+      ],
+      "checkpoint": {
+        "ref": "minor-caged-ch1-checkpoint",
+        "passThresholdPct": 70,
+        "title": "Review the Two Roads"
+      }
+    },
+    {
+      "id": "minor-caged.ch2",
+      "slug": "the-five-minor-forms",
+      "title": "The Five Minor Forms",
+      "summary": "The window stays where it is and only the third moves. An A minor chord in five places across the neck, and the one finger carrying the b3 in each.",
+      "sections": [
+        {
+          "id": "minor-caged.ch2.the-window-stays-put",
+          "slug": "minor-caged-the-window-stays-put",
+          "title": "The Window Stays, the Third Moves",
+          "kind": "article",
+          "ref": "minor-caged-the-window-stays-put",
+          "estimatedMin": 5
+        },
+        {
+          "id": "minor-caged.ch2.triad-c-form",
+          "slug": "minor-caged-triad-c-form",
+          "title": "The C Form: The Shape Does Not Slide",
+          "kind": "article",
+          "ref": "minor-caged-triad-c-form",
+          "estimatedMin": 4
+        },
+        {
+          "id": "minor-caged.ch2.triad-a-form",
+          "slug": "minor-caged-triad-a-form",
+          "title": "The A Form: The Chord You Learned First",
+          "kind": "article",
+          "ref": "minor-caged-triad-a-form",
+          "estimatedMin": 5
+        },
+        {
+          "id": "minor-caged.ch2.triad-g-form",
+          "slug": "minor-caged-triad-g-form",
+          "title": "The G Form: Wider in Minor Than It Was in Major",
+          "kind": "article",
+          "ref": "minor-caged-triad-g-form",
+          "estimatedMin": 5
+        },
+        {
+          "id": "minor-caged.ch2.triad-e-form",
+          "slug": "minor-caged-triad-e-form",
+          "title": "The E Form: One String Makes It Minor",
+          "kind": "article",
+          "ref": "minor-caged-triad-e-form",
+          "estimatedMin": 5
+        },
+        {
+          "id": "minor-caged.ch2.triad-d-form",
+          "slug": "minor-caged-triad-d-form",
+          "title": "The D Form: The Flat Third on Top",
+          "kind": "article",
+          "ref": "minor-caged-triad-d-form",
+          "estimatedMin": 4
+        },
+        {
+          "id": "minor-caged.ch2.five-shapes-one-neck",
+          "slug": "minor-caged-five-shapes-one-neck",
+          "title": "Five Shapes, One Neck",
+          "kind": "article",
+          "ref": "minor-caged-five-shapes-one-neck",
+          "estimatedMin": 5
+        },
+        {
+          "id": "minor-caged.ch2.play-the-five-shapes",
+          "slug": "minor-caged-play-the-five-shapes",
+          "title": "Drill: Play All Five",
+          "kind": "activity",
+          "ref": "minor-caged-play-the-five-shapes",
+          "optional": true,
+          "estimatedMin": 8
+        },
+        {
+          "id": "minor-caged.ch2.triads-in-the-seams",
+          "slug": "minor-caged-triads-in-the-seams",
+          "title": "Drill: The Chord Between Two Forms",
+          "kind": "activity",
+          "ref": "minor-caged-triads-in-the-seams",
+          "optional": true,
+          "estimatedMin": 6
+        }
+      ],
+      "checkpoint": {
+        "ref": "minor-caged-ch2-checkpoint",
+        "passThresholdPct": 70,
+        "title": "Review the Five Minor Forms"
+      }
+    },
+    {
+      "id": "minor-caged.ch3",
+      "slug": "the-minor-pentatonic",
+      "title": "The Minor Pentatonic in Each Form",
+      "summary": "Two more notes in the same five windows. A minor pentatonic anywhere on the neck, which of its five notes the chord is made of, and how the numbered boxes line up with the forms.",
+      "sections": [
+        {
+          "id": "minor-caged.ch3.two-more-notes",
+          "slug": "minor-caged-two-more-notes",
+          "title": "Two More Notes in the Same Five Windows",
+          "kind": "article",
+          "ref": "minor-caged-two-more-notes",
+          "estimatedMin": 5
+        },
+        {
+          "id": "minor-caged.ch3.pentatonic-c-form",
+          "slug": "minor-caged-pentatonic-c-form",
+          "title": "The C Form: The One That Spreads",
+          "kind": "article",
+          "ref": "minor-caged-pentatonic-c-form",
+          "estimatedMin": 4
+        },
+        {
+          "id": "minor-caged.ch3.pentatonic-a-form",
+          "slug": "minor-caged-pentatonic-a-form",
+          "title": "The A Form: The Pentatonic at the Nut",
+          "kind": "article",
+          "ref": "minor-caged-pentatonic-a-form",
+          "estimatedMin": 4
+        },
+        {
+          "id": "minor-caged.ch3.pentatonic-g-form",
+          "slug": "minor-caged-pentatonic-g-form",
+          "title": "The G Form: Thirteen Dots",
+          "kind": "article",
+          "ref": "minor-caged-pentatonic-g-form",
+          "estimatedMin": 5
+        },
+        {
+          "id": "minor-caged.ch3.pentatonic-e-form",
+          "slug": "minor-caged-pentatonic-e-form",
+          "title": "The E Form: The Box You Already Own",
+          "kind": "article",
+          "ref": "minor-caged-pentatonic-e-form",
+          "estimatedMin": 5
+        },
+        {
+          "id": "minor-caged.ch3.pentatonic-d-form",
+          "slug": "minor-caged-pentatonic-d-form",
+          "title": "The D Form: The Way Out of the Box",
+          "kind": "article",
+          "ref": "minor-caged-pentatonic-d-form",
+          "estimatedMin": 5
+        },
+        {
+          "id": "minor-caged.ch3.boxes-and-forms",
+          "slug": "minor-caged-boxes-and-forms",
+          "title": "Boxes and Forms: Two Maps of the Same Dots",
+          "kind": "article",
+          "ref": "minor-caged-boxes-and-forms",
+          "estimatedMin": 6
+        },
+        {
+          "id": "minor-caged.ch3.play-the-five-windows",
+          "slug": "minor-caged-play-the-five-windows",
+          "title": "Drill: The Five Windows",
+          "kind": "activity",
+          "ref": "minor-caged-play-the-five-windows",
+          "optional": true,
+          "estimatedMin": 10
+        },
+        {
+          "id": "minor-caged.ch3.which-ones-are-the-chord",
+          "slug": "minor-caged-which-ones-are-the-chord",
+          "title": "Drill: Which Ones Are the Chord?",
+          "kind": "activity",
+          "ref": "minor-caged-which-ones-are-the-chord",
+          "optional": true,
+          "estimatedMin": 7
+        }
+      ],
+      "checkpoint": {
+        "ref": "minor-caged-ch3-checkpoint",
+        "passThresholdPct": 70,
+        "title": "Review the Minor Pentatonic"
+      }
+    },
+    {
+      "id": "minor-caged.ch4",
+      "slug": "the-natural-minor-scale",
+      "title": "The Whole Natural Minor Scale",
+      "summary": "The last two notes go into the same five windows. A natural minor anywhere on the neck, the role of every degree in it, and why the b6 is the darkest note in the scale.",
+      "sections": [
+        {
+          "id": "minor-caged.ch4.the-last-two-notes",
+          "slug": "minor-caged-the-last-two-notes",
+          "title": "The Last Two Notes",
+          "kind": "article",
+          "ref": "minor-caged-the-last-two-notes",
+          "estimatedMin": 6
+        },
+        {
+          "id": "minor-caged.ch4.scale-c-form",
+          "slug": "minor-caged-scale-c-form",
+          "title": "The C Form: The Hole in the Neck",
+          "kind": "article",
+          "ref": "minor-caged-scale-c-form",
+          "estimatedMin": 4
+        },
+        {
+          "id": "minor-caged.ch4.scale-a-form",
+          "slug": "minor-caged-scale-a-form",
+          "title": "The A Form: All Six Open Strings",
+          "kind": "article",
+          "ref": "minor-caged-scale-a-form",
+          "estimatedMin": 5
+        },
+        {
+          "id": "minor-caged.ch4.scale-g-form",
+          "slug": "minor-caged-scale-g-form",
+          "title": "The G Form: The Darkest Window",
+          "kind": "article",
+          "ref": "minor-caged-scale-g-form",
+          "estimatedMin": 5
+        },
+        {
+          "id": "minor-caged.ch4.scale-e-form",
+          "slug": "minor-caged-scale-e-form",
+          "title": "The E Form: The Two Frets the Box Skipped",
+          "kind": "article",
+          "ref": "minor-caged-scale-e-form",
+          "estimatedMin": 5
+        },
+        {
+          "id": "minor-caged.ch4.scale-d-form",
+          "slug": "minor-caged-scale-d-form",
+          "title": "The D Form: A New Note on Every String",
+          "kind": "article",
+          "ref": "minor-caged-scale-d-form",
+          "estimatedMin": 5
+        },
+        {
+          "id": "minor-caged.ch4.nothing-left-to-add",
+          "slug": "minor-caged-nothing-left-to-add",
+          "title": "Nothing Left to Add",
+          "kind": "article",
+          "ref": "minor-caged-nothing-left-to-add",
+          "estimatedMin": 6
+        },
+        {
+          "id": "minor-caged.ch4.find-the-sixth",
+          "slug": "minor-caged-find-the-sixth",
+          "title": "Drill: The Two New Notes",
+          "kind": "activity",
+          "ref": "minor-caged-find-the-sixth",
+          "optional": true,
+          "estimatedMin": 8
+        },
+        {
+          "id": "minor-caged.ch4.the-whole-window",
+          "slug": "minor-caged-the-whole-window",
+          "title": "Drill: The Whole Scale in One Window",
+          "kind": "activity",
+          "ref": "minor-caged-the-whole-window",
+          "optional": true,
+          "estimatedMin": 12
+        }
+      ],
+      "checkpoint": {
+        "ref": "minor-caged-ch4-checkpoint",
+        "passThresholdPct": 70,
+        "title": "Review the Natural Minor Scale"
+      }
+    },
+    {
+      "id": "minor-caged.ch5",
+      "slug": "playing-in-a-minor-key",
+      "title": "Playing in a Minor Key",
+      "summary": "The seven chords a minor key gives you and where they sit, the raised seventh that turns the v major, switching between a key and its relative without moving your hand, and the whole thing in any minor key.",
+      "sections": [
+        {
+          "id": "minor-caged.ch5.the-chords-of-the-key",
+          "slug": "minor-caged-the-chords-of-the-key",
+          "title": "The Chords A Minor Gives You",
+          "kind": "article",
+          "ref": "minor-caged-the-chords-of-the-key",
+          "estimatedMin": 5
+        },
+        {
+          "id": "minor-caged.ch5.the-raised-seventh",
+          "slug": "minor-caged-the-raised-seventh",
+          "title": "The Note That Pulls Home",
+          "kind": "article",
+          "ref": "minor-caged-the-raised-seventh",
+          "estimatedMin": 5
+        },
+        {
+          "id": "minor-caged.ch5.switching-relatives",
+          "slug": "minor-caged-switching-relatives",
+          "title": "Same Hand, Different Key",
+          "kind": "article",
+          "ref": "minor-caged-switching-relatives",
+          "estimatedMin": 5
+        },
+        {
+          "id": "minor-caged.ch5.a-loop-up-the-neck",
+          "slug": "minor-caged-a-loop-up-the-neck",
+          "title": "The Loop That Follows Your Hand",
+          "kind": "article",
+          "ref": "minor-caged-a-loop-up-the-neck",
+          "estimatedMin": 5
+        },
+        {
+          "id": "minor-caged.ch5.any-minor-key",
+          "slug": "minor-caged-any-minor-key",
+          "title": "The Same Five Windows, Any Minor Key",
+          "kind": "article",
+          "ref": "minor-caged-any-minor-key",
+          "estimatedMin": 5
+        },
+        {
+          "id": "minor-caged.ch5.what-the-third-was-worth",
+          "slug": "minor-caged-what-the-third-was-worth",
+          "title": "What the Third Was Worth",
+          "kind": "article",
+          "ref": "minor-caged-what-the-third-was-worth",
+          "estimatedMin": 5
+        },
+        {
+          "id": "minor-caged.ch5.the-chord-roots",
+          "slug": "minor-caged-the-chord-roots",
+          "title": "Drill: Every Chord's Root",
+          "kind": "activity",
+          "ref": "minor-caged-the-chord-roots",
+          "optional": true,
+          "estimatedMin": 9
+        },
+        {
+          "id": "minor-caged.ch5.comp-the-loop",
+          "slug": "minor-caged-comp-the-loop",
+          "title": "Drill: Comp the Loop in Time",
+          "kind": "activity",
+          "ref": "minor-caged-comp-the-loop",
+          "optional": true,
+          "estimatedMin": 8
+        }
+      ],
+      "checkpoint": {
+        "ref": "minor-caged-ch5-checkpoint",
+        "passThresholdPct": 70,
+        "title": "Review Playing in a Minor Key"
+      }
+    }
+  ]
+}

@@ -1,0 +1,367 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_modes-aeolian-sound",
+    "slug": "modes-aeolian-sound",
+    "title": "The Minor You Already Own",
+    "summary": "Aeolian is the natural minor scale you already own in full, with no characteristic note of its own — its job in this chapter is to be the plain minor that Dorian and Phrygian each change by turning one dial.",
+    "tags": ["modes", "theory", "ear"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-15"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Three modes share one home chord in this chapter — "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": " — and what tells them apart is two dials: the "
+        },
+        {
+          "text": "6",
+          "marks": ["code"]
+        },
+        {
+          "text": " and the "
+        },
+        {
+          "text": "2",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Aeolian is where both sit at their plain, unturned setting — the same shape the major family had one chapter up, with a minor pair of dials this time."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Aeolian is the natural minor scale: "
+        },
+        {
+          "text": "A B C D E F G",
+          "marks": ["code"]
+        },
+        {
+          "text": ", degrees "
+        },
+        {
+          "text": "1 2 b3 4 5 b6 b7",
+          "marks": ["code"]
+        },
+        {
+          "text": ", home chord "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "A C E",
+          "marks": ["code"]
+        },
+        {
+          "text": "). Its parent major is "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": ", named once and put down. "
+        },
+        {
+          "text": "Two of Them Are Already Yours",
+          "link": {
+            "kind": "article",
+            "slug": "modes-two-you-already-play"
+          }
+        },
+        {
+          "text": " already handled the rename from natural minor to Aeolian — the two names point at the same seven notes."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "It has no characteristic note. No chip lights amber on the card headed "
+        },
+        {
+          "text": "A Natural minor",
+          "marks": ["code"]
+        },
+        {
+          "text": ", no dot gets outlined in its windows. That's by construction — a characteristic note is whatever separates a scale from its nearest plain relative, and Aeolian is the plain relative, the reference the rest of this chapter gets measured against."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "scale-compare",
+      "props": {
+        "root": "A",
+        "scales": ["minor"],
+        "drone": true
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Play it against the drone. One card, and nothing on it lights up — that absence is half the lesson, heard rather than read. There is nothing here to point at."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Both of this chapter's dials sit at their reference setting here. Dorian, next, raises the "
+        },
+        {
+          "text": "6",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Phrygian, after that, lowers the "
+        },
+        {
+          "text": "2",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Aeolian is what's left when neither has been turned."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "You already own it, completely. All five CAGED windows, filled all the way in — "
+        },
+        {
+          "text": "Nothing Left to Add",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-nothing-left-to-add"
+          }
+        },
+        {
+          "text": " is where that work happened. There's nothing new to learn on the neck here; everything the rest of this chapter does is what two dials do to a scale you already have under your hands."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Its tritone, the "
+        },
+        {
+          "text": "2",
+          "marks": ["code"]
+        },
+        {
+          "text": " and the "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "B–F",
+          "marks": ["code"]
+        },
+        {
+          "text": "), misses the tonic triad entirely — one of only two of the seven modes where that's true. "
+        },
+        {
+          "text": "Where the Tritone Lands",
+          "link": {
+            "kind": "article",
+            "slug": "modes-the-tritone"
+          }
+        },
+        {
+          "text": " already gave the address; it's the structural reason Aeolian is the stable minor."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One more address, worth carrying into what's next: Aeolian's "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": " sits a half step above the "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Only it and Phrygian have that — "
+        },
+        {
+          "text": "Where the Half Steps Fall",
+          "link": {
+            "kind": "article",
+            "slug": "modes-half-steps"
+          }
+        },
+        {
+          "text": " already counted it. Dorian's whole point, coming up, is that it doesn't."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Aeolian is a hinge rather than a destination. It sits between Dorian and Phrygian on the brightness ladder, both of its dials at the reference setting, and its job in this chapter is to be the thing the other two are heard against — not a fact to apologise for, just a fact about what it's for."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "progression-player",
+      "props": {
+        "chords": ["Am", "F"],
+        "bpm": 66,
+        "caption": "The i, then the bVI — F carries the b6 Dorian gives up"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The vamp is "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": ", a "
+        },
+        {
+          "text": "i",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "bVI",
+          "marks": ["code"]
+        },
+        {
+          "text": ". "
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": " is "
+        },
+        {
+          "text": "F A C",
+          "marks": ["code"]
+        },
+        {
+          "text": ", and the "
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": " in it is the "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": " — the note Dorian gives up. The honest half: "
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": " major also sits inside Phrygian, so this loop rules out Dorian and doesn't, on its own, separate Aeolian from Phrygian."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One more chord Aeolian gives you: "
+        },
+        {
+          "text": "Am7",
+          "marks": ["code"]
+        },
+        {
+          "text": " is "
+        },
+        {
+          "text": "A C E G",
+          "marks": ["code"]
+        },
+        {
+          "text": ", the seventh chord built on its own tonic. Naming it is as far as this pathway goes with sevenths."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "There's one note in this scale that fights the chord underneath it, and you've already been told to place it and move rather than sit on it. "
+        },
+        {
+          "text": "The Ache Above the Fifth",
+          "link": {
+            "kind": "article",
+            "slug": "modes-the-ache"
+          }
+        },
+        {
+          "text": " gives it a name."
+        }
+      ]
+    }
+  ]
+}

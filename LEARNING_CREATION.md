@@ -216,7 +216,8 @@ This is the rule that keeps parallel agents from colliding, and the ordering tha
 green throughout:
 
 1. **Top-level** writes `packages/content/content/curriculum/<slug>.json` with the pathway meta
-   and `"chapters": []`.
+   and `"chapters": []`. Note that `estimatedMin` must be **> 0** even in the stub — put a rough
+   guess there and recompute it properly at the end (§8), or the gate is red from the first commit.
 2. **Lesson agents** create only `articles/<their-slug>.json`. One file each, never shared.
 3. **Chapter agent** creates `quizzes/` and `activities/` files for its chapter, then **appends
    its chapter object** to the curriculum file.
@@ -321,6 +322,25 @@ Dispatch with the Agent tool: `model: "sonnet"`, `subagent_type: "general-purpos
 - touch the curriculum file, another agent's article, a quiz, or an activity
 - change a schema, a parser, or `SCHEMA_VERSION`
 - invent block types, marks, link kinds, or props
+- **copy its own instructions into the article**
+
+**The transcribed-instruction failure.** That last one is not hypothetical and it is not rare: it
+survived into drafts in two chapters of the `modes` pathway, five times in one of them. A chapter
+plan is written *to* the lesson agent in the second person, so sentences like "Call it the amber
+chip; it's never the rose chip", "never 'a study found'", "two, not one, so don't call either the
+only one", and "One clause on the rename:" get pasted straight into learner-facing prose, where they
+are addressed to nobody and describe an editorial decision the reader cannot see. Both the plan's
+*directives* and its *rationales* leak this way.
+
+**Detection is the control that works; prevention is not.** Marking the two registers in the plan —
+keeping per-lesson instructions visually separate from suggested wording — is worth doing and is
+**not sufficient**: a chapter that did it still shipped four transcribed instructions into drafts.
+So **grep every finished draft** before accepting it, and treat that as mandatory rather than
+belt-and-braces. Search the rendered prose for second-person imperatives, "never", "don't", "make
+sure", "note that you", and any sentence naming a component prop, a colour convention, an evidence
+tier, or another lesson's job. **An article never explains its own authoring.** Rationales leak as
+readily as directives — "…so the pattern isn't only a minor one" is as wrong in an article as
+"Call it the amber chip".
 
 **The component escalation rule.** When a lesson wants an interactive widget that doesn't exist,
 the lesson agent does not build it. It writes the lesson using what exists and reports the request:
@@ -385,7 +405,7 @@ hex.** An unknown mark is silently dropped, so a typo costs the formatting witho
 
 | Link                                | Goes to                                                          |
 | ----------------------------------- | ---------------------------------------------------------------- |
-| `{ "kind": "article", "slug": … }`  | Another article. The slug must exist in the corpus.               |
+| `{ "kind": "article", "slug": … }`  | Another article. The slug must exist in the corpus. **Read the sentence back with the link text in place** — swapping a phrase for the article's title routinely eats the words it replaced and leaves something ungrammatical ("…plus What a Tonic Actually Needs."). Two shipped in one chapter's drafts. |
 | `{ "kind": "screen", "href": … }`   | An app screen — §7.4.                                             |
 | `{ "kind": "url", "url": … }`       | An in-app browser. Use for genuine outside references only.       |
 | `{ "kind": "footnote", "id": … }`   | Scrolls to the footnote. `id` must match an entry in `footnotes`. |
@@ -399,9 +419,21 @@ of crashing. **Only what is listed here may be used.**
 
 | Name            | Props                                                                 | What it does, and when to reach for it                                                                                                                                                                      | File                                              |
 | --------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
-| `scale-compare` | `{ root: RootName, scales: string[] }` — 1–4 scale-library ids         | One card per scale on the same root: its tones as chips, plus a play button that runs the scale with the sounding chip lit. Tones the later scales have that the first (reference) scale lacks are tinted amber. Use it whenever two scales differ by a few notes and the point is *which* notes. | `mobile/src/features/articles/live/ScaleCompare.tsx` |
-| `caged-shape`   | `{ root: RootName, form: "C"\|"A"\|"G"\|"E"\|"D", show?: "roots"\|"triad"\|"pentatonic"\|"scale", caption?: string }` — `show` defaults to `"triad"` | One CAGED form of one major chord, drawn as the five-fret window it occupies on the neck, every note of the chosen layer marked with its degree and the roots lit. **It draws everything in the window, not one playable grip** — at `show: "triad"` that is 7–8 dots where a hand holds 4–6, because which of them a hand can reach at once is `/chord-shapes`'s question. Say so in prose or the lesson contradicts its own diagram. A play button runs the window low to high. **The four `show` layers nest** — roots ⊂ triad ⊂ pentatonic ⊂ scale — so the same `root` + `form` at four different `show` values is the same window filling in, which is the way to teach a form across a pathway rather than as four unrelated diagrams. Reach for it any time a lesson is about *one* shape in *one* place. | `mobile/src/features/articles/live/CagedShape.tsx` |
-| `caged-ladder`  | `{ root: RootName, highlight?: "C"\|"A"\|"G"\|"E"\|"D" }`             | All five forms of one major chord at once along the whole neck, drawn as labelled bands with every root marked. Neighbouring forms alternate between two lanes, so the overlap between them shows as two bands stacked over the same frets instead of a collision. Use it for the claim `caged-shape` cannot make alone — that the forms are consecutive windows tiling the neck, not five alternatives. `highlight` lights one band and quiets the rest, for "here is where the form you just learned sits". | `mobile/src/features/articles/live/CagedLadder.tsx` |
+| `scale-compare` | `{ root: RootName, scales: string[], drone?: boolean }` — 1–4 scale-library ids, `drone` defaulting to `false` | One card per scale on the same root: its tones as chips, plus a play button that runs the scale with the sounding chip lit. Tones the later scales have that the first (reference) scale lacks are tinted amber — so **put the scale being compared *against* first**, and the amber lands on exactly the notes the lesson is about. **Every chip is tappable** and sounds its tone alone, which is how a learner isolates one note instead of hearing it flash past in a run. `drone: true` adds a bar above the cards that holds the root an octave below the run, and it is not decoration: a scale played unaccompanied has no tonal centre, so a mode does not exist until something holds home — turn it on for any lesson whose claim is about how a set of notes *sounds* rather than which notes it contains. The drone deliberately keeps sounding while a scale runs over it. Use it whenever two scales differ by a few notes and the point is *which* notes, or *what those notes do*. | `mobile/src/features/articles/live/ScaleCompare.tsx` |
+| `caged-shape`   | `{ root: RootName, form: "C"\|"A"\|"G"\|"E"\|"D", quality?: "major"\|"minor", show?: "roots"\|"triad"\|"pentatonic"\|"scale", scale?: string, caption?: string }` — `quality` defaults to `"major"`, `show` to `"triad"`; `scale` is a scale-library id and **overrides both** | One CAGED form of one chord, drawn as the five-fret window it occupies on the neck, every note of the chosen layer marked with its degree and the roots lit. **It draws everything in the window, not one playable grip** — at `show: "triad"` that is 7–8 dots where a hand holds 4–6, because which of them a hand can reach at once is `/chord-shapes`'s question. Say so in prose or the lesson contradicts its own diagram. A play button runs the window low to high. **The four `show` layers nest** — roots ⊂ triad ⊂ pentatonic ⊂ scale, in both qualities — so the same `root` + `form` at four different `show` values is the same window filling in, which is the way to teach a form across a pathway rather than as four unrelated diagrams. `quality: "minor"` swaps the layers for `1 b3 5`, the minor pentatonic and the natural minor, and **leaves the window exactly where it was**: a form is a fret span anchored on the root, so A minor's E form covers the frets A major's does. Mind the edges when writing about that — see the note below the table. **`scale` generalises that last move to the whole catalogue**: `scale: "dorian"` fills the same window with A Dorian, heads the card `E form · A Dorian`, captions it with the catalogue's own one-liner, and outlines the tone the scale is named for in the hue the neck tints it (Dorian's `6` amber, Phrygian's `b2` rose, Lydian's `#4` violet — `SCALE_TYPES[].accent`). `quality` and `show` are ignored when it is set, and the window still does not move, so the same `root` + `form` at `quality: "minor"` and at `scale: "dorian"` is one picture with one dot moved. The window-edge caveat below applies unchanged and bites harder, because raising a note moves it *up* out of the frame. Reach for it any time a lesson is about *one* shape in *one* place. **`caption` replaces only the small line *under* the heading** (the one that otherwise names the layer, or prints the catalogue's `character` string when `scale` is set). The heading itself — `<form> form · <root> <scale name>`, e.g. `E form · A Lydian` — is **not** overridable, so a caption that restates the form, root or scale name duplicates what is already on the card. Two lesson agents in one chapter made exactly that mistake. | `mobile/src/features/articles/live/CagedShape.tsx` |
+| `caged-ladder`  | `{ root: RootName, quality?: "major"\|"minor", highlight?: "C"\|"A"\|"G"\|"E"\|"D" }` | All five forms of one chord at once along the whole neck, drawn as labelled bands with every root marked. Neighbouring forms alternate between two lanes, so the overlap between them shows as two bands stacked over the same frets instead of a collision. Use it for the claim `caged-shape` cannot make alone — that the forms are consecutive windows tiling the neck, not five alternatives. `highlight` lights one band and quiets the rest, for "here is where the form you just learned sits". `quality` only changes the caption: the bands and the roots are identical for A major and A minor, which is itself the point when a lesson is making that claim. | `mobile/src/features/articles/live/CagedLadder.tsx` |
+| `triad-shape`   | `{ root: RootName, quality?: "major"\|"minor"\|"diminished"\|"augmented", strings: "1-2-3"\|"2-3-4"\|"3-4-5"\|"4-5-6", inversion?: "root"\|"first"\|"second", minFret?: number, caption?: string }` — `quality` defaults to `"major"`, `inversion` to `"root"` | One close-voiced triad on one string set, drawn where it actually sits, three dots labelled by degree with the root lit. **Unlike `caged-shape` this is a grip, not a window**: three notes are the chord, the shape and the diagram at once, and the three strings the set doesn't use are drawn muted (`×`) because what you don't play is part of the shape. A play button runs it low to high. `strings` names the set from the high e, matching the wire format everywhere else (`1-2-3` is e-B-G). The component picks the lowest place the voicing fits on the neck — which is itself content, since a first inversion on strings 4-5-6 cannot be held below fret 10 — and `minFret` takes the copy at or above a given fret when a lesson wants the one further up. Reach for it any time a lesson is about *one* triad in *one* place. | `mobile/src/features/articles/live/TriadShape.tsx` |
+| `progression-player` | `{ chords: string[], bpm?: number, caption?: string }` — 2–8 chord symbols, `bpm` 40–160 defaulting to 90 | A written progression, strummed. Each chord is drawn as a chip carrying its name and its grip as a six-slot chart, and the play button strums them one per beat, twice round, lighting the chip that is sounding. The shapes are the voicing engine's **curated** ones, so `["Am","F","C","G"]` comes out as the open chords a player would actually reach for rather than the highest-scoring shapes in the abstract. Reach for it whenever a lesson's claim is about how a sequence of chords *sounds* — "these two loops use the same seven notes and land in different keys" is a sentence a learner has to take on trust until they can hear it. Symbols are parsed by the chord library (`Am`, `F`, `Bdim`, `C#m`); anything it cannot parse is dropped rather than failing the block, and a progression left with fewer than two chords renders nothing. It is **not** a metronome or a backing track: no loop toggle, no count-in, fixed strum. **It plays the written list twice**, so a block lasts `chords.length × 2` beats — a lesson that captions a four-chord block "sixteen beats" is wrong, and one did. | `mobile/src/features/articles/live/ProgressionPlayer.tsx` |
+| `triad-ladder`  | `{ root: RootName, quality?: "major"\|"minor"\|"diminished"\|"augmented", strings: "1-2-3"\|"2-3-4"\|"3-4-5"\|"4-5-6", highlight?: "root"\|"first"\|"second", caption?: string }` | Every inversion of one triad along one string set, drawn on **only that set's three strings** across the whole neck, with labelled bands naming each one and the octave repeat included. Use it for the claim `triad-shape` cannot make alone — that the three inversions are one cycle of chord tones climbing the set rather than three alternatives, and that it starts over twelve frets up. `highlight` lights every copy of one inversion and quiets the rest. Silent; there is no play button. | `mobile/src/features/articles/live/TriadLadder.tsx` |
+
+**The major/minor window edge, for anyone writing `caged-shape` at both qualities.** Every `3` in a
+window steps down one fret to a `b3` and nothing else moves — roots and fifths are shared. But the
+window is a fixed fret span, so a `3` sitting on its **bottom** fret flattens to a note *outside* the
+picture, and a `b3` one fret above its **top** fret steps *into* it. That happens at an edge in all
+85 root-and-form combinations, so the two diagrams rarely hold the same number of dots (7 vs 8 is
+typical). "The same picture with one dot moved" is therefore false as a caption, and true of the
+grip a hand holds rather than of the window. `mobile/src/lib/guitar-positions/caged.test.ts` pins
+this both ways.
 
 Valid `scales` ids come from `SCALE_TYPES` in `mobile/src/lib/scale-library/catalog.ts` —
 `major`, `minor`, `dorian`, `phrygian`, `lydian`, `mixolydian`, `locrian`, `major-pentatonic`,
@@ -420,13 +452,13 @@ surrounding prose with the same tone. `major-vs-minor.json` does this with amber
 | Href                | Screen                                                     |
 | ------------------- | ---------------------------------------------------------- |
 | `/metronome`        | Metronome. Accepts `?bpm=90`.                               |
-| `/scale-visualizer` | A scale mapped across the whole neck, paged by position. Its CAGED boxes are labelled "E form", "C form" … and are offered for **every** scale, pentatonics included. |
+| `/scale-visualizer` | A scale mapped across the whole neck, paged by position. Its CAGED boxes are labelled "E form", "C form" … and are offered for **every** scale, pentatonics included. Tapping a dot **plucks** it — nothing here sustains, and **there is no drone on this screen**. Send a learner to `/drone` for a held root; a lesson that says "start the drone on the Scale Visualizer" is wrong. |
 | `/scale-explorer`   | What to play over a detected key.                           |
 | `/chord-shapes`     | Voicing library for a chord.                                |
 | `/chord-detector`   | Listens and names the chord being played.                   |
-| `/key-detector`     | Listens to a progression and estimates the key.             |
-| `/ear-trainer`      | Interval and degree ear training.                           |
-| `/drone`            | A sustained root to play against.                           |
+| `/key-detector`     | Listens to a progression and estimates the key. **Do not print the engine's confidences in an article** — see the note below. |
+| `/ear-trainer`      | Degree ear training, and **called "Free Play" on screen** — link it by that name, not "Ear Trainer". It **holds a drone** (training does not start without one; the tonic drifts to a new key every so often), and its vocabulary is the twelve chromatic degrees labelled `1 b2 2 b3 3 4 #4 5 b6 6 b7 7` — the same notation the content uses — on a circle seated in fifths, with a configurable active set that defaults to the tonic triad. So it is a real destination for "hear this degree against a held root", not just interval drilling. |
+| `/drone`            | A sustained root to play against. **Not the only screen that holds one** — `/ear-trainer` does too. |
 | `/intonation`       | Intonation measurement per string.                          |
 
 Other screens take route params, but those are internal hand-offs between screens (encoded
@@ -436,6 +468,20 @@ param is documented above.
 **Link text is the screen's name, never its route.** Write `Scale Visualizer`, not
 `/scale-visualizer` — the href is already in the link. Lesson agents default to pasting the route
 if you don't tell them, and it happened in three separate chapters of the first pathway.
+
+**What `/key-detector` actually puts on screen**, because a lesson that predicts its output will
+otherwise be contradicted by the device. `estimateKey()` ranks all 24 major and minor keys and
+returns a **softmax share** per candidate — structurally capped well below 1.0, so even a textbook
+progression tops out near `0.65`. **Those numbers are never displayed.** `KeyReadout` shows the
+key's name, the word **Likely** or **Ambiguous**, and a ten-segment meter driven by `keyStrength()`
+— the leader's share *relative to the runner-up* (`c0 / (c0 + c1)`), rescaled so 0.5 lights nothing
+and 1.0 lights the bar. The two candidate cards, with their split percentages, **render only when
+the status is `ambiguous`**; a confident reading shows one key and no percentage at all. So a modal
+vamp reads as *Ambiguous* with two cards near 52% / 48%, while a functional progression reads as
+*Likely* with no percentage. Write what the learner sees, and recompute it by running the engine —
+not by quoting `confidence`. The engine also knows nothing of modes: it picks among 24 major/minor
+keys, which is exactly why it is the sharpest demonstration that harmony, not the note set, decides
+the tonic. (This gap in the docs produced a wrong table in a `modes` chapter-1 draft.)
 
 ### What the learner can actually see
 
@@ -466,11 +512,20 @@ answering. **Always write the explanation.** A wrong answer with no explanation 
 | -------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------ |
 | `choice`       | `options` (≥2), `answerId`            | The default. One right answer, distractors that each encode a *specific* misunderstanding.        |
 | `multi-select` | `options` (≥2), `answerIds`           | "Which of these are true." **Graded all-or-nothing** — partial credit is zero, so keep it to 4–5 options with 2–3 correct. |
-| `listen`       | `audio`, `options` (≥2), `answerId`   | Ear questions. `audio` is `{ kind: "notes", notes: ["A3","C4"], mode: "sequence" \| "chord", tempoMs? }` in scientific pitch notation. |
+| `listen`       | `audio`, `options` (≥2), `answerId`   | Ear questions. `audio` is `{ kind: "notes", notes: ["A3","C4"], mode: "sequence" \| "chord", tempoMs? }` in scientific pitch notation. **There is no drone and no accompaniment** — a `sequence` is bare notes in a row, so a `listen` question cannot test anything whose identity depends on a tonal centre being held (which modes do: an unaccompanied run has no tonic, and the ear will supply its own). Use it for intervals, chord quality and degree recognition; for a modal claim, put a `scale-compare` with `drone: true` or a `progression-player` in the question's `setup` instead. |
 | `fretboard`    | `frets`, `answer: FretPosition[]`     | "Show me where." The learner taps positions on a board `frets` wide. String 1 is the high e; fret 0 is open. |
 
 `answerId`/`answerIds` must match option ids, or the question is dropped from grading and
 `loadContent()` fails the publish.
+
+**Never refer to an option by letter or position.** `QuizRunner` shuffles every question's options
+on each attempt (`shuffled(question.options)`, so a retake can't be answered from memory of where
+the right answer sat), and `OptionList` renders no A/B/C/D labels at all. So "Option B has it
+backwards" names nothing the learner can see, and names a *different* option on every attempt.
+Write the distractor's content instead — "Reaching for whichever set is nearest has it backwards".
+The option `id`s in the JSON (`a`, `b`, `c`, `d`) are wire handles for `answerId`; they are not
+labels and they are never displayed. This caught 23 questions across two pathways before anyone
+noticed, because it is invisible in the JSON and only wrong on the device.
 
 **Writing a checkpoint.** 5–8 questions is right for a chapter. Cover every lesson; weight toward
 what the chapter claimed the learner would be able to *do*. Test understanding, not recall of a

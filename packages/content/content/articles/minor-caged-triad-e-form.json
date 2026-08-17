@@ -1,0 +1,240 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_minor-caged-triad-e-form",
+    "slug": "minor-caged-triad-e-form",
+    "title": "The E Form: One String Makes It Minor",
+    "summary": "Five of the E form's six strings are a root or a fifth, so the whole quality of the most-played minor chord on the guitar rests on a single string.",
+    "tags": ["caged", "minor"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The E form of A minor is the barre at fret " },
+        { "text": "5", "marks": ["code"] },
+        { "text": ": " },
+        { "text": "5 7 7 5 5 5", "marks": ["code"] },
+        { "text": ". Its window runs frets " },
+        { "text": "4–8", "marks": ["code"] },
+        { "text": ", and its three roots — " },
+        { "text": "6·5", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "4·7", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "1·5", "marks": ["code"] },
+        { "text": " — are the " },
+        { "text": "6 → 4 → 1", "marks": ["code"] },
+        { "text": " map you already know from the CAGED pathway." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "This is a window " },
+        {
+          "text": "chapter 1 already showed you",
+          "link": { "kind": "article", "slug": "minor-caged-one-window-two-names" }
+        },
+        { "text": ": frets " },
+        { "text": "4–8", "marks": ["code"] },
+        {
+          "text": " are C major's G form and A minor's E form at the same time. The full case for that lives there — this lesson won't re-run it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Degrees low to high: " },
+        { "text": "1 5 1 b3 5 1", "marks": ["code"] },
+        { "text": ". Count them: three " },
+        { "text": "1", "marks": ["code"] },
+        { "text": "s, two " },
+        { "text": "5", "marks": ["code"] },
+        { "text": "s, one " },
+        { "text": "b3", "marks": ["code"] },
+        { "text": ". Six strings, three notes." }
+      ]
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        [{ "text": "6·5 — 1, A", "marks": ["code"] }],
+        [{ "text": "5·7 — 5, E", "marks": ["code"] }],
+        [{ "text": "4·7 — 1, A", "marks": ["code"] }],
+        [{ "text": "3·5 — b3, C", "marks": ["code"] }],
+        [{ "text": "2·5 — 5, E", "marks": ["code"] }],
+        [{ "text": "1·5 — 1, A", "marks": ["code"] }]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Five of the six strings are a root or a fifth, so string 3 carries the entire question. "
+        },
+        { "text": "3·5", "marks": ["code"] },
+        { "text": " is the only " },
+        { "text": "b3", "marks": ["code"] },
+        { "text": " in the shape. " },
+        {
+          "text": "A major's barre here",
+          "link": { "kind": "article", "slug": "caged-triad-e-form" }
+        },
+        { "text": " is " },
+        { "text": "5 7 7 6 5 5", "marks": ["code"] },
+        {
+          "text": " — the same six strings with that one note a fret higher. Lift the finger on "
+        },
+        { "text": "3·5", "marks": ["code"] },
+        {
+          "text": " and the chord goes hollow: root and fifth, no quality at all, until it comes back."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "E",
+        "quality": "minor",
+        "show": "triad",
+        "caption": "The only b3 in the shape is string 3, fret 5. Everything else in the grip is a 1 or a 5."
+      }
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        { "text": "String 3, fret " },
+        { "text": "5", "marks": ["code"] },
+        { "text": " is the only " },
+        { "text": "b3", "marks": ["code"] },
+        {
+          "text": " in the shape — the one note that makes the most-played minor barre on the guitar minor at all."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Strings 6-5-4 — " },
+        { "text": "6·5", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "5·7", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "4·7", "marks": ["code"] },
+        { "text": " — are " },
+        { "text": "1 5 1", "marks": ["code"] },
+        {
+          "text": ", the power chord with a low-E root, and it's identical whether you're fretting "
+        },
+        { "text": "A", "marks": ["code"] },
+        { "text": " or " },
+        { "text": "Am", "marks": ["code"] },
+        {
+          "text": ". The A form made the same demonstration on strings 5-4-3; roots and fifths never move, and that's why."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That makes two of the five forms this chapter promised you already own, both now accounted for: the open "
+        },
+        { "text": "Am", "marks": ["code"] },
+        {
+          "text": " from the A form, and this barre from the E form. Both are chords you've likely fretted thousands of times without ever counting which string was doing the work. Now you know: string 2 for the open shape, string 3 for the barre."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The high fragment sits at the other end of the same barre: strings 3-2-1, all at fret "
+        },
+        { "text": "5", "marks": ["code"] },
+        { "text": " — " },
+        { "text": "b3 5 1", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "C E A", "marks": ["code"] },
+        {
+          "text": ". A complete minor chord without moving your hand off the position. (The G form's window reaches those same three notes; that seam is exactly where the closer picks this up.)"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The window carries two dots the grip never uses: " },
+        { "text": "6·8", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "1·8", "marks": ["code"] },
+        { "text": ", both " },
+        { "text": "b3", "marks": ["code"] },
+        { "text": ". Both stepped into the window from fret " },
+        { "text": "9", "marks": ["code"] },
+        {
+          "text": ", a fret above its top edge — the edge effect, showing up in the shape almost everyone already plays. And one dot simply isn't there: A major's "
+        },
+        { "text": "3", "marks": ["code"] },
+        { "text": " on " },
+        { "text": "5·4", "marks": ["code"] },
+        { "text": " flattens to " },
+        { "text": "5·3", "marks": ["code"] },
+        {
+          "text": ", which falls below the window's bottom fret and out of the minor picture entirely. Eight dots in minor against A major's seven."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That's also why the E form stays the shape you navigate the rest of the neck from. Name a note on string 6 and every other chord tone in the window is placed without counting — two more roots, two fifths, and the single "
+        },
+        { "text": "b3", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Slide the whole barre and the shape stops being a fact about A and starts being a fact about whatever root you land on. That portability, more than anything specific to A minor, is why this grip is the one most players reach for first whenever they need a minor chord and an open shape won't get them there."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Open the " },
+        { "text": "Scale Visualizer", "link": { "kind": "screen", "href": "/scale-visualizer" } },
+        { "text": " to see the same barre labelled the same way, or " },
+        { "text": "Chord Detector", "link": { "kind": "screen", "href": "/chord-detector" } },
+        { "text": " to fret it, lift " },
+        { "text": "3·5", "marks": ["code"] },
+        { "text": ", and hear the quality disappear for yourself." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Next: " },
+        {
+          "text": "the D form",
+          "marks": ["bold"],
+          "link": { "kind": "article", "slug": "minor-caged-triad-d-form" }
+        },
+        { "text": " — four strings and no more, where the top note tells the whole story." }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,646 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_modes-one-minor-three-ways",
+    "slug": "modes-one-minor-three-ways",
+    "title": "One Minor Home, Three Ways",
+    "summary": "Dorian, Aeolian and Phrygian are one home chord at three settings of two dials, and the one with nothing to lean on is the one whose own vamp can't name it.",
+    "tags": ["modes", "ear", "theory"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-15"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One home chord, three settings. Line up Dorian, Aeolian and Phrygian and the two dials this chapter has been turning — the "
+        },
+        {
+          "text": "6",
+          "marks": ["code"]
+        },
+        {
+          "text": " and the "
+        },
+        {
+          "text": "2",
+          "marks": ["code"]
+        },
+        {
+          "text": " — turn out to be the whole story. Dorian raises the first, Phrygian lowers the second, and Aeolian is what both dials look like left alone."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [
+          {
+            "text": "Mode"
+          }
+        ],
+        [
+          {
+            "text": "Degrees"
+          }
+        ],
+        [
+          {
+            "text": "Characteristic note"
+          }
+        ],
+        [
+          {
+            "text": "Vamp"
+          }
+        ],
+        [
+          {
+            "text": "The second chord carries"
+          }
+        ]
+      ],
+      "rows": [
+        [
+          [
+            {
+              "text": "Dorian"
+            }
+          ],
+          [
+            {
+              "text": "1 2 b3 4 5 6 b7",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "6",
+              "marks": [
+                "code",
+                {
+                  "type": "color",
+                  "tone": "amber"
+                }
+              ]
+            },
+            {
+              "text": " ("
+            },
+            {
+              "text": "F#",
+              "marks": [
+                "code",
+                {
+                  "type": "color",
+                  "tone": "amber"
+                }
+              ]
+            },
+            {
+              "text": ")"
+            }
+          ],
+          [
+            {
+              "text": "Am",
+              "marks": ["code"]
+            },
+            {
+              "text": "–"
+            },
+            {
+              "text": "D",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "D",
+              "marks": ["code"]
+            },
+            {
+              "text": " = "
+            },
+            {
+              "text": "D F# A",
+              "marks": ["code"]
+            },
+            {
+              "text": " — the "
+            },
+            {
+              "text": "6",
+              "marks": [
+                "code",
+                {
+                  "type": "color",
+                  "tone": "amber"
+                }
+              ]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Aeolian"
+            }
+          ],
+          [
+            {
+              "text": "1 2 b3 4 5 b6 b7",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "none"
+            }
+          ],
+          [
+            {
+              "text": "Am",
+              "marks": ["code"]
+            },
+            {
+              "text": "–"
+            },
+            {
+              "text": "F",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "F",
+              "marks": ["code"]
+            },
+            {
+              "text": " = "
+            },
+            {
+              "text": "F A C",
+              "marks": ["code"]
+            },
+            {
+              "text": " — the "
+            },
+            {
+              "text": "b6",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Phrygian"
+            }
+          ],
+          [
+            {
+              "text": "1 b2 b3 4 5 b6 b7",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "b2",
+              "marks": [
+                "code",
+                {
+                  "type": "color",
+                  "tone": "rose"
+                }
+              ]
+            },
+            {
+              "text": " ("
+            },
+            {
+              "text": "Bb",
+              "marks": [
+                "code",
+                {
+                  "type": "color",
+                  "tone": "rose"
+                }
+              ]
+            },
+            {
+              "text": ")"
+            }
+          ],
+          [
+            {
+              "text": "Am",
+              "marks": ["code"]
+            },
+            {
+              "text": "–"
+            },
+            {
+              "text": "Bb",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "Bb",
+              "marks": ["code"]
+            },
+            {
+              "text": " = "
+            },
+            {
+              "text": "Bb D F",
+              "marks": ["code"]
+            },
+            {
+              "text": " — the "
+            },
+            {
+              "text": "b2",
+              "marks": [
+                "code",
+                {
+                  "type": "color",
+                  "tone": "rose"
+                }
+              ]
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One Home Chord, Three Ways",
+          "link": {
+            "kind": "article",
+            "slug": "modes-one-home-three-ways"
+          }
+        },
+        {
+          "text": " left Ionian's vamp row empty — Ionian has no characteristic note, so there was no second chord that could assert one. Aeolian's row here isn't empty: "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": " is a real vamp. But it's the only one of the three that can't pin its own mode down, and that gap is worth tracing all the way through."
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        [
+          {
+            "text": "D",
+            "marks": ["code"]
+          },
+          {
+            "text": " major — "
+          },
+          {
+            "text": "D F# A",
+            "marks": ["code"]
+          },
+          {
+            "text": " — sits inside Ionian, Mixolydian and Dorian. "
+          },
+          {
+            "text": "Am",
+            "marks": ["code"]
+          },
+          {
+            "text": "–"
+          },
+          {
+            "text": "D",
+            "marks": ["code"]
+          },
+          {
+            "text": " rules out Aeolian and Phrygian, both of which need an "
+          },
+          {
+            "text": "F",
+            "marks": ["code"]
+          },
+          {
+            "text": " where "
+          },
+          {
+            "text": "D",
+            "marks": ["code"]
+          },
+          {
+            "text": " needs an "
+          },
+          {
+            "text": "F#",
+            "marks": ["code"]
+          },
+          {
+            "text": " — and what rules out Ionian and Mixolydian instead is the minor home chord, not this one chord's notes."
+          }
+        ],
+        [
+          {
+            "text": "F",
+            "marks": ["code"]
+          },
+          {
+            "text": " major — "
+          },
+          {
+            "text": "F A C",
+            "marks": ["code"]
+          },
+          {
+            "text": " — sits inside both Aeolian and Phrygian. "
+          },
+          {
+            "text": "Am",
+            "marks": ["code"]
+          },
+          {
+            "text": "–"
+          },
+          {
+            "text": "F",
+            "marks": ["code"]
+          },
+          {
+            "text": " rules out Dorian and stops there — it doesn't separate Aeolian from Phrygian."
+          }
+        ],
+        [
+          {
+            "text": "Bb",
+            "marks": ["code"]
+          },
+          {
+            "text": " major — "
+          },
+          {
+            "text": "Bb D F",
+            "marks": ["code"]
+          },
+          {
+            "text": " — sits inside Phrygian, and just one other of the seven, whose home chord isn't "
+          },
+          {
+            "text": "Am",
+            "marks": ["code"]
+          },
+          {
+            "text": ". "
+          },
+          {
+            "text": "Am",
+            "marks": ["code"]
+          },
+          {
+            "text": "–"
+          },
+          {
+            "text": "Bb",
+            "marks": ["code"]
+          },
+          {
+            "text": " does pin Phrygian down."
+          }
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That's exactly what having no characteristic note costs Aeolian."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "What separates the three when you're actually playing is one note apiece — the windows underneath are the same five you've always had. Dorian, land on the "
+        },
+        {
+          "text": "6",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": ". Phrygian, land on the "
+        },
+        {
+          "text": "b2",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "rose"
+            }
+          ]
+        },
+        {
+          "text": ". Aeolian gives you nothing to lean on, which is the point of it — and the one note to move through rather than land on is the "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": "."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "scale-compare",
+      "props": {
+        "root": "A",
+        "scales": ["minor", "dorian", "phrygian"],
+        "drone": true
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Start the drone and run all three. With "
+        },
+        {
+          "text": "A Natural minor",
+          "marks": ["code"]
+        },
+        {
+          "text": " first, the Dorian card lights exactly one amber chip — "
+        },
+        {
+          "text": "F#",
+          "marks": ["code"]
+        },
+        {
+          "text": " — and the Phrygian card exactly one — "
+        },
+        {
+          "text": "Bb",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Each card's single amber chip is precisely its characteristic note, because ordering the reference scale first is what makes the tint land there. That's the whole chapter in one block."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "progression-player",
+      "props": {
+        "chords": ["Am", "D", "Am", "Bb"],
+        "bpm": 66,
+        "caption": "The two dial vamps back to back — i–IV, then i–bII, over the same home chord"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Both dial vamps back to back: "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": ", the "
+        },
+        {
+          "text": "IV",
+          "marks": ["code"]
+        },
+        {
+          "text": " that carries the "
+        },
+        {
+          "text": "6",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": ", then "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "Bb",
+          "marks": ["code"]
+        },
+        {
+          "text": ", the "
+        },
+        {
+          "text": "bII",
+          "marks": ["code"]
+        },
+        {
+          "text": " that carries the "
+        },
+        {
+          "text": "b2",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "rose"
+            }
+          ]
+        },
+        {
+          "text": " — the same home chord both times, leaning two different directions off it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Worth one honest caveat: having a note to lean on in a scale isn't the same as actually leaning on it in a phrase. Making that difference audible on purpose is later work. For now the target has a name, and an exact fret whenever you go looking for it."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-ladder",
+      "props": {
+        "root": "A",
+        "quality": "minor"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That ladder is drawing windows and roots — not notes. It takes a quality, major or minor, and no scale at all, so nothing on it distinguishes Dorian from Phrygian and nothing ever will. Which is the reassurance to leave the chapter on: five bands, on exactly the frets the major family's ladder used, unmoved by either dial. Six modes now, and your hand has not been asked to go anywhere it hadn't already been."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Both chapters, closed. Two home chords, two dials each, six modes — the table "
+        },
+        {
+          "text": "Two Homes, Two Dials Each",
+          "link": {
+            "kind": "article",
+            "slug": "modes-two-families"
+          }
+        },
+        {
+          "text": " laid out is now filled in all the way down. There's a seventh mode still waiting — Locrian — and its home chord is neither of these two. What that means for whether a home can hold at all is Chapter 5's question."
+        }
+      ]
+    }
+  ]
+}

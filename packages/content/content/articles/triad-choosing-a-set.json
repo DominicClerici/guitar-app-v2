@@ -1,0 +1,151 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_triad-choosing-a-set",
+    "slug": "triad-choosing-a-set",
+    "title": "Which Set, and Why",
+    "summary": "Two separate decisions hide inside picking a grip — the set for register and company, the inversion for reach — and a few worked calls for choosing the set.",
+    "tags": ["triads", "chords"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Two separate decisions hide inside \"which grip do I play.\" The set decides how the chord sits in the music — how low, how exposed, whose space it's sharing. The inversion decides how far your hand has to travel to get there. Almost every choice in this chapter is that pair, in that order: settle the set first."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "spans": [{ "text": "Register" }]
+    },
+    {
+      "type": "table",
+      "header": [[{ "text": "Set" }], [{ "text": "Lowest" }], [{ "text": "Highest" }]],
+      "rows": [
+        [
+          [{ "text": "1-2-3" }],
+          [{ "text": "G3", "marks": ["code"] }],
+          [{ "text": "C5", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "2-3-4" }],
+          [{ "text": "E3", "marks": ["code"] }],
+          [{ "text": "G4", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "3-4-5" }],
+          [{ "text": "C3", "marks": ["code"] }],
+          [{ "text": "E4", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "4-5-6" }],
+          [{ "text": "G2", "marks": ["code"] }],
+          [{ "text": "C4", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Each set down is a step lower than the one above it. Together the four cover more than two octaves of the same three note names — C, E and G, just further and further from the ceiling."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "spans": [{ "text": "What else is sounding" }]
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        [
+          { "text": "The bass.", "marks": ["bold"] },
+          {
+            "text": " A bass player owns roughly the bottom of the guitar's range, so strings 4-5-6 is the set most likely to collide with someone."
+          }
+        ],
+        [
+          { "text": "The singer.", "marks": ["bold"] },
+          {
+            "text": " A sung lead usually lives in the middle. Comping guitarists are told to stay out of the singer's range — frame it from above rather than double it."
+          }
+        ],
+        [
+          { "text": "Cutting through.", "marks": ["bold"] },
+          {
+            "text": " Strings 1-2-3 sit at the top of, or above, most sung melodies, which is why they carry so much rhythm playing."
+          }
+        ],
+        [
+          { "text": "Fullness.", "marks": ["bold"] },
+          {
+            "text": " Strings 3-4-5 is the fullest of the four, and it's also where a piano or a second guitar is most likely to be sitting — the one you give up first in a crowded arrangement."
+          }
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [{ "text": "A couple of worked calls, to make the decision concrete:" }]
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        [
+          { "text": "Solo, no bass:", "marks": ["bold"] },
+          {
+            "text": " reach for 3-4-5 or 4-5-6 — you're the whole arrangement, so claim the low end."
+          }
+        ],
+        [
+          { "text": "Behind a singer, with a band:", "marks": ["bold"] },
+          { "text": " 1-2-3, above the melody and out of everyone's way." }
+        ],
+        [
+          { "text": "Two guitars:", "marks": ["bold"] },
+          { "text": " take a different set from the one the other player is already using." }
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "None of these are rules the guitar enforces — they're what the rest of the band leaves you. Play the same chord on 4-5-6 with nobody else in the room and it sounds grounded; play it under a bass player and it turns to porridge. The chord didn't change. The company did."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Once the set is chosen, take whichever inversion is nearest your hand. All three are the same chord, so there's no wrong one to grab — which is the whole idea behind "
+        },
+        {
+          "text": "playing a progression without moving",
+          "link": { "kind": "article", "slug": "triad-moving-the-least" }
+        },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "If you want to hear a set decision rather than reason about it, open " },
+        { "text": "Chord Shapes", "link": { "kind": "screen", "href": "/chord-shapes" } },
+        {
+          "text": " and play the same chord from the bottom of its list to the top. Nothing about the harmony changes; everything about where it sits does."
+        }
+      ]
+    }
+  ]
+}

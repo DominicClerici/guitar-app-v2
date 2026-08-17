@@ -1,0 +1,392 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "quiz_modes-ch1-checkpoint",
+    "slug": "modes-ch1-checkpoint",
+    "title": "What a Mode Actually Is",
+    "summary": "Eight questions on the definition, the two modes you already play, the windows you already own, the drone, the two derivations, and what a moving progression does to a mode.",
+    "kind": "checkpoint",
+    "passThresholdPct": 70
+  },
+  "questions": [
+    {
+      "id": "q_modes-ch1-checkpoint.definition",
+      "kind": "choice",
+      "prompt": [{ "text": "What is a mode?" }],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "A set of notes plus a decision about which one is home, with that decision made audible by something outside the scale"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [{ "text": "A major scale played starting from one of its other degrees" }]
+        },
+        {
+          "id": "c",
+          "spans": [{ "text": "A scale with one note altered compared to the major scale" }]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "A fingering pattern that sits in a particular position on the neck" }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "The definition has two halves and both are load-bearing: the notes, and the tonic everything is heard against. \"A major scale played from another degree\" is the damaging one — it is true about which letters appear and silent about the sound, which is why a learner who believes it practises the wrong thing for months. \"One note altered\" describes the parallel derivation, which finds a mode's notes but is still only half the story. And a fingering pattern is not a mode at all: the same pattern serves every mode in this pathway."
+        }
+      ]
+    },
+    {
+      "id": "q_modes-ch1-checkpoint.into-silence",
+      "kind": "choice",
+      "prompt": [
+        { "text": "You play " },
+        { "text": "A B C D E F# G", "marks": ["code"] },
+        { "text": " from " },
+        { "text": "A", "marks": ["code"] },
+        { "text": " up to " },
+        { "text": "A", "marks": ["code"] },
+        { "text": ", unaccompanied, with nothing else sounding. What have you played?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "G major, most likely — the ear will hear " },
+            { "text": "G", "marks": ["code"] },
+            { "text": " as home, because nothing is holding " },
+            { "text": "A", "marks": ["code"] },
+            { "text": " down" }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "A Dorian, because you started and finished on " },
+            { "text": "A", "marks": ["code"] }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "A Dorian, because those are A Dorian's seven notes and no other scale has that exact set"
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "Nothing identifiable — seven notes in a row have no sound of their own" }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "Those seven notes are A Dorian's and G major's alike, so the note list cannot decide. Starting and stopping on a note is not enough on its own to make it home — the option that says so is exactly the misconception this chapter opens by killing. And the notes are not \"nothing identifiable\": played into silence they land somewhere, reliably, and where they land is G major. Take the tonic away and the mode evaporates."
+        }
+      ]
+    },
+    {
+      "id": "q_modes-ch1-checkpoint.two-you-know",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "Two of the seven modes are scales you already play under other names. Which two, and what are those names?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [{ "text": "Ionian is the major scale; Aeolian is the natural minor scale" }]
+        },
+        {
+          "id": "b",
+          "spans": [{ "text": "Ionian is the major scale; Dorian is the natural minor scale" }]
+        },
+        {
+          "id": "c",
+          "spans": [{ "text": "Lydian is the major scale; Aeolian is the natural minor scale" }]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "Ionian is the major scale; Mixolydian is the major scale with a " },
+            { "text": "b7", "marks": ["code"] }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "Ionian is the major scale and Aeolian is the natural minor scale that CAGED in a Minor Key spent five chapters on — which is why the app's own cards head themselves A Major and A Natural minor, with \"Aeolian\" tucked into the small line underneath. Dorian is a minor-sounding mode but it is not natural minor: it has a "
+        },
+        { "text": "6", "marks": ["code"] },
+        { "text": " where natural minor has a " },
+        { "text": "b6", "marks": ["code"] },
+        {
+          "text": ". Lydian is not the major scale. And the Mixolydian description is accurate, but Mixolydian is not a scale you already had a plain name for."
+        }
+      ]
+    },
+    {
+      "id": "q_modes-ch1-checkpoint.window",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "The E form of A Aeolian covers frets 4 to 8. Where does the E form of A Dorian sit?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "Frets 4 to 8 — the same span, because a CAGED window is anchored on the root, not on the quality"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [{ "text": "One fret higher, frets 5 to 9, because the sixth is raised a fret" }]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "Frets 6 to 10, because A Dorian's parent is " },
+            { "text": "G", "marks": ["code"] },
+            { "text": " major rather than " },
+            { "text": "C", "marks": ["code"] },
+            { "text": " major" }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [{ "text": "It has no E form — modes have their own separate set of shapes" }]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "The window does not move. It is a fixed span of frets anchored on the root, so every mode rooted on A has its E form at frets 4 to 8, and the only thing that changes is which dots fall inside. Raising the sixth moves one degree, not the frame — and shifting the whole window to follow the parent scale is precisely the habit this chapter tells you to drop. There is no separate set of mode shapes anywhere in this pathway."
+        }
+      ]
+    },
+    {
+      "id": "q_modes-ch1-checkpoint.dot-counts",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "Both E-form diagrams — A Aeolian and A Dorian — hold seventeen dots. Why are the counts equal when the two scales differ by a note?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "One " },
+            { "text": "b6", "marks": ["code"] },
+            {
+              "text": " raises to a pitch above the window's top fret and drops out of the picture, while a "
+            },
+            { "text": "6", "marks": ["code"] },
+            { "text": " steps in from below" }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "Every " },
+            { "text": "b6", "marks": ["code"] },
+            {
+              "text": " simply moves up one fret and stays inside the window, so the count never changes"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "The two scales have the same seven notes, so the diagrams are identical" }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "The dot count of a CAGED window is always the same whatever scale fills it" }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "A window is a fixed span of frets, so a note sitting on an edge raises across the frame. In this window one "
+        },
+        { "text": "b6", "marks": ["code"] },
+        { "text": " steps up inside it, one raises off the top and disappears, and a " },
+        { "text": "6", "marks": ["code"] },
+        { "text": " climbs in from below — equal counts, different picture. Some " },
+        { "text": "b6", "marks": ["code"] },
+        {
+          "text": " copies do just move up a fret, but not all of them, which is why \"the same picture with one dot moved\" is not a safe description. The two scales do not have the same notes, and dot counts genuinely differ between scales elsewhere: in the D form at frets 6 to 10 it is eighteen for Aeolian and seventeen for Dorian."
+        }
+      ]
+    },
+    {
+      "id": "q_modes-ch1-checkpoint.drone",
+      "kind": "multi-select",
+      "prompt": [{ "text": "Which of these are true of holding a drone while you play a mode?" }],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "It supplies the tonic, which is the half of the definition a scale cannot supply for itself"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "You can get the same effect with no app at all, by letting an open " },
+            { "text": "A", "marks": ["code"] },
+            { "text": " ring while you play" }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [{ "text": "It has been shown to measurably improve a player's ear over time" }]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "It changes which notes are in the scale, which is what makes the mode sound different"
+            }
+          ]
+        }
+      ],
+      "answerIds": ["a", "b"],
+      "explanation": [
+        {
+          "text": "The drone is not a training aid — the controlled studies on that found no measurable benefit, and this pathway makes no such claim. Its justification is different and much stronger: a mode does not exist without a tonal centre, so the drone is the thing that makes the mode be there. And it needs no app: an open A on string 5 does the same job. It cannot change which notes are in the scale — your hand does that, and in this chapter it changed exactly one of them."
+        }
+      ]
+    },
+    {
+      "id": "q_modes-ch1-checkpoint.two-roads",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "You want to understand why A Dorian sounds different from A Aeolian. Which derivation answers that, and why?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "Parallel — A Dorian is A Aeolian with the " },
+            { "text": "b6", "marks": ["code"] },
+            { "text": " raised to a " },
+            { "text": "6", "marks": ["code"] },
+            { "text": ", so it names the one note that changed" }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "Relative — A Dorian is " },
+            { "text": "G", "marks": ["code"] },
+            { "text": " major played from " },
+            { "text": "A", "marks": ["code"] },
+            { "text": ", so it tells you exactly where the notes are" }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "Relative, because A Aeolian's parent is " },
+            { "text": "C", "marks": ["code"] },
+            { "text": " major and A Dorian's is " },
+            { "text": "G", "marks": ["code"] },
+            { "text": " major, and comparing the two parents explains the sound" }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "Either one — the two derivations are two ways of saying the same thing" }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "Only parallel can answer a question about sound, because it holds the root still and moves one note — and that note is what you are hearing. Relative is the fast way to find where the notes sit and nothing more; it is true that A Dorian is G major from A, but that sentence explains nothing about the sound. Comparing the two parent scales is worse still: it compares C major with G major, neither of which is rooted where you are playing. The two roads answer genuinely different questions, which is why this pathway leads with parallel and puts relative down after using it."
+        }
+      ]
+    },
+    {
+      "id": "q_modes-ch1-checkpoint.vamp",
+      "kind": "choice",
+      "prompt": [{ "text": "You want to play A Dorian. Which backing holds it up, and why?" }],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "A vamp on " },
+            { "text": "Am", "marks": ["code"] },
+            { "text": "–" },
+            { "text": "D", "marks": ["code"] },
+            { "text": ", because two chords that refuse to resolve keep asserting " },
+            { "text": "Am", "marks": ["code"] },
+            { "text": " as home" }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "Am", "marks": ["code"] },
+            { "text": "–" },
+            { "text": "D", "marks": ["code"] },
+            { "text": "–" },
+            { "text": "G", "marks": ["code"] },
+            { "text": ", because it uses more of A Dorian's seven notes" }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "Any progression built only from those seven notes — the note set is what makes it Dorian"
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "A single held " },
+            { "text": "G", "marks": ["code"] },
+            { "text": " bass note, since " },
+            { "text": "G", "marks": ["code"] },
+            { "text": " major is A Dorian's parent" }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "A vamp is one or two chords that assert the tonic and refuse to go anywhere else, and that is the harmony a mode needs. Am–D–G is built from the same seven notes but it functions: it is a ii–V–I in G major, and the ear lands on G before the loop comes round — a progression that resolves names its own tonic and overrides whatever mode you had in mind. That is also why \"any progression from these seven notes\" is wrong. And holding a G bass would make G home, which is the opposite of what you wanted."
+        }
+      ]
+    }
+  ]
+}

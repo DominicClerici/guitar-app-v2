@@ -1,0 +1,293 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_triad-comping-a-song",
+    "slug": "triad-comping-a-song",
+    "title": "Comping a Whole Song",
+    "summary": "I V vi IV as four grips inside four frets, voice-led, then the half that isn't shapes at all — muting, one string set, and where the strikes land.",
+    "tags": ["triads", "chords", "fretboard"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The loop is " },
+        { "text": "I", "marks": ["code"] },
+        { "text": " " },
+        { "text": "V", "marks": ["code"] },
+        { "text": " " },
+        { "text": "vi", "marks": ["code"] },
+        { "text": " " },
+        { "text": "IV", "marks": ["code"] },
+        { "text": " — in C, " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " " },
+        { "text": "F", "marks": ["code"] },
+        {
+          "text": ". It is the four-chord loop popular music keeps coming back to, and you have probably played it a hundred times with barre chords, crossing the neck to do it. On strings 1-2-3, taking the nearest inversion each time, the whole thing lives between fret 3 and fret 6."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Chord" }],
+        [{ "text": "Numeral" }],
+        [{ "text": "Inversion" }],
+        [{ "text": "Chart" }],
+        [{ "text": "Notes" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "C", "marks": ["code"] }],
+          [{ "text": "I", "marks": ["code"] }],
+          [{ "text": "root" }],
+          [{ "text": "x x x 5 5 3", "marks": ["code"] }],
+          [{ "text": "C4 E4 G4", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "G", "marks": ["code"] }],
+          [{ "text": "V", "marks": ["code"] }],
+          [{ "text": "first" }],
+          [{ "text": "x x x 4 3 3", "marks": ["code"] }],
+          [{ "text": "B3 D4 G4", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "Am", "marks": ["code"] }],
+          [{ "text": "vi", "marks": ["code"] }],
+          [{ "text": "first" }],
+          [{ "text": "x x x 5 5 5", "marks": ["code"] }],
+          [{ "text": "C4 E4 A4", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "F", "marks": ["code"] }],
+          [{ "text": "IV", "marks": ["code"] }],
+          [{ "text": "second" }],
+          [{ "text": "x x x 5 6 5", "marks": ["code"] }],
+          [{ "text": "C4 F4 A4", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Read it as " },
+        {
+          "text": "voice leading",
+          "link": { "kind": "article", "slug": "triad-voice-leading" }
+        },
+        { "text": " and every change explains itself." }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Change" }],
+        [{ "text": "String 3" }],
+        [{ "text": "String 2" }],
+        [{ "text": "String 1" }],
+        [{ "text": "What happens" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "C → G", "marks": ["code"] }],
+          [{ "text": "−1", "marks": ["code"] }],
+          [{ "text": "−2", "marks": ["code"] }],
+          [{ "text": "0", "marks": ["code"] }],
+          [{ "text": "G4", "marks": ["code"] }, { "text": " held on string 1" }]
+        ],
+        [
+          [{ "text": "G → Am", "marks": ["code"] }],
+          [{ "text": "+1", "marks": ["code"] }],
+          [{ "text": "+2", "marks": ["code"] }],
+          [{ "text": "+2", "marks": ["code"] }],
+          [{ "text": "nothing shared, so all three move" }]
+        ],
+        [
+          [{ "text": "Am → F", "marks": ["code"] }],
+          [{ "text": "0", "marks": ["code"] }],
+          [{ "text": "+1", "marks": ["code"] }],
+          [{ "text": "0", "marks": ["code"] }],
+          [
+            { "text": "A", "marks": ["code"] },
+            { "text": " and " },
+            { "text": "C", "marks": ["code"] },
+            { "text": " both held; one voice, one fret" }
+          ]
+        ],
+        [
+          [{ "text": "F → C", "marks": ["code"] }],
+          [{ "text": "0", "marks": ["code"] }],
+          [{ "text": "−1", "marks": ["code"] }],
+          [{ "text": "−2", "marks": ["code"] }],
+          [{ "text": "C4", "marks": ["code"] }, { "text": " held on string 3" }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Two of those grips you have met before under other names. " },
+        { "text": "x x x 5 5 5", "marks": ["code"] },
+        { "text": " is the " },
+        {
+          "text": "flush minor shape",
+          "link": { "kind": "article", "slug": "triad-where-the-third-hides" }
+        },
+        {
+          "text": " — a three-string barre at one fret on this set is always a minor chord with its third in the bass, so it reads as "
+        },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " on sight. And " },
+        { "text": "x x x 5 6 5", "marks": ["code"] },
+        { "text": " is the " },
+        {
+          "text": "F/C grip",
+          "link": { "kind": "article", "slug": "triad-the-sharp-fifth" }
+        },
+        { "text": " chapter 4 drew at the end of its chromatic walk." }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "A",
+        "quality": "minor",
+        "strings": "1-2-3",
+        "inversion": "first",
+        "caption": "A minor, first inversion, strings 1-2-3 — the only grip in this loop with all three notes at the same fret."
+      }
+    },
+    { "type": "heading", "level": 1, "spans": [{ "text": "The half that isn't shapes" }] },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Four grips inside four frets is not a part yet. A part is the grips plus the muting plus where the strikes land, and the second two are where most of the sound actually comes from."
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        [
+          { "text": "Mute.", "marks": ["bold"] },
+          {
+            "text": " The fretting hand relaxes the instant after the strike, so the chord stops dead. The click that's left behind is part of the part, not a mistake you're failing to clean up."
+          }
+        ],
+        [
+          { "text": "Keep the picking hand on one set.", "marks": ["bold"] },
+          {
+            "text": " Working the same three strings for a whole passage, rather than roving, is what makes the muting reliable — and it's the practical reason three-string triads became a rhythm-guitar habit as much as a fretting choice."
+          }
+        ],
+        [
+          { "text": "Put the chords where the rhythm wants them.", "marks": ["bold"] },
+          {
+            "text": " Not on every beat. A comping part is mostly silence with chords placed into it."
+          }
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Nile Rodgers has said he was taught to play chords in sets of three strings by Ted Dunbar — Wes Montgomery's old roommate — and that the muted, percussive attack came from Chic's bassist Bernard Edwards. That is his own account of how he learned it rather than a transcription of the records, which is worth knowing, but it is a first-hand description of exactly this technique."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Build it in passes, with the " },
+        { "text": "Metronome", "link": { "kind": "screen", "href": "/metronome" } },
+        { "text": " running the whole time." }
+      ]
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        [
+          {
+            "text": "One chord per bar, four bars, quarter-note downstrokes, slow enough that no change is rushed."
+          }
+        ],
+        [
+          {
+            "text": "Strikes on beats 2 and 4 only, everything else muted. The silence is the hard part."
+          }
+        ],
+        [
+          {
+            "text": "Eighth notes, with the chord landing on the offbeats — the \"and\" rather than the number."
+          }
+        ],
+        [
+          { "text": "The same four bars an octave down on strings 3-4-5, then back up — " },
+          {
+            "text": "crossing sets",
+            "link": { "kind": "article", "slug": "triad-crossing-the-sets" }
+          },
+          { "text": " mid-song, with the fret movement unchanged." }
+        ],
+        [
+          { "text": "With something underneath: the " },
+          { "text": "Drone", "link": { "kind": "screen", "href": "/drone" } },
+          { "text": ", or a bass player, and " },
+          {
+            "text": "let them have the bass note",
+            "link": { "kind": "article", "slug": "triad-over-a-bass" }
+          },
+          { "text": "." }
+        ]
+      ]
+    },
+    { "type": "heading", "level": 1, "spans": [{ "text": "What you can do now" }] },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        [
+          {
+            "text": "Put a major, minor, diminished or augmented triad anywhere on the neck, on any of the four sets, in any inversion."
+          }
+        ],
+        [{ "text": "Read a chart's slash and know both what it asks for and who it is asking." }],
+        [
+          {
+            "text": "Voice-lead a progression so that no hand jumps and something is usually held."
+          }
+        ],
+        [{ "text": "Harmonise a major scale and name its chords by number, in any key." }],
+        [{ "text": "Hear whether a chord you just played is inverted, and which way." }]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "What comes next, and it is out of scope here, is the spread or open-voiced triad — the same three notes with one of them lifted an octave, so the grip skips a string."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "All those grips were never really the point. The point is the thing underneath them: a chord is three notes, those three notes exist in several places at once, and you can now put them wherever the music has room for them."
+        }
+      ]
+    }
+  ]
+}

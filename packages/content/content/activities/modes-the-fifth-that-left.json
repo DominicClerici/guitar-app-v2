@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "act_modes-the-fifth-that-left",
+    "slug": "modes-the-fifth-that-left",
+    "title": "Drill: The Fifth That Left",
+    "summary": "The chord that will not hold, then the flattened fifth in two windows — including the one where two of the three fifths have nowhere left to go."
+  },
+  "activity": {
+    "kind": "note-play",
+    "modes": ["easy", "hard"],
+    "board": { "fretFrom": 0, "fretTo": 5 },
+    "rounds": [
+      {
+        "kind": "targets",
+        "id": "r_modes-the-fifth-that-left.the-chord",
+        "prompt": [
+          { "text": "The chord this chapter is about, one note at a time. " },
+          { "text": "Adim", "marks": ["code"] },
+          { "text": " sits at " },
+          { "text": "x 0 1 2 1 x", "marks": ["code"] },
+          { "text": " — play it low to high: " },
+          { "text": "A", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "Eb", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "A", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "C", "marks": ["code"] },
+          { "text": ". The second note is the " },
+          { "text": "b5", "marks": ["code"] },
+          { "text": ", and it is the whole reason this chord cannot be home." }
+        ],
+        "targets": [
+          { "string": 5, "fret": 0 },
+          { "string": 4, "fret": 1 },
+          { "string": 3, "fret": 2 },
+          { "string": 2, "fret": 1 }
+        ],
+        "ordered": true,
+        "board": { "fretFrom": 0, "fretTo": 2 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_modes-the-fifth-that-left.g-form",
+        "prompt": [
+          { "text": "The G form, frets 1 to 5. Play A Phrygian's two " },
+          { "text": "5", "marks": ["code"] },
+          { "text": "s first — " },
+          { "text": "4·2", "marks": ["code"] },
+          { "text": " and " },
+          { "text": "2·5", "marks": ["code"] },
+          { "text": " — then the two " },
+          { "text": "b5", "marks": ["code"] },
+          {
+            "text": "s Locrian puts one fret below each of them. Same finger, same string, both still inside the window."
+          }
+        ],
+        "targets": [
+          { "string": 4, "fret": 2 },
+          { "string": 2, "fret": 5 },
+          { "string": 4, "fret": 1 },
+          { "string": 2, "fret": 4 }
+        ],
+        "ordered": true,
+        "board": { "fretFrom": 1, "fretTo": 5 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_modes-the-fifth-that-left.at-the-nut",
+        "prompt": [
+          { "text": "The A form at the nut, frets 0 to 3. A Phrygian has three " },
+          { "text": "5", "marks": ["code"] },
+          { "text": "s here — " },
+          { "text": "6·0", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "4·2", "marks": ["code"] },
+          { "text": " and " },
+          { "text": "1·0", "marks": ["code"] },
+          { "text": ". Play all three, then the one " },
+          { "text": "b5", "marks": ["code"] },
+          {
+            "text": " Locrian leaves you in this window. Two of the three were open strings, and there is no fret below the nut for them to drop to."
+          }
+        ],
+        "targets": [
+          { "string": 6, "fret": 0 },
+          { "string": 4, "fret": 2 },
+          { "string": 1, "fret": 0 },
+          { "string": 4, "fret": 1 }
+        ],
+        "ordered": true,
+        "board": { "fretFrom": 0, "fretTo": 3 }
+      }
+    ]
+  }
+}

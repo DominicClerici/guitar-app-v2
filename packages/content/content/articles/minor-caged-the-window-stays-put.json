@@ -1,0 +1,285 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_minor-caged-the-window-stays-put",
+    "slug": "minor-caged-the-window-stays-put",
+    "title": "The Window Stays, the Third Moves",
+    "summary": "A CAGED window is anchored on the root, not the quality, so A minor's five windows sit exactly where A major's do and the only thing that moves is the third.",
+    "tags": ["caged", "minor"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "A minor's five windows are in exactly the same five places as A major's. Not close — exactly. A window is a fret span positioned by the chord's root, and the root didn't change. What changes is only what's marked inside it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The whole chapter runs on one sentence, so it's worth having it cold before anything else: "
+        },
+        { "text": "every " },
+        { "text": "3", "marks": ["code"] },
+        { "text": " steps down one fret to a " },
+        { "text": "b3", "marks": ["code"] },
+        {
+          "text": "; roots and fifths never move. The A and E in an "
+        },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " chord sit on exactly the frets they sit on in an " },
+        { "text": "A", "marks": ["code"] },
+        { "text": " chord. Only the " },
+        { "text": "C#", "marks": ["code"] },
+        { "text": " becomes a " },
+        { "text": "C", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Before any of the five gets a lesson of its own, two of them deserve to be named right now, because this chapter runs strict C-A-G-E-D order and that means it opens on the least friendly of the five. The A form of A minor is the open "
+        },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " chord, " },
+        { "text": "x 0 2 2 1 0", "marks": ["code"] },
+        { "text": ". The E form of A minor is the " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " barre at fret 5, " },
+        { "text": "5 7 7 5 5 5", "marks": ["code"] },
+        {
+          "text": ". You have almost certainly played both of these for years. Two of the five forms, for free, before you've read a single degree."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Their degrees are a matter for their own lessons; hold onto the fact that you own them while the C form makes you work for the rest."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The roots themselves need no new lesson. A root has no quality — an "
+        },
+        { "text": "A", "marks": ["code"] },
+        { "text": " on the neck is an " },
+        { "text": "A", "marks": ["code"] },
+        {
+          "text": " whether the chord around it turns out major or minor, and this pathway has no roots chapter for exactly that reason. If you want a refresher on where they all sit, "
+        },
+        {
+          "text": "the root ladder",
+          "link": { "kind": "article", "slug": "caged-root-ladder" }
+        },
+        { "text": " is still the map." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One convention before the diagrams start, and it holds for the rest of the chapter. A window diagram doesn't draw one chord you could grab. It lights every "
+        },
+        { "text": "1", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "b3", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "5", "marks": ["code"] },
+        {
+          "text": " inside the window — 7 or 8 dots here, where a hand only ever holds 4 to 6 of them at once. The window is the territory; the grip is a route through it. Which of those dots a hand can actually reach together is "
+        },
+        { "text": "Chord Shapes", "link": { "kind": "screen", "href": "/chord-shapes" } },
+        { "text": "'s question, not the diagram's." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Now the careful part, and it's load-bearing for the rest of the chapter. Here's the A form's window, frets "
+        },
+        { "text": "0–3", "marks": ["code"] },
+        { "text": ", drawn major, then the same window drawn minor:" }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "A",
+        "quality": "major",
+        "show": "triad",
+        "caption": "The A form's window in A major — six dots."
+      }
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "A",
+        "quality": "minor",
+        "show": "triad",
+        "caption": "The same window in A minor — seven dots."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Count the dots: six against seven. That's not rounding error and it isn't the diagram being careless — it's the edge effect, and it's worth seeing exactly why it happens rather than just accepting it. The window's edges are fixed frets. A "
+        },
+        { "text": "3", "marks": ["code"] },
+        { "text": " sitting on the window's bottom fret flattens to a " },
+        { "text": "b3", "marks": ["code"] },
+        {
+          "text": " that falls outside the picture entirely, and a "
+        },
+        { "text": "b3", "marks": ["code"] },
+        {
+          "text": " one fret above the window's top fret steps into it. Here it's the second case: A major's "
+        },
+        { "text": "3", "marks": ["code"] },
+        { "text": " sits at " },
+        { "text": "5·4", "marks": ["code"] },
+        {
+          "text": ", a fret above the window's top edge, so it never showed up in the major diagram at all. Its "
+        },
+        { "text": "b3", "marks": ["code"] },
+        { "text": " at " },
+        { "text": "5·3", "marks": ["code"] },
+        {
+          "text": " lands one fret lower — inside the window — and the minor diagram gains a dot the major one never had."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "spans": [
+        {
+          "text": "\"The same picture with one dot moved\" is false of the window — the dot counts usually differ. It's true of the grip: "
+        },
+        { "text": "x 0 2 2 2 0", "marks": ["code"] },
+        { "text": " becomes " },
+        { "text": "x 0 2 2 1 0", "marks": ["code"] },
+        {
+          "text": ", one finger, one fret. The window and the grip are not the same claim, and this chapter needs you to keep them separate."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Something steps in or out at an edge in every one of the five windows, and the count usually — though not always — changes with it:"
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Form" }],
+        [{ "text": "Frets" }],
+        [{ "text": "Major dots" }],
+        [{ "text": "Minor dots" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "C" }],
+          [{ "text": "9–13", "marks": ["code"] }],
+          [{ "text": "8" }],
+          [{ "text": "7" }]
+        ],
+        [
+          [{ "text": "A" }],
+          [{ "text": "0–3", "marks": ["code"] }],
+          [{ "text": "6" }],
+          [{ "text": "7" }]
+        ],
+        [
+          [{ "text": "G" }],
+          [{ "text": "1–5", "marks": ["code"] }],
+          [{ "text": "7" }],
+          [{ "text": "8" }]
+        ],
+        [
+          [{ "text": "E" }],
+          [{ "text": "4–8", "marks": ["code"] }],
+          [{ "text": "7" }],
+          [{ "text": "8" }]
+        ],
+        [
+          [{ "text": "D" }],
+          [{ "text": "6–10", "marks": ["code"] }],
+          [{ "text": "7" }],
+          [{ "text": "7" }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One clause on that A row: the window is only four frets wide, "
+        },
+        { "text": "0–3", "marks": ["code"] },
+        {
+          "text": ", because the nut cuts it short — the only one of the five that isn't five frets wide, as chapter 1 already told you. This table agrees with it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One naming note before the forms get their own lessons. This pathway keeps the form letter bare and puts the quality on the chord: "
+        },
+        { "text": "the E form of A minor", "marks": ["italic"] },
+        { "text": ", " },
+        { "text": "the E form", "marks": ["italic"] },
+        { "text": ", " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": ". Never " },
+        { "text": "the Em form", "marks": ["italic"] },
+        { "text": " — the diagram's own heading prints " },
+        { "text": "E form · A minor", "marks": ["code"] },
+        { "text": ", not " },
+        { "text": "Em form", "marks": ["code"] },
+        { "text": ". Said once, because it's true and worth knowing: other teachers write " },
+        { "text": "\"Em shape\"", "marks": ["italic"] },
+        {
+          "text": " for the same thing. You'll see it elsewhere. This pathway won't use it again."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Strict C-A-G-E-D order means the chapter starts with the hardest of the five rather than the two you already own. That's deliberate, not an oversight, and "
+        },
+        {
+          "text": "the C form",
+          "link": { "kind": "article", "slug": "minor-caged-triad-c-form" }
+        },
+        {
+          "text": " is exactly where \"the shape just slides\" stops being true."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,250 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_modes-mixolydian-neck",
+    "slug": "modes-mixolydian-neck",
+    "title": "Mixolydian, and What the Window's Edges Do",
+    "summary": "Flattening a degree moves its dot down a fret, which crosses a window's edges in the opposite direction to raising one — and the window clamped at the nut has nothing underneath it for a dot to cross in from.",
+    "tags": ["modes", "fretboard"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-15"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "G#", "marks": ["code"] },
+        { "text": " becomes " },
+        { "text": "G", "marks": ["code"] },
+        {
+          "text": ", and nothing else moves. Same five windows, same places — a window is anchored on the root, not the mode — so here's exactly what that one change does to a window you already know."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Start in the C form, frets 9 to 13. " },
+        { "text": "A Major", "marks": ["code"] },
+        { "text": " holds eighteen dots there; " },
+        { "text": "A Mixolydian", "marks": ["code"] },
+        { "text": " holds seventeen." }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "C",
+        "scale": "major",
+        "caption": "Everything in the window at frets 9 to 13 — eighteen dots"
+      }
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "C",
+        "scale": "mixolydian",
+        "caption": "The same window with the seventh flattened — seventeen dots"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "A Major's " },
+        { "text": "7", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "G#", "marks": ["code"] },
+        { "text": ") sits at " },
+        { "text": "2·9", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3·13", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "5·11", "marks": ["code"] },
+        { "text": ". A Mixolydian's " },
+        { "text": "b7", "marks": ["code", { "type": "color", "tone": "amber" }] },
+        { "text": " (" },
+        { "text": "G", "marks": ["code", { "type": "color", "tone": "amber" }] },
+        { "text": ") sits at " },
+        { "text": "3·12", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "5·10", "marks": ["code"] },
+        { "text": ". " },
+        { "text": "3·13", "marks": ["code"] },
+        { "text": " steps down to " },
+        { "text": "3·12", "marks": ["code"] },
+        { "text": ", inside the window, and " },
+        { "text": "5·11", "marks": ["code"] },
+        { "text": " steps down to " },
+        { "text": "5·10", "marks": ["code"] },
+        { "text": ", inside too. " },
+        { "text": "2·9", "marks": ["code"] },
+        { "text": " would drop to " },
+        { "text": "2·8", "marks": ["code"] },
+        {
+          "text": ", one fret below the window's bottom edge, so that copy falls out of the picture — and nothing steps in from above to replace it. Eighteen dots become seventeen."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "What that costs to play: one fret, same finger, the other direction. Wherever your hand was reaching for a "
+        },
+        { "text": "G#", "marks": ["code"] },
+        { "text": ", it reaches one fret lower for a " },
+        { "text": "G", "marks": ["code", { "type": "color", "tone": "amber" }] },
+        { "text": " instead — on the C form that's " },
+        { "text": "3·13", "marks": ["code"] },
+        { "text": " dropping to " },
+        { "text": "3·12", "marks": ["code"] },
+        { "text": ", and " },
+        { "text": "5·11", "marks": ["code"] },
+        { "text": " dropping to " },
+        { "text": "5·10", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "That's the opposite traffic to what raising a degree does. " },
+        {
+          "text": "Lydian in a Window You Already Own",
+          "link": { "kind": "article", "slug": "modes-lydian-neck" }
+        },
+        { "text": " walked through " },
+        { "text": "A Major", "marks": ["code"] },
+        { "text": " turning into " },
+        { "text": "A Lydian", "marks": ["code"] },
+        {
+          "text": ", where dots got pushed toward a window's top edge and pulled in from below. Flattening the "
+        },
+        { "text": "7", "marks": ["code"] },
+        { "text": " into a " },
+        { "text": "b7", "marks": ["code"] },
+        {
+          "text": " pushes dots toward the bottom edge instead, and pulls new ones in from above. Same window, same rule, opposite direction."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The A form, frets 0 to 3, is where this is starkest. Across this chapter's three modes its totals run "
+        },
+        { "text": "A Lydian", "marks": ["code"] },
+        { "text": " twelve, " },
+        { "text": "A Major", "marks": ["code"] },
+        { "text": " thirteen, " },
+        { "text": "A Mixolydian", "marks": ["code"] },
+        { "text": " fifteen." }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "A",
+        "scale": "mixolydian",
+        "caption": "Clamped at the nut and only four frets wide — fifteen dots, two more than A Major holds here"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Two things make this window unlike the other four. It's the one clamped at the nut, so it's only four frets wide where the rest are five — part of why its totals sit lower has nothing to do with any mode at all. And because there's nothing below fret 0, no dot can ever cross into this window from underneath — so raising a degree here can lose dots and never gain one, while flattening a degree pulls dots in from above but drops any dot already sitting on fret 0 clean out of the picture."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Raising the " },
+        { "text": "4", "marks": ["code"] },
+        { "text": " to a " },
+        { "text": "#4", "marks": ["code"] },
+        { "text": " sends " },
+        { "text": "2·3", "marks": ["code"] },
+        { "text": " up to " },
+        { "text": "2·4", "marks": ["code"] },
+        { "text": ", off the top of the window, while " },
+        { "text": "4·0", "marks": ["code"] },
+        { "text": " goes to " },
+        { "text": "4·1", "marks": ["code"] },
+        { "text": ", inside — thirteen becomes twelve. Flattening the " },
+        { "text": "7", "marks": ["code"] },
+        { "text": " to a " },
+        { "text": "b7", "marks": ["code", { "type": "color", "tone": "amber" }] },
+        { "text": " sends " },
+        { "text": "3·1", "marks": ["code"] },
+        { "text": " down to " },
+        { "text": "3·0", "marks": ["code"] },
+        { "text": ", inside, and pulls two " },
+        { "text": "b7", "marks": ["code", { "type": "color", "tone": "amber" }] },
+        { "text": "s in from above at once — " },
+        { "text": "1·3", "marks": ["code"] },
+        { "text": " (its " },
+        { "text": "7", "marks": ["code"] },
+        { "text": " sat at " },
+        { "text": "1·4", "marks": ["code"] },
+        { "text": ") and " },
+        { "text": "6·3", "marks": ["code"] },
+        { "text": " (its " },
+        { "text": "7", "marks": ["code"] },
+        { "text": " sat at " },
+        { "text": "6·4", "marks": ["code"] },
+        {
+          "text": "). Nothing drops off the bottom. Thirteen becomes fifteen. And the one that moved rather than arrived, "
+        },
+        { "text": "3·0", "marks": ["code"] },
+        { "text": ", lands on an open string — about as close to free as a fretting hand gets." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The three windows this lesson doesn't draw run smaller versions of the same story. The G form and the D form both hold their totals level, seventeen dots either way; the E form loses exactly one, seventeen down to sixteen. None of the three moves by more than a dot, because none of them shares the A form's problem of running out of neck below the nut."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The same single-degree change costs a dot in one window, gains two in another, and barely moves a third — purely because of where each window's edges happen to fall. The dot count is a fact about the frame, not about the mode — never count dots to tell two scales apart."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "See the other three windows fill in for yourself on " },
+        { "text": "Scale Visualizer", "link": { "kind": "screen", "href": "/scale-visualizer" } },
+        { "text": " — set the root to " },
+        { "text": "A", "marks": ["code"] },
+        {
+          "text": " and the scale to Mixolydian, and page through the forms not drawn here. That screen still doesn't hold a root; for a drone while your hands are busy, use "
+        },
+        { "text": "Drone", "link": { "kind": "screen", "href": "/drone" } },
+        { "text": " instead." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Two dials turned now, in opposite directions. What's left is putting all three side by side and asking which single note actually tells them apart in your hands."
+        }
+      ]
+    }
+  ]
+}

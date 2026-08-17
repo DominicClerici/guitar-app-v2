@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "act_modes-find-the-dial",
+    "slug": "modes-find-the-dial",
+    "title": "Drill: Find the Dial",
+    "summary": "Two CAGED windows you already own, and the one note in each that names the mode — Lydian's #4 in the G form, Mixolydian's b7 in the C form."
+  },
+  "activity": {
+    "kind": "note-play",
+    "modes": ["easy", "hard"],
+    "board": { "fretFrom": 0, "fretTo": 13 },
+    "rounds": [
+      {
+        "kind": "targets",
+        "id": "r_modes-find-the-dial.lydian-g-form",
+        "prompt": [
+          {
+            "text": "The G form of A Lydian sits at frets 1 to 5. Play its three roots low to high — "
+          },
+          { "text": "6·5", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "3·2", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "1·5", "marks": ["code"] },
+          { "text": " — then the two " },
+          { "text": "D#", "marks": ["code"] },
+          { "text": "s the window is named for. Anywhere A major would give you a " },
+          { "text": "D", "marks": ["code"] },
+          { "text": ", Lydian puts a " },
+          { "text": "D#", "marks": ["code"] },
+          { "text": " one fret higher." }
+        ],
+        "targets": [
+          { "string": 6, "fret": 5 },
+          { "string": 3, "fret": 2 },
+          { "string": 1, "fret": 5 },
+          { "string": 4, "fret": 1 },
+          { "string": 2, "fret": 4 }
+        ],
+        "ordered": true,
+        "board": { "fretFrom": 1, "fretTo": 5 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_modes-find-the-dial.mixolydian-c-form",
+        "prompt": [
+          { "text": "The C form of A Mixolydian sits at frets 9 to 13. Play its two roots, " },
+          { "text": "5·12", "marks": ["code"] },
+          { "text": " then " },
+          { "text": "2·10", "marks": ["code"] },
+          { "text": ", then the two " },
+          { "text": "G", "marks": ["code"] },
+          { "text": "s in the window — Mixolydian's " },
+          { "text": "b7", "marks": ["code"] },
+          { "text": ", the note this mode is named for." }
+        ],
+        "targets": [
+          { "string": 5, "fret": 12 },
+          { "string": 2, "fret": 10 },
+          { "string": 5, "fret": 10 },
+          { "string": 3, "fret": 12 }
+        ],
+        "ordered": true,
+        "board": { "fretFrom": 9, "fretTo": 13 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_modes-find-the-dial.one-fret",
+        "prompt": [
+          { "text": "One fret, one dial, in the same window. Each " },
+          { "text": "G#", "marks": ["code"] },
+          { "text": " is A major's " },
+          { "text": "7", "marks": ["code"] },
+          { "text": " — drop it a fret and you have Mixolydian's " },
+          { "text": "b7", "marks": ["code"] },
+          { "text": ". Play them in pairs: " },
+          { "text": "5·11", "marks": ["code"] },
+          { "text": " then " },
+          { "text": "5·10", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "3·13", "marks": ["code"] },
+          { "text": " then " },
+          { "text": "3·12", "marks": ["code"] },
+          { "text": "." }
+        ],
+        "targets": [
+          { "string": 5, "fret": 11 },
+          { "string": 5, "fret": 10 },
+          { "string": 3, "fret": 13 },
+          { "string": 3, "fret": 12 }
+        ],
+        "ordered": true,
+        "board": { "fretFrom": 9, "fretTo": 13 }
+      }
+    ]
+  }
+}

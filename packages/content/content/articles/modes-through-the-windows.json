@@ -1,0 +1,465 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_modes-through-the-windows",
+    "slug": "modes-through-the-windows",
+    "title": "Playing It Through the Windows",
+    "summary": "A vamp loops longer than any one CAGED window holds ideas for, and every window already contains the note you're aiming at.",
+    "tags": ["modes", "fretboard", "ear"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-15"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "A vamp doesn't stop after one pass. It loops for as long as you keep it going, which means you're going to be playing over "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": " for a lot longer than any single window holds ideas for. Stay put and you'll run out of things to say well before the loop does. The five CAGED windows solved that problem before this pathway even started — you already know how to move between them; what's new is what you're moving toward."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "progression-player",
+      "props": {
+        "chords": ["Am", "D", "Am", "D"],
+        "bpm": 66,
+        "caption": "Eight beats — long enough to leave one window, cross into the next, and come back down"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Nothing about them changes for a mode. They're the same fixed spans, anchored on the root, whichever scale happens to fill them — "
+        },
+        {
+          "text": "Nothing New to Learn on the Neck",
+          "link": {
+            "kind": "article",
+            "slug": "modes-no-new-shapes"
+          }
+        },
+        {
+          "text": " already said so for these seven, and "
+        },
+        {
+          "text": "The Window Stays, the Third Moves",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-the-window-stays-put"
+          }
+        },
+        {
+          "text": " said the same thing one pathway back, about the third instead of the sixth. A form is a place on the neck. It doesn't move because the notes inside it do."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here's what makes moving between them cheap, and it holds exactly: every one of the five windows already contains the note you're leaning on — at least once, and usually two or three times. The thinnest case is a single copy, right at the nut; everywhere else you'll find two or three. Wherever your hand happens to be when the vamp starts, the target is already inside the box. You don't have to relocate to find it, only to keep playing once you're through it. Ionian and Aeolian don't offer this at all, and that's what having no characteristic note actually means in practice: there's nothing in any window to aim at beyond the chord tones you already know."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Take Dorian over "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": " as the worked case. Here's exactly where the "
+        },
+        {
+          "text": "6",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "F#",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": ") sits, window by window:"
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "rows": [
+        [
+          [
+            {
+              "text": "A"
+            }
+          ],
+          [
+            {
+              "text": "0–3"
+            }
+          ],
+          [
+            {
+              "text": "1·2",
+              "marks": ["code"]
+            },
+            {
+              "text": " "
+            },
+            {
+              "text": "6·2",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "G"
+            }
+          ],
+          [
+            {
+              "text": "1–5"
+            }
+          ],
+          [
+            {
+              "text": "1·2",
+              "marks": ["code"]
+            },
+            {
+              "text": " "
+            },
+            {
+              "text": "4·4",
+              "marks": ["code"]
+            },
+            {
+              "text": " "
+            },
+            {
+              "text": "6·2",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "E"
+            }
+          ],
+          [
+            {
+              "text": "4–8"
+            }
+          ],
+          [
+            {
+              "text": "2·7",
+              "marks": ["code"]
+            },
+            {
+              "text": " "
+            },
+            {
+              "text": "4·4",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "D"
+            }
+          ],
+          [
+            {
+              "text": "6–10"
+            }
+          ],
+          [
+            {
+              "text": "2·7",
+              "marks": ["code"]
+            },
+            {
+              "text": " "
+            },
+            {
+              "text": "5·9",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "C"
+            }
+          ],
+          [
+            {
+              "text": "9–13"
+            }
+          ],
+          [
+            {
+              "text": "3·11",
+              "marks": ["code"]
+            },
+            {
+              "text": " "
+            },
+            {
+              "text": "5·9",
+              "marks": ["code"]
+            }
+          ]
+        ]
+      ],
+      "header": [
+        [
+          {
+            "text": "Form"
+          }
+        ],
+        [
+          {
+            "text": "Frets"
+          }
+        ],
+        [
+          {
+            "text": "The "
+          },
+          {
+            "text": "6",
+            "marks": ["code"]
+          },
+          {
+            "text": " sits at"
+          }
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Neighbouring windows overlap, and in A Dorian a copy of the "
+        },
+        {
+          "text": "6",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": " sits on every seam between them. The A form and the G form share "
+        },
+        {
+          "text": "1·2",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "6·2",
+          "marks": ["code"]
+        },
+        {
+          "text": "; the G form and the E form share "
+        },
+        {
+          "text": "4·4",
+          "marks": ["code"]
+        },
+        {
+          "text": "; the E form and the D form share "
+        },
+        {
+          "text": "2·7",
+          "marks": ["code"]
+        },
+        {
+          "text": "; the D form and the C form share "
+        },
+        {
+          "text": "5·9",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Four joins, a "
+        },
+        {
+          "text": "6",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": " on every one — the note you're crossing on is the same note you were aiming at. That's true of this particular vamp; it isn't a promise every mode keeps."
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        [
+          {
+            "text": "Get the loop going first, and keep it going — nothing here will hold a vamp under you for as long as you want it, so either play both chords yourself, or hold the root on "
+          },
+          {
+            "text": "Drone",
+            "link": {
+              "kind": "screen",
+              "href": "/drone"
+            }
+          },
+          {
+            "text": " and hear the "
+          },
+          {
+            "text": "D",
+            "marks": ["code"]
+          },
+          {
+            "text": " in your head against it. A slow click from "
+          },
+          {
+            "text": "Metronome",
+            "link": {
+              "kind": "screen",
+              "href": "/metronome"
+            }
+          },
+          {
+            "text": " keeps the crossing honest."
+          }
+        ],
+        [
+          {
+            "text": "Start in whichever window your hand is already sitting in, and stay there until you've run out of ideas — not frets."
+          }
+        ],
+        [
+          {
+            "text": "Cross into the next window on the "
+          },
+          {
+            "text": "F#",
+            "marks": [
+              "code",
+              {
+                "type": "color",
+                "tone": "amber"
+              }
+            ]
+          },
+          {
+            "text": ", not on the root."
+          }
+        ],
+        [
+          {
+            "text": "Come back down the same way you went up."
+          }
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Scale Visualizer",
+          "link": {
+            "kind": "screen",
+            "href": "/scale-visualizer"
+          }
+        },
+        {
+          "text": " pages through all five windows for any mode you set it to — root "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": ", scale Dorian, form after form. There's no drone on that screen; it plucks a note rather than holding it. For the held root, that's still "
+        },
+        {
+          "text": "Drone",
+          "link": {
+            "kind": "screen",
+            "href": "/drone"
+          }
+        },
+        {
+          "text": "."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Run the same routine over the Lydian, Mixolydian or Phrygian vamp and nothing about it changes — only the note and the second chord do. The frame stays the same across the whole pathway; only what fills it moves. The note is under your finger now, no matter where your hand starts. What you actually do with it once it's there is the rest of the story."
+        }
+      ]
+    }
+  ]
+}

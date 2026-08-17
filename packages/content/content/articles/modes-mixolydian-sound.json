@@ -1,0 +1,254 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_modes-mixolydian-sound",
+    "slug": "modes-mixolydian-sound",
+    "title": "Mixolydian: Where the Leading Tone Goes",
+    "summary": "Mixolydian is A major with the 7 flattened, which costs it the pull toward home — and its tritone is the two notes of A7, so the mode and the chord are the same idea.",
+    "tags": ["modes", "ear", "theory"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-15"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The parallel road, as always in this pathway: A Mixolydian is A major with the "
+        },
+        { "text": "7", "marks": ["code"] },
+        { "text": " lowered to a " },
+        { "text": "b7", "marks": ["code"] },
+        { "text": " — " },
+        { "text": "G#", "marks": ["code"] },
+        { "text": " becomes " },
+        { "text": "G", "marks": ["code"] },
+        { "text": ". " },
+        { "text": "A B C# D E F# G", "marks": ["code"] },
+        { "text": ", degrees " },
+        { "text": "1 2 3 4 5 6 b7", "marks": ["code"] },
+        { "text": ". One degree moves. Everything else holds still." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The relative road, named once and put down: A Mixolydian's parent major is " },
+        { "text": "D", "marks": ["code"] },
+        { "text": ". That's the fast way to find the notes if you ever need it, and " },
+        {
+          "text": "Two Roads to the Same Mode",
+          "link": { "kind": "article", "slug": "modes-two-roads" }
+        },
+        { "text": " already made the case for using it sparingly." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The characteristic note is the " },
+        { "text": "b7", "marks": ["code", { "type": "color", "tone": "amber" }] },
+        { "text": " (" },
+        { "text": "G", "marks": ["code", { "type": "color", "tone": "amber" }] },
+        { "text": ") — tinted amber in prose here, and outlined amber wherever the neck draws it." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "What that lowered " },
+        { "text": "7", "marks": ["code"] },
+        { "text": " actually costs is the leading tone. Ionian's " },
+        { "text": "G#", "marks": ["code"] },
+        { "text": " sits a half step under home and pulls up into it; Mixolydian's " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " sits a whole step under and doesn't ask to move at all. " },
+        {
+          "text": "Where the Half Steps Fall",
+          "link": { "kind": "article", "slug": "modes-half-steps" }
+        },
+        { "text": " already counted the membership: only Lydian and Ionian keep a " },
+        { "text": "7", "marks": ["code"] },
+        {
+          "text": " that close to home, and the other five — Mixolydian, Dorian, Aeolian, Phrygian and Locrian — have a "
+        },
+        { "text": "b7", "marks": ["code"] },
+        {
+          "text": " a whole step below instead. Mixolydian is where the leading tone leaves the ladder, and it never comes back."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "scale-compare",
+      "props": { "root": "A", "scales": ["major", "mixolydian"], "drone": true }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Start the drone, then run both scales all the way to the octave. Each one lands back on "
+        },
+        { "text": "A", "marks": ["code"] },
+        { "text": ", so the second-to-last note is the " },
+        { "text": "7", "marks": ["code"] },
+        { "text": " on the card headed " },
+        { "text": "A Major", "marks": ["code"] },
+        { "text": " and the amber chip, the " },
+        { "text": "b7", "marks": ["code", { "type": "color", "tone": "amber" }] },
+        {
+          "text": ", on the Mixolydian card. Listen to what that last step does — one leans in from a half step away, the other steps up from further out."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The tritone tells the same story from underneath. Mixolydian's falls between the "
+        },
+        { "text": "3", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "b7", "marks": ["code", { "type": "color", "tone": "amber" }] },
+        { "text": " — " },
+        { "text": "C#", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "G", "marks": ["code", { "type": "color", "tone": "amber" }] },
+        { "text": " — and " },
+        {
+          "text": "Where the Tritone Lands",
+          "link": { "kind": "article", "slug": "modes-the-tritone" }
+        },
+        { "text": " already showed those are exactly the two notes of " },
+        { "text": "A7", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "A C# E G", "marks": ["code"] },
+        {
+          "text": "). What's new here is the frame: the chord and the mode aren't two things that happen to go together, they're the same idea. "
+        },
+        { "text": "A7", "marks": ["code"] },
+        { "text": " is the seventh chord this mode gives you — naming it is as far as that goes." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The vamp is " },
+        { "text": "A", "marks": ["code"] },
+        { "text": "–" },
+        { "text": "G", "marks": ["code"] },
+        { "text": ", a " },
+        { "text": "I", "marks": ["code"] },
+        { "text": "–" },
+        { "text": "bVII", "marks": ["code"] },
+        { "text": ". " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "G B D", "marks": ["code"] },
+        { "text": ", and the " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " inside it is the " },
+        { "text": "b7", "marks": ["code", { "type": "color", "tone": "amber" }] },
+        {
+          "text": " — this second chord asserts the note the whole mode turns on. Neither Ionian nor Lydian has a "
+        },
+        { "text": "G", "marks": ["code"] },
+        { "text": " natural, so " },
+        { "text": "A", "marks": ["code"] },
+        { "text": "–" },
+        { "text": "G", "marks": ["code"] },
+        {
+          "text": " rules both of them out at once. It doesn't rule out every other mode on the neck: "
+        },
+        { "text": "G", "marks": ["code"] },
+        {
+          "text": " major also sits inside Dorian and Aeolian, and what actually excludes those two is the major home chord underneath, not this one chord's notes."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "progression-player",
+      "props": {
+        "chords": ["A", "G"],
+        "bpm": 66,
+        "caption": "A–G, a I–bVII — the vamp that carries the b7"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Mixolydian still keeps the natural " },
+        { "text": "4", "marks": ["code"] },
+        { "text": ", so the avoid note doesn't go anywhere either. " },
+        { "text": "D", "marks": ["code"] },
+        { "text": " sits a half step above the " },
+        { "text": "3", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "C#", "marks": ["code"] },
+        { "text": "), a chord tone, and it fights the " },
+        { "text": "A", "marks": ["code"] },
+        { "text": " chord exactly the way it fought under Ionian — over " },
+        { "text": "A7", "marks": ["code"] },
+        { "text": " as well. " },
+        {
+          "text": "The Note That Fights the Chord",
+          "link": { "kind": "article", "slug": "modes-the-avoid-note" }
+        },
+        {
+          "text": " named this already: Mixolydian isn't the safe mode, it's the mode with the other dial turned, and this is the dial that stayed put."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Physically, the " },
+        { "text": "b7", "marks": ["code", { "type": "color", "tone": "amber" }] },
+        { "text": " sits one fret below a note your hand already finds without thinking. " },
+        {
+          "text": "The Two Notes That Lean",
+          "link": { "kind": "article", "slug": "caged-fourths-and-sevenths" }
+        },
+        { "text": " pointed out that every " },
+        { "text": "1", "marks": ["code"] },
+        { "text": " has a " },
+        { "text": "7", "marks": ["code"] },
+        {
+          "text": " one fret below it, on the same string, inside the window. Play through Mixolydian and take that same reach one fret further, onto the "
+        },
+        { "text": "b7", "marks": ["code", { "type": "color", "tone": "amber" }] },
+        { "text": " instead." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The app's own line for this card is \"Major with a ♭7 — the dominant sound, blues and rock\" — that's the register worth borrowing. The "
+        },
+        { "text": "I", "marks": ["code"] },
+        { "text": "–" },
+        { "text": "bVII", "marks": ["code"] },
+        {
+          "text": " move itself is a rock and folk commonplace: this is where you've met it before, not what a "
+        },
+        { "text": "b7", "marks": ["code"] },
+        { "text": " does to a nervous system. " },
+        {
+          "text": "What \"Brighter\" Actually Means",
+          "link": { "kind": "article", "slug": "modes-what-brighter-means" }
+        },
+        { "text": " has the fuller discipline on that distinction." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That's the whole trade: the same home chord Lydian and Ionian have, without the note that pulls toward it, and still carrying the note that grinds against it. What that trade looks like drawn as dots in a window — and the one window where flattening a note works in your favour — comes next."
+        }
+      ]
+    }
+  ]
+}

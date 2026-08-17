@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "act_minor-caged-play-the-five-shapes",
+    "slug": "minor-caged-play-the-five-shapes",
+    "title": "Drill: Play All Five",
+    "summary": "An A minor chord in five places on the neck — two of them whole, three as the fragments they are actually played as — and then every b3 you can reach."
+  },
+  "activity": {
+    "kind": "note-play",
+    "modes": ["easy", "hard"],
+    "board": { "fretFrom": 0, "fretTo": 13 },
+    "rounds": [
+      {
+        "kind": "targets",
+        "id": "r_minor-caged-play-the-five-shapes.a-form",
+        "prompt": [
+          { "text": "The A form, whole — the open " },
+          { "text": "Am", "marks": ["code"] },
+          { "text": " chord, " },
+          { "text": "x 0 2 2 1 0", "marks": ["code"] },
+          {
+            "text": ". Play the five strings one at a time. The one on string 2 is the "
+          },
+          { "text": "b3", "marks": ["code"] },
+          { "text": "." }
+        ],
+        "targets": [
+          { "string": 5, "fret": 0 },
+          { "string": 4, "fret": 2 },
+          { "string": 3, "fret": 2 },
+          { "string": 2, "fret": 1 },
+          { "string": 1, "fret": 0 }
+        ],
+        "board": { "fretFrom": 0, "fretTo": 3 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_minor-caged-play-the-five-shapes.g-form",
+        "prompt": [
+          { "text": "The G form's bottom three strings — a whole " },
+          { "text": "Am", "marks": ["code"] },
+          { "text": " walking back down the frets as it climbs: " },
+          { "text": "6·5", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "5·3", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "4·2", "marks": ["code"] },
+          { "text": "." }
+        ],
+        "targets": [
+          { "string": 6, "fret": 5 },
+          { "string": 5, "fret": 3 },
+          { "string": 4, "fret": 2 }
+        ],
+        "board": { "fretFrom": 1, "fretTo": 5 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_minor-caged-play-the-five-shapes.e-form",
+        "prompt": [
+          { "text": "The E form, whole — the " },
+          { "text": "Am", "marks": ["code"] },
+          { "text": " barre at fret 5, " },
+          { "text": "5 7 7 5 5 5", "marks": ["code"] },
+          { "text": ". All six strings. Only string 3 carries the " },
+          { "text": "b3", "marks": ["code"] },
+          { "text": "." }
+        ],
+        "targets": [
+          { "string": 6, "fret": 5 },
+          { "string": 5, "fret": 7 },
+          { "string": 4, "fret": 7 },
+          { "string": 3, "fret": 5 },
+          { "string": 2, "fret": 5 },
+          { "string": 1, "fret": 5 }
+        ],
+        "board": { "fretFrom": 4, "fretTo": 8 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_minor-caged-play-the-five-shapes.d-form",
+        "prompt": [
+          { "text": "The D form — the " },
+          { "text": "Dm", "marks": ["code"] },
+          { "text": " shape at fret 7, " },
+          { "text": "x x 7 9 10 8", "marks": ["code"] },
+          { "text": ". Four strings is the whole shape, and the top one is the " },
+          { "text": "b3", "marks": ["code"] },
+          { "text": "." }
+        ],
+        "targets": [
+          { "string": 4, "fret": 7 },
+          { "string": 3, "fret": 9 },
+          { "string": 2, "fret": 10 },
+          { "string": 1, "fret": 8 }
+        ],
+        "board": { "fretFrom": 6, "fretTo": 10 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_minor-caged-play-the-five-shapes.c-form",
+        "prompt": [
+          { "text": "The C form's compact triad — strings 4-3-2 at frets " },
+          { "text": "10 9 10", "marks": ["code"] },
+          { "text": ". A whole " },
+          { "text": "Am", "marks": ["code"] },
+          { "text": " on three adjacent strings, nothing to stretch for." }
+        ],
+        "targets": [
+          { "string": 4, "fret": 10 },
+          { "string": 3, "fret": 9 },
+          { "string": 2, "fret": 10 }
+        ],
+        "board": { "fretFrom": 9, "fretTo": 13 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_minor-caged-play-the-five-shapes.every-flat-third",
+        "prompt": [
+          { "text": "Just the note that makes the chord minor. Every " },
+          { "text": "b3", "marks": ["code"] },
+          { "text": " you can reach without repeating a pitch — a " },
+          { "text": "C", "marks": ["code"] },
+          { "text": " each time — low to high, in order." }
+        ],
+        "targets": [
+          { "string": 5, "fret": 3 },
+          { "string": 2, "fret": 1 },
+          { "string": 1, "fret": 8 }
+        ],
+        "ordered": true,
+        "board": { "fretFrom": 0, "fretTo": 13 }
+      }
+    ]
+  }
+}

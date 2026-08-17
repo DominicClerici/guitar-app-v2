@@ -1,0 +1,553 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "quiz_minor-caged-ch3-checkpoint",
+    "slug": "minor-caged-ch3-checkpoint",
+    "title": "Checkpoint: The Minor Pentatonic",
+    "summary": "What the layer adds, which of its notes are the chord, how each window sits under the hand, and how the numbered boxes line up with the five forms.",
+    "kind": "checkpoint",
+    "passThresholdPct": 70
+  },
+  "questions": [
+    {
+      "id": "q_minor-caged-ch3-checkpoint.what-it-adds",
+      "kind": "choice",
+      "prompt": [
+        { "text": "Chapter 2 put the " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " triad — " },
+        { "text": "1 b3 5", "marks": ["code"] },
+        { "text": " — into all five windows. What does the minor pentatonic add on top of it?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "The " },
+            { "text": "4", "marks": ["code"] },
+            { "text": " and the " },
+            { "text": "b7", "marks": ["code"] },
+            { "text": ", making " },
+            { "text": "1 b3 4 5 b7", "marks": ["code"] },
+            { "text": "." }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "The " },
+            { "text": "b6", "marks": ["code"] },
+            { "text": " and the " },
+            { "text": "b7", "marks": ["code"] },
+            { "text": " — two of the three notes that drop when A major becomes A minor." }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "The " },
+            { "text": "2", "marks": ["code"] },
+            { "text": " and the " },
+            { "text": "b6", "marks": ["code"] },
+            { "text": ", which is what turns a triad into a five-note scale." }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "Nothing new — it is the same three notes spread across more strings." }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "The minor pentatonic is " },
+        { "text": "1 b3 4 5 b7", "marks": ["code"] },
+        { "text": " — in A, the notes " },
+        { "text": "A C D E G", "marks": ["code"] },
+        { "text": ". The trap is the " },
+        { "text": "b6", "marks": ["code"] },
+        {
+          "text": ": chapter 1's \"three notes that drop\" is a fact about the whole seven-note natural minor scale, and only two of those three — the "
+        },
+        { "text": "b3", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "b7", "marks": ["code"] },
+        { "text": " — are in this layer. The " },
+        { "text": "2", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "b6", "marks": ["code"] },
+        { "text": " are the two the pentatonic leaves out, and chapter 4 is where they come back." }
+      ]
+    },
+    {
+      "id": "q_minor-caged-ch3-checkpoint.which-are-chord-tones",
+      "kind": "choice",
+      "prompt": [
+        { "text": "You are playing the minor pentatonic over an " },
+        { "text": "Am", "marks": ["code"] },
+        {
+          "text": " chord and want to end a phrase on a note the chord is actually made of. Which of the five will do?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "The " },
+            { "text": "1", "marks": ["code"] },
+            { "text": ", the " },
+            { "text": "b3", "marks": ["code"] },
+            { "text": " and the " },
+            { "text": "5", "marks": ["code"] },
+            { "text": " — three of the five. The " },
+            { "text": "4", "marks": ["code"] },
+            { "text": " and the " },
+            { "text": "b7", "marks": ["code"] },
+            { "text": " are not in the chord." }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "All five — every note of the scale belongs to the chord, which is why the scale fits over it."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "Only the " },
+            { "text": "1", "marks": ["code"] },
+            { "text": " and the " },
+            { "text": "5", "marks": ["code"] },
+            { "text": ". The " },
+            { "text": "b3", "marks": ["code"] },
+            { "text": " belongs to the scale rather than to the chord." }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "The " },
+            { "text": "1", "marks": ["code"] },
+            { "text": ", the " },
+            { "text": "4", "marks": ["code"] },
+            { "text": " and the " },
+            { "text": "5", "marks": ["code"] },
+            { "text": " — the three degrees with no flat in front of them." }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "An " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " chord is " },
+        { "text": "1 b3 5", "marks": ["code"] },
+        { "text": " — " },
+        { "text": "A C E", "marks": ["code"] },
+        {
+          "text": " — and those are the three notes chapter 2 spent its whole length on. The "
+        },
+        { "text": "4", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "b7", "marks": ["code"] },
+        {
+          "text": " are the two this chapter added, and they are the notes that keep a line moving rather than let it arrive. Which is which is the whole difference between running a scale and playing over a chord."
+        }
+      ]
+    },
+    {
+      "id": "q_minor-caged-ch3-checkpoint.c-form-spread",
+      "kind": "choice",
+      "prompt": [
+        { "text": "The C form's window runs frets " },
+        { "text": "9–13", "marks": ["code"] },
+        { "text": ". Why does it ask you to shift where the box at fret 5 does not?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "Its twelve dots run from fret " },
+            { "text": "9", "marks": ["code"] },
+            { "text": " to fret " },
+            { "text": "13", "marks": ["code"] },
+            { "text": " with fret " },
+            { "text": "11", "marks": ["code"] },
+            { "text": " empty, so they fall into two clusters rather than one hand position." }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [{ "text": "It holds more dots than any other window in the chapter." }]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "It is the only window that crosses the " },
+            { "text": "G → B", "marks": ["code"] },
+            { "text": " break, which shifts everything a fret." }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "The frets get narrower that high up the neck, so a hand covers fewer of them."
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "Its dots sit on frets " },
+        { "text": "9", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "10", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "12", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "13", "marks": ["code"] },
+        {
+          "text": " — a five-fret spread with a gap through the middle. It is not alone in that: the G form spreads across frets "
+        },
+        { "text": "1–5", "marks": ["code"] },
+        {
+          "text": " too. The other three windows put their dots inside four frets. Every window on the neck crosses the "
+        },
+        { "text": "G → B", "marks": ["code"] },
+        { "text": " break, so that on its own explains nothing." }
+      ]
+    },
+    {
+      "id": "q_minor-caged-ch3-checkpoint.a-form-open-strings",
+      "kind": "choice",
+      "prompt": [
+        { "text": "In the A form's window, frets " },
+        { "text": "0–3", "marks": ["code"] },
+        {
+          "text": ", five of the six strings have their lower dot on an open string. Which string is the exception, and why?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "String 2 — its open note is not one of this scale's five, so its lower dot sits at "
+            },
+            { "text": "2·1", "marks": ["code"] },
+            { "text": " instead." }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "String 6 — the open low " },
+            { "text": "E", "marks": ["code"] },
+            { "text": " is below the window, so the window starts at fret 1 on that string." }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "String 1 — the open high " },
+            { "text": "e", "marks": ["code"] },
+            { "text": " is a chord tone, and chord tones are never drawn open." }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "String 4 — the nut cuts the window short, and string 4 is the one it cuts." }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "The five open dots are " },
+        { "text": "6·0", "marks": ["code"] },
+        { "text": " " },
+        { "text": "5", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "5·0", "marks": ["code"] },
+        { "text": " " },
+        { "text": "1", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "4·0", "marks": ["code"] },
+        { "text": " " },
+        { "text": "4", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3·0", "marks": ["code"] },
+        { "text": " " },
+        { "text": "b7", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "1·0", "marks": ["code"] },
+        { "text": " " },
+        { "text": "5", "marks": ["code"] },
+        {
+          "text": ". String 2's open note simply is not in A minor pentatonic, so the window's lowest dot on that string is the "
+        },
+        { "text": "b3", "marks": ["code"] },
+        { "text": " at " },
+        { "text": "2·1", "marks": ["code"] },
+        { "text": " — the same " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " your finger already holds down in the open " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " chord." }
+      ]
+    },
+    {
+      "id": "q_minor-caged-ch3-checkpoint.g-form-thirteen",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "Four of the five windows in this chapter hold twelve pentatonic dots, two on every string. One holds thirteen. Which, and why?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "The G form, frets " },
+            { "text": "1–5", "marks": ["code"] },
+            { "text": " — string 2 carries three of the scale's five notes, at " },
+            { "text": "2·1", "marks": ["code"] },
+            { "text": ", " },
+            { "text": "2·3", "marks": ["code"] },
+            { "text": " and " },
+            { "text": "2·5", "marks": ["code"] },
+            { "text": "." }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "The A form, frets " },
+            { "text": "0–3", "marks": ["code"] },
+            {
+              "text": " — the open strings give it an extra note the fretted windows cannot reach."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "The E form, frets " },
+            { "text": "4–8", "marks": ["code"] },
+            { "text": " — fret 5 puts a note on all six strings at once." }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "The C form, frets " },
+            { "text": "9–13", "marks": ["code"] },
+            {
+              "text": " — its dots spread over five frets instead of four, so it catches one more."
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "The " },
+        { "text": "b3", "marks": ["code"] },
+        { "text": ", the " },
+        { "text": "4", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "5", "marks": ["code"] },
+        {
+          "text": " are the three notes of this scale that sit closest together — two frets apart each — and across frets "
+        },
+        { "text": "1–5", "marks": ["code"] },
+        {
+          "text": " all three of them land on the B string. That thirteenth dot is why the G form is the fullest window in the chapter and one of the two you move through rather than settle into."
+        }
+      ]
+    },
+    {
+      "id": "q_minor-caged-ch3-checkpoint.fret-five",
+      "kind": "fretboard",
+      "prompt": [
+        {
+          "text": "Fret 5 is the only fret on the whole neck where every string sounds a note of A minor pentatonic. Mark all six."
+        }
+      ],
+      "frets": 8,
+      "answer": [
+        { "string": 6, "fret": 5 },
+        { "string": 5, "fret": 5 },
+        { "string": 4, "fret": 5 },
+        { "string": 3, "fret": 5 },
+        { "string": 2, "fret": 5 },
+        { "string": 1, "fret": 5 }
+      ],
+      "explanation": [
+        { "text": "Low to high the degrees read " },
+        { "text": "1 4 b7 b3 5 1", "marks": ["code"] },
+        { "text": " — the notes " },
+        { "text": "A D G C E A", "marks": ["code"] },
+        { "text": ". One finger laid flat gives you the whole scale, and four of the six — " },
+        { "text": "6·5", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3·5", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "2·5", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "1·5", "marks": ["code"] },
+        { "text": " — give you the whole chord. The other two, " },
+        { "text": "5·5", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "4·5", "marks": ["code"] },
+        { "text": ", are the " },
+        { "text": "4", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "b7", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "id": "q_minor-caged-ch3-checkpoint.out-of-the-box",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "You are in the box at fret 5 and want to climb into the D form's window, frets "
+        },
+        { "text": "6–10", "marks": ["code"] },
+        { "text": ". Fret 7's row belongs to both windows at once. What is " },
+        { "text": "4·7", "marks": ["code"] },
+        { "text": "?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "The root — one of the E form's three and one of the D form's two, so it is the note to hold on to while the hand moves."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "The " },
+            { "text": "5", "marks": ["code"] },
+            { "text": " — the fifth always sits on string 4 directly under the low root." }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "The " },
+            { "text": "4", "marks": ["code"] },
+            {
+              "text": " — one of the two notes this chapter added, which is why fret 7 feels unresolved."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "The " },
+            { "text": "b7", "marks": ["code"] },
+            {
+              "text": " — it belongs to the D form only, which is what makes the move upward possible."
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "Fret 7's row is " },
+        { "text": "5·7", "marks": ["code"] },
+        { "text": " the " },
+        { "text": "5", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "4·7", "marks": ["code"] },
+        { "text": " the " },
+        { "text": "1", "marks": ["code"] },
+        { "text": ", and " },
+        { "text": "3·7", "marks": ["code"] },
+        { "text": " the " },
+        { "text": "4", "marks": ["code"] },
+        {
+          "text": ". All three sit inside both windows, because the E form runs to fret 8 and the D form starts at fret 6 — the overlap is not new territory, it is the top of the box you were already in. Land on "
+        },
+        { "text": "4·7", "marks": ["code"] },
+        { "text": " on the way up and you have arrived rather than escaped." }
+      ]
+    },
+    {
+      "id": "q_minor-caged-ch3-checkpoint.boxes-and-forms",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "Set to a five-note scale, the Scale Visualizer offers a Boxes toggle alongside CAGED. How does \"box 1 at fret 5\" relate to the five forms?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "Box 1 holds exactly the twelve dots of the E form's window — the two systems frame the same notes differently."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [{ "text": "Box 1 is the C form, because C is the first letter in C-A-G-E-D." }]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "The Boxes are the five CAGED windows renumbered, so box 1 is whichever one sits nearest the nut."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "They are different scales — the Boxes include a note CAGED leaves out." }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "Both toggles draw the same dots; only the frames and the names differ. CAGED sits where the chord shapes put their barre — "
+        },
+        { "text": "0", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "2", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "4", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "7", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "9", "marks": ["code"] },
+        { "text": " frets above the root on the low " },
+        { "text": "E", "marks": ["code"] },
+        { "text": " string — while the boxes sit on the scale itself, " },
+        { "text": "0", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "5", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "7", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "10", "marks": ["code"] },
+        {
+          "text": ". Two of those numbers agree, which is why exactly two pairs coincide: Box 1 is the E form and Box 4 is the A form. The other three boxes are their forms with an edge trimmed off. And the numbering does not start at the nut — from the nut in A minor the boxes read 4, 5, 1, 2, 3."
+        }
+      ]
+    }
+  ]
+}

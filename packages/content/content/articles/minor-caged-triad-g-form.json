@@ -1,0 +1,233 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_minor-caged-triad-g-form",
+    "slug": "minor-caged-triad-g-form",
+    "title": "The G Form: Wider in Minor Than It Was in Major",
+    "summary": "Flattening the G form's third pushes it below the barre itself, so the widest CAGED shape gets wider still and splits into three small triads instead of one big chord.",
+    "tags": ["caged", "minor"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The G form of "
+        },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " sits across frets " },
+        { "text": "1–5", "marks": ["code"] },
+        { "text": ", barre at fret 2. It carries three roots — " },
+        { "text": "6·5", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3·2", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "1·5", "marks": ["code"] },
+        {
+          "text": " — which puts it alongside the E form as one of only two forms with three, not ahead of it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "It also got wider. A major's G form is "
+        },
+        { "text": "5 4 2 2 2 5", "marks": ["code"] },
+        { "text": ", frets 2 to 5 — four frets. A minor's is " },
+        { "text": "5 3 2 2 1 5", "marks": ["code"] },
+        { "text": ", frets " },
+        { "text": "1 to 5", "marks": ["code"] },
+        {
+          "text": " — five frets, the full width of its own window, and the widest grip of the five forms. The reason is exact: the "
+        },
+        { "text": "3", "marks": ["code"] },
+        { "text": " on " },
+        { "text": "2·2", "marks": ["code"] },
+        { "text": " sits right at the barre, so its " },
+        { "text": "b3", "marks": ["code"] },
+        { "text": " at " },
+        { "text": "2·1", "marks": ["code"] },
+        {
+          "text": " lands below it. This is the only one of the five forms whose grip asks for a note below its own barre, and it's why the G form of a minor chord can't be barred at all."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "G",
+        "quality": "minor",
+        "show": "triad",
+        "caption": "Eight dots in the window — the widest of the five, in both senses."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "So it lives in pieces, and each piece is a complete " },
+        { "text": "1 b3 5", "marks": ["code"] },
+        { "text": " on its own." }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Piece" }],
+        [{ "text": "Strings · frets" }],
+        [{ "text": "Degrees" }],
+        [{ "text": "Notes" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "Bottom three" }],
+          [{ "text": "6-5-4 at 5 3 2", "marks": ["code"] }],
+          [{ "text": "1 b3 5", "marks": ["code"] }],
+          [{ "text": "A C E", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "Middle three" }],
+          [{ "text": "4-3-2 at 2 2 1", "marks": ["code"] }],
+          [{ "text": "5 1 b3", "marks": ["code"] }],
+          [{ "text": "E A C", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "Top three" }],
+          [{ "text": "3-2-1 at 5 5 5", "marks": ["code"] }],
+          [{ "text": "b3 5 1", "marks": ["code"] }],
+          [{ "text": "C E A", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The bottom three is a whole minor triad walking back down the frets as it climbs the strings — good under a low root. It's the piece you'd reach for if a bass note or a low E-string riff needs a full chord dropped in underneath it without a stretch."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The middle three is worth its own paragraph, because it isn't new. Look at the frets: "
+        },
+        { "text": "2 2 1", "marks": ["code"] },
+        {
+          "text": ". That's the fretted part of the open "
+        },
+        { "text": "Am", "marks": ["code"] },
+        {
+          "text": " chord from the ",
+          "link": { "kind": "article", "slug": "minor-caged-triad-a-form" }
+        },
+        {
+          "text": "A form",
+          "link": { "kind": "article", "slug": "minor-caged-triad-a-form" }
+        },
+        {
+          "text": ". The A form and the G form overlap exactly here — the same three notes, reached from two different shapes."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The top three is the most useful of the three: all three notes at fret 5, one finger laid across three strings, and a whole minor chord falls out."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        {
+          "text": "Strings 3-2-1, all at fret 5, is a whole "
+        },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " — one finger." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "This grip is also the only one of the five that carries the "
+        },
+        { "text": "b3", "marks": ["code"] },
+        { "text": " twice — at " },
+        { "text": "5·3", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "2·1", "marks": ["code"] },
+        {
+          "text": ". Every other form's grip has exactly one. It means any piece of this form that takes both of those states the chord's quality twice over rather than once."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The window itself holds eight dots, one more than A major's seven; the extra is "
+        },
+        { "text": "3·5", "marks": ["code"] },
+        {
+          "text": ", which stepped in from above the window's top fret. Unlike the C form's extra dots, this one lands inside the top fragment — it's a note you actually play, not a spare."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Three roots and a chord tone on every one of the six strings mean this window shows the chord's whole range at a glance, low E to high E, without a single gap. It's a form worth "
+        },
+        { "text": "seeing", "marks": ["italic"] },
+        { "text": " even though it's never worth " },
+        { "text": "holding", "marks": ["italic"] },
+        { "text": " whole." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That's worth stating plainly, because it's easy to write off a shape you can never grab whole as a shape you don't need. You do need it — just not all at once. A chord you can't hold in one hand is still a chord, and three small, easy triads that happen to share a window are worth more in practice than one impossible five-fret stretch would ever be."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Compare it against " },
+        {
+          "text": "the major G form",
+          "link": { "kind": "article", "slug": "caged-triad-g-form" }
+        },
+        {
+          "text": " if you want the wider grip laid out fully, or try any of the three pieces in "
+        },
+        { "text": "Chord Shapes", "link": { "kind": "screen", "href": "/chord-shapes" } },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Next: " },
+        {
+          "text": "the E form",
+          "link": { "kind": "article", "slug": "minor-caged-triad-e-form" }
+        },
+        { "text": ", the one you do hold whole." }
+      ]
+    }
+  ]
+}

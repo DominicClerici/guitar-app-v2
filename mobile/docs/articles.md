@@ -148,7 +148,10 @@ read this file before changing how content *renders*.
    and coordinate via `playbackBus` — `claimPlayback(stop)` when starting,
    `releasePlayback(stop)` when stopping/unmounting — so only one thing in an
    article sounds at a time. `ScaleCompare.tsx` is the reference
-   implementation.
+   implementation. A *sustained* backdrop is the one exception: `useDroneHold`
+   holds a root through the drone screen's engine and deliberately stays off the
+   bus, because the bus enforces one sound **source** and a drone is what another
+   source is heard against. Anything that runs and finishes belongs on the bus.
 4. Remember blocks mount/unmount with scrolling (FlatList) — clean up timers
    and audio in an unmount effect; never assume the component stays mounted.
 5. Style with uniwind classes and Aurora tokens like every other component.

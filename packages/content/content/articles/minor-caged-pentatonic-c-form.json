@@ -1,0 +1,741 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_minor-caged-pentatonic-c-form",
+    "slug": "minor-caged-pentatonic-c-form",
+    "title": "The C Form: The One That Spreads",
+    "summary": "The C form's twelve pentatonic dots run from fret 9 to fret 13 with fret 11 empty, so it is one of the two windows in this chapter that asks you to shift rather than settle.",
+    "tags": ["caged", "minor"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One reminder before the dots, since you may be arriving after a gap: "
+        },
+        {
+          "text": "5·3",
+          "marks": ["code"]
+        },
+        {
+          "text": " means string 5, fret 3 — string 1 is the high "
+        },
+        {
+          "text": "e",
+          "marks": ["code"]
+        },
+        {
+          "text": ", string 6 the low "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": ". The C form's window is frets "
+        },
+        {
+          "text": "9–13",
+          "marks": ["code"]
+        },
+        {
+          "text": ", the highest of the five, and the same window chapter 2's C form worked in."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "C",
+        "quality": "minor",
+        "show": "pentatonic",
+        "caption": "The C form's window, pentatonic layer — twelve dots on frets 9, 10, 12 and 13."
+      }
+    },
+    {
+      "type": "table",
+      "header": [
+        [
+          {
+            "text": "String"
+          }
+        ],
+        [
+          {
+            "text": "Lower dot"
+          }
+        ],
+        [
+          {
+            "text": "Upper dot"
+          }
+        ]
+      ],
+      "rows": [
+        [
+          [
+            {
+              "text": "6"
+            }
+          ],
+          [
+            {
+              "text": "6·10 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "4",
+              "marks": ["code"]
+            },
+            {
+              "text": " (D)"
+            }
+          ],
+          [
+            {
+              "text": "6·12 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "5",
+              "marks": ["code"]
+            },
+            {
+              "text": " (E)"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "5"
+            }
+          ],
+          [
+            {
+              "text": "5·10 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "b7",
+              "marks": ["code"]
+            },
+            {
+              "text": " (G)"
+            }
+          ],
+          [
+            {
+              "text": "5·12 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "1",
+              "marks": ["code"]
+            },
+            {
+              "text": " (A)"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "4"
+            }
+          ],
+          [
+            {
+              "text": "4·10 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "b3",
+              "marks": ["code"]
+            },
+            {
+              "text": " (C)"
+            }
+          ],
+          [
+            {
+              "text": "4·12 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "4",
+              "marks": ["code"]
+            },
+            {
+              "text": " (D)"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "3"
+            }
+          ],
+          [
+            {
+              "text": "3·9 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "5",
+              "marks": ["code"]
+            },
+            {
+              "text": " (E)"
+            }
+          ],
+          [
+            {
+              "text": "3·12 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "b7",
+              "marks": ["code"]
+            },
+            {
+              "text": " (G)"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "2"
+            }
+          ],
+          [
+            {
+              "text": "2·10 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "1",
+              "marks": ["code"]
+            },
+            {
+              "text": " (A)"
+            }
+          ],
+          [
+            {
+              "text": "2·13 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "b3",
+              "marks": ["code"]
+            },
+            {
+              "text": " (C)"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "1"
+            }
+          ],
+          [
+            {
+              "text": "1·10 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "4",
+              "marks": ["code"]
+            },
+            {
+              "text": " (D)"
+            }
+          ],
+          [
+            {
+              "text": "1·12 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "5",
+              "marks": ["code"]
+            },
+            {
+              "text": " (E)"
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The spread is this lesson's own fact. The dots run from "
+        },
+        {
+          "text": "3·9",
+          "marks": ["code"]
+        },
+        {
+          "text": " at the bottom to "
+        },
+        {
+          "text": "2·13",
+          "marks": ["code"]
+        },
+        {
+          "text": " at the top — five frets, not four — and fret "
+        },
+        {
+          "text": "11",
+          "marks": ["code"]
+        },
+        {
+          "text": " holds nothing at all. They sit on frets "
+        },
+        {
+          "text": "9",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "10",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "12",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "13",
+          "marks": ["code"]
+        },
+        {
+          "text": ", with a gap through the middle. If you can't reach the whole thing in one hand position, you're reading the shape right, not failing it. It isn't the only window that spreads, either: the "
+        },
+        {
+          "text": "G form",
+          "marks": ["italic"]
+        },
+        {
+          "text": " does the same thing further down the neck."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        {
+          "text": "Fret 11 is empty. This window is two small clusters — 9/10 and 12/13 — not one hand position."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The two clusters aren't identical in content, either. The lower one, frets 9–10, holds the root at "
+        },
+        {
+          "text": "2·10",
+          "marks": ["code"]
+        },
+        {
+          "text": " alongside the "
+        },
+        {
+          "text": "b3",
+          "marks": ["code"]
+        },
+        {
+          "text": " at "
+        },
+        {
+          "text": "4·10",
+          "marks": ["code"]
+        },
+        {
+          "text": ". The upper one, frets 12–13, holds the other root at "
+        },
+        {
+          "text": "5·12",
+          "marks": ["code"]
+        },
+        {
+          "text": " alongside the "
+        },
+        {
+          "text": "b3",
+          "marks": ["code"]
+        },
+        {
+          "text": " at "
+        },
+        {
+          "text": "2·13",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Each cluster already carries a root and a "
+        },
+        {
+          "text": "b3",
+          "marks": ["code"]
+        },
+        {
+          "text": " of its own, so neither is a leftover from the other — you could sit in either one and still hear the chord."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "What's new since chapter 2: "
+        },
+        {
+          "text": "6·10",
+          "marks": ["code"]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": "), "
+        },
+        {
+          "text": "5·10",
+          "marks": ["code"]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "b7",
+          "marks": ["code"]
+        },
+        {
+          "text": "), "
+        },
+        {
+          "text": "4·12",
+          "marks": ["code"]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": "), "
+        },
+        {
+          "text": "3·12",
+          "marks": ["code"]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "b7",
+          "marks": ["code"]
+        },
+        {
+          "text": "), and "
+        },
+        {
+          "text": "1·10",
+          "marks": ["code"]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": "). Chapter 2's compact fragment out of this form — strings 4-3-2 at "
+        },
+        {
+          "text": "10 9 10",
+          "marks": ["code"]
+        },
+        {
+          "text": ", the "
+        },
+        {
+          "text": "b3 5 1",
+          "marks": ["code"]
+        },
+        {
+          "text": " — is still sitting right there, now with a "
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": " a fret below it on both "
+        },
+        {
+          "text": "6·10",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "1·10",
+          "marks": ["code"]
+        },
+        {
+          "text": "."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Chord tones and the rest. Seven of the twelve are "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": ": "
+        },
+        {
+          "text": "6·12",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "5·12",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "4·10",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "3·9",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "2·10",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "2·13",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "1·12",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Five are not: "
+        },
+        {
+          "text": "6·10",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "5·10",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "4·12",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "3·12",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "1·10",
+          "marks": ["code"]
+        },
+        {
+          "text": ". The two roots — "
+        },
+        {
+          "text": "2·10",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "5·12",
+          "marks": ["code"]
+        },
+        {
+          "text": " — sit one in each cluster, so wherever your hand is in this window there is a root within reach."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Character, in the count. This window triples the "
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": " and the "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": " — three "
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": "s and three "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": "s. Combined with only two roots, it's the window that leans hardest away from home, which is part of why it reads as a transitional shape rather than a place to sit."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Character in the reach, too. Its three-fret strings are 3 and 2, right in the middle of the hand, and they're the two that straddle the "
+        },
+        {
+          "text": "G → B",
+          "marks": ["code"]
+        },
+        {
+          "text": " break — which is exactly why "
+        },
+        {
+          "text": "2·13",
+          "marks": ["code"]
+        },
+        {
+          "text": " sits a fret higher than everything around it, and why the two clusters this window splits into don't line up evenly across the strings."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Look it over against "
+        },
+        {
+          "text": "the C form's triad",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-triad-c-form"
+          }
+        },
+        {
+          "text": " if you want the fingering that started it, or page the window in the "
+        },
+        {
+          "text": "Scale Visualizer",
+          "link": {
+            "kind": "screen",
+            "href": "/scale-visualizer"
+          }
+        },
+        {
+          "text": "."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Next: "
+        },
+        {
+          "text": "the A form",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-pentatonic-a-form"
+          }
+        },
+        {
+          "text": ", the opposite of this one in every respect."
+        }
+      ]
+    }
+  ]
+}

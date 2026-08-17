@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "act_triad-one-chord-four-sets",
+    "slug": "triad-one-chord-four-sets",
+    "title": "Drill: One Chord, Four Sets",
+    "summary": "Four C major grips scattered across the whole neck, one on each string set — including the flat one and the one that cannot be held low."
+  },
+  "activity": {
+    "kind": "note-play",
+    "modes": ["easy", "hard"],
+    "board": { "fretFrom": 0, "fretTo": 12 },
+    "rounds": [
+      {
+        "kind": "targets",
+        "id": "r_triad-one-chord-four-sets.the-flat-one",
+        "prompt": [
+          { "text": "C major, second inversion, on strings 2-3-4: " },
+          { "text": "x x 5 5 5 x", "marks": ["code"] },
+          { "text": ". All three notes at fret 5 — " },
+          { "text": "G", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "C", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "E", "marks": ["code"] },
+          { "text": ". Play them one at a time so each note is heard on its own." }
+        ],
+        "targets": [
+          { "string": 4, "fret": 5 },
+          { "string": 3, "fret": 5 },
+          { "string": 2, "fret": 5 }
+        ]
+      },
+      {
+        "kind": "targets",
+        "id": "r_triad-one-chord-four-sets.inside-open-c",
+        "prompt": [
+          { "text": "C major, root position, on strings 3-4-5: " },
+          { "text": "x 3 2 0 x x", "marks": ["code"] },
+          { "text": ". This one is hiding inside the open C chord you already play — " },
+          { "text": "C", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "E", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "G", "marks": ["code"] },
+          { "text": ", with the root on the bottom." }
+        ],
+        "targets": [
+          { "string": 5, "fret": 3 },
+          { "string": 4, "fret": 2 },
+          { "string": 3, "fret": 0 }
+        ]
+      },
+      {
+        "kind": "targets",
+        "id": "r_triad-one-chord-four-sets.the-low-one",
+        "prompt": [
+          { "text": "C major, second inversion, on strings 4-5-6: " },
+          { "text": "3 3 2 x x x", "marks": ["code"] },
+          { "text": ". The lowest C major grip on the neck. Its bass note is a " },
+          { "text": "G", "marks": ["code"] },
+          {
+            "text": " below the open A string — listen to how much thicker it sits than the first round."
+          }
+        ],
+        "targets": [
+          { "string": 6, "fret": 3 },
+          { "string": 5, "fret": 3 },
+          { "string": 4, "fret": 2 }
+        ]
+      },
+      {
+        "kind": "targets",
+        "id": "r_triad-one-chord-four-sets.the-one-that-waits",
+        "prompt": [
+          { "text": "C major, first inversion, on strings 4-5-6: " },
+          { "text": "12 10 10 x x x", "marks": ["code"] },
+          { "text": ". This is the grip that cannot be held any lower — the " },
+          { "text": "G", "marks": ["code"] },
+          { "text": " it needs above an open low " },
+          { "text": "E", "marks": ["code"] },
+          { "text": " does not exist on string 5, so the whole shape has to wait for fret 12." }
+        ],
+        "targets": [
+          { "string": 6, "fret": 12 },
+          { "string": 5, "fret": 10 },
+          { "string": 4, "fret": 10 }
+        ]
+      }
+    ]
+  }
+}

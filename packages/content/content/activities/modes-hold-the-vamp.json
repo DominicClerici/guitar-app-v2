@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "act_modes-hold-the-vamp",
+    "slug": "modes-hold-the-vamp",
+    "title": "Drill: Hold the Vamp",
+    "summary": "Three ways to keep a two-chord loop going steadily enough to hear one note over it. Mute the strings — this drill hears when you strike, not what."
+  },
+  "activity": {
+    "kind": "rhythm",
+    "rounds": [
+      {
+        "kind": "pattern",
+        "id": "r_modes-hold-the-vamp.one-bar-each",
+        "prompt": [
+          {
+            "text": "Rest your fretting hand flat across the strings so nothing rings out — this drill only hears when you strike. Two bars, four strums to the bar, one chord per bar: "
+          },
+          { "text": "Am", "marks": ["code"] },
+          { "text": ", then " },
+          { "text": "D", "marks": ["code"] },
+          {
+            "text": ". The accent marks where the chord changes. Change the shape under the mute anyway — that is the part that has to become automatic before you can listen to anything else."
+          }
+        ],
+        "bpm": 66,
+        "beatsPerBar": 4,
+        "subdivision": 1,
+        "bars": 2,
+        "slots": ["accent", "hit", "hit", "hit", "accent", "hit", "hit", "hit"],
+        "countInBars": 1
+      },
+      {
+        "kind": "pattern",
+        "id": "r_modes-hold-the-vamp.the-groove",
+        "prompt": [
+          {
+            "text": "Strings still muted. Count one and two and three and four and out loud, and strike on one, the and of one, two, three, the and of three, and four. Six strikes a bar, and nothing on the last and — a loop that arrives early at the change starts to sound like it is going somewhere."
+          }
+        ],
+        "bpm": 72,
+        "beatsPerBar": 4,
+        "subdivision": 2,
+        "bars": 2,
+        "slots": [
+          "accent",
+          "hit",
+          "hit",
+          "rest",
+          "hit",
+          "hit",
+          "hit",
+          "rest",
+          "accent",
+          "hit",
+          "hit",
+          "rest",
+          "hit",
+          "hit",
+          "hit",
+          "rest"
+        ],
+        "countInBars": 1
+      },
+      {
+        "kind": "pattern",
+        "id": "r_modes-hold-the-vamp.let-it-ring",
+        "prompt": [
+          {
+            "text": "The sparse one, and the one worth practising last: two strikes a bar, on one and on the and of three. Strings muted, two bars of clicks first. Once the chords are ringing rather than muted, all that space is where a single held note goes."
+          }
+        ],
+        "bpm": 60,
+        "beatsPerBar": 4,
+        "subdivision": 2,
+        "bars": 2,
+        "slots": [
+          "accent",
+          "rest",
+          "rest",
+          "rest",
+          "rest",
+          "hit",
+          "rest",
+          "rest",
+          "accent",
+          "rest",
+          "rest",
+          "rest",
+          "rest",
+          "hit",
+          "rest",
+          "rest"
+        ],
+        "countInBars": 2
+      }
+    ]
+  }
+}

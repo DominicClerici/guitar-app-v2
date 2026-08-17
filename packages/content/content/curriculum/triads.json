@@ -1,0 +1,397 @@
+{
+  "id": "path_triads",
+  "slug": "triads",
+  "title": "Triads: The Three Notes Every Chord Is Made Of",
+  "summary": "Three strings, three notes, and a complete chord anywhere on the neck. Learn the twelve grips that cover the whole guitar — and why the barre chord you already play is one of them with the notes doubled.",
+  "tags": ["triads", "chords", "inversions", "theory"],
+  "difficulty": "core",
+  "estimatedMin": 197,
+  "chapters": [
+    {
+      "id": "triads.ch1",
+      "slug": "what-a-triad-is",
+      "title": "What a Triad Is",
+      "summary": "Three notes is a whole chord, not a piece of one. Which note sits lowest, why that doesn't rename the chord, and C major in all three inversions on the top three strings.",
+      "sections": [
+        {
+          "id": "triads.ch1.three-notes",
+          "slug": "triad-three-notes",
+          "title": "Three Notes Is the Whole Chord",
+          "kind": "article",
+          "ref": "triad-three-notes",
+          "estimatedMin": 4
+        },
+        {
+          "id": "triads.ch1.inversion",
+          "slug": "triad-inversion",
+          "title": "Which Note Is in the Bass",
+          "kind": "article",
+          "ref": "triad-inversion",
+          "estimatedMin": 4
+        },
+        {
+          "id": "triads.ch1.the-four-string-sets",
+          "slug": "triad-the-four-string-sets",
+          "title": "Four Sets of Three Strings",
+          "kind": "article",
+          "ref": "triad-the-four-string-sets",
+          "estimatedMin": 4
+        },
+        {
+          "id": "triads.ch1.major-strings-1-2-3",
+          "slug": "triad-major-strings-1-2-3",
+          "title": "C Major, Three Ways, on the Top Three Strings",
+          "kind": "article",
+          "ref": "triad-major-strings-1-2-3",
+          "estimatedMin": 5
+        },
+        {
+          "id": "triads.ch1.open-chords-you-know",
+          "slug": "triad-open-chords-you-know",
+          "title": "You Already Play These",
+          "kind": "article",
+          "ref": "triad-open-chords-you-know",
+          "estimatedMin": 4
+        },
+        {
+          "id": "triads.ch1.why-the-top-set",
+          "slug": "triad-why-the-top-set",
+          "title": "Why Rhythm Playing Lives Up Here",
+          "kind": "article",
+          "ref": "triad-why-the-top-set",
+          "estimatedMin": 3
+        },
+        {
+          "id": "triads.ch1.play-the-inversions",
+          "slug": "triad-play-the-inversions",
+          "title": "Drill: The Three Inversions on Strings 1-2-3",
+          "kind": "activity",
+          "ref": "triad-play-the-inversions",
+          "optional": true,
+          "estimatedMin": 7
+        }
+      ],
+      "checkpoint": {
+        "ref": "triads-ch1-checkpoint",
+        "passThresholdPct": 70,
+        "title": "Checkpoint: What a Triad Is"
+      }
+    },
+    {
+      "id": "triads.ch2",
+      "slug": "major-everywhere",
+      "title": "Major Triads Everywhere",
+      "summary": "The other three string sets, the one string pair that changes every shape, the whole twelve-grip map — and a progression comped without leaving five frets.",
+      "sections": [
+        {
+          "id": "triads.ch2.major-strings-2-3-4",
+          "slug": "triad-major-strings-2-3-4",
+          "title": "One Set Down, One Note Moves",
+          "kind": "article",
+          "ref": "triad-major-strings-2-3-4",
+          "estimatedMin": 4
+        },
+        {
+          "id": "triads.ch2.major-strings-3-4-5",
+          "slug": "triad-major-strings-3-4-5",
+          "title": "The Middle of the Guitar",
+          "kind": "article",
+          "ref": "triad-major-strings-3-4-5",
+          "estimatedMin": 4
+        },
+        {
+          "id": "triads.ch2.major-strings-4-5-6",
+          "slug": "triad-major-strings-4-5-6",
+          "title": "The Bottom Set, and When to Leave It Alone",
+          "kind": "article",
+          "ref": "triad-major-strings-4-5-6",
+          "estimatedMin": 5
+        },
+        {
+          "id": "triads.ch2.the-b-string-shift",
+          "slug": "triad-the-b-string-shift",
+          "title": "The B String Explains All of It",
+          "kind": "article",
+          "ref": "triad-the-b-string-shift",
+          "estimatedMin": 5
+        },
+        {
+          "id": "triads.ch2.the-whole-neck",
+          "slug": "triad-the-whole-neck",
+          "title": "Twelve Grips, One Chord",
+          "kind": "article",
+          "ref": "triad-the-whole-neck",
+          "estimatedMin": 5
+        },
+        {
+          "id": "triads.ch2.one-chord-four-sets",
+          "slug": "triad-one-chord-four-sets",
+          "title": "Drill: One Chord, Four Sets",
+          "kind": "activity",
+          "ref": "triad-one-chord-four-sets",
+          "optional": true,
+          "estimatedMin": 6
+        },
+        {
+          "id": "triads.ch2.choosing-a-set",
+          "slug": "triad-choosing-a-set",
+          "title": "Which Set, and Why",
+          "kind": "article",
+          "ref": "triad-choosing-a-set",
+          "estimatedMin": 3
+        },
+        {
+          "id": "triads.ch2.moving-the-least",
+          "slug": "triad-moving-the-least",
+          "title": "Move as Little as Possible",
+          "kind": "article",
+          "ref": "triad-moving-the-least",
+          "estimatedMin": 5
+        },
+        {
+          "id": "triads.ch2.play-the-changes",
+          "slug": "triad-play-the-changes",
+          "title": "Drill: Three Chords Without Moving",
+          "kind": "activity",
+          "ref": "triad-play-the-changes",
+          "optional": true,
+          "estimatedMin": 6
+        }
+      ],
+      "checkpoint": {
+        "ref": "triads-ch2-checkpoint",
+        "passThresholdPct": 70,
+        "title": "Checkpoint: Major Triads Everywhere"
+      }
+    },
+    {
+      "id": "triads.ch3",
+      "slug": "minor-triads",
+      "title": "Minor Triads",
+      "summary": "One note, one fret. Every minor grip is a major grip you already own with the third dropped a semitone — and the inversion tells you which finger moves.",
+      "sections": [
+        {
+          "id": "triads.ch3.one-note-lower",
+          "slug": "triad-one-note-lower",
+          "title": "One Note, One Fret",
+          "kind": "article",
+          "ref": "triad-one-note-lower",
+          "estimatedMin": 6
+        },
+        {
+          "id": "triads.ch3.move-the-third",
+          "slug": "triad-move-the-third",
+          "title": "Drill: Move the Third",
+          "kind": "activity",
+          "ref": "triad-move-the-third",
+          "optional": true,
+          "estimatedMin": 6
+        },
+        {
+          "id": "triads.ch3.minor-strings-2-3-4",
+          "slug": "triad-minor-strings-2-3-4",
+          "title": "The Flush Shape Loses Its Flush",
+          "kind": "article",
+          "ref": "triad-minor-strings-2-3-4",
+          "estimatedMin": 4
+        },
+        {
+          "id": "triads.ch3.minor-strings-3-4-5",
+          "slug": "triad-minor-strings-3-4-5",
+          "title": "One Finger Inside the Open C Chord",
+          "kind": "article",
+          "ref": "triad-minor-strings-3-4-5",
+          "estimatedMin": 4
+        },
+        {
+          "id": "triads.ch3.minor-strings-4-5-6",
+          "slug": "triad-minor-strings-4-5-6",
+          "title": "The Bottom Set, Where Minor Runs Out First",
+          "kind": "article",
+          "ref": "triad-minor-strings-4-5-6",
+          "estimatedMin": 5
+        },
+        {
+          "id": "triads.ch3.where-the-third-hides",
+          "slug": "triad-where-the-third-hides",
+          "title": "Twelve More Grips You Already Knew",
+          "kind": "article",
+          "ref": "triad-where-the-third-hides",
+          "estimatedMin": 5
+        },
+        {
+          "id": "triads.ch3.hearing-major-and-minor",
+          "slug": "triad-hearing-major-and-minor",
+          "title": "Hearing the One Note",
+          "kind": "article",
+          "ref": "triad-hearing-major-and-minor",
+          "estimatedMin": 6
+        },
+        {
+          "id": "triads.ch3.play-the-minor-changes",
+          "slug": "triad-play-the-minor-changes",
+          "title": "Drill: Four Chords, One of Them Minor",
+          "kind": "activity",
+          "ref": "triad-play-the-minor-changes",
+          "optional": true,
+          "estimatedMin": 6
+        }
+      ],
+      "checkpoint": {
+        "ref": "triads-ch3-checkpoint",
+        "passThresholdPct": 70,
+        "title": "Checkpoint: Minor Triads"
+      }
+    },
+    {
+      "id": "triads.ch4",
+      "slug": "diminished-and-augmented",
+      "title": "Diminished and Augmented",
+      "summary": "The third has done every chapter's work so far. This one moves the fifth — down for diminished, up for augmented — and ends with all four qualities under one hand.",
+      "sections": [
+        {
+          "id": "triads.ch4.the-flat-fifth",
+          "slug": "triad-the-flat-fifth",
+          "title": "The Note That Hasn't Moved",
+          "kind": "article",
+          "ref": "triad-the-flat-fifth",
+          "estimatedMin": 6
+        },
+        {
+          "id": "triads.ch4.diminished-across-the-sets",
+          "slug": "triad-diminished-across-the-sets",
+          "title": "Twelve Grips, and Two That Can't Come Home",
+          "kind": "article",
+          "ref": "triad-diminished-across-the-sets",
+          "estimatedMin": 5
+        },
+        {
+          "id": "triads.ch4.the-sharp-fifth",
+          "slug": "triad-the-sharp-fifth",
+          "title": "The Fifth Goes the Other Way",
+          "kind": "article",
+          "ref": "triad-the-sharp-fifth",
+          "estimatedMin": 4
+        },
+        {
+          "id": "triads.ch4.where-they-pull",
+          "slug": "triad-where-they-pull",
+          "title": "Drill: Where They Pull",
+          "kind": "activity",
+          "ref": "triad-where-they-pull",
+          "optional": true,
+          "estimatedMin": 6
+        },
+        {
+          "id": "triads.ch4.augmented-has-no-root",
+          "slug": "triad-augmented-has-no-root",
+          "title": "One Shape, Three Names",
+          "kind": "article",
+          "ref": "triad-augmented-has-no-root",
+          "estimatedMin": 4
+        },
+        {
+          "id": "triads.ch4.all-four-in-one-place",
+          "slug": "triad-all-four-in-one-place",
+          "title": "Four Chords, One Hand",
+          "kind": "article",
+          "ref": "triad-all-four-in-one-place",
+          "estimatedMin": 4
+        },
+        {
+          "id": "triads.ch4.four-qualities",
+          "slug": "triad-four-qualities",
+          "title": "Drill: Four Qualities, One Hand",
+          "kind": "activity",
+          "ref": "triad-four-qualities",
+          "optional": true,
+          "estimatedMin": 6
+        }
+      ],
+      "checkpoint": {
+        "ref": "triads-ch4-checkpoint",
+        "passThresholdPct": 70,
+        "title": "Checkpoint: Diminished and Augmented"
+      }
+    },
+    {
+      "id": "triads.ch5",
+      "slug": "playing-with-triads",
+      "title": "Playing with Triads",
+      "summary": "Voice leading named and used, the major scale harmonised along one string set, crossing between sets mid-progression, hearing an inversion, and comping a whole song over a bass.",
+      "sections": [
+        {
+          "id": "triads.ch5.voice-leading",
+          "slug": "triad-voice-leading",
+          "title": "The Name for What You've Been Doing",
+          "kind": "article",
+          "ref": "triad-voice-leading",
+          "estimatedMin": 5
+        },
+        {
+          "id": "triads.ch5.harmonising-the-major-scale",
+          "slug": "triad-harmonising-the-major-scale",
+          "title": "Seven Chords the Key Gives You",
+          "kind": "article",
+          "ref": "triad-harmonising-the-major-scale",
+          "estimatedMin": 6
+        },
+        {
+          "id": "triads.ch5.harmonise-the-scale",
+          "slug": "triad-harmonise-the-scale",
+          "title": "Drill: Harmonise the Scale",
+          "kind": "activity",
+          "ref": "triad-harmonise-the-scale",
+          "optional": true,
+          "estimatedMin": 7
+        },
+        {
+          "id": "triads.ch5.crossing-the-sets",
+          "slug": "triad-crossing-the-sets",
+          "title": "Changing Register Without Moving Your Hand",
+          "kind": "article",
+          "ref": "triad-crossing-the-sets",
+          "estimatedMin": 5
+        },
+        {
+          "id": "triads.ch5.hearing-the-inversion",
+          "slug": "triad-hearing-the-inversion",
+          "title": "Which Note Is on the Bottom",
+          "kind": "article",
+          "ref": "triad-hearing-the-inversion",
+          "estimatedMin": 6
+        },
+        {
+          "id": "triads.ch5.over-a-bass",
+          "slug": "triad-over-a-bass",
+          "title": "Someone Else Owns the Bass Note",
+          "kind": "article",
+          "ref": "triad-over-a-bass",
+          "estimatedMin": 5
+        },
+        {
+          "id": "triads.ch5.comping-a-song",
+          "slug": "triad-comping-a-song",
+          "title": "Comping a Whole Song",
+          "kind": "article",
+          "ref": "triad-comping-a-song",
+          "estimatedMin": 5
+        },
+        {
+          "id": "triads.ch5.comp-the-changes",
+          "slug": "triad-comp-the-changes",
+          "title": "Drill: Comp the Changes",
+          "kind": "activity",
+          "ref": "triad-comp-the-changes",
+          "optional": true,
+          "estimatedMin": 7
+        }
+      ],
+      "checkpoint": {
+        "ref": "triads-ch5-checkpoint",
+        "passThresholdPct": 70,
+        "title": "Checkpoint: Playing with Triads"
+      }
+    }
+  ]
+}

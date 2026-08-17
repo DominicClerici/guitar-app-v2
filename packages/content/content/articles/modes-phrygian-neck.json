@@ -1,0 +1,462 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_modes-phrygian-neck",
+    "slug": "modes-phrygian-neck",
+    "title": "Phrygian, and the Dot That Falls Off the Nut",
+    "summary": "Flattening the 2 in the window clamped at the nut both gains a dot from above and loses one off the bottom, so flattening a degree does not always add dots — and the G form holds eighteen for all three modes of this family.",
+    "tags": ["modes", "fretboard"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-15"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Same frame, one degree lowered. A window doesn't move when a mode changes underneath it — "
+        },
+        {
+          "text": "Mixolydian, and What the Window's Edges Do",
+          "link": {
+            "kind": "article",
+            "slug": "modes-mixolydian-neck"
+          }
+        },
+        {
+          "text": " already worked out what flattening does at an edge, and this lesson leans on that rather than re-deriving it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Start at the nut — the A form, frets 0 to 3. Here's "
+        },
+        {
+          "text": "A Natural minor",
+          "marks": ["code"]
+        },
+        {
+          "text": ", then "
+        },
+        {
+          "text": "A Phrygian",
+          "marks": ["code"]
+        },
+        {
+          "text": " — drawn as everything in the window, not a grip a hand would hold. Seventeen dots both times."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "A",
+        "scale": "minor",
+        "caption": "Seventeen dots, four frets wide — the window clamped at the nut"
+      }
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "A",
+        "scale": "phrygian",
+        "caption": "Still seventeen — one dot arrived from above, one fell off the open string"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "What changed, exactly. "
+        },
+        {
+          "text": "A Natural minor",
+          "marks": ["code"]
+        },
+        {
+          "text": "'s "
+        },
+        {
+          "text": "2",
+          "marks": ["code"]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "B",
+          "marks": ["code"]
+        },
+        {
+          "text": ") sits at "
+        },
+        {
+          "text": "2·0",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "5·2",
+          "marks": ["code"]
+        },
+        {
+          "text": ". "
+        },
+        {
+          "text": "A Phrygian",
+          "marks": ["code"]
+        },
+        {
+          "text": "'s "
+        },
+        {
+          "text": "b2",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "rose"
+            }
+          ]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "Bb",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "rose"
+            }
+          ]
+        },
+        {
+          "text": ") sits at "
+        },
+        {
+          "text": "3·3",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "5·1",
+          "marks": ["code"]
+        },
+        {
+          "text": ". "
+        },
+        {
+          "text": "5·2",
+          "marks": ["code"]
+        },
+        {
+          "text": " steps down to "
+        },
+        {
+          "text": "5·1",
+          "marks": ["code"]
+        },
+        {
+          "text": ", inside the window. "
+        },
+        {
+          "text": "2·0",
+          "marks": ["code"]
+        },
+        {
+          "text": " — the open "
+        },
+        {
+          "text": "B",
+          "marks": ["code"]
+        },
+        {
+          "text": " string — would flatten to a fret below the nut, and there's no fret −1, so that dot is simply lost. A "
+        },
+        {
+          "text": "b2",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "rose"
+            }
+          ]
+        },
+        {
+          "text": " shows up at "
+        },
+        {
+          "text": "3·3",
+          "marks": ["code"]
+        },
+        {
+          "text": " instead, because its "
+        },
+        {
+          "text": "2",
+          "marks": ["code"]
+        },
+        {
+          "text": " sat at "
+        },
+        {
+          "text": "3·4",
+          "marks": ["code"]
+        },
+        {
+          "text": ", one fret above the window's top edge, and flattening brought it in from there. One dot gained from above, one lost off the bottom — seventeen either way."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "So \"flattening always adds dots\" is false. It adds from above, and it can just as easily subtract at the nut, depending entirely on where a window's edges happen to fall. "
+        },
+        {
+          "text": "Mixolydian, and What the Window's Edges Do",
+          "link": {
+            "kind": "article",
+            "slug": "modes-mixolydian-neck"
+          }
+        },
+        {
+          "text": " made the identical point in the opposite direction, for a raise instead of a flatten."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The G form, frets 1 to 5, is the clean version. "
+        },
+        {
+          "text": "A Natural minor",
+          "marks": ["code"]
+        },
+        {
+          "text": "'s "
+        },
+        {
+          "text": "2",
+          "marks": ["code"]
+        },
+        {
+          "text": " sits at "
+        },
+        {
+          "text": "3·4",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "5·2",
+          "marks": ["code"]
+        },
+        {
+          "text": "; "
+        },
+        {
+          "text": "A Phrygian",
+          "marks": ["code"]
+        },
+        {
+          "text": "'s "
+        },
+        {
+          "text": "b2",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "rose"
+            }
+          ]
+        },
+        {
+          "text": " sits at "
+        },
+        {
+          "text": "3·3",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "5·1",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Both step down one fret and stay inside. Eighteen and eighteen. Across all five windows, the G form and the D form are the "
+        },
+        {
+          "text": "two",
+          "marks": ["bold"]
+        },
+        {
+          "text": " windows where every "
+        },
+        {
+          "text": "2",
+          "marks": ["code"]
+        },
+        {
+          "text": " flattens without leaving the picture. Two of them, not one — neither is the only clean window."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "G",
+        "scale": "phrygian",
+        "caption": "Eighteen dots, unchanged — every flattened second stays inside the frame here"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That's this chapter's neck payoff, and it's exact. In the G form all three modes of this family — Dorian, Aeolian, Phrygian — hold eighteen dots; in the E form all three hold seventeen. Two of the five windows can't tell the three apart by count at all, and the G form is the one where both of this chapter's dials turn without a single dot crossing an edge. Never count dots to tell two scales apart — "
+        },
+        {
+          "text": "Mixolydian, and What the Window's Edges Do",
+          "link": {
+            "kind": "article",
+            "slug": "modes-mixolydian-neck"
+          }
+        },
+        {
+          "text": " said it first, and this is what that looks like from the inside."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "What it costs to play: one fret, the other direction. Wherever your hand reached for a "
+        },
+        {
+          "text": "B",
+          "marks": ["code"]
+        },
+        {
+          "text": ", it reaches one fret lower for a "
+        },
+        {
+          "text": "Bb",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "rose"
+            }
+          ]
+        },
+        {
+          "text": " — in the G form that's "
+        },
+        {
+          "text": "5·2",
+          "marks": ["code"]
+        },
+        {
+          "text": " to "
+        },
+        {
+          "text": "5·1",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "3·4",
+          "marks": ["code"]
+        },
+        {
+          "text": " to "
+        },
+        {
+          "text": "3·3",
+          "marks": ["code"]
+        },
+        {
+          "text": ". On the open "
+        },
+        {
+          "text": "B",
+          "marks": ["code"]
+        },
+        {
+          "text": " string at the nut there's nowhere lower to go, which is exactly why that dot leaves the picture rather than just moving."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "See the other three windows fill in on "
+        },
+        {
+          "text": "Scale Visualizer",
+          "link": {
+            "kind": "screen",
+            "href": "/scale-visualizer"
+          }
+        },
+        {
+          "text": " — root "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": ", scale Phrygian. There's no drone on that screen; for a held root while your hands are busy, that's "
+        },
+        {
+          "text": "Drone",
+          "link": {
+            "kind": "screen",
+            "href": "/drone"
+          }
+        },
+        {
+          "text": "."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Two dials, two windows, one home chord underneath both of them. What's left is putting the three settings side by side and asking which single note you actually lean on."
+        }
+      ]
+    }
+  ]
+}

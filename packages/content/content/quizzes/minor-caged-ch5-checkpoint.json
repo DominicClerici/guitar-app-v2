@@ -1,0 +1,514 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "quiz_minor-caged-ch5-checkpoint",
+    "slug": "minor-caged-ch5-checkpoint",
+    "title": "Checkpoint: Playing in a Minor Key",
+    "summary": "The seven chords a minor key gives you, the one note that turns the v major, switching between a key and its relative without moving your hand, and taking the whole thing to another key.",
+    "kind": "checkpoint",
+    "passThresholdPct": 70
+  },
+  "questions": [
+    {
+      "id": "q_minor-caged-ch5-checkpoint.seven-chords",
+      "kind": "choice",
+      "prompt": [
+        { "text": "Stack a third and a fifth on every note of " },
+        { "text": "A B C D E F G", "marks": ["code"] },
+        {
+          "text": ", using only those seven notes. What comes out, and in what mix of qualities?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "Seven chords: three minor (" },
+            { "text": "Am", "marks": ["code"] },
+            { "text": ", " },
+            { "text": "Dm", "marks": ["code"] },
+            { "text": ", " },
+            { "text": "Em", "marks": ["code"] },
+            { "text": "), three major (" },
+            { "text": "C", "marks": ["code"] },
+            { "text": ", " },
+            { "text": "F", "marks": ["code"] },
+            { "text": ", " },
+            { "text": "G", "marks": ["code"] },
+            { "text": ") and one diminished (" },
+            { "text": "Bdim", "marks": ["code"] },
+            { "text": ")." }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [{ "text": "Seven minor chords. That is what makes it a minor key." }]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "Six minor chords and one major one, the major chord being the " },
+            { "text": "V", "marks": ["code"] },
+            { "text": "." }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "Four minor and three major, and no diminished chord at all — a diminished triad needs a note from outside the scale."
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "The seven are " },
+        { "text": "Am Bdim C Dm Em F G", "marks": ["code"] },
+        { "text": " — " },
+        { "text": "i ii° III iv v VI VII", "marks": ["code"] },
+        {
+          "text": ". A minor key is not made of minor chords: half of what it gives you is major. And the diminished triad needs nothing from outside — "
+        },
+        { "text": "Bdim", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "B D F", "marks": ["code"] },
+        { "text": ", three notes of A natural minor." }
+      ]
+    },
+    {
+      "id": "q_minor-caged-ch5-checkpoint.same-seven-as-c-major",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "Harmonise C major the same way and you get seven chords too. How do the two sets relate?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "They are the identical seven triads, started from the sixth. What is C major's "
+            },
+            { "text": "vi", "marks": ["code"] },
+            { "text": " is A minor's " },
+            { "text": "i", "marks": ["code"] },
+            { "text": ", and what is C major's " },
+            { "text": "I", "marks": ["code"] },
+            { "text": " is A minor's " },
+            { "text": "III", "marks": ["code"] },
+            { "text": "." }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "They share four chords. The other three belong to one key or the other and cannot be borrowed."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "They share no chords. Each key builds its own set from its own scale, which is why they sound different."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "A minor's are C major's with every third lowered a fret — the same move that turns a major form minor."
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "C major harmonised is " },
+        { "text": "C Dm Em F G Am Bdim", "marks": ["code"] },
+        { "text": " and A minor harmonised is " },
+        { "text": "Am Bdim C Dm Em F G", "marks": ["code"] },
+        {
+          "text": " — the same seven chords, read from a different starting point. That is the relative relationship at chord level, and it means the chords of a minor key were never a second thing to learn. Lowering every third would give you a different set of chords in a different key entirely."
+        }
+      ]
+    },
+    {
+      "id": "q_minor-caged-ch5-checkpoint.the-leading-tone",
+      "kind": "listen",
+      "prompt": [
+        {
+          "text": "This is the chord a minor key reaches for when it wants to pull home — the "
+        },
+        { "text": "v", "marks": ["code"] },
+        {
+          "text": " of A minor with its third raised a semitone. One of its three notes is not in A natural minor at all. Which one?"
+        }
+      ],
+      "audio": {
+        "kind": "notes",
+        "notes": ["E2", "B2", "E3", "G#3", "B3", "E4"],
+        "mode": "chord"
+      },
+      "options": [
+        { "id": "a", "spans": [{ "text": "G#", "marks": ["code"] }] },
+        { "id": "b", "spans": [{ "text": "G", "marks": ["code"] }] },
+        { "id": "c", "spans": [{ "text": "B", "marks": ["code"] }] },
+        { "id": "d", "spans": [{ "text": "E", "marks": ["code"] }] }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "The chord is " },
+        { "text": "E", "marks": ["code"] },
+        { "text": " major — " },
+        { "text": "E G# B", "marks": ["code"] },
+        { "text": ". A natural minor is " },
+        { "text": "A B C D E F G", "marks": ["code"] },
+        { "text": ", so " },
+        { "text": "E", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "B", "marks": ["code"] },
+        { "text": " are both in it and " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " would be too — but the chord has " },
+        { "text": "G#", "marks": ["code"] },
+        { "text": ", a semitone below " },
+        { "text": "A", "marks": ["code"] },
+        {
+          "text": " rather than a whole step below it. That raised seventh is the leading tone, and the scale it makes is harmonic minor."
+        }
+      ]
+    },
+    {
+      "id": "q_minor-caged-ch5-checkpoint.why-the-seventh-rises",
+      "kind": "choice",
+      "prompt": [
+        { "text": "Why does " },
+        { "text": "Em", "marks": ["code"] },
+        { "text": " pull toward " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " less strongly than " },
+        { "text": "E", "marks": ["code"] },
+        { "text": " does?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "The note in " },
+            { "text": "Em", "marks": ["code"] },
+            { "text": " nearest home is " },
+            { "text": "G", "marks": ["code"] },
+            { "text": ", a whole step below " },
+            { "text": "A", "marks": ["code"] },
+            { "text": ". In " },
+            { "text": "E", "marks": ["code"] },
+            { "text": " it is " },
+            { "text": "G#", "marks": ["code"] },
+            { "text": ", a semitone below it." }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "Em", "marks": ["code"] },
+            { "text": " shares a note with " },
+            { "text": "Am", "marks": ["code"] },
+            { "text": " and " },
+            { "text": "E", "marks": ["code"] },
+            { "text": " does not, so " },
+            { "text": "E", "marks": ["code"] },
+            { "text": " has further to travel." }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "A minor chord cannot resolve to another minor chord — the quality has to change somewhere in the cadence."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "E", "marks": ["code"] },
+            {
+              "text": " is a chord from outside the scale, and a chord that does not belong always resolves harder than one that does."
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "Both chords hold an " },
+        { "text": "E", "marks": ["code"] },
+        {
+          "text": ", so the shared-note answer is simply wrong about the notes. What separates them is one semitone: "
+        },
+        { "text": "G", "marks": ["code"] },
+        { "text": " sits two frets below " },
+        { "text": "A", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "G#", "marks": ["code"] },
+        {
+          "text": " sits one. On the neck it is a single finger — open "
+        },
+        { "text": "Em", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "0 2 2 0 0 0", "marks": ["code"] },
+        { "text": " and open " },
+        { "text": "E", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "0 2 2 1 0 0", "marks": ["code"] },
+        {
+          "text": ". Plenty of minor-key music never raises it at all and lets the "
+        },
+        { "text": "VII", "marks": ["code"] },
+        { "text": " do the job instead." }
+      ]
+    },
+    {
+      "id": "q_minor-caged-ch5-checkpoint.same-hand-two-keys",
+      "kind": "choice",
+      "prompt": [
+        { "text": "Your hand is in frets " },
+        { "text": "4–8", "marks": ["code"] },
+        {
+          "text": " — the window that is C major's G form and A minor's E form at the same time. What has to change to move from one key to the other?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "Nothing about the hand or the dots. What changes is the chord underneath and which note the phrase keeps arriving on."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "Move down three frets, since A minor's windows sit three frets below C major's same-lettered ones."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "Lower every " },
+            { "text": "3", "marks": ["code"] },
+            { "text": " in the window by a fret, the same move that turns a major form minor." }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "Nothing at all, in any sense — the two keys hold the same seven notes, so they sound the same either way."
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "Frets "
+        },
+        { "text": "4–8", "marks": ["code"] },
+        {
+          "text": " hold seventeen dots and they are the same seventeen in both readings — only the labels differ. C major's "
+        },
+        { "text": "1", "marks": ["code"] },
+        { "text": "s are " },
+        { "text": "6·8", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3·5", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "1·8", "marks": ["code"] },
+        { "text": "; A minor's are " },
+        { "text": "6·5", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "4·7", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "1·5", "marks": ["code"] },
+        {
+          "text": ". The three-frets-lower rule is true of same-lettered windows and is not what you do here. And a shared note set is not a shared key: what the music leans on decides that."
+        }
+      ]
+    },
+    {
+      "id": "q_minor-caged-ch5-checkpoint.roots-on-the-low-e",
+      "kind": "fretboard",
+      "prompt": [
+        {
+          "text": "Every chord in a minor key has its root on a note of the scale, so an E-shape barre placed on the low E string will reach any of them. Mark the root of the "
+        },
+        { "text": "i", "marks": ["code"] },
+        { "text": " and the root of the " },
+        { "text": "VII", "marks": ["code"] },
+        { "text": " — the two chords that open and close " },
+        { "text": "Am F C G", "marks": ["code"] },
+        { "text": "." }
+      ],
+      "frets": 12,
+      "answer": [
+        { "string": 6, "fret": 5 },
+        { "string": 6, "fret": 3 }
+      ],
+      "explanation": [
+        { "text": "The " },
+        { "text": "i", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": ", rooted on " },
+        { "text": "A", "marks": ["code"] },
+        { "text": " at " },
+        { "text": "6·5", "marks": ["code"] },
+        { "text": " — an E-shape minor barre there is " },
+        { "text": "5 7 7 5 5 5", "marks": ["code"] },
+        { "text": ". The " },
+        { "text": "VII", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "G", "marks": ["code"] },
+        { "text": ", rooted on " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " at " },
+        { "text": "6·3", "marks": ["code"] },
+        { "text": " — an E-shape major barre there is " },
+        { "text": "3 5 5 4 3 3", "marks": ["code"] },
+        {
+          "text": ". The whole row is the A natural minor scale on that string: frets 1, 3, 5, 7, 8, 10 and 12."
+        }
+      ]
+    },
+    {
+      "id": "q_minor-caged-ch5-checkpoint.four-forms-at-the-nut",
+      "kind": "choice",
+      "prompt": [
+        { "text": "Play " },
+        { "text": "Am F C G", "marks": ["code"] },
+        {
+          "text": " the way almost everybody first learns it, in the first few frets. In CAGED terms, what are you actually playing?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "Four different forms: " },
+            { "text": "Am", "marks": ["code"] },
+            { "text": " is the A form, " },
+            { "text": "F", "marks": ["code"] },
+            { "text": " is the E form barred at fret 1, " },
+            { "text": "C", "marks": ["code"] },
+            { "text": " is the C form and " },
+            { "text": "G", "marks": ["code"] },
+            { "text": " is the G form." }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "One form moved to four places — that is what makes them work together as a loop."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "All four are the E form, which is why all four fit inside the same three frets."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "Two forms alternating: the A form for the minor chord and the E form for the three major ones."
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "Four chords, four forms, and nobody usually points it out. It is also why the "
+        },
+        { "text": "F", "marks": ["code"] },
+        {
+          "text": " feels like the odd one out: it is the only one of the four that is not an open shape. Each of these chords has all five forms, so the loop is twenty places on the neck rather than four — and the useful question is which of them your hand is nearest."
+        }
+      ]
+    },
+    {
+      "id": "q_minor-caged-ch5-checkpoint.any-minor-key",
+      "kind": "choice",
+      "prompt": [
+        { "text": "You want the same loop — " },
+        { "text": "i–VI–III–VII", "marks": ["code"] },
+        { "text": " — in E minor instead of A minor. What do you have to learn?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "Nothing new. It is the same five windows entered one step further round the wheel, and the four chords come out as "
+            },
+            { "text": "Em C G D", "marks": ["code"] },
+            { "text": "." }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "Five new window shapes. The forms are fingered differently in every key, which is why each key has to be learned separately."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "The E minor scale as a new set of five patterns, because the degrees land in different places on the strings."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "A new order for the forms — the cycle runs the other way round in keys that use sharps."
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "The ladder is anchored on the key's root on the low E string. "
+        },
+        { "text": "E", "marks": ["code"] },
+        { "text": " sits at fret 0, so E minor's E form is " },
+        { "text": "0–3", "marks": ["code"] },
+        { "text": " and the rest follow: " },
+        { "text": "E 0–3, D 1–5, C 4–8, A 6–10, G 8–12", "marks": ["code"] },
+        { "text": ". Same wheel — " },
+        { "text": "C→A→G→E→D→C", "marks": ["code"] },
+        {
+          "text": " — entered at a different point, and the order never changes. The chords transpose with it, and in E minor all four happen to be open chords."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,334 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_triad-crossing-the-sets",
+    "slug": "triad-crossing-the-sets",
+    "title": "Changing Register Without Moving Your Hand",
+    "summary": "Neighbouring string sets overlap enough that one hand position holds C major in four registers, and a progression can jump sets mid-phrase for free because the fret movement is identical on every set.",
+    "tags": ["triads", "chords", "fretboard"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Any two neighbouring string sets share two of their three strings, which is why a chord is never more than a set away from where your hand already is. "
+        },
+        {
+          "text": "The open C chord",
+          "link": { "kind": "article", "slug": "triad-open-chords-you-know" }
+        },
+        {
+          "text": " already proved this: it holds three grips at once, on three overlapping sets, in all three inversions."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here's the same fact stated as a single hand position. Play "
+        },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": " major on each of the four sets without moving out of the first three frets, and the four grips span almost two octaves of the same three note names, "
+        },
+        { "text": "G2", "marks": ["code"] },
+        { "text": " up to " },
+        { "text": "E4", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Set" }],
+        [{ "text": "Inversion" }],
+        [{ "text": "Chart" }],
+        [{ "text": "Notes" }],
+        [{ "text": "Frets" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "1-2-3" }],
+          [{ "text": "second" }],
+          [{ "text": "x x x 0 1 0", "marks": ["code"] }],
+          [{ "text": "G3 C4 E4", "marks": ["code"] }],
+          [{ "text": "0–1" }]
+        ],
+        [
+          [{ "text": "2-3-4" }],
+          [{ "text": "first" }],
+          [{ "text": "x x 2 0 1 x", "marks": ["code"] }],
+          [{ "text": "E3 G3 C4", "marks": ["code"] }],
+          [{ "text": "0–2" }]
+        ],
+        [
+          [{ "text": "3-4-5" }],
+          [{ "text": "root" }],
+          [{ "text": "x 3 2 0 x x", "marks": ["code"] }],
+          [{ "text": "C3 E3 G3", "marks": ["code"] }],
+          [{ "text": "0–3" }]
+        ],
+        [
+          [{ "text": "4-5-6" }],
+          [{ "text": "second" }],
+          [{ "text": "3 3 2 x x x", "marks": ["code"] }],
+          [{ "text": "G2 C3 E3", "marks": ["code"] }],
+          [{ "text": "2–3" }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Chapter 2 already made the case for "
+        },
+        {
+          "text": "choosing a set",
+          "link": { "kind": "article", "slug": "triad-choosing-a-set" }
+        },
+        {
+          "text": " by register and by what else is sounding. What's new here is that the choice isn't made once for the whole song. A verse played low on strings 3-4-5 and a chorus played up on strings 1-2-3 is the same chords and the same fingering logic, just more energy — and it costs nothing but a set."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here's the fact that makes crossing cheap, and it's new: take a progression that uses the same inversions on every set, and each string moves by exactly the same number of frets, no matter which set you're on."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Set" }],
+        [{ "text": "C", "marks": ["code"] }],
+        [{ "text": "G", "marks": ["code"] }],
+        [{ "text": "Am", "marks": ["code"] }],
+        [{ "text": "F", "marks": ["code"] }],
+        [{ "text": "Frets" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "1-2-3" }],
+          [{ "text": "x x x 5 5 3", "marks": ["code"] }],
+          [{ "text": "x x x 4 3 3", "marks": ["code"] }],
+          [{ "text": "x x x 5 5 5", "marks": ["code"] }],
+          [{ "text": "x x x 5 6 5", "marks": ["code"] }],
+          [{ "text": "3–6" }]
+        ],
+        [
+          [{ "text": "2-3-4" }],
+          [{ "text": "x x 10 9 8 x", "marks": ["code"] }],
+          [{ "text": "x x 9 7 8 x", "marks": ["code"] }],
+          [{ "text": "x x 10 9 10 x", "marks": ["code"] }],
+          [{ "text": "x x 10 10 10 x", "marks": ["code"] }],
+          [{ "text": "7–10" }]
+        ],
+        [
+          [{ "text": "3-4-5" }],
+          [{ "text": "x 3 2 0 x x", "marks": ["code"] }],
+          [{ "text": "x 2 0 0 x x", "marks": ["code"] }],
+          [{ "text": "x 3 2 2 x x", "marks": ["code"] }],
+          [{ "text": "x 3 3 2 x x", "marks": ["code"] }],
+          [{ "text": "0–3" }]
+        ],
+        [
+          [{ "text": "4-5-6" }],
+          [{ "text": "8 7 5 x x x", "marks": ["code"] }],
+          [{ "text": "7 5 5 x x x", "marks": ["code"] }],
+          [{ "text": "8 7 7 x x x", "marks": ["code"] }],
+          [{ "text": "8 8 7 x x x", "marks": ["code"] }],
+          [{ "text": "5–8" }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The movement from chord to chord is the same row on all four sets, low string first: "
+        },
+        { "text": "C", "marks": ["code"] },
+        { "text": " → " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "−1 −2 0", "marks": ["code"] },
+        { "text": "; " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " → " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "+1 +2 +2", "marks": ["code"] },
+        { "text": "; " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " → " },
+        { "text": "F", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "0 +1 0", "marks": ["code"] },
+        { "text": "; " },
+        { "text": "F", "marks": ["code"] },
+        { "text": " → " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "0 −1 −2", "marks": ["code"] },
+        { "text": ". The reason is exact, not a coincidence: the lift across the " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " → " },
+        { "text": "B", "marks": ["code"] },
+        { "text": " break belongs to the " },
+        { "text": "set", "marks": ["italic"] },
+        {
+          "text": ", and it applies to both chords in a change equally, so it cancels the moment you subtract one grip from the next. "
+        },
+        { "text": "The grips change from set to set. The moves don't.", "marks": ["bold"] },
+        {
+          "text": " There is one limit on that: it holds only while the whole run stays inside one octave copy of the shapes — a grip forced up an octave to stay on the neck breaks the pattern."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That progression is "
+        },
+        { "text": "C", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "G", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "F", "marks": ["code"] },
+        { "text": " — in other words " },
+        { "text": "I V vi IV", "marks": ["code"] },
+        { "text": ", using " },
+        {
+          "text": "the numbers from harmonising the scale",
+          "link": { "kind": "article", "slug": "triad-harmonising-the-major-scale" }
+        },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here's a worked crossing: two bars, "
+        },
+        { "text": "C", "marks": ["code"] },
+        { "text": " then " },
+        { "text": "F", "marks": ["code"] },
+        { "text": ", then " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " then " },
+        { "text": "C", "marks": ["code"] },
+        { "text": ". Play " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "F", "marks": ["code"] },
+        { "text": " low on strings 3-4-5, then jump to " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " up on strings 1-2-3." }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Chord" }],
+        [{ "text": "Set" }],
+        [{ "text": "Chart" }],
+        [{ "text": "Notes" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "C", "marks": ["code"] }],
+          [{ "text": "3-4-5" }],
+          [{ "text": "x 3 2 0 x x", "marks": ["code"] }],
+          [{ "text": "C3 E3 G3", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "F", "marks": ["code"] }],
+          [{ "text": "3-4-5" }],
+          [{ "text": "x 3 3 2 x x", "marks": ["code"] }],
+          [{ "text": "C3 F3 A3", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "G", "marks": ["code"] }],
+          [{ "text": "1-2-3" }],
+          [{ "text": "x x x 4 3 3", "marks": ["code"] }],
+          [{ "text": "B3 D4 G4", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "C", "marks": ["code"] }],
+          [{ "text": "1-2-3" }],
+          [{ "text": "x x x 5 5 3", "marks": ["code"] }],
+          [{ "text": "C4 E4 G4", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "F",
+        "strings": "3-4-5",
+        "inversion": "second",
+        "caption": "F major, second inversion, strings 3-4-5 — the low half of the crossing."
+      }
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "A",
+        "quality": "minor",
+        "strings": "3-4-5",
+        "inversion": "first",
+        "caption": "A minor, first inversion, strings 3-4-5 — one fret from the F grip beside it."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The hand moves about two frets between the second and third chords, and the register jumps with it. The top note of the "
+        },
+        { "text": "F", "marks": ["code"] },
+        { "text": " grip is " },
+        { "text": "A3", "marks": ["code"] },
+        { "text": ", and the bottom note of the " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " grip is " },
+        { "text": "B3", "marks": ["code"] },
+        {
+          "text": ", so the whole second half sits entirely above the whole first half, even though the hand barely moved."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Finding a crossing point is mostly two habits. Decide which note you want lowest, and take the set that puts it there. Or, on the neck itself, remember that any two neighbouring sets share two strings, so a grip and its neighbour occupy overlapping ground rather than distant territory."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "If the set decides the register and the inversion decides where the hand sits, what does a listener actually pick out of all that?"
+        }
+      ]
+    }
+  ]
+}

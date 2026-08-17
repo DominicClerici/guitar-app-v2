@@ -1,0 +1,548 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_modes-dorian-sound",
+    "slug": "modes-dorian-sound",
+    "title": "Dorian: Minor Without the Ache",
+    "summary": "Dorian is A natural minor with the b6 raised to a natural 6, which removes the one note that fought the chord and gives the mode its signature i–IV vamp, a major chord over a minor tonic.",
+    "tags": ["modes", "ear", "theory"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-15"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The parallel road first, as this pathway always does: A Dorian is A natural minor with the "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": " raised to a natural "
+        },
+        {
+          "text": "6",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": " — "
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": " becomes "
+        },
+        {
+          "text": "F#",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": ". "
+        },
+        {
+          "text": "A B C D E F# G",
+          "marks": ["code"]
+        },
+        {
+          "text": ", degrees "
+        },
+        {
+          "text": "1 2 b3 4 5 6 b7",
+          "marks": ["code"]
+        },
+        {
+          "text": ". One degree changes. Everything else holds still."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The relative road, named once and put down: its parent major is "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": ". "
+        },
+        {
+          "text": "Two Roads to the Same Mode",
+          "link": {
+            "kind": "article",
+            "slug": "modes-two-roads"
+          }
+        },
+        {
+          "text": " already made the case for finding the notes that way and then putting it down."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The characteristic note is the "
+        },
+        {
+          "text": "6",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "F#",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": ")."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The gap is the whole sound. In natural minor, the step above the "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": " is a semitone; in Dorian, it's a whole tone. That one gap is what \"minor without the ache\" means, and it's why Dorian has nothing that fights a static "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": ". "
+        },
+        {
+          "text": "Where the Half Steps Fall",
+          "link": {
+            "kind": "article",
+            "slug": "modes-half-steps"
+          }
+        },
+        {
+          "text": " has the membership count; "
+        },
+        {
+          "text": "The Ache Above the Fifth",
+          "link": {
+            "kind": "article",
+            "slug": "modes-the-ache"
+          }
+        },
+        {
+          "text": " has the avoid-note half."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "scale-compare",
+      "props": {
+        "root": "A",
+        "scales": ["minor", "dorian"],
+        "drone": true
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Start the drone and play both runs end to end, counting to six on the way up. The sixth note is the only place the two runs disagree — the step you just took from "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": " was a half step on one card and a whole step on the other."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The tritone falls between the "
+        },
+        {
+          "text": "b3",
+          "marks": ["code"]
+        },
+        {
+          "text": " and the "
+        },
+        {
+          "text": "6",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": " — "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "F#",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": " — the two notes that define Dorian against major and against natural minor. "
+        },
+        {
+          "text": "Where the Tritone Lands",
+          "link": {
+            "kind": "article",
+            "slug": "modes-the-tritone"
+          }
+        },
+        {
+          "text": " gave the address; it touches the "
+        },
+        {
+          "text": "b3",
+          "marks": ["code"]
+        },
+        {
+          "text": "."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The vamp is "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": ", a "
+        },
+        {
+          "text": "i",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "IV",
+          "marks": ["code"]
+        },
+        {
+          "text": ". "
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": " is "
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "F#",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": ", and the "
+        },
+        {
+          "text": "F#",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": " in it is the "
+        },
+        {
+          "text": "6",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": ". Here's the mode's signature: a major "
+        },
+        {
+          "text": "IV",
+          "marks": ["code"]
+        },
+        {
+          "text": " over a minor tonic. "
+        },
+        {
+          "text": "The Chords A Minor Gives You",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-the-chords-of-the-key"
+          }
+        },
+        {
+          "text": " harmonised A natural minor and landed "
+        },
+        {
+          "text": "Dm",
+          "marks": ["code"]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "D F A",
+          "marks": ["code"]
+        },
+        {
+          "text": ") on the "
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Raise the "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": " and it becomes "
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": " — one note moves, and a chord you already know as minor turns major."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "progression-player",
+      "props": {
+        "chords": ["Dm", "D"],
+        "bpm": 66,
+        "caption": "The iv of A natural minor, then Dorian's IV — one note, F to F#"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The honest half: "
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": " major also fits inside Ionian and Mixolydian. What rules those out here is the minor home chord, not this one chord's notes. "
+        },
+        {
+          "text": "When the Harmony Moves",
+          "link": {
+            "kind": "article",
+            "slug": "modes-when-the-harmony-moves"
+          }
+        },
+        {
+          "text": " already said the "
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": " chord is where the "
+        },
+        {
+          "text": "F#",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": " lives — that's the fact this vamp is built on."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "progression-player",
+      "props": {
+        "chords": ["Am", "D"],
+        "bpm": 66,
+        "caption": "The vamp itself — i to IV, a major chord over a minor tonic"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Dorian and Aeolian are the one adjacent pair on the brightness ladder that Temperley and Tan's listeners didn't reliably tell apart — "
+        },
+        {
+          "text": "Hold One Note and Listen",
+          "link": {
+            "kind": "article",
+            "slug": "modes-hold-the-drone"
+          }
+        },
+        {
+          "text": " already told you that. Worth adding: those melodies were unaccompanied, with nothing holding home underneath them, and a mode doesn't exist without a tonal centre. That's a fact about what those listeners were asked to do, not a claim that a drone trains anyone's ear — "
+        },
+        {
+          "text": "What \"Brighter\" Actually Means",
+          "link": {
+            "kind": "article",
+            "slug": "modes-what-brighter-means"
+          }
+        },
+        {
+          "text": " already said to read a non-significant result as data, not difficulty."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The app's own line for this card is \"Minor with a bright 6th — hopeful rather than sad,\" and that's the register to hear it in: a repertoire association, not a psychoacoustic fact. Dorian is one of the four modes the theory literature broadly agrees are common in rock — "
+        },
+        {
+          "text": "The Reference You Already Own",
+          "link": {
+            "kind": "article",
+            "slug": "modes-ionian-sound"
+          }
+        },
+        {
+          "text": " already carries that claim with its attribution."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One degree, and the ache is gone — and it is one fret from every "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": " your hand already knows. Go and make the move yourself, with the root still ringing on "
+        },
+        {
+          "text": "Drone",
+          "link": {
+            "kind": "screen",
+            "href": "/drone"
+          }
+        },
+        {
+          "text": ", before you see it drawn out fret by fret."
+        }
+      ]
+    }
+  ]
+}

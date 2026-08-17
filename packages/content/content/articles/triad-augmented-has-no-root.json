@@ -1,0 +1,491 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_triad-augmented-has-no-root",
+    "slug": "triad-augmented-has-no-root",
+    "title": "One Shape, Three Names",
+    "summary": "An augmented triad stacks three equal gaps, so rotating it gives the same shape back — one grip is three chords at once, and the shape underneath has no root of its own.",
+    "tags": ["triads", "chords", "fretboard"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Rotate an augmented triad and you get the same triad back. That isn't true of any other quality in this pathway, and it means one grip can be three different chords, depending only on which note you call the root."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The reason is arithmetic. Root to third is "
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": " semitones. Third to fifth is "
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": " more. And the fifth back up to the root, wrapping around the octave, is "
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": " again — three equal gaps. Rotating the notes changes nothing about the structure, and rotating the notes is exactly what an inversion does."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here is the whole lesson in one grip. "
+        },
+        {
+          "text": "x x x 1 1 0",
+          "marks": ["code"]
+        },
+        {
+          "text": " on strings 1-2-3 sounds "
+        },
+        {
+          "text": "G#3",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "C4",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "E4",
+          "marks": ["code"]
+        },
+        {
+          "text": " — the same three frets, "
+        },
+        {
+          "text": "spelled",
+          "link": {
+            "kind": "footnote",
+            "id": "fn-augmented-spelling"
+          }
+        },
+        {
+          "text": " three different ways."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "C",
+        "quality": "augmented",
+        "strings": "1-2-3",
+        "inversion": "second",
+        "caption": "C augmented, second inversion, strings 1-2-3 — degrees #5 1 3."
+      }
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "E",
+        "quality": "augmented",
+        "strings": "1-2-3",
+        "inversion": "first",
+        "caption": "E augmented, first inversion, strings 1-2-3 — the identical grip, degrees 3 #5 1 this time."
+      }
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "G#",
+        "quality": "augmented",
+        "strings": "1-2-3",
+        "inversion": "root",
+        "caption": "G# augmented, root position, strings 1-2-3 — the identical grip again, degrees 1 3 #5."
+      }
+    },
+    {
+      "type": "table",
+      "header": [
+        [
+          {
+            "text": "Read as"
+          }
+        ],
+        [
+          {
+            "text": "Inversion"
+          }
+        ],
+        [
+          {
+            "text": "Degrees on 3·1, 2·1, 1·0"
+          }
+        ]
+      ],
+      "rows": [
+        [
+          [
+            {
+              "text": "Caug",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "second inversion"
+            }
+          ],
+          [
+            {
+              "text": "#5 1 3",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Eaug",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "first inversion"
+            }
+          ],
+          [
+            {
+              "text": "3 #5 1",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "G#aug",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "root position"
+            }
+          ],
+          [
+            {
+              "text": "1 3 #5",
+              "marks": ["code"]
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Move the same shape four frets up and "
+        },
+        {
+          "text": "x x x 5 5 4",
+          "marks": ["code"]
+        },
+        {
+          "text": " gives back the same three note names again — now reading as "
+        },
+        {
+          "text": "Caug",
+          "marks": ["code"]
+        },
+        {
+          "text": " root position, "
+        },
+        {
+          "text": "Eaug",
+          "marks": ["code"]
+        },
+        {
+          "text": " second inversion, "
+        },
+        {
+          "text": "G#aug",
+          "marks": ["code"]
+        },
+        {
+          "text": " first inversion."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "On strings 1-2-3 the three inversions sit exactly four frets apart, every time — the bass note at fret 1, then fret 5, then fret 9, and the cycle starting over at fret 13."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-ladder",
+      "props": {
+        "root": "C",
+        "quality": "augmented",
+        "strings": "1-2-3",
+        "caption": "C augmented's three inversions on strings 1-2-3 — four bands, evenly spaced, one shape repeating. Silent, same as every ladder."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The diminished ladder on this same set drew something different — "
+        },
+        {
+          "text": "three bands, unevenly spaced, three different shapes",
+          "link": {
+            "kind": "article",
+            "slug": "triad-diminished-across-the-sets"
+          }
+        },
+        {
+          "text": ". The numbers say why: augmented is "
+        },
+        {
+          "text": "4 + 4 + 4",
+          "marks": ["code"]
+        },
+        {
+          "text": "; diminished is "
+        },
+        {
+          "text": "3 + 3 + 6",
+          "marks": ["code"]
+        },
+        {
+          "text": "."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "spans": [
+        {
+          "text": "A diminished chord is often described as symmetrical, sliding in minor thirds. That's true of the four-note diminished seventh — out of scope here — and false of the three-note triad, which is why the two ladders look nothing alike."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Only "
+        },
+        {
+          "text": "four",
+          "marks": ["bold"]
+        },
+        {
+          "text": " different augmented triads exist at all: "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": "/"
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": "/"
+        },
+        {
+          "text": "G#",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "C#",
+          "marks": ["code"]
+        },
+        {
+          "text": "/"
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": "/"
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": "/"
+        },
+        {
+          "text": "F#",
+          "marks": ["code"]
+        },
+        {
+          "text": "/"
+        },
+        {
+          "text": "A#",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "D#",
+          "marks": ["code"]
+        },
+        {
+          "text": "/"
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": "/"
+        },
+        {
+          "text": "B",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Twelve chord names, four actual sounds. Diminished doesn't share that: there are twelve different diminished triads, one for every root."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The shape has no root of its own — context supplies one. Whichever note is in the bass, or whichever chord the music just came from, is the one the ear hears as the root. That's also why the chord sounds unsettled on its own: with nothing around it, there's no note for the ear to land on. It's the "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " underneath a "
+        },
+        {
+          "text": "G+",
+          "marks": ["code"]
+        },
+        {
+          "text": " that makes the shape a "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " chord — "
+        },
+        {
+          "text": "the same shape, met resolving into C",
+          "link": {
+            "kind": "article",
+            "slug": "triad-the-sharp-fifth"
+          }
+        },
+        {
+          "text": "."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "All four qualities turn out to live under one hand, root never moving — "
+        },
+        {
+          "text": "two fingers' worth of difference away from each other",
+          "link": {
+            "kind": "article",
+            "slug": "triad-all-four-in-one-place"
+          }
+        },
+        {
+          "text": "."
+        }
+      ]
+    }
+  ],
+  "footnotes": [
+    {
+      "id": "fn-augmented-spelling",
+      "spans": [
+        {
+          "text": "Strictly, E augmented spells its top note "
+        },
+        {
+          "text": "B#",
+          "marks": ["code"]
+        },
+        {
+          "text": ", and G# augmented spells its top two "
+        },
+        {
+          "text": "B#",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "D##",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Same frets, different names on paper — and the diagrams print degrees rather than note names, so nothing on screen disagrees."
+        }
+      ]
+    }
+  ]
+}

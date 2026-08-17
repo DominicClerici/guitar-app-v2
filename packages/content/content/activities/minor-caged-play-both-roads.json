@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "act_minor-caged-play-both-roads",
+    "slug": "minor-caged-play-both-roads",
+    "title": "Drill: Play Both Roads",
+    "summary": "Both derivations under your fingers — the same seven notes read from A and from C, then the three notes that drop when A major becomes A minor."
+  },
+  "activity": {
+    "kind": "note-play",
+    "modes": ["easy", "hard"],
+    "board": { "fretFrom": 0, "fretTo": 12 },
+    "rounds": [
+      {
+        "kind": "targets",
+        "id": "r_minor-caged-play-both-roads.a-minor",
+        "prompt": [
+          {
+            "text": "A natural minor, one octave, low to high. Start on the open string 5 and climb to fret 8, then finish the octave on string 4. The notes are "
+          },
+          { "text": "A", "marks": ["code"] },
+          { "text": " " },
+          { "text": "B", "marks": ["code"] },
+          { "text": " " },
+          { "text": "C", "marks": ["code"] },
+          { "text": " " },
+          { "text": "D", "marks": ["code"] },
+          { "text": " " },
+          { "text": "E", "marks": ["code"] },
+          { "text": " " },
+          { "text": "F", "marks": ["code"] },
+          { "text": " " },
+          { "text": "G", "marks": ["code"] },
+          { "text": " " },
+          { "text": "A", "marks": ["code"] },
+          { "text": " — no sharps, no flats." }
+        ],
+        "targets": [
+          { "string": 5, "fret": 0 },
+          { "string": 5, "fret": 2 },
+          { "string": 5, "fret": 3 },
+          { "string": 5, "fret": 5 },
+          { "string": 5, "fret": 7 },
+          { "string": 5, "fret": 8 },
+          { "string": 4, "fret": 5 },
+          { "string": 4, "fret": 7 }
+        ],
+        "ordered": true,
+        "board": { "fretFrom": 0, "fretTo": 8 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_minor-caged-play-both-roads.c-major",
+        "prompt": [
+          { "text": "Now C major on the same two strings, starting from " },
+          { "text": "C", "marks": ["code"] },
+          {
+            "text": " at string 5, fret 3. Six of these eight dots are ones you just played — the relative relationship, under your fingers. Only where you start and stop has changed."
+          }
+        ],
+        "targets": [
+          { "string": 5, "fret": 3 },
+          { "string": 5, "fret": 5 },
+          { "string": 5, "fret": 7 },
+          { "string": 5, "fret": 8 },
+          { "string": 4, "fret": 5 },
+          { "string": 4, "fret": 7 },
+          { "string": 4, "fret": 9 },
+          { "string": 4, "fret": 10 }
+        ],
+        "ordered": true,
+        "board": { "fretFrom": 0, "fretTo": 10 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_minor-caged-play-both-roads.the-three-that-drop",
+        "prompt": [
+          {
+            "text": "The parallel relationship as a physical move, all on string 5. Play A major's "
+          },
+          { "text": "3", "marks": ["code"] },
+          { "text": ", then A minor's " },
+          { "text": "b3", "marks": ["code"] },
+          { "text": " — one fret back. Then the same for the sixth and the seventh: " },
+          { "text": "C#", "marks": ["code"] },
+          { "text": " to " },
+          { "text": "C", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "F#", "marks": ["code"] },
+          { "text": " to " },
+          { "text": "F", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "G#", "marks": ["code"] },
+          { "text": " to " },
+          { "text": "G", "marks": ["code"] },
+          { "text": "." }
+        ],
+        "targets": [
+          { "string": 5, "fret": 4 },
+          { "string": 5, "fret": 3 },
+          { "string": 5, "fret": 9 },
+          { "string": 5, "fret": 8 },
+          { "string": 5, "fret": 11 },
+          { "string": 5, "fret": 10 }
+        ],
+        "ordered": true,
+        "board": { "fretFrom": 0, "fretTo": 11 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_minor-caged-play-both-roads.the-minor-triad",
+        "prompt": [
+          { "text": "Three notes, and they are a whole " },
+          { "text": "Am", "marks": ["code"] },
+          { "text": " chord: " },
+          { "text": "1", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "b3", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "5", "marks": ["code"] },
+          { "text": " — " },
+          { "text": "A", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "C", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "E", "marks": ["code"] },
+          {
+            "text": ". Open string 5, then fret 3 on the same string, then fret 2 on string 4. This is the layer the next chapter puts into all five windows."
+          }
+        ],
+        "targets": [
+          { "string": 5, "fret": 0 },
+          { "string": 5, "fret": 3 },
+          { "string": 4, "fret": 2 }
+        ],
+        "ordered": true,
+        "board": { "fretFrom": 0, "fretTo": 5 }
+      }
+    ]
+  }
+}

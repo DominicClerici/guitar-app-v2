@@ -1,0 +1,225 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_modes-lydian-neck",
+    "slug": "modes-lydian-neck",
+    "title": "Lydian in a Window You Already Own",
+    "summary": "A Lydian's CAGED windows are A major's CAGED windows with the 4 raised a fret, and because a window's edges are fixed frets, that raise pushes dots across the frame in a direction you can predict.",
+    "tags": ["modes", "fretboard"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-15"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One degree separates Lydian from the major scale: "
+        },
+        { "text": "D", "marks": ["code"] },
+        { "text": " becomes " },
+        { "text": "D#", "marks": ["code"] },
+        {
+          "text": ", and nothing else moves. Here's exactly what that single change does to a window you already know."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Same five windows, same places. A window is anchored on the root, not the scale — "
+        },
+        {
+          "text": "The Window Stays, the Third Moves",
+          "link": { "kind": "article", "slug": "minor-caged-the-window-stays-put" }
+        },
+        {
+          "text": " already made that case for major against minor, and it holds here too. There's no Lydian shape to learn, only a degree to raise inside a window you already own."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Start with the E form, frets 4 to 8. Here's A Major, then A Lydian — the second card heads itself "
+        },
+        { "text": "E form · A Lydian", "marks": ["code"] },
+        { "text": " and outlines the " },
+        { "text": "#4", "marks": ["code", { "type": "color", "tone": "violet" }] },
+        { "text": " in violet." }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "E",
+        "scale": "major",
+        "caption": "Everything in the window at frets 4 to 8 — seventeen dots, not a grip a hand would hold"
+      }
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "E",
+        "scale": "lydian",
+        "caption": "The same window with the fourth raised — eighteen dots"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "A Major's " },
+        { "text": "4", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "D", "marks": ["code"] },
+        { "text": ") sits at " },
+        { "text": "3·7", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "5·5", "marks": ["code"] },
+        { "text": ". A Lydian's " },
+        { "text": "#4", "marks": ["code", { "type": "color", "tone": "violet" }] },
+        { "text": " (" },
+        { "text": "D#", "marks": ["code"] },
+        { "text": ") sits at " },
+        { "text": "2·4", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3·8", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "5·6", "marks": ["code"] },
+        { "text": ". " },
+        { "text": "3·7", "marks": ["code"] },
+        { "text": " steps up to " },
+        { "text": "3·8", "marks": ["code"] },
+        { "text": ", inside the window. " },
+        { "text": "5·5", "marks": ["code"] },
+        { "text": " steps up to " },
+        { "text": "5·6", "marks": ["code"] },
+        { "text": ", inside too. And a third " },
+        { "text": "#4", "marks": ["code"] },
+        { "text": " shows up at " },
+        { "text": "2·4", "marks": ["code"] },
+        { "text": " — its " },
+        { "text": "4", "marks": ["code"] },
+        { "text": " was sitting at " },
+        { "text": "2·3", "marks": ["code"] },
+        {
+          "text": ", one fret below the window's bottom edge, and raising it brought that copy into the frame. Seventeen dots become eighteen."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "State the rule once, correctly: the window doesn't move. Raising a degree moves its dot up one fret, so a dot sitting on the top fret raises straight out of the picture, and a dot sitting just below the bottom edge raises into it. \"The same picture with one dot moved\" is false as a caption for what just happened — true of the notes, false of the diagram. "
+        },
+        {
+          "text": "Nothing New to Learn on the Neck",
+          "link": { "kind": "article", "slug": "modes-no-new-shapes" }
+        },
+        {
+          "text": " already made this exact point for a different pair of scales. Fix the direction in your head: raising a degree only ever moves its dot toward the top edge of a window, never the bottom."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The G form, frets 1 to 5, is where the counts come out equal. A Major's " },
+        { "text": "4", "marks": ["code"] },
+        { "text": " sits at " },
+        { "text": "2·3", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "5·5", "marks": ["code"] },
+        { "text": "; A Lydian's " },
+        { "text": "#4", "marks": ["code", { "type": "color", "tone": "violet" }] },
+        { "text": " sits at " },
+        { "text": "2·4", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "4·1", "marks": ["code"] },
+        { "text": ". " },
+        { "text": "2·3", "marks": ["code"] },
+        { "text": " steps up to " },
+        { "text": "2·4", "marks": ["code"] },
+        { "text": ", inside. " },
+        { "text": "5·5", "marks": ["code"] },
+        { "text": " would raise to " },
+        { "text": "5·6", "marks": ["code"] },
+        { "text": ", off the top of the window, and that copy drops out. And " },
+        { "text": "4·1", "marks": ["code"] },
+        { "text": " steps in from below — its " },
+        { "text": "4", "marks": ["code"] },
+        { "text": " was sitting at " },
+        { "text": "4·0", "marks": ["code"] },
+        {
+          "text": ". Seventeen and seventeen: equal counts, a different picture. It's structurally the same case "
+        },
+        {
+          "text": "Nothing New to Learn on the Neck",
+          "link": { "kind": "article", "slug": "modes-no-new-shapes" }
+        },
+        { "text": " met in its own E form." }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "G",
+        "scale": "lydian",
+        "caption": "Seventeen dots — the same count A Major's G form holds, in a different arrangement"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "What it costs to play: one fret, same finger. Wherever your hand was already reaching for a "
+        },
+        { "text": "D", "marks": ["code"] },
+        { "text": ", it reaches one fret higher for a " },
+        { "text": "D#", "marks": ["code"] },
+        { "text": " instead. On the E form that's the difference between " },
+        { "text": "3·7", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "3·8", "marks": ["code"] },
+        { "text": "; on the G form it's " },
+        { "text": "2·3", "marks": ["code"] },
+        { "text": " to " },
+        { "text": "2·4", "marks": ["code"] },
+        {
+          "text": ". Same finger, same string, one fret over — nowhere on either window are you asked to reach for a shape your hand hasn't already made."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "See the other three windows fill in on " },
+        { "text": "Scale Visualizer", "link": { "kind": "screen", "href": "/scale-visualizer" } },
+        { "text": " — set the root to " },
+        { "text": "A", "marks": ["code"] },
+        {
+          "text": " and the scale to Lydian, and page through the forms. There's no drone on that screen, so if you want the root held while your hands are free, that's "
+        },
+        { "text": "Drone", "link": { "kind": "screen", "href": "/drone" } },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One dial turned, and you've seen where it pushes the dots. Next, the other dial, turned the other way."
+        }
+      ]
+    }
+  ]
+}

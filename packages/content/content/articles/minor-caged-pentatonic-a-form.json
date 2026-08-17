@@ -1,0 +1,626 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_minor-caged-pentatonic-a-form",
+    "slug": "minor-caged-pentatonic-a-form",
+    "title": "The A Form: The Pentatonic at the Nut",
+    "summary": "Five of the A form's six lower dots sit on open strings, and it is the only one of the five windows whose dot count changes by more than one when the quality does.",
+    "tags": ["caged", "minor"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The window is frets "
+        },
+        {
+          "text": "0–3",
+          "marks": ["code"]
+        },
+        {
+          "text": " — four frets, not five, because the nut cuts it short, exactly as chapter 2 said. Twelve dots live inside those four frets, two on every string, and every fret in the window carries at least one."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "A",
+        "quality": "minor",
+        "show": "pentatonic",
+        "caption": "The A form's window, pentatonic layer — twelve dots on frets 0, 1, 2 and 3."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Where the C form put its dots in two clusters at opposite ends of a five-fret window, this one sits still. All twelve dots fall inside four consecutive frets, and — unlike anywhere else in this chapter — the lowest ones don't need a fret at all."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The open strings first, because they're the character of this window. Five of the six strings have their lower dot at fret 0: "
+        },
+        {
+          "text": "6·0",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "5·0",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "1",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "4·0",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "3·0",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "b7",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "1·0",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Only string 2 breaks the pattern, with its lower dot at "
+        },
+        {
+          "text": "2·1",
+          "marks": ["code"]
+        },
+        {
+          "text": " instead of fret 0 — the open string there is not one of this scale's five notes, so it sits out. Nowhere else on the neck does a whole window of this scale sit half on open strings."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [
+          {
+            "text": "String"
+          }
+        ],
+        [
+          {
+            "text": "Lower dot"
+          }
+        ],
+        [
+          {
+            "text": "Upper dot"
+          }
+        ]
+      ],
+      "rows": [
+        [
+          [
+            {
+              "text": "6"
+            }
+          ],
+          [
+            {
+              "text": "6·0 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "5",
+              "marks": ["code"]
+            },
+            {
+              "text": " (E)"
+            }
+          ],
+          [
+            {
+              "text": "6·3 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "b7",
+              "marks": ["code"]
+            },
+            {
+              "text": " (G)"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "5"
+            }
+          ],
+          [
+            {
+              "text": "5·0 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "1",
+              "marks": ["code"]
+            },
+            {
+              "text": " (A)"
+            }
+          ],
+          [
+            {
+              "text": "5·3 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "b3",
+              "marks": ["code"]
+            },
+            {
+              "text": " (C)"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "4"
+            }
+          ],
+          [
+            {
+              "text": "4·0 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "4",
+              "marks": ["code"]
+            },
+            {
+              "text": " (D)"
+            }
+          ],
+          [
+            {
+              "text": "4·2 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "5",
+              "marks": ["code"]
+            },
+            {
+              "text": " (E)"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "3"
+            }
+          ],
+          [
+            {
+              "text": "3·0 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "b7",
+              "marks": ["code"]
+            },
+            {
+              "text": " (G)"
+            }
+          ],
+          [
+            {
+              "text": "3·2 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "1",
+              "marks": ["code"]
+            },
+            {
+              "text": " (A)"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "2"
+            }
+          ],
+          [
+            {
+              "text": "2·1 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "b3",
+              "marks": ["code"]
+            },
+            {
+              "text": " (C)"
+            }
+          ],
+          [
+            {
+              "text": "2·3 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "4",
+              "marks": ["code"]
+            },
+            {
+              "text": " (D)"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "1"
+            }
+          ],
+          [
+            {
+              "text": "1·0 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "5",
+              "marks": ["code"]
+            },
+            {
+              "text": " (E)"
+            }
+          ],
+          [
+            {
+              "text": "1·3 ",
+              "marks": ["code"]
+            },
+            {
+              "text": "b7",
+              "marks": ["code"]
+            },
+            {
+              "text": " (G)"
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        {
+          "text": "Five of the six lower dots are open strings. String 2 is the one exception."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "What's new since chapter 2: "
+        },
+        {
+          "text": "6·3",
+          "marks": ["code"]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "b7",
+          "marks": ["code"]
+        },
+        {
+          "text": "), "
+        },
+        {
+          "text": "4·0",
+          "marks": ["code"]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": "), "
+        },
+        {
+          "text": "3·0",
+          "marks": ["code"]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "b7",
+          "marks": ["code"]
+        },
+        {
+          "text": "), "
+        },
+        {
+          "text": "2·3",
+          "marks": ["code"]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": "), and "
+        },
+        {
+          "text": "1·3",
+          "marks": ["code"]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "b7",
+          "marks": ["code"]
+        },
+        {
+          "text": "). Two of the five new dots are open strings. Tie it back: the open "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": " chord is still sitting inside this window exactly where chapter 2 left it — "
+        },
+        {
+          "text": "5·0, 4·2, 3·2, 2·1, 1·0",
+          "marks": ["code"]
+        },
+        {
+          "text": " — and the five new dots have arranged themselves around it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The one window that gains. A "
+        },
+        {
+          "text": "major",
+          "marks": ["italic"]
+        },
+        {
+          "text": " pentatonic in this same span holds ten dots; A minor's holds twelve. It's the only one of the five windows where the count differs by two, and the only one where minor is richer by more than one note. That's the chapter-2 edge effect showing up again at this layer: the window's edges are fixed frets, and here more of the minor scale's notes happen to fall inside them. (Three of the other four windows hold twelve dots in "
+        },
+        {
+          "text": "both",
+          "marks": ["italic"]
+        },
+        {
+          "text": " qualities, so don't generalise from this one.)"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Chord tones and the rest. Seven are "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": ": "
+        },
+        {
+          "text": "6·0, 5·0, 5·3, 4·2, 3·2, 2·1, 1·0",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Five are not: "
+        },
+        {
+          "text": "6·3, 4·0, 3·0, 2·3, 1·3",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Both roots are "
+        },
+        {
+          "text": "5·0",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "3·2",
+          "marks": ["code"]
+        },
+        {
+          "text": "."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Character, in the reach. Its three-fret strings are 6, 5 and 1 — the outside of the hand stretches, the middle stays compact. And because five of the six lower dots are open, the stretch costs nothing: the open string does the reaching for you. That is worth sitting with, because every other window in this chapter puts the same three-fret reach entirely on fretted fingers."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One thing to try before you move on. Hold a sustained "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": " with the "
+        },
+        {
+          "text": "Drone",
+          "link": {
+            "kind": "screen",
+            "href": "/drone"
+          }
+        },
+        {
+          "text": " and play this window against it. Ending a phrase on "
+        },
+        {
+          "text": "5·0",
+          "marks": ["code"]
+        },
+        {
+          "text": " or "
+        },
+        {
+          "text": "3·2",
+          "marks": ["code"]
+        },
+        {
+          "text": " sounds like arriving; ending on "
+        },
+        {
+          "text": "4·0",
+          "marks": ["code"]
+        },
+        {
+          "text": " or "
+        },
+        {
+          "text": "1·3",
+          "marks": ["code"]
+        },
+        {
+          "text": " sounds like a question. Same twelve dots, different destination — the chapter's claim, in the cheapest experiment available."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Page through the window in the "
+        },
+        {
+          "text": "Scale Visualizer",
+          "link": {
+            "kind": "screen",
+            "href": "/scale-visualizer"
+          }
+        },
+        {
+          "text": " or compare it against "
+        },
+        {
+          "text": "the A form's triad",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-triad-a-form"
+          }
+        },
+        {
+          "text": "."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Next: "
+        },
+        {
+          "text": "the G form",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-pentatonic-g-form"
+          }
+        },
+        {
+          "text": ", which breaks the two-dots-per-string pattern this window kept so cleanly."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,203 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_triad-major-strings-1-2-3",
+    "slug": "triad-major-strings-1-2-3",
+    "title": "C Major, Three Ways, on the Top Three Strings",
+    "summary": "The three C major grips on strings 1-2-3, met in neck order, and the diagram that shows they're one climbing cycle rather than three shapes to memorise.",
+    "tags": ["triads", "chords", "fretboard"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Three grips, one triad. Root position, first inversion, and second inversion on strings 1-2-3 are the same three notes, rotated so a different one lands on the bottom each time. Meet them in the order your hand actually finds them climbing the neck, and three things to memorise turn into one thing happening three times — the same C, E, and G, just taking turns at the bottom."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The lowest of the three sits right at the nut: second inversion, the fifth in the bass."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "C",
+        "strings": "1-2-3",
+        "inversion": "second",
+        "caption": "Second inversion, strings 1-2-3 — the fifth in the bass, right at the nut."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "This is " },
+        { "text": "x x x 0 1 0", "marks": ["code"] },
+        { "text": ": " },
+        { "text": "3·0", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "G", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "2·1", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "C", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "1·0", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "E", "marks": ["code"] },
+        { "text": ". Degrees " },
+        { "text": "5 1 3", "marks": ["code"] },
+        { "text": ", bass note " },
+        { "text": "G", "marks": ["code"] },
+        { "text": ". Climb five frets and the next inversion appears." }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "C",
+        "strings": "1-2-3",
+        "inversion": "root",
+        "caption": "Root position, strings 1-2-3 — the root back in the bass."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "x x x 5 5 3", "marks": ["code"] },
+        { "text": " puts the root back on the bottom: " },
+        { "text": "3·5", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "C", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "2·5", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "E", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "1·3", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "G", "marks": ["code"] },
+        { "text": ". Degrees " },
+        { "text": "1 3 5", "marks": ["code"] },
+        { "text": ", bass note " },
+        { "text": "C", "marks": ["code"] },
+        { "text": ". Four frets further up, the cycle turns once more." }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "C",
+        "strings": "1-2-3",
+        "inversion": "first",
+        "caption": "First inversion, strings 1-2-3 — the third in the bass."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "x x x 9 8 8", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "3·9", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "E", "marks": ["code"] },
+        { "text": "), " },
+        { "text": "2·8", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "G", "marks": ["code"] },
+        { "text": "), " },
+        { "text": "1·8", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "C", "marks": ["code"] },
+        { "text": "). Degrees " },
+        { "text": "3 5 1", "marks": ["code"] },
+        { "text": ", bass note " },
+        { "text": "E", "marks": ["code"] },
+        { "text": ". Three inversions, three bass notes, one triad." }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Inversion" }],
+        [{ "text": "Chart" }],
+        [{ "text": "Notes" }],
+        [{ "text": "Degrees" }],
+        [{ "text": "Bass" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "second" }],
+          [{ "text": "x x x 0 1 0", "marks": ["code"] }],
+          [{ "text": "G C E", "marks": ["code"] }],
+          [{ "text": "5 1 3", "marks": ["code"] }],
+          [{ "text": "G", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "root" }],
+          [{ "text": "x x x 5 5 3", "marks": ["code"] }],
+          [{ "text": "C E G", "marks": ["code"] }],
+          [{ "text": "1 3 5", "marks": ["code"] }],
+          [{ "text": "C", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "first" }],
+          [{ "text": "x x x 9 8 8", "marks": ["code"] }],
+          [{ "text": "E G C", "marks": ["code"] }],
+          [{ "text": "3 5 1", "marks": ["code"] }],
+          [{ "text": "E", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Laid end to end, the three grips are a single climb: second inversion, root position, first inversion, each one a few frets past the last. The diagram below draws that whole climb on strings 1-2-3 at once, labeled band by band, all the way up the neck — including where it repeats. It has no play button; its job is showing the shape of the climb, not the sound of any one grip. Nothing new to learn here — it's the same three grips from above, just seen end to end instead of one at a time."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-ladder",
+      "props": {
+        "root": "C",
+        "strings": "1-2-3",
+        "caption": "C major's three inversions on strings 1-2-3, climbing the whole neck."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Follow the bands to fret 12 and second inversion comes back: " },
+        { "text": "x x x 12 13 12", "marks": ["code"] },
+        { "text": ", the same " },
+        { "text": "G C E", "marks": ["code"] },
+        {
+          "text": " an octave up. The cycle doesn't run out at the top of this pattern — it starts over, and everything above fret 12 on this set is just this same climb again, higher."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Next: " },
+        {
+          "text": "one chord you already play",
+          "link": { "kind": "article", "slug": "triad-open-chords-you-know" }
+        },
+        { "text": " turns out to hold three of these grips at once." }
+      ]
+    }
+  ]
+}

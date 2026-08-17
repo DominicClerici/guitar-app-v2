@@ -1,0 +1,233 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_triad-moving-the-least",
+    "slug": "triad-moving-the-least",
+    "title": "Move as Little as Possible",
+    "summary": "C, F and G played on strings 1-2-3 by taking the nearest inversion each time — a whole progression that never leaves fret 0 through fret 5.",
+    "tags": ["triads", "chords", "fretboard"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Play C, F and G as barre chords and you cross the whole neck doing it — C up at fret 8, F down at fret 1, G at fret 3. Every chord change is a jump, and every jump is a chance to land late."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "There's a smaller way through the same three chords — three chords in C major, no barre required. Instead of one fixed shape per chord, take whichever inversion of the next chord is nearest to where your hand already is."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Start on C, second inversion: " },
+        { "text": "x x x 0 1 0", "marks": ["code"] },
+        { "text": " — " },
+        { "text": "G3", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "C4", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "E4", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Move to F, first inversion: " },
+        { "text": "x x x 2 1 1", "marks": ["code"] },
+        { "text": " — " },
+        { "text": "A3", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "C4", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "F4", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "F",
+        "strings": "1-2-3",
+        "inversion": "first",
+        "caption": "F major, first inversion, strings 1-2-3 — the same three strings, a fret or two from where C just was."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Then G, first inversion: " },
+        { "text": "x x x 4 3 3", "marks": ["code"] },
+        { "text": " — " },
+        { "text": "B3", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "D4", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "G4", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "G",
+        "strings": "1-2-3",
+        "inversion": "first",
+        "caption": "G major, first inversion, strings 1-2-3 — the whole shape two frets up from F."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Then back to C, root position: " },
+        { "text": "x x x 5 5 3", "marks": ["code"] },
+        { "text": " — " },
+        { "text": "C4", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "E4", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "G4", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Track the movement one string at a time and something stays put on every change:"
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Change" }],
+        [{ "text": "String 3" }],
+        [{ "text": "String 2" }],
+        [{ "text": "String 1" }],
+        [{ "text": "What happens" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "C → F" }],
+          [{ "text": "+2", "marks": ["code"] }],
+          [{ "text": "0", "marks": ["code"] }],
+          [{ "text": "+1", "marks": ["code"] }],
+          [{ "text": "C4 stays put on string 2" }]
+        ],
+        [
+          [{ "text": "F → G" }],
+          [{ "text": "+2", "marks": ["code"] }],
+          [{ "text": "+2", "marks": ["code"] }],
+          [{ "text": "+2", "marks": ["code"] }],
+          [{ "text": "the shape slides unchanged" }]
+        ],
+        [
+          [{ "text": "G → C" }],
+          [{ "text": "+1", "marks": ["code"] }],
+          [{ "text": "+2", "marks": ["code"] }],
+          [{ "text": "0", "marks": ["code"] }],
+          [{ "text": "G4 stays put on string 1" }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [{ "text": "The whole progression lives between fret 0 and fret 5." }]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Chord" }],
+        [{ "text": "Inversion" }],
+        [{ "text": "Chart" }],
+        [{ "text": "Notes" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "C" }],
+          [{ "text": "second" }],
+          [{ "text": "x x x 0 1 0", "marks": ["code"] }],
+          [{ "text": "G3 C4 E4", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "F" }],
+          [{ "text": "first" }],
+          [{ "text": "x x x 2 1 1", "marks": ["code"] }],
+          [{ "text": "A3 C4 F4", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "G" }],
+          [{ "text": "first" }],
+          [{ "text": "x x x 4 3 3", "marks": ["code"] }],
+          [{ "text": "B3 D4 G4", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "C" }],
+          [{ "text": "root" }],
+          [{ "text": "x x x 5 5 3", "marks": ["code"] }],
+          [{ "text": "C4 E4 G4", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Loop it against the " },
+        { "text": "Metronome", "link": { "kind": "screen", "href": "/metronome" } },
+        { "text": ", one chord per bar, slow enough that you're never rushing a change." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Then a second pass: before each change, find the note that doesn't move and put that finger down first. It's already home — the rest of the hand just settles around it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Then a third pass, to prove none of this is a fixed set of positions: start from C root position, "
+        },
+        { "text": "x x x 5 5 3", "marks": ["code"] },
+        { "text": ", and go up instead of down. F's second inversion sits at " },
+        { "text": "x x x 5 6 5", "marks": ["code"] },
+        { "text": " and G's at " },
+        { "text": "x x x 7 8 7", "marks": ["code"] },
+        { "text": ", so the same three chords run frets 3 through 8 just as comfortably." }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        {
+          "text": "Pick the copy of the next chord that's nearest your hand, and let a finger stay where it can. That's the whole trick."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Chapter 3 is next: the same twelve grips, with one note moved a single fret — and that note is the third, which you already know how to find in any of them."
+        }
+      ]
+    }
+  ]
+}

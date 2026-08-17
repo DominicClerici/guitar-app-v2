@@ -1,0 +1,584 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_modes-dorian-neck",
+    "slug": "modes-dorian-neck",
+    "title": "Raise the Sixth With the Drone Still Going",
+    "summary": "Raising the b6 to a 6 is one fret under your own fingers, in a window you've owned since minor-caged — and in the G form all three of its b6s move without a single dot leaving the frame.",
+    "tags": ["modes", "fretboard", "ear"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-15"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "On a keyboard, raising the sixth is an instruction about note names — swap one letter for another and move on. Here it's frets moving under real fingers, with a root still sounding underneath you, and the sound changes while your hand is doing it. That's the whole reason this lesson exists."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The frame doesn't move. Same five windows, same places, anchored on the root — "
+        },
+        {
+          "text": "The Window Stays, the Third Moves",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-the-window-stays-put"
+          }
+        },
+        {
+          "text": " already made that case, and it holds here too. There's no Dorian shape to learn on top of it — only degrees to move inside a window you already own."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Start in the G form, frets 1 to 5. Here's "
+        },
+        {
+          "text": "A Natural minor",
+          "marks": ["code"]
+        },
+        {
+          "text": ", then "
+        },
+        {
+          "text": "A Dorian",
+          "marks": ["code"]
+        },
+        {
+          "text": " — drawn as everything in the window, not a grip a hand would hold. Eighteen dots both times. "
+        },
+        {
+          "text": "The Darkest Window",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-scale-g-form"
+          }
+        },
+        {
+          "text": " called this window the one that holds three "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": "s, three "
+        },
+        {
+          "text": "b3",
+          "marks": ["code"]
+        },
+        {
+          "text": "s and three "
+        },
+        {
+          "text": "b7",
+          "marks": ["code"]
+        },
+        {
+          "text": "s at once — more of natural minor's flattened degrees than any other window carries. Dorian removes exactly the note that made it dark."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "G",
+        "scale": "minor",
+        "caption": "Eighteen dots, three of them a b6 about to move"
+      }
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "G",
+        "scale": "dorian",
+        "caption": "Same eighteen dots — every b6 stepped up one fret to a 6, and none of them left the frame"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "What changed, exactly. "
+        },
+        {
+          "text": "A Natural minor",
+          "marks": ["code"]
+        },
+        {
+          "text": "'s "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": ") sits at "
+        },
+        {
+          "text": "6·1",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "4·3",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "1·1",
+          "marks": ["code"]
+        },
+        {
+          "text": ". "
+        },
+        {
+          "text": "A Dorian",
+          "marks": ["code"]
+        },
+        {
+          "text": "'s "
+        },
+        {
+          "text": "6",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "F#",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": ") sits at "
+        },
+        {
+          "text": "6·2",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "4·4",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "1·2",
+          "marks": ["code"]
+        },
+        {
+          "text": ". "
+        },
+        {
+          "text": "6·1",
+          "marks": ["code"]
+        },
+        {
+          "text": " steps up to "
+        },
+        {
+          "text": "6·2",
+          "marks": ["code"]
+        },
+        {
+          "text": ", inside. "
+        },
+        {
+          "text": "4·3",
+          "marks": ["code"]
+        },
+        {
+          "text": " steps up to "
+        },
+        {
+          "text": "4·4",
+          "marks": ["code"]
+        },
+        {
+          "text": ", inside. "
+        },
+        {
+          "text": "1·1",
+          "marks": ["code"]
+        },
+        {
+          "text": " steps up to "
+        },
+        {
+          "text": "1·2",
+          "marks": ["code"]
+        },
+        {
+          "text": ", inside. All three stay in the frame, and the count holds at eighteen — three positions change here, not one."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Across all five windows, the G form is the "
+        },
+        {
+          "text": "only",
+          "marks": ["bold"]
+        },
+        {
+          "text": " one where every "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": " raises to a "
+        },
+        {
+          "text": "6",
+          "marks": ["code"]
+        },
+        {
+          "text": " without leaving the picture — the other four each lose at least one dot off the top. Raising a degree always pushes its dot toward a window's top edge and never the bottom; "
+        },
+        {
+          "text": "Lydian in a Window You Already Own",
+          "link": {
+            "kind": "article",
+            "slug": "modes-lydian-neck"
+          }
+        },
+        {
+          "text": " already showed why. That's why this move belongs here — nothing about the diagram is doing anything clever, so your attention can go entirely to the sound."
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        [
+          {
+            "text": "Start a held root: press the drone bar on any scale card earlier in this chapter, or open "
+          },
+          {
+            "text": "Drone",
+            "link": {
+              "kind": "screen",
+              "href": "/drone"
+            }
+          },
+          {
+            "text": " and set it to "
+          },
+          {
+            "text": "A",
+            "marks": ["code"]
+          },
+          {
+            "text": ". Leave it running — it keeps sounding while you play."
+          }
+        ],
+        [
+          {
+            "text": "Fret "
+          },
+          {
+            "text": "4·3",
+            "marks": ["code"]
+          },
+          {
+            "text": ", the "
+          },
+          {
+            "text": "b6",
+            "marks": ["code"]
+          },
+          {
+            "text": ", and let it ring against the held "
+          },
+          {
+            "text": "A",
+            "marks": ["code"]
+          },
+          {
+            "text": ". That's the ache."
+          }
+        ],
+        [
+          {
+            "text": "Move that finger one fret up, to "
+          },
+          {
+            "text": "4·4",
+            "marks": ["code"]
+          },
+          {
+            "text": ". Same finger, same string. Listen to what just happened underneath it."
+          }
+        ],
+        [
+          {
+            "text": "Do the same with "
+          },
+          {
+            "text": "6·1",
+            "marks": ["code"]
+          },
+          {
+            "text": " to "
+          },
+          {
+            "text": "6·2",
+            "marks": ["code"]
+          },
+          {
+            "text": ", and "
+          },
+          {
+            "text": "1·1",
+            "marks": ["code"]
+          },
+          {
+            "text": " to "
+          },
+          {
+            "text": "1·2",
+            "marks": ["code"]
+          },
+          {
+            "text": ". Three places, one move."
+          }
+        ],
+        [
+          {
+            "text": "Then play the whole window down and back with the drone still going, taking the raised sixth every time."
+          }
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The A form, frets 0 to 3, shows what happens when one of the three has nowhere to go. "
+        },
+        {
+          "text": "A Natural minor",
+          "marks": ["code"]
+        },
+        {
+          "text": "'s "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": " sits at "
+        },
+        {
+          "text": "6·1",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "4·3",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "1·1",
+          "marks": ["code"]
+        },
+        {
+          "text": " here too; "
+        },
+        {
+          "text": "A Dorian",
+          "marks": ["code"]
+        },
+        {
+          "text": "'s "
+        },
+        {
+          "text": "6",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": " sits at only "
+        },
+        {
+          "text": "6·2",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "1·2",
+          "marks": ["code"]
+        },
+        {
+          "text": ". "
+        },
+        {
+          "text": "6·1",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "1·1",
+          "marks": ["code"]
+        },
+        {
+          "text": " step up inside as before. But "
+        },
+        {
+          "text": "4·3",
+          "marks": ["code"]
+        },
+        {
+          "text": " sits on the window's top fret — raising it sends it straight out of the picture, and nothing can step in from below because there's no fret −1. Seventeen becomes sixteen. "
+        },
+        {
+          "text": "Mixolydian, and What the Window's Edges Do",
+          "link": {
+            "kind": "article",
+            "slug": "modes-mixolydian-neck"
+          }
+        },
+        {
+          "text": " watched the same mechanism cost a dot in the major family; it's the identical trap one family down."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "A",
+        "scale": "dorian",
+        "caption": "Sixteen dots — the b6 at 4·3 had nowhere above the frame to go"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The practical note: on this window the "
+        },
+        {
+          "text": "6",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": " you'd reach for on the D string sits at fret 4, just past where the box stops — the note hasn't disappeared, the frame has simply run out before it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "See the other three windows fill in on "
+        },
+        {
+          "text": "Scale Visualizer",
+          "link": {
+            "kind": "screen",
+            "href": "/scale-visualizer"
+          }
+        },
+        {
+          "text": " — root "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": ", scale Dorian. There's no drone on that screen; if you want the root held while both hands are busy, that's "
+        },
+        {
+          "text": "Drone",
+          "link": {
+            "kind": "screen",
+            "href": "/drone"
+          }
+        },
+        {
+          "text": "."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One dial is turned now, upward, inside a window you already owned. The other one turns downward, and it lands somewhere no dial in this family has landed yet: a half step above home itself."
+        }
+      ]
+    }
+  ]
+}

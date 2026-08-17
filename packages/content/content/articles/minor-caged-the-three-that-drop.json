@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_minor-caged-the-three-that-drop",
+    "slug": "minor-caged-the-three-that-drop",
+    "title": "The Three Notes That Drop",
+    "summary": "A major and A minor share a root and differ by exactly three notes — C#, F# and G# each drop a semitone — which is the derivation that explains what changed about the sound.",
+    "tags": ["caged", "minor"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Same notes can't explain a difference in sound — that was the hole the relative derivation left open. Comparing C major to A minor tells you where the notes are, and nothing about why one feels settled and the other doesn't, because that comparison has no disagreement in it to point to. So compare two scales that actually do differ, and keep the root fixed while you do it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "A major is " },
+        { "text": "A B C# D E F# G#", "marks": ["code"] },
+        { "text": ". A minor is " },
+        { "text": "A B C D E F G", "marks": ["code"] },
+        {
+          "text": ". The root, second, fourth and fifth are identical. Three notes drop by one semitone each: "
+        },
+        { "text": "C#", "marks": ["code"] },
+        { "text": "→" },
+        { "text": "C", "marks": ["code", { "type": "color", "tone": "amber" }] },
+        { "text": ", " },
+        { "text": "F#", "marks": ["code"] },
+        { "text": "→" },
+        { "text": "F", "marks": ["code", { "type": "color", "tone": "amber" }] },
+        { "text": ", and " },
+        { "text": "G#", "marks": ["code"] },
+        { "text": "→" },
+        { "text": "G", "marks": ["code", { "type": "color", "tone": "amber" }] },
+        {
+          "text": ". Nothing else moves — only those three notes, each stepping down by the smallest distance a scale has to offer."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "In degrees, which is the version worth carrying between keys: " },
+        { "text": "3→b3", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "6→b6", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "7→b7", "marks": ["code"] },
+        { "text": ". This is the " },
+        { "text": "parallel", "marks": ["bold"] },
+        {
+          "text": " relationship — A major and A minor are parallel keys. They share a home; they don't share a note set."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Derivation" }],
+        [{ "text": "Keeps" }],
+        [{ "text": "Moves" }],
+        [{ "text": "Answers" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "Relative" }],
+          [{ "text": "The seven notes" }],
+          [{ "text": "The root" }],
+          [{ "text": "Where are the notes" }]
+        ],
+        [
+          [{ "text": "Parallel" }],
+          [{ "text": "The root" }],
+          [{ "text": "Three of the notes" }],
+          [{ "text": "What changed about the sound" }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Both are true, and they are answers to different questions. That sentence is the reason this chapter exists — reaching for the wrong one is where a learner gets lost. Ask relative where a note lives and it answers; ask it why the note sounds different here than it did in C major, and it has nothing to say, because in its own terms nothing changed."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Play it. A major is the reference card below, so the notes minor has that major doesn't are tinted amber — "
+        },
+        { "text": "C", "marks": [{ "type": "color", "tone": "amber" }, "code"] },
+        { "text": ", " },
+        { "text": "F", "marks": [{ "type": "color", "tone": "amber" }, "code"] },
+        { "text": ", and " },
+        { "text": "G", "marks": [{ "type": "color", "tone": "amber" }, "code"] },
+        {
+          "text": ". Run the major scale, then immediately the minor one, and listen for the first note that changes."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "scale-compare",
+      "props": { "root": "A", "scales": ["major", "minor"] }
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "spans": [
+        {
+          "text": "Relative and parallel are not the same idea wearing two names. Naming which one you mean is most of the battle."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One careful sentence, because the rest of this pathway depends on it: the natural minor scale has three flattened degrees. That's a fact about the whole scale, not a definition of minor — a later chapter works with a five-note version that keeps two of the three and drops the other entirely. Hold onto \"three flattened degrees\" as a description of this seven-note scale specifically, not as a rule every minor sound has to satisfy."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Hold the two derivations for different jobs. Reach for parallel when you want to change the sound of something built on a root you're keeping, because the root stays put and only the notes move underneath it. Reach for relative when you want to know where the notes physically are, because it's the one that reuses a map you already have, and it's why this whole pathway can lean so hard on the neck you learned for C major."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Try the same comparison on the neck in the " },
+        { "text": "Scale Visualizer", "link": { "kind": "screen", "href": "/scale-visualizer" } },
+        { "text": " — set the root to A and switch the scale between major and natural minor." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Three notes dropped, but they don't carry equal weight. One of them is doing almost all of the work, and the other two are along for the ride. "
+        },
+        {
+          "text": "The next one names it",
+          "link": { "kind": "article", "slug": "minor-caged-the-flat-third" }
+        },
+        {
+          "text": " — and shows why the other two can be missing entirely without the sound stopping being minor."
+        }
+      ]
+    }
+  ]
+}

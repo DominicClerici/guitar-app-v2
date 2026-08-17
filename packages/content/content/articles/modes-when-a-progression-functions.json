@@ -1,0 +1,466 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_modes-when-a-progression-functions",
+    "slug": "modes-when-a-progression-functions",
+    "title": "When the Progression Starts to Function",
+    "summary": "A functional progression names its own tonic by arriving somewhere, not by having more chords — which is why Dm–G–C reads as C major with no D Dorian in it anywhere.",
+    "tags": ["modes", "theory", "ear"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-15"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "When the Harmony Moves",
+          "link": {
+            "kind": "article",
+            "slug": "modes-when-the-harmony-moves"
+          }
+        },
+        {
+          "text": " showed "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": " circling forever without naming a key, and "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " committing to "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " major before the loop comes round. The chords barely changed — one triad added — and home moved completely. What actually did that?"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "A vamp asserts its tonic by "
+        },
+        {
+          "text": "refusing to leave",
+          "marks": ["bold"]
+        },
+        {
+          "text": ". "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": " never gets anywhere: it just returns to "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": ", over and over, and that refusal is the whole argument for home. A progression that functions asserts its tonic a different way — by "
+        },
+        {
+          "text": "arriving",
+          "marks": ["bold"]
+        },
+        {
+          "text": ". The "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " in "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " wasn't just a third chord tacked onto the loop; it was somewhere the other two chords were leaning, and somewhere the loop actually came to rest. That arrival is what named the key, not the extra chord for its own sake."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Try the same test on a different loop, one step off this pathway's usual root of "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": " — "
+        },
+        {
+          "text": "Dm",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": ", because it's the progression every guitarist eventually gets asked about. Play just the first two chords and you have another vamp: "
+        },
+        {
+          "text": "Dm",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": ", going nowhere in particular."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "progression-player",
+      "props": {
+        "chords": ["Dm", "G"],
+        "bpm": 66,
+        "caption": "Two chords with nowhere confirmed as home"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Take that loop to the "
+        },
+        {
+          "text": "Key Detector",
+          "link": {
+            "kind": "screen",
+            "href": "/key-detector"
+          }
+        },
+        {
+          "text": " and it comes back "
+        },
+        {
+          "text": "Ambiguous",
+          "marks": ["bold"]
+        },
+        {
+          "text": ", offering "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " major and "
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": " minor side by side at roughly 52% and 48%, and the strength meter barely lights — one segment out of ten. Two chords, and still nowhere confirmed as home."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Now add the "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": ". "
+        },
+        {
+          "text": "Dm",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": " is built entirely out of the notes of C major, it starts on "
+        },
+        {
+          "text": "Dm",
+          "marks": ["code"]
+        },
+        {
+          "text": ", and it's exactly the progression people mean when they say \"D Dorian.\""
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "progression-player",
+      "props": {
+        "chords": ["Dm", "G", "C"],
+        "bpm": 66,
+        "caption": "One chord added, and C takes over as home"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Play it into the detector and the reading flips: "
+        },
+        {
+          "text": "Likely",
+          "marks": ["bold"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": " major, one answer, no percentages offered at all, and the meter runs most of the way across. There is no D Dorian here. There is C major, and a piece that starts on its second degree."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": " is the arrival "
+        },
+        {
+          "text": "Dm",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " were leaning toward the whole time — the same shape as "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " leaning toward "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": ", just built on a different set of chords."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "It wasn't the extra chord by itself that changed the reading — it's whether one of them "
+        },
+        {
+          "text": "arrives",
+          "marks": ["bold"]
+        },
+        {
+          "text": ". Try "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": " on the same screen: four chords with nowhere left to go, and the meter runs nearly the whole way across, because no other key comes anywhere close."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "This is also why every vamp in this pathway is one or two chords. Not because three is too many, but because the more chords you put in a loop, the harder it gets to stop one of them turning into somewhere the others lean — and a vamp that leans is a progression."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The detector still only ever chooses among 24 keys, major and minor, and it has no name for a mode — that hasn't changed. So "
+        },
+        {
+          "text": "Ambiguous",
+          "marks": ["bold"]
+        },
+        {
+          "text": " here isn't the detector hearing a mode; it's the detector finding no key that explains what it just heard, which is precisely the condition a mode needs in order to exist at all."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Which leaves the question sitting right where \"D Dorian over the Dm\" used to sit unexamined: if there's no D Dorian anywhere in "
+        },
+        {
+          "text": "Dm",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": ", what is anyone actually asking for when they say to play it that way?"
+        }
+      ]
+    }
+  ]
+}

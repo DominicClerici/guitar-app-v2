@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "act_minor-caged-triads-in-the-seams",
+    "slug": "minor-caged-triads-in-the-seams",
+    "title": "Drill: The Chord Between Two Forms",
+    "summary": "Four little A minor triads, one in each seam where two windows overlap, walking up the neck on three adjacent strings."
+  },
+  "activity": {
+    "kind": "note-play",
+    "modes": ["easy", "hard"],
+    "board": { "fretFrom": 0, "fretTo": 13 },
+    "rounds": [
+      {
+        "kind": "targets",
+        "id": "r_minor-caged-triads-in-the-seams.a-into-g",
+        "prompt": [
+          { "text": "Where the A and G forms overlap — strings 4-3-2 at frets " },
+          { "text": "2 2 1", "marks": ["code"] },
+          { "text": ". You already play these three: they are the fretted part of the open " },
+          { "text": "Am", "marks": ["code"] },
+          { "text": "." }
+        ],
+        "targets": [
+          { "string": 4, "fret": 2 },
+          { "string": 3, "fret": 2 },
+          { "string": 2, "fret": 1 }
+        ],
+        "board": { "fretFrom": 1, "fretTo": 3 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_minor-caged-triads-in-the-seams.g-into-e",
+        "prompt": [
+          { "text": "Where the G and E forms overlap — strings 3-2-1, all three at fret " },
+          { "text": "5", "marks": ["code"] },
+          { "text": ". One finger, a whole " },
+          { "text": "Am", "marks": ["code"] },
+          { "text": "." }
+        ],
+        "targets": [
+          { "string": 3, "fret": 5 },
+          { "string": 2, "fret": 5 },
+          { "string": 1, "fret": 5 }
+        ],
+        "board": { "fretFrom": 4, "fretTo": 5 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_minor-caged-triads-in-the-seams.e-into-d",
+        "prompt": [
+          { "text": "Where the E and D forms overlap — strings 6-5-4 at frets " },
+          { "text": "8 7 7", "marks": ["code"] },
+          { "text": ". The same three notes as the last round, an octave and a bit lower." }
+        ],
+        "targets": [
+          { "string": 6, "fret": 8 },
+          { "string": 5, "fret": 7 },
+          { "string": 4, "fret": 7 }
+        ],
+        "board": { "fretFrom": 6, "fretTo": 8 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_minor-caged-triads-in-the-seams.d-into-c",
+        "prompt": [
+          { "text": "Where the D and C forms overlap — strings 4-3-2 at frets " },
+          { "text": "10 9 10", "marks": ["code"] },
+          { "text": ". Four seams, four whole chords, and never a gap between two forms." }
+        ],
+        "targets": [
+          { "string": 4, "fret": 10 },
+          { "string": 3, "fret": 9 },
+          { "string": 2, "fret": 10 }
+        ],
+        "board": { "fretFrom": 9, "fretTo": 10 }
+      }
+    ]
+  }
+}

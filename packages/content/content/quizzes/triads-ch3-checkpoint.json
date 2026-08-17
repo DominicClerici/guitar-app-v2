@@ -1,0 +1,884 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "quiz_triads-ch3-checkpoint",
+    "slug": "triads-ch3-checkpoint",
+    "title": "Checkpoint: Minor Triads",
+    "summary": "One note, one fret — where the third hides in each inversion, the grip that had to relocate, and what changes when the neck runs out of room.",
+    "kind": "checkpoint",
+    "passThresholdPct": 70
+  },
+  "questions": [
+    {
+      "id": "q_triads-ch3-checkpoint.the-one-note",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "You're holding C major in root position on strings 1-2-3: "
+        },
+        {
+          "text": "x x x 5 5 3",
+          "marks": ["code"]
+        },
+        {
+          "text": ". What has to change to make it "
+        },
+        {
+          "text": "Cm",
+          "marks": ["code"]
+        },
+        {
+          "text": "?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "The middle note comes back one fret — "
+            },
+            {
+              "text": "x x x 5 4 3",
+              "marks": ["code"]
+            },
+            {
+              "text": "."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "All three notes come back one fret, so the whole chord drops."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "The bass note comes back one fret, since the root of a minor chord is lower."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "Nothing on this set — minor triads have their own shapes on their own strings."
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "In root position the degrees run "
+        },
+        {
+          "text": "1 3 5",
+          "marks": ["code"]
+        },
+        {
+          "text": ", so the third is the middle note. Move "
+        },
+        {
+          "text": "2·5",
+          "marks": ["code"]
+        },
+        {
+          "text": " back to "
+        },
+        {
+          "text": "2·4",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "E4",
+          "marks": ["code"]
+        },
+        {
+          "text": " becomes "
+        },
+        {
+          "text": "Eb4",
+          "marks": ["code"]
+        },
+        {
+          "text": ": "
+        },
+        {
+          "text": "C4 Eb4 G4",
+          "marks": ["code"]
+        },
+        {
+          "text": ". The root and the fifth are untouched, the set is the same, the inversion is the same, and the grip has not moved. One finger."
+        }
+      ]
+    },
+    {
+      "id": "q_triads-ch3-checkpoint.which-voice",
+      "kind": "fretboard",
+      "frets": 12,
+      "prompt": [
+        {
+          "text": "Here is C major in root position on strings 3-4-5: "
+        },
+        {
+          "text": "x 3 2 0 x x",
+          "marks": ["code"]
+        },
+        {
+          "text": " — "
+        },
+        {
+          "text": "C3",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "E3",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "G3",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Tap the single position your finger moves to in order to make it "
+        },
+        {
+          "text": "Cm",
+          "marks": ["code"]
+        },
+        {
+          "text": "."
+        }
+      ],
+      "answer": [
+        {
+          "string": 4,
+          "fret": 1
+        }
+      ],
+      "explanation": [
+        {
+          "text": "Root position again, so the third is again the middle note — here that is "
+        },
+        {
+          "text": "4·2",
+          "marks": ["code"]
+        },
+        {
+          "text": ", an "
+        },
+        {
+          "text": "E3",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Back one fret to "
+        },
+        {
+          "text": "4·1",
+          "marks": ["code"]
+        },
+        {
+          "text": " gives "
+        },
+        {
+          "text": "Eb3",
+          "marks": ["code"]
+        },
+        {
+          "text": " and the grip is "
+        },
+        {
+          "text": "x 3 1 0 x x",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Which voice moves depends only on the inversion, never on the string set — the same rule that pointed at the middle note on strings 1-2-3 points at it here."
+        }
+      ]
+    },
+    {
+      "id": "q_triads-ch3-checkpoint.the-relocation",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "C major's second inversion on strings 1-2-3 sits at the nut: "
+        },
+        {
+          "text": "x x x 0 1 0",
+          "marks": ["code"]
+        },
+        {
+          "text": ". C minor's is "
+        },
+        {
+          "text": "x x x 12 13 11",
+          "marks": ["code"]
+        },
+        {
+          "text": ", an octave higher. Why can't it stay down at the nut?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "Close triads that low break the app's rule about muddy voicings."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "In a second inversion the third is the top note, and here the top note is the open high "
+            },
+            {
+              "text": "e",
+              "marks": ["code"]
+            },
+            {
+              "text": ". The pitch the rule asks for is "
+            },
+            {
+              "text": "Eb4",
+              "marks": ["code"]
+            },
+            {
+              "text": ", a semitone below an open string — string 1 cannot sound it at all."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "Minor triads always sit higher up the neck than major ones."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "The second inversion of a minor chord belongs on a different string set."
+            }
+          ]
+        }
+      ],
+      "answerId": "b",
+      "explanation": [
+        {
+          "text": "There is no fret below an open string. The next "
+        },
+        {
+          "text": "Eb",
+          "marks": ["code"]
+        },
+        {
+          "text": " string 1 can reach above the "
+        },
+        {
+          "text": "C4",
+          "marks": ["code"]
+        },
+        {
+          "text": " is "
+        },
+        {
+          "text": "Eb5",
+          "marks": ["code"]
+        },
+        {
+          "text": " at "
+        },
+        {
+          "text": "1·11",
+          "marks": ["code"]
+        },
+        {
+          "text": " — an octave and a minor third up instead of a minor third, which is neither a close voicing nor a hand span. So the grip waits for the next "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " on string 3, at "
+        },
+        {
+          "text": "3·12",
+          "marks": ["code"]
+        },
+        {
+          "text": ". The rule is about pitch: divide the octave back out and one note has still dropped exactly one fret. And it is not a mud problem — every one of C minor's twelve grips clears the app's thresholds."
+        }
+      ]
+    },
+    {
+      "id": "q_triads-ch3-checkpoint.hear-it",
+      "kind": "listen",
+      "audio": {
+        "kind": "notes",
+        "notes": ["C4", "Eb4", "G4"],
+        "mode": "chord"
+      },
+      "prompt": [
+        {
+          "text": "This is a C triad played on strings 1-2-3. Which grip is it?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "x x x 5 5 3",
+              "marks": ["code"]
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "x x x 5 4 3",
+              "marks": ["code"]
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "x x x 9 8 8",
+              "marks": ["code"]
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "x x x 8 8 8",
+              "marks": ["code"]
+            }
+          ]
+        }
+      ],
+      "answerId": "b",
+      "explanation": [
+        {
+          "text": "Two decisions, in order. First the quality: the third is an "
+        },
+        {
+          "text": "Eb",
+          "marks": ["code"]
+        },
+        {
+          "text": ", three semitones above the root rather than four, so the chord is minor — that rules out both major grips. Then the bass: the lowest note is the "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": ", so the root is underneath and this is root position, "
+        },
+        {
+          "text": "x x x 5 4 3",
+          "marks": ["code"]
+        },
+        {
+          "text": " — "
+        },
+        {
+          "text": "C4 Eb4 G4",
+          "marks": ["code"]
+        },
+        {
+          "text": ". The other minor grip, "
+        },
+        {
+          "text": "x x x 8 8 8",
+          "marks": ["code"]
+        },
+        {
+          "text": ", is the same chord with the "
+        },
+        {
+          "text": "Eb",
+          "marks": ["code"]
+        },
+        {
+          "text": " in the bass."
+        }
+      ]
+    },
+    {
+      "id": "q_triads-ch3-checkpoint.the-flush-one",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "A small barre across all three of strings 1-2-3 at one fret is always the same kind of chord. What is "
+        },
+        {
+          "text": "x x x 5 5 5",
+          "marks": ["code"]
+        },
+        {
+          "text": "?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "C major, second inversion."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "A minor, root position."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "A minor, first inversion."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "It depends on the key — three notes at one fret don't spell one chord."
+            }
+          ]
+        }
+      ],
+      "answerId": "c",
+      "explanation": [
+        {
+          "text": "The notes are "
+        },
+        {
+          "text": "3·5",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "C4",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "2·5",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "E4",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "1·5",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "A4",
+          "marks": ["code"]
+        },
+        {
+          "text": " — "
+        },
+        {
+          "text": "C E A",
+          "marks": ["code"]
+        },
+        {
+          "text": ", an A minor triad with its third in the bass. Every minor first inversion on strings 1-2-3 is flush like this, for all twelve roots, so the fret alone names the chord. Don't confuse it with "
+        },
+        {
+          "text": "x x 5 5 5 x",
+          "marks": ["code"]
+        },
+        {
+          "text": " from chapter 2 — that is one set lower, and it is C major's second inversion."
+        }
+      ]
+    },
+    {
+      "id": "q_triads-ch3-checkpoint.the-bottom-set",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "Chapter 2's floor on strings 4-5-6 was G major in root position, sitting exactly on the app's voicing limit. Minor's floor on the same set is two semitones higher — A minor. Why does minor run out of room sooner?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "In root position minor stacks its narrow gap at the bottom — three semitones from bass to third where major has four — and the bottom of the grip is where the rule is strictest."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "Minor triads are muddier than major ones at any pitch."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "The flat third can't be fretted comfortably that far down the neck."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "Strings 4-5-6 can't hold a minor triad in root position at all."
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "Major and minor use the same two gaps in the opposite order: 4 semitones then 3, against 3 then 4. Minor puts the narrow one underneath, and below the open A string the app wants at least a major third between neighbours. "
+        },
+        {
+          "text": "Gm",
+          "marks": ["code"]
+        },
+        {
+          "text": " root position down there would be "
+        },
+        {
+          "text": "G2 Bb2 D3",
+          "marks": ["code"]
+        },
+        {
+          "text": " — a minor third where a major third is the minimum — so it fails, and "
+        },
+        {
+          "text": "G#m",
+          "marks": ["code"]
+        },
+        {
+          "text": " fails the same way. "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "5 3 2 x x x",
+          "marks": ["code"]
+        },
+        {
+          "text": ", is the lowest of the twelve that clears. None of this makes C minor's own grips muddy — every one of them passes."
+        }
+      ]
+    },
+    {
+      "id": "q_triads-ch3-checkpoint.the-open-c-trap",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "Inside the open C chord, "
+        },
+        {
+          "text": "x 3 2 0 1 0",
+          "marks": ["code"]
+        },
+        {
+          "text": ", moving "
+        },
+        {
+          "text": "4·2",
+          "marks": ["code"]
+        },
+        {
+          "text": " back a fret makes strings 5-4-3 into C minor. So why isn't "
+        },
+        {
+          "text": "x 3 1 0 1 0",
+          "marks": ["code"]
+        },
+        {
+          "text": " a C minor chord?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "It is — that's the standard way to finger it."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "Strings 2 and 1 still sound "
+            },
+            {
+              "text": "C4",
+              "marks": ["code"]
+            },
+            {
+              "text": " and "
+            },
+            {
+              "text": "E4",
+              "marks": ["code"]
+            },
+            {
+              "text": ", so the chord holds an "
+            },
+            {
+              "text": "Eb",
+              "marks": ["code"]
+            },
+            {
+              "text": " and an "
+            },
+            {
+              "text": "E",
+              "marks": ["code"]
+            },
+            {
+              "text": " at the same time."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "The "
+            },
+            {
+              "text": "Eb",
+              "marks": ["code"]
+            },
+            {
+              "text": " is on the wrong string to count as the third."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "A minor chord needs a flattened fifth as well as a flattened third."
+            }
+          ]
+        }
+      ],
+      "answerId": "b",
+      "explanation": [
+        {
+          "text": "The one-finger move only works on the three strings the triad is actually on. Leave strings 2 and 1 ringing and the "
+        },
+        {
+          "text": "E4",
+          "marks": ["code"]
+        },
+        {
+          "text": " is still there, arguing with the "
+        },
+        {
+          "text": "Eb3",
+          "marks": ["code"]
+        },
+        {
+          "text": " you just made. Mute them, or fret them elsewhere, and only then is the chord under your fingers really "
+        },
+        {
+          "text": "Cm",
+          "marks": ["code"]
+        },
+        {
+          "text": ". And flattening the fifth as well would describe a different chord altogether: that makes a diminished triad, which is chapter 4's."
+        }
+      ]
+    },
+    {
+      "id": "q_triads-ch3-checkpoint.listening-target",
+      "kind": "multi-select",
+      "prompt": [
+        {
+          "text": "Which of these are true about hearing major against minor? Select every one that applies."
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "The only acoustic difference between C major and C minor is the third: three semitones above the root instead of four."
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "In root position the third is the inner voice, which is the hardest of the three to pick out."
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "Going from "
+            },
+            {
+              "text": "Am",
+              "marks": ["code"]
+            },
+            {
+              "text": " to "
+            },
+            {
+              "text": "F",
+              "marks": ["code"]
+            },
+            {
+              "text": " on strings 1-2-3, exactly one note moves, and it moves one fret."
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "A minor chord sounds sadder than a major one whatever is going on around it."
+            }
+          ]
+        },
+        {
+          "id": "e",
+          "spans": [
+            {
+              "text": "C major and A minor are the same grips on the neck, since they share two notes."
+            }
+          ]
+        }
+      ],
+      "answerIds": ["a", "b", "c"],
+      "explanation": [
+        {
+          "text": "The root and the fifth are identical in both chords, so the third is the whole difference — and in root position it is the middle note, which is why \"it sounds sad\" is the fallback people reach for. Mood is a poor listening target: it is at least partly learned, and in a progression it belongs to the passage rather than to any one chord. "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": " to "
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": " is "
+        },
+        {
+          "text": "x x x 2 1 0",
+          "marks": ["code"]
+        },
+        {
+          "text": " to "
+        },
+        {
+          "text": "x x x 2 1 1",
+          "marks": ["code"]
+        },
+        {
+          "text": ": "
+        },
+        {
+          "text": "E4",
+          "marks": ["code"]
+        },
+        {
+          "text": " to "
+        },
+        {
+          "text": "F4",
+          "marks": ["code"]
+        },
+        {
+          "text": " on string 1, with "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": " held under two fingers. C major and A minor share two of three notes, but each chord has its own twelve grips and they sit in different places."
+        }
+      ]
+    }
+  ]
+}

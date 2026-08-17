@@ -19,7 +19,7 @@ import type { Voicing } from './types';
 export { chartFor, fretsFromChart } from './chart';
 export { generateVoicings } from './generate';
 export { REGION_LABELS, REGION_ORDER } from './region';
-export { FEATURED_PER_REGION, pinKey, pinnedFor, groupByRegion } from './select';
+export { applyPins, FEATURED_PER_REGION, pinKey, pinnedFor, groupByRegion } from './select';
 export type { VoicingGroup } from './select';
 export type { Barre, Difficulty, Finger, NeckRegion, Voicing, VoicingOptions } from './types';
 

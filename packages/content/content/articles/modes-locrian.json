@@ -1,0 +1,614 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_modes-locrian",
+    "slug": "modes-locrian",
+    "title": "Locrian, and the Home That Won't Hold",
+    "summary": "A Locrian's home chord has no perfect fifth, and every attempt to hold A as its tonic hands the tonic to some other note instead.",
+    "tags": ["modes", "theory", "fretboard"],
+    "readingTimeMin": 5,
+    "publishedAt": "2026-08-15"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Play "
+        },
+        {
+          "text": "A C Eb",
+          "marks": ["code"]
+        },
+        {
+          "text": " and you've played a real chord with a real name. It just doesn't settle on the note it's named after. Every mode so far in this pathway has had a home you could put your weight on — this one is the exception."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That chord is "
+        },
+        {
+          "text": "Adim",
+          "marks": ["code"]
+        },
+        {
+          "text": ", A Locrian's tonic triad: "
+        },
+        {
+          "text": "1 b3 b5",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Every other mode in this pathway builds its tonic from "
+        },
+        {
+          "text": "1",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "3",
+          "marks": ["code"]
+        },
+        {
+          "text": " or "
+        },
+        {
+          "text": "b3",
+          "marks": ["code"]
+        },
+        {
+          "text": ", and a perfect "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Locrian flattens that fifth, and that single change is what the rest of this lesson is about."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The full scale: "
+        },
+        {
+          "text": "A Bb C D Eb F G",
+          "marks": ["code"]
+        },
+        {
+          "text": " — "
+        },
+        {
+          "text": "1 b2 b3 4 b5 b6 b7",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Its parent major is "
+        },
+        {
+          "text": "Bb",
+          "marks": ["code"]
+        },
+        {
+          "text": ", named once and put down — the relative derivation finds the notes; it won't help with anything else in this lesson. The characteristic note is the "
+        },
+        {
+          "text": "b5",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "rose"
+            }
+          ]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "Eb",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "rose"
+            }
+          ]
+        },
+        {
+          "text": ")."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "No other mode in this pathway sits more than one degree away from a scale you already own — "
+        },
+        {
+          "text": "Nothing New to Learn on the Neck",
+          "link": {
+            "kind": "article",
+            "slug": "modes-no-new-shapes"
+          }
+        },
+        {
+          "text": " already made that count. Locrian needs two: the "
+        },
+        {
+          "text": "2",
+          "marks": ["code"]
+        },
+        {
+          "text": " drops to a "
+        },
+        {
+          "text": "b2",
+          "marks": ["code"]
+        },
+        {
+          "text": " and the "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": " drops to a "
+        },
+        {
+          "text": "b5",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Measured off Phrygian instead it's one step — the last rung of the ladder, flattening the fifth, "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": " leaving and "
+        },
+        {
+          "text": "Eb",
+          "marks": ["code"]
+        },
+        {
+          "text": " arriving."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That flattened fifth does something no other mode's tonic does: it puts the tritone inside the tonic triad itself. "
+        },
+        {
+          "text": "1",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "b5",
+          "marks": ["code"]
+        },
+        {
+          "text": " — "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": " against "
+        },
+        {
+          "text": "Eb",
+          "marks": ["code"]
+        },
+        {
+          "text": " — are both notes of "
+        },
+        {
+          "text": "Adim",
+          "marks": ["code"]
+        },
+        {
+          "text": ". "
+        },
+        {
+          "text": "Where the Tritone Lands",
+          "link": {
+            "kind": "article",
+            "slug": "modes-the-tritone"
+          }
+        },
+        {
+          "text": " already gave the address and left what it does to a Locrian home for this chapter: the least stable interval in the scale is sitting between the two outer notes of the chord you're supposed to rest on."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Play "
+        },
+        {
+          "text": "A C Eb",
+          "marks": ["code"]
+        },
+        {
+          "text": " into "
+        },
+        {
+          "text": "Chord Detector",
+          "link": {
+            "kind": "screen",
+            "href": "/chord-detector"
+          }
+        },
+        {
+          "text": " and it names it without hesitation: "
+        },
+        {
+          "text": "Adim",
+          "marks": ["code"]
+        },
+        {
+          "text": ", no warnings. It also offers two further readings of the same three notes — "
+        },
+        {
+          "text": "Cm6/A",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "D#6(b5)/A",
+          "marks": ["code"]
+        },
+        {
+          "text": " — each taking a different note as the root. That isn't what a listener necessarily hears; it's what the analyser offers whenever one set of notes can be read from more than one root. It does the same for a plain "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": "."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Now try to build the vamp every other mode got. Two chords, "
+        },
+        {
+          "text": "Adim",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "Bb",
+          "marks": ["code"]
+        },
+        {
+          "text": ", the "
+        },
+        {
+          "text": "i°",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "bII",
+          "marks": ["code"]
+        },
+        {
+          "text": " you'd reach for by analogy with Phrygian's own. Play it into "
+        },
+        {
+          "text": "Key Detector",
+          "link": {
+            "kind": "screen",
+            "href": "/key-detector"
+          }
+        },
+        {
+          "text": " and it comes back "
+        },
+        {
+          "text": "Likely",
+          "marks": ["bold"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "Bb major",
+          "marks": ["code"]
+        },
+        {
+          "text": " — one answer, no percentages shown. "
+        },
+        {
+          "text": "Bb",
+          "marks": ["code"]
+        },
+        {
+          "text": " is A Locrian's own parent major. Reach for the chord that seems to belong to this mode and the tonic goes straight to the scale you were reading from, not playing in."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Try the other candidate — "
+        },
+        {
+          "text": "Adim",
+          "marks": ["code"]
+        },
+        {
+          "text": "–"
+        },
+        {
+          "text": "Eb",
+          "marks": ["code"]
+        },
+        {
+          "text": ", the chord A Locrian builds on the "
+        },
+        {
+          "text": "b5",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "rose"
+            }
+          ]
+        },
+        {
+          "text": " itself. "
+        },
+        {
+          "text": "Ambiguous",
+          "marks": ["bold"]
+        },
+        {
+          "text": ": two candidate cards, "
+        },
+        {
+          "text": "G minor",
+          "marks": ["code"]
+        },
+        {
+          "text": " at 54% against "
+        },
+        {
+          "text": "Bb major",
+          "marks": ["code"]
+        },
+        {
+          "text": " at 46% — and neither one is rooted on "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Every other mode's loop works by holding the tonic still while a second chord moves against it. Here the tonic itself won't hold, so there's nothing to move against."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "scale-compare",
+      "props": {
+        "root": "A",
+        "scales": ["phrygian", "locrian"],
+        "drone": true
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Start the drone, then tap the amber chip — "
+        },
+        {
+          "text": "Eb",
+          "marks": ["code"]
+        },
+        {
+          "text": " — against the held "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": ". That interval is the tritone, and it's also the fifth of the chord this mode is supposed to call home."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "progression-player",
+      "props": {
+        "chords": ["Adim", "Bb"],
+        "bpm": 66,
+        "caption": "Reach for A Locrian's own parent major and hand it the tonic"
+      }
+    },
+    {
+      "type": "live",
+      "component": "progression-player",
+      "props": {
+        "chords": ["Adim", "Eb"],
+        "bpm": 66,
+        "caption": "The chord that carries the b5, and still no chord lands on A"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One more place this shows up, in the fretboard itself. The A form window at the nut, frets 0 to 3, holds 17 dots for A Phrygian. A Locrian holds 15."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "A",
+        "scale": "phrygian",
+        "caption": "Seventeen dots, and three of them are the fifth"
+      }
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "A",
+        "scale": "locrian",
+        "caption": "Fifteen — two fifths fell off the nut and nothing replaced them"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The window draws every note inside it, not a grip a hand would hold at once — the whole run, filled in. Traced dot by dot: the "
+        },
+        {
+          "text": "4·2",
+          "marks": ["code"]
+        },
+        {
+          "text": " steps down to "
+        },
+        {
+          "text": "4·1",
+          "marks": ["code"]
+        },
+        {
+          "text": ", staying inside the frame. But "
+        },
+        {
+          "text": "1·0",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "6·0",
+          "marks": ["code"]
+        },
+        {
+          "text": " are the two open "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": " strings, and a flattened fifth sends both to a fret that doesn't exist. Nothing arrives from above to replace them. "
+        },
+        {
+          "text": "Phrygian, and the Dot That Falls Off the Nut",
+          "link": {
+            "kind": "article",
+            "slug": "modes-phrygian-neck"
+          }
+        },
+        {
+          "text": " already worked out why a window can lose dots at the nut without gaining any back."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That's the fact underneath both open "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": " strings vanishing: A Locrian contains no "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": " at all. Not the high one, not the low one — and not the open "
+        },
+        {
+          "text": "B",
+          "marks": ["code"]
+        },
+        {
+          "text": " either, since Phrygian already gave that one up. Three of the six open strings are missing from this mode — more than from any other of the seven. A natural minor, for comparison, uses all six."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Temperley and Tan, studying how listeners judge the modes, left Locrian out of their experiment entirely. Their stated reason: it is \"virtually impossible to compose a melody that 'sounds' Locrian\", because a melody built from those seven degrees \"will almost always imply an alternative tonic\" — partly, they note, because the fifth is missing. They call it \"more of a theoretical possibility than a musical reality\"."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "info",
+      "spans": [
+        {
+          "text": "That's a finding about what listeners hear as home, not a rule about what you're allowed to play. The notes are perfectly playable. What fails is the claim that any of them is the tonic."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Every other mode in this pathway had a home you could put your weight on. This one does not — and saying exactly what \"put your weight on\" means is worth doing properly, because the answer applies to all seven, not just this one."
+        }
+      ]
+    }
+  ]
+}

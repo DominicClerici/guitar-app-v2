@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_triad-why-the-top-set",
+    "slug": "triad-why-the-top-set",
+    "title": "Why Rhythm Playing Lives Up Here",
+    "summary": "Three concrete reasons strings 1-2-3 carry so much rhythm playing, plus a climb-the-set practice routine using the metronome and the chord detector.",
+    "tags": ["triads", "chords"],
+    "readingTimeMin": 2,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Strings 1-2-3 aren't what's left over when you can't manage a full six-string chord. A lot of rhythm playing lives up here on purpose, for three concrete reasons."
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        [
+          { "text": "Register.", "marks": ["bold"] },
+          {
+            "text": " Strings 1-2-3 sit above the bass and above most vocal melodies, so a triad up there doesn't fight either one for space."
+          }
+        ],
+        [
+          { "text": "Hands.", "marks": ["bold"] },
+          {
+            "text": " Three fingers, no barre, no thumb wrapped over the neck — nothing to set up before the next chord."
+          }
+        ],
+        [
+          { "text": "Movement.", "marks": ["bold"] },
+          {
+            "text": " Changing chords means sliding a couple of frets, not jumping the width of the neck."
+          }
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "None of the three is a consolation prize. Together they're why a rhythm part reaches for this set on purpose, not by default."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Feel all three by climbing the set: " },
+        { "text": "x x x 0 1 0", "marks": ["code"] },
+        { "text": " → " },
+        { "text": "x x x 5 5 3", "marks": ["code"] },
+        { "text": " → " },
+        { "text": "x x x 9 8 8", "marks": ["code"] },
+        { "text": " → " },
+        { "text": "x x x 12 13 12", "marks": ["code"] },
+        { "text": ", then back down. Say the bass note out loud on every grip — " },
+        { "text": "G", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "C", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "E", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "G", "marks": ["code"] },
+        {
+          "text": " — so your ear tracks the one note that's actually moving. Go slowly the first few times, feeling where each shift starts and ends before you add tempo."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Do it against the " },
+        { "text": "Metronome", "link": { "kind": "screen", "href": "/metronome" } },
+        { "text": ", one chord per bar, slow enough that you're never rushing the change." }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "C",
+        "strings": "1-2-3",
+        "inversion": "second",
+        "minFret": 5,
+        "caption": "Second inversion, twelve frets up — same three fingers, an octave higher."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "This is where the climb lands the second time: " },
+        { "text": "x x x 12 13 12", "marks": ["code"] },
+        { "text": ", the same " },
+        { "text": "G C E", "marks": ["code"] },
+        {
+          "text": " from the nut, an octave higher. Same fingers, same shape, higher register — the cycle doesn't run out, it repeats."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Once the climb feels natural, flip it into a naming drill. Pick any of the four grips, say out loud which note is in the bass before you play it, then check yourself against "
+        },
+        { "text": "Chord Detector", "link": { "kind": "screen", "href": "/chord-detector" } },
+        {
+          "text": ". It prints the bass after a slash whenever the bass isn't the root, so climbing the set reads "
+        },
+        { "text": "C/G", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "C", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "C/E", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "C/G", "marks": ["code"] },
+        { "text": " — four grips, one chord." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Strings 1-2-3 are one set of four. Chapter 2 takes the other three — strings 2-3-4, 3-4-5, and 4-5-6 — and works out why their grips aren't identical to these, even for the exact same chord. Same terminology, same three inversions — just three more places for them to live."
+        }
+      ]
+    }
+  ]
+}

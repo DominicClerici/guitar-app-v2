@@ -1,0 +1,637 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "quiz_modes-ch4-checkpoint",
+    "slug": "modes-ch4-checkpoint",
+    "title": "The Minor Family",
+    "summary": "Eight questions on the one minor home chord and its two dials, the ache above the fifth, Dorian's clean bill of health, Phrygian's two avoid notes, and what a window's edges do to a diagram.",
+    "kind": "checkpoint",
+    "passThresholdPct": 70
+  },
+  "questions": [
+    {
+      "id": "q_modes-ch4-checkpoint.the-family",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "Dorian, Aeolian and Phrygian all share one home chord. Which chord is it, and which two degrees are the dials that separate the three?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "Am", "marks": ["code"] },
+            { "text": " (" },
+            { "text": "A C E", "marks": ["code"] },
+            { "text": "), and the " },
+            { "text": "6", "marks": ["code"] },
+            { "text": " and the " },
+            { "text": "2", "marks": ["code"] }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "Am", "marks": ["code"] },
+            { "text": " (" },
+            { "text": "A C E", "marks": ["code"] },
+            { "text": "), and the " },
+            { "text": "b3", "marks": ["code"] },
+            { "text": " and the " },
+            { "text": "b7", "marks": ["code"] }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "A", "marks": ["code"] },
+            { "text": " (" },
+            { "text": "A C# E", "marks": ["code"] },
+            { "text": "), and the " },
+            { "text": "4", "marks": ["code"] },
+            { "text": " and the " },
+            { "text": "7", "marks": ["code"] }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "Am", "marks": ["code"] },
+            { "text": " (" },
+            { "text": "A C E", "marks": ["code"] },
+            { "text": "), and the " },
+            { "text": "b6", "marks": ["code"] },
+            { "text": " and the " },
+            { "text": "5", "marks": ["code"] }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "Dorian is " },
+        { "text": "2 6", "marks": ["code"] },
+        { "text": ", Aeolian is " },
+        { "text": "2 b6", "marks": ["code"] },
+        { "text": ", Phrygian is " },
+        { "text": "b2 b6", "marks": ["code"] },
+        { "text": " — one home chord and two switches. The " },
+        { "text": "b3", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "b7", "marks": ["code"] },
+        {
+          "text": " never move inside this family: all three modes have both, so neither can tell them apart. The major triad answer with the "
+        },
+        { "text": "4", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "7", "marks": ["code"] },
+        { "text": " describes the other family exactly — it is just not this one. And the " },
+        { "text": "5", "marks": ["code"] },
+        { "text": " is perfect in all three and never moves; the dial is the " },
+        { "text": "6", "marks": ["code"] },
+        { "text": ", which sits above it." }
+      ]
+    },
+    {
+      "id": "q_modes-ch4-checkpoint.no-accent",
+      "kind": "choice",
+      "prompt": [
+        { "text": "The scale card headed " },
+        { "text": "A Natural minor", "marks": ["code"] },
+        { "text": " lights no tinted chip, and its CAGED windows outline no dot. Why not?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "A characteristic note is whatever separates a scale from its nearest plain relative, and Aeolian is the plain relative"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "Aeolian's characteristic note is the " },
+            { "text": "b6", "marks": ["code"] },
+            { "text": ", but a flattened degree is never tinted" }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "Aeolian shares too many notes with Dorian and Phrygian for any single one of them to be worth marking"
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "The app only tints a scale it can fit into CAGED windows, and natural minor is drawn from the chord layer instead"
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        {
+          "text": "It is a fact about Aeolian, not a gap in the drawing: a characteristic note names whatever sets a scale apart from its plain relative, and Aeolian is the thing the rest of this family gets set apart from. Ionian carries none for the same reason, one family up. The "
+        },
+        { "text": "b6", "marks": ["code"] },
+        {
+          "text": " cannot be it, because Phrygian has one too — a note shared with a neighbour separates you from nothing. Flattened degrees are tinted like any other: Phrygian's "
+        },
+        { "text": "b2", "marks": ["code"] },
+        {
+          "text": " is outlined rose. And natural minor has five CAGED windows on every root, which is where this whole chapter has been working."
+        }
+      ]
+    },
+    {
+      "id": "q_modes-ch4-checkpoint.the-avoid-note",
+      "kind": "choice",
+      "prompt": [
+        { "text": "A natural minor has two notes sitting a semitone from a note of " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " — the " },
+        { "text": "2", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "b6", "marks": ["code"] },
+        { "text": ". Only one of them is an avoid note. Which, and why?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "The " },
+            { "text": "b6", "marks": ["code"] },
+            { "text": ", because it sits a half step " },
+            { "text": "above", "marks": ["bold"] },
+            { "text": " the " },
+            { "text": "5", "marks": ["code"] },
+            { "text": "; the " },
+            { "text": "2", "marks": ["code"] },
+            { "text": " sits a half step " },
+            { "text": "below", "marks": ["bold"] },
+            { "text": " the " },
+            { "text": "b3", "marks": ["code"] },
+            { "text": " and leans up into it" }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "The " },
+            { "text": "2", "marks": ["code"] },
+            { "text": ", because it is the note the minor pentatonic left out" }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "The " },
+            { "text": "b6", "marks": ["code"] },
+            {
+              "text": ", because it is the darkest note in the scale and should never be played over a minor chord"
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "Both of them, because both sit a semitone from a note of " },
+            { "text": "A C E", "marks": ["code"] }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "Direction is the whole difference. " },
+        { "text": "F", "marks": ["code"] },
+        { "text": " sits one fret above " },
+        { "text": "E", "marks": ["code"] },
+        { "text": ", the chord's fifth, so it sits on top of a chord tone and grinds. " },
+        { "text": "B", "marks": ["code"] },
+        { "text": " sits one fret below " },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": ", the chord's third, so it leans up into one instead — the same shape a leading tone makes under a root. The pentatonic left out "
+        },
+        { "text": "both", "marks": ["italic"] },
+        {
+          "text": " notes, in either direction, which is a different rule from this one. And nothing here is forbidden: an avoid note is a note to move through, not one to land on and hold."
+        }
+      ]
+    },
+    {
+      "id": "q_modes-ch4-checkpoint.no-avoid-note",
+      "kind": "choice",
+      "prompt": [
+        {
+          "text": "Across the six modes of the two families, which have no avoid note at all over their own tonic triad?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "Lydian and Dorian — one per family, and in both cases the mode with the raised dial"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [{ "text": "Lydian alone; every mode with a minor home chord has at least one" }]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "Ionian and Aeolian — being the reference of a family is what it means to have nothing that clashes"
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "Dorian and Phrygian, because a minor tonic triad has no major third for a scale tone to sit on top of"
+            }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "Raise the " },
+        { "text": "4", "marks": ["code"] },
+        { "text": " and Lydian's " },
+        { "text": "#4", "marks": ["code"] },
+        { "text": " sits a whole step above the " },
+        { "text": "3", "marks": ["code"] },
+        { "text": "; raise the " },
+        { "text": "b6", "marks": ["code"] },
+        { "text": " and Dorian's " },
+        { "text": "6", "marks": ["code"] },
+        { "text": " sits a whole tone above the " },
+        { "text": "5", "marks": ["code"] },
+        {
+          "text": ". Each raise moves the one note that had been sitting on top of a chord tone. Lydian is not alone — that claim was deliberately scoped to the major family when it was made, and Dorian is why. Ionian and Aeolian are the references and each still keeps exactly one avoid note, the "
+        },
+        { "text": "4", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "b6", "marks": ["code"] },
+        { "text": ". And Phrygian has two rather than none: the " },
+        { "text": "b6", "marks": ["code"] },
+        { "text": " it kept, and the " },
+        { "text": "b2", "marks": ["code"] },
+        { "text": " it gained." }
+      ]
+    },
+    {
+      "id": "q_modes-ch4-checkpoint.dorian-vamp",
+      "kind": "choice",
+      "prompt": [
+        { "text": "Dorian's vamp is " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": "–" },
+        { "text": "D", "marks": ["code"] },
+        { "text": ", a " },
+        { "text": "i", "marks": ["code"] },
+        { "text": "–" },
+        { "text": "IV", "marks": ["code"] },
+        { "text": ". What is the " },
+        { "text": "D", "marks": ["code"] },
+        { "text": " chord doing there — and what does it not do on its own?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "D", "marks": ["code"] },
+            { "text": " is " },
+            { "text": "D F# A", "marks": ["code"] },
+            {
+              "text": ", so it carries the "
+            },
+            { "text": "6", "marks": ["code"] },
+            {
+              "text": " and rules out Aeolian and Phrygian — but it also fits Ionian and Mixolydian, and what rules those out is the minor home chord"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "D", "marks": ["code"] },
+            { "text": " is " },
+            { "text": "D F# A", "marks": ["code"] },
+            { "text": ", so it carries the " },
+            { "text": "6", "marks": ["code"] },
+            { "text": " — and it fits inside Dorian and inside no other mode on " },
+            { "text": "A", "marks": ["code"] }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "D", "marks": ["code"] },
+            { "text": " is the " },
+            { "text": "IV", "marks": ["code"] },
+            {
+              "text": " that A natural minor already gives you, so the vamp confirms the key rather than changing the mode"
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "D", "marks": ["code"] },
+            { "text": " is " },
+            { "text": "D F A", "marks": ["code"] },
+            { "text": ", and playing that chord major is a colour choice from outside the scale" }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "Harmonise A natural minor and the chord on the " },
+        { "text": "4", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "Dm", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "D F A", "marks": ["code"] },
+        { "text": "). Raise the " },
+        { "text": "b6", "marks": ["code"] },
+        { "text": " and that " },
+        { "text": "F", "marks": ["code"] },
+        { "text": " becomes an " },
+        { "text": "F#", "marks": ["code"] },
+        {
+          "text": ", so the same chord turns major — a major fourth chord over a minor tonic, which is Dorian's signature. It is not a note borrowed from outside: the "
+        },
+        { "text": "F#", "marks": ["code"] },
+        { "text": " is in the mode. But three of the seven modes on " },
+        { "text": "A", "marks": ["code"] },
+        { "text": " contain " },
+        { "text": "D F# A", "marks": ["code"] },
+        {
+          "text": " — Ionian, Mixolydian and Dorian — and the two with a major home chord are ruled out by what is underneath, not by this chord."
+        }
+      ]
+    },
+    {
+      "id": "q_modes-ch4-checkpoint.phrygian",
+      "kind": "choice",
+      "prompt": [
+        { "text": "What makes Phrygian's " },
+        { "text": "b2", "marks": ["code"] },
+        {
+          "text": " the strongest single darkening move in the set — and what does Phrygian keep from Aeolian?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "The " },
+            { "text": "b2", "marks": ["code"] },
+            { "text": " sits a half step above home itself; and Phrygian keeps the " },
+            { "text": "b6", "marks": ["code"] },
+            { "text": ", so it carries two avoid notes where Aeolian carries one" }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "The " },
+            { "text": "b2", "marks": ["code"] },
+            { "text": " sits a half step below the " },
+            { "text": "b3", "marks": ["code"] },
+            { "text": "; and the " },
+            { "text": "b6", "marks": ["code"] },
+            { "text": " it keeps is still its only avoid note" }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "The " },
+            { "text": "b2", "marks": ["code"] },
+            { "text": " takes over from the " },
+            { "text": "b3", "marks": ["code"] },
+            {
+              "text": " as the note deciding the home chord's quality; and Phrygian gives up the "
+            },
+            { "text": "b6", "marks": ["code"] },
+            { "text": " in exchange" }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "The " },
+            { "text": "b2", "marks": ["code"] },
+            { "text": " sits a half step above the " },
+            { "text": "5", "marks": ["code"] },
+            { "text": "; and Phrygian keeps the " },
+            { "text": "2", "marks": ["code"] },
+            { "text": " alongside it" }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "Bb", "marks": ["code"] },
+        { "text": " is one fret above " },
+        { "text": "A", "marks": ["code"] },
+        {
+          "text": ", so it leans on home from directly above — of the five modes that carry a characteristic note, it is the only one sitting a half step from the tonic. Lowering the "
+        },
+        { "text": "2", "marks": ["code"] },
+        { "text": " costs Phrygian nothing else, so the " },
+        { "text": "b6", "marks": ["code"] },
+        { "text": " is still there, still a half step above the " },
+        { "text": "5", "marks": ["code"] },
+        { "text": ": " },
+        { "text": "Bb", "marks": ["code"] },
+        { "text": " over the root and " },
+        { "text": "F", "marks": ["code"] },
+        {
+          "text": " over the fifth make two avoid notes rather than one. The note a half step above the "
+        },
+        { "text": "5", "marks": ["code"] },
+        { "text": " is the " },
+        { "text": "b6", "marks": ["code"] },
+        { "text": ", not the " },
+        { "text": "b2", "marks": ["code"] },
+        { "text": ". The " },
+        { "text": "b3", "marks": ["code"] },
+        {
+          "text": " is still what makes the home chord minor, in all three of these modes. And a "
+        },
+        { "text": "b2", "marks": ["code"] },
+        { "text": " does not sit alongside a " },
+        { "text": "2", "marks": ["code"] },
+        { "text": " — it is the " },
+        { "text": "2", "marks": ["code"] },
+        { "text": ", lowered a fret." }
+      ]
+    },
+    {
+      "id": "q_modes-ch4-checkpoint.window-edges",
+      "kind": "multi-select",
+      "prompt": [
+        {
+          "text": "Which of these are true when one degree of the scale filling a CAGED window moves a fret?"
+        }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            {
+              "text": "The window itself does not move — it is a fixed span of frets anchored on the root"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            {
+              "text": "Raising a degree pushes its dot toward the window's top edge, and flattening one pushes it toward the bottom"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            {
+              "text": "Two windows can hold the same number of dots and still be different pictures"
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            {
+              "text": "Flattening a degree always adds dots, because a dot drops into the window from above"
+            }
+          ]
+        },
+        {
+          "id": "e",
+          "spans": [{ "text": "Counting the dots tells you which scale is filling the window" }]
+        }
+      ],
+      "answerIds": ["a", "b", "c"],
+      "explanation": [
+        {
+          "text": "A form is a fret span anchored on the root, so nothing shifts it. The G form at frets 1 to 5 holds eighteen dots for "
+        },
+        { "text": "A Natural minor", "marks": ["code"] },
+        { "text": " and eighteen for " },
+        { "text": "A Dorian", "marks": ["code"] },
+        {
+          "text": ", with all three sixths having moved a fret. The A form at the nut holds seventeen for "
+        },
+        { "text": "A Natural minor", "marks": ["code"] },
+        { "text": " and seventeen for " },
+        { "text": "A Phrygian", "marks": ["code"] },
+        { "text": " — one dot arrived from above at " },
+        { "text": "3·3", "marks": ["code"] },
+        { "text": " while the open " },
+        { "text": "B", "marks": ["code"] },
+        {
+          "text": " string fell off the bottom, which is exactly why flattening does not always add: a dot on fret 0 has nowhere below to go. And in the G form all three modes of this family hold eighteen dots, while in the E form all three hold seventeen — the count is a fact about the frame, not about the mode."
+        }
+      ]
+    },
+    {
+      "id": "q_modes-ch4-checkpoint.lean-on-one-note",
+      "kind": "choice",
+      "prompt": [
+        { "text": "Two of this chapter's three vamps pin their mode down by themselves. " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": "–" },
+        { "text": "F", "marks": ["code"] },
+        { "text": " does not. Why not?" }
+      ],
+      "options": [
+        {
+          "id": "a",
+          "spans": [
+            { "text": "F", "marks": ["code"] },
+            { "text": " (" },
+            { "text": "F A C", "marks": ["code"] },
+            {
+              "text": ") sits inside Phrygian as well as Aeolian, so the loop rules out Dorian and stops there"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "spans": [
+            { "text": "F", "marks": ["code"] },
+            {
+              "text": " is not one of the seven chords A natural minor gives you, so it cannot assert anything"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "spans": [
+            { "text": "A " },
+            { "text": "bVI", "marks": ["code"] },
+            { "text": " is a bigger leap than a " },
+            { "text": "IV", "marks": ["code"] },
+            { "text": " or a " },
+            { "text": "bII", "marks": ["code"] },
+            { "text": ", so the ear loses home before the loop comes round" }
+          ]
+        },
+        {
+          "id": "d",
+          "spans": [
+            { "text": "Aeolian's characteristic note is the " },
+            { "text": "b6", "marks": ["code"] },
+            { "text": ", and the " },
+            { "text": "F", "marks": ["code"] },
+            { "text": " chord does not contain it" }
+          ]
+        }
+      ],
+      "answerId": "a",
+      "explanation": [
+        { "text": "F", "marks": ["code"] },
+        { "text": " carries the " },
+        { "text": "b6", "marks": ["code"] },
+        { "text": ", the note Dorian gives up, so " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": "–" },
+        { "text": "F", "marks": ["code"] },
+        {
+          "text": " does say \"not Dorian\". What it cannot say is \"not Phrygian\", because Phrygian has an "
+        },
+        { "text": "F", "marks": ["code"] },
+        {
+          "text": " too. That is what having no characteristic note costs Aeolian: there is no note it is named for, so there is no chord that can assert one. "
+        },
+        { "text": "F", "marks": ["code"] },
+        { "text": " is the " },
+        { "text": "VI", "marks": ["code"] },
+        {
+          "text": " of A natural minor and very much a chord of the key — and it does contain the "
+        },
+        { "text": "b6", "marks": ["code"] },
+        { "text": ", which is precisely why the loop works at all. Compare " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": "–" },
+        { "text": "Bb", "marks": ["code"] },
+        { "text": ", where the two chords sit a semitone apart and home never wavers." }
+      ]
+    }
+  ]
+}

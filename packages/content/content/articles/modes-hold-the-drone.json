@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_modes-hold-the-drone",
+    "slug": "modes-hold-the-drone",
+    "title": "Hold One Note and Listen",
+    "summary": "With a root held underneath, one set of notes changes its mind — and untrained ears can already hear the difference.",
+    "tags": ["modes", "ear"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-15"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "A scale played into silence has no home — nothing outside its seven notes says which one is the tonic, so nothing is. Hold a root underneath the same seven notes and that changes without a single note being added or removed: now every tone is heard against something, and one of them starts to sound like a decision instead of a passing pitch. That held root isn't a practice aid or an ear-training trick. It's the missing half of the definition — a mode doesn't exist without a tonal centre, and the drone is simply the thing that makes the centre real."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Try it in order, and hear what one held note does to two runs that would otherwise sound like nothing in particular."
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        [{ "text": "Start the drone." }],
+        [{ "text": "Play through A Aeolian — the card the app heads A Natural minor." }],
+        [{ "text": "Play through A Dorian." }],
+        [
+          { "text": "Stop both runs. Tap the " },
+          { "text": "F#", "marks": ["code", { "type": "color", "tone": "amber" }] },
+          { "text": " chip on its own and listen to it against the held " },
+          { "text": "A", "marks": ["code"] },
+          { "text": "." }
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Exactly one note out of seven moved between those two runs: " },
+        { "text": "F", "marks": ["code"] },
+        { "text": " became " },
+        { "text": "F#", "marks": ["code", { "type": "color", "tone": "amber" }] },
+        { "text": ". In degree terms, " },
+        { "text": "b6", "marks": ["code"] },
+        { "text": " became " },
+        { "text": "6", "marks": ["code", { "type": "color", "tone": "amber" }] },
+        {
+          "text": " — Dorian's characteristic note, the single tone that separates it from Aeolian."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "scale-compare",
+      "props": { "root": "A", "scales": ["minor", "dorian"], "drone": true }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Here's the encouraging part, and it isn't folklore: listeners with " },
+        { "text": "no musical training", "marks": ["bold"] },
+        {
+          "text": " reliably tell diatonic modes apart, including modes that differ by a single scale degree. Temperley and Tan found significant differences in perceived happiness for 12 of the 15 possible mode pairs, and for all adjacent pairs but one. Your ear can already do this. What it lacks is a name for what it's hearing."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The one adjacent pair that did " },
+        { "text": "not", "marks": ["italic"] },
+        { "text": " come out significant was " },
+        { "text": "Aeolian and Dorian", "link": { "kind": "footnote", "id": "fn-temperley-tan" } },
+        { "text": " — the exact pair you just played. So if it takes a few passes before " },
+        { "text": "F#", "marks": ["code", { "type": "color", "tone": "amber" }] },
+        { "text": " against the plain " },
+        { "text": "F", "marks": ["code"] },
+        {
+          "text": " starts to mean something, you have landed on the one neighbouring pair those listeners couldn't reliably separate either. That's the material being subtle, not your ear being bad."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "None of this needs the app, either. Hold an open " },
+        { "text": "A", "marks": ["code"] },
+        {
+          "text": " — string 5, fret 0 — ringing, and play Aeolian, then Dorian, then just the "
+        },
+        { "text": "F#", "marks": ["code", { "type": "color", "tone": "amber" }] },
+        { "text": " against it. Or press play on the " },
+        { "text": "Drone", "link": { "kind": "screen", "href": "/drone" } },
+        { "text": " and do the same thing with both hands free." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "\"Aeolian with a raised sixth\" just got you to Dorian — that's one way to find it. There's another way to land on the exact same seven notes, and it answers a completely different question."
+        }
+      ]
+    }
+  ],
+  "footnotes": [
+    {
+      "id": "fn-temperley-tan",
+      "spans": [
+        {
+          "text": "David Temperley and Daphne Tan, \"Emotional Connotations of Diatonic Modes\", Music Perception 30(3), 2013. 17 nonmusician undergraduates at one university, using a binary forced choice — which of two melodies sounds happier — on unaccompanied, single-line melodies."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,752 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_minor-caged-any-minor-key",
+    "slug": "minor-caged-any-minor-key",
+    "title": "The Same Five Windows, Any Minor Key",
+    "summary": "The whole ladder is anchored on the root's fret on the low E string, so a key change moves every number and changes nothing about the structure — and the chords of the key move with it.",
+    "tags": ["caged", "minor"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "For five chapters this pathway has worked in one key: A minor, with C major beside it. Every fret number in it has been one of those two. That was a teaching choice, not a limit — and here is where it lifts."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The anchor makes everything else cheap. The "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": " barre at fret "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": " is the E form, and fret "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": " is where "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": " sits on the low E string. Find any key's root on that same string and the E form's window runs from one fret below it to three frets above it; the other four forms follow from there. Check it against two keys you can verify without a table: "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": " sits at fret "
+        },
+        {
+          "text": "0",
+          "marks": ["code"]
+        },
+        {
+          "text": ", and E minor's E form is "
+        },
+        {
+          "text": "0–3",
+          "marks": ["code"]
+        },
+        {
+          "text": "; "
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": " sits at fret "
+        },
+        {
+          "text": "10",
+          "marks": ["code"]
+        },
+        {
+          "text": ", and D minor's E form is "
+        },
+        {
+          "text": "9–13",
+          "marks": ["code"]
+        },
+        {
+          "text": "."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        {
+          "text": "Find the key's root on the low E string and the E form's barre is right there. The other four forms follow from it."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The rest of the ladder is the wheel."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [
+          {
+            "text": "Key"
+          }
+        ],
+        [
+          {
+            "text": "Root's fret, string 6"
+          }
+        ],
+        [
+          {
+            "text": "The ladder, nut upward"
+          }
+        ],
+        [
+          {
+            "text": "Cycle"
+          }
+        ]
+      ],
+      "rows": [
+        [
+          [
+            {
+              "text": "A minor"
+            }
+          ],
+          [
+            {
+              "text": "5",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "A 0–3, G 1–5, E 4–8, D 6–10, C 9–13",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "A→G→E→D→C",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "E minor"
+            }
+          ],
+          [
+            {
+              "text": "0",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "E 0–3, D 1–5, C 4–8, A 6–10, G 8–12",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "E→D→C→A→G",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "D minor"
+            }
+          ],
+          [
+            {
+              "text": "10",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "D 0–3, C 2–6, A 4–8, G 6–10, E 9–13",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "D→C→A→G→E",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "G minor"
+            }
+          ],
+          [
+            {
+              "text": "3",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "G 0–3, E 2–6, D 4–8, C 7–11, A 9–13",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "G→E→D→C→A",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "C minor"
+            }
+          ],
+          [
+            {
+              "text": "8",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "C 0–4, A 2–6, G 4–8, E 7–11, D 9–13",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "C→A→G→E→D",
+              "marks": ["code"]
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Every cycle in that table is the same loop — "
+        },
+        {
+          "text": "C→A→G→E→D→C",
+          "marks": ["code"]
+        },
+        {
+          "text": " — entered at a different point. "
+        },
+        {
+          "text": "The Same Ladder in Any Key",
+          "link": {
+            "kind": "article",
+            "slug": "caged-transposing-the-ladder"
+          }
+        },
+        {
+          "text": " already proved that for the major forms, and it's identical here for the reason chapter 2 opened on: a window is anchored on the root and never knew about the chord's quality."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "What changes in minor is worth a paragraph of its own. The form named after the key sits at the nut in five keys — "
+        },
+        {
+          "text": "A, C, D, E",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " minor — but only three of those are chords you can play open: "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "Em",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "Dm",
+          "marks": ["code"]
+        },
+        {
+          "text": ". There's no open "
+        },
+        {
+          "text": "Gm",
+          "marks": ["code"]
+        },
+        {
+          "text": " or "
+        },
+        {
+          "text": "Cm",
+          "marks": ["code"]
+        },
+        {
+          "text": ", and the G form of a minor chord can't be barred at all. So in G minor, the form sitting at the nut is the one form you can never hold whole — a sentence the major version of this story never has to say."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The rest of the keys are worth one honest sentence: a key with no letter form of its own enters the wheel between two letters, and its nut-most window is whichever one lands there. B minor's is the C form, frets "
+        },
+        {
+          "text": "0–3",
+          "marks": ["code"]
+        },
+        {
+          "text": ". That's the one example worth naming, and it stops there — there's no general rule for which form sits nearest the nut, and none is claimed here."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-ladder",
+      "props": {
+        "root": "A",
+        "quality": "minor"
+      }
+    },
+    {
+      "type": "live",
+      "component": "caged-ladder",
+      "props": {
+        "root": "E",
+        "quality": "minor"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Same five bands, same order, one step further along the wheel. (One reminder: the ladder marks roots only — there's no "
+        },
+        {
+          "text": "b3",
+          "marks": ["code"]
+        },
+        {
+          "text": " to find on it.)"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The chords transpose with the ladder too, and that's the payoff."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [
+          {
+            "text": "Key"
+          }
+        ],
+        [
+          {
+            "text": "i",
+            "marks": ["code"]
+          }
+        ],
+        [
+          {
+            "text": "VI",
+            "marks": ["code"]
+          }
+        ],
+        [
+          {
+            "text": "III",
+            "marks": ["code"]
+          }
+        ],
+        [
+          {
+            "text": "VII",
+            "marks": ["code"]
+          }
+        ],
+        [
+          {
+            "text": "Relative major"
+          }
+        ]
+      ],
+      "rows": [
+        [
+          [
+            {
+              "text": "A minor"
+            }
+          ],
+          [
+            {
+              "text": "Am",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "F",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "C",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "G",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "C",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "E minor"
+            }
+          ],
+          [
+            {
+              "text": "Em",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "C",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "G",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "D",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "G",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "D minor"
+            }
+          ],
+          [
+            {
+              "text": "Dm",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "Bb",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "F",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "C",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "F",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "G minor"
+            }
+          ],
+          [
+            {
+              "text": "Gm",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "Eb",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "Bb",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "F",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "Bb",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "C minor"
+            }
+          ],
+          [
+            {
+              "text": "Cm",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "Ab",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "Eb",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "Bb",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "Eb",
+              "marks": ["code"]
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "E minor's four are worth pausing on — "
+        },
+        {
+          "text": "Em C G D",
+          "marks": ["code"]
+        },
+        {
+          "text": " — because every one of them is an open chord."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "progression-player",
+      "props": {
+        "chords": ["Em", "C", "G", "D"],
+        "bpm": 88,
+        "caption": "The same loop, in E minor, all four chords open."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The relative major moves with the key too, as the table's last column shows — always a minor third above the minor root, chapter 1's rule, still true."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "A word on the flats: "
+        },
+        {
+          "text": "Bb",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "Eb",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "Ab",
+          "marks": ["code"]
+        },
+        {
+          "text": " are written flat because those are flat keys. This pathway has spelled everything with sharps until now; this is the one place that changes."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One more caution, and it matters for any diagram you read elsewhere: near the nut a window can be cut short. A minor's A form is only four frets, "
+        },
+        {
+          "text": "0–3",
+          "marks": ["code"]
+        },
+        {
+          "text": ", not five — the nut cuts it off, same as it always has. In some keys the nut-most window is cut shorter still: F# minor's is just three frets, "
+        },
+        {
+          "text": "0–2",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Same form, less room to draw it in — never call one of those a five-fret window."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Take it further than "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": " in the "
+        },
+        {
+          "text": "Scale Visualizer",
+          "link": {
+            "kind": "screen",
+            "href": "/scale-visualizer"
+          }
+        },
+        {
+          "text": " — any root, position system on CAGED — and watch the same five windows follow the same rule everywhere. What all of this actually cost is worth its own accounting."
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "That is what the chapter closes on",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-what-the-third-was-worth"
+          }
+        },
+        {
+          "text": "."
+        }
+      ]
+    }
+  ]
+}

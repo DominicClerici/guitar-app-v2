@@ -1,0 +1,560 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_modes-the-vamp-rule",
+    "slug": "modes-the-vamp-rule",
+    "title": "What the Second Chord Is For",
+    "summary": "The second chord of a modal vamp is the one that contains the characteristic note, and everywhere but Lydian's the home chord's quality has to finish the job.",
+    "tags": ["modes", "theory", "ear"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-15"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Every vamp in this pathway opens on a chord you can stand on \u2014 one with a perfect fifth over its root, solid enough to be home. That much was settled before you got here: Lydian stands on "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": ", Dorian on "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": ", and so on through every mode with a home that holds. What happens next is what actually decides the mode. The second chord isn't picked at random, and you've already met it built the same way five separate times without a name for the pattern behind it."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "info",
+      "spans": [
+        {
+          "text": "The second chord of a modal vamp is the one that contains the characteristic note."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "It's the only place in a two-chord loop where the harmony itself asserts that note, rather than leaving it to whatever you happen to reach for while soloing over the top. Play the first chord alone and you've stated home; add the second and you've stated what makes this particular home sound the way it does. Four of the seven modes satisfy the rule outright, and a fifth is worth setting beside them for what it reveals a moment later:"
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "rows": [
+        [
+          [
+            {
+              "text": "Lydian"
+            }
+          ],
+          [
+            {
+              "text": "A",
+              "marks": ["code"]
+            },
+            {
+              "text": "\u2013"
+            },
+            {
+              "text": "B",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "I",
+              "marks": ["code"]
+            },
+            {
+              "text": "\u2013"
+            },
+            {
+              "text": "II",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "B D# F#",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "the "
+            },
+            {
+              "text": "#4",
+              "marks": [
+                "code",
+                {
+                  "type": "color",
+                  "tone": "violet"
+                }
+              ]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Mixolydian"
+            }
+          ],
+          [
+            {
+              "text": "A",
+              "marks": ["code"]
+            },
+            {
+              "text": "\u2013"
+            },
+            {
+              "text": "G",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "I",
+              "marks": ["code"]
+            },
+            {
+              "text": "\u2013"
+            },
+            {
+              "text": "bVII",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "G B D",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "the "
+            },
+            {
+              "text": "b7",
+              "marks": [
+                "code",
+                {
+                  "type": "color",
+                  "tone": "amber"
+                }
+              ]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Dorian"
+            }
+          ],
+          [
+            {
+              "text": "Am",
+              "marks": ["code"]
+            },
+            {
+              "text": "\u2013"
+            },
+            {
+              "text": "D",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "i",
+              "marks": ["code"]
+            },
+            {
+              "text": "\u2013"
+            },
+            {
+              "text": "IV",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "D F# A",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "the "
+            },
+            {
+              "text": "6",
+              "marks": [
+                "code",
+                {
+                  "type": "color",
+                  "tone": "amber"
+                }
+              ]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Aeolian"
+            }
+          ],
+          [
+            {
+              "text": "Am",
+              "marks": ["code"]
+            },
+            {
+              "text": "\u2013"
+            },
+            {
+              "text": "F",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "i",
+              "marks": ["code"]
+            },
+            {
+              "text": "\u2013"
+            },
+            {
+              "text": "bVI",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "F A C",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "the "
+            },
+            {
+              "text": "b6",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "Phrygian"
+            }
+          ],
+          [
+            {
+              "text": "Am",
+              "marks": ["code"]
+            },
+            {
+              "text": "\u2013"
+            },
+            {
+              "text": "Bb",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "i",
+              "marks": ["code"]
+            },
+            {
+              "text": "\u2013"
+            },
+            {
+              "text": "bII",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "Bb D F",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "the "
+            },
+            {
+              "text": "b2",
+              "marks": [
+                "code",
+                {
+                  "type": "color",
+                  "tone": "rose"
+                }
+              ]
+            }
+          ]
+        ]
+      ],
+      "header": [
+        [
+          {
+            "text": "Mode"
+          }
+        ],
+        [
+          {
+            "text": "Vamp"
+          }
+        ],
+        [
+          {
+            "text": "Numerals"
+          }
+        ],
+        [
+          {
+            "text": "Second chord's notes"
+          }
+        ],
+        [
+          {
+            "text": "Carries"
+          }
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Ionian isn't in that table because it has no characteristic note \u2014 no single tone for a second chord to carry, so there's no vamp for the rule to build one out of. "
+        },
+        {
+          "text": "One Home Chord, Three Ways",
+          "link": {
+            "kind": "article",
+            "slug": "modes-one-home-three-ways"
+          }
+        },
+        {
+          "text": " already left that row empty, for the same reason."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Aeolian is the interesting case, because it's sitting right there in the table above, obeying the rule in form. "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": "\u2013"
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": " really does carry a note \u2014 the "
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "F A C",
+          "marks": ["code"]
+        },
+        {
+          "text": ") carries the "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": ". But the "
+        },
+        {
+          "text": "b6",
+          "marks": ["code"]
+        },
+        {
+          "text": " isn't a note Aeolian is named for; it's the note Dorian gives up to get its own "
+        },
+        {
+          "text": "6",
+          "marks": [
+            "code",
+            {
+              "type": "color",
+              "tone": "amber"
+            }
+          ]
+        },
+        {
+          "text": ". And "
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": " sits inside Phrygian's scale too, so the vamp gets only as far as \"not Dorian\" before it runs out of chord to lean on. "
+        },
+        {
+          "text": "One Minor Home, Three Ways",
+          "link": {
+            "kind": "article",
+            "slug": "modes-one-minor-three-ways"
+          }
+        },
+        {
+          "text": " already worked through exactly this."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Locrian isn't in the table for a different reason than Ionian's \u2014 it has no vamp because it has no first chord to stand on in the first place. There's no home for a second chord to sit under, so the rule never gets the chance to apply. "
+        },
+        {
+          "text": "Locrian, and the Home That Won't Hold",
+          "link": {
+            "kind": "article",
+            "slug": "modes-locrian"
+          }
+        },
+        {
+          "text": " has the reason why."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Only one of these five vamps is settled by its second chord alone. "
+        },
+        {
+          "text": "B",
+          "marks": ["code"]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "B D# F#",
+          "marks": ["code"]
+        },
+        {
+          "text": ") sits inside Lydian and none of the other six, so hearing it is already enough \u2014 nothing else here works that cleanly. "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "G B D",
+          "marks": ["code"]
+        },
+        {
+          "text": ") sits inside Mixolydian, Dorian and Aeolian at once, and it's the major home chord that rules out the two minor candidates. "
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "D F# A",
+          "marks": ["code"]
+        },
+        {
+          "text": ") sits inside Ionian, Mixolydian and Dorian, and it's the minor home chord that rules out the two major ones. "
+        },
+        {
+          "text": "Bb",
+          "marks": ["code"]
+        },
+        {
+          "text": " ("
+        },
+        {
+          "text": "Bb D F",
+          "marks": ["code"]
+        },
+        {
+          "text": ") sits inside both Phrygian and Locrian, and what separates them is that Locrian's home chord is "
+        },
+        {
+          "text": "Adim",
+          "marks": ["code"]
+        },
+        {
+          "text": ", not "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": ". So the second chord narrows the field, and the chord underneath it \u2014 major or minor, a perfect fifth or none \u2014 usually has to finish the job."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "progression-player",
+      "props": {
+        "chords": ["Am", "F", "Am", "Bb"],
+        "bpm": 66,
+        "caption": "The loop that only gets as far as \"not Dorian\", then the one that names its mode outright"
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That's the rule, both halves of it. It tells you which chord to reach for once you know which note you're after, and it explains something you've probably already noticed without naming it: why none of these vamps ever felt arbitrary. It doesn't yet make that note into anything a listener hears \u2014 for that you still need somewhere on the neck to actually play it, and you still have to lean on it once you get there."
+        }
+      ]
+    }
+  ]
+}

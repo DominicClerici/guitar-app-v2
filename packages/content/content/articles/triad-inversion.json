@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_triad-inversion",
+    "slug": "triad-inversion",
+    "title": "Which Note Is in the Bass",
+    "summary": "Inversion is which of the three notes sits lowest — and that doesn't rename the chord.",
+    "tags": ["triads", "chords"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Hold " },
+        { "text": "x x 2 0 1 x", "marks": ["code"] },
+        { "text": " and listen to the lowest note. It's an " },
+        { "text": "E", "marks": ["code"] },
+        {
+          "text": ". It's tempting to call this an E chord — the bass note is the loudest evidence your ear gets, so it feels like the obvious answer. It's also wrong. This grip is "
+        },
+        { "text": "E", "marks": ["code"] },
+        { "text": " " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " " },
+        { "text": "C", "marks": ["code"] },
+        { "text": ", low to high — a " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " major chord with an " },
+        { "text": "E", "marks": ["code"] },
+        { "text": " underneath it." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "A chord is named by its root, wherever the root happens to sit. The bass note is a fact about how the chord is voiced right now — it isn't a fact about what the chord is called. Move the same three notes around and the bass changes; the chord doesn't."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The name for which note sits lowest is " },
+        { "text": "inversion", "marks": ["bold"] },
+        {
+          "text": ". Take the bottom note of a triad and rotate it up an octave, and you get the next inversion in the cycle. There are exactly three, because there are only three notes to put on the bottom."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [[{ "text": "Inversion" }], [{ "text": "Order" }], [{ "text": "Bass note" }]],
+      "rows": [
+        [
+          [{ "text": "root position" }],
+          [{ "text": "1 3 5", "marks": ["code"] }],
+          [{ "text": "the root" }]
+        ],
+        [
+          [{ "text": "first inversion" }],
+          [{ "text": "3 5 1", "marks": ["code"] }],
+          [{ "text": "the third" }]
+        ],
+        [
+          [{ "text": "second inversion" }],
+          [{ "text": "5 1 3", "marks": ["code"] }],
+          [{ "text": "the fifth" }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The grip you just held, " },
+        { "text": "x x 2 0 1 x", "marks": ["code"] },
+        { "text": ", is " },
+        { "text": "first inversion", "marks": ["bold"] },
+        { "text": " — the third, " },
+        { "text": "E", "marks": ["code"] },
+        { "text": ", is in the bass, exactly as the table says it should be." }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "C",
+        "strings": "2-3-4",
+        "inversion": "first",
+        "caption": "C major, first inversion, strings 2-3-4 — E in the bass, still called C."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "There's a shorthand for exactly this situation, and it's worth naming once because charts print it constantly: "
+        },
+        { "text": "C/E", "marks": ["code"] },
+        {
+          "text": " reads \"C major with E in the bass.\" The letter after the slash is never a second chord — it's just telling you what's underneath. "
+        },
+        { "text": "C/G", "marks": ["code"] },
+        {
+          "text": " is the same idea one step further around the cycle: C major, second inversion, with the fifth on the bottom. You'll see slash chords again in this pathway, but sparingly — most of the time \"first inversion\" and \"second inversion\" say the same thing more usefully."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here's the part that's specific to a guitar. On a keyboard, an inversion is just a voicing choice — the same hand position, the same five fingers, a different note on the bottom. On a guitar, an inversion is a "
+        },
+        { "text": "place", "marks": ["bold"] },
+        {
+          "text": ". Root position, first inversion, and second inversion aren't three ways of playing in the same spot — each one lands the grip somewhere else on the neck entirely. Chasing an inversion is chasing a location."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        { "text": "Don't take this on faith. Play " },
+        { "text": "x x 2 0 1 x", "marks": ["code"] },
+        { "text": " into " },
+        { "text": "Chord Detector", "link": { "kind": "screen", "href": "/chord-detector" } },
+        { "text": " and it comes back " },
+        { "text": "C/E", "marks": ["code"] },
+        { "text": " — never " },
+        { "text": "E", "marks": ["code"] },
+        {
+          "text": ". The letter before the slash is the chord; the letter after it is only what's on the bottom."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That's the whole misconception, dismantled by one chord and one app screen: the lowest note is a detail of the voicing, not the identity of the chord. Everything else this pathway teaches about triads builds on that distinction."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Three inversions exist, and each one lives somewhere different on the neck. Next: exactly which strings a triad like this actually lives on, and why there are four separate places to choose from."
+        }
+      ]
+    }
+  ]
+}

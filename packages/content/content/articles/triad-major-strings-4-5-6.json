@@ -1,0 +1,274 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_triad-major-strings-4-5-6",
+    "slug": "triad-major-strings-4-5-6",
+    "title": "The Bottom Set, and When to Leave It Alone",
+    "summary": "Strings 4-5-6 hold the exact same shapes as strings 3-4-5, note for note — and they're the one set where using them at all is a real decision, not just a matter of reach.",
+    "tags": ["triads", "chords", "fretboard"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One more set down, and this time nothing moves. Every shape from strings 3-4-5 transfers to strings 4-5-6 exactly — same notes, same relationships, just five frets higher up the neck, because the jump from string 5 to string 6 is a fourth, and a fourth is five frets."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Root position " },
+        { "text": "x 3 2 0 x x", "marks": ["code"] },
+        { "text": " becomes " },
+        { "text": "8 7 5 x x x", "marks": ["code"] },
+        {
+          "text": " — the identical shape, five frets up. First inversion does the same thing: "
+        },
+        { "text": "x 7 5 5 x x", "marks": ["code"] },
+        { "text": " becomes " },
+        { "text": "12 10 10 x x x", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Second inversion does the same thing, just one octave over. Its five-frets-up copy would land at fret 15 — playable, but a long way from home — so the grip you'll actually find down low is that same shape an octave lower: "
+        },
+        { "text": "3 3 2 x x x", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "C",
+        "strings": "4-5-6",
+        "inversion": "second",
+        "caption": "Second inversion, strings 4-5-6 — the 3-4-5 shape, an octave down."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "6·3", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "G", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "5·3", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "C", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "4·2", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "E", "marks": ["code"] },
+        { "text": ". Degrees " },
+        { "text": "5 1 3", "marks": ["code"] },
+        { "text": ", bass note " },
+        { "text": "G", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "C",
+        "strings": "4-5-6",
+        "inversion": "root",
+        "caption": "Root position, strings 4-5-6 — the 3-4-5 shape, five frets up."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "8 7 5 x x x", "marks": ["code"] },
+        { "text": ": " },
+        { "text": "6·8", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "C", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "5·7", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "E", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "4·5", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "G", "marks": ["code"] },
+        { "text": ". Degrees " },
+        { "text": "1 3 5", "marks": ["code"] },
+        { "text": ", bass note " },
+        { "text": "C", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "C",
+        "strings": "4-5-6",
+        "inversion": "first",
+        "caption": "First inversion, strings 4-5-6 — the one grip on this set that has to climb."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "This one deserves the detour. First inversion needs the third, "
+        },
+        { "text": "E", "marks": ["code"] },
+        { "text": ", in the bass, and the lowest " },
+        { "text": "E", "marks": ["code"] },
+        { "text": " on string 6 is the open string — " },
+        { "text": "E2", "marks": ["code"] },
+        { "text": ". A close voicing wants the next " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " directly above that, which is " },
+        { "text": "G2", "marks": ["code"] },
+        { "text": ". But string 5 open is " },
+        { "text": "A2", "marks": ["code"] },
+        { "text": ", already higher than " },
+        { "text": "G2", "marks": ["code"] },
+        {
+          "text": ", so string 5 can't produce that note at all — the lowest G it can reach is "
+        },
+        { "text": "G3", "marks": ["code"] },
+        { "text": ", all the way up at " },
+        { "text": "5·10", "marks": ["code"] },
+        {
+          "text": ", a tenth above the bass instead of a minor third. That's not a close voicing anymore, and it's not a stretch any hand can make either. So the grip waits until the "
+        },
+        { "text": "E", "marks": ["code"] },
+        { "text": " on string 6 climbs to " },
+        { "text": "E3", "marks": ["code"] },
+        { "text": ", at fret 12, where the next " },
+        { "text": "G", "marks": ["code"] },
+        { "text": " actually sits close by: " },
+        { "text": "12 10 10 x x x", "marks": ["code"] },
+        { "text": " — " },
+        { "text": "6·12", "marks": ["code"] },
+        { "text": " " },
+        { "text": "E", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "5·10", "marks": ["code"] },
+        { "text": " " },
+        { "text": "G", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "4·10", "marks": ["code"] },
+        { "text": " " },
+        { "text": "C", "marks": ["code"] },
+        { "text": ", degrees " },
+        { "text": "3 5 1", "marks": ["code"] },
+        {
+          "text": ". The app finds this grip on its own; now you know why it had to go looking."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "This is also the place to be precise about mud, because the easy version of that story oversells the danger. The app's own voicing engine rejects two adjacent notes that sit too close together too low: below "
+        },
+        { "text": "A2", "marks": ["code"] },
+        {
+          "text": " it wants at least a major third between them, below "
+        },
+        { "text": "C3", "marks": ["code"] },
+        { "text": " at least three semitones, below " },
+        { "text": "A3", "marks": ["code"] },
+        {
+          "text": " at least two. Every one of C major's grips on strings 4-5-6 passes every one of those rules. None of them are muddy."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "What's true is how little room is left. Second inversion's bass, "
+        },
+        { "text": "G2", "marks": ["code"] },
+        {
+          "text": ", sits below the open A string, which puts it under the strictest of the three thresholds — a major third, minimum. The gap up to "
+        },
+        { "text": "C3", "marks": ["code"] },
+        {
+          "text": " is a fourth, five semitones, clearing that floor by exactly one semitone. Root position's "
+        },
+        { "text": "C3", "marks": ["code"] },
+        { "text": "-to-" },
+        { "text": "E3", "marks": ["code"] },
+        {
+          "text": " gap clears its own floor by two. Thin margins, not violations."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "info",
+      "spans": [
+        {
+          "text": "There's a grip that sits exactly on that line, and it isn't C major — it's worth leaving the anchor key for one example, because this is the honest floor everything above it is measured against."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Open G — " },
+        { "text": "3 2 0 0 0 3", "marks": ["code"] },
+        { "text": " — read on its bottom three strings, " },
+        { "text": "6·3", "marks": ["code"] },
+        { "text": " " },
+        { "text": "5·2", "marks": ["code"] },
+        { "text": " " },
+        { "text": "4·0", "marks": ["code"] },
+        { "text": ", is " },
+        { "text": "G2 B2 D3", "marks": ["code"] },
+        {
+          "text": ": a complete G major triad, root position, on strings 4-5-6. It's the lowest close major triad in root position the guitar has, and of every close major triad anywhere on the neck it's the only one whose gaps sit exactly on the app's limit — a major third from "
+        },
+        { "text": "G2", "marks": ["code"] },
+        { "text": " to " },
+        { "text": "B2", "marks": ["code"] },
+        { "text": ", three semitones from " },
+        { "text": "B2", "marks": ["code"] },
+        { "text": " to " },
+        { "text": "D3", "marks": ["code"] },
+        {
+          "text": ", with nothing to spare. One semitone tighter anywhere and the voicing engine would throw it out."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Use this set when nothing else is covering that register — solo playing, a bass-less duo, filling the bottom of an arrangement by yourself. Leave it alone once a bass player is working: that space is theirs, and a close triad down here blurs into whatever they're playing rather than sitting apart from it. That's an arrangement call, not a rule the app is enforcing."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Three sets down, three different outcomes: one note moved, then a different note moved, then nothing moved at all. Something is causing that pattern, and "
+        },
+        {
+          "text": "it has a name",
+          "link": { "kind": "article", "slug": "triad-the-b-string-shift" }
+        },
+        { "text": "." }
+      ]
+    }
+  ]
+}

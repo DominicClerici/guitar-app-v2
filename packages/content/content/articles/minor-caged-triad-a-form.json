@@ -1,0 +1,249 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_minor-caged-triad-a-form",
+    "slug": "minor-caged-triad-a-form",
+    "title": "The A Form: The Chord You Learned First",
+    "summary": "The A form of A minor is the open Am chord itself, and the single finger that turns open A into open Am is the chapter's whole rule under one hand.",
+    "tags": ["caged", "minor"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The A form of A minor is the open "
+        },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " chord, " },
+        { "text": "x 0 2 2 1 0", "marks": ["code"] },
+        { "text": ". Not " },
+        { "text": "like", "marks": ["italic"] },
+        {
+          "text": " it — it is it. The nut is the barre, which is exactly why this one is free."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here's the one finger that gets you there. Open "
+        },
+        { "text": "A", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "x 0 2 2 2 0", "marks": ["code"] },
+        { "text": "; open " },
+        { "text": "Am", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "x 0 2 2 1 0", "marks": ["code"] },
+        {
+          "text": ". String 2 moves from fret 2 to fret 1. That's the chapter's whole rule, played out under a single finger: the "
+        },
+        { "text": "3", "marks": ["code"] },
+        { "text": " on " },
+        { "text": "2·2", "marks": ["code"] },
+        { "text": " steps down to a " },
+        { "text": "b3", "marks": ["code"] },
+        { "text": " on " },
+        { "text": "2·1", "marks": ["code"] },
+        { "text": ", and nothing else in the chord moves at all." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That's worth sitting with for a second, because it runs against how most players think about this chord. Open "
+        },
+        { "text": "Am", "marks": ["code"] },
+        {
+          "text": " usually gets filed as a beginner chord — the second or third thing anyone learns, before there's any system to put it in. It never stops being that. But it's also, at the same time, one-fifth of a map that covers the whole neck, sitting in the exact window CAGED would have put it in anyway. Nothing about learning the system changes the chord in your hand; it only changes what you know is next to it."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "A",
+        "quality": "minor",
+        "show": "triad",
+        "caption": "The A form's window in A minor — the open Am chord, filled in."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [{ "text": "The degrees, string by string:" }]
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        [
+          { "text": "5·0 → ", "marks": ["code"] },
+          { "text": "1", "marks": ["code"] },
+          { "text": " (A)" }
+        ],
+        [
+          { "text": "4·2 → ", "marks": ["code"] },
+          { "text": "5", "marks": ["code"] },
+          { "text": " (E)" }
+        ],
+        [
+          { "text": "3·2 → ", "marks": ["code"] },
+          { "text": "1", "marks": ["code"] },
+          { "text": " (A)" }
+        ],
+        [
+          { "text": "2·1 → ", "marks": ["code"] },
+          { "text": "b3", "marks": ["code"] },
+          { "text": " (C)" }
+        ],
+        [
+          { "text": "1·0 → ", "marks": ["code"] },
+          { "text": "5", "marks": ["code"] },
+          { "text": " (E)" }
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "So the full grip is "
+        },
+        { "text": "x 1 5 1 b3 5", "marks": ["code"] },
+        { "text": ", roots on strings 5 and 3." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Look at strings 5-4-3 on their own: "
+        },
+        { "text": "5·0", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "4·2", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3·2", "marks": ["code"] },
+        { "text": " — " },
+        { "text": "1 5 1", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "A E A", "marks": ["code"] },
+        {
+          "text": ". That's a power chord with an A-string root, and it's identical in "
+        },
+        { "text": "A", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "Am", "marks": ["code"] },
+        {
+          "text": ", because roots and fifths never move. It's the most physical demonstration in the chapter of the rule the opener stated: three of this chord's five notes don't care at all whether you're playing major or minor."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The top note isn't the root, either — string 1 open is "
+        },
+        { "text": "E", "marks": ["code"] },
+        { "text": ", the " },
+        { "text": "5", "marks": ["code"] },
+        { "text": ". " },
+        {
+          "text": "The major A form",
+          "link": { "kind": "article", "slug": "caged-triad-a-form" }
+        },
+        {
+          "text": " already made this point in full, and it holds exactly as true here — nothing about flattening the third changes which string carries the fifth."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        {
+          "text": "One finger, string 2, fret 2 to fret 1 — that's the whole of major to minor in this shape."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The window itself is only "
+        },
+        { "text": "0–3", "marks": ["code"] },
+        {
+          "text": ", four frets — not five, the nut cuts it short, and it's the only one of the five like that. Seven dots live in the window; five of them are in the grip. The two spares are "
+        },
+        { "text": "6·0", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "5", "marks": ["code"] },
+        { "text": ") and " },
+        { "text": "5·3", "marks": ["code"] },
+        { "text": " (" },
+        { "text": "b3", "marks": ["code"] },
+        {
+          "text": "), and that second one is the edge effect showing up in the friendliest shape on the neck — it stepped into the window from above the top fret when the third flattened. A major's window here holds six dots; A minor's holds seven."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Move it off the nut and it's the cleanest barre of the five: barre at fret "
+        },
+        { "text": "n", "marks": ["code"] },
+        { "text": " and nothing in the grip reaches past " },
+        { "text": "n+2", "marks": ["code"] },
+        { "text": ". " },
+        { "text": "Bm", "marks": ["code"] },
+        { "text": " at fret 2 is " },
+        { "text": "x 2 4 4 3 2", "marks": ["code"] },
+        {
+          "text": " — the same five notes, with the index finger doing what the nut was doing. Almost everyone who teaches this agrees on one thing: the A form and the E form carry the overwhelming majority of the minor chords anyone actually plays."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Try it against " },
+        { "text": "Chord Detector", "link": { "kind": "screen", "href": "/chord-detector" } },
+        { "text": ": play open " },
+        { "text": "A", "marks": ["code"] },
+        {
+          "text": ", then move only that one finger, and watch the screen change its mind about what you're holding."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "It's a useful check on your own ear, too, since the whole difference between the two chords is smaller than it looks on paper — one string, one fret, one note out of five."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Next: " },
+        {
+          "text": "the G form",
+          "link": { "kind": "article", "slug": "minor-caged-triad-g-form" }
+        },
+        { "text": ", the opposite experience entirely." }
+      ]
+    }
+  ]
+}

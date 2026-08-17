@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "act_minor-caged-find-the-sixth",
+    "slug": "minor-caged-find-the-sixth",
+    "title": "Drill: The Two New Notes",
+    "summary": "The b6 and the 2, window by window and then right across the neck — the notes this chapter adds, under your fingers rather than on a page."
+  },
+  "activity": {
+    "kind": "note-play",
+    "modes": ["easy", "hard"],
+    "board": { "fretFrom": 0, "fretTo": 13 },
+    "rounds": [
+      {
+        "kind": "targets",
+        "id": "r_minor-caged-find-the-sixth.a-form-new",
+        "prompt": [
+          {
+            "text": "Open position, frets 0 to 3. Play the five notes the whole scale adds to this window — three "
+          },
+          { "text": "b6", "marks": ["code"] },
+          { "text": "s and two " },
+          { "text": "2", "marks": ["code"] },
+          {
+            "text": "s. Two of them sit under your first finger at fret 1, and the note each one leans onto is the open string right below it."
+          }
+        ],
+        "targets": [
+          { "string": 6, "fret": 1 },
+          { "string": 5, "fret": 2 },
+          { "string": 4, "fret": 3 },
+          { "string": 2, "fret": 0 },
+          { "string": 1, "fret": 1 }
+        ],
+        "ordered": false,
+        "board": { "fretFrom": 0, "fretTo": 3 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_minor-caged-find-the-sixth.e-form-new",
+        "prompt": [
+          {
+            "text": "The window at fret 5. Play the five notes the scale adds to the box you already knew — including the two on frets 4 and 6, which the box left empty."
+          }
+        ],
+        "targets": [
+          { "string": 6, "fret": 7 },
+          { "string": 5, "fret": 8 },
+          { "string": 3, "fret": 4 },
+          { "string": 2, "fret": 6 },
+          { "string": 1, "fret": 7 }
+        ],
+        "ordered": false,
+        "board": { "fretFrom": 4, "fretTo": 8 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_minor-caged-find-the-sixth.c-form-new",
+        "prompt": [
+          {
+            "text": "The highest window, frets 9 to 13. Five new notes again — and this time three of them are "
+          },
+          { "text": "b6", "marks": ["code"] },
+          { "text": "s sitting one fret above a " },
+          { "text": "5", "marks": ["code"] },
+          { "text": "." }
+        ],
+        "targets": [
+          { "string": 6, "fret": 13 },
+          { "string": 4, "fret": 9 },
+          { "string": 3, "fret": 10 },
+          { "string": 2, "fret": 12 },
+          { "string": 1, "fret": 13 }
+        ],
+        "ordered": false,
+        "board": { "fretFrom": 9, "fretTo": 13 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_minor-caged-find-the-sixth.every-flat-six",
+        "prompt": [
+          { "text": "Now across the whole neck. Play a " },
+          { "text": "b6", "marks": ["code"] },
+          {
+            "text": " in each octave, lowest to highest — four of them, one per octave. Every one sits a single fret above a "
+          },
+          { "text": "5", "marks": ["code"] },
+          { "text": ", so find the " },
+          { "text": "5", "marks": ["code"] },
+          { "text": " first if you need to." }
+        ],
+        "targets": [
+          { "string": 6, "fret": 1 },
+          { "string": 4, "fret": 3 },
+          { "string": 3, "fret": 10 },
+          { "string": 1, "fret": 13 }
+        ],
+        "ordered": true,
+        "board": { "fretFrom": 0, "fretTo": 13 }
+      },
+      {
+        "kind": "targets",
+        "id": "r_minor-caged-find-the-sixth.every-second",
+        "prompt": [
+          { "text": "The same walk with the other new note. Play a " },
+          { "text": "2", "marks": ["code"] },
+          {
+            "text": " in each octave, lowest to highest — three of them. Each one sits a single fret below a "
+          },
+          { "text": "b3", "marks": ["code"] },
+          { "text": ". Play the " },
+          { "text": "b3", "marks": ["code"] },
+          { "text": " after each and hear it arrive." }
+        ],
+        "targets": [
+          { "string": 6, "fret": 7 },
+          { "string": 4, "fret": 9 },
+          { "string": 1, "fret": 7 }
+        ],
+        "ordered": true,
+        "board": { "fretFrom": 0, "fretTo": 13 }
+      }
+    ]
+  }
+}

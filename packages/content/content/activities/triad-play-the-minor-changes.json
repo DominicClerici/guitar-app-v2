@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "act_triad-play-the-minor-changes",
+    "slug": "triad-play-the-minor-changes",
+    "title": "Drill: Four Chords, One of Them Minor",
+    "summary": "A minor, F, C and G on strings 1-2-3, the whole progression inside the first five frets, and the single note that carries the first change."
+  },
+  "activity": {
+    "kind": "note-play",
+    "modes": ["easy", "hard"],
+    "board": { "fretFrom": 0, "fretTo": 5 },
+    "rounds": [
+      {
+        "kind": "targets",
+        "id": "r_triad-play-the-minor-changes.a-minor",
+        "prompt": [
+          { "text": "A minor, root position: " },
+          { "text": "x x x 2 1 0", "marks": ["code"] },
+          { "text": " — " },
+          { "text": "A", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "C", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "E", "marks": ["code"] },
+          {
+            "text": ". These are the top three strings of the open A minor chord. Play the notes one at a time."
+          }
+        ],
+        "targets": [
+          { "string": 3, "fret": 2 },
+          { "string": 2, "fret": 1 },
+          { "string": 1, "fret": 0 }
+        ]
+      },
+      {
+        "kind": "targets",
+        "id": "r_triad-play-the-minor-changes.f-major",
+        "prompt": [
+          { "text": "F major, first inversion: " },
+          { "text": "x x x 2 1 1", "marks": ["code"] },
+          { "text": " — " },
+          { "text": "A", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "C", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "F", "marks": ["code"] },
+          {
+            "text": ". Two of the three notes have not moved since the last round. Only string 1 changed, and only by a fret."
+          }
+        ],
+        "targets": [
+          { "string": 3, "fret": 2 },
+          { "string": 2, "fret": 1 },
+          { "string": 1, "fret": 1 }
+        ]
+      },
+      {
+        "kind": "targets",
+        "id": "r_triad-play-the-minor-changes.c-major",
+        "prompt": [
+          { "text": "C major, second inversion: " },
+          { "text": "x x x 0 1 0", "marks": ["code"] },
+          { "text": " — " },
+          { "text": "G", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "C", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "E", "marks": ["code"] },
+          { "text": ". Back down to the nut, with the finger on string 2 still where it started." }
+        ],
+        "targets": [
+          { "string": 3, "fret": 0 },
+          { "string": 2, "fret": 1 },
+          { "string": 1, "fret": 0 }
+        ]
+      },
+      {
+        "kind": "targets",
+        "id": "r_triad-play-the-minor-changes.g-major",
+        "prompt": [
+          { "text": "G major, first inversion: " },
+          { "text": "x x x 4 3 3", "marks": ["code"] },
+          { "text": " — " },
+          { "text": "B", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "D", "marks": ["code"] },
+          { "text": ", " },
+          { "text": "G", "marks": ["code"] },
+          { "text": ". The furthest the hand travels in the whole loop, and it is four frets." }
+        ],
+        "targets": [
+          { "string": 3, "fret": 4 },
+          { "string": 2, "fret": 3 },
+          { "string": 1, "fret": 3 }
+        ]
+      },
+      {
+        "kind": "targets",
+        "id": "r_triad-play-the-minor-changes.the-one-that-moves",
+        "prompt": [
+          {
+            "text": "Now just the note that carries A minor into F, on string 1: open, then fret 1 — "
+          },
+          { "text": "E", "marks": ["code"] },
+          { "text": " to " },
+          { "text": "F", "marks": ["code"] },
+          {
+            "text": ". One note, one fret, and the chord is a different chord. Play them slowly enough to hear the change happen."
+          }
+        ],
+        "targets": [
+          { "string": 1, "fret": 0 },
+          { "string": 1, "fret": 1 }
+        ],
+        "ordered": true
+      }
+    ]
+  }
+}

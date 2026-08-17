@@ -1,0 +1,495 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_triad-the-sharp-fifth",
+    "slug": "triad-the-sharp-fifth",
+    "title": "The Fifth Goes the Other Way",
+    "summary": "Raise a major triad's fifth one fret instead of dropping it and you get an augmented triad — a chord that almost never sits still, built around a note leaning up into what comes next.",
+    "tags": ["triads", "chords", "fretboard"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Raise the fifth of a major triad one fret instead of dropping it, and you get an augmented triad — a chord that almost never sits still. Augmented is degrees "
+        },
+        {
+          "text": "1 3 #5",
+          "marks": ["code"]
+        },
+        {
+          "text": "; over "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": " that's "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "G#",
+          "marks": ["code"]
+        },
+        {
+          "text": ", two stacked major thirds, "
+        },
+        {
+          "text": "4+4",
+          "marks": ["code"]
+        },
+        {
+          "text": ". The third stays exactly where major left it. Only the fifth moves, and it moves up."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The move is the same in every grip on the neck, with no exceptions: take a major triad and raise the fifth one fret. Root position "
+        },
+        {
+          "text": "x x x 5 5 3",
+          "marks": ["code"]
+        },
+        {
+          "text": " becomes "
+        },
+        {
+          "text": "x x x 5 5 4",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Which finger moves depends only on the inversion, never on the set — root position raises the top note, first inversion the middle note, second inversion the bass note. Unlike diminished, augmented never relocates: every major grip has its augmented twin sitting one fret away, in exactly the same place."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "C",
+        "quality": "augmented",
+        "strings": "1-2-3",
+        "inversion": "root",
+        "caption": "C augmented, root position, strings 1-2-3 — degrees 1 3 #5, the fifth raised a fret from major."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The first place this chord earns its keep is a change every learner already plays: "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " major going to "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Raise "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": "'s fifth — "
+        },
+        {
+          "text": "D",
+          "marks": ["code"]
+        },
+        {
+          "text": " becomes "
+        },
+        {
+          "text": "D#",
+          "marks": ["code"]
+        },
+        {
+          "text": " — and the pull into "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": " gets sharper, because "
+        },
+        {
+          "text": "D#",
+          "marks": ["code"]
+        },
+        {
+          "text": " sits a semitone below "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": ", the third of "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": "."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "G",
+        "quality": "augmented",
+        "strings": "1-2-3",
+        "inversion": "first",
+        "caption": "G augmented, first inversion, strings 1-2-3 — degrees 3 #5 1, B in the bass."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "On strings 1-2-3, that's "
+        },
+        {
+          "text": "G+",
+          "marks": ["code"]
+        },
+        {
+          "text": " first inversion "
+        },
+        {
+          "text": "x x x 4 4 3",
+          "marks": ["code"]
+        },
+        {
+          "text": " — "
+        },
+        {
+          "text": "B3",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "D#4",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "G4",
+          "marks": ["code"]
+        },
+        {
+          "text": " — resolving into "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": " root position "
+        },
+        {
+          "text": "x x x 5 5 3",
+          "marks": ["code"]
+        },
+        {
+          "text": " — "
+        },
+        {
+          "text": "C4",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "E4",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "G4",
+          "marks": ["code"]
+        },
+        {
+          "text": ". String 3 moves up a fret, string 2 moves up a fret, string 1 doesn't move at all — two voices step up a semitone while the third holds still. The Beatles' \"Oh! Darling\" opens on exactly this chord: "
+        },
+        {
+          "text": "E+",
+          "marks": ["code"]
+        },
+        {
+          "text": ", the "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": " chord of A major with its fifth raised, and the raised fifth slides up a semitone into the third of "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": "."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The second job is a chromatic line hiding inside a chord you already hold. Start on "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": " root position, "
+        },
+        {
+          "text": "x x x 5 5 3",
+          "marks": ["code"]
+        },
+        {
+          "text": ", and walk the top string up one fret at a time while the rest of the grip barely moves."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "x x x 5 5 3",
+          "marks": ["code"]
+        },
+        {
+          "text": " moves to "
+        },
+        {
+          "text": "C+",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "x x x 5 5 4",
+          "marks": ["code"]
+        },
+        {
+          "text": " — the same augmented grip already drawn above — and then to "
+        },
+        {
+          "text": "F/C",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "x x x 5 6 5",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Be exact about what happens: on the first change only the high "
+        },
+        {
+          "text": "e",
+          "marks": ["code"]
+        },
+        {
+          "text": " moves, from "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " to "
+        },
+        {
+          "text": "G#",
+          "marks": ["code"]
+        },
+        {
+          "text": "; on the second, string 2 moves as well, "
+        },
+        {
+          "text": "E",
+          "marks": ["code"]
+        },
+        {
+          "text": " to "
+        },
+        {
+          "text": "F",
+          "marks": ["code"]
+        },
+        {
+          "text": ". The high "
+        },
+        {
+          "text": "e",
+          "marks": ["code"]
+        },
+        {
+          "text": " walks "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " → "
+        },
+        {
+          "text": "G#",
+          "marks": ["code"]
+        },
+        {
+          "text": " → "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": " while the "
+        },
+        {
+          "text": "C",
+          "marks": ["code"]
+        },
+        {
+          "text": " on string 3 never moves at all. "
+        },
+        {
+          "text": "F/C",
+          "marks": ["code"]
+        },
+        {
+          "text": " is F major in second inversion, the fifth in the bass — chapter 2 named this grip in prose without ever drawing it; here it is."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "F",
+        "strings": "1-2-3",
+        "inversion": "second",
+        "caption": "F major, second inversion, strings 1-2-3 — F/C, the fifth in the bass."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One thing this chord is not: "
+        },
+        {
+          "text": "G7#5",
+          "marks": ["code"]
+        },
+        {
+          "text": " is a four-note chord, and it's out of scope here. This pathway's "
+        },
+        {
+          "text": "G+",
+          "marks": ["code"]
+        },
+        {
+          "text": " is three notes — "
+        },
+        {
+          "text": "G",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "B",
+          "marks": ["code"]
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "D#",
+          "marks": ["code"]
+        },
+        {
+          "text": ". The augmented triad here is a chord you pass through, not one you land on."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Keep rotating that same shape up the neck, four frets at a time, and something strange happens to its name — "
+        },
+        {
+          "text": "the shape with no root of its own",
+          "link": {
+            "kind": "article",
+            "slug": "triad-augmented-has-no-root"
+          }
+        },
+        {
+          "text": "."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,641 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_minor-caged-pentatonic-e-form",
+    "slug": "minor-caged-pentatonic-e-form",
+    "title": "The E Form: The Box You Already Own",
+    "summary": "The E form's twelve pentatonic dots are the shape most guitarists already play at fret 5, and only four of the twelve sit outside the Am chord — the fewest of any window in the chapter.",
+    "tags": ["caged", "minor"],
+    "readingTimeMin": 4,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The E form of A minor is "
+        },
+        {
+          "text": "the barre at fret 5",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-triad-e-form"
+          }
+        },
+        {
+          "text": " you already know: "
+        },
+        {
+          "text": "5 7 7 5 5 5",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Its pentatonic window is the same one chapter 2 used for the triad — frets "
+        },
+        {
+          "text": "4–8",
+          "marks": ["code"]
+        },
+        {
+          "text": " — and its twelve dots sit on only three of those five frets: "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "7",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "8",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Nothing at fret "
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": ", nothing at fret "
+        },
+        {
+          "text": "6",
+          "marks": ["code"]
+        },
+        {
+          "text": "."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [
+          {
+            "text": "String"
+          }
+        ],
+        [
+          {
+            "text": "Lower dot"
+          }
+        ],
+        [
+          {
+            "text": "Upper dot"
+          }
+        ]
+      ],
+      "rows": [
+        [
+          [
+            {
+              "text": "6"
+            }
+          ],
+          [
+            {
+              "text": "6·5 — 1 (A)",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "6·8 — b3 (C)",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "5"
+            }
+          ],
+          [
+            {
+              "text": "5·5 — 4 (D)",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "5·7 — 5 (E)",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "4"
+            }
+          ],
+          [
+            {
+              "text": "4·5 — b7 (G)",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "4·7 — 1 (A)",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "3"
+            }
+          ],
+          [
+            {
+              "text": "3·5 — b3 (C)",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "3·7 — 4 (D)",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "2"
+            }
+          ],
+          [
+            {
+              "text": "2·5 — 5 (E)",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "2·8 — b7 (G)",
+              "marks": ["code"]
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "text": "1"
+            }
+          ],
+          [
+            {
+              "text": "1·5 — 1 (A)",
+              "marks": ["code"]
+            }
+          ],
+          [
+            {
+              "text": "1·8 — b3 (C)",
+              "marks": ["code"]
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "type": "live",
+      "component": "caged-shape",
+      "props": {
+        "root": "A",
+        "form": "E",
+        "quality": "minor",
+        "show": "pentatonic",
+        "caption": "Twelve dots on frets 5, 7 and 8 only — the window every other minor pentatonic shape on the neck gets compared to."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "String 6 to string 1, the pattern reads 5 and 8, 5 and 7, 5 and 7, 5 and 7, 5 and 8, 5 and 8. If that already looks familiar, it should — this is the shape sold everywhere as the first minor pentatonic box. Not similar to it. The same twelve positions, note for note. If you've been playing that box since before you knew what a "
+        },
+        {
+          "text": "b3",
+          "marks": ["code"]
+        },
+        {
+          "text": " was, this is where it joins the system."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Chapter 1 already showed that frets "
+        },
+        {
+          "text": "4–8",
+          "marks": ["code"]
+        },
+        {
+          "text": " are C major's G form and A minor's E form at the same time — one window, two names. The full case lives in "
+        },
+        {
+          "text": "One Window, Two Names",
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-one-window-two-names"
+          }
+        },
+        {
+          "text": "; this lesson won't re-run it. If you want to see it from the other side, "
+        },
+        {
+          "text": "the G form of C major",
+          "link": {
+            "kind": "article",
+            "slug": "caged-pentatonic-g-form"
+          }
+        },
+        {
+          "text": " draws these same twelve dots."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Fret "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": " deserves its own paragraph. Lay one finger across it and every string underneath is a note of A minor pentatonic — degrees low to high "
+        },
+        {
+          "text": "1 4 b7 b3 5 1",
+          "marks": ["code"]
+        },
+        {
+          "text": ", notes "
+        },
+        {
+          "text": "A D G C E A",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Checked at every fret from 0 to 15, fret "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": " is the only one on the whole neck where that's true. Four of those six are chord tones — "
+        },
+        {
+          "text": "6·5",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "3·5",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "2·5",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "1·5",
+          "marks": ["code"]
+        },
+        {
+          "text": " — and two aren't: "
+        },
+        {
+          "text": "5·5",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "4·5",
+          "marks": ["code"]
+        },
+        {
+          "text": ". One finger gives you the whole scale; four of the six strings under it give you the whole chord."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "spans": [
+        {
+          "text": "One finger at fret "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": ", all six strings, and four of the six are chord tones."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That's the difference this window makes physical. Only "
+        },
+        {
+          "text": "four",
+          "marks": ["bold"]
+        },
+        {
+          "text": " of its twelve dots sit outside the "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": " chord — "
+        },
+        {
+          "text": "5·5",
+          "marks": ["code"]
+        },
+        {
+          "text": " (a "
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": "), "
+        },
+        {
+          "text": "4·5",
+          "marks": ["code"]
+        },
+        {
+          "text": " (a "
+        },
+        {
+          "text": "b7",
+          "marks": ["code"]
+        },
+        {
+          "text": "), "
+        },
+        {
+          "text": "3·7",
+          "marks": ["code"]
+        },
+        {
+          "text": " (a "
+        },
+        {
+          "text": "4",
+          "marks": ["code"]
+        },
+        {
+          "text": ") and "
+        },
+        {
+          "text": "2·8",
+          "marks": ["code"]
+        },
+        {
+          "text": " (a "
+        },
+        {
+          "text": "b7",
+          "marks": ["code"]
+        },
+        {
+          "text": "). Every other window in this chapter has five. The other eight dots are the notes that make a phrase arrive; those four are the notes that make it move. A line built only from the four never settles; a line built only from the other eight is an arpeggio."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That's worth sitting with, because \"I already play this box\" and \"there's nothing left to learn here\" are not the same claim. You already own the shape. What's new is knowing, without stopping to think, which four of its twelve notes are just passing through."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Three roots sit inside this window without moving your hand: "
+        },
+        {
+          "text": "6·5",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "4·7",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "1·5",
+          "marks": ["code"]
+        },
+        {
+          "text": " — chapter 2's "
+        },
+        {
+          "text": "6 → 4 → 1",
+          "marks": ["code"]
+        },
+        {
+          "text": " map, unchanged two chapters later. Low, middle and high: whichever register a phrase ends in, home is under a finger. That's why the E form stays the window the rest of this chapter gets located from."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Hold a sustained "
+        },
+        {
+          "text": "A",
+          "marks": ["code"]
+        },
+        {
+          "text": " with the "
+        },
+        {
+          "text": "Drone",
+          "link": {
+            "kind": "screen",
+            "href": "/drone"
+          }
+        },
+        {
+          "text": " and play the box against it. End every phrase on "
+        },
+        {
+          "text": "6·5",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "4·7",
+          "marks": ["code"]
+        },
+        {
+          "text": " or "
+        },
+        {
+          "text": "1·5",
+          "marks": ["code"]
+        },
+        {
+          "text": " — the same twelve notes everyone else is playing; the difference is entirely in where you stop. Then try ending on "
+        },
+        {
+          "text": "4·5",
+          "marks": ["code"]
+        },
+        {
+          "text": " instead and hear it hang."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "What's new since chapter 2 is only those four dots — the fewest added of any window this chapter. The "
+        },
+        {
+          "text": "Am",
+          "marks": ["code"]
+        },
+        {
+          "text": " barre at fret "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": " and the one-finger fragment on strings 3-2-1 are both still sitting exactly where you left them."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "In reach it sits close. Its three-fret strings are 6, 2 and 1, and its twelve dots use only three frets — "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": ", "
+        },
+        {
+          "text": "7",
+          "marks": ["code"]
+        },
+        {
+          "text": " and "
+        },
+        {
+          "text": "8",
+          "marks": ["code"]
+        },
+        {
+          "text": " — which no other window in this chapter manages; the other four each spread their dots over four. The widest reach any string here asks for is fret "
+        },
+        {
+          "text": "5",
+          "marks": ["code"]
+        },
+        {
+          "text": " to fret "
+        },
+        {
+          "text": "8",
+          "marks": ["code"]
+        },
+        {
+          "text": ". Page through it in the "
+        },
+        {
+          "text": "Scale Visualizer",
+          "link": {
+            "kind": "screen",
+            "href": "/scale-visualizer"
+          }
+        },
+        {
+          "text": " to see it drawn the same way."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Next: "
+        },
+        {
+          "text": "the D form",
+          "marks": ["bold"],
+          "link": {
+            "kind": "article",
+            "slug": "minor-caged-pentatonic-d-form"
+          }
+        },
+        {
+          "text": " — the window directly above this one, and the way out of the box."
+        }
+      ]
+    }
+  ]
+}

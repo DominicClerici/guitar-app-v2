@@ -1,0 +1,349 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_triad-one-note-lower",
+    "slug": "triad-one-note-lower",
+    "title": "One Note, One Fret",
+    "summary": "A minor triad is a major triad with the third dropped one semitone — same root, same fifth, same set, same inversion, one fret moved.",
+    "tags": ["triads", "chords", "fretboard"],
+    "readingTimeMin": 5,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "A minor triad is a major triad with the third dropped one semitone — one fret. Minor is degrees "
+        },
+        { "text": "1 b3 5", "marks": ["code"] },
+        { "text": "; major is " },
+        { "text": "1 3 5", "marks": ["code"] },
+        {
+          "text": ". One note changes, it drops a semitone, and a semitone on a guitar is exactly one fret — the root stays put, the fifth stays put, the string set stays the same, the inversion stays the same, and the grip stays in the same place on the neck. One finger moves."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One reminder before the grips, since a chapter has gone by since you last needed it: "
+        },
+        { "text": "3·5", "marks": ["code"] },
+        { "text": " means string 3, fret 5. A chart is six slots, low E first, with " },
+        { "text": "x", "marks": ["code"] },
+        { "text": " for a string that isn't played, and string 1 is always the high " },
+        { "text": "e", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Chapter 2 already worked out exactly where the third sits inside a grip, on every set. Restated here as a tool rather than a discovery:"
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [[{ "text": "Inversion" }], [{ "text": "Degrees" }], [{ "text": "The third is…" }]],
+      "rows": [
+        [
+          [{ "text": "root position" }],
+          [{ "text": "1 3 5", "marks": ["code"] }],
+          [{ "text": "the middle note" }]
+        ],
+        [
+          [{ "text": "first inversion" }],
+          [{ "text": "3 5 1", "marks": ["code"] }],
+          [{ "text": "the bass note" }]
+        ],
+        [
+          [{ "text": "second inversion" }],
+          [{ "text": "5 1 3", "marks": ["code"] }],
+          [{ "text": "the top note" }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That is the note that drops for minor. Root position: drop the middle note. First inversion: drop the bass note. Second inversion: drop the top note. Nothing else in the grip moves. The degrees become "
+        },
+        { "text": "1 b3 5", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "b3 5 1", "marks": ["code"] },
+        { "text": ", and " },
+        { "text": "5 1 b3", "marks": ["code"] },
+        { "text": " — the " },
+        { "text": "3", "marks": ["code"] },
+        { "text": " has become a " },
+        { "text": "b3", "marks": ["code"] },
+        { "text": " and nothing else about the numbering has changed." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [{ "text": "Start where chapter 1 started: strings 1-2-3, root position." }]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "C",
+        "strings": "1-2-3",
+        "inversion": "root",
+        "caption": "C major, root position, strings 1-2-3."
+      }
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "C",
+        "quality": "minor",
+        "strings": "1-2-3",
+        "inversion": "root",
+        "caption": "C minor, root position, strings 1-2-3 — one finger back a fret."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "x x x 5 5 3", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "C4", "marks": ["code"] },
+        { "text": " " },
+        { "text": "E4", "marks": ["code"] },
+        { "text": " " },
+        { "text": "G4", "marks": ["code"] },
+        { "text": ". Move " },
+        { "text": "2·5", "marks": ["code"] },
+        { "text": " back one fret to " },
+        { "text": "2·4", "marks": ["code"] },
+        { "text": " and the " },
+        { "text": "E", "marks": ["code"] },
+        { "text": " becomes " },
+        { "text": "Eb", "marks": ["code"] },
+        { "text": ": " },
+        { "text": "x x x 5 4 3", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "C4", "marks": ["code"] },
+        { "text": " " },
+        { "text": "Eb4", "marks": ["code"] },
+        { "text": " " },
+        { "text": "G4", "marks": ["code"] },
+        { "text": ". One finger, one fret, and the chord is " },
+        { "text": "Cm", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "First inversion moves a different finger, because the third sits somewhere else there. In a first inversion the third "
+        },
+        { "text": "is", "marks": ["italic"] },
+        { "text": " the bass note, so that's the one that drops." }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "C",
+        "quality": "minor",
+        "strings": "1-2-3",
+        "inversion": "first",
+        "caption": "C minor, first inversion, strings 1-2-3."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Major's " },
+        { "text": "x x x 9 8 8", "marks": ["code"] },
+        { "text": " becomes minor's " },
+        { "text": "x x x 8 8 8", "marks": ["code"] },
+        { "text": " — the bass note comes down a fret, from " },
+        { "text": "E4", "marks": ["code"] },
+        { "text": " to " },
+        { "text": "Eb4", "marks": ["code"] },
+        {
+          "text": ". Notice where it lands: all three notes at fret 8. Chapter 2 met a grip built that way already, "
+        },
+        { "text": "x x 5 5 5 x", "marks": ["code"] },
+        {
+          "text": " on strings 2-3-4 — the one C major grip where all three notes sit at one fret. C minor has one too, on this set, and this is it: "
+        },
+        { "text": "Eb4", "marks": ["code"] },
+        { "text": " " },
+        { "text": "G4", "marks": ["code"] },
+        { "text": " " },
+        { "text": "C5", "marks": ["code"] },
+        { "text": ", degrees " },
+        { "text": "b3 5 1", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Second inversion is the one that breaks the pattern, and it earns every word here."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Major's second inversion on strings 1-2-3 is " },
+        { "text": "x x x 0 1 0", "marks": ["code"] },
+        { "text": " — " },
+        { "text": "3·0", "marks": ["code"] },
+        { "text": " " },
+        { "text": "G3", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "2·1", "marks": ["code"] },
+        { "text": " " },
+        { "text": "C4", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "1·0", "marks": ["code"] },
+        { "text": " " },
+        { "text": "E4", "marks": ["code"] },
+        { "text": ". The rule says drop the top note a fret. The top note is the open high " },
+        { "text": "e", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "E4", "marks": ["code"] },
+        {
+          "text": " — and there is no fret below an open string. String 1 cannot sound anything lower than "
+        },
+        { "text": "E4", "marks": ["code"] },
+        { "text": " at all." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "The pitch the rule wants is " },
+        { "text": "Eb4", "marks": ["code"] },
+        { "text": ", a semitone below " },
+        { "text": "E4", "marks": ["code"] },
+        { "text": ". The next " },
+        { "text": "Eb", "marks": ["code"] },
+        { "text": " string 1 can reach above the " },
+        { "text": "C", "marks": ["code"] },
+        { "text": " is " },
+        { "text": "Eb5", "marks": ["code"] },
+        { "text": ", at " },
+        { "text": "1·11", "marks": ["code"] },
+        { "text": " — an octave and a minor third above the " },
+        { "text": "C", "marks": ["code"] },
+        {
+          "text": " rather than a minor third. That is no longer a close voicing, and it isn't a hand span either: the grip would run from fret 0 to fret 11."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "So the close voicing waits for the next " },
+        { "text": "G", "marks": ["code"] },
+        { "text": ", on string 3, at " },
+        { "text": "3·12", "marks": ["code"] },
+        { "text": ": " },
+        { "text": "x x x 12 13 11", "marks": ["code"] },
+        { "text": ", sounding " },
+        { "text": "G4", "marks": ["code"] },
+        { "text": " " },
+        { "text": "C5", "marks": ["code"] },
+        { "text": " " },
+        { "text": "Eb5", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "C",
+        "quality": "minor",
+        "strings": "1-2-3",
+        "inversion": "second",
+        "caption": "C minor, second inversion, strings 1-2-3 — the grip that has to relocate."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Here is the part to be honest about. Read the absolute frets and the shape relocated — it jumped from the nut to fret 11. Read the rule and one note dropped by exactly one fret. Both are true, because the rule is about "
+        },
+        { "text": "pitch", "marks": ["bold"] },
+        {
+          "text": ", not fret numbers: divide the octave back out and the single semitone is right there. The neck sometimes has nowhere nearby to put the result."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "It's the same kind of obstruction chapter 2 met explaining " },
+        {
+          "text": "why C major's first inversion on strings 4-5-6 sits at fret 12",
+          "link": { "kind": "article", "slug": "triad-major-strings-4-5-6" }
+        },
+        {
+          "text": " — a string that can't reach low enough, forcing the voicing to wait until the neck finally has room for it."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Inversion" }],
+        [{ "text": "Major" }],
+        [{ "text": "Minor" }],
+        [{ "text": "Voice that dropped" }],
+        [{ "text": "Minor notes" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "root" }],
+          [{ "text": "x x x 5 5 3", "marks": ["code"] }],
+          [{ "text": "x x x 5 4 3", "marks": ["code"] }],
+          [{ "text": "middle" }],
+          [{ "text": "C4 Eb4 G4", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "first" }],
+          [{ "text": "x x x 9 8 8", "marks": ["code"] }],
+          [{ "text": "x x x 8 8 8", "marks": ["code"] }],
+          [{ "text": "bass" }],
+          [{ "text": "Eb4 G4 C5", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "second" }],
+          [{ "text": "x x x 0 1 0", "marks": ["code"] }],
+          [{ "text": "x x x 12 13 11", "marks": ["code"] }],
+          [{ "text": "top" }],
+          [{ "text": "G4 C5 Eb5", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One set, three inversions, and the rule held every time — though on the shape that relocates, it had to reach past an open string to do it. Does the same one-fret drop survive a set where the shapes are less familiar, or does the "
+        },
+        { "text": "B", "marks": ["code"] },
+        { "text": " string's break complicate the story a second time?" }
+      ]
+    }
+  ]
+}

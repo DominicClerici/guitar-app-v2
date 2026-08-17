@@ -1,0 +1,210 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_triad-the-whole-neck",
+    "slug": "triad-the-whole-neck",
+    "title": "Twelve Grips, One Chord",
+    "summary": "All twelve C major grips in one table, the four ladders that show how each set's inversions climb the neck, and the rule for finding the third in any of them.",
+    "tags": ["triads", "chords", "fretboard"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Four sets, three inversions each, twelve grips — and it's one chord the entire time. Laid next to each other, the maps for strings 1-2-3, 2-3-4, 3-4-5 and 4-5-6 cover every close C major triad the guitar can hold, from the nut past fret 12."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "spans": [{ "text": "All twelve, in one table" }]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Set" }],
+        [{ "text": "Root position" }],
+        [{ "text": "First inversion" }],
+        [{ "text": "Second inversion" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "1-2-3" }],
+          [{ "text": "x x x 5 5 3", "marks": ["code"] }],
+          [{ "text": "x x x 9 8 8", "marks": ["code"] }],
+          [{ "text": "x x x 0 1 0", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "2-3-4" }],
+          [{ "text": "x x 10 9 8 x", "marks": ["code"] }],
+          [{ "text": "x x 2 0 1 x", "marks": ["code"] }],
+          [{ "text": "x x 5 5 5 x", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "3-4-5" }],
+          [{ "text": "x 3 2 0 x x", "marks": ["code"] }],
+          [{ "text": "x 7 5 5 x x", "marks": ["code"] }],
+          [{ "text": "x 10 10 9 x x", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "4-5-6" }],
+          [{ "text": "8 7 5 x x x", "marks": ["code"] }],
+          [{ "text": "12 10 10 x x x", "marks": ["code"] }],
+          [{ "text": "3 3 2 x x x", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Each cell is one grip; you've met all twelve by now. What the table can't show is how the three inversions on a single set connect — where the climb starts and where it turns over. The four diagrams below draw that, one set at a time, with no play button, same as before."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Strings 1-2-3 start their cycle at the nut on second inversion, climb through root position and first inversion, and repeat an octave up."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-ladder",
+      "props": {
+        "root": "C",
+        "strings": "1-2-3",
+        "caption": "C major's three inversions on strings 1-2-3, climbing the whole neck."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Strings 2-3-4 start on first inversion instead, down at the nut, then second inversion, then root position further up."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-ladder",
+      "props": {
+        "root": "C",
+        "strings": "2-3-4",
+        "caption": "C major's three inversions on strings 2-3-4, climbing the whole neck."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Strings 3-4-5 start on root position — the plain shape at the bottom of the open C chord — then first inversion, then second."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-ladder",
+      "props": {
+        "root": "C",
+        "strings": "3-4-5",
+        "caption": "C major's three inversions on strings 3-4-5, climbing the whole neck."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Strings 4-5-6 start on second inversion too, low at frets 2 and 3, then root position, then first inversion up at fret 10."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-ladder",
+      "props": {
+        "root": "C",
+        "strings": "4-5-6",
+        "caption": "C major's three inversions on strings 4-5-6, climbing the whole neck."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Strings 1-2-3 starts on second, strings 2-3-4 on first, strings 3-4-5 on root, strings 4-5-6 on second again — so \"second, root, first\" isn't a sequence to carry from one set to the next. Each set has to be read fresh."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Pick almost any few frets and look across all four diagrams: there's a C major triad on some set within reach of it. The chord is never far away, wherever your hand happens to be."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "spans": [{ "text": "Finding the third, wherever you are" }]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One more thing is true across every grip on every set, and it's worth being able to point at without hunting: where the third sits depends only on the inversion, never on the set."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [[{ "text": "Inversion" }], [{ "text": "Order" }], [{ "text": "The third is…" }]],
+      "rows": [
+        [
+          [{ "text": "root position" }],
+          [{ "text": "1 3 5", "marks": ["code"] }],
+          [{ "text": "the middle note" }]
+        ],
+        [
+          [{ "text": "first inversion" }],
+          [{ "text": "3 5 1", "marks": ["code"] }],
+          [{ "text": "the lowest note" }]
+        ],
+        [
+          [{ "text": "second inversion" }],
+          [{ "text": "5 1 3", "marks": ["code"] }],
+          [{ "text": "the highest note" }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Look back at the four diagrams and find the third in a labeled band from each one — middle, lowest, highest, cycling with the inversion and never with the set."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "See any of these twelve grips laid next to every other way to play the same chord — barre shapes, open shapes, all of it — on "
+        },
+        { "text": "Chord Shapes", "link": { "kind": "screen", "href": "/chord-shapes" } },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [{ "text": "Twelve places to hold the same three notes. Next: how to pick one." }]
+    }
+  ]
+}

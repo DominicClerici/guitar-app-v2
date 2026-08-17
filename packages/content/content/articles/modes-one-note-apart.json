@@ -1,0 +1,195 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_modes-one-note-apart",
+    "slug": "modes-one-note-apart",
+    "title": "One Note Between Neighbours",
+    "summary": "Name any two neighbours on the brightness ladder and you can name the single note that separates them — but only because they're neighbours; skip a rung and the rule breaks.",
+    "tags": ["modes", "theory"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-15"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "The brightness ladder has a payoff worth spelling out: name any two neighbours on it and you can already name the single note that separates them, without reciting all seven scales from scratch. Six adjacent pairs, six single notes — that's the whole comparison."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Here are all six, in order: which degree moves, and which note it is on " },
+        { "text": "A", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "table",
+      "header": [
+        [{ "text": "Pair" }],
+        [{ "text": "Degree" }],
+        [{ "text": "Leaving" }],
+        [{ "text": "Arriving" }]
+      ],
+      "rows": [
+        [
+          [{ "text": "Lydian → Ionian" }],
+          [{ "text": "#4 → 4", "marks": ["code"] }],
+          [{ "text": "D#", "marks": ["code"] }],
+          [{ "text": "D", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "Ionian → Mixolydian" }],
+          [{ "text": "7 → b7", "marks": ["code"] }],
+          [{ "text": "G#", "marks": ["code"] }],
+          [{ "text": "G", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "Mixolydian → Dorian" }],
+          [{ "text": "3 → b3", "marks": ["code"] }],
+          [{ "text": "C#", "marks": ["code"] }],
+          [{ "text": "C", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "Dorian → Aeolian" }],
+          [{ "text": "6 → b6", "marks": ["code"] }],
+          [{ "text": "F#", "marks": ["code"] }],
+          [{ "text": "F", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "Aeolian → Phrygian" }],
+          [{ "text": "2 → b2", "marks": ["code"] }],
+          [{ "text": "B", "marks": ["code"] }],
+          [{ "text": "Bb", "marks": ["code"] }]
+        ],
+        [
+          [{ "text": "Phrygian → Locrian" }],
+          [{ "text": "5 → b5", "marks": ["code"] }],
+          [{ "text": "E", "marks": ["code"] }],
+          [{ "text": "Eb", "marks": ["code"] }]
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That one-note rule only holds between neighbours. Skip a rung and it stops being true — Lydian against Dorian differs by three notes (the "
+        },
+        { "text": "3", "marks": ["code"] },
+        { "text": ", the " },
+        { "text": "4", "marks": ["code"] },
+        { "text": ", and the " },
+        { "text": "7", "marks": ["code"] },
+        { "text": ", each altered), Ionian against Aeolian differs by three (" },
+        { "text": "3", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "6", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "7", "marks": ["code"] },
+        {
+          "text": "), and Lydian against Locrian — the two ends of the ladder — differ by six, every degree but the root. Adjacency is doing all the work in \"one note apart\"; distance on the ladder is distance in notes changed."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Don't let that generalise into \"every mode is one note from something I already play\". "
+        },
+        {
+          "text": "Nothing New to Learn on the Neck",
+          "link": { "kind": "article", "slug": "modes-no-new-shapes" }
+        },
+        {
+          "text": " already showed that's false for Locrian, which needs two changed degrees from natural minor, not one. This rule is about neighbours on the ladder, not about distance from the two scales you own."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One of these six pairs carries more than a change of colour. Mixolydian to Dorian is where the "
+        },
+        { "text": "3", "marks": ["code"] },
+        { "text": " moves — and the " },
+        { "text": "3", "marks": ["code"] },
+        {
+          "text": " isn't just another degree. It's the one that decides whether the chord under your hand is major or minor."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Hear three of the six pairs for yourself — that's enough to feel the pattern without sitting through all six."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "scale-compare",
+      "props": { "root": "A", "scales": ["lydian", "major"], "drone": true }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Lydian against Ionian: one amber chip, " },
+        { "text": "D", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "scale-compare",
+      "props": { "root": "A", "scales": ["mixolydian", "dorian"], "drone": true }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Mixolydian against Dorian: one amber chip, " },
+        { "text": "C", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "scale-compare",
+      "props": { "root": "A", "scales": ["minor", "phrygian"], "drone": true }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Aeolian against Phrygian: one amber chip, " },
+        { "text": "Bb", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Open the " },
+        { "text": "Drone", "link": { "kind": "screen", "href": "/drone" } },
+        { "text": ", hold the " },
+        { "text": "A", "marks": ["code"] },
+        {
+          "text": ", and tap each amber chip on its own against it. That's the whole comparison in one tone — the difference between two modes, isolated and held still."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Mixolydian to Dorian is the one to keep hold of. It doesn't just change a colour — it changes which chord you're standing on, and that is where the seven split into two."
+        }
+      ]
+    }
+  ]
+}

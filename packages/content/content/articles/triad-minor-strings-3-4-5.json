@@ -1,0 +1,208 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "art_triad-minor-strings-3-4-5",
+    "slug": "triad-minor-strings-3-4-5",
+    "title": "One Finger Inside the Open C Chord",
+    "summary": "Moving one finger inside the open C chord makes it minor on three of its six strings — and turns it into something else entirely if the other two keep ringing.",
+    "tags": ["triads", "chords", "fretboard"],
+    "readingTimeMin": 3,
+    "publishedAt": "2026-08-14"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "Two sets in, and the rule hasn't flinched. Strings 3-4-5 hold one more test, and this one arrives with a bonus: the middle of the guitar is also where a chord you've fingered for years is already sitting. Root position sits at the bottom of this set, same as it did for major."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "C",
+        "quality": "minor",
+        "strings": "3-4-5",
+        "inversion": "root",
+        "caption": "C minor, root position, strings 3-4-5."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "x 3 1 0 x x", "marks": ["code"] },
+        { "text": ": " },
+        { "text": "5·3", "marks": ["code"] },
+        { "text": " " },
+        { "text": "C3", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "4·1", "marks": ["code"] },
+        { "text": " " },
+        { "text": "Eb3", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3·0", "marks": ["code"] },
+        { "text": " " },
+        { "text": "G3", "marks": ["code"] },
+        { "text": ". Degrees " },
+        { "text": "1 b3 5", "marks": ["code"] },
+        { "text": ", bass " },
+        { "text": "C", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "C",
+        "quality": "minor",
+        "strings": "3-4-5",
+        "inversion": "first",
+        "caption": "C minor, first inversion, strings 3-4-5."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "x 6 5 5 x x", "marks": ["code"] },
+        { "text": ": " },
+        { "text": "5·6", "marks": ["code"] },
+        { "text": " " },
+        { "text": "Eb3", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "4·5", "marks": ["code"] },
+        { "text": " " },
+        { "text": "G3", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3·5", "marks": ["code"] },
+        { "text": " " },
+        { "text": "C4", "marks": ["code"] },
+        { "text": ". Degrees " },
+        { "text": "b3 5 1", "marks": ["code"] },
+        { "text": ", bass " },
+        { "text": "Eb", "marks": ["code"] },
+        { "text": ". Worth a line: the major grip here, " },
+        { "text": "x 7 5 5 x x", "marks": ["code"] },
+        {
+          "text": ", reaches from fret 5 up to fret 7. Pulling the bass in a fret leaves the minor grip inside frets 5 and 6 — the easier stretch of the pair."
+        }
+      ]
+    },
+    {
+      "type": "live",
+      "component": "triad-shape",
+      "props": {
+        "root": "C",
+        "quality": "minor",
+        "strings": "3-4-5",
+        "inversion": "second",
+        "caption": "C minor, second inversion, strings 3-4-5."
+      }
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "x 10 10 8 x x", "marks": ["code"] },
+        { "text": ": " },
+        { "text": "5·10", "marks": ["code"] },
+        { "text": " " },
+        { "text": "G3", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "4·10", "marks": ["code"] },
+        { "text": " " },
+        { "text": "C4", "marks": ["code"] },
+        { "text": ", " },
+        { "text": "3·8", "marks": ["code"] },
+        { "text": " " },
+        { "text": "Eb4", "marks": ["code"] },
+        { "text": ". Degrees " },
+        { "text": "5 1 b3", "marks": ["code"] },
+        { "text": ", bass " },
+        { "text": "G", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        { "text": "Chapters 1 and 2 both read " },
+        {
+          "text": "the open C chord",
+          "link": { "kind": "article", "slug": "triad-open-chords-you-know" }
+        },
+        { "text": " on strings 5-4-3, " },
+        { "text": "x 3 2 0 x x", "marks": ["code"] },
+        { "text": ", as C major root position on this set. Move " },
+        { "text": "4·2", "marks": ["code"] },
+        { "text": " back to " },
+        { "text": "4·1", "marks": ["code"] },
+        { "text": " and those same three strings are C minor root position." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "That's the whole minor move, sitting inside a chord shape your hand already knows without you having to learn a new one — which is exactly the kind of thing a learner tries at the first chance they get. Try it, and it's worth being precise about what actually changed."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "spans": [
+        { "text": "x 3 1 0 1 0", "marks": ["code"] },
+        { "text": " is not a C minor chord. Strings 2 and 1 still sound " },
+        { "text": "C4", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "E4", "marks": ["code"] },
+        { "text": " — the full six-string grip holds an " },
+        { "text": "Eb", "marks": ["code"] },
+        { "text": " and an " },
+        { "text": "E", "marks": ["code"] },
+        {
+          "text": " at once. The one-finger move only works if the other two strings are muted — lift them, or fret them somewhere other than "
+        },
+        { "text": "C4", "marks": ["code"] },
+        { "text": " and " },
+        { "text": "E4", "marks": ["code"] },
+        { "text": ", and only then is the chord under your fingers actually " },
+        { "text": "Cm", "marks": ["code"] },
+        { "text": "." }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "This is the fullest register on the instrument, and chapter 2 already argued why — body resonance, plus how much of the comping vocabulary was built here. That argument doesn't change in minor. What's new is where the "
+        },
+        { "text": "b3", "marks": ["code"] },
+        { "text": " lands: " },
+        { "text": "Cm", "marks": ["code"] },
+        { "text": " root position puts a minor third at the very bottom of the grip, " },
+        { "text": "C3", "marks": ["code"] },
+        { "text": " to " },
+        { "text": "Eb3", "marks": ["code"] },
+        {
+          "text": ", where major put a major third. Major stacks its wider gap at the bottom of the grip and its narrower one on top; minor does the reverse. Up here that costs nothing — both ring perfectly clearly. The bottom of the grip is where the guitar's room runs out first, though, so it is worth holding as a question rather than an assumption: how low can a minor third sit before it stops being legible?"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "spans": [
+        {
+          "text": "One set left, and it's the one where that question about how low a minor third can sit stops being rhetorical: "
+        },
+        {
+          "text": "the bottom set, where minor runs out first",
+          "link": { "kind": "article", "slug": "triad-minor-strings-4-5-6" }
+        },
+        { "text": "." }
+      ]
+    }
+  ]
+}
