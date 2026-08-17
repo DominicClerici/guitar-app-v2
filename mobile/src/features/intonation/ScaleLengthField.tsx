@@ -1,9 +1,19 @@
 import { useState } from 'react';
-import { Pressable, Text, TextInput, View } from 'react-native';
+import { Text, TextInput, View } from 'react-native';
 
+import { PillSelector, type PillOption } from '@/components/PillSelector';
 import { useToken } from '@/lib/tokens';
 
 import { MAX_SCALE_INCHES, MIN_SCALE_INCHES, SCALE_PRESETS } from './intonationMath';
+
+const PRESET_OPTIONS: PillOption[] = SCALE_PRESETS.map((preset) => ({
+  id: String(preset.inches),
+  label: preset.label,
+  name: `${preset.label}, ${preset.note}`,
+}));
+
+/** Close enough to a preset to be one, in inches. */
+const SAME = 0.005;
 
 interface Props {
   inches: number;
@@ -14,6 +24,10 @@ interface Props {
  * Scale length, which turns a cents reading into millimetres of saddle travel.
  * Presets cover most instruments; the field takes anything else. It only scales
  * the distance estimate — the direction and the cents figure do not depend on it.
+ *
+ * A length typed into the field that is none of the presets leaves the row with
+ * nothing chosen, and the line underneath says so — the presets are the four
+ * common answers, not the only ones, and the pill should not claim otherwise.
  */
 export function ScaleLengthField({ inches, onChange }: Props) {
   const faint = useToken('--ink-faint', '#62666e');
@@ -32,6 +46,7 @@ export function ScaleLengthField({ inches, onChange }: Props) {
   };
 
   const shown = draft ?? String(inches);
+  const preset = SCALE_PRESETS.find((entry) => Math.abs(entry.inches - inches) < SAME);
 
   return (
     <View className="rounded-[13px] border border-x-line-soft border-t-edge-top border-b-edge-bottom bg-surface p-[16px]">
@@ -56,41 +71,23 @@ export function ScaleLengthField({ inches, onChange }: Props) {
         </View>
       </View>
 
-      <View className="mt-[12px] flex-row gap-[6px]">
-        {SCALE_PRESETS.map((preset) => {
-          const on = Math.abs(preset.inches - inches) < 0.005;
-          return (
-            <Pressable
-              key={preset.label}
-              onPress={() => {
-                setDraft(null);
-                onChange(preset.inches);
-              }}
-              accessibilityRole="button"
-              accessibilityState={{ selected: on }}
-              accessibilityLabel={`${preset.label} scale, ${preset.note}`}
-              className={`flex-1 items-center rounded-[9px] border py-[8px] active:opacity-70 ${
-                on ? 'border-accent-line bg-accent-wash' : 'border-line-soft bg-surface-raised'
-              }`}
-            >
-              <Text
-                className={`text-[13px] font-medium tracking-[-0.2px] ${
-                  on ? 'text-accent' : 'text-ink-muted'
-                }`}
-              >
-                {preset.label}
-              </Text>
-              <Text
-                className={`mt-[2px] font-mono text-[8.5px] uppercase tracking-[1px] ${
-                  on ? 'text-accent' : 'text-ink-faint'
-                }`}
-              >
-                {preset.note}
-              </Text>
-            </Pressable>
-          );
-        })}
+      <View className="mt-[12px]">
+        <PillSelector
+          options={PRESET_OPTIONS}
+          value={preset ? String(preset.inches) : null}
+          onChange={(id) => {
+            setDraft(null);
+            onChange(Number(id));
+          }}
+          label="Scale length"
+        />
       </View>
+
+      {/* The instrument each preset belongs to, which is what most people are
+          actually picking by. Fixed height so naming it does not move the card. */}
+      <Text className="mt-[8px] h-[13px] text-center font-mono text-[8.5px] uppercase tracking-[1.5px] text-ink-faint">
+        {preset ? preset.note : 'Custom length'}
+      </Text>
     </View>
   );
 }

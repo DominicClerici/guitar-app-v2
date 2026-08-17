@@ -80,5 +80,8 @@ export function Sheet({
 }
 
 const styles = StyleSheet.create({
-  fill: { flex: 1 },
+  // `BottomSheetView` positions itself absolutely with only top/left/right, so `flex: 1`
+  // never applies and the body ends up content-sized — collapsing any `flex-1` child to
+  // zero height. Pinning `bottom` stretches it to the detent instead.
+  fill: { bottom: 0, flex: 1 },
 });

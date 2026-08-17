@@ -1,4 +1,4 @@
-import { createContext, useContext, useId, useState, type ReactNode } from 'react';
+import { useId, useState } from 'react';
 import { View, type LayoutChangeEvent } from 'react-native';
 import Svg, { Defs, LinearGradient, Path, Stop } from 'react-native-svg';
 
@@ -6,14 +6,7 @@ import { mixColors, splitAlpha } from '@/lib/color';
 import { APPLE_SMOOTHING, squirclePath } from '@/lib/squircle';
 import { useTokens } from '@/lib/tokens';
 
-/**
- * How a surface's corners are drawn. `circular` is the ordinary `border-radius`
- * quarter circle; `continuous` is the squircle Apple draws, painted from the
- * same nominal radius so the two are directly comparable.
- */
-export type CornerStyle = 'circular' | 'continuous';
-
-/** Matching the 1px `border` every Aurora face uses. */
+/** Matching the 1px hairline every Aurora face wears. */
 const HAIRLINE = 1;
 
 /**
@@ -43,8 +36,7 @@ type Token = keyof typeof PALETTE;
 const TOKENS = Object.keys(PALETTE) as Token[];
 
 interface FaceSpec {
-  /** The face as utilities: one 1px border and a background. */
-  circular: string;
+  /** The background, or nothing at all for a face that paints only when chosen. */
   fill?: Token;
   /** A single-colour hairline. */
   stroke?: Token;
@@ -53,104 +45,45 @@ interface FaceSpec {
 }
 
 /**
- * Every rounded face the app wears. Keeping them in one table is what lets a
- * surface be painted either way from a single declaration.
+ * Every rounded face the app wears, as the colours it is made of. Keeping them
+ * in one table is what stops a card on one screen drifting from a card on
+ * another — a surface names the face it wants rather than restating it.
  */
 const FACES = {
   /** A lifted card or chip: lit along the top, shadowed under the bottom. */
   card: {
-    circular: 'border border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface',
     fill: '--surface',
     bevel: ['--edge-top', '--line-soft', '--edge-bottom'],
   },
   /** The same bevel a step brighter — a key that sits on a tray rather than in it. */
   key: {
-    circular: 'border border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface-raised',
     fill: '--surface-raised',
     bevel: ['--edge-top', '--line-soft', '--edge-bottom'],
   },
   /** The lit half of a toggle: raised out of its housing, with no hairline of its own. */
   slab: {
-    circular: 'bg-surface-raised',
     fill: '--surface-raised',
   },
   /** A recessed tray that other things sit in. */
   tray: {
-    circular: 'border border-line-soft bg-tray',
     fill: '--tray',
     stroke: '--line-soft',
   },
   /** Chosen. */
   accent: {
-    circular: 'border border-accent-line bg-accent-wash',
     fill: '--accent-wash',
     stroke: '--accent-line',
   },
   /** Present but not lifted — no bevel to catch the light. */
   quiet: {
-    circular: 'border border-line-soft bg-surface',
     fill: '--surface',
     stroke: '--line-soft',
   },
   /** Nothing at all, for the unselected half of a toggle. */
-  bare: {
-    circular: '',
-  },
+  bare: {},
 } satisfies Record<string, FaceSpec>;
 
 export type FaceName = keyof typeof FACES;
-
-const CornerStyleContext = createContext<CornerStyle>('circular');
-
-/** Screens that offer the choice wrap their tree in this; the rest stay circular. */
-export function CornerStyleProvider({
-  value,
-  children,
-}: {
-  value: CornerStyle;
-  children: ReactNode;
-}) {
-  return <CornerStyleContext.Provider value={value}>{children}</CornerStyleContext.Provider>;
-}
-
-export function useCornerStyle(): CornerStyle {
-  return useContext(CornerStyleContext);
-}
-
-/**
- * The border and background of one surface, drawn whichever way the screen has
- * asked for. Put `className` on the box and render `paint` as its first child:
- *
- * ```tsx
- * const face = useFace('card', 13);
- * <View className={`rounded-[13px] px-[16px] ${face.className}`}>
- *   {face.paint}
- *   …
- * </View>
- * ```
- *
- * Under `continuous` the box's own border goes transparent — it is kept, rather
- * than dropped, so the box measures the same in both styles and the A/B compares
- * nothing but the corners.
- */
-export function useFace(name: FaceName, radius: number): { className: string; paint: ReactNode } {
-  const spec: FaceSpec = FACES[name];
-  const style = useCornerStyle();
-
-  if (style === 'circular' || !spec.fill) {
-    return { className: spec.circular, paint: null };
-  }
-
-  // A face with a hairline has a border to stand in for, so it keeps a
-  // transparent one and paints out over where it sat. A face without one has
-  // nothing to reserve and stays flush with the padding edge.
-  const hairline = Boolean(spec.bevel ?? spec.stroke);
-
-  return {
-    className: hairline ? 'border border-transparent' : '',
-    paint: <SquircleFace radius={radius} spec={spec} hairline={hairline} />,
-  };
-}
 
 interface Size {
   width: number;
@@ -163,41 +96,30 @@ interface GradientStop {
 }
 
 /**
- * Stops carrying one colour into another across a span of the gradient.
+ * The background and hairline of one surface, drawn as Apple's continuous
+ * corner rather than a `border-radius` quarter circle. Render it as the first
+ * child of the box it is the face of, and leave the box itself unpainted:
  *
- * Sampled rather than left as a single linear leg because two stops put a
- * corner in the ramp at each end — the colour arrives at full rate and stops
- * dead — and the eye reads those corners as the edge of a band. Smoothstep is
- * flat at both ends, so the highlight leaves the top edge and settles into the
- * side colour without a seam at either turn.
+ * ```tsx
+ * <View className="px-[16px]">
+ *   <Face name="card" radius={13} />
+ *   …
+ * </View>
+ * ```
+ *
+ * The shape is sized from its own layout, so a surface keeps whatever intrinsic
+ * width its content gives it — which also means it draws one frame late. On
+ * anything that appears, animates or reflows, reach for `SquirclePressable`
+ * instead: its native layer is right on the first frame, at the cost of the
+ * bevel, since a shape layer strokes one colour.
  */
-function ramp(from: number, to: number, start: string, end: string): GradientStop[] {
-  return Array.from({ length: RAMP_STEPS + 1 }, (_, index) => {
-    const t = index / RAMP_STEPS;
-    return {
-      offset: Math.round((from + (to - from) * t) * 1e4) / 1e4,
-      colour: mixColors(start, end, t * t * (3 - 2 * t)),
-    };
-  });
-}
-
-/**
- * The squircle itself, sized from its own layout so a surface keeps whatever
- * intrinsic width its content gives it. It sits one hairline outside the box's
- * padding edge, which is where the border it stands in for would have been.
- */
-function SquircleFace({
-  radius,
-  spec,
-  hairline,
-}: {
-  radius: number;
-  spec: FaceSpec;
-  hairline: boolean;
-}) {
+export function Face({ name, radius }: { name: FaceName; radius: number }) {
   const [size, setSize] = useState<Size | null>(null);
   const values = useTokens(TOKENS);
   const gradient = useId();
+
+  const spec: FaceSpec = FACES[name];
+  const hairline = Boolean(spec.bevel ?? spec.stroke);
 
   const measure = (event: LayoutChangeEvent) => {
     const { width, height } = event.nativeEvent.layout;
@@ -218,13 +140,11 @@ function SquircleFace({
       ]
     : [];
 
+  // A `bare` face still measures, so the box it sits in can be given a real one
+  // — the selected half of a toggle — without waiting a frame to draw it.
   return (
-    <View
-      className={`pointer-events-none absolute ${hairline ? '-inset-px' : 'inset-0'}`}
-      onLayout={measure}
-      accessible={false}
-    >
-      {size ? (
+    <View className="pointer-events-none absolute inset-0" onLayout={measure} accessible={false}>
+      {size && spec.fill ? (
         <Svg width={size.width} height={size.height}>
           {bevel ? (
             <Defs>
@@ -248,11 +168,12 @@ function SquircleFace({
             </Defs>
           ) : null}
 
-          {/* Background first, out to the box's true edge, then the hairline
-              inset by half its width so it lands exactly where a border would. */}
+          {/* Background first, out to the box's own edge, then the hairline
+              inset by half its width so it lands just inside it, the way a CSS
+              border sits inside the box. */}
           <Path
             d={squirclePath({ ...size, radius, smoothing: APPLE_SMOOTHING })}
-            fill={spec.fill ? colour(spec.fill) : 'none'}
+            fill={colour(spec.fill)}
           />
           {hairline ? (
             <Path
@@ -265,7 +186,7 @@ function SquircleFace({
                 y: HAIRLINE / 2,
               })}
               fill="none"
-              stroke={spec.bevel ? `url(#${gradient})` : colour(spec.stroke ?? '--line-soft')}
+              stroke={bevel ? `url(#${gradient})` : colour(spec.stroke ?? '--line-soft')}
               strokeWidth={HAIRLINE}
             />
           ) : null}
@@ -273,4 +194,23 @@ function SquircleFace({
       ) : null}
     </View>
   );
+}
+
+/**
+ * Stops carrying one colour into another across a span of the gradient.
+ *
+ * Sampled rather than left as a single linear leg because two stops put a
+ * corner in the ramp at each end — the colour arrives at full rate and stops
+ * dead — and the eye reads those corners as the edge of a band. Smoothstep is
+ * flat at both ends, so the highlight leaves the top edge and settles into the
+ * side colour without a seam at either turn.
+ */
+function ramp(from: number, to: number, start: string, end: string): GradientStop[] {
+  return Array.from({ length: RAMP_STEPS + 1 }, (_, index) => {
+    const t = index / RAMP_STEPS;
+    return {
+      offset: Math.round((from + (to - from) * t) * 1e4) / 1e4,
+      colour: mixColors(start, end, t * t * (3 - 2 * t)),
+    };
+  });
 }

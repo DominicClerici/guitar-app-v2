@@ -1,7 +1,6 @@
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 
 import { Button } from '@/components/Button';
-import { useFace } from '@/components/CornerFace';
 import { FadingHScroll } from '@/components/FadingHScroll';
 import { SelectableChips, type ChipItem } from '@/components/SelectableChip';
 import { toAccidentalGlyphs } from '@/lib/accidentals';
@@ -21,8 +20,6 @@ import {
 export interface ExtraGroup {
   id: string;
   label: string;
-  /** Shown in place of the quality chips while the group is open. */
-  description: string;
 }
 
 interface Props {
@@ -76,29 +73,19 @@ export function QualityPicker({ quality, onChange, extraGroup }: Props) {
         ))}
       </FadingHScroll>
 
-      <View className="mt-[10px] px-[18px]">
-        {extraGroup && group === extraGroup.id ? (
-          <GroupNote description={extraGroup.description} />
-        ) : (
+      {/* A group with no qualities under it — a bare root — opens onto nothing.
+          It is chosen the moment it is tapped, and there is nothing left to say
+          about it that the chips would have said. */}
+      {extraGroup && group === extraGroup.id ? null : (
+        <View className="mt-[10px] px-[18px]">
           <SelectableChips
             items={qualityChips(group as ChordFamily)}
             value={quality}
             onChange={onChange}
             chipClassName="min-w-[52px]"
           />
-        )}
-      </View>
-    </View>
-  );
-}
-
-function GroupNote({ description }: { description: string }) {
-  const face = useFace('quiet', 11);
-
-  return (
-    <View className={`h-[42px] justify-center rounded-[11px] px-[14px] ${face.className}`}>
-      {face.paint}
-      <Text className="text-[12.5px] leading-[17px] text-ink-muted">{description}</Text>
+        </View>
+      )}
     </View>
   );
 }

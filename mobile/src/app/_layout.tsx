@@ -54,6 +54,9 @@ export default function RootLayout() {
                 >
                   <Stack.Screen name="quiz/[slug]" options={pagedInto} />
                   <Stack.Screen name="activity/[slug]" options={pagedInto} />
+                  {/* The whole onboarding group is one modal, so its own steps can push inside
+                      it without each of them sliding up as another card. */}
+                  <Stack.Screen name="onboarding" options={{ presentation: 'modal' }} />
                 </Stack>
               </ThemeProvider>
             </BottomSheetModalProvider>

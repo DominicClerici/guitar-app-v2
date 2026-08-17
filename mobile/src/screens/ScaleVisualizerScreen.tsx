@@ -3,7 +3,7 @@ import { ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { BackLink } from '@/components/BackLink';
-import { Segmented, type Segment } from '@/components/Segmented';
+import { PillSelector, type PillOption } from '@/components/PillSelector';
 import { RootRail } from '@/features/chord-picker';
 import {
   ExpandedNeck,
@@ -18,10 +18,10 @@ import {
 } from '@/features/scale-visualizer';
 import { SYSTEM_LABELS, type PositionSystem } from '@/lib/guitar-positions';
 
-const LABEL_MODES: { id: LabelMode; label: string }[] = [
-  { id: 'notes', label: 'Notes' },
-  { id: 'degrees', label: 'Degrees' },
-  { id: 'intervals', label: 'Intervals' },
+const LABEL_MODES: PillOption[] = [
+  { id: 'notes', label: 'Notes', name: 'Note names' },
+  { id: 'degrees', label: 'Degrees', name: 'Scale degrees' },
+  { id: 'intervals', label: 'Intervals', name: 'Intervals from the root' },
 ];
 
 /**
@@ -38,32 +38,10 @@ export function ScaleVisualizerScreen() {
 
   const view = useScaleVisualizer();
 
-  const labelSegments: Segment[] = LABEL_MODES.map((mode) => ({
-    id: mode.id,
-    label: `Label the neck with ${mode.label.toLowerCase()}`,
-    content: (
-      <Text
-        className={`font-mono text-[10px] font-semibold uppercase tracking-[1.2px] ${
-          mode.id === view.labelMode ? 'text-accent' : 'text-ink-muted'
-        }`}
-      >
-        {mode.label}
-      </Text>
-    ),
-  }));
-
-  const systemSegments: Segment[] = view.systems.map((system) => ({
+  const systemOptions: PillOption[] = view.systems.map((system) => ({
     id: system,
-    label: `Carve the neck into ${SYSTEM_LABELS[system]} positions`,
-    content: (
-      <Text
-        className={`font-mono text-[10px] font-semibold uppercase tracking-[1.2px] ${
-          system === view.system ? 'text-accent' : 'text-ink-muted'
-        }`}
-      >
-        {SYSTEM_LABELS[system]}
-      </Text>
-    ),
+    label: SYSTEM_LABELS[system],
+    name: `${SYSTEM_LABELS[system]} positions`,
   }));
 
   return (
@@ -112,19 +90,23 @@ export function ScaleVisualizerScreen() {
 
           <View className="mt-[20px] gap-[12px] px-[18px]">
             <ControlRow label="Labels">
-              <Segmented
-                segments={labelSegments}
+              <PillSelector
+                options={LABEL_MODES}
                 value={view.labelMode}
                 onChange={(id) => view.setLabelMode(id as LabelMode)}
+                label="Neck labels"
+                className="w-2/3"
               />
             </ControlRow>
 
             {view.systems.length > 1 ? (
               <ControlRow label="Positions">
-                <Segmented
-                  segments={systemSegments}
+                <PillSelector
+                  options={systemOptions}
                   value={view.system}
                   onChange={(id) => view.setSystem(id as PositionSystem)}
+                  label="Position system"
+                  className="w-2/3"
                 />
               </ControlRow>
             ) : (

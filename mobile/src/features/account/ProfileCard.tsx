@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react';
 import { AppState, Text, View } from 'react-native';
 
 import { Button } from '@/components/Button';
-import { useFace } from '@/components/CornerFace';
+import { Face } from '@/components/Face';
 import { authClient, describeAuthError, VERIFY_EMAIL_LINK } from '@/lib/auth';
 
 import { AuthShell, FormError } from './AuthShell';
 import { ChangePasswordForm } from './ChangePasswordForm';
+import { initials } from './initials';
 
 export interface ProfileUser {
   name: string;
@@ -20,17 +21,7 @@ interface Props {
   refetchSession: () => void;
 }
 
-/** Up to two initials from the name, falling back to the address when there is no name. */
-function initials({ name, email }: ProfileUser): string {
-  const words = name.trim().split(/\s+/).filter(Boolean);
-  const letters = words.slice(0, 2).map((word) => word[0]);
-  return (letters.length ? letters.join('') : email.slice(0, 1)).toUpperCase();
-}
-
 export function ProfileCard({ user, refetchSession }: Props) {
-  const card = useFace('card', 13);
-  const avatar = useFace('accent', 22);
-
   const [changing, setChanging] = useState(false);
   const [notice, setNotice] = useState<string | null>(null);
   const [failure, setFailure] = useState<string | null>(null);
@@ -83,15 +74,11 @@ export function ProfileCard({ user, refetchSession }: Props) {
     <AuthShell title="Account" blurb="Signed in. Your progress syncs to this account.">
       <FormError message={failure} />
 
-      <View
-        className={`flex-row items-center gap-[14px] rounded-[13px] p-[16px] ${card.className}`}
-      >
-        {card.paint}
+      <View className="flex-row items-center gap-[14px] p-[16px]">
+        <Face name="card" radius={13} />
 
-        <View
-          className={`h-[44px] w-[44px] items-center justify-center rounded-[22px] ${avatar.className}`}
-        >
-          {avatar.paint}
+        <View className="h-[44px] w-[44px] items-center justify-center">
+          <Face name="accent" radius={22} />
           <Text className="text-[16px] font-semibold text-accent">{initials(user)}</Text>
         </View>
 

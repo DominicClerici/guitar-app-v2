@@ -82,11 +82,9 @@ export function MetronomeScreen() {
             beats={metronome.beats}
             perBeat={metronome.perBeat}
             voiceId={metronome.voiceId}
-            haptics={metronome.haptics}
             onBeats={metronome.setBeats}
             onPerBeat={metronome.setPerBeat}
             onVoice={metronome.setVoiceId}
-            onHaptics={metronome.setHaptics}
           />
         </View>
       </ScrollView>

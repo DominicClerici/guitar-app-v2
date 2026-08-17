@@ -1,6 +1,6 @@
 import { Text, View } from 'react-native';
 
-import { useFace } from '@/components/CornerFace';
+import { Face } from '@/components/Face';
 import { toAccidentalGlyphs } from '@/lib/accidentals';
 import { EMPTY_CHORD_TONES, type ChordTones, type IntervalSlot } from '@/lib/chord-analysis';
 
@@ -63,12 +63,11 @@ function Slot({ slot }: { slot: IntervalSlot }) {
   // Altered tones keep the panel's grammar but change its colour, so the spicy
   // ones announce themselves without needing a legend.
   const tone = slot.altered ? 'text-amber' : 'text-accent';
-  const face = useFace(lit ? 'key' : 'bare', 8);
 
   return (
     <View className={`${COLUMN} px-[2px]`}>
-      <View className={`h-[46px] items-center justify-center rounded-[8px] ${face.className}`}>
-        {face.paint}
+      <View className="h-[46px] items-center justify-center">
+        <Face name={lit ? 'key' : 'bare'} radius={8} />
         <Text
           className={`font-mono text-[8.5px] tracking-[0.3px] ${lit ? tone : 'text-ink-faint'}`}
           numberOfLines={1}

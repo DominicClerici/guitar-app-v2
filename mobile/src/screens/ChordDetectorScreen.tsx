@@ -5,8 +5,6 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { BackLink } from '@/components/BackLink';
 import { Button } from '@/components/Button';
-import { CornerStyleProvider, type CornerStyle } from '@/components/CornerFace';
-import { CornerStyleToggle } from '@/components/CornerStyleToggle';
 import { ChordVerdict } from '@/features/chord-detection/ChordVerdict';
 import { degreeForPitchClassFrom } from '@/features/chord-detection/degrees';
 import { Fretboard } from '@/features/chord-detection/Fretboard';
@@ -59,92 +57,87 @@ export function ChordDetectorScreen() {
   } = useChordBuilder(initial);
 
   const [labelMode, setLabelMode] = useState<LabelMode>('notes');
-  const [corners, setCorners] = useState<CornerStyle>('circular');
 
   const degreeForPitchClass = useMemo(() => degreeForPitchClassFrom(chord), [chord]);
   const labelForPitchClass = labelMode === 'degrees' ? degreeForPitchClass : nameForPitchClass;
 
   return (
-    <CornerStyleProvider value={corners}>
-      <View className="flex-1 bg-bg" style={{ paddingTop: Math.max(insets.top - 6, 0) }}>
-        {/* The A/B switch rides in the header: it is the smallest surface on the
-            screen, so it is where the corner treatment is hardest to fake. */}
-        <View className="h-[44px] flex-row items-center justify-between px-[18px]">
-          <BackLink title="Chord Detector" />
+    <View className="flex-1 bg-bg" style={{ paddingTop: Math.max(insets.top - 6, 0) }}>
+      <View className="h-[44px] flex-row items-center px-[18px]">
+        <BackLink title="Chord Detector" />
+      </View>
 
-          <CornerStyleToggle value={corners} onChange={setCorners} />
+      <ScrollView
+        className="flex-1"
+        showsVerticalScrollIndicator={false}
+        contentContainerClassName="px-[18px] pt-[6px] pb-[28px]"
+      >
+        <ChordVerdict chord={chord} placed={placed} />
+
+        {readings.length > 0 ? (
+          <View className="mt-[24px]">
+            <ReadingShelf readings={readings} selectedIndex={selectedIndex} onSelect={select} />
+          </View>
+        ) : null}
+
+        <View className="mt-[26px]">
+          <IntervalLattice tones={chord?.chordTones} />
         </View>
 
-        <ScrollView
-          className="flex-1"
-          showsVerticalScrollIndicator={false}
-          contentContainerClassName="px-[18px] pt-[6px] pb-[28px]"
-        >
-          <ChordVerdict chord={chord} placed={placed} />
-
-          {readings.length > 0 ? (
-            <View className="mt-[24px]">
-              <ReadingShelf readings={readings} selectedIndex={selectedIndex} onSelect={select} />
-            </View>
-          ) : null}
-
-          <View className="mt-[26px]">
-            <IntervalLattice tones={chord?.chordTones} />
+        {chord ? (
+          <View className="mt-[24px]">
+            <WarningNotes warnings={chord.warnings} />
           </View>
+        ) : null}
+      </ScrollView>
 
-          {chord ? (
-            <View className="mt-[24px]">
-              <WarningNotes warnings={chord.warnings} />
-            </View>
-          ) : null}
-        </ScrollView>
+      {/* The instrument, fixed. It sits on the tray so the readout above reads as
+          floating over a base plate rather than continuing into one. */}
+      <View
+        className="border-t border-t-line-soft bg-tray pt-[6px]"
+        style={{ paddingBottom: insets.bottom + 12 }}
+      >
+        <Fretboard
+          placed={placed}
+          rootPitchClass={rootPitchClass}
+          nameForPitchClass={labelForPitchClass}
+          onToggle={toggle}
+          veilToken="--tray"
+        />
 
-        {/* The instrument, fixed. It sits on the tray so the readout above reads as
-            floating over a base plate rather than continuing into one. */}
-        <View
-          className="border-t border-t-line-soft bg-tray pt-[6px]"
-          style={{ paddingBottom: insets.bottom + 12 }}
-        >
-          <Fretboard
-            placed={placed}
-            rootPitchClass={rootPitchClass}
-            nameForPitchClass={labelForPitchClass}
-            onToggle={toggle}
-            veilToken="--tray"
+        {/* One height across the row: the pill's tray is what the two keys beside
+            it are sized to, rather than the other way round. */}
+        <View className="mt-[10px] flex-row items-center gap-[10px] px-[18px]">
+          <LabelModeToggle mode={labelMode} onChange={setLabelMode} />
+          {/* Always in the row rather than appearing with the reading: the two
+              controls beside it should not move as the shape resolves. */}
+          <DroneAction
+            label={chord ? `Hold ${chord.name} as a drone` : 'Drone. Build a chord first.'}
+            disabled={!chord}
+            onPress={() =>
+              router.push({
+                pathname: '/drone',
+                params: {
+                  voicing: encodeVoicing(placed),
+                  root: String(rootPitchClass),
+                  play: '1',
+                },
+              })
+            }
           />
-
-          <View className="mt-[10px] flex-row gap-[10px] px-[18px]">
-            <LabelModeToggle mode={labelMode} onChange={setLabelMode} />
-            {/* Always in the row rather than appearing with the reading: the two
-                controls beside it should not move as the shape resolves. */}
-            <DroneAction
-              label={chord ? `Hold ${chord.name} as a drone` : 'Drone. Build a chord first.'}
-              disabled={!chord}
-              onPress={() =>
-                router.push({
-                  pathname: '/drone',
-                  params: {
-                    voicing: encodeVoicing(placed),
-                    root: String(rootPitchClass),
-                    play: '1',
-                  },
-                })
-              }
-            />
-            <Button
-              variant="secondary"
-              size="lg"
-              square
-              radius={10}
-              icon="arrow.counterclockwise"
-              disabled={placed.length === 0}
-              accessibilityLabel="Clear board"
-              onPress={clear}
-            />
-          </View>
+          <Button
+            variant="secondary"
+            size="sm"
+            square
+            radius={9}
+            icon="arrow.counterclockwise"
+            disabled={placed.length === 0}
+            accessibilityLabel="Clear board"
+            onPress={clear}
+          />
         </View>
       </View>
-    </CornerStyleProvider>
+    </View>
   );
 }
 
@@ -166,10 +159,10 @@ function DroneAction({
   return (
     <Button
       variant="secondary"
-      size="lg"
+      size="sm"
       text="mono"
       icon="speaker.wave.2"
-      radius={10}
+      radius={9}
       disabled={disabled}
       accessibilityLabel={label}
       onPress={onPress}

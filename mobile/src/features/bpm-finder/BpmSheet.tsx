@@ -13,7 +13,8 @@ export type BpmSheetRef = SheetRef;
 /**
  * Tap tempo in a bottom sheet: tap the pad in time and the number above it
  * follows. A short silence ends the count and the next tap starts a new one.
- * Dismissing throws the session away.
+ * Dismissing — by the grabber, the backdrop, or a swipe down — throws the session
+ * away, which is why there is no close key of its own up there.
  *
  * `onUseTempo` fires after the sheet has finished closing rather than at the press,
  * so a screen pushed in response is not racing a modal that is still on its way out.
@@ -54,7 +55,6 @@ export function BpmSheet({
     >
       <BpmSheetBody
         visible={visible}
-        onClose={() => sheetRef.current?.dismiss()}
         onUse={(bpm) => {
           handing.current = bpm;
           sheetRef.current?.dismiss();
@@ -64,15 +64,7 @@ export function BpmSheet({
   );
 }
 
-function BpmSheetBody({
-  visible,
-  onClose,
-  onUse,
-}: {
-  visible: boolean;
-  onClose: () => void;
-  onUse: (bpm: number) => void;
-}) {
+function BpmSheetBody({ visible, onUse }: { visible: boolean; onUse: (bpm: number) => void }) {
   const { bpm, taps, spread, stale, tap, reset } = useTapTempo();
 
   // The sheet keeps its body mounted between openings, so closing it is what ends
@@ -96,23 +88,8 @@ function BpmSheetBody({
     rounded === null ? '' : `${taps} taps${spread === null ? '' : ` · ±${Math.round(spread)} ms`}`;
 
   return (
-    <View className="px-[24px] pb-[24px] pt-[8px]">
-      <View className="flex-row items-center justify-between py-[8px]">
-        <Button
-          variant="secondary"
-          size="sm"
-          text="mono"
-          hitSlop={8}
-          accessibilityLabel="Close BPM finder"
-          onPress={onClose}
-        >
-          Close
-        </Button>
-
-        <ModeSwitch />
-      </View>
-
-      <View className="mt-[16px] items-center">
+    <View className="px-[24px] pb-[24px] pt-[16px]">
+      <View className="items-center">
         <Text
           className={`text-[96px] font-semibold leading-[102px] tracking-[-4px] ${
             stale ? 'text-ink-faint' : 'text-ink'
@@ -175,29 +152,6 @@ function BpmSheetBody({
         >
           Reset
         </Button>
-      </View>
-    </View>
-  );
-}
-
-/**
- * The seat for mic-based detection. Tapping is the only way in for now, so this is
- * a label rather than a control — it turns into a real switch when Listen lands.
- */
-function ModeSwitch() {
-  return (
-    <View
-      accessibilityRole="text"
-      accessibilityLabel="Tap mode. Listening for tempo is not available yet."
-      className="flex-row items-center rounded-[9px] border border-line-soft bg-tray p-[2px]"
-    >
-      <View className="rounded-[7px] bg-surface-raised px-[12px] py-[5px]">
-        <Text className="font-mono text-[9.5px] uppercase tracking-[1.5px] text-ink">Tap</Text>
-      </View>
-      <View className="px-[12px] py-[5px]">
-        <Text className="font-mono text-[9.5px] uppercase tracking-[1.5px] text-ink-faint">
-          Listen
-        </Text>
       </View>
     </View>
   );

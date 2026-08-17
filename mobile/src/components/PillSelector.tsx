@@ -1,0 +1,343 @@
+import * as Haptics from 'expo-haptics';
+import { useState, type ReactNode } from 'react';
+import { Pressable, Text, View, type LayoutChangeEvent } from 'react-native';
+import { Gesture, GestureDetector } from 'react-native-gesture-handler';
+import {
+  runOnJS,
+  useAnimatedStyle,
+  useDerivedValue,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
+
+import { SquircleShape } from '@modules/expo-squircle-view';
+
+import { centreOf, pillFrame, slotAt, slotsIn } from '@/lib/pill-slide';
+import { APPLE_SMOOTHING } from '@/lib/squircle';
+import { useTokens } from '@/lib/tokens';
+
+import { AnimatedView } from './AnimatedView';
+import { Face } from './Face';
+
+/** Matching the tray's own `h-[38px] p-[3px]`; the three have to move together. */
+const TRAY_HEIGHT = 38;
+const TRAY_PAD = 3;
+const PILL_HEIGHT = TRAY_HEIGHT - TRAY_PAD * 2;
+
+/** Concentric: a pill inset by the gutter carries the radius the tray has left. */
+const TRAY_RADIUS = 9;
+const PILL_RADIUS = TRAY_RADIUS - TRAY_PAD;
+
+/** Air either side of a label, and the width no option goes under however short one is. */
+const LABEL_PAD = 12;
+const MIN_SLOT = 42;
+
+/** Matching the hairline every other Aurora face wears. */
+const HAIRLINE = 1;
+
+const SLIDE = { duration: 150 };
+
+/** Overshoot that squeezes the pill halfway, and where it stops answering at all. */
+const SQUEEZE_TRAVEL = 44;
+const SQUEEZE_LIMIT = SQUEEZE_TRAVEL * 3;
+const SQUEEZE_X = 0.14;
+const SQUEEZE_Y = 0.09;
+
+/** Horizontal intent the pan waits for, so a vertical scroll still gets through. */
+const PAN_SLOP = 8;
+
+const TINTS = ['--accent-wash', '--accent-line'] as const;
+
+/** Fallbacks mirror `global.css`, for the moment before uniwind has resolved. */
+const WASH = 'rgba(94, 200, 194, 0.12)';
+const LINE = 'rgba(94, 200, 194, 0.5)';
+
+const PILL_RADII = {
+  topLeft: PILL_RADIUS,
+  topRight: PILL_RADIUS,
+  bottomRight: PILL_RADIUS,
+  bottomLeft: PILL_RADIUS,
+};
+
+interface OptionBase {
+  id: string;
+  /** What a screen reader announces, where the label on its own is not it. */
+  name?: string;
+}
+
+/**
+ * An option is a word or a drawing of one. A drawing is handed whether it is the
+ * lit one, since it has to answer the selection the way a label's ink does, and it
+ * has to be named, since there is no text under it to read out.
+ */
+export type PillOption = OptionBase &
+  (
+    | { label: string; content?: undefined }
+    | { label?: undefined; content: (lit: boolean) => ReactNode; name: string }
+  );
+
+interface Props {
+  options: PillOption[];
+  /** An id no option carries — or `null` — leaves the row with nothing chosen. */
+  value: string | null;
+  onChange: (id: string) => void;
+  /**
+   * Whether a drag reports each option it crosses onto, or only the one it is
+   * let go over. Live is for a setting you want to hear or see as you sweep
+   * across it; release is for one that costs something to apply.
+   */
+  commit?: 'live' | 'release';
+  /** Names the group in each option's announcement. */
+  label?: string;
+  className?: string;
+}
+
+/**
+ * A row of exclusive choices with one pill travelling between them. It is the
+ * same idea as `Segmented` — a recessed tray, the chosen option lit — but the
+ * selection is a single object that moves and resizes onto what you pick rather
+ * than a highlight appearing somewhere else, and it can be dragged: press the
+ * pill and it comes with the finger, reporting each option it arrives at. Push
+ * it past either end and it squeezes up against the wall, which is how it says
+ * there is nothing further along without stopping dead under the finger.
+ *
+ * Give it its width from the call site. The options divide what it is handed
+ * equally, each of them a target across its whole share, and the pill fills the
+ * share it is on — so the gutter around it is the same on all four sides
+ * wherever it sits. An option whose label will not fit an equal share takes the
+ * width it needs and the others give up the difference between them.
+ *
+ * A `value` matching no option is a row with nothing chosen: the pill fades out
+ * where it last was rather than moving somewhere neutral, so a setting that has
+ * gone off the row — a length typed into the field beside it — reads as none of
+ * these rather than as one of them.
+ */
+export function PillSelector({
+  options,
+  value,
+  onChange,
+  commit = 'live',
+  label,
+  className = '',
+}: Props) {
+  const [wash, line] = useTokens(TINTS);
+  const [tray, setTray] = useState(0);
+  const [labels, setLabels] = useState<Record<string, number>>({});
+  /** The option the pill is over mid-drag, which is not yet the one that is set. */
+  const [hovered, setHovered] = useState<number | null>(null);
+
+  /** Which option is chosen, and −1 for none of them. */
+  const selected = options.findIndex((option) => option.id === value);
+
+  // Where the pill sits when nothing is chosen: on the last thing that was, faded
+  // out. It has to rest somewhere, and coming back to the option you just left is
+  // less of a lurch than coming back from wherever the row starts.
+  const [resting, setResting] = useState(0);
+  if (selected >= 0 && selected !== resting) setResting(selected);
+
+  const inner = Math.max(0, tray - TRAY_PAD * 2);
+  const slots = slotsIn(
+    options.map((option) => Math.max(MIN_SLOT, (labels[option.id] ?? 0) + LABEL_PAD * 2)),
+    inner,
+    TRAY_PAD,
+  );
+
+  // The two numbers the worklets below need, read out here: the compiler's
+  // immutability analysis freezes a shared value indexed through a captured
+  // object, and plain arrays of numbers are what these actually want.
+  const widths = slots.map((slot) => slot.width);
+  const centres = slots.map(centreOf);
+
+  // Nothing to draw until every label has been measured: a pill sized from a
+  // half-measured tray would animate out of the wrong place on the first frame.
+  const measured = inner > 0 && options.every((option) => labels[option.id] !== undefined);
+
+  const dragging = useSharedValue(false);
+  /** Where the pill's centre is being held, while it is being held. */
+  const held = useSharedValue(0);
+  /** Where the finger sits within the pill, so grabbing it does not re-centre it. */
+  const grab = useSharedValue(0);
+  /** The slot the pill is over, so each crossing is reported exactly once. */
+  const over = useSharedValue(selected);
+
+  /** Present while something is chosen, and while a finger is choosing. */
+  const shown = useDerivedValue(() => withTiming(selected >= 0 || dragging.value ? 1 : 0, SLIDE));
+
+  /**
+   * Width and position, derived rather than driven: under the finger the pill
+   * tracks it, and the rest of the time each eases to whatever is now selected.
+   * Letting go therefore lands the pill — and unwinds the squeeze — for free, and
+   * a value set from anywhere else is followed by the same 150ms expression.
+   */
+  const width = useDerivedValue(() => {
+    // A drag that has not crossed onto anything yet — which is every drag begun
+    // with nothing chosen — is still the width of wherever the pill is resting.
+    const index = dragging.value && over.value >= 0 ? over.value : resting;
+    return withTiming(widths[index] ?? MIN_SLOT, SLIDE);
+  });
+
+  const centre = useDerivedValue(() => {
+    if (!dragging.value) return withTiming(centres[resting] ?? TRAY_PAD, SLIDE);
+    // Past the limit the squeeze has nothing left to say, so the reach is not
+    // followed any further — which is also what keeps the landing 150ms from
+    // wherever the finger let go rather than most of them spent flying back.
+    return Math.max(
+      TRAY_PAD - SQUEEZE_LIMIT,
+      Math.min(TRAY_PAD + inner + SQUEEZE_LIMIT, held.value),
+    );
+  });
+
+  const pill = useAnimatedStyle(() => {
+    const frame = pillFrame({
+      centre: centre.value,
+      width: width.value,
+      height: PILL_HEIGHT,
+      from: TRAY_PAD,
+      to: TRAY_PAD + inner,
+      travel: SQUEEZE_TRAVEL,
+      squeezeX: SQUEEZE_X,
+      squeezeY: SQUEEZE_Y,
+    });
+
+    return {
+      width: frame.width,
+      height: frame.height,
+      opacity: shown.value,
+      transform: [
+        { translateX: frame.left },
+        // The height it gains is taken evenly out of the tray's gutter, so a
+        // squeezed pill grows into the tray rather than through it.
+        { translateY: (PILL_HEIGHT - frame.height) / 2 },
+      ],
+    };
+  });
+
+  /** Arriving somewhere new mid-drag: felt, lit, and reported if it is wanted now. */
+  const land = (index: number) => {
+    setHovered(index);
+    void Haptics.selectionAsync();
+    if (commit === 'live') onChange(options[index].id);
+  };
+
+  const settle = (index: number) => {
+    setHovered(null);
+    if (commit === 'release') onChange(options[index].id);
+  };
+
+  const pan = Gesture.Pan()
+    .activeOffsetX([-PAN_SLOP, PAN_SLOP])
+    .onStart((event) => {
+      const home = centres[resting] ?? TRAY_PAD;
+      const half = (widths[resting] ?? MIN_SLOT) / 2;
+      // Take the pill by whatever part of it you touched; take the tray anywhere
+      // else and the pill comes to the finger instead.
+      grab.value = Math.abs(event.x - home) <= half ? event.x - home : 0;
+      held.value = event.x - grab.value;
+      over.value = selected;
+      dragging.value = true;
+    })
+    .onUpdate((event) => {
+      held.value = event.x - grab.value;
+
+      const next = slotAt(held.value, slots);
+      if (next === over.value) return;
+      over.value = next;
+      runOnJS(land)(next);
+    })
+    .onFinalize(() => {
+      // A pan that never took hold — a plain tap, which the option's own
+      // Pressable has already answered — has nothing to land.
+      if (!dragging.value) return;
+      dragging.value = false;
+      runOnJS(settle)(over.value);
+    });
+
+  const lit = hovered ?? selected;
+
+  const measure = (id: string) => (event: LayoutChangeEvent) => {
+    const { width: laid } = event.nativeEvent.layout;
+    setLabels((current) => (current[id] === laid ? current : { ...current, [id]: laid }));
+  };
+
+  return (
+    <GestureDetector gesture={pan}>
+      <View
+        onLayout={(event: LayoutChangeEvent) => setTray(event.nativeEvent.layout.width)}
+        className={`h-[38px] flex-row items-center p-[3px] ${className}`}
+      >
+        <Face name="tray" radius={TRAY_RADIUS} />
+
+        {/* Copies laid outside the row and never seen, which is the only place an
+            option's own width can be read: measured inside its slot, a label long
+            enough to be truncated reports the slot's width back — and the slot is
+            sized from the measurement, so the two would chase each other wider
+            every pass. `items-start` is what keeps them honest: stretched to the
+            column, every one of them would report the widest one's width. */}
+        <View
+          className="pointer-events-none absolute items-start opacity-0"
+          accessible={false}
+          accessibilityElementsHidden
+          importantForAccessibility="no-hide-descendants"
+        >
+          {options.map((option) => (
+            <View key={option.id} onLayout={measure(option.id)}>
+              <Content option={option} lit={false} />
+            </View>
+          ))}
+        </View>
+
+        {/* Native shape rather than a `Face`: it repaints its path on every
+            layout pass, so the corners stay true squircles through a resize
+            instead of stretching or blinking a frame behind. */}
+        {measured ? (
+          <AnimatedView className="pointer-events-none absolute left-0 top-[3px]" style={pill}>
+            <SquircleShape
+              radii={PILL_RADII}
+              smoothing={APPLE_SMOOTHING}
+              fill={wash ?? WASH}
+              stroke={line ?? LINE}
+              strokeWidth={HAIRLINE}
+            />
+          </AnimatedView>
+        ) : null}
+
+        {options.map((option, index) => (
+          <Pressable
+            key={option.id}
+            onPress={() => onChange(option.id)}
+            accessibilityRole="button"
+            accessibilityState={{ selected: index === selected }}
+            accessibilityLabel={
+              label ? `${label}: ${option.name ?? option.label}` : (option.name ?? option.label)
+            }
+            // Grown to its share rather than set to it, which comes to the same
+            // width — the shares fill the run exactly — and leaves the row equal
+            // in the frame before the tray has been measured at all.
+            style={{ flexBasis: 0, flexGrow: widths[index] || 1 }}
+            className="h-full items-center justify-center"
+          >
+            <Content option={option} lit={index === lit} />
+          </Pressable>
+        ))}
+      </View>
+    </GestureDetector>
+  );
+}
+
+/**
+ * Whatever the option wears. A component rather than a branch at each call site so
+ * the copy that is measured and the copy that is seen cannot drift apart — the
+ * measurement is only worth anything while the two are drawn identically.
+ */
+function Content({ option, lit }: { option: PillOption; lit: boolean }) {
+  if (option.content) return option.content(lit);
+  return <Label text={option.label} tone={lit ? 'text-accent' : 'text-ink-muted'} />;
+}
+
+function Label({ text, tone }: { text: string; tone: string }) {
+  return (
+    <Text numberOfLines={1} className={`text-[12.5px] font-medium tracking-[-0.1px] ${tone}`}>
+      {text}
+    </Text>
+  );
+}

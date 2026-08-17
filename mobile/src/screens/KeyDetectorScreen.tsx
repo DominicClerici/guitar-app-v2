@@ -2,8 +2,10 @@ import { useRouter } from 'expo-router';
 import { SymbolView } from 'expo-symbols';
 import { useState, type ComponentProps } from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
+import { useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { AnimatedView } from '@/components/AnimatedView';
 import { BackLink } from '@/components/BackLink';
 import { Button } from '@/components/Button';
 import { FadingHScroll } from '@/components/FadingHScroll';
@@ -48,6 +50,41 @@ function PrimaryAction({ label, symbol, disabled, onPress }: PrimaryProps) {
     >
       {label}
     </Button>
+  );
+}
+
+/** How long Reset takes to arrive, and to leave again. */
+const RESET_FADE = { duration: 150 };
+
+/**
+ * Reset, which is only there while there is a progression to reset. Nothing to
+ * clear and it is gone rather than greyed: a header with one live word in it reads
+ * better than one carrying a dead key the whole time you are building the thing
+ * that would light it. It fades either way so the corner is never seen changing.
+ */
+function ResetAction({ shown, onPress }: { shown: boolean; onPress: () => void }) {
+  const fade = useAnimatedStyle(() => ({ opacity: withTiming(shown ? 1 : 0, RESET_FADE) }));
+
+  return (
+    <AnimatedView
+      style={fade}
+      // Untappable and unreachable on the way out, without waiting for the fade:
+      // the word is already on its way to not being there.
+      pointerEvents={shown ? 'auto' : 'none'}
+      accessibilityElementsHidden={!shown}
+      importantForAccessibility={shown ? 'auto' : 'no-hide-descendants'}
+    >
+      <Button
+        variant="link"
+        size="inline"
+        text="mono"
+        hitSlop={10}
+        accessibilityLabel="Reset progression"
+        onPress={onPress}
+      >
+        Reset
+      </Button>
+    </AnimatedView>
   );
 }
 
@@ -244,17 +281,7 @@ export function KeyDetectorScreen() {
       <View className="h-[42px] flex-row items-center justify-between px-[18px]">
         <BackLink title="Key Detector" />
 
-        <Button
-          variant="link"
-          size="inline"
-          text="mono"
-          hitSlop={10}
-          disabled={chords.length === 0}
-          accessibilityLabel="Reset progression"
-          onPress={onResetProgression}
-        >
-          Reset
-        </Button>
+        <ResetAction shown={chords.length > 0} onPress={onResetProgression} />
       </View>
 
       <ScrollView

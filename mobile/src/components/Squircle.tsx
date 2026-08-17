@@ -8,7 +8,7 @@ import { APPLE_SMOOTHING } from '@/lib/squircle';
  * A pressable whose background is a squircle rather than a `border-radius`.
  *
  * The shape is painted by a native layer sized to the button, so — unlike
- * `CornerFace`, which has to measure itself in JavaScript before it can draw —
+ * `Face`, which has to measure itself in JavaScript before it can draw —
  * it is right on the first frame and stays right through a resize. That is the
  * whole reason to reach for it: on anything that appears, animates, or reflows,
  * the SVG face blinks and this does not.

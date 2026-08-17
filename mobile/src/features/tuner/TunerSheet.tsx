@@ -1,5 +1,12 @@
 import { useEffect, useImperativeHandle, useRef, useState, type Ref } from 'react';
-import { InteractionManager, Linking, Text, View, type LayoutChangeEvent } from 'react-native';
+import {
+  InteractionManager,
+  Linking,
+  Text,
+  useWindowDimensions,
+  View,
+  type LayoutChangeEvent,
+} from 'react-native';
 import { useAnimatedStyle } from 'react-native-reanimated';
 
 import { AnimatedView } from '@/components/AnimatedView';
@@ -40,17 +47,18 @@ export function TunerSheet({ ref }: { ref?: Ref<TunerSheetRef> }) {
       onVisibleChange={setVisible}
       onDismiss={() => setVisible(false)}
     >
-      <TunerSheetBody visible={visible} onClose={() => sheetRef.current?.dismiss()} />
+      <TunerSheetBody visible={visible} />
     </Sheet>
   );
 }
 
 const SNAP_POINTS = ['92%'];
 
-function TunerSheetBody({ visible, onClose }: { visible: boolean; onClose: () => void }) {
+function TunerSheetBody({ visible }: { visible: boolean }) {
   const { status, note, frequency, centsSV, claritySV, presenceSV, frameSV, start, stop } =
     useTunerSession();
   const colors = useTunerColors();
+  const { height: screenHeight } = useWindowDimensions();
 
   // The 60-row chart drops frames if it mounts during the sheet's open animation, so both
   // it and the mic wait for interactions to settle. The static frame holds the slot
@@ -92,33 +100,24 @@ function TunerSheetBody({ visible, onClose }: { visible: boolean; onClose: () =>
 
   return (
     <View className="flex-1 px-[24px] pb-[24px] pt-[8px]">
-      <View className="flex-row items-center justify-between py-[8px]">
-        <Button
-          variant="secondary"
-          size="sm"
-          text="mono"
-          hitSlop={8}
-          accessibilityLabel="Close tuner"
-          onPress={onClose}
-        >
-          Close
-        </Button>
-        <Text className="font-mono text-[10px] uppercase tracking-[2.5px] text-ink-faint">
-          A=440
-        </Text>
-      </View>
-
       <View className="flex-1 items-center">
-        <AnimatedView className="mt-[12px] flex-row items-end" style={noteOpacity}>
-          <Text className="text-[110px] font-semibold leading-[118px] tracking-[-4px] text-ink">
-            {note ? note.name : '—'}
-          </Text>
-          {note ? (
-            <Text className="mb-[26px] ml-[4px] text-[26px] font-medium text-ink-muted">
-              {note.octave}
+        {/* The reference pitch rides the top-right of the note's line rather than sitting in
+            the row, so the oversized note stays optically centred. */}
+        <View className="mt-[12px] w-full">
+          <AnimatedView className="flex-row items-end justify-center" style={noteOpacity}>
+            <Text className="text-[110px] font-semibold leading-[118px] tracking-[-4px] text-ink">
+              {note ? note.name : '—'}
             </Text>
-          ) : null}
-        </AnimatedView>
+            {note ? (
+              <Text className="mb-[26px] ml-[4px] text-[26px] font-medium text-ink-muted">
+                {note.octave}
+              </Text>
+            ) : null}
+          </AnimatedView>
+          <Text className="absolute right-0 top-0 font-mono text-[10px] uppercase tracking-[2.5px] text-ink-faint">
+            A=440
+          </Text>
+        </View>
 
         <Text className={`mt-[4px] font-mono text-[13px] uppercase tracking-[2px] ${centsClass}`}>
           {note
@@ -132,7 +131,10 @@ function TunerSheetBody({ visible, onClose }: { visible: boolean; onClose: () =>
 
         {/* The chart draws inside the well's padding: onLayout measures the padded inner
             slot, so bars and guides never touch the border. */}
-        <View className="mt-[24px] w-full flex-1 overflow-hidden rounded-[16px] border border-line-soft bg-tray p-[14px]">
+        <View
+          className="mt-[24px] w-full flex-1 overflow-hidden rounded-[16px] border border-line-soft bg-tray p-[14px]"
+          style={{ maxHeight: screenHeight / 2 }}
+        >
           <View className="flex-1" onLayout={onChartLayout}>
             {chart.width > 0 && chart.height > 0 ? (
               live ? (
@@ -150,7 +152,9 @@ function TunerSheetBody({ visible, onClose }: { visible: boolean; onClose: () =>
           </View>
         </View>
 
-        <View className="mt-[20px]">
+        {/* Capping the chart can leave slack below it; the pill takes it so it stays
+            anchored to the bottom of the sheet rather than floating mid-air. */}
+        <View className="mt-auto pt-[20px]">
           <StatusPill
             status={status}
             inTune={note !== null && Math.abs(note.cents) < IN_TUNE_CENTS}

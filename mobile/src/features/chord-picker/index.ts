@@ -3,4 +3,6 @@
 // reach for a chord the same way.
 
 export { QualityPicker, type ExtraGroup } from './QualityPicker';
+export { QualitySelect, qualityName } from './QualitySelect';
+export { RootGrid } from './RootGrid';
 export { RootRail } from './RootRail';

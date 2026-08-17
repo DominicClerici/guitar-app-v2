@@ -1,11 +1,16 @@
 import { useRouter } from 'expo-router';
 import { SymbolView, type SFSymbol } from 'expo-symbols';
+import { useRef } from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { Avatar } from '@/components/Avatar';
+import { initials } from '@/features/account';
 import { InlineChordDetector } from '@/features/chord-detection';
 import { LearningHero, LearningHeroEmpty } from '@/features/learning';
+import { AccountSheet, startOnboarding, type AccountSheetRef } from '@/features/onboarding';
 import { InlineTunerCard } from '@/features/tuner/InlineTunerCard';
+import { useSession } from '@/lib/auth';
 import { nextStep, nextStepHref, pathwayHref, useLearning } from '@/lib/learning';
 import { useToken } from '@/lib/tokens';
 
@@ -71,10 +76,17 @@ function PlayCard({ icon, title, subtitle }: (typeof PLAY)[number]) {
 export function HomeTab() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
+  const accountSheet = useRef<AccountSheetRef>(null);
 
   // The hero is the pathway touched most recently, which is what `active` is already ordered by.
   const { active, progress } = useLearning();
   const hero = active[0] ?? null;
+
+  // A guest is not someone to greet by name: the server made theirs up, and the account is the
+  // thing they have yet to make. So a guest and a session still loading read the same here.
+  const { data: session } = useSession();
+  const account = session && !session.user.isAnonymous ? session.user : null;
+  const firstName = account?.name.trim().split(/\s+/)[0] || null;
 
   return (
     <View className="flex-1 bg-bg">
@@ -84,9 +96,28 @@ export function HomeTab() {
         contentContainerStyle={{ paddingBottom: insets.bottom + 96 }}
       >
         {/* header */}
-        <Text className="text-[32px] leading-[36px] font-semibold tracking-[-0.9px] text-ink">
-          Hey <Text className="text-accent">Dominic</Text>
-        </Text>
+        <View className="flex-row items-center justify-between gap-[12px]">
+          <Text
+            numberOfLines={1}
+            className="flex-1 text-[32px] leading-[36px] font-semibold tracking-[-0.9px] text-ink"
+          >
+            {firstName ? (
+              <>
+                Hey <Text className="text-accent">{firstName}</Text>
+              </>
+            ) : (
+              'Hey there'
+            )}
+          </Text>
+
+          {/* Signed in there is nowhere better to go than the tab already holding the profile, so
+              the avatar is an indicator. Signed out it is the way in. */}
+          <Avatar
+            initials={account ? initials(account) : null}
+            accessibilityLabel={account ? 'Your account' : 'Create an account'}
+            onPress={account ? undefined : () => accountSheet.current?.present()}
+          />
+        </View>
 
         {/* hero — learning progress, unenclosed and sitting on the background */}
         <View className="mt-[28px]">
@@ -142,6 +173,8 @@ export function HomeTab() {
           </View>
         </View>
       </ScrollView>
+
+      <AccountSheet ref={accountSheet} onCreateAccount={() => startOnboarding(router)} />
     </View>
   );
 }

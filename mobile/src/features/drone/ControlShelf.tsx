@@ -1,17 +1,27 @@
 import type { ReactNode } from 'react';
 import { Text, View } from 'react-native';
 
-import { useFace } from '@/components/CornerFace';
-import { Segmented, type Segment } from '@/components/Segmented';
+import { Face } from '@/components/Face';
+import { PillSelector, type PillOption } from '@/components/PillSelector';
+import { Ticker } from '@/components/Ticker';
 
 import { VOICES } from './droneVoices';
 import type { Intonation } from './intonation';
 import { MAX_OCTAVE, MIN_OCTAVE } from './voicing';
 
-const OCTAVES: { value: number; label: string; name: string }[] = [
-  { value: MIN_OCTAVE, label: '8vb', name: 'An octave down' },
-  { value: 0, label: '·', name: 'Normal octave' },
-  { value: MAX_OCTAVE, label: '8va', name: 'An octave up' },
+/** Signed both ways, so the shift up reads as a shift rather than as a count. */
+function octaveLabel(octave: number): string {
+  return octave > 0 ? `+${octave}` : String(octave);
+}
+
+const VOICE_OPTIONS: PillOption[] = VOICES.map((voice) => ({
+  id: voice.id,
+  label: voice.label,
+}));
+
+const TUNINGS: PillOption[] = [
+  { id: 'equal', label: 'Equal', name: 'Equal temperament' },
+  { id: 'just', label: 'Pure', name: 'Pure intervals' },
 ];
 
 interface Props {
@@ -36,16 +46,19 @@ export function ControlShelf({
   onIntonation,
   onOctave,
 }: Props) {
-  const face = useFace('card', 13);
-
   return (
-    <View className={`rounded-[13px] px-[16px] ${face.className}`}>
-      {face.paint}
+    <View className="px-[16px]">
+      <Face name="card" radius={13} />
+      {/* Both of these are things you sweep across to hear the difference, so
+          they carry the pill you can drag rather than chips you tap one at a
+          time — and they report live, so the drone answers on the way. */}
       <Row label="Voice">
-        <Segmented
-          segments={VOICES.map((voice) => chip(voice.id, voice.label, voice.id === voiceId))}
+        <PillSelector
+          options={VOICE_OPTIONS}
           value={voiceId}
           onChange={onVoice}
+          label="Voice"
+          className="w-2/3"
         />
       </Row>
 
@@ -53,43 +66,31 @@ export function ControlShelf({
           what stops a held third beating. The root does not move either way, so
           the drone still agrees with the tuner. */}
       <Row label="Tuning">
-        <Segmented
-          segments={[
-            chip('equal', 'Equal', intonation === 'equal'),
-            chip('just', 'Pure', intonation === 'just'),
-          ]}
+        <PillSelector
+          options={TUNINGS}
           value={intonation}
           onChange={(id) => onIntonation(id as Intonation)}
+          label="Tuning"
+          className="w-2/3"
         />
       </Row>
 
+      {/* Three steps wide, so a held key has nowhere to run to — one press per
+          octave, and the ends go quiet when you are already there. */}
       <Row label="Octave" last>
-        <Segmented
-          segments={OCTAVES.map(({ value, label, name }) =>
-            chip(String(value), label, value === octave, name),
-          )}
-          value={String(octave)}
-          onChange={(id) => onOctave(Number(id))}
+        <Ticker
+          value={octave}
+          onChange={onOctave}
+          min={MIN_OCTAVE}
+          max={MAX_OCTAVE}
+          format={octaveLabel}
+          repeatOnHold={false}
+          label="Octave"
+          className="w-2/3"
         />
       </Row>
     </View>
   );
-}
-
-function chip(id: string, label: string, selected: boolean, name = label): Segment {
-  return {
-    id,
-    label: name,
-    content: (
-      <Text
-        className={`text-[12.5px] font-medium tracking-[-0.1px] ${
-          selected ? 'text-accent' : 'text-ink-muted'
-        }`}
-      >
-        {label}
-      </Text>
-    ),
-  };
 }
 
 function Row({ label, last, children }: { label: string; last?: boolean; children: ReactNode }) {

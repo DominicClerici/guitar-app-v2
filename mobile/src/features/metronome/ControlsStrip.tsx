@@ -1,126 +1,92 @@
-import type { SFSymbol } from 'expo-symbols';
 import type { ReactNode } from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 
-import { Button } from '@/components/Button';
-import { Segmented } from '@/components/Segmented';
+import { PillSelector, type PillOption } from '@/components/PillSelector';
+import { Ticker } from '@/components/Ticker';
 
 import { VOICES } from './clickVoices';
 import { MAX_BEATS, MIN_BEATS, SUBDIVISIONS } from './patterns';
+
+/**
+ * The subdivision reads as what it sounds like rather than as what it is called:
+ * one dot per click in the beat, the first of them being the beat itself. Four of
+ * those are quicker to tell apart at a glance than four names ending in "notes".
+ */
+const SUBDIVISION_OPTIONS: PillOption[] = SUBDIVISIONS.map((subdivision) => ({
+  id: subdivision.id,
+  name: subdivision.label,
+  content: (lit) => <Dots count={subdivision.perBeat} selected={lit} />,
+}));
+
+const VOICE_OPTIONS: PillOption[] = VOICES.map((voice) => ({
+  id: voice.id,
+  label: voice.label,
+}));
 
 interface Props {
   beats: number;
   perBeat: number;
   voiceId: string;
-  haptics: boolean;
   onBeats: (beats: number) => void;
   onPerBeat: (perBeat: number) => void;
   onVoice: (id: string) => void;
-  onHaptics: (enabled: boolean) => void;
 }
 
 /** Everything that shapes the click, one setting to a line. */
-export function ControlsStrip({
-  beats,
-  perBeat,
-  voiceId,
-  haptics,
-  onBeats,
-  onPerBeat,
-  onVoice,
-  onHaptics,
-}: Props) {
+export function ControlsStrip({ beats, perBeat, voiceId, onBeats, onPerBeat, onVoice }: Props) {
   return (
     <View className="rounded-[13px] border border-x-line-soft border-t-edge-top border-b-edge-bottom bg-surface px-[16px]">
       <Row label="Subdivision">
-        <Segmented
-          segments={SUBDIVISIONS.map((subdivision) => ({
-            id: subdivision.id,
-            label: subdivision.label,
-            content: (
-              <Dots count={subdivision.perBeat} selected={subdivision.perBeat === perBeat} />
-            ),
-          }))}
-          value={SUBDIVISIONS.find((s) => s.perBeat === perBeat)?.id ?? SUBDIVISIONS[0].id}
+        <PillSelector
+          options={SUBDIVISION_OPTIONS}
+          value={SUBDIVISIONS.find((s) => s.perBeat === perBeat)?.id ?? null}
           onChange={(id) => {
             const found = SUBDIVISIONS.find((s) => s.id === id);
             if (found) onPerBeat(found.perBeat);
           }}
+          label="Subdivision"
         />
       </Row>
 
+      {/* A dozen steps wide, so the keys repeat while held — but the number stays
+          a readout: twelve is a walk, not a journey. */}
       <Row label="Beats per bar">
-        <View className="flex-row items-center gap-[6px] rounded-[9px] border border-line-soft bg-tray p-[3px]">
-          <MiniButton
-            symbol="minus"
-            label="One beat fewer"
-            disabled={beats <= MIN_BEATS}
-            onPress={() => onBeats(beats - 1)}
-          />
-          <Text className="w-[22px] text-center font-mono text-[14px] text-ink">{beats}</Text>
-          <MiniButton
-            symbol="plus"
-            label="One beat more"
-            disabled={beats >= MAX_BEATS}
-            onPress={() => onBeats(beats + 1)}
-          />
-        </View>
-      </Row>
-
-      <Row label="Sound">
-        <Segmented
-          segments={VOICES.map((voice) => ({
-            id: voice.id,
-            label: voice.label,
-            content: (
-              <Text
-                className={`text-[12.5px] font-medium tracking-[-0.1px] ${
-                  voice.id === voiceId ? 'text-accent' : 'text-ink-muted'
-                }`}
-              >
-                {voice.label}
-              </Text>
-            ),
-          }))}
-          value={voiceId}
-          onChange={onVoice}
+        <Ticker
+          value={beats}
+          onChange={onBeats}
+          min={MIN_BEATS}
+          max={MAX_BEATS}
+          label="Beats per bar"
         />
       </Row>
 
-      <Row label="Haptics" last>
-        <Pressable
-          onPress={() => onHaptics(!haptics)}
-          accessibilityRole="switch"
-          accessibilityState={{ checked: haptics }}
-          accessibilityLabel="Pulse on every beat"
-          className={`h-[32px] w-[62px] items-center justify-center rounded-[8px] border active:opacity-70 ${
-            haptics ? 'border-accent-line bg-accent-wash' : 'border-line-soft bg-tray'
-          }`}
-        >
-          <Text
-            className={`font-mono text-[10px] uppercase tracking-[1.5px] ${
-              haptics ? 'text-accent' : 'text-ink-faint'
-            }`}
-          >
-            {haptics ? 'On' : 'Off'}
-          </Text>
-        </Pressable>
+      <Row label="Sound" last>
+        <PillSelector options={VOICE_OPTIONS} value={voiceId} onChange={onVoice} label="Sound" />
       </Row>
     </View>
   );
 }
 
+/**
+ * A fixed column for the name and the rest for the control, rather than each row
+ * sizing itself: the three trays stack, so they have to agree on both edges — and
+ * `Beats per bar` is long enough that a share of the width would push the tray off
+ * the card on a narrow screen.
+ */
 function Row({ label, last, children }: { label: string; last?: boolean; children: ReactNode }) {
   return (
     <View
-      className={`min-h-[58px] flex-row items-center justify-between gap-[12px] py-[11px] ${
+      className={`min-h-[58px] flex-row items-center gap-[12px] py-[11px] ${
         last ? '' : 'border-b border-b-line-soft'
       }`}
     >
-      <Text className="font-mono text-[10px] font-semibold uppercase tracking-[1.8px] text-ink-faint">
+      <Text
+        numberOfLines={1}
+        className="w-[110px] font-mono text-[10px] font-semibold uppercase tracking-[1.8px] text-ink-faint"
+      >
         {label}
       </Text>
-      {children}
+      <View className="flex-1">{children}</View>
     </View>
   );
 }
@@ -144,30 +110,5 @@ function Dots({ count, selected }: { count: number; selected: boolean }) {
         />
       ))}
     </View>
-  );
-}
-
-function MiniButton({
-  symbol,
-  label,
-  disabled,
-  onPress,
-}: {
-  symbol: SFSymbol;
-  label: string;
-  disabled: boolean;
-  onPress: () => void;
-}) {
-  return (
-    <Button
-      variant="secondary"
-      size="xs"
-      square
-      icon={symbol}
-      disabled={disabled}
-      hitSlop={6}
-      accessibilityLabel={label}
-      onPress={onPress}
-    />
   );
 }
