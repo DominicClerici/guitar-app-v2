@@ -18,8 +18,14 @@ export interface Env {
   /** Comma-separated origins allowed for CORS and Better Auth redirects. */
   TRUSTED_ORIGINS: string;
 
-  APPLE_CLIENT_ID?: string;
+  /**
+   * Sign in with Apple. The bundle id alone turns the provider on, because it is what a native
+   * identity token is issued against and so what verifying one checks. The other two are the
+   * browser redirect flow's half — a Services identifier and the ES256 JWT that serves as its
+   * secret — and are only worth setting once something signs in through a browser.
+   */
   APPLE_APP_BUNDLE_IDENTIFIER?: string;
+  APPLE_CLIENT_ID?: string;
   APPLE_CLIENT_SECRET?: string;
 
   GOOGLE_CLIENT_ID?: string;

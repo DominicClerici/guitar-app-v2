@@ -1,3 +1,4 @@
+import { useImperativeHandle, type Ref } from 'react';
 import { Linking, Pressable, Text, View } from 'react-native';
 
 import { IN_TUNE_CENTS } from './freqToNote';
@@ -15,13 +16,23 @@ function formatCents(cents: number) {
   return `${sign}${Math.abs(rounded).toFixed(1)} ¢`;
 }
 
+export type InlineTunerCardRef = {
+  /** Give up this card's mic lease. A no-op if it is not holding one. */
+  stop: () => void;
+};
+
 /**
  * Home-screen tuner. The card itself is the control: tap to start listening, tap again
  * to release the mic. Idle and live states share one layout so starting the tuner wakes
  * the card up rather than resizing it.
+ *
+ * `stop` is for the section header handing a live session to the tuner sheet: the sheet
+ * takes its lease first, so releasing this one leaves the native session untouched.
  */
-export function InlineTunerCard() {
-  const { status, note, frequency, centsSV, presenceSV, toggle } = useTunerSession();
+export function InlineTunerCard({ ref }: { ref?: Ref<InlineTunerCardRef> }) {
+  const { status, note, frequency, centsSV, presenceSV, toggle, stop } = useTunerSession();
+
+  useImperativeHandle(ref, () => ({ stop }), [stop]);
 
   const live = status === 'listening' || status === 'starting';
   const hasReading = live && note !== null;

@@ -9,9 +9,16 @@ DATABASE_URL=postgres://guitar:guitar@localhost:5434/guitar
 BETTER_AUTH_SECRET=replace-me
 BETTER_AUTH_URL=http://localhost:8788
 
-# Sign in with Apple. SERVICE_ID is the web/Services identifier, not the app bundle id.
+# Sign in with Apple. The bundle id is the only one the app needs: it signs in natively, and the
+# identity token that arrives is issued against the bundle id, which is what the server verifies
+# it against. Set it and the Apple button works.
+#
+# The other two are the browser redirect flow, which nothing in the app starts yet. CLIENT_ID is a
+# Services identifier (not the bundle id) and CLIENT_SECRET is an ES256 JWT you sign yourself with
+# a .p8 key from the Apple developer portal — it expires after at most six months and has to be
+# regenerated. Leave both empty until a browser signs in.
+APPLE_APP_BUNDLE_IDENTIFIER=com.dominicrumor.guitar-mobile-expo
 APPLE_CLIENT_ID=
-APPLE_APP_BUNDLE_IDENTIFIER=
 APPLE_CLIENT_SECRET=
 
 # Google OAuth.

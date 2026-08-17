@@ -1,1 +1,1 @@
-export { InlineChordDetector } from './InlineChordDetector';
+export { InlineChordDetector, type InlineChordDetectorRef } from './InlineChordDetector';

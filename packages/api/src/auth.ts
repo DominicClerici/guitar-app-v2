@@ -89,12 +89,19 @@ function socialProviders(env: Env): SocialProviders {
     };
   }
 
-  if (env.APPLE_CLIENT_ID && env.APPLE_CLIENT_SECRET) {
+  // Apple is reached natively and only natively: the device gets an identity token from
+  // `expo-apple-authentication` and the server verifies it against Apple's public keys. That
+  // check compares the token's audience against `appBundleIdentifier` and never reads a secret,
+  // so the bundle id is the entire requirement. A Services identifier and the six-monthly JWT
+  // that stands in for its secret belong to the browser redirect flow, which nothing in this app
+  // can start — gating on them would leave the button dead in exchange for credentials no code
+  // path ever spends.
+  if (env.APPLE_APP_BUNDLE_IDENTIFIER) {
     providers.apple = {
-      // The Services identifier, which is what the web redirect flow is issued against. The
-      // native `expo-apple-authentication` token is issued against the bundle id instead, so both
-      // have to be declared for tokens from either path to be accepted.
-      clientId: env.APPLE_CLIENT_ID,
+      // Required by the provider's options, and not what the audience check above reads: that
+      // prefers `appBundleIdentifier`. The Services identifier stands in wherever one exists, so
+      // adding the web flow later is a variable to set rather than a change here.
+      clientId: env.APPLE_CLIENT_ID || env.APPLE_APP_BUNDLE_IDENTIFIER,
       clientSecret: env.APPLE_CLIENT_SECRET,
       appBundleIdentifier: env.APPLE_APP_BUNDLE_IDENTIFIER,
       // Apple's own id token carries no name at all. The one that reaches here comes from the
@@ -227,6 +234,27 @@ export function createAuth({ env, db }: { env: Env; db: Db }) {
          * the one path that sets it. Nothing trusts it: it is a suggested display name.
          */
         oauthProfile: { type: 'json', required: false, returned: true },
+
+        /**
+         * What onboarding collects after the name (`@guitar/shared`'s `onboarding.ts`). All four
+         * take client input, because onboarding writes them with `updateUser` as each step is
+         * answered — which is also what makes a half-finished flow resumable: the account carries
+         * what it has been told, so the next step is whatever is still null.
+         *
+         * Values are validated by the screens against the shared schemas before they are sent, and
+         * again on the way out by `parseSkillLevel` / `parseLearningGoals`. Nothing downstream
+         * trusts the column: an unrecognised value degrades rather than throwing.
+         */
+        skillLevel: { type: 'string', required: false, input: true, returned: true },
+        goals: { type: 'string[]', required: false, input: true, returned: true },
+        termsAcceptedAt: { type: 'date', required: false, input: true, returned: true },
+        marketingEmails: {
+          type: 'boolean',
+          required: false,
+          input: true,
+          returned: true,
+          defaultValue: false,
+        },
       },
     },
 

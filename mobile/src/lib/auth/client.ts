@@ -76,7 +76,16 @@ export const authClient = createAuthClient({
     // that deliberately exposes the router alone, and widening it to reach the auth instance would
     // pull the Worker's whole dependency graph into the device's TypeScript program.
     inferAdditionalFields({
-      user: { oauthProfile: { type: 'json', required: false } },
+      user: {
+        oauthProfile: { type: 'json', required: false },
+        // The rest of onboarding, which the flow both reads off the session and writes back with
+        // `updateUser`. Declared as input fields for the same reason the server declares them:
+        // every step past the name is a write to one of these.
+        skillLevel: { type: 'string', required: false, input: true },
+        goals: { type: 'string[]', required: false, input: true },
+        termsAcceptedAt: { type: 'date', required: false, input: true },
+        marketingEmails: { type: 'boolean', required: false, input: true },
+      },
     }),
   ],
 });

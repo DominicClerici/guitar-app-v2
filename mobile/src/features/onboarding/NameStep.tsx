@@ -1,44 +1,59 @@
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 
-import { Button } from '@/components/Button';
+import { AuthTextField } from '@/components/AuthTextField';
+
+import { StepHeading } from './StepHeading';
 
 /**
- * Step three, as far as it goes for now: the account exists and is signed in, and this is where
- * the flow hands over to the rest of onboarding.
+ * Step three: what to call them.
  *
- * The field and the write to `user.name` are the next piece of work. What is real here is the
- * arrival: everything before it — a code, or Apple, or Google — lands on this step by the same
- * route, and `suggestedName` already has the provider's answer waiting to prefill it.
+ * The one question in the flow that has to be answered — everything after it can be skipped, and
+ * `user.name` is what `nextStep` reads to know the account is past this point at all. So the flow's
+ * button stays disabled until there is something in the field, and there is no way past it.
+ *
+ * Apple and Google supply a name, and the server keeps it in `oauthProfile` rather than in
+ * `user.name` on purpose. It arrives here as the field's value: a suggestion sitting in an editable
+ * box, which someone can accept by pressing Continue or type over.
+ *
+ * The value is the flow's rather than this step's, because the button that submits it now lives
+ * outside the step — anchored to the bottom of the screen, where it does not move when the question
+ * changes. What is typed here therefore also survives stepping back to it.
  */
 export function NameStep({
-  suggestion,
-  onDone,
+  value,
+  onChange,
+  error,
+  onSubmit,
 }: {
-  /** What Apple or Google called them, or empty. Will be the field's initial value. */
-  suggestion: string;
-  onDone: () => void;
+  value: string;
+  onChange: (name: string) => void;
+  error: string | null;
+  /** The keyboard's return key, where there is enough to submit. */
+  onSubmit?: () => void;
 }) {
   return (
     <View>
-      <Text className="text-[28px] leading-[32px] font-semibold tracking-[-0.7px] text-ink">
-        What should we call you?
-      </Text>
-      <Text className="mt-[8px] text-[14px] leading-[20px] text-ink-muted">
-        You’re signed in. This step is next.
-      </Text>
+      <StepHeading title="What should we call you?">
+        This is the name we’ll greet you with. You can change it later.
+      </StepHeading>
 
-      {suggestion ? (
-        <View className="mt-[22px] rounded-[12px] border border-line-soft bg-tray px-[14px] py-[12px]">
-          <Text className="font-mono text-[9.5px] uppercase tracking-[2px] text-ink-faint">
-            From your provider
-          </Text>
-          <Text className="mt-[6px] text-[16px] tracking-[-0.2px] text-ink">{suggestion}</Text>
-        </View>
-      ) : null}
-
-      <Button variant="primary" size="lg" radius={13} className="mt-[24px] w-full" onPress={onDone}>
-        Done for now
-      </Button>
+      <View className="mt-[26px]">
+        <AuthTextField
+          label="Name"
+          value={value}
+          onChangeText={onChange}
+          error={error ?? undefined}
+          placeholder="Your name"
+          autoCapitalize="words"
+          autoComplete="name"
+          textContentType="name"
+          returnKeyType="next"
+          // Nothing is fetched while this is open and the field is the only thing on the step, so
+          // it takes focus on arrival rather than asking for a tap first.
+          autoFocus
+          onSubmitEditing={onSubmit}
+        />
+      </View>
     </View>
   );
 }

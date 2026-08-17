@@ -6,6 +6,7 @@ import { StatusBar } from 'expo-status-bar';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { withUniwind } from 'uniwind';
 
+import { ToastHost } from '@/components/ToastHost';
 import { ApiProvider } from '@/lib/api';
 import { useEnsureGuestSession } from '@/lib/auth';
 import { ContentProvider } from '@/lib/content-cache';
@@ -54,12 +55,12 @@ export default function RootLayout() {
                 >
                   <Stack.Screen name="quiz/[slug]" options={pagedInto} />
                   <Stack.Screen name="activity/[slug]" options={pagedInto} />
-                  {/* The whole onboarding group is one modal, so its own steps can push inside
-                      it without each of them sliding up as another card. */}
-                  <Stack.Screen name="onboarding" options={{ presentation: 'modal' }} />
                 </Stack>
               </ThemeProvider>
             </BottomSheetModalProvider>
+            {/* Last, and outside the sheet provider, so on Android — where a modal
+                route is an ordinary fragment — it is already above both. */}
+            <ToastHost />
           </GestureRoot>
         </ContentProvider>
       </SyncProvider>

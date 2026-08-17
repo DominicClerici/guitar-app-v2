@@ -9,9 +9,11 @@ import { OtpField } from './OtpField';
 /**
  * Step two: the code, for whichever of the two it was sent to.
  *
- * There is no submit button. Six digits is the whole form, and the moment the sixth lands there is
- * nothing left to decide — so it verifies itself, and the buttons here are the two ways out: send
- * another one, or go back and fix the address.
+ * There is no submit button, and this is the one step where the flow's own anchored button is not
+ * there either — it fades out as this arrives and back in on the step after. Six digits is the
+ * whole form, and the moment the sixth lands there is nothing left to decide, so it verifies
+ * itself; a Continue sitting under a field that submits itself is a button whose only purpose is to
+ * be too late. The two controls here are the ways out: send another code, or fix the address.
  */
 
 /** Long enough that a slow SMS is not raced by a second one, short enough not to feel stuck. */
@@ -26,7 +28,8 @@ interface Props {
   onResend: () => void;
   onBack: () => void;
   error: string | null;
-  pending: boolean;
+  /** Whether another code is on its way out, which is the only work this step waits on in place. */
+  resending: boolean;
   /** Bumped by the flow each time a code goes out, which is what restarts the countdown. */
   sentAt: number;
 }
@@ -39,7 +42,7 @@ export function CodeStep({
   onResend,
   onBack,
   error,
-  pending,
+  resending,
   sentAt,
 }: Props) {
   return (
@@ -58,21 +61,21 @@ export function CodeStep({
           onChange={onChangeCode}
           onComplete={onSubmit}
           error={Boolean(error)}
-          editable={!pending}
+          editable={!resending}
         />
 
         {error ? <Text className="mt-[12px] text-[12.5px] text-rose">{error}</Text> : null}
       </View>
 
       <View className="mt-[24px] flex-row items-center justify-between">
-        <Button variant="link" size="inline" onPress={onBack} disabled={pending}>
+        <Button variant="link" size="inline" onPress={onBack} disabled={resending}>
           Change
         </Button>
 
         {/* Keyed by the send it belongs to, so a new code starts a new countdown by mounting a
             new one. Resetting the old one in an effect instead would be a setState during an
             effect body, which cascades a render — and the compiler's lint rejects it. */}
-        <Resend key={sentAt} onResend={onResend} disabled={pending} />
+        <Resend key={sentAt} onResend={onResend} disabled={resending} />
       </View>
     </View>
   );

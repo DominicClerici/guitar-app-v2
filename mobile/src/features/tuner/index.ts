@@ -1,4 +1,4 @@
-export { InlineTunerCard } from './InlineTunerCard';
+export { InlineTunerCard, type InlineTunerCardRef } from './InlineTunerCard';
 export { TunerSheet, type TunerSheetRef } from './TunerSheet';
 export { TunerScale } from './TunerScale';
 export { useTuner, useTunerSession } from './useTuner';

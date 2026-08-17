@@ -6,13 +6,15 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Avatar } from '@/components/Avatar';
 import { initials } from '@/features/account';
-import { InlineChordDetector } from '@/features/chord-detection';
+import { InlineChordDetector, type InlineChordDetectorRef } from '@/features/chord-detection';
 import { LearningHero, LearningHeroEmpty } from '@/features/learning';
-import { AccountSheet, startOnboarding, type AccountSheetRef } from '@/features/onboarding';
-import { InlineTunerCard } from '@/features/tuner/InlineTunerCard';
+import { startOnboarding } from '@/features/onboarding';
+import { TunerSheet, type TunerSheetRef } from '@/features/tuner';
+import { InlineTunerCard, type InlineTunerCardRef } from '@/features/tuner/InlineTunerCard';
 import { useSession } from '@/lib/auth';
 import { nextStep, nextStepHref, pathwayHref, useLearning } from '@/lib/learning';
 import { useToken } from '@/lib/tokens';
+import { encodeVoicing } from '@/lib/voicing-param';
 
 const ARTICLES: { icon: SFSymbol; title: string; subtitle: string }[] = [
   { icon: 'text.book.closed', title: 'Reading Tab Notation', subtitle: '5 min read' },
@@ -28,11 +30,17 @@ const PLAY: { icon: SFSymbol; title: string; subtitle: string }[] = [
 
 // Tappable section title. The chevron is the affordance — it is what tells the
 // user the whole header row opens a fuller view.
-function SectionHeader({ title }: { title: string }) {
+function SectionHeader({ title, onPress }: { title: string; onPress?: () => void }) {
   const faint = useToken('--ink-faint', '#62666e');
 
   return (
-    <Pressable className="flex-row items-center gap-[6px] self-start py-[6px]" hitSlop={8}>
+    <Pressable
+      onPress={onPress}
+      accessibilityRole="button"
+      accessibilityLabel={`Open ${title}`}
+      className="flex-row items-center gap-[6px] self-start py-[6px] active:opacity-55"
+      hitSlop={8}
+    >
       <Text className="text-[17px] font-semibold tracking-[-0.3px] text-ink">{title}</Text>
       <SymbolView name="chevron.right" size={12} weight="semibold" tintColor={faint} />
     </Pressable>
@@ -76,7 +84,6 @@ function PlayCard({ icon, title, subtitle }: (typeof PLAY)[number]) {
 export function HomeTab() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
-  const accountSheet = useRef<AccountSheetRef>(null);
 
   // The hero is the pathway touched most recently, which is what `active` is already ordered by.
   const { active, progress } = useLearning();
@@ -87,6 +94,35 @@ export function HomeTab() {
   const { data: session } = useSession();
   const account = session && !session.user.isAnonymous ? session.user : null;
   const firstName = account?.name.trim().split(/\s+/)[0] || null;
+
+  const tunerSheet = useRef<TunerSheetRef>(null);
+  const inlineTuner = useRef<InlineTunerCardRef>(null);
+  const chordDetector = useRef<InlineChordDetectorRef>(null);
+
+  // Order is the whole trick: the sheet takes a mic lease inside `present()`, so the
+  // card's lease is the second of two rather than the last one. The count never reaches
+  // zero, the native session is never torn down, and the sheet opens already listening.
+  const openTuner = () => {
+    tunerSheet.current?.present();
+    inlineTuner.current?.stop();
+  };
+
+  // The neck carries over, so the full screen picks up the shape mid-build instead of
+  // asking for it again. `root` pins the reading the card was showing, which is what
+  // stops an Am7 reopening as a C6.
+  const openChordDetector = () => {
+    const board = chordDetector.current?.board();
+    router.push({
+      pathname: '/chord-detector',
+      params:
+        board && board.placed.length > 0
+          ? {
+              voicing: encodeVoicing(board.placed),
+              ...(board.rootPitchClass === null ? {} : { root: String(board.rootPitchClass) }),
+            }
+          : {},
+    });
+  };
 
   return (
     <View className="flex-1 bg-bg">
@@ -115,7 +151,7 @@ export function HomeTab() {
           <Avatar
             initials={account ? initials(account) : null}
             accessibilityLabel={account ? 'Your account' : 'Create an account'}
-            onPress={account ? undefined : () => accountSheet.current?.present()}
+            onPress={account ? undefined : () => startOnboarding(router)}
           />
         </View>
 
@@ -139,17 +175,17 @@ export function HomeTab() {
 
         {/* signature — tuner scale */}
         <View className="mt-[38px]">
-          <SectionHeader title="Tuner" />
+          <SectionHeader title="Tuner" onPress={openTuner} />
           <View className="mt-[12px]">
-            <InlineTunerCard />
+            <InlineTunerCard ref={inlineTuner} />
           </View>
         </View>
 
         {/* chord detection — the neck itself is the control, unenclosed like the hero */}
         <View className="mt-[34px]">
-          <SectionHeader title="Chord Detection" />
+          <SectionHeader title="Chord Detection" onPress={openChordDetector} />
           <View className="mt-[10px]">
-            <InlineChordDetector />
+            <InlineChordDetector ref={chordDetector} />
           </View>
         </View>
 
@@ -174,7 +210,7 @@ export function HomeTab() {
         </View>
       </ScrollView>
 
-      <AccountSheet ref={accountSheet} onCreateAccount={() => startOnboarding(router)} />
+      <TunerSheet ref={tunerSheet} />
     </View>
   );
 }

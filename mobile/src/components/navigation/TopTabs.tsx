@@ -12,11 +12,11 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { AccountTab } from '@/screens/AccountTab';
 import { EarTab } from '@/screens/EarTab';
 import { HomeTab } from '@/screens/HomeTab';
 import { LearnTab } from '@/screens/LearnTab';
 import { PlayTab } from '@/screens/PlayTab';
+import { SettingsTab } from '@/screens/SettingsTab';
 import { ToolsTab } from '@/screens/ToolsTab';
 
 import { TabBar } from './TabBar';
@@ -27,8 +27,8 @@ const PAGES: Record<TabKey, () => React.JSX.Element> = {
   tools: ToolsTab,
   play: PlayTab,
   learn: LearnTab,
-  account: AccountTab,
   ear: EarTab,
+  settings: SettingsTab,
 };
 
 // Duration of the tap transition — the content slide and the tab-bar crossfade

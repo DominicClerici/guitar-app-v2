@@ -17,7 +17,7 @@ import { IN_TUNE_CENTS } from './freqToNote';
 import { SeismographChart, SeismographFrame } from './SeismographChart';
 import { centsTextClass, useTunerColors } from './tunerColors';
 import { type TunerStatus } from './tunerEngine';
-import { useTunerSession } from './useTuner';
+import { useTuner, useTunerSession } from './useTuner';
 
 export type TunerSheetRef = SheetRef;
 
@@ -25,44 +25,61 @@ export type TunerSheetRef = SheetRef;
  * Full tuner in a bottom sheet: oversized note readout over a rolling seismograph
  * trace. Opening it acquires the mic; dismissing releases it.
  *
- * Mounted by `ToolsTab`, which presents it from the pinned Tuner card.
+ * Mounted by `ToolsTab`, which presents it from the pinned Tuner card, and by
+ * `HomeTab`, which hands it over from the inline card.
+ *
+ * The mic lease is held out here rather than in the body — the body only mounts
+ * once the modal presents, which is too late for two reasons. The session gets a
+ * head start on the open animation instead of warming up behind it, and because
+ * `present()` takes the lease synchronously, a caller can release a lease it was
+ * already holding straight afterwards without the count ever reaching zero. A
+ * tuner that was already listening therefore stays listening across the handoff.
  */
 export function TunerSheet({ ref }: { ref?: Ref<TunerSheetRef> }) {
   const sheetRef = useRef<SheetRef>(null);
   const [visible, setVisible] = useState(false);
+  const { start, stop } = useTunerSession();
 
   useImperativeHandle(
     ref,
     () => ({
-      present: () => sheetRef.current?.present(),
+      present: () => {
+        void start();
+        sheetRef.current?.present();
+      },
       dismiss: () => sheetRef.current?.dismiss(),
     }),
-    [],
+    [start],
   );
+
+  const close = () => {
+    setVisible(false);
+    stop();
+  };
 
   return (
     <Sheet
       ref={sheetRef}
       snapPoints={SNAP_POINTS}
-      onVisibleChange={setVisible}
-      onDismiss={() => setVisible(false)}
+      onVisibleChange={(next) => (next ? setVisible(true) : close())}
+      onDismiss={close}
     >
-      <TunerSheetBody visible={visible} />
+      <TunerSheetBody visible={visible} onStart={start} />
     </Sheet>
   );
 }
 
 const SNAP_POINTS = ['92%'];
 
-function TunerSheetBody({ visible }: { visible: boolean }) {
-  const { status, note, frequency, centsSV, claritySV, presenceSV, frameSV, start, stop } =
-    useTunerSession();
+function TunerSheetBody({ visible, onStart }: { visible: boolean; onStart: () => Promise<void> }) {
+  const { status, note, frequency, centsSV, claritySV, presenceSV, frameSV } = useTuner();
   const colors = useTunerColors();
   const { height: screenHeight } = useWindowDimensions();
 
-  // The 60-row chart drops frames if it mounts during the sheet's open animation, so both
-  // it and the mic wait for interactions to settle. The static frame holds the slot
-  // meanwhile, at the same measured size, so the live chart drops in without a flash.
+  // The 60-row chart drops frames if it mounts during the sheet's open animation, so it
+  // waits for interactions to settle. The static frame holds the slot meanwhile, at the
+  // same measured size, so the live chart drops in without a flash. The mic does not
+  // wait with it — `TunerSheet` already has it running by now.
   const [live, setLive] = useState(false);
   const [chart, setChart] = useState({ width: 0, height: 0 });
 
@@ -75,16 +92,10 @@ function TunerSheetBody({ visible }: { visible: boolean }) {
   }
 
   useEffect(() => {
-    if (!visible) {
-      stop();
-      return;
-    }
-    const task = InteractionManager.runAfterInteractions(() => {
-      setLive(true);
-      void start();
-    });
+    if (!visible) return;
+    const task = InteractionManager.runAfterInteractions(() => setLive(true));
     return () => task.cancel();
-  }, [visible, start, stop]);
+  }, [visible]);
 
   const onChartLayout = (e: LayoutChangeEvent) => {
     const { width, height } = e.nativeEvent.layout;
@@ -158,7 +169,7 @@ function TunerSheetBody({ visible }: { visible: boolean }) {
           <StatusPill
             status={status}
             inTune={note !== null && Math.abs(note.cents) < IN_TUNE_CENTS}
-            onStart={start}
+            onStart={onStart}
           />
         </View>
       </View>

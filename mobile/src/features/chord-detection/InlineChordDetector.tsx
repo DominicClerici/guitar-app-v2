@@ -1,19 +1,40 @@
+import { useImperativeHandle, type Ref } from 'react';
 import { Text, View } from 'react-native';
 
 import { toAccidentalGlyphs } from '@/lib/accidentals';
 
 import { Fretboard } from './Fretboard';
-import { useChordDetection } from './useChordDetection';
+import { useChordDetection, type PlacedNote } from './useChordDetection';
 
 const EM_DASH = '—';
 const MIN_NOTES = 3;
 
+export type InlineChordDetectorBoard = {
+  placed: PlacedNote[];
+  /** Root of the reading being shown, so the full screen opens on the same one. */
+  rootPitchClass: number | null;
+};
+
+export type InlineChordDetectorRef = {
+  /** Whatever is on the neck right now, for handing over to the chord detector screen. */
+  board: () => InlineChordDetectorBoard;
+};
+
 /**
  * Home-screen chord detection. Build a voicing on the neck and the engine's best
  * reading of it appears underneath — the name only, no alternates or interval detail.
+ *
+ * The board is read through a ref rather than lifted: the section header above only
+ * needs it at the moment it is tapped, and holding it here keeps a tap on the neck
+ * from re-rendering the whole home screen.
  */
-export function InlineChordDetector() {
+export function InlineChordDetector({ ref }: { ref?: Ref<InlineChordDetectorRef> }) {
   const { placed, chord, rootPitchClass, nameForPitchClass, toggle } = useChordDetection();
+
+  useImperativeHandle(ref, () => ({ board: () => ({ placed, rootPitchClass }) }), [
+    placed,
+    rootPitchClass,
+  ]);
 
   return (
     <View>

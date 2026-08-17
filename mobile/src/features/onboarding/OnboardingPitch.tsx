@@ -36,31 +36,25 @@ function BenefitRow({ icon, title, divided }: { icon: SFSymbol; title: string; d
 }
 
 /**
- * The signed-out account view, and the only one: the Account tab and the home-screen sheet render
- * this same component, so the case for an account is made in one voice wherever it is met.
+ * The signed-out account view: the case for an account, made in one voice wherever it is met.
  *
- * Presentational by design — it owns no navigation and no sheet. Both callers pass what
- * "Create account" should do, which is what lets the sheet close itself before the flow opens.
+ * Presentational by design — it owns no navigation. The caller passes what each of the two ways in
+ * should do, which is what keeps the ways into the flow at the call site.
+ *
+ * Two, because this screen argues for an account and someone who already has one is not being
+ * argued with. They need the pitch to get out of the way, so the way past it is its own control
+ * rather than something to be found inside the flow the pitch opens.
  */
 export function OnboardingPitch({
-  variant = 'screen',
   onCreateAccount,
+  onLogIn,
 }: {
-  /** A sheet has the grabber above it and less room, so it opens quieter. */
-  variant?: 'screen' | 'sheet';
   onCreateAccount: () => void;
+  onLogIn: () => void;
 }) {
-  const sheet = variant === 'sheet';
-
   return (
     <View className="px-[18px]">
-      <Text
-        className={
-          sheet
-            ? 'text-[24px] leading-[28px] font-semibold tracking-[-0.6px] text-ink'
-            : 'text-[28px] leading-[32px] font-semibold tracking-[-0.7px] text-ink'
-        }
-      >
+      <Text className="text-[28px] leading-[32px] font-semibold tracking-[-0.7px] text-ink">
         Keep your progress
       </Text>
       <Text className="mt-[8px] text-[14px] leading-[20px] text-ink-muted">
@@ -88,18 +82,33 @@ export function OnboardingPitch({
         Create account
       </Button>
 
+      <Button
+        variant="secondary"
+        size="lg"
+        radius={13}
+        className="mt-[10px] w-full"
+        onPress={onLogIn}
+      >
+        Log in
+      </Button>
+
       <Text className="mt-[20px] text-center font-mono text-[9.5px] uppercase tracking-[2px] text-ink-faint">
         Or continue with
       </Text>
 
       {/* All three open the flow rather than starting a provider from here. The buttons that do
-          the actual signing in are its first step, which is also the only place a provider's
-          failure has somewhere to be shown — a sheet that has already closed has not. */}
+          the actual signing in are its first step, which is also where a provider's failure has
+          somewhere to be shown.
+
+          Email is the one that opens on the log-in framing. The other two are a tap away from
+          being signed in either way, so the wording behind them is never read; email lands on the
+          same typed field the Create account button does, and duplicating that here would make two
+          controls that do exactly one thing between them. */}
       <ProviderButtons
         className="mt-[12px]"
         onGoogle={onCreateAccount}
         onApple={onCreateAccount}
-        onEmail={onCreateAccount}
+        onEmail={onLogIn}
       />
     </View>
   );

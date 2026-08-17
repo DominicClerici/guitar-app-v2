@@ -17,6 +17,19 @@ function authFor(overrides: Partial<Env> = {}) {
   return createAuth({ env: merged, db: createDb(merged.DATABASE_URL) });
 }
 
+/**
+ * The pool loads `.dev.vars` into the bindings, so a developer who has real OAuth apps set up
+ * locally starts from a different set of providers than CI does. Every provider case below spreads
+ * this first and then names the credentials it actually means.
+ */
+const NO_PROVIDER_CREDENTIALS: Partial<Env> = {
+  GOOGLE_CLIENT_ID: undefined,
+  GOOGLE_CLIENT_SECRET: undefined,
+  APPLE_APP_BUNDLE_IDENTIFIER: undefined,
+  APPLE_CLIENT_ID: undefined,
+  APPLE_CLIENT_SECRET: undefined,
+};
+
 describe('auth configuration', () => {
   it('enables email + password without requiring verification to sign in', () => {
     const options = authFor().options;
@@ -27,11 +40,14 @@ describe('auth configuration', () => {
   });
 
   it('omits social providers whose credentials are unset', () => {
-    expect(Object.keys(authFor().options.socialProviders ?? {})).toEqual([]);
+    const providers = authFor(NO_PROVIDER_CREDENTIALS).options.socialProviders ?? {};
+
+    expect(Object.keys(providers)).toEqual([]);
   });
 
   it('registers google and apple once their credentials are present', () => {
     const options = authFor({
+      ...NO_PROVIDER_CREDENTIALS,
       GOOGLE_CLIENT_ID: 'google-id',
       GOOGLE_CLIENT_SECRET: 'google-secret',
       APPLE_CLIENT_ID: 'apple-service-id',
@@ -44,6 +60,25 @@ describe('auth configuration', () => {
     // omitting this would reject every id token coming from the Expo app.
     expect(options.socialProviders?.apple).toMatchObject({
       appBundleIdentifier: 'com.example.guitar',
+      clientId: 'apple-service-id',
+    });
+  });
+
+  it('registers apple on the bundle id alone, with no Services id or secret', () => {
+    // The only credentials the app can actually produce. Verifying a native id token compares its
+    // audience to the bundle id and never reads a secret, so requiring the redirect flow's half
+    // would leave the button dead for everyone who has not set up a web client they never use.
+    const options = authFor({
+      ...NO_PROVIDER_CREDENTIALS,
+      APPLE_APP_BUNDLE_IDENTIFIER: 'com.example.guitar',
+    }).options;
+
+    expect(Object.keys(options.socialProviders ?? {})).toEqual(['apple']);
+    expect(options.socialProviders?.apple).toMatchObject({
+      appBundleIdentifier: 'com.example.guitar',
+      // Standing in for the Services id, which is what the audience check falls back to when no
+      // bundle id is given — here it is set, so this value is never what a token is matched on.
+      clientId: 'com.example.guitar',
     });
   });
 

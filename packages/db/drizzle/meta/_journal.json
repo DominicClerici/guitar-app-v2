@@ -43,6 +43,13 @@
       "when": 1786989633209,
       "tag": "0005_hesitant_thunderbolts",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1786995598178,
+      "tag": "0006_massive_natasha_romanoff",
+      "breakpoints": true
     }
   ]
 }

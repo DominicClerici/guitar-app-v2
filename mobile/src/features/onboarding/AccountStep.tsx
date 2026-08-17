@@ -6,6 +6,7 @@ import { canUseApple, canUseGoogle } from '@/lib/auth';
 
 import { ContactField, type Channel } from './ContactField';
 import { GoogleMark } from './GoogleMark';
+import { FRAMING, type OnboardingMode } from './mode';
 
 /**
  * Step one: how someone wants to be reached, and the address or number to reach them at.
@@ -14,6 +15,15 @@ import { GoogleMark } from './GoogleMark';
  * or a provider token proves who someone is; whether an account already existed is the server's
  * business, and what the flow does next is decided by what the resulting account is missing rather
  * than by which button was pressed.
+ *
+ * Which is why `mode` reaches no further than the two lines at the top. It says who the screen
+ * thinks it is talking to; it does not change what any of the four buttons do, because there is
+ * nothing about them that could differ.
+ *
+ * Equal, but not identically placed: Continue is the flow's own button, anchored at the foot of the
+ * screen where it stays for every step, and the two providers are alternatives to it sitting in the
+ * step. Neither provider shows a spinner of its own — pressing one starts the same transition
+ * Continue does, and the screen it hands off to is what says something is happening.
  */
 
 const CHANNELS = [
@@ -22,47 +32,43 @@ const CHANNELS = [
 ];
 
 interface Props {
+  /** Whether this reads as signing up or as signing back in. Wording only. */
+  mode: OnboardingMode;
   channel: Channel;
   onChangeChannel: (channel: Channel) => void;
   value: string;
   onChangeValue: (value: string) => void;
   dialCode: string;
   onChangeDialCode: (dialCode: string) => void;
-  /** Whether there is enough in the field to be worth a round trip. */
-  ready: boolean;
   error: string | null;
-  /** Which request is in flight, so only the control that started it shows it. */
-  busy: 'contact' | 'google' | 'apple' | null;
-  onSubmit: () => void;
+  /** The keyboard's return key, where there is enough in the field to be worth a round trip. */
+  onSubmit?: () => void;
   onGoogle: () => void;
   onApple: () => void;
 }
 
 export function AccountStep({
+  mode,
   channel,
   onChangeChannel,
   value,
   onChangeValue,
   dialCode,
   onChangeDialCode,
-  ready,
   error,
-  busy,
   onSubmit,
   onGoogle,
   onApple,
 }: Props) {
-  const working = busy !== null;
   const providers = canUseGoogle || canUseApple;
+  const framing = FRAMING[mode];
 
   return (
     <View>
       <Text className="text-[28px] leading-[32px] font-semibold tracking-[-0.7px] text-ink">
-        Create your account
+        {framing.title}
       </Text>
-      <Text className="mt-[8px] text-[14px] leading-[20px] text-ink-muted">
-        We’ll send you a code to confirm it’s you. No password to remember.
-      </Text>
+      <Text className="mt-[8px] text-[14px] leading-[20px] text-ink-muted">{framing.blurb}</Text>
 
       <PillSelector
         options={CHANNELS}
@@ -72,7 +78,7 @@ export function AccountStep({
         className="mt-[22px] w-[168px]"
       />
 
-      <View className="mt-[12px] gap-[14px]">
+      <View className="mt-[12px]">
         <ContactField
           channel={channel}
           value={value}
@@ -83,21 +89,8 @@ export function AccountStep({
           // error slot on this step: everything that can go wrong here is about what was typed or
           // about reaching the server, and both read as a comment on the one field.
           error={error ?? undefined}
-          editable={!working}
-          onSubmit={ready ? onSubmit : undefined}
+          onSubmit={onSubmit}
         />
-
-        <Button
-          variant="primary"
-          size="lg"
-          radius={13}
-          className="w-full"
-          disabled={!ready}
-          pending={busy === 'contact'}
-          onPress={onSubmit}
-        >
-          Continue
-        </Button>
       </View>
 
       {providers ? (
@@ -118,8 +111,6 @@ export function AccountStep({
                 radius={13}
                 icon="apple.logo"
                 className="w-full"
-                disabled={working && busy !== 'apple'}
-                pending={busy === 'apple'}
                 onPress={onApple}
               >
                 Continue with Apple
@@ -133,8 +124,6 @@ export function AccountStep({
                 radius={13}
                 className="w-full gap-[8px]"
                 accessibilityLabel="Continue with Google"
-                disabled={working && busy !== 'google'}
-                pending={busy === 'google'}
                 onPress={onGoogle}
               >
                 <GoogleMark size={17} />

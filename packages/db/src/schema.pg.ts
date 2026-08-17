@@ -81,6 +81,30 @@ export const user = pgTable('user', {
    * own column so the two can never be confused, and JSON so a second hint costs no migration.
    */
   oauthProfile: jsonb('oauth_profile').$type<{ name?: string; image?: string }>(),
+
+  /**
+   * What onboarding asked for after the name (`@guitar/shared`'s `onboarding.ts`).
+   *
+   * All four are here rather than in `user_preferences` because the flow decides what it still owes
+   * by reading the session's account, and the session carries these the moment a sign-in returns.
+   * A preference row arrives by sync instead, so a returning user on a new device would be asked
+   * the whole flow again while the first pull was still in the air.
+   *
+   * Null means the question has not been put yet, and it is the only thing that does. Both optional
+   * questions can be declined without leaving a gap: `skill_level` takes `no_answer` and `goals`
+   * takes an empty array, so skipping a step is recorded as having skipped it.
+   */
+  skillLevel: text('skill_level'),
+  goals: jsonb('goals').$type<string[]>(),
+  /**
+   * When the terms were accepted, as the device reported it. Client-sent, so it is the user's own
+   * claim of when rather than a server attestation — enough to gate the flow, and the thing to
+   * revisit if it ever has to hold up as a record.
+   */
+  termsAcceptedAt: timestamp('terms_accepted_at', { withTimezone: true, mode: 'date' }),
+  /** Opt-in, so it defaults off and stays off for every account that never reaches the step. */
+  marketingEmails: boolean('marketing_emails').notNull().default(false),
+
   ...timestamps(),
 });
 

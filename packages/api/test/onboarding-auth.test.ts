@@ -79,6 +79,17 @@ describe('onboarding auth configuration', () => {
       returned: true,
     });
   });
+
+  it('declares every onboarding answer as returned, which is what stops it being asked twice', () => {
+    // The flow decides what it still owes by reading these off the session. A field that is stored
+    // but not returned would read as missing on every fresh sign-in, and the step that collects it
+    // would be put to someone who has already answered it — on every new device, forever.
+    const fields = authFor().options.user?.additionalFields;
+
+    for (const name of ['skillLevel', 'goals', 'termsAcceptedAt', 'marketingEmails'] as const) {
+      expect(fields?.[name]).toMatchObject({ returned: true, input: true });
+    }
+  });
 });
 
 /**
@@ -111,9 +122,19 @@ function liveAuth() {
       sendVerificationOTP(args: {
         body: { email: string; type: 'sign-in' };
       }): Promise<{ success: boolean }>;
-      signInEmailOTP(args: {
-        body: { email: string; otp: string };
-      }): Promise<{ user: { email: string; name: string; emailVerified: boolean } }>;
+      signInEmailOTP(args: { body: { email: string; otp: string } }): Promise<{
+        user: {
+          email: string;
+          name: string;
+          emailVerified: boolean;
+          // Declared as `unknown` deliberately: the point of the test below is what the response
+          // actually carries, which a typed field would assert by fiat rather than by checking.
+          skillLevel?: unknown;
+          goals?: unknown;
+          termsAcceptedAt?: unknown;
+          marketingEmails?: unknown;
+        };
+      }>;
     };
   };
 }
@@ -161,6 +182,43 @@ describe.skipIf(!reachable)('email OTP sign-up', () => {
     // verified, and nothing has been said about who this person is yet.
     expect(result.user.emailVerified).toBe(true);
     expect(result.user.name).toBe('');
+  });
+
+  it('carries a finished account’s answers back on a later sign-in', async () => {
+    // The whole reason these live on `user` rather than in `user_preferences`: the session has to
+    // arrive already knowing them. A preference row would still be in flight behind the first sync
+    // pull, and the flow would have decided what to ask long before it landed.
+    const auth = liveAuth();
+    const address = `otp-${crypto.randomUUID()}@example.com`;
+    created.push(address);
+
+    const first = await captureCode(() =>
+      auth.api.sendVerificationOTP({ body: { email: address, type: 'sign-in' } }),
+    );
+    await auth.api.signInEmailOTP({ body: { email: address, otp: first } });
+
+    // What finishing the flow leaves behind, written directly so this test is about the read.
+    await db
+      .update(user)
+      .set({
+        name: 'Ada',
+        skillLevel: 'advanced',
+        goals: ['learn_scales', 'ear_training'],
+        termsAcceptedAt: new Date('2026-01-01T00:00:00.000Z'),
+        marketingEmails: true,
+      })
+      .where(eq(user.email, address));
+
+    const second = await captureCode(() =>
+      auth.api.sendVerificationOTP({ body: { email: address, type: 'sign-in' } }),
+    );
+    const result = await auth.api.signInEmailOTP({ body: { email: address, otp: second } });
+
+    expect(result.user.name).toBe('Ada');
+    expect(result.user.skillLevel).toBe('advanced');
+    expect(result.user.goals).toEqual(['learn_scales', 'ear_training']);
+    expect(result.user.marketingEmails).toBe(true);
+    expect(result.user.termsAcceptedAt).toBeTruthy();
   });
 
   it('refuses a code that was not the one sent', async () => {
