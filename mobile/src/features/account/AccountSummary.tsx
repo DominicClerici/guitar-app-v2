@@ -1,14 +1,8 @@
-import { Image } from 'expo-image';
-import { Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 
-import { initials } from './initials';
+import { AccountAvatar, type AvatarUser } from './AccountAvatar';
 
-export interface AccountSummaryUser {
-  name: string;
-  email: string;
-  /** A provider's picture, when there is one; everyone else gets their initials. */
-  image?: string | null;
-}
+export type AccountSummaryUser = AvatarUser;
 
 /**
  * Who is signed in, said in one line: face, name, address.
@@ -16,24 +10,28 @@ export interface AccountSummaryUser {
  * Unenclosed on purpose — it sits at the top of Settings as the page's own heading rather than as
  * the first card in a list, so the settings that follow read as belonging to this account.
  *
- * Presentational: it neither reads the session nor offers any control over it.
+ * The whole line is one target rather than three, since the face, the name and the address all open
+ * the same thing and a name is too small a word to aim at on its own. Still presentational: it
+ * neither reads the session nor knows what pressing it does.
  */
-export function AccountSummary({ user }: { user: AccountSummaryUser }) {
+export function AccountSummary({
+  user,
+  onPress,
+}: {
+  user: AccountSummaryUser;
+  /** Omit for a heading that is only a heading. */
+  onPress?: () => void;
+}) {
   return (
-    <View className="flex-row items-center gap-[14px]">
-      {user.image ? (
-        <Image
-          source={{ uri: user.image }}
-          contentFit="cover"
-          className="h-[44px] w-[44px] rounded-full border border-line-soft"
-        />
-      ) : (
-        <View className="h-[44px] w-[44px] items-center justify-center rounded-full border border-accent-line bg-accent-wash">
-          <Text className="text-[16px] font-semibold tracking-[-0.2px] text-accent">
-            {initials(user)}
-          </Text>
-        </View>
-      )}
+    <Pressable
+      onPress={onPress}
+      disabled={!onPress}
+      accessibilityRole={onPress ? 'button' : undefined}
+      accessibilityLabel={onPress ? `${user.name || 'No name set'}, ${user.email}` : undefined}
+      accessibilityHint={onPress ? 'Opens your profile' : undefined}
+      className={`flex-row items-center gap-[14px] ${onPress ? 'active:opacity-60' : ''}`}
+    >
+      <AccountAvatar user={user} />
 
       <View className="flex-1">
         <Text numberOfLines={1} className="text-[17px] font-semibold tracking-[-0.3px] text-ink">
@@ -43,6 +41,6 @@ export function AccountSummary({ user }: { user: AccountSummaryUser }) {
           {user.email}
         </Text>
       </View>
-    </View>
+    </Pressable>
   );
 }

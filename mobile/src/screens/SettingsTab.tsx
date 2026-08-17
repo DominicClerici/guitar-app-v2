@@ -2,16 +2,18 @@ import { useRouter } from 'expo-router';
 import { ActivityIndicator, ScrollView, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { AccountSummary } from '@/features/account';
+import { AccountActions, AccountHeader } from '@/features/account';
 import { OnboardingPitch, startOnboarding } from '@/features/onboarding';
+import { PreferenceSettings } from '@/features/settings';
 import { useSession } from '@/lib/auth';
 import { useToken } from '@/lib/tokens';
 
 /**
  * The settings tab — the last one, and the only place the account is now shown.
  *
- * It opens on who is signed in and nothing else yet; the settings themselves, and the controls over
- * the account, land under this in their own sections.
+ * It opens on who is signed in, and the settings follow under it in their own sections. The
+ * preferences are shown to a guest as well as to an account: a guest has a session too, so theirs
+ * are stored and synced the same way, and are carried over if they later sign up (§5).
  */
 export function SettingsTab() {
   const { data: session, isPending } = useSession();
@@ -44,7 +46,7 @@ export function SettingsTab() {
     >
       {account ? (
         <View className="px-[18px]">
-          <AccountSummary user={account} />
+          <AccountHeader user={account} />
         </View>
       ) : (
         <OnboardingPitch
@@ -52,6 +54,14 @@ export function SettingsTab() {
           onLogIn={() => startOnboarding(router, 'login')}
         />
       )}
+
+      <View className="mt-[30px] px-[18px]">
+        {/* The account's rows sit in the same card, under the preferences, and only for someone
+            who has an account — a guest has nothing to sign out of or delete. */}
+        <PreferenceSettings
+          footer={account ? <AccountActions email={account.email} /> : undefined}
+        />
+      </View>
     </ScrollView>
   );
 }

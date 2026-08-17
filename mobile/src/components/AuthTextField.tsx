@@ -1,3 +1,4 @@
+import { BottomSheetTextInput } from '@gorhom/bottom-sheet';
 import { useState, type Ref } from 'react';
 import { Pressable, Text, TextInput, View, type TextInputProps } from 'react-native';
 
@@ -9,17 +10,29 @@ interface Props extends Omit<TextInputProps, 'className' | 'style' | 'secureText
   error?: string;
   /** Renders the value masked, with a control to reveal it. */
   secure?: boolean;
+  /**
+   * Swaps in the sheet library's own input. A bottom sheet only lifts clear of the keyboard for
+   * fields it is told about, and a plain `TextInput` inside one is left underneath it.
+   */
+  sheet?: boolean;
   ref?: Ref<TextInput>;
 }
 
 /** A labelled field on the Aurora tray face: hairline goes accent on focus, rose on error. */
-export function AuthTextField({ label, error, secure = false, ref, ...input }: Props) {
+export function AuthTextField({ label, error, secure = false, sheet = false, ref, ...input }: Props) {
   const faint = useToken('--ink-faint', '#62666e');
   const accent = useToken('--accent', '#5ec8c2');
   const [focused, setFocused] = useState(false);
   const [revealed, setRevealed] = useState(false);
 
   const hairline = error ? 'border-rose' : focused ? 'border-accent-line' : 'border-line-soft';
+  // Fixed for the life of a field — nothing moves in or out of a sheet — so this never remounts.
+  // The cast is a declaration mismatch only: the sheet's input is a `TextInput` that has told the
+  // sheet about itself, but it declares its own ref as possibly `undefined`, which no `TextInput`
+  // ref ever is. The runtime instance handed back is the same one either way.
+  const Input: typeof TextInput = sheet
+    ? (BottomSheetTextInput as unknown as typeof TextInput)
+    : TextInput;
 
   return (
     <View>
@@ -28,7 +41,7 @@ export function AuthTextField({ label, error, secure = false, ref, ...input }: P
       </Text>
 
       <View className={`flex-row items-center rounded-[10px] border bg-tray px-[12px] ${hairline}`}>
-        <TextInput
+        <Input
           ref={ref}
           {...input}
           secureTextEntry={secure && !revealed}
