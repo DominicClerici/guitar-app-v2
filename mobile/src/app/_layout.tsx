@@ -11,6 +11,7 @@ import { ToastHost } from '@/components/ToastHost';
 import { CoverHost, CurtainHost, isCovered } from '@/features/curtain';
 import { ApiProvider } from '@/lib/api';
 import { useEnsureGuestSession } from '@/lib/auth';
+import { ColorVisionConfig } from '@/lib/color-vision';
 import { ContentProvider } from '@/lib/content-cache';
 import { PreferencesProvider, readPreferences, useReduceMotion } from '@/lib/preferences';
 import { SyncProvider } from '@/lib/sync';
@@ -108,6 +109,11 @@ export default function RootLayout() {
           {/* Renders nothing; it exists to hold the subscription, so that changing this
               setting re-renders one leaf rather than the whole app under it. */}
           <MotionConfig />
+          {/* Likewise nothing, and for the same reason. This one rewrites the coded hues to suit
+              the user's colour vision — because `global.css` bridges its tokens with
+              `@theme inline`, that reaches every utility class and every `useToken` at once
+              rather than being threaded through the features that draw notes. */}
+          <ColorVisionConfig />
           {/* Alongside sync rather than inside it: content is public, so the catalogue refreshes
               whether or not a session exists yet (BACKEND_PLAN.md §8). */}
           <ContentProvider>
