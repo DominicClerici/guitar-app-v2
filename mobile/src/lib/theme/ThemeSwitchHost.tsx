@@ -8,7 +8,14 @@ import { AnimatedView } from '@/components/AnimatedView';
 import { WindowOverlay } from '@/components/WindowOverlay';
 
 import { revealRadius, type Point } from './reveal';
-import { themeFrozen, themeRevealed, useThemeReveal, type Reveal } from './switch';
+import {
+  themeAbandoned,
+  themeFading,
+  themeFrozen,
+  themeRevealed,
+  useThemeReveal,
+  type Reveal,
+} from './switch';
 
 /** `expo-image`'s `Image` is third-party, so it has to be given `className` (see `AccountAvatar`). */
 const Picture = withUniwind(Image);
@@ -87,6 +94,9 @@ function Switch({ reveal: { id, origin, before, after, fading } }: { reveal: Rev
         // early: it says the picture is decoded, not that it is on the glass. What happens next is
         // the whole app re-rendering into another palette, so a frame early is a frame of it seen.
         onLoad={() => requestAnimationFrame(() => themeFrozen(id))}
+        // Nothing is hidden and so nothing can be revealed: the switch gives up and the theme goes
+        // on plainly. Without this the screen would sit frozen until the watchdog noticed.
+        onError={() => themeAbandoned(id)}
       />
 
       {after ? <Opening id={id} picture={after} origin={origin} /> : null}
@@ -152,6 +162,9 @@ function Opening({ id, picture, origin }: { id: number; picture: string; origin:
           // over an identical screen, so waiting there is invisible — where opening an empty hole
           // in the middle of the old screen would not be.
           onLoad={() => setShown(true)}
+          // The theme is already on under the frozen frame; with no picture to open up, the frame
+          // dissolves off it instead.
+          onError={() => themeFading(id)}
         />
       </AnimatedView>
     </AnimatedView>

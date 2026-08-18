@@ -270,11 +270,31 @@ export function themeFrozen(id: number): void {
       // The theme is already on underneath. Without the second photograph there is nothing to open
       // up, so the frozen frame dissolves off it instead — which is the same change, said quietly.
       if (__DEV__) console.warn('[theme] could not photograph the new screen', error);
-
-      const frozen = current;
-      if (frozen?.id === id) commit({ ...frozen, fading: true });
+      themeFading(id);
     }
   });
+}
+
+/**
+ * There is no new screen to open up after all — it was never photographed, or the photograph will
+ * not draw. The theme is already on underneath, so the frozen frame dissolves off it instead, which
+ * is the same change said quietly rather than a cut.
+ */
+export function themeFading(id: number): void {
+  const frozen = current;
+  if (frozen?.id !== id || frozen.fading) return;
+
+  commit({ ...frozen, fading: true });
+}
+
+/**
+ * The frozen frame itself will not draw, which takes the whole idea away: there is nothing to hide
+ * the change behind and nothing to reveal it with. The theme goes on plainly, which is what this
+ * setting did before any of this existed.
+ */
+export function themeAbandoned(id: number): void {
+  if (current?.id !== id || target === null) return;
+  settle(target);
 }
 
 /** The reveal has covered the screen, or the fallback has faded out. Either way, this is over. */
