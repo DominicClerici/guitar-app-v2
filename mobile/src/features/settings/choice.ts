@@ -2,7 +2,7 @@
  * What a control shows between the moment you pick something and the moment the database says so.
  *
  * A preference write is local and synchronous, so it is already saved by the time the handler
- * returns — but the read side is `useLiveQuery`, which learns about the write from a native change
+ * returns — but the read side is `useLiveRows`, which learns about the write from a native change
  * event a beat later. Left to that alone, the pill would sit still under the finger and then jump.
  * So the choice is shown immediately and the stored value is allowed to catch up.
  *

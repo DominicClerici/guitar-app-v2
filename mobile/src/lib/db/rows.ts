@@ -16,7 +16,18 @@
  */
 import { syncState } from '@guitar/db/schema.sqlite';
 import type { SyncedTableName } from '@guitar/shared';
-import { and, eq, isNotNull, isNull, ne, type SQL } from 'drizzle-orm';
+import {
+  and,
+  eq,
+  getTableColumns,
+  gt,
+  inArray,
+  isNotNull,
+  isNull,
+  ne,
+  sql,
+  type SQL,
+} from 'drizzle-orm';
 import type { SQLiteColumn } from 'drizzle-orm/sqlite-core';
 
 import type { DeviceSyncTable, LocalSyncRow } from '@/lib/sync/spec';
@@ -50,6 +61,37 @@ function whereOwner(spec: AnySyncTable, userId: string): SQL {
   return eq(column(spec, spec.userField), userId);
 }
 
+/**
+ * The one column `identity` reads: the table's primary key, minus the owner.
+ *
+ * Derived rather than declared so it cannot drift from `conflictFields`, and checked here because
+ * a table identified by two columns would otherwise be matched by one of them — every row of a
+ * pathway would answer to the same identity, and a page would be merged against the wrong local
+ * row. A table like that needs a widening here, not a silent narrowing.
+ */
+function identityColumn(spec: AnySyncTable): SQLiteColumn {
+  const fields = spec.conflictFields.filter((field) => field !== spec.userField);
+
+  if (fields.length !== 1) {
+    throw new Error(`synced table "${spec.name}" is not identified by a single column`);
+  }
+
+  return column(spec, fields[0]);
+}
+
+/**
+ * SQLite's implicit row id, which every synced table has — none is declared `WITHOUT ROWID`.
+ *
+ * It is what a backlog can be drained in order by. It is assigned once, on insert, and an upsert
+ * leaves it alone, so it is the device's own arrival order and nothing an edit can move. The
+ * alternative is no order at all: the rows a `LIMIT` happens to return are then whatever the
+ * planner produced, and a row that keeps losing the draw is never sent.
+ */
+const ROWID = sql<number>`rowid`;
+
+/** The key `ROWID` is selected under. Not a column, so every adapter's `toLocal` ignores it. */
+const ROWID_FIELD = '$rowid';
+
 /** Matches exactly one row: the owner, plus whatever else the table's primary key names. */
 function whereRow(spec: AnySyncTable, userId: string, row: LocalSyncRow): SQL {
   const fields = spec.conflictFields.filter((field) => field !== spec.userField);
@@ -75,13 +117,63 @@ export function readRows<TSpec extends AnySyncTable>(
   return select(spec, writer, whereOwner(spec, userId)) as ReturnType<TSpec['toLocal']>[];
 }
 
-/** Rows written on this device that the server has not accepted yet. */
-export function readUnpushedRows<TSpec extends AnySyncTable>(
+/**
+ * Rows written on this device that the server has not accepted yet, oldest first, read `pageSize`
+ * at a time.
+ *
+ * A generator rather than an array because the caller stops early — it sends one batch — and the
+ * backlog behind that batch is not bounded by anything. A device that has been offline for a week
+ * holds thousands of rows, and selecting all of them to send five hundred is work repeated on
+ * every run of the drain: the same read, one batch shorter each time.
+ *
+ * Paging by row id rather than by `OFFSET` because the rows are leaving the result set as they go
+ * — a pushed row gains a `server_seq` and stops matching — so an offset would step over exactly
+ * what it just skipped. Only the caller knows when to stop, and stopping is what keeps the second
+ * page from ever being read in the ordinary case.
+ */
+export function* readUnpushedRows<TSpec extends AnySyncTable>(
   spec: TSpec,
   userId: string,
+  pageSize: number,
+  writer: Writer = db,
+): Generator<ReturnType<TSpec['toLocal']>> {
+  const unpushed = and(whereOwner(spec, userId), isNull(column(spec, 'serverSeq')));
+  let after = 0;
+
+  for (;;) {
+    const page = writer
+      .select({ ...getTableColumns(spec.table), [ROWID_FIELD]: ROWID })
+      .from(spec.table)
+      .where(and(unpushed, gt(ROWID, after)) as SQL)
+      .orderBy(ROWID)
+      .limit(pageSize)
+      .all() as Record<string, unknown>[];
+
+    for (const row of page) yield spec.toLocal(row) as ReturnType<TSpec['toLocal']>;
+
+    if (page.length < pageSize) return;
+
+    after = page[page.length - 1][ROWID_FIELD] as number;
+  }
+}
+
+/**
+ * The stored rows for a named set of identities, as `identity` reports them.
+ *
+ * What a page arriving from the server is judged against. Reading the whole table instead is a
+ * scan of everything the account has ever recorded to look up at most a page's worth of rows —
+ * `quiz_attempts` never stops growing, and every attempt this device records reads all of them
+ * twice, once for the push read-back and once for the pull that follows it.
+ */
+export function readRowsByIdentity<TSpec extends AnySyncTable>(
+  spec: TSpec,
+  userId: string,
+  identities: string[],
   writer: Writer = db,
 ): ReturnType<TSpec['toLocal']>[] {
-  const where = and(whereOwner(spec, userId), isNull(column(spec, 'serverSeq'))) as SQL;
+  if (!identities.length) return [];
+
+  const where = and(whereOwner(spec, userId), inArray(identityColumn(spec), identities)) as SQL;
 
   return select(spec, writer, where) as ReturnType<TSpec['toLocal']>[];
 }

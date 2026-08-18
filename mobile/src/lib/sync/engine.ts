@@ -9,10 +9,11 @@
  * Two schedules run against that. A failed run retries on a widening backoff (`retry.ts`) and, if
  * it never gets through, says so once — a device that has been holding a write for ten minutes is
  * not "offline-first", it is silently wrong, and the user is the only one who can do anything
- * about it. Separately, a pull goes out every two minutes regardless of what this device has
+ * about it. Separately, a run goes out every two minutes regardless of what this device has
  * written, because a change made on another device otherwise waits for something to happen here.
- * The two schedules give way to each other rather than interleaving: the periodic pull stands
- * aside for a push, and nothing is pushed while a pull is in flight.
+ * The two schedules do not interleave: a periodic run that comes due while one is already in
+ * flight or already pending is simply dropped, because that run is the same work and re-arms the
+ * period when it lands.
  *
  * No table is named anywhere below. Both halves walk `DEVICE_SYNC_TABLE_LIST`, because the failure
  * mode of naming them is silent — a table left out of the push loop is simply never sent, and
@@ -38,7 +39,7 @@ import { db } from '@/lib/db/client';
 import {
   deletePushedRows,
   deleteRow,
-  readRows,
+  readRowsByIdentity,
   readSyncState,
   readUnpushedRows,
   writeRow,
@@ -61,23 +62,21 @@ interface SyncTarget {
 const PUSH_DEBOUNCE_MS = 1500;
 
 /**
- * How often the device asks the server what it has not seen, while the app is open.
+ * How often the device syncs on its own, while the app is open.
  *
- * Nothing else pulls on its own: a device with no local writes and no foreground or network event
+ * Nothing else runs on its own: a device with no local writes and no foreground or network event
  * would otherwise sit on whatever it last saw, so a change made on another device would not arrive
  * until this one was reopened.
- */
-const PULL_INTERVAL_MS = 120_000;
-
-/**
- * How long a due pull waits after the push it stood aside for.
  *
- * A pull that lands the instant a push returns reads a server that is still settling: the push
- * response has already been applied here, so the page it would fetch is mostly this device's own
- * rows coming back. The gap also lets the writes that usually follow one another — a quiz attempt
- * and the progress row it moves — finish arriving before the pull takes its turn.
+ * It is a full run rather than a pull because the push half can be stranded in a way nothing else
+ * would notice. A retry chain that runs out while writes are pending gives up — deliberately, so
+ * a dead radio is not retried forever — and every trigger that would start a new one is something
+ * the *user* does: another write, backgrounding the app, a connection dropping and returning. A
+ * phone left open on a working connection does none of them, and the write waits indefinitely
+ * while the pull half keeps succeeding and reporting the device as fine. Pushing here costs one
+ * indexed read per table when there is nothing to send.
  */
-const PULL_AFTER_PUSH_GRACE_MS = 2_000;
+const SYNC_INTERVAL_MS = 120_000;
 
 /** What the user is told once a run has failed every time the schedule allows. */
 const SYNC_FAILED_MESSAGE = 'Something went wrong syncing your data';
@@ -104,14 +103,13 @@ let timerIsRetry = false;
 let retried = 0;
 
 /**
- * The periodic pull's timer, and whether one came due while a push had the engine.
+ * The periodic run's timer.
  *
  * Separate from `timer` because the two are answering different questions — "has this device
- * written anything lately" and "how long since it last heard from the server" — and a pull that
+ * written anything lately" and "how long since it last heard from the server" — and a period that
  * reset the push debounce would delay writes rather than accompany them.
  */
-let pullTimer: ReturnType<typeof setTimeout> | null = null;
-let pullDue = false;
+let periodicTimer: ReturnType<typeof setTimeout> | null = null;
 
 /**
  * Which account the engine is currently pointed at, counted rather than named.
@@ -127,7 +125,7 @@ let targetGeneration = 0;
  * changes; a null target makes every trigger a no-op rather than something to guard at each call
  * site.
  *
- * Every schedule is dropped here, including the backoff and the periodic pull. They were counted
+ * Every schedule is dropped here, including the backoff and the periodic run. They were counted
  * and timed for an account that no longer owns this database, and a retry surviving a sign-out
  * would report the previous session's failure to whoever is holding the phone now. `running` is
  * deliberately left alone: a run really is in flight, and `stale` is what stops it.
@@ -137,11 +135,11 @@ export function setSyncTarget(next: SyncTarget | null): void {
   targetGeneration += 1;
 
   clearTimer();
-  clearPullTimer();
+  clearPeriodicTimer();
   queued = false;
   retried = 0;
 
-  if (next) schedulePull(PULL_INTERVAL_MS);
+  if (next) schedulePeriodic(SYNC_INTERVAL_MS);
 }
 
 /**
@@ -169,11 +167,10 @@ function clearTimer(): void {
   timerIsRetry = false;
 }
 
-function clearPullTimer(): void {
-  if (pullTimer) clearTimeout(pullTimer);
+function clearPeriodicTimer(): void {
+  if (periodicTimer) clearTimeout(periodicTimer);
 
-  pullTimer = null;
-  pullDue = false;
+  periodicTimer = null;
 }
 
 /** Arms the run timer, unless something sooner or more authoritative is already pending. */
@@ -190,7 +187,7 @@ function schedule(delayMs: number, retry: boolean): void {
   timer = setTimeout(() => {
     timer = null;
     timerIsRetry = false;
-    void runSync('sync');
+    void runSync();
   }, delayMs);
 }
 
@@ -217,28 +214,23 @@ export function syncNow(): void {
 }
 
 /**
- * Arms the periodic pull.
+ * Arms the periodic run.
  *
- * A pull that comes due behind a push does not overtake it. Pushing first is what makes the pull
- * worth making — the server's answer then includes what this device just sent, merged against
- * whatever else arrived — and the two crossing would have this device apply a page that was
- * assembled before its own writes landed. A pending push counts as much as one in flight: the
- * debounce means a write from half a second ago is a push that has not been sent yet, and pulling
- * in front of it would put the round trips in the wrong order for the sake of a rounding error on
- * the two minutes.
+ * A period that comes due behind a run already in flight, or behind a write still inside its
+ * debounce, asks for nothing: that run does the same two halves this one would, and `settle`
+ * re-arms the period from the moment its page lands. Asking anyway would only queue a second run
+ * to start the instant the first finished — the same two round trips over again, against a server
+ * that answered a moment ago.
  */
-function schedulePull(delayMs: number): void {
-  clearPullTimer();
+function schedulePeriodic(delayMs: number): void {
+  clearPeriodicTimer();
 
-  pullTimer = setTimeout(() => {
-    pullTimer = null;
+  periodicTimer = setTimeout(() => {
+    periodicTimer = null;
 
-    if (running || timer) {
-      pullDue = true;
-      return;
-    }
+    if (running || timer) return;
 
-    void runSync('pull');
+    void runSync();
   }, delayMs);
 }
 
@@ -249,7 +241,7 @@ function schedulePull(delayMs: number): void {
  * and a run that failed is a run to repeat rather than an error to raise. What matters is that the
  * failure stops at the half that caused it, and that the caller can still tell the halves apart —
  * a pull that succeeded next to a push that did not still means this device has heard from the
- * server, which is what the periodic pull is timed from.
+ * server, which is what the period is timed from.
  */
 async function attempt<T>(
   half: string,
@@ -264,10 +256,7 @@ async function attempt<T>(
   }
 }
 
-/** A full run, or the pull alone — which is all the periodic timer is asking for. */
-type RunMode = 'sync' | 'pull';
-
-async function runSync(mode: RunMode): Promise<void> {
+async function runSync(): Promise<void> {
   const active = target;
   if (!active) return;
 
@@ -288,15 +277,13 @@ async function runSync(mode: RunMode): Promise<void> {
     // together with the pull would stop this device receiving anything from the server for as long
     // as that row sits unsent. Pulling is what eventually settles such a row anyway: the winning
     // version arriving from another device replaces it.
-    if (mode === 'sync') {
-      const pushed = await attempt('push', () => push(active, generation));
+    const pushed = await attempt('push', () => push(active, generation));
 
-      if (!pushed.ok) reached = false;
-      // A push that filled a table's ceiling left rows behind, and nothing else is going to ask for
-      // them: `queued` is otherwise set only by a trigger that happened to land mid-run, so the
-      // remainder would wait on an unrelated foreground or network event.
-      else if (pushed.value) queued = true;
-    }
+    if (!pushed.ok) reached = false;
+    // A push that filled a table's ceiling left rows behind, and nothing else is going to ask for
+    // them: `queued` is otherwise set only by a trigger that happened to land mid-run, so the
+    // remainder would wait on an unrelated foreground or network event.
+    else if (pushed.value) queued = true;
 
     const page = await attempt('pull', () => pull(active, generation));
 
@@ -343,12 +330,11 @@ function settle(reached: boolean, pulled: boolean): void {
   }
 
   // The two minutes are measured from the last page that landed, not from the last timer that
-  // fired, so a run triggered by a write also postpones the periodic pull it just did the work of.
-  // The final branch is what keeps the period alive through an outage: the timer that started this
-  // run is spent, and a failed pull would otherwise be the last one of the session.
-  if (pulled) schedulePull(PULL_INTERVAL_MS);
-  else if (pullDue) schedulePull(PULL_AFTER_PUSH_GRACE_MS);
-  else if (!pullTimer) schedulePull(PULL_INTERVAL_MS);
+  // fired, so a run triggered by a write also postpones the periodic run it just did the work of.
+  // The second half of the condition is what keeps the period alive through an outage: a run the
+  // period itself started has spent its timer, and a failed one would otherwise be the last of the
+  // session.
+  if (pulled || !periodicTimer) schedulePeriodic(SYNC_INTERVAL_MS);
 }
 
 /**
@@ -416,16 +402,21 @@ async function push({ client, userId }: SyncTarget, generation: number): Promise
     // The ceiling counts what can actually be sent, so a row that cannot is stepped over rather
     // than counted against it. Letting unsendable rows fill the batch would hold those places on
     // every run — they are never accepted, so they are never given up — and a real backlog behind
-    // them would never drain. Stopping at the ceiling rather than reading past it also bounds the
-    // validation above to one batch, however far behind the device has fallen.
-    for (const row of readUnpushedRows(spec, userId)) {
+    // them would never drain. Reading the backlog a page at a time is what keeps that from being
+    // paid for in full: the rows past the ceiling are never selected, and the page after this one
+    // is only read if unsendable rows left room in the batch.
+    //
+    // Breaking on a full batch rather than on the row after it means a backlog of exactly the
+    // ceiling reports itself as truncated, and the next run finds nothing. That is one empty local
+    // read, against reading a whole extra page on every full batch.
+    for (const row of readUnpushedRows(spec, userId, SYNC_PUSH_LIMIT)) {
+      const mutation = sendable(spec, row);
+      if (mutation) mutations.push(mutation);
+
       if (mutations.length === SYNC_PUSH_LIMIT) {
         truncated = true;
         break;
       }
-
-      const mutation = sendable(spec, row);
-      if (mutation) mutations.push(mutation);
     }
 
     if (mutations.length) operations[spec.name] = mutations;
@@ -481,7 +472,7 @@ async function pull({ client, userId }: SyncTarget, generation: number): Promise
  * Applies server rows to the local database under each table's merge rule.
  *
  * The caller supplies the transaction, and every table is applied inside it — so a screen reading
- * through `useLiveQuery` never sees half a page, the comparison each row is judged against cannot
+ * through `useLiveRows` never sees half a page, the comparison each row is judged against cannot
  * change underneath the loop, and a pull can commit its page and its cursor as one thing.
  */
 function applyRemoteRows(userId: string, rows: SyncRowsByTable, tx: Writer): void {
@@ -490,8 +481,11 @@ function applyRemoteRows(userId: string, rows: SyncRowsByTable, tx: Writer): voi
   ).filter(([, table]) => table.length > 0);
 
   for (const [spec, table] of incoming) {
+    const identities = table.map((remote) => spec.wireIdentity(remote));
     const local = new Map(
-      readRows(spec, userId, tx).map((row) => [spec.identity(row), row] as const),
+      readRowsByIdentity(spec, userId, identities, tx).map(
+        (row) => [spec.identity(row), row] as const,
+      ),
     );
 
     for (const remote of table) {

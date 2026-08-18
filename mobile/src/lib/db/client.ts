@@ -36,8 +36,9 @@ export const schema = {
 };
 
 /**
- * `enableChangeListener` is what `useLiveQuery` subscribes to — without it a screen showing a
- * preference would not notice the sync layer pulling a new value for it.
+ * `enableChangeListener` is what `useLiveRows` subscribes to — without it a screen showing a
+ * preference would not notice the sync layer pulling a new value for it. It reports one event per
+ * changed row, which is why nothing subscribes to it directly; see `live.ts`.
  */
 const sqlite = openDatabaseSync('guitar.db', { enableChangeListener: true });
 

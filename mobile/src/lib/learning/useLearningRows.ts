@@ -1,18 +1,17 @@
 /**
  * Reading the learner's synced rows from the device database (BACKEND_PLAN.md §6).
  *
- * `useLiveQuery` re-runs on any write to the underlying table, so a completion pulled from another
+ * `useLiveRows` re-reads on any write to the underlying table, so a completion pulled from another
  * device redraws the pathway screen without anything having to invalidate a cache. Reads never
  * suspend and never fail: no session, or a database whose migrations have not run, is simply a
  * learner with no rows.
  */
 import { pathwayEnrollments, sectionProgress } from '@guitar/db/schema.sqlite';
-import { eq } from 'drizzle-orm';
-import { useLiveQuery } from 'drizzle-orm/expo-sqlite';
 import { useEffect, useMemo } from 'react';
 
 import { useSession } from '@/lib/auth';
-import { db } from '@/lib/db';
+import { useLiveRows } from '@/lib/db/live';
+import { readRows } from '@/lib/db/rows';
 import {
   enrollmentsSyncTable,
   progressSyncTable,
@@ -40,18 +39,13 @@ export function useLearnerId(): string {
  * left to evict.
  */
 export function useActiveEnrollments(userId: string): LocalEnrollmentRow[] {
-  const { data } = useLiveQuery(
-    db.select().from(pathwayEnrollments).where(eq(pathwayEnrollments.userId, userId)),
-    [userId],
+  const rows = useLiveRows(
+    pathwayEnrollments,
+    () => readRows(enrollmentsSyncTable, userId),
+    userId,
   );
 
-  const split = useMemo(
-    () =>
-      activeEnrollments(
-        data.map((row) => enrollmentsSyncTable.toLocal(row as unknown as Record<string, unknown>)),
-      ),
-    [data],
-  );
+  const split = useMemo(() => activeEnrollments(rows), [rows]);
 
   useEffect(() => {
     if (userId) dropEvictedPathways(userId, split.evicted);
@@ -62,16 +56,7 @@ export function useActiveEnrollments(userId: string): LocalEnrollmentRow[] {
 
 /** Every section this learner has touched, indexed the way the progress module wants it. */
 export function useProgress(userId: string): ProgressBySection {
-  const { data } = useLiveQuery(
-    db.select().from(sectionProgress).where(eq(sectionProgress.userId, userId)),
-    [userId],
-  );
+  const rows = useLiveRows(sectionProgress, () => readRows(progressSyncTable, userId), userId);
 
-  return useMemo(
-    () =>
-      progressBySection(
-        data.map((row) => progressSyncTable.toLocal(row as unknown as Record<string, unknown>)),
-      ),
-    [data],
-  );
+  return useMemo(() => progressBySection(rows), [rows]);
 }

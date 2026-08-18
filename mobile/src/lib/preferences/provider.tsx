@@ -11,12 +11,13 @@
  */
 import { userPreferences } from '@guitar/db/schema.sqlite';
 import { foldPreferences } from '@guitar/shared';
-import { eq } from 'drizzle-orm';
-import { useLiveQuery } from 'drizzle-orm/expo-sqlite';
 import { useEffect, useMemo, type ReactNode } from 'react';
 
 import { useSession } from '@/lib/auth';
-import { db, useDatabaseMigrations } from '@/lib/db';
+import { useDatabaseMigrations } from '@/lib/db';
+import { useLiveRows } from '@/lib/db/live';
+import { readRows } from '@/lib/db/rows';
+import { preferencesSyncTable } from '@/lib/sync/tables';
 
 import { publishPreferences } from './snapshot';
 import { useSystemReduceMotion } from './system';
@@ -35,15 +36,16 @@ export function PreferencesProvider({ children }: { children: ReactNode }) {
   // migrations have not run — it answers with nothing — but it has to be asked again once they
   // have, and no change event will do that on its own: nothing writes to a table that was not
   // there to write to.
-  const { data } = useLiveQuery(
-    db.select().from(userPreferences).where(eq(userPreferences.userId, userId)),
-    [userId, ready],
+  const rows = useLiveRows(
+    userPreferences,
+    () => readRows(preferencesSyncTable, userId),
+    `${userId}:${ready}`,
   );
 
   const preferences = useMemo(() => {
     // Tombstoned rows are deletions this device has not pushed yet; the preference they name is
     // back at its default, which is what leaving them out produces.
-    const live = data.filter((row) => row.deletedAt === null);
+    const live = rows.filter((row) => row.deletedAt === null);
     const folded = foldPreferences(live);
 
     // `reduceMotion` is the one value that is not simply read out of the table. Its stored default
@@ -59,7 +61,7 @@ export function PreferencesProvider({ children }: { children: ReactNode }) {
     if (live.some((row) => row.key === 'reduceMotion')) return folded;
 
     return { ...folded, reduceMotion: systemReduceMotion ? ('on' as const) : ('off' as const) };
-  }, [data, systemReduceMotion]);
+  }, [rows, systemReduceMotion]);
 
   useEffect(() => {
     publishPreferences(preferences);
