@@ -7,8 +7,10 @@ import { GoogleMark } from './GoogleMark';
 /**
  * The three ways in that are not a form: Google, Apple, email.
  *
- * None of them are wired yet — each takes its own handler so that connecting one later is a prop at
- * the call site rather than a change in here, and so the three can land one at a time.
+ * Each takes its own handler, and a handler is also how a caller says whether the way exists at
+ * all: no handler, no button. Google is only in a build that was given its client ids and Apple's
+ * sheet is iOS only, so which of the three are on offer is not a fact this row can know — and
+ * showing one that cannot work is worse than showing two.
  */
 export function ProviderButtons({
   onGoogle,
@@ -23,38 +25,42 @@ export function ProviderButtons({
 }) {
   return (
     <View className={`flex-row justify-center gap-[12px] ${className}`}>
-      <Button
-        variant="secondary"
-        size="lg"
-        square
-        radius={14}
-        accessibilityLabel="Continue with Google"
-        onPress={onGoogle ?? noop}
-      >
-        <GoogleMark size={18} />
-      </Button>
+      {onGoogle ? (
+        <Button
+          variant="secondary"
+          size="lg"
+          square
+          radius={14}
+          accessibilityLabel="Continue with Google"
+          onPress={onGoogle}
+        >
+          <GoogleMark size={18} />
+        </Button>
+      ) : null}
 
-      <Button
-        variant="secondary"
-        size="lg"
-        square
-        radius={14}
-        icon="apple.logo"
-        accessibilityLabel="Continue with Apple"
-        onPress={onApple ?? noop}
-      />
+      {onApple ? (
+        <Button
+          variant="secondary"
+          size="lg"
+          square
+          radius={14}
+          icon="apple.logo"
+          accessibilityLabel="Continue with Apple"
+          onPress={onApple}
+        />
+      ) : null}
 
-      <Button
-        variant="secondary"
-        size="lg"
-        square
-        radius={14}
-        icon="envelope.fill"
-        accessibilityLabel="Continue with email"
-        onPress={onEmail ?? noop}
-      />
+      {onEmail ? (
+        <Button
+          variant="secondary"
+          size="lg"
+          square
+          radius={14}
+          icon="envelope.fill"
+          accessibilityLabel="Continue with email"
+          onPress={onEmail}
+        />
+      ) : null}
     </View>
   );
 }
-
-const noop = () => {};

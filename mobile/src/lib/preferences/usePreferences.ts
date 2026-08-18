@@ -5,6 +5,9 @@
  * device appears on screen without anything having to invalidate a cache. Reads never suspend and
  * never fail: an account with nothing stored — or a database whose migrations did not run — folds
  * to `DEFAULT_PREFERENCES`.
+ *
+ * What comes back is the preference *as it applies*, which for `reduceMotion` is not always what
+ * is stored — see below.
  */
 import { userPreferences } from '@guitar/db/schema.sqlite';
 import {
@@ -21,6 +24,7 @@ import { db } from '@/lib/db';
 import { useSession } from '@/lib/auth';
 
 import { resetPreference, setPreference } from './store';
+import { useSystemReduceMotion } from './system';
 
 /** No account owns this, so the query matches nothing before a session exists. */
 const NOBODY = '';
@@ -31,20 +35,39 @@ function useUserId(): string {
   return session?.user.id ?? NOBODY;
 }
 
+/**
+ * The preferences this account is running under.
+ *
+ * `reduceMotion` is the one value that is not simply read out of the table. Its stored default is
+ * off, because both halves of sync have to agree on what an absent row means — but a phone with
+ * Reduce Motion switched on has already answered this question, and making someone answer it again
+ * in a settings screen they have to find first is not an accessibility setting, it is a quiz. So
+ * while the row is absent, the device's own setting stands in for it.
+ *
+ * The moment something is chosen here the row exists, and from then on the choice wins on this
+ * device and on every other — which is the whole reason nothing is written on the user's behalf.
+ * A silent seeding write would carry one phone's system setting onto a second device that has its
+ * own, and there would be no way left to tell the two apart.
+ */
 export function usePreferences(): Preferences {
   const userId = useUserId();
+  const systemReduceMotion = useSystemReduceMotion();
 
   const { data } = useLiveQuery(
     db.select().from(userPreferences).where(eq(userPreferences.userId, userId)),
     [userId],
   );
 
-  return useMemo(
+  return useMemo(() => {
     // Tombstoned rows are deletions this device has not pushed yet; the preference they name is
     // back at its default, which is what leaving them out produces.
-    () => foldPreferences(data.filter((row) => row.deletedAt === null)),
-    [data],
-  );
+    const live = data.filter((row) => row.deletedAt === null);
+    const preferences = foldPreferences(live);
+
+    if (live.some((row) => row.key === 'reduceMotion')) return preferences;
+
+    return { ...preferences, reduceMotion: systemReduceMotion ? 'on' : 'off' };
+  }, [data, systemReduceMotion]);
 }
 
 export interface PreferenceWriter {

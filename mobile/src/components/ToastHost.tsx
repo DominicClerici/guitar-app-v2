@@ -1,9 +1,8 @@
 import * as Haptics from 'expo-haptics';
-import { useEffect, type ReactNode } from 'react';
-import { Platform, Text, View } from 'react-native';
+import { useEffect } from 'react';
+import { Text, View } from 'react-native';
 import { FadeInUp, FadeOutUp } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { FullWindowOverlay } from 'react-native-screens';
 import { withUniwind } from 'uniwind';
 
 import { toast, useCurrentToast, type ToastTone } from '@/lib/toast';
@@ -11,6 +10,7 @@ import { useTokens } from '@/lib/tokens';
 
 import { AnimatedView } from './AnimatedView';
 import { SquirclePressable } from './Squircle';
+import { WindowOverlay } from './WindowOverlay';
 
 const SafeArea = withUniwind(SafeAreaView);
 
@@ -32,19 +32,9 @@ const TONE: Record<ToastTone, string> = {
  * Where toasts appear. Mounted once, by the root layout.
  *
  * The hard part of a toast is not the animation, it is being on top of whatever is
- * already there — and on both platforms the thing in the way is the same one, the
- * `onboarding` modal, which is exactly where a sync failure or an auth error has to
- * be readable. The two platforms need different answers:
- *
- * - iOS presents a modal route as its own view controller, so nothing rendered in
- *   the React tree can sit above it. `FullWindowOverlay` puts its content straight
- *   into the app's window instead. It reports a hit only where there is actually
- *   something to touch, so it can stay mounted the whole time without swallowing a
- *   single tap — which an `RCTModal` in its place would do for as long as a toast
- *   was up.
- * - Android presents every stack route, modal included, as an ordinary fragment in
- *   the one hierarchy (`ScreenStack.adapt`), so a plain view rendered after the
- *   navigator is already above it and no overlay is needed.
+ * already there — and the thing in the way is the `onboarding` modal, which is
+ * exactly where a sync failure or an auth error has to be readable. What that costs
+ * on each platform is `WindowOverlay`'s problem.
  *
  * The container stays mounted and empty between toasts. It has to: an exit
  * animation needs a parent that outlives the child running it.
@@ -71,7 +61,7 @@ export function ToastHost() {
   }, [id, tone]);
 
   return (
-    <Overlay>
+    <WindowOverlay>
       <SafeArea
         edges={['top']}
         pointerEvents="box-none"
@@ -104,11 +94,6 @@ export function ToastHost() {
           </AnimatedView>
         ) : null}
       </SafeArea>
-    </Overlay>
+    </WindowOverlay>
   );
-}
-
-function Overlay({ children }: { children: ReactNode }) {
-  if (Platform.OS !== 'ios') return children;
-  return <FullWindowOverlay>{children}</FullWindowOverlay>;
 }

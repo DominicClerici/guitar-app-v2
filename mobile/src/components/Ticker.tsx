@@ -33,6 +33,11 @@ interface Props {
   format?: (value: number) => string;
   /** Whether holding a key runs on stepping. Off for a range only a few wide. */
   repeatOnHold?: boolean;
+  /**
+   * Which way the keys sit. `vertical` stacks them — up over the readout, down under it — for a
+   * row of tickers that have to be read across rather than one control on a settings line.
+   */
+  orientation?: 'horizontal' | 'vertical';
   disabled?: boolean;
   /** Names the control in each key's announcement. */
   label?: string;
@@ -56,6 +61,14 @@ interface Props {
  * <Ticker value={octave} onChange={setOctave} min={-1} max={1} label="Octave" className="w-2/3" />
  * ```
  *
+ * Turned `vertical` it takes the other axis from the call site instead — the keys stack, and the
+ * width and height are both the caller's to give, since a column of these is sized by the row it
+ * sits in rather than by anything the control knows:
+ *
+ * ```tsx
+ * <Ticker orientation="vertical" value={pitch} onChange={tune} className="h-[108px] flex-1" />
+ * ```
+ *
  * The arithmetic — clamping, the step grid, what a typed value comes out as —
  * lives in `@/lib/ticker`.
  */
@@ -68,6 +81,7 @@ export function Ticker({
   isNumberEditable = false,
   format,
   repeatOnHold = true,
+  orientation = 'horizontal',
   disabled = false,
   label,
   className = '',
@@ -79,6 +93,7 @@ export function Ticker({
   const range: Range = { min, max, step };
   const display = format ? format(value) : String(value);
   const named = label ? `${label}, ${display}` : display;
+  const vertical = orientation === 'vertical';
 
   const commit = () => {
     const typed = draft === null ? null : parseTyped(draft, range);
@@ -86,23 +101,49 @@ export function Ticker({
     if (typed !== null && typed !== value) onChange(typed);
   };
 
+  const decrease = (
+    <Key
+      symbol={vertical ? 'chevron.down' : 'minus'}
+      accessibilityLabel={label ? `Decrease ${label}` : 'Decrease'}
+      disabled={disabled || value <= min}
+      from={value}
+      delta={-1}
+      range={range}
+      repeatOnHold={repeatOnHold}
+      vertical={vertical}
+      onChange={onChange}
+    />
+  );
+
+  const increase = (
+    <Key
+      symbol={vertical ? 'chevron.up' : 'plus'}
+      accessibilityLabel={label ? `Increase ${label}` : 'Increase'}
+      disabled={disabled || value >= max}
+      from={value}
+      delta={1}
+      range={range}
+      repeatOnHold={repeatOnHold}
+      vertical={vertical}
+      onChange={onChange}
+    />
+  );
+
   return (
-    <View className={`h-[38px] flex-row items-center p-[4px] ${className}`}>
+    <View
+      className={`items-center p-[4px] ${
+        // Upright, the caller gives both axes: a row of these is as wide as the row lets them be.
+        vertical ? 'flex-col' : 'h-[38px] flex-row'
+      } ${className}`}
+    >
       <Face name="tray" radius={TRAY_RADIUS} />
 
-      <Key
-        symbol="minus"
-        accessibilityLabel={label ? `Decrease ${label}` : 'Decrease'}
-        disabled={disabled || value <= min}
-        from={value}
-        delta={-1}
-        range={range}
-        repeatOnHold={repeatOnHold}
-        onChange={onChange}
-      />
+      {/* Up is the increase whichever way the control lies, so the keys are ordered rather than
+          swapped: reading down the stack is reading the pitches in the order they sound. */}
+      {vertical ? increase : decrease}
 
-      {/* The middle third, between a key of the same width either side. */}
-      <View className="h-full flex-1 items-center justify-center">
+      {/* The middle third, between a key of the same size either side. */}
+      <View className={`flex-1 items-center justify-center ${vertical ? 'w-full' : 'h-full'}`}>
         {draft !== null ? (
           <TextInput
             value={draft}
@@ -136,16 +177,7 @@ export function Ticker({
         )}
       </View>
 
-      <Key
-        symbol="plus"
-        accessibilityLabel={label ? `Increase ${label}` : 'Increase'}
-        disabled={disabled || value >= max}
-        from={value}
-        delta={1}
-        range={range}
-        repeatOnHold={repeatOnHold}
-        onChange={onChange}
-      />
+      {vertical ? decrease : increase}
     </View>
   );
 }
@@ -160,6 +192,8 @@ interface KeyProps {
   delta: number;
   range: Range;
   repeatOnHold: boolean;
+  /** Stacked keys take the tray's width and their own height, rather than the other way round. */
+  vertical: boolean;
   onChange: (value: number) => void;
 }
 
@@ -177,6 +211,7 @@ function Key({
   delta,
   range,
   repeatOnHold,
+  vertical,
   onChange,
 }: KeyProps) {
   const delay = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -237,7 +272,9 @@ function Key({
       accessibilityLabel={accessibilityLabel}
       onPressIn={onPressIn}
       onPressOut={stopRepeating}
-      className="flex-1"
+      // Stacked, the size's own height is the right one and only the width is the tray's, so the
+      // readout keeps whatever is left between the two keys rather than a third of the column.
+      className={vertical ? 'w-full' : 'flex-1'}
     />
   );
 }

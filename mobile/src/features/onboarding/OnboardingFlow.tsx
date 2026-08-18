@@ -20,6 +20,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AnimatedView } from '@/components/AnimatedView';
 import { BottomScrim } from '@/components/BottomScrim';
 import { Button } from '@/components/Button';
+import { clearCover, curtain, type Arrival } from '@/features/curtain';
 import {
   SOCIAL_CANCELLED,
   authClient,
@@ -41,9 +42,16 @@ import { StepChrome } from './StepChrome';
 import { StepDots } from './StepDots';
 import { TermsStep } from './TermsStep';
 import { WaitNote } from './WaitNote';
+import { landingFor } from './landing';
 import { FRAMING, OTHER_MODE, type OnboardingMode } from './mode';
 import { DEFAULT_DIAL_CODE, isCompletePhone, toE164 } from './phone';
-import { isProfileStep, nextStep, suggestedName, type OnboardingStep } from './steps';
+import {
+  isProfileStep,
+  nextStep,
+  suggestedName,
+  type EntryStep,
+  type OnboardingStep,
+} from './steps';
 import { useStepTransition, type Outcome } from './useStepTransition';
 
 /**
@@ -118,14 +126,63 @@ interface Action {
   press: () => void;
 }
 
-export function OnboardingFlow({ opened = 'create' }: { opened?: OnboardingMode }) {
+export function OnboardingFlow({
+  opened = 'create',
+  handed = null,
+  failed = null,
+}: {
+  opened?: OnboardingMode;
+  /**
+   * The step a sign-in run outside this flow handed it, or null for a flow that was opened rather
+   * than handed over. Set means the screen is arriving under a cover: it takes the cover away and
+   * fades itself up, which is the far half of a movement the screen before it began.
+   */
+  handed?: EntryStep | null;
+  /** What that sign-in failed with, said on the step it handed over. */
+  failed?: string | null;
+}) {
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const { data: session, isPending: sessionPending } = useSession();
 
   const user = session?.user;
 
-  const close = useCallback(() => router.back(), [router]);
+  /**
+   * The cover the hand-off came under, taken away as this screen puts its first step up.
+   *
+   * At once rather than faded: what is underneath the cover by now is this screen, black and with
+   * nothing on it yet, so there is nothing to dissolve between. The one thing that must not happen
+   * is the other order — a cover lifting before the screen that replaces it exists, which is the
+   * push being watched.
+   */
+  useEffect(() => {
+    if (handed) clearCover();
+  }, [handed]);
+
+  /**
+   * Leaving the flow, which for a completed one is not a pop but a welcome that happens to pop.
+   *
+   * The order is the whole thing. The greeting goes up first, over the empty black screen this
+   * flow has already faded its last step out to — so it costs nothing to look at — and the pop is
+   * handed to it rather than done here, to be run on the frame the greeting has the screen to
+   * itself. By the time it dissolves, what is underneath is the screen the person left to sign in
+   * from, already showing them signed in.
+   *
+   * No greeting is the ordinary way out and the majority of them: the chevron, the hardware
+   * button, and a sign-in that did not take. Someone who backed out of the flow is not to be
+   * congratulated for it.
+   */
+  const close = useCallback(
+    (greeting?: Arrival) => {
+      if (!greeting) {
+        router.back();
+        return;
+      }
+
+      curtain({ ...greeting, onCovered: () => router.back() });
+    },
+    [router],
+  );
 
   /**
    * Where the flow opens, for an account that is part way through.
@@ -138,12 +195,17 @@ export function OnboardingFlow({ opened = 'create' }: { opened?: OnboardingMode 
    * `done` falls back to the account form because nothing here can act on it: something opened
    * this flow deliberately, and closing it out from under that caller is not this component's
    * decision to make.
+   *
+   * A handed-over step wins over all of it, and has to: the sign-in that named it happened a moment
+   * ago on another screen, and the session store has not necessarily caught up with it yet. Asked
+   * again here, the account would answer with what it was before it was signed into — which is the
+   * form the person has just finished with, fading up over the step they had actually reached.
    */
   const owed = sessionPending ? 'account' : nextStep(user);
-  const resting: OnboardingStep = owed === 'done' ? 'account' : owed;
+  const resting: OnboardingStep = handed ?? (owed === 'done' ? 'account' : owed);
 
-  const { shown, error, setError, moving, note, contentStyle, noteStyle, begin } =
-    useStepTransition({ resting, onLeave: close });
+  const { shown, error, setError, moving, note, contentStyle, frameStyle, noteStyle, begin } =
+    useStepTransition({ resting, onLeave: close, arriving: handed !== null, failed });
 
   /**
    * Which framing is showing, seeded by whatever opened the flow and the flow's own from then on.
@@ -224,6 +286,23 @@ export function OnboardingFlow({ opened = 'create' }: { opened?: OnboardingMode 
     [],
   );
 
+  /** The last answer, and the only step whose success is also an arrival. */
+  const acceptTerms = useCallback(async (): Promise<Outcome<Arrival>> => {
+    const outcome = await saveProfile(
+      { termsAcceptedAt: new Date(), marketingEmails: emails },
+      // The last answer, so there is no step after it — the flow is over the moment the account
+      // has everything.
+      'done',
+    );
+
+    // The account became complete here, however many times it has signed in before, so this is the
+    // welcome in rather than the welcome back. Only on the write that landed: a terms step that
+    // failed to save is a terms step still owed.
+    if (!('to' in outcome)) return outcome;
+
+    return { ...outcome, leaving: { kind: 'new', name: name.trim() } };
+  }, [emails, name, saveProfile]);
+
   const sendCode = useCallback(async (): Promise<Outcome> => {
     const result: SendResult =
       channel === 'phone'
@@ -240,19 +319,21 @@ export function OnboardingFlow({ opened = 'create' }: { opened?: OnboardingMode 
   }, [channel, destination]);
 
   /**
-   * Where a completed sign-in lands. The account is asked what it still needs rather than told
-   * where to go, so this is the same line for a code, for Apple and for Google.
+   * Where a completed sign-in lands, as a move — the same line for a code, for Apple and for
+   * Google, since all three ask the account rather than remembering which button was pressed.
    *
-   * `account` means the sign-in did not take — nothing to collect and nothing signed in — and
-   * `done` means there is nothing left to ask. Both are the end of this flow.
+   * The rule itself is `landingFor`, which the settings tab needs too and which is therefore not
+   * this screen's to keep (see `landing.ts`). All this adds is the one thing that is local: a
+   * sign-in that did not take is `account` there and the end of the flow here, because a flow whose
+   * first step signed nobody in has nothing left to show.
    */
-  const landing = (account: unknown): OnboardingStep => {
-    const to = nextStep(account as Parameters<typeof nextStep>[0]);
-    return to === 'account' ? 'done' : to;
+  const landing = (account: unknown): Outcome<Arrival> => {
+    const { step, greeting } = landingFor(account);
+    return { to: step === 'account' ? 'done' : step, leaving: greeting };
   };
 
   const verifyCode = useCallback(
-    async (entered: string): Promise<Outcome> => {
+    async (entered: string): Promise<Outcome<Arrival>> => {
       const result: VerifyResult =
         channel === 'phone'
           ? await authClient.phoneNumber.verify({ phoneNumber: destination, code: entered })
@@ -264,7 +345,7 @@ export function OnboardingFlow({ opened = 'create' }: { opened?: OnboardingMode 
         return { error: describeAuthError(result.error as Parameters<typeof describeAuthError>[0]) };
       }
 
-      return { to: landing(result.data?.user) };
+      return landing(result.data?.user);
     },
     [channel, destination],
   );
@@ -295,6 +376,14 @@ export function OnboardingFlow({ opened = 'create' }: { opened?: OnboardingMode 
       // The provider's own sheet is over this screen for as long as it takes, and a screen
       // apologising for a wait underneath it is talking about someone else's delay.
       patience: false,
+      // And the whole screen goes, not just the question on it. A provider answers everything the
+      // frame offers — the button submits the field the sheet has just made irrelevant, and the
+      // link across offers a framing that has stopped applying — so leaving them up would leave a
+      // screen behind that nothing on it could still do. It is also what makes this the same
+      // movement whether the sheet was reached from here or from the account screen, where there
+      // was no frame to leave: both ways in end on an empty screen, and both come back to a whole
+      // one, so a person who used either cannot tell which of them they used.
+      frame: true,
       task: async () => {
         const result = await run();
 
@@ -303,7 +392,7 @@ export function OnboardingFlow({ opened = 'create' }: { opened?: OnboardingMode 
           return { error: result.error === SOCIAL_CANCELLED ? null : result.error };
         }
 
-        return { to: landing(result.user) };
+        return landing(result.user);
       },
     });
   };
@@ -369,16 +458,7 @@ export function OnboardingFlow({ opened = 'create' }: { opened?: OnboardingMode 
         return {
           label: 'Finish',
           ready: agreed,
-          press: () =>
-            begin({
-              task: () =>
-                saveProfile(
-                  { termsAcceptedAt: new Date(), marketingEmails: emails },
-                  // The last answer, so there is no step after it — the flow is over the moment
-                  // the account has everything.
-                  'done',
-                ),
-            }),
+          press: () => begin({ task: acceptTerms }),
         };
       // The code verifies itself on the sixth digit, so there is nothing for a button to do.
       default:
@@ -456,10 +536,11 @@ export function OnboardingFlow({ opened = 'create' }: { opened?: OnboardingMode 
       className="flex-1 bg-bg"
     >
       {/* Outside the scroll, so the rail marking progress is one thing that holds still while the
-          questions come and go past it. */}
-      <View
+          questions come and go past it — and animated only for the one move that takes the whole
+          screen rather than the question on it, where holding still would be holding on. */}
+      <AnimatedView
         className="flex-row items-center justify-between px-[18px]"
-        style={{ paddingTop: insets.top + 10 }}
+        style={[{ paddingTop: insets.top + 10 }, frameStyle]}
       >
         {/* The flow is pushed rather than presented, so back from a step with nothing behind it
             leaves the flow, and reads as one. The steps that do have something behind them go
@@ -499,7 +580,7 @@ export function OnboardingFlow({ opened = 'create' }: { opened?: OnboardingMode 
             />
           )}
         </StepChrome>
-      </View>
+      </AnimatedView>
 
       <View className="flex-1">
         <ScrollView
@@ -542,11 +623,15 @@ export function OnboardingFlow({ opened = 'create' }: { opened?: OnboardingMode 
         <View pointerEvents="box-none" className="absolute inset-x-0 bottom-0">
           <BottomScrim />
 
-          <View
+          <AnimatedView
             pointerEvents="box-none"
             className="px-[18px] pt-[14px]"
-            style={{ paddingBottom: insets.bottom + 14 }}
+            style={[{ paddingBottom: insets.bottom + 14 }, frameStyle]}
           >
+            {/* Two fades over one button, and they are about different things: `StepChrome` is
+                whether this step has anything for it to do, and the frame is whether the screen it
+                belongs to is here at all. Multiplying them is the right answer to both — a step
+                with no button arrives with none. */}
             <StepChrome shown={action !== null}>
               <Button
                 variant="primary"
@@ -565,7 +650,7 @@ export function OnboardingFlow({ opened = 'create' }: { opened?: OnboardingMode 
                 {action?.label ?? 'Continue'}
               </Button>
             </StepChrome>
-          </View>
+          </AnimatedView>
         </View>
       </View>
     </KeyboardAvoidingView>

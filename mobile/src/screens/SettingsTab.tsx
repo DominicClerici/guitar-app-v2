@@ -3,9 +3,9 @@ import { ActivityIndicator, ScrollView, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { AccountActions, AccountHeader } from '@/features/account';
-import { OnboardingPitch, startOnboarding } from '@/features/onboarding';
+import { OnboardingPitch, continueWithProvider, startOnboarding } from '@/features/onboarding';
 import { PreferenceSettings } from '@/features/settings';
-import { useKnownSession } from '@/lib/auth';
+import { signInWithApple, signInWithGoogle, useKnownSession } from '@/lib/auth';
 import { useToken } from '@/lib/tokens';
 
 /**
@@ -53,6 +53,11 @@ export function SettingsTab() {
         <OnboardingPitch
           onCreateAccount={() => startOnboarding(router)}
           onLogIn={() => startOnboarding(router, 'login')}
+          // The two providers do not open the flow: they sign in from here and let what comes back
+          // decide whether there is a flow to open at all. See `handoff.ts` — this screen is only
+          // ever the place it was started from, and it takes no part in what happens after.
+          onGoogle={() => void continueWithProvider(router, signInWithGoogle)}
+          onApple={() => void continueWithProvider(router, signInWithApple)}
         />
       )}
 

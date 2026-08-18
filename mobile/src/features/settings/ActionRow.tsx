@@ -10,6 +10,8 @@ const FALLBACKS = ['#62666e', '#e0788f'];
 
 interface Props {
   label: string;
+  /** What the row is currently set to, where it opens a setting rather than an action. */
+  value?: string;
   /** Rose ink, for a row whose sheet asks before it does anything. */
   tone?: 'neutral' | 'destructive';
   onPress: () => void;
@@ -24,16 +26,20 @@ interface Props {
  *
  * The chevron is what says the row leads somewhere — without it a label alone reads as a heading
  * for the row under it.
+ *
+ * A `value` is for the other kind of row this shape covers: one that opens a setting too wide for a
+ * pill tray. It reads what is set without the sheet having to be opened to find out, which is what
+ * keeps such a row in the same list as the ones that show their whole setting on the line.
  */
-export function ActionRow({ label, tone = 'neutral', onPress }: Props) {
-  const [faint, rose] = useTokens(TOKENS).map((value, index) => value ?? FALLBACKS[index]);
+export function ActionRow({ label, value, tone = 'neutral', onPress }: Props) {
+  const [faint, rose] = useTokens(TOKENS).map((token, index) => token ?? FALLBACKS[index]);
   const destructive = tone === 'destructive';
 
   return (
     <Pressable
       onPress={onPress}
       accessibilityRole="button"
-      accessibilityLabel={label}
+      accessibilityLabel={value ? `${label}, ${value}` : label}
       className="h-[52px] flex-row items-center gap-[12px] px-[14px] active:opacity-60"
     >
       <Text
@@ -44,6 +50,12 @@ export function ActionRow({ label, tone = 'neutral', onPress }: Props) {
       >
         {label}
       </Text>
+
+      {value ? (
+        <Text numberOfLines={1} className="font-mono text-[13px] text-ink-muted">
+          {value}
+        </Text>
+      ) : null}
 
       <SymbolView
         name="chevron.right"

@@ -2,6 +2,8 @@ import * as Haptics from 'expo-haptics';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Easing, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
+import { ARRIVE, ARRIVE_MS, TRAVEL } from '@/lib/motion';
+
 import type { OnboardingStep } from './steps';
 
 /**
@@ -24,15 +26,22 @@ import type { OnboardingStep } from './steps';
  * A failure is a move that arrives back where it set off from. The step comes up carrying its
  * error, in the same movement it would have used for the next one, because a form that snaps back
  * has nowhere to put the explanation.
+ *
+ * The frame — the chevron, the link across, the anchored button — ordinarily holds still through
+ * all of this, which is the point of it living outside the step. One move takes it too: a provider,
+ * whose sheet answers the whole screen at once rather than the question on it. Nothing that is left
+ * behind still applies, so nothing is left behind, and what comes back is a whole screen arriving
+ * rather than a question changing inside a frame that was never in doubt.
  */
 
-/** The fall, the beat of nothing, and the rise. */
+/**
+ * The fall, the beat of nothing, and the rise — the rise being the app's ordinary arrival rather
+ * than anything this flow invented, so the welcome that plays after the last step can continue the
+ * same movement (`lib/motion`).
+ */
 const OUT_MS = 250;
 const GAP_MS = 250;
-const IN_MS = 400;
-
-/** How far a step travels. Short: this is a change of question, not a change of place. */
-const TRAVEL = 12;
+const IN_MS = ARRIVE_MS;
 
 /** How long past the earliest arrival the empty point may last before the wait is admitted to. */
 const PATIENCE_MS = 150;
@@ -41,7 +50,7 @@ const NOTE_OUT_MS = 100;
 
 /** Away on an accelerating curve, back on a decelerating one, so the pair reads as one movement. */
 const OUT = { duration: OUT_MS, easing: Easing.in(Easing.cubic) };
-const IN = { duration: IN_MS, easing: Easing.out(Easing.cubic) };
+const IN = ARRIVE;
 const NOTE_IN = { duration: NOTE_IN_MS, easing: Easing.out(Easing.quad) };
 const NOTE_OUT = { duration: NOTE_OUT_MS, easing: Easing.in(Easing.quad) };
 
@@ -50,16 +59,25 @@ const NOTE_OUT = { duration: NOTE_OUT_MS, easing: Easing.in(Easing.quad) };
  *
  * A null error is a refusal rather than a failure — a provider sheet someone dismissed — and comes
  * back to the same step with nothing to say about it.
+ *
+ * A move that goes to `done` may also carry something out of the flow with it, which is handed to
+ * `onLeave` when the flow ends. What that something is belongs to the caller and is opaque here:
+ * this hook moves questions on and off a screen and has no opinion about what any of them meant.
+ * It travels with the outcome rather than beside it, because the moment the flow ends is a good
+ * deal later than the moment its last request answered, and anything held in between would have to
+ * be held somewhere the movement cannot see.
  */
-export type Outcome = { to: OnboardingStep } | { error: string | null };
+export type Outcome<Leaving = never> =
+  | { to: OnboardingStep; leaving?: Leaving }
+  | { error: string | null };
 
-export type Task = () => Promise<Outcome>;
+export type Task<Leaving = never> = () => Promise<Outcome<Leaving>>;
 
-interface Move {
+interface Move<Leaving> {
   /** Where this goes, for a move with nothing to wait for. Ignored when a `task` names its own. */
   to?: OnboardingStep;
   /** The step's work, started as the fall begins. */
-  task?: Task;
+  task?: Task<Leaving>;
   /**
    * Something other than the step to change as the swap happens.
    *
@@ -74,16 +92,39 @@ interface Move {
    * provider sheet is on top of this screen, and a screen apologising underneath it is noise.
    */
   patience?: boolean;
+  /**
+   * Whether the frame goes with the step. False for an ordinary answer, where the chevron and the
+   * button are the parts of the screen that were never in question; true for a hand-off to
+   * somewhere else entirely, where leaving them behind would be leaving a screen half here.
+   */
+  frame?: boolean;
 }
 
-export function useStepTransition({
+export function useStepTransition<Leaving = never>({
   resting,
   onLeave,
+  arriving = false,
+  failed = null,
 }: {
   /** Where the flow sits before it has moved itself anywhere — read off the account. */
   resting: OnboardingStep;
-  /** The flow is over: the last answer landed, or the sign-in did not take. */
-  onLeave: () => void;
+  /**
+   * The flow is over: the last answer landed, or the sign-in did not take. Carrying whatever the
+   * move that ended it named, and nothing where it named nothing — which is every way out that is
+   * not an arrival.
+   */
+  onLeave: (leaving: Leaving | undefined) => void;
+  /**
+   * Whether this screen was entered under a cover rather than opened.
+   *
+   * Everything starts hidden and plays the arriving half of a move on the first frame, which is
+   * what continues the movement the screen it was handed over from had already begun. The same
+   * half, not a copy of it: what comes up is a whole screen, frame included, exactly as it would
+   * after a provider answered on the step itself.
+   */
+  arriving?: boolean;
+  /** What the hand-off failed with, said on the step it opens on. */
+  failed?: string | null;
 }) {
   /**
    * The step this has moved to, or null while it has moved nowhere.
@@ -103,14 +144,21 @@ export function useStepTransition({
    * state puts both halves after a commit, which is where they belong. It also keeps every write
    * to `fade` and `lift` in one place, which the compiler insists on anyway.
    */
-  const [half, setHalf] = useState<{ of: 'out' | 'in' } | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [moving, setMoving] = useState(false);
+  const [half, setHalf] = useState<{ of: 'out' | 'in'; frame?: boolean } | null>(
+    // A screen entered under a cover is already halfway through a move somebody else started: its
+    // step has been decided and nothing of it is on the glass yet, which is precisely the state the
+    // arriving half begins from.
+    arriving ? { of: 'in' } : null,
+  );
+  const [error, setError] = useState<string | null>(failed);
+  const [moving, setMoving] = useState(arriving);
   /** Whether the apology is mounted. Its opacity is animated separately. */
   const [note, setNote] = useState(false);
 
-  const fade = useSharedValue(1);
-  const lift = useSharedValue(0);
+  const fade = useSharedValue(arriving ? 0 : 1);
+  const lift = useSharedValue(arriving ? -TRAVEL : 0);
+  /** The chevron, the link across and the anchored button, which only some moves take with them. */
+  const frame = useSharedValue(arriving ? 0 : 1);
   const noteFade = useSharedValue(0);
 
   const shown = arrived ?? resting;
@@ -121,7 +169,7 @@ export function useStepTransition({
    * The guard, in a ref rather than in `moving`: two presses can land in one tick, and state read
    * back in the same tick is still the state before the first of them.
    */
-  const busy = useRef(false);
+  const busy = useRef(arriving);
 
   useEffect(() => {
     const scheduled = timers.current;
@@ -141,6 +189,9 @@ export function useStepTransition({
     if (half.of === 'out') {
       fade.value = withTiming(0, OUT);
       lift.value = withTiming(TRAVEL, OUT);
+      // Fading where it stands rather than falling with the step: the frame never travels, which is
+      // what an anchored button is for, and it is no less anchored on the way out.
+      if (half.frame) frame.value = withTiming(0, OUT);
       return;
     }
 
@@ -149,6 +200,9 @@ export function useStepTransition({
     lift.value = -TRAVEL;
     lift.value = withTiming(0, IN);
     fade.value = withTiming(1, IN);
+    // Unconditional, and a no-op for every move that left the frame alone: what arrives is a whole
+    // screen, and it is not this half's business which parts of it went away.
+    frame.value = withTiming(1, IN);
 
     const settle = setTimeout(() => {
       busy.current = false;
@@ -156,10 +210,10 @@ export function useStepTransition({
     }, IN_MS);
 
     return () => clearTimeout(settle);
-  }, [fade, half, lift]);
+  }, [fade, frame, half, lift]);
 
   const begin = useCallback(
-    (move: Move) => {
+    (move: Move<Leaving>) => {
       if (busy.current) return;
       busy.current = true;
       setMoving(true);
@@ -174,9 +228,9 @@ export function useStepTransition({
       /** Where a failure comes back to, held now because `shown` is about to stop being it. */
       const from = shown;
 
-      setHalf({ of: 'out' });
+      setHalf({ of: 'out', frame: move.frame });
 
-      let settled: Outcome | null = null;
+      let settled: Outcome<Leaving> | null = null;
       /** Whether the fall and the beat after it are over, which is the earliest anything arrives. */
       let ready = false;
       let landed = false;
@@ -194,7 +248,7 @@ export function useStepTransition({
         if (to === 'done') {
           // The flow is leaving rather than arriving, so nothing is brought back in and the guard
           // is deliberately left closed — there is no screen left to press.
-          onLeave();
+          onLeave('to' in outcome ? outcome.leaving : undefined);
           return;
         }
 
@@ -231,7 +285,7 @@ export function useStepTransition({
         });
       }
 
-      const work: Promise<Outcome> = move.task
+      const work: Promise<Outcome<Leaving>> = move.task
         ? move.task()
         : Promise.resolve({ to: move.to ?? from });
 
@@ -262,5 +316,15 @@ export function useStepTransition({
 
   const noteStyle = useAnimatedStyle(() => ({ opacity: noteFade.value }));
 
-  return { shown, error, setError, moving, note, contentStyle, noteStyle, begin };
+  /**
+   * The frame's opacity, for the pieces of the screen that are not the step.
+   *
+   * Nothing turns their touches off with it. Every control in the frame already refuses a press
+   * while a move is running — the chevron drops it, the two others go through `begin`, which is
+   * shut for the length of one — so a button that is invisible is a button that was doing nothing
+   * anyway, and there is no window in which one could be pressed unseen.
+   */
+  const frameStyle = useAnimatedStyle(() => ({ opacity: frame.value }));
+
+  return { shown, error, setError, moving, note, contentStyle, frameStyle, noteStyle, begin };
 }

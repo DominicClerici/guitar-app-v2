@@ -1,11 +1,17 @@
 import type { ReactNode } from 'react';
+import { useRef } from 'react';
 import { Text, View } from 'react-native';
 
 import { Face } from '@/components/Face';
 import type { PillOption } from '@/components/PillSelector';
 import { usePreferences } from '@/lib/preferences';
 
+import { ActionRow } from './ActionRow';
+import { ColorVisionSheet, type ColorVisionSheetRef } from './ColorVisionSheet';
+import { describeColorVision } from './colorVision';
 import { PreferenceRow } from './PreferenceRow';
+import { TuningSheet, type TuningSheetRef } from './TuningSheet';
+import { describeTuning, tuningFrom } from './tuning';
 
 /** Ids are the stored values — see `preferenceSchemas` in `@guitar/shared`. */
 const THEME_OPTIONS: PillOption[] = [
@@ -21,6 +27,17 @@ const ACCIDENTAL_OPTIONS: PillOption[] = [
 ];
 
 /**
+ * Both toggles are stated as the thing itself rather than as its absence — "Haptics: Off" rather
+ * than "Disable haptics: On", which is a row you have to read twice to find out what it is doing.
+ * Reduce motion keeps its own name because that is what the system setting it follows is called,
+ * and matching it is how someone recognises the setting they already have.
+ */
+const TOGGLE_OPTIONS: PillOption[] = [
+  { id: 'on', label: 'On' },
+  { id: 'off', label: 'Off' },
+];
+
+/**
  * The settings that follow the account rather than the device, in one card.
  *
  * Both are read from the local database and both are written to it, so they are already correct on
@@ -33,6 +50,8 @@ const ACCIDENTAL_OPTIONS: PillOption[] = [
  */
 export function PreferenceSettings({ footer }: { footer?: ReactNode }) {
   const preferences = usePreferences();
+  const tuning = useRef<TuningSheetRef>(null);
+  const colorVision = useRef<ColorVisionSheetRef>(null);
 
   return (
     <View>
@@ -57,6 +76,46 @@ export function PreferenceSettings({ footer }: { footer?: ReactNode }) {
           options={ACCIDENTAL_OPTIONS}
         />
 
+        <View className="mx-[14px] h-px bg-line-soft" />
+
+        {/* A palette cannot be picked from a pill tray for the same reason a tuning cannot: the
+            names mean nothing until you have seen what they do. */}
+        <ActionRow
+          label="Colour vision"
+          value={describeColorVision(preferences.colorVision)}
+          onPress={() => colorVision.current?.present()}
+        />
+
+        <View className="mx-[14px] h-px bg-line-soft" />
+
+        <PreferenceRow
+          label="Haptics"
+          name="haptics"
+          stored={preferences.haptics}
+          options={TOGGLE_OPTIONS}
+        />
+
+        <View className="mx-[14px] h-px bg-line-soft" />
+
+        {/* Off until the device says otherwise: a phone already set to reduce motion arrives here
+            reading On, without anything having been written for the user. See `usePreferences`. */}
+        <PreferenceRow
+          label="Reduce motion"
+          name="reduceMotion"
+          stored={preferences.reduceMotion}
+          options={TOGGLE_OPTIONS}
+        />
+
+        <View className="mx-[14px] h-px bg-line-soft" />
+
+        {/* Six strings will not fit on a settings line, so this one says what it is set to and
+            opens the control that sets it. */}
+        <ActionRow
+          label="Tuning"
+          value={describeTuning(tuningFrom(preferences.tuning), preferences.accidentalPreference)}
+          onPress={() => tuning.current?.present()}
+        />
+
         {footer ? (
           <>
             <View className="mx-[14px] h-px bg-line-soft" />
@@ -64,6 +123,14 @@ export function PreferenceSettings({ footer }: { footer?: ReactNode }) {
           </>
         ) : null}
       </View>
+
+      <TuningSheet
+        ref={tuning}
+        stored={preferences.tuning}
+        accidentals={preferences.accidentalPreference}
+      />
+
+      <ColorVisionSheet ref={colorVision} stored={preferences.colorVision} />
     </View>
   );
 }

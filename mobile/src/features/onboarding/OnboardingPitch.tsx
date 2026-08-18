@@ -2,6 +2,7 @@ import { SymbolView, type SFSymbol } from 'expo-symbols';
 import { Text, View } from 'react-native';
 
 import { Button } from '@/components/Button';
+import { canUseApple, canUseGoogle } from '@/lib/auth';
 import { useToken } from '@/lib/tokens';
 
 import { ProviderButtons } from './ProviderButtons';
@@ -48,9 +49,14 @@ function BenefitRow({ icon, title, divided }: { icon: SFSymbol; title: string; d
 export function OnboardingPitch({
   onCreateAccount,
   onLogIn,
+  onGoogle,
+  onApple,
 }: {
   onCreateAccount: () => void;
   onLogIn: () => void;
+  /** Signing in from here rather than opening the flow to do it. See `handoff.ts`. */
+  onGoogle: () => void;
+  onApple: () => void;
 }) {
   return (
     <View className="px-[18px]">
@@ -96,18 +102,21 @@ export function OnboardingPitch({
         Or continue with
       </Text>
 
-      {/* All three open the flow rather than starting a provider from here. The buttons that do
-          the actual signing in are its first step, which is also where a provider's failure has
-          somewhere to be shown.
+      {/* The two providers sign in from here — pressing one and then having to press it again on
+          the next screen was the same button asked twice, and the second asking is the one that
+          made it look like a way *into* a flow rather than a way past it.
 
-          Email is the one that opens on the log-in framing. The other two are a tap away from
-          being signed in either way, so the wording behind them is never read; email lands on the
-          same typed field the Create account button does, and duplicating that here would make two
-          controls that do exactly one thing between them. */}
+          Email cannot do that, since a code is a round trip through another app, so it stays a way
+          in and opens on the log-in framing. That is also why it is not duplicated as a fourth
+          control up top: it lands on the same typed field the Create account button does.
+
+          A provider with nothing behind it is not offered at all, the way the flow's own step does
+          it — the ids and the platform decide, and a button that cannot work is worse than one
+          less choice. */}
       <ProviderButtons
         className="mt-[12px]"
-        onGoogle={onCreateAccount}
-        onApple={onCreateAccount}
+        onGoogle={canUseGoogle ? onGoogle : undefined}
+        onApple={canUseApple ? onApple : undefined}
         onEmail={onLogIn}
       />
     </View>

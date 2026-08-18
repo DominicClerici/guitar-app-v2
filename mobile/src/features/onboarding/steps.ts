@@ -32,6 +32,26 @@ export function isProfileStep(step: OnboardingStep): step is ProfileStep {
 }
 
 /**
+ * The steps the flow can be entered *at* — where a sign-in that happened outside it hands it over.
+ *
+ * `code` and `done` are not among them for the same two reasons they are exceptions everywhere
+ * else: waiting for a code is something this flow does rather than something anyone arrives in the
+ * middle of, and an account that owes nothing never opens the flow at all.
+ */
+export type EntryStep = 'account' | ProfileStep;
+
+const ENTRY_STEPS: readonly string[] = ['account', ...PROFILE_STEPS];
+
+/**
+ * The step a route param names, or null for anything else — a missing param, a stale link, a step
+ * from a build that had one more. Null means the flow was opened rather than handed over, which is
+ * the reading that asks the account where to start instead of being told.
+ */
+export function parseEntryStep(value: unknown): EntryStep | null {
+  return typeof value === 'string' && ENTRY_STEPS.includes(value) ? (value as EntryStep) : null;
+}
+
+/**
  * The parts of the session user this reads, kept structural so the module stays pure — it must not
  * reach a native import, and it is the only place the flow's shape is pinned down by tests.
  *
