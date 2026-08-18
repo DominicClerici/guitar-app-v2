@@ -17,6 +17,7 @@
 import type { AppRouter } from '@guitar/api';
 import {
   SYNC_PUSH_LIMIT,
+  SYNCED_TABLE_SPECS,
   type SyncedTableName,
   type SyncMutation,
   type SyncPushInput,
@@ -38,6 +39,7 @@ import {
 } from '@/lib/db/rows';
 
 import { needsFullResync } from './reconcile';
+import type { DeviceSyncTable, LocalSyncRow } from './spec';
 import { DEVICE_SYNC_TABLE_LIST } from './tables';
 
 interface SyncTarget {
@@ -103,6 +105,23 @@ export function requestSync(delayMs: number = PUSH_DEBOUNCE_MS): void {
   }, delayMs);
 }
 
+/**
+ * Runs one half of a sync, and swallows whatever it throws.
+ *
+ * Being unable to reach the server is the normal case, not a bug, and there is no screen to report
+ * it to: local writes are already saved and the next trigger retries. What matters is that the
+ * failure stops at the half that caused it.
+ */
+async function attempt<T>(half: string, run: () => Promise<T>): Promise<T | undefined> {
+  try {
+    return await run();
+  } catch (error) {
+    if (__DEV__) console.warn(`!!!! [sync] !!!! ${half} failed`, error);
+
+    return undefined;
+  }
+}
+
 async function runSync(): Promise<void> {
   const active = target;
   if (!active) return;
@@ -116,12 +135,18 @@ async function runSync(): Promise<void> {
   running = true;
 
   try {
-    await push(active, generation);
-    await pull(active, generation);
-  } catch (error) {
-    // Being unable to reach the server is the normal case, not a bug, and there is no screen to
-    // report it to: local writes are already saved and the next trigger retries.
-    if (__DEV__) console.warn('[sync] run failed', error);
+    // The two directions share a run, not a fate. A row the server refuses outright — a validation
+    // failure, not a lost connection — is refused again on every retry, so a single push wrapped
+    // together with the pull would stop this device receiving anything from the server for as long
+    // as that row sits unsent. Pulling is what eventually settles such a row anyway: the winning
+    // version arriving from another device replaces it.
+    const truncated = await attempt('push', () => push(active, generation));
+    await attempt('pull', () => pull(active, generation));
+
+    // A push that filled a table's ceiling left rows behind, and nothing else is going to ask for
+    // them: `queued` is otherwise set only by a trigger that happened to land mid-run, so the
+    // remainder would wait on an unrelated foreground or network event.
+    if (truncated) queued = true;
   } finally {
     running = false;
 
@@ -137,34 +162,89 @@ async function runSync(): Promise<void> {
  * including the rows this device lost, which is what stops a stale local row being re-sent forever.
  *
  * One batch per run. `SYNC_PUSH_LIMIT` is a per-table ceiling, and a device that has more than that
- * waiting for one table sends the rest on the next run rather than in a loop here: the run is
- * already re-triggered by `queued`, and an unbounded loop against a server that keeps accepting is
- * how a sync turns into a stall on the JS thread.
+ * waiting for one table sends the rest on the next run rather than in a loop here: an unbounded
+ * loop against a server that keeps accepting is how a sync turns into a stall on the JS thread.
+ * Returns whether anything was left behind, which is what asks for that next run — nothing else
+ * knows the backlog exists.
  */
-async function push({ client, userId }: SyncTarget, generation: number): Promise<void> {
-  const operations: Partial<Record<SyncedTableName, SyncMutation[]>> = {};
-  let total = 0;
+/**
+ * One unpushed row as the mutation that sends it, or `null` when it cannot be sent at all.
+ *
+ * The server validates a push exactly (§7), and it validates the *batch*: one row it refuses takes
+ * every other row in the request down with it, and a row is refused for the same reason on every
+ * retry — so nothing this device has written would ever reach the server again. Checking each
+ * mutation against the same schema the server will check it against is what makes that impossible
+ * rather than merely survivable, and it is the same schema, imported from `@guitar/shared`, so the
+ * two cannot drift apart.
+ *
+ * A skipped row is kept locally and simply never sent. That is a real cost — the row reaches no
+ * other device — but it is paid by one row instead of by the account, and the alternative is not
+ * "the row syncs later": a row the server rejects does not become acceptable by being retried.
+ *
+ * Reaching either branch means something upstream wrote a row it should not have, so both warn.
+ */
+function sendable(spec: DeviceSyncTable, row: LocalSyncRow): SyncMutation | null {
+  const mutation = spec.toMutation(row);
 
-  for (const spec of DEVICE_SYNC_TABLE_LIST) {
-    const pending = readUnpushedRows(spec, userId).slice(0, SYNC_PUSH_LIMIT);
-    if (!pending.length) continue;
+  if (!mutation) {
+    // Only reachable after a downgrade below the build that wrote the row, which is why the
+    // adapter answers `null` rather than throwing.
+    if (__DEV__) {
+      console.warn(`[sync] skipped ${spec.name} row "${spec.identity(row)}": unrepresentable`);
+    }
 
-    const mutations = pending
-      .map((row) => spec.toMutation(row))
-      .filter((mutation): mutation is SyncMutation => mutation !== null);
-
-    if (!mutations.length) continue;
-
-    operations[spec.name] = mutations;
-    total += mutations.length;
+    return null;
   }
 
-  if (!total) return;
+  const parsed = SYNCED_TABLE_SPECS[spec.name].mutation.safeParse(mutation);
+
+  if (!parsed.success) {
+    if (__DEV__) {
+      console.warn(
+        `[sync] skipped ${spec.name} row "${spec.identity(row)}": invalid mutation`,
+        parsed.error.issues,
+      );
+    }
+
+    return null;
+  }
+
+  return parsed.data as SyncMutation;
+}
+
+async function push({ client, userId }: SyncTarget, generation: number): Promise<boolean> {
+  const operations: Partial<Record<SyncedTableName, SyncMutation[]>> = {};
+  let truncated = false;
+
+  for (const spec of DEVICE_SYNC_TABLE_LIST) {
+    const mutations: SyncMutation[] = [];
+
+    // The ceiling counts what can actually be sent, so a row that cannot is stepped over rather
+    // than counted against it. Letting unsendable rows fill the batch would hold those places on
+    // every run — they are never accepted, so they are never given up — and a real backlog behind
+    // them would never drain. Stopping at the ceiling rather than reading past it also bounds the
+    // validation above to one batch, however far behind the device has fallen.
+    for (const row of readUnpushedRows(spec, userId)) {
+      if (mutations.length === SYNC_PUSH_LIMIT) {
+        truncated = true;
+        break;
+      }
+
+      const mutation = sendable(spec, row);
+      if (mutation) mutations.push(mutation);
+    }
+
+    if (mutations.length) operations[spec.name] = mutations;
+  }
+
+  if (!Object.keys(operations).length) return false;
 
   const result = await client.sync.push.mutate(operations as SyncPushInput);
-  if (stale(generation)) return;
+  if (stale(generation)) return false;
 
   db.transaction((tx) => applyRemoteRows(userId, result.rows, tx));
+
+  return truncated;
 }
 
 /**
