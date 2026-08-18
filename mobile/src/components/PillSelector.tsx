@@ -80,7 +80,12 @@ interface Props {
   options: PillOption[];
   /** An id no option carries — or `null` — leaves the row with nothing chosen. */
   value: string | null;
-  onChange: (id: string) => void;
+  /**
+   * Told the point on screen the choice was made at, in window coordinates: where the finger went
+   * down on a tap, and where it let go of a drag. Almost every row ignores it — it is here for the
+   * one setting whose change is drawn *from* the control that made it (see `lib/theme`).
+   */
+  onChange: (id: string, at: { x: number; y: number }) => void;
   /**
    * Whether a drag reports each option it crosses onto, or only the one it is
    * let go over. Live is for a setting you want to hear or see as you sweep
@@ -213,15 +218,15 @@ export function PillSelector({
   });
 
   /** Arriving somewhere new mid-drag: felt, lit, and reported if it is wanted now. */
-  const land = (index: number) => {
+  const land = (index: number, x: number, y: number) => {
     setHovered(index);
     haptics.selection();
-    if (commit === 'live') onChange(options[index].id);
+    if (commit === 'live') onChange(options[index].id, { x, y });
   };
 
-  const settle = (index: number) => {
+  const settle = (index: number, x: number, y: number) => {
     setHovered(null);
-    if (commit === 'release') onChange(options[index].id);
+    if (commit === 'release') onChange(options[index].id, { x, y });
   };
 
   const pan = Gesture.Pan()
@@ -242,14 +247,14 @@ export function PillSelector({
       const next = slotAt(held.value, slots);
       if (next === over.value) return;
       over.value = next;
-      runOnJS(land)(next);
+      runOnJS(land)(next, event.absoluteX, event.absoluteY);
     })
-    .onFinalize(() => {
+    .onFinalize((event) => {
       // A pan that never took hold — a plain tap, which the option's own
       // Pressable has already answered — has nothing to land.
       if (!dragging.value) return;
       dragging.value = false;
-      runOnJS(settle)(over.value);
+      runOnJS(settle)(over.value, event.absoluteX, event.absoluteY);
     });
 
   const lit = hovered ?? selected;
@@ -306,9 +311,10 @@ export function PillSelector({
             key={option.id}
             // The drag path knocks as it crosses into a slot, so the tap has to knock as well:
             // the two are the same choice, and only one of them being felt reads as a fault.
-            onPress={() => {
+            onPress={(event) => {
               haptics.selection();
-              onChange(option.id);
+              const { pageX, pageY } = event.nativeEvent;
+              onChange(option.id, { x: pageX, y: pageY });
             }}
             accessibilityRole="button"
             accessibilityState={{ selected: index === selected }}

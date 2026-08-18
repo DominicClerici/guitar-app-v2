@@ -3,6 +3,7 @@ import { View } from 'react-native';
 
 import type { PillOption } from '@/components/PillSelector';
 import { usePreferences } from '@/lib/preferences';
+import { beginThemeSwitch } from '@/lib/theme';
 
 import { ActionRow } from './ActionRow';
 import { ColorVisionSheet, type ColorVisionSheetRef } from './ColorVisionSheet';
@@ -72,11 +73,15 @@ export function PreferenceSettings() {
       </SettingsSection>
 
       <SettingsSection label="Visual">
+        {/* The only row that is told where it was pressed: changing the appearance is drawn as the
+            new screen opening out of the pill that asked for it, and the pill is the only thing
+            that knows where that is (see `lib/theme`). */}
         <PreferenceRow
           label="Appearance"
           name="theme"
           stored={preferences.theme}
           options={THEME_OPTIONS}
+          onChoose={beginThemeSwitch}
         />
       </SettingsSection>
 

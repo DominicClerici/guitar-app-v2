@@ -4,6 +4,17 @@
 /* =========================================================================
    Aurora design system — tokens. See DESIGN.md for the full language.
    Reference as var(--token) in components; never hardcode hex.
+
+   Every colour is declared twice, once per theme. uniwind keeps a variable bag
+   per theme and its bundler refuses a set that does not match across them, so a
+   token added to one and forgotten in the other is a build error rather than a
+   colour that vanishes at sunset. What is not a colour — the type stack — has no
+   second value and stays outside the variants.
+
+   The `@layer theme` wrapper is load-bearing rather than tidiness: uniwind reads
+   a theme's bag out of `:root` rules *inside that layer* and nowhere else. The
+   same `@variant` blocks in a bare top-level `:root` compile to identical CSS,
+   are collected by nothing, and leave every token undefined at runtime.
    ========================================================================= */
 :root {
   --font-display:
@@ -13,47 +24,108 @@
     ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   --font-rounded: 'SF Pro Rounded', 'Hiragino Maru Gothic ProN', Meiryo, 'MS PGothic', sans-serif;
   --font-serif: Georgia, 'Times New Roman', serif;
+}
 
-  /* ─ surfaces & structure ─ */
-  --bg: #0c0d10; /* app background — cool near-black */
-  --tray: #131418; /* outer machined tray */
-  --surface: #181a1f; /* default card face */
-  --surface-glass: rgba(24, 26, 31, 0.5); /* --surface at half weight, over a blur */
-  --surface-raised: #20232a; /* raised chips / ghost buttons */
-  --edge-top: rgba(255, 255, 255, 0.06); /* bevel highlight */
-  --edge-bottom: rgba(0, 0, 0, 0.52); /* bevel shadow */
-  --accent-edge: rgba(255, 255, 255, 0.16); /* lit hairline on a filled accent control */
-  --line: #2a2e36; /* hairline */
-  --line-soft: #23262d; /* softer hairline / side borders */
-  --scrim: rgba(4, 5, 7, 0.35); /* backdrop behind a transient menu */
+@layer theme {
+  :root {
+    /* The app as it was drawn: a cool near-black with machined faces lifted out of
+       it, lit from above. */
+    @variant dark {
+      /* ─ surfaces & structure ─ */
+      --bg: #0c0d10; /* app background — cool near-black */
+      --tray: #131418; /* outer machined tray */
+      --surface: #181a1f; /* default card face */
+      --surface-glass: rgba(24, 26, 31, 0.5); /* --surface at half weight, over a blur */
+      --surface-raised: #20232a; /* raised chips / ghost buttons */
+      --edge-top: rgba(255, 255, 255, 0.06); /* bevel highlight */
+      --edge-bottom: rgba(0, 0, 0, 0.52); /* bevel shadow */
+      --accent-edge: rgba(255, 255, 255, 0.16); /* lit hairline on a filled accent control */
+      --line: #2a2e36; /* hairline */
+      --line-soft: #23262d; /* softer hairline / side borders */
+      --scrim: rgba(4, 5, 7, 0.35); /* backdrop behind a transient menu */
 
-  /* ─ ink ─ */
-  --ink: #eef0f4;
-  --ink-muted: #9aa0aa;
-  --ink-faint: #62666e;
+      /* ─ ink ─ */
+      --ink: #eef0f4;
+      --ink-muted: #9aa0aa;
+      --ink-faint: #62666e;
 
-  /* ─ accent: aqua, the one primary ─ */
-  --accent: #5ec8c2;
-  --accent-bright: #86e0da;
-  --accent-muted: #45908d; /* accent settled back into the page — done, not active */
-  --accent-wash: rgba(94, 200, 194, 0.12);
-  --accent-line: rgba(94, 200, 194, 0.5); /* accent hairline / outlined control */
-  --on-accent: #04211f;
+      /* ─ accent: aqua, the one primary ─ */
+      --accent: #5ec8c2;
+      --accent-bright: #86e0da;
+      --accent-muted: #45908d; /* accent settled back into the page — done, not active */
+      --accent-wash: rgba(94, 200, 194, 0.12);
+      --accent-line: rgba(94, 200, 194, 0.5); /* accent hairline / outlined control */
+      --on-accent: #04211f;
 
-  /* ─ key-coded jewel hues ─ */
-  --aqua: #5ec8c2;
-  --amber: #e0a84e;
-  --amber-wash: rgba(224, 168, 78, 0.12); /* amber counterpart to --accent-wash */
-  --rose: #e0788f;
-  --rose-wash: rgba(224, 120, 143, 0.12); /* rose counterpart to --accent-wash */
-  --violet: #9b8cf0;
-  --violet-wash: rgba(155, 140, 240, 0.12); /* violet counterpart to --accent-wash */
+      /* ─ key-coded jewel hues ─ */
+      --aqua: #5ec8c2;
+      --amber: #e0a84e;
+      --amber-wash: rgba(224, 168, 78, 0.12); /* amber counterpart to --accent-wash */
+      --rose: #e0788f;
+      --rose-wash: rgba(224, 120, 143, 0.12); /* rose counterpart to --accent-wash */
+      --violet: #9b8cf0;
+      --violet-wash: rgba(155, 140, 240, 0.12); /* violet counterpart to --accent-wash */
+    }
+
+    /* PLACEHOLDER. These are the dark values turned over rather than a light Aurora:
+       the greys step the same distances in the other direction, the bevel keeps its
+       highlight above and loses most of its shadow — a face on a light ground is
+       lifted by a faint edge, not by a black one — and the accent darkens until it
+       is legible as ink on white. It is correct, not designed; the light half of the
+       language still has to be drawn.
+
+       The jewel hues here are deliberately the dark ones, unchanged. They are also
+       the only tokens the colour vision setting rewrites, and it writes one value
+       into every theme (`lib/color-vision`), so a light set of its own would be
+       overwritten the moment that setting was applied. Giving light mode its own
+       coded hues means giving it its own four colour vision palettes, which is a
+       piece of work in itself. */
+    @variant light {
+      /* ─ surfaces & structure ─ */
+      --bg: #f2f3f7; /* app background — cool near-white */
+      --tray: #e6e8ee; /* outer machined tray, recessed below the page */
+      --surface: #fbfbfd; /* default card face */
+      --surface-glass: rgba(251, 251, 253, 0.6); /* --surface at half weight, over a blur */
+      --surface-raised: #ffffff; /* raised chips / ghost buttons */
+      --edge-top: rgba(255, 255, 255, 0.9); /* bevel highlight */
+      --edge-bottom: rgba(15, 18, 25, 0.1); /* bevel shadow */
+      --accent-edge: rgba(255, 255, 255, 0.45); /* lit hairline on a filled accent control */
+      --line: #d5d8e0; /* hairline */
+      --line-soft: #e2e4ea; /* softer hairline / side borders */
+      --scrim: rgba(20, 22, 28, 0.28); /* backdrop behind a transient menu */
+
+      /* ─ ink ─ */
+      --ink: #14161b;
+      --ink-muted: #565c66;
+      --ink-faint: #878d97;
+
+      /* ─ accent: aqua, the one primary ─ */
+      --accent: #2f8f89;
+      --accent-bright: #1f7a74; /* brighter reads as *more*, which on a light ground is darker */
+      --accent-muted: #7cb3af; /* accent settled back into the page — done, not active */
+      --accent-wash: rgba(47, 143, 137, 0.12);
+      --accent-line: rgba(47, 143, 137, 0.5); /* accent hairline / outlined control */
+      --on-accent: #ffffff;
+
+      /* ─ key-coded jewel hues ─ */
+      /* Moves with the accent: the two are one colour in the dark palette, and
+         nothing should have to know which of the names it was reached by. */
+      --aqua: #2f8f89;
+      --amber: #e0a84e;
+      --amber-wash: rgba(224, 168, 78, 0.12); /* amber counterpart to --accent-wash */
+      --rose: #e0788f;
+      --rose-wash: rgba(224, 120, 143, 0.12); /* rose counterpart to --accent-wash */
+      --violet: #9b8cf0;
+      --violet-wash: rgba(155, 140, 240, 0.12); /* violet counterpart to --accent-wash */
+    }
+  }
 }
 
 /* Bridge the Aurora tokens above into Tailwind colour utilities (bg-surface,
    text-ink, border-line, …) without duplicating their values: `inline` makes
    each utility reference the :root var directly, so var(--token) and
-   useCSSVariable keep working off the same single source. */
+   useCSSVariable keep working off the same single source — and so a change of
+   theme reaches every utility class in the app by rewriting one bag. */
 @theme inline {
   --font-mono: ui-monospace;
 

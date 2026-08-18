@@ -1,8 +1,10 @@
 import '@/global.css';
 
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
-import { DarkTheme, Stack, ThemeProvider } from 'expo-router';
+import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import type { ReactNode } from 'react';
+import { useColorScheme, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { ReducedMotionConfig, ReduceMotion } from 'react-native-reanimated';
 import { withUniwind } from 'uniwind';
@@ -15,6 +17,7 @@ import { ColorVisionConfig } from '@/lib/color-vision';
 import { ContentProvider } from '@/lib/content-cache';
 import { PreferencesProvider, readPreferences, useReduceMotion } from '@/lib/preferences';
 import { SyncProvider } from '@/lib/sync';
+import { setThemeSurface, ThemeConfig, ThemeSwitchHost, themeBackground } from '@/lib/theme';
 
 const GestureRoot = withUniwind(GestureHandlerRootView);
 
@@ -92,6 +95,27 @@ function MotionConfig() {
   return <ReducedMotionConfig mode={reduceMotion ? ReduceMotion.Always : ReduceMotion.Never} />;
 }
 
+/**
+ * The navigator's own palette, which is a much smaller thing than the app's.
+ *
+ * Every screen paints itself from the Aurora tokens, so what is left for this to answer is the
+ * handful of colours the navigator draws on its own account — the gap behind a card mid-push, a
+ * back gesture's shadow. Both stock themes are close enough to the two palettes for that.
+ *
+ * Read from the device rather than from the preference because uniwind has already reconciled the
+ * two: applying a theme sets the system appearance to match, so this follows the app whether the
+ * setting says light, dark, or to do whatever the phone is doing (see `lib/theme/apply`). A
+ * component of its own so the subscription re-renders the navigator rather than the providers above
+ * it — and it re-renders under the frozen frame, where the change of theme cannot be seen.
+ */
+function NavigationTheme({ children }: { children: ReactNode }) {
+  const scheme = useColorScheme();
+
+  return (
+    <ThemeProvider value={scheme === 'light' ? DefaultTheme : DarkTheme}>{children}</ThemeProvider>
+  );
+}
+
 export default function RootLayout() {
   // Nothing is rendered for this and nothing waits on it — the app is usable while it runs, and
   // usable if it fails. See the hook (BACKEND_PLAN.md §5).
@@ -114,32 +138,49 @@ export default function RootLayout() {
               `@theme inline`, that reaches every utility class and every `useToken` at once
               rather than being threaded through the features that draw notes. */}
           <ColorVisionConfig />
+          {/* And likewise. This one holds the light or dark palette against the stored appearance
+              — the same one-bag rewrite, reaching the same everything. */}
+          <ThemeConfig />
           {/* Alongside sync rather than inside it: content is public, so the catalogue refreshes
               whether or not a session exists yet (BACKEND_PLAN.md §8). */}
           <ContentProvider>
             <GestureRoot className="flex-1">
-              {/* Outside the navigator so a sheet's backdrop covers the tab bar too,
-              rather than being clipped to the screen that presented it. */}
-              <BottomSheetModalProvider>
-                <ThemeProvider value={DarkTheme}>
-                  <StatusBar style="light" />
-                  <Stack
-                    screenOptions={() => ({
-                      headerShown: false,
-                      contentStyle: { backgroundColor: '#0c0d10' },
-                      animation: pushAnimation(),
-                    })}
-                  >
-                    <Stack.Screen name="quiz/[slug]" options={pagedInto} />
-                    <Stack.Screen name="activity/[slug]" options={pagedInto} />
-                    <Stack.Screen name="onboarding" options={overCover} />
-                  </Stack>
-                </ThemeProvider>
-              </BottomSheetModalProvider>
-              {/* Above every route and below anything the system puts up — which is the whole point
-                of it being here and not in a window overlay, since what it usually waits for is a
-                provider's sign-in sheet. */}
-              <CoverHost />
+              {/* The frame a change of appearance photographs, and so the line between the app and
+                  the overlays above it: everything the navigator draws is inside this, and the
+                  toasts, the curtain and the switch itself are outside it. An overlay is above the
+                  app rather than part of the screen being changed, and photographing one would
+                  leave it hanging in the frozen frame after it had gone (see `lib/theme/switch`). */}
+              <View ref={setThemeSurface} className="flex-1">
+                {/* Outside the navigator so a sheet's backdrop covers the tab bar too,
+                rather than being clipped to the screen that presented it. */}
+                <BottomSheetModalProvider>
+                  <NavigationTheme>
+                    {/* `auto` rather than a fixed style: applying a theme sets the system
+                        appearance, and the bar reads that. */}
+                    <StatusBar style="auto" />
+                    <Stack
+                      screenOptions={() => ({
+                        headerShown: false,
+                        contentStyle: { backgroundColor: themeBackground() },
+                        animation: pushAnimation(),
+                      })}
+                    >
+                      <Stack.Screen name="quiz/[slug]" options={pagedInto} />
+                      <Stack.Screen name="activity/[slug]" options={pagedInto} />
+                      <Stack.Screen name="onboarding" options={overCover} />
+                    </Stack>
+                  </NavigationTheme>
+                </BottomSheetModalProvider>
+                {/* Above every route and below anything the system puts up — which is the whole
+                  point of it being here and not in a window overlay, since what it usually waits
+                  for is a provider's sign-in sheet. */}
+                <CoverHost />
+              </View>
+              {/* Above the app and below the two overlays that talk over it. A toast on screen
+                while the appearance changes is not in the photograph — nothing outside the frame
+                above is — so it has to stay drawn over the switch rather than be hidden by it and
+                come back afterwards. */}
+              <ThemeSwitchHost />
               {/* Last, and outside the sheet provider, so on Android — where a modal
                 route is an ordinary fragment — it is already above both. */}
               <ToastHost />

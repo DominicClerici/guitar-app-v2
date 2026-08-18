@@ -15,6 +15,12 @@ interface Props {
   /** What the database holds for `name` right now. */
   stored: string;
   options: PillOption[];
+  /**
+   * Told what was chosen and where on screen it was chosen, once the write has landed. For a
+   * setting whose change is worth drawing — the appearance, which opens out of the control that
+   * changed it. A row that has nothing to draw leaves this out.
+   */
+  onChoose?: (id: string, at: { x: number; y: number }) => void;
 }
 
 /**
@@ -30,7 +36,7 @@ interface Props {
  * row's `name` and its `options` safe to state separately at the call site: a pairing that does not
  * exist is refused here rather than stored as a value nothing can read back.
  */
-export function PreferenceRow({ label, name, stored, options }: Props) {
+export function PreferenceRow({ label, name, stored, options, onChoose }: Props) {
   const { set } = usePreferenceWriter();
   const [pending, setPending] = useState<Pending<string> | null>(null);
 
@@ -39,10 +45,13 @@ export function PreferenceRow({ label, name, stored, options }: Props) {
   // would spend that frame showing what this device picked instead.
   if (isSettled(stored, pending)) setPending(null);
 
-  const choose = (id: string) => {
+  const choose = (id: string, at: { x: number; y: number }) => {
     const entry = preferenceEntry.safeParse({ key: name, value: id });
 
     if (entry.success && set(entry.data)) {
+      // After the write and not before it: what `onChoose` starts is the showing of a change that
+      // has already happened, so there is nothing for it to undo if the write turns out to fail.
+      onChoose?.(id, at);
       setPending({ value: id, from: stored });
       return;
     }

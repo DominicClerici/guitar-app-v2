@@ -1,5 +1,7 @@
 import { Stack } from 'expo-router';
 
+import { themeBackground } from '@/lib/theme';
+
 /**
  * The onboarding flow's own stack.
  *
@@ -9,10 +11,12 @@ import { Stack } from 'expo-router';
 export default function OnboardingLayout() {
   return (
     <Stack
-      screenOptions={{
+      // A function so the page colour is read as each screen is built rather than once when this
+      // renders — the same reason the root layout reads it that way (`app/_layout.tsx`).
+      screenOptions={() => ({
         headerShown: false,
-        contentStyle: { backgroundColor: '#0c0d10' },
-      }}
+        contentStyle: { backgroundColor: themeBackground() },
+      })}
     />
   );
 }

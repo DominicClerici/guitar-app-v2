@@ -6,7 +6,7 @@
  * the local database being the source of truth.
  *
  * Every operation is generic over a `DeviceSyncTable` rather than written per table. The two that
- * sweep — `deleteRowsOfOtherUsers` and `deleteAllRows` — are why: both must cover every synced
+ * sweep — `deleteRowsOfOtherUsers` and `deletePushedRows` — are why: both must cover every synced
  * table, and a table missing from either leaves rows from another account on the device, or
  * survives a full resync as stale data the cursor now claims to have seen. Neither failure raises
  * anything.
@@ -16,7 +16,7 @@
  */
 import { syncState } from '@guitar/db/schema.sqlite';
 import type { SyncedTableName } from '@guitar/shared';
-import { and, eq, isNull, ne, type SQL } from 'drizzle-orm';
+import { and, eq, isNotNull, isNull, ne, type SQL } from 'drizzle-orm';
 import type { SQLiteColumn } from 'drizzle-orm/sqlite-core';
 
 import type { DeviceSyncTable, LocalSyncRow } from '@/lib/sync/spec';
@@ -175,10 +175,21 @@ export function deleteRowsOfOtherUsers(userId: string, writer: Writer = db): voi
   }
 }
 
-/** Drops this account's rows entirely, for the full resync a purged cursor forces (§7). */
-export function deleteAllRows(userId: string, writer: Writer = db): void {
+/**
+ * Drops what this account learned from the server, for the full resync a purged cursor forces (§7).
+ *
+ * Rows still waiting to be pushed are kept. What a resync repairs is the device's copy of the
+ * server's history — the deletions it missed while their tombstones were purged out from under it —
+ * and a row the server has never seen is not part of that history. It exists nowhere else, so
+ * clearing it would destroy offline work rather than repair anything. The next push sends it, and
+ * every merge rule already judges an unpushed local row against whatever the resync pulls back.
+ */
+export function deletePushedRows(userId: string, writer: Writer = db): void {
   for (const spec of DEVICE_SYNC_TABLE_LIST) {
-    writer.delete(spec.table).where(whereOwner(spec, userId)).run();
+    writer
+      .delete(spec.table)
+      .where(and(whereOwner(spec, userId), isNotNull(column(spec, 'serverSeq'))))
+      .run();
   }
 }
 
@@ -216,4 +227,23 @@ export function writeSyncState(state: SyncState, writer: Writer = db): void {
     .values({ id: SYNC_STATE_ID, ...state })
     .onConflictDoUpdate({ target: syncState.id, set: state })
     .run();
+}
+
+/**
+ * Moves the cursor without disturbing who owns the local database.
+ *
+ * The two halves of `sync_state` are decided by different things at different times: `adoptUser`
+ * says whose rows these are, and the pull loop says how far through that account's history the
+ * device has read. A pull holds its own copy of the state across a network round trip, and an
+ * account change lands in the middle of one often enough to matter — signing in is precisely when a
+ * pull is already in flight. Writing the struct back whole would carry the previous owner's id over
+ * the new one, and hand the new account a cursor measured against the old account's position in the
+ * shared sequence, so every row below it looks already seen. Reading fresh here, under the caller's
+ * transaction, is what keeps the two halves independent.
+ */
+export function writeSyncCursor(
+  next: { cursor: number; lastPulledAt?: Date },
+  writer: Writer = db,
+): void {
+  writeSyncState({ ...readSyncState(writer), ...next }, writer);
 }
