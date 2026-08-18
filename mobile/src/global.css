@@ -67,56 +67,75 @@
       --violet-wash: rgba(155, 140, 240, 0.12); /* violet counterpart to --accent-wash */
     }
 
-    /* PLACEHOLDER. These are the dark values turned over rather than a light Aurora:
-       the greys step the same distances in the other direction, the bevel keeps its
-       highlight above and loses most of its shadow — a face on a light ground is
-       lifted by a faint edge, not by a black one — and the accent darkens until it
-       is legible as ink on white. It is correct, not designed; the light half of the
-       language still has to be drawn.
+    /* Aurora by daylight. Not the dark palette turned over — a page of warm paper with
+       cool ink on it, which is the one thing a light theme can have that an inverted
+       dark theme cannot: the ground and the writing at different temperatures.
 
-       The jewel hues here are deliberately the dark ones, unchanged. They are also
-       the only tokens the colour vision setting rewrites, and it writes one value
-       into every theme (`lib/color-vision`), so a light set of its own would be
-       overwritten the moment that setting was applied. Giving light mode its own
-       coded hues means giving it its own four colour vision palettes, which is a
-       piece of work in itself. */
+       The greys run from a paper-warm page up to a near-white card, and every hairline
+       sits *below* the whole ground range rather than above it, because that is what a
+       hairline is for. In the dark half the four grounds are the darkest things on
+       screen and the lines are lighter than all of them; here the four grounds are the
+       lightest and the lines are darker than all of them, tray included. A line placed
+       between two grounds instead of past them disappears against one of them.
+
+       The bevel is the same gradient read the other way. Dark lifts a face by putting
+       white along its top edge and black under its bottom one, straddling the fill.
+       Nothing is lighter than a near-white card, so light cannot straddle: it starts
+       the edge nearly invisible at the top, lets it settle into the side hairline, and
+       gathers it into a firm shadow underneath. Faint above, firm below — a face lit
+       from the same place, drawn with the only ink available.
+
+       The hues all darken, and that is not a stylistic choice. `--amber` as authored in
+       the dark half reads at 1.9:1 on a white card, which is not a colour so much as a
+       rumour of one; every hue here clears 4.5:1 on the card face, and the four of them
+       land between 5.4 and 6.5. What that costs is vividness — deep teal, bronze,
+       crimson and indigo rather than aqua, gold, rose and lilac. What it buys is that a
+       scale degree is still legible with the sun on the screen, which is the only
+       reason anyone is in this theme.
+
+       Ink, hairlines and washes hold the dark half's contrast *ratios* rather than its
+       values: `--ink` is 15.3:1 on a card in both themes, `--ink-muted` 6.6:1,
+       `--ink-faint` 3.0:1. The palette changes; how hard each thing is to read does not. */
     @variant light {
       /* ─ surfaces & structure ─ */
-      --bg: #f2f3f7; /* app background — cool near-white */
-      --tray: #e6e8ee; /* outer machined tray, recessed below the page */
-      --surface: #fbfbfd; /* default card face */
-      --surface-glass: rgba(251, 251, 253, 0.6); /* --surface at half weight, over a blur */
-      --surface-raised: #ffffff; /* raised chips / ghost buttons */
-      --edge-top: rgba(255, 255, 255, 0.9); /* bevel highlight */
-      --edge-bottom: rgba(15, 18, 25, 0.1); /* bevel shadow */
-      --accent-edge: rgba(255, 255, 255, 0.45); /* lit hairline on a filled accent control */
-      --line: #d5d8e0; /* hairline */
-      --line-soft: #e2e4ea; /* softer hairline / side borders */
-      --scrim: rgba(20, 22, 28, 0.28); /* backdrop behind a transient menu */
+      --bg: #edebe6; /* app background — warm paper */
+      --tray: #e4e1db; /* outer machined tray, recessed below the page */
+      --surface: #f8f6f3; /* default card face */
+      --surface-glass: rgba(248, 246, 243, 0.62); /* --surface at half weight, over a blur */
+      --surface-raised: #fffefc; /* raised chips / ghost buttons */
+      --edge-top: rgba(29, 31, 36, 0.05); /* bevel highlight — nearly nothing, on purpose */
+      --edge-bottom: rgba(29, 31, 36, 0.22); /* bevel shadow */
+      --accent-edge: rgba(255, 255, 255, 0.07); /* lit hairline on a filled accent control */
+      --line: #ccc9c2; /* hairline */
+      --line-soft: #d9d6cf; /* softer hairline / side borders */
+      --scrim: rgba(51, 48, 43, 0.3); /* backdrop behind a transient menu */
 
-      /* ─ ink ─ */
-      --ink: #14161b;
-      --ink-muted: #565c66;
-      --ink-faint: #878d97;
+      /* ─ ink: cool, against the warm ground ─ */
+      --ink: #1d1f24;
+      --ink-muted: #55585d;
+      --ink-faint: #8c8f92;
 
-      /* ─ accent: aqua, the one primary ─ */
-      --accent: #2f8f89;
-      --accent-bright: #1f7a74; /* brighter reads as *more*, which on a light ground is darker */
-      --accent-muted: #7cb3af; /* accent settled back into the page — done, not active */
-      --accent-wash: rgba(47, 143, 137, 0.12);
-      --accent-line: rgba(47, 143, 137, 0.5); /* accent hairline / outlined control */
-      --on-accent: #ffffff;
+      /* ─ accent: the same aqua, taken down until it is legible as ink ─ */
+      --accent: #0f6461;
+      --accent-bright: #0d524f; /* brighter reads as *more*, which on a light ground is deeper */
+      --accent-muted: #5b8381; /* accent settled back into the page — done, not active */
+      --accent-wash: rgba(15, 100, 97, 0.12);
+      --accent-line: rgba(15, 100, 97, 0.5); /* accent hairline / outlined control */
+      --on-accent: #edf9f8;
 
       /* ─ key-coded jewel hues ─ */
-      /* Moves with the accent: the two are one colour in the dark palette, and
-         nothing should have to know which of the names it was reached by. */
-      --aqua: #2f8f89;
-      --amber: #e0a84e;
-      --amber-wash: rgba(224, 168, 78, 0.12); /* amber counterpart to --accent-wash */
-      --rose: #e0788f;
-      --rose-wash: rgba(224, 120, 143, 0.12); /* rose counterpart to --accent-wash */
-      --violet: #9b8cf0;
-      --violet-wash: rgba(155, 140, 240, 0.12); /* violet counterpart to --accent-wash */
+      /* Aqua moves with the accent: the two are one colour in the dark palette, and
+         nothing should have to know which of the names it was reached by. The other
+         three are this theme's own, and so are the four colour vision palettes that
+         replace them (`lib/color-vision`) — a hue picked to stay apart on near-black
+         has no reason to stay apart on paper, and mostly does not. */
+      --aqua: #0f6461;
+      --amber: #7b550a;
+      --amber-wash: rgba(123, 85, 10, 0.12); /* amber counterpart to --accent-wash */
+      --rose: #b83258;
+      --rose-wash: rgba(184, 50, 88, 0.12); /* rose counterpart to --accent-wash */
+      --violet: #6656bc;
+      --violet-wash: rgba(102, 86, 188, 0.12); /* violet counterpart to --accent-wash */
     }
   }
 }

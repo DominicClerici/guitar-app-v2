@@ -1,6 +1,7 @@
 import type { ColorVision } from '@guitar/shared';
 import { Text, View } from 'react-native';
 import { useAnimatedStyle, withTiming } from 'react-native-reanimated';
+import { useUniwind } from 'uniwind';
 
 import { AnimatedView } from '@/components/AnimatedView';
 import { huePalette } from '@/lib/color-vision';
@@ -35,9 +36,15 @@ const colClass = (fret: number) => (fret === 0 ? 'w-[34px]' : 'w-[52px]');
  * The colours cross-fade rather than cut, so a chip pressed while you are looking at the board
  * shows you the two palettes as a difference — which is the comparison being made — instead of
  * replacing one picture with another and leaving you to remember the first.
+ *
+ * Drawn in the palette of the theme that is actually on, since each theme has its own four sets.
+ * `useUniwind` resolves `system` down to the appearance in force rather than the stored word, and
+ * re-renders this when the phone crosses over — so the board is never showing a set of colours
+ * against a background they are not the set for.
  */
 export function ColorVisionPreview({ mode }: { mode: ColorVision }) {
-  const palette = huePalette(mode);
+  const { theme } = useUniwind();
+  const palette = huePalette(mode, theme);
   // The dots stay where they are; what they are called follows the user's own strings. The
   // spelling falls to flats where nothing settles it, for the reason a tuning does: a slackened
   // string is E flat and never D sharp. `previewNotes` memoises on the pair.

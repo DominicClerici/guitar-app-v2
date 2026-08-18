@@ -1,4 +1,5 @@
 import type { ColorVision } from '@guitar/shared';
+import type { ThemeName } from 'uniwind';
 
 import { parseColor } from '@/lib/color';
 
@@ -18,6 +19,10 @@ import { huePalette, type HueRole } from './palettes';
  * Only the three jewels are here. The accent is the app's primary rather than a code, and the
  * palettes are built so it never has to move (see `palettes.ts`), so a mode leaves `--accent` and
  * everything derived from it exactly as authored.
+ *
+ * Per theme, because the palettes are. Uniwind keeps a variable bag for each theme and the caller
+ * writes every one of them, so this is asked which bag it is filling rather than assuming the
+ * current one — the light sets and the dark sets are different colours for the same three roles.
  *
  * The washes are not separate choices. `global.css` writes each as its own hue at
  * {@link WASH_ALPHA}, so they are derived here on the same terms rather than restated — a wash
@@ -45,11 +50,11 @@ export function washOf(color: string): string {
 /**
  * The CSS variables a mode sets, ready for `Uniwind.updateCSSVariables`.
  *
- * `normal` is not a special case: it restates the values `global.css` already holds, so switching
- * back off writes the app's own colours rather than having to undo anything.
+ * `normal` is not a special case: it restates the values `global.css` already holds for that
+ * theme, so switching back off writes the app's own colours rather than having to undo anything.
  */
-export function paletteVariables(mode: ColorVision): Record<string, string> {
-  const palette = huePalette(mode);
+export function paletteVariables(mode: ColorVision, theme: ThemeName): Record<string, string> {
+  const palette = huePalette(mode, theme);
 
   return Object.fromEntries(
     CODED.flatMap((role) => [

@@ -13,10 +13,10 @@ import { paletteVariables } from './variables';
  * re-renders on a colour vision change and on nothing else — retuning the guitar does not touch
  * it. What re-renders the app is the notify inside `updateCSSVariables`, which is the point.
  *
- * Written to every registered theme rather than the current one. Uniwind keeps a variable bag per
- * theme and follows the system appearance between them; writing only the current bag would work
- * until the user's phone crossed into dark mode at sunset and quietly handed back the palette they
- * had turned off.
+ * Written to every registered theme rather than the current one, and each with that theme's own
+ * palette. Uniwind keeps a variable bag per theme and follows the system appearance between them;
+ * writing only the current bag would work until the user's phone crossed into dark mode at sunset
+ * and quietly handed back the palette they had turned off.
  *
  * In a layout effect because the notify is a synchronous re-render of every subscriber, which is
  * not something to start during a render pass. It also lands before paint, so a cold start on a
@@ -26,10 +26,8 @@ export function ColorVisionConfig() {
   const mode = usePreference('colorVision');
 
   useLayoutEffect(() => {
-    const variables = paletteVariables(mode);
-
     for (const theme of Uniwind.themes) {
-      Uniwind.updateCSSVariables(theme, variables);
+      Uniwind.updateCSSVariables(theme, paletteVariables(mode, theme));
     }
   }, [mode]);
 

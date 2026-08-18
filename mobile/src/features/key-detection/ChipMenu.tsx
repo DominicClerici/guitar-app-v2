@@ -3,7 +3,7 @@ import { SymbolView, type SFSymbol } from 'expo-symbols';
 import { Pressable, Text, useWindowDimensions, View, type ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Easing, FadeIn, FadeOut, withTiming } from 'react-native-reanimated';
-import { withUniwind } from 'uniwind';
+import { useUniwind, withUniwind } from 'uniwind';
 
 import { AnimatedView } from '@/components/AnimatedView';
 import { toAccidentalGlyphs } from '@/lib/accidentals';
@@ -93,6 +93,11 @@ interface Props {
 export function ChipMenu({ anchor, focused, chordName, onActivate, onDismiss }: Props) {
   const { width, height } = useWindowDimensions();
   const insets = useSafeAreaInsets();
+  // The blur takes a tint rather than a colour, so it is the one thing on the card that cannot
+  // follow the theme by reading a token. A dark blur under a light wash comes out as a grey
+  // smear; `useUniwind` resolves `system` to the appearance actually in force and re-renders on
+  // the crossing, and `expo-blur`'s tints happen to be named for the themes exactly.
+  const { theme } = useUniwind();
 
   const frame = menuFrame(anchor, width, height, insets.bottom);
   const hole = {
@@ -144,7 +149,7 @@ export function ChipMenu({ anchor, focused, chordName, onActivate, onDismiss }: 
               usually the fretboard, which is busy. On Android the blur only runs on
               SDK 31 and up; below that it degrades to the wash on its own. */}
           <BlurLayer
-            tint="dark"
+            tint={theme}
             intensity={BLUR_INTENSITY}
             blurMethod="dimezisBlurViewSdk31Plus"
             className="absolute inset-0"
