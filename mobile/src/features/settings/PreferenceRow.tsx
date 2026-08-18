@@ -52,7 +52,7 @@ export function PreferenceRow({ label, name, stored, options }: Props) {
   };
 
   return (
-    <View className="flex-row items-center gap-[12px] px-[14px] py-[11px]">
+    <View className="h-[54px] flex-row items-center gap-[12px]">
       <Text
         numberOfLines={1}
         className="flex-1 text-[14.5px] font-medium tracking-[-0.2px] text-ink"

@@ -76,7 +76,7 @@ export function ColorVisionSheet({ ref, stored }: Props) {
   return (
     <Sheet ref={sheet}>
       <View className="px-[18px] pt-[6px]" style={{ paddingBottom: insets.bottom + 18 }}>
-        <Text className="text-[18px] font-semibold tracking-[-0.4px] text-ink">Colour vision</Text>
+        <Text className="text-[18px] font-semibold tracking-[-0.4px] text-ink">Colorblind mode</Text>
         <Text className="mt-[6px] text-[13px] leading-[19px] text-ink-muted">
           The app codes notes, keys and scales by colour. Pick the palette that stays clearest to
           you — the neck below is drawn in whichever is chosen, and the choice is kept as you make

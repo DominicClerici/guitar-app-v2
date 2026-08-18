@@ -1,8 +1,6 @@
-import type { ReactNode } from 'react';
 import { useRef } from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 
-import { Face } from '@/components/Face';
 import type { PillOption } from '@/components/PillSelector';
 import { usePreferences } from '@/lib/preferences';
 
@@ -10,6 +8,7 @@ import { ActionRow } from './ActionRow';
 import { ColorVisionSheet, type ColorVisionSheetRef } from './ColorVisionSheet';
 import { describeColorVision } from './colorVision';
 import { PreferenceRow } from './PreferenceRow';
+import { SettingsSection } from './SettingsSection';
 import { TuningSheet, type TuningSheetRef } from './TuningSheet';
 import { describeTuning, tuningFrom } from './tuning';
 
@@ -38,36 +37,31 @@ const TOGGLE_OPTIONS: PillOption[] = [
 ];
 
 /**
- * The settings that follow the account rather than the device, in one card.
+ * The settings that follow the account rather than the device, grouped by what they change.
  *
- * Both are read from the local database and both are written to it, so they are already correct on
- * a device that has never been online and they arrive on a second one when sync next runs. Neither
- * row knows that — reading is a live query and writing returns immediately (BACKEND_PLAN.md §6).
+ * All of them are read from the local database and written to it, so they are already correct on a
+ * device that has never been online and they arrive on a second one when sync next runs. No row
+ * knows that — reading is a live query and writing returns immediately (BACKEND_PLAN.md §6).
  *
- * `footer` is where the account's own rows go, under a rule of their own. They share the card
- * rather than starting another one because there is only one list of things to change on this
- * screen, and a second card for three rows would read as a second screen's worth of settings.
+ * The three groups are subjects, not a filing system: what the guitar sounds and spells like, what
+ * the app looks like, and what it does to reach you. A setting is found by knowing which of those
+ * you are thinking about, which is a shorter search than reading one list of eight.
  */
-export function PreferenceSettings({ footer }: { footer?: ReactNode }) {
+export function PreferenceSettings() {
   const preferences = usePreferences();
   const tuning = useRef<TuningSheetRef>(null);
   const colorVision = useRef<ColorVisionSheetRef>(null);
 
   return (
     <View>
-      <SectionLabel label="Preferences" />
-
-      <View className="mt-[14px] py-[3px]">
-        <Face name="card" radius={14} />
-
-        <PreferenceRow
-          label="Appearance"
-          name="theme"
-          stored={preferences.theme}
-          options={THEME_OPTIONS}
+      <SettingsSection label="Music">
+        {/* Six strings will not fit on a settings line, so this one says what it is set to and
+            opens the control that sets it. */}
+        <ActionRow
+          label="Tuning"
+          value={describeTuning(tuningFrom(preferences.tuning), preferences.accidentalPreference)}
+          onPress={() => tuning.current?.present()}
         />
-
-        <View className="mx-[14px] h-px bg-line-soft" />
 
         <PreferenceRow
           label="Accidentals"
@@ -75,27 +69,24 @@ export function PreferenceSettings({ footer }: { footer?: ReactNode }) {
           stored={preferences.accidentalPreference}
           options={ACCIDENTAL_OPTIONS}
         />
+      </SettingsSection>
 
-        <View className="mx-[14px] h-px bg-line-soft" />
-
-        {/* A palette cannot be picked from a pill tray for the same reason a tuning cannot: the
-            names mean nothing until you have seen what they do. */}
-        <ActionRow
-          label="Colour vision"
-          value={describeColorVision(preferences.colorVision)}
-          onPress={() => colorVision.current?.present()}
+      <SettingsSection label="Visual">
+        <PreferenceRow
+          label="Appearance"
+          name="theme"
+          stored={preferences.theme}
+          options={THEME_OPTIONS}
         />
+      </SettingsSection>
 
-        <View className="mx-[14px] h-px bg-line-soft" />
-
+      <SettingsSection label="Accessibility">
         <PreferenceRow
           label="Haptics"
           name="haptics"
           stored={preferences.haptics}
           options={TOGGLE_OPTIONS}
         />
-
-        <View className="mx-[14px] h-px bg-line-soft" />
 
         {/* Off until the device says otherwise: a phone already set to reduce motion arrives here
             reading On, without anything having been written for the user. See `usePreferences`. */}
@@ -106,23 +97,14 @@ export function PreferenceSettings({ footer }: { footer?: ReactNode }) {
           options={TOGGLE_OPTIONS}
         />
 
-        <View className="mx-[14px] h-px bg-line-soft" />
-
-        {/* Six strings will not fit on a settings line, so this one says what it is set to and
-            opens the control that sets it. */}
+        {/* A palette cannot be picked from a pill tray for the same reason a tuning cannot: the
+            names mean nothing until you have seen what they do. */}
         <ActionRow
-          label="Tuning"
-          value={describeTuning(tuningFrom(preferences.tuning), preferences.accidentalPreference)}
-          onPress={() => tuning.current?.present()}
+          label="Colorblind mode"
+          value={describeColorVision(preferences.colorVision)}
+          onPress={() => colorVision.current?.present()}
         />
-
-        {footer ? (
-          <>
-            <View className="mx-[14px] h-px bg-line-soft" />
-            {footer}
-          </>
-        ) : null}
-      </View>
+      </SettingsSection>
 
       <TuningSheet
         ref={tuning}
@@ -131,17 +113,6 @@ export function PreferenceSettings({ footer }: { footer?: ReactNode }) {
       />
 
       <ColorVisionSheet ref={colorVision} stored={preferences.colorVision} />
-    </View>
-  );
-}
-
-function SectionLabel({ label }: { label: string }) {
-  return (
-    <View className="flex-row items-center gap-[12px]">
-      <Text className="font-mono text-[10px] font-semibold uppercase tracking-[2.5px] text-ink-faint">
-        {label}
-      </Text>
-      <View className="h-px flex-1 bg-line-soft" />
     </View>
   );
 }

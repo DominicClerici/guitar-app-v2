@@ -4,16 +4,17 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { AccountActions, AccountHeader } from '@/features/account';
 import { OnboardingPitch, continueWithProvider, startOnboarding } from '@/features/onboarding';
-import { PreferenceSettings } from '@/features/settings';
+import { AboutCard, PreferenceSettings } from '@/features/settings';
 import { signInWithApple, signInWithGoogle, useKnownSession } from '@/lib/auth';
 import { useToken } from '@/lib/tokens';
 
 /**
  * The settings tab — the last one, and the only place the account is now shown.
  *
- * It opens on who is signed in, and the settings follow under it in their own sections. The
- * preferences are shown to a guest as well as to an account: a guest has a session too, so theirs
- * are stored and synced the same way, and are carried over if they later sign up (§5).
+ * It opens on who is signed in, on the one card here, and the settings follow under it as bare rows
+ * grouped by subject. The preferences are shown to a guest as well as to an account: a guest has a
+ * session too, so theirs are stored and synced the same way, and are carried over if they later
+ * sign up (§5).
  */
 export function SettingsTab() {
   const { session, unknown } = useKnownSession();
@@ -61,12 +62,18 @@ export function SettingsTab() {
         />
       )}
 
-      <View className="mt-[30px] px-[18px]">
-        {/* The account's rows sit in the same card, under the preferences, and only for someone
-            who has an account — a guest has nothing to sign out of or delete. */}
-        <PreferenceSettings
-          footer={account ? <AccountActions email={account.email} /> : undefined}
-        />
+      <View className="px-[18px]">
+        <PreferenceSettings />
+
+        {/* The account's own rows are a section like the others rather than a footer to them: what
+            they change is the account, which is a different subject from what the app sounds and
+            looks like — and only someone who has one has that subject at all. */}
+        {account ? <AccountActions email={account.email} /> : null}
+
+        {/* Outside every section, because it is not a setting. */}
+        <View className="mt-[22px]">
+          <AboutCard />
+        </View>
       </View>
     </ScrollView>
   );
