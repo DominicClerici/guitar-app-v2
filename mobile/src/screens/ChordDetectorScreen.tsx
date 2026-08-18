@@ -13,6 +13,8 @@ import { LabelModeToggle, type LabelMode } from '@/features/chord-detection/Labe
 import { ReadingShelf } from '@/features/chord-detection/ReadingShelf';
 import { useChordBuilder, type InitialVoicing } from '@/features/chord-detection/useChordBuilder';
 import { WarningNotes } from '@/features/chord-detection/WarningNotes';
+import { DETECTOR_FALLBACK } from '@/features/chord-detection/spelling';
+import { useAccidentalSide } from '@/lib/preferences';
 import { decodeVoicing, encodeVoicing } from '@/lib/voicing-param';
 
 /**
@@ -58,7 +60,9 @@ export function ChordDetectorScreen() {
 
   const [labelMode, setLabelMode] = useState<LabelMode>('notes');
 
-  const degreeForPitchClass = useMemo(() => degreeForPitchClassFrom(chord), [chord]);
+  // Only the dots the reading doesn't reach take this — the rest are lettered by the chord.
+  const side = useAccidentalSide(DETECTOR_FALLBACK);
+  const degreeForPitchClass = useMemo(() => degreeForPitchClassFrom(chord, side), [chord, side]);
   const labelForPitchClass = labelMode === 'degrees' ? degreeForPitchClass : nameForPitchClass;
 
   return (

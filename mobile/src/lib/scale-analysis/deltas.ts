@@ -252,7 +252,11 @@ function closeSpan(
 ): ExceptionSpan {
   const mask = applySwaps(maskFrom(global), span.swaps);
   const match = bestName(mask, tonicPc, relativePc, span.rootPcs);
-  const named = match ? buildScale(preferredRoot(match.rootPc, match.type), match.type.id) : null;
+  // The key's own side breaks a tie the accidental count cannot: F♯ and G♭ major carry six marks
+  // each, and which one this progression is in is exactly what `sideNames` already knows.
+  const named = match
+    ? buildScale(preferredRoot(match.rootPc, match.type, sideNames[match.rootPc]), match.type.id)
+    : null;
 
   let tones: ScaleTone[];
   if (named) {

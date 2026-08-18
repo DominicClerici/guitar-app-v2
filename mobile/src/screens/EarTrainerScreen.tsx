@@ -15,14 +15,15 @@ import { Button } from '@/components/Button';
 import { TransportButton } from '@/components/TransportButton';
 import {
   DegreeCircle,
+  TRAINER_FALLBACK,
   TrainerConfigSheet,
   useTrainer,
   type DegreeMark,
   type TrainerConfigSheetRef,
   type UseTrainerResult,
 } from '@/features/ear-trainer';
-import { toAccidentalGlyphs } from '@/lib/accidentals';
-import { notesSharp } from '@/lib/theory';
+import { chromaticName, toAccidentalGlyphs } from '@/lib/accidentals';
+import { useAccidentalSide } from '@/lib/preferences';
 
 /** One half of the aura's breath. Slow enough to be felt rather than watched. */
 const BREATH_MS = 2800;
@@ -135,6 +136,8 @@ function hintFor(trainer: UseTrainerResult): string {
  */
 function TrainerReadout({ trainer }: { trainer: UseTrainerResult }) {
   const { running, tonicPc, training, stats } = trainer;
+  // The drone's home is any of the twelve, with nothing to spell it against — a free choice.
+  const side = useAccidentalSide(TRAINER_FALLBACK);
 
   const aura = useAnimatedStyle(
     () => ({
@@ -174,7 +177,7 @@ function TrainerReadout({ trainer }: { trainer: UseTrainerResult }) {
           running ? 'text-ink' : 'text-ink-faint'
         }`}
       >
-        {toAccidentalGlyphs(notesSharp[tonicPc])}
+        {toAccidentalGlyphs(chromaticName(tonicPc, side))}
       </Text>
 
       <Text className="mt-[7px] font-mono text-[9.5px] uppercase tracking-[2px] text-ink-faint">
@@ -229,7 +232,13 @@ function TrainPill({
 
 function ContinuePill({ onPress }: { onPress: () => void }) {
   return (
-    <Button variant="soft" size="md" radius={999} accessibilityLabel="Next question" onPress={onPress}>
+    <Button
+      variant="soft"
+      size="md"
+      radius={999}
+      accessibilityLabel="Next question"
+      onPress={onPress}
+    >
       Continue
     </Button>
   );

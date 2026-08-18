@@ -1,9 +1,13 @@
-const NOTE_NAMES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'] as const;
-
-export type NoteName = (typeof NOTE_NAMES)[number];
+/**
+ * Frequency → pitch, and nothing about how that pitch is spelled.
+ *
+ * The name used to live on `NoteInfo`, which meant the audio path held a spelling and every screen
+ * showing it printed sharps whatever the user had chosen. A pitch is a number; naming it is the
+ * view's job, so a readout takes `note.midi` to `noteName` with the side it wants (see
+ * `@/lib/accidentals`). The engine is left with only what it can actually know.
+ */
 
 export type NoteInfo = {
-  name: NoteName;
   octave: number;
   cents: number;
   midi: number;
@@ -15,18 +19,11 @@ const A4_MIDI = 69;
 
 export const IN_TUNE_CENTS = 5;
 
-/** Name a MIDI pitch without needing a frequency to have been detected. */
-export function midiToNoteName(midi: number): string {
-  const name = NOTE_NAMES[((midi % 12) + 12) % 12];
-  return `${name}${Math.floor(midi / 12) - 1}`;
-}
-
 export function freqToNote(f: number): NoteInfo {
   const midiF = A4_MIDI + 12 * Math.log2(f / A4_HZ);
   const midi = Math.round(midiF);
   const target = A4_HZ * Math.pow(2, (midi - A4_MIDI) / 12);
   const cents = 1200 * Math.log2(f / target);
-  const name = NOTE_NAMES[((midi % 12) + 12) % 12];
   const octave = Math.floor(midi / 12) - 1;
-  return { name, octave, cents, midi, inTune: Math.abs(cents) < IN_TUNE_CENTS };
+  return { octave, cents, midi, inTune: Math.abs(cents) < IN_TUNE_CENTS };
 }

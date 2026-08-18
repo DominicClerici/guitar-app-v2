@@ -2,6 +2,7 @@ import { useImperativeHandle, type Ref } from 'react';
 import { Linking, Pressable, Text, View } from 'react-native';
 
 import { IN_TUNE_CENTS } from './freqToNote';
+import { useNoteName } from './useNoteName';
 import { centsTextClass } from './tunerColors';
 import { type TunerStatus } from './tunerEngine';
 import { TunerScale } from './TunerScale';
@@ -31,6 +32,7 @@ export type InlineTunerCardRef = {
  */
 export function InlineTunerCard({ ref }: { ref?: Ref<InlineTunerCardRef> }) {
   const { status, note, frequency, centsSV, presenceSV, toggle, stop } = useTunerSession();
+  const nameOf = useNoteName();
 
   useImperativeHandle(ref, () => ({ stop }), [stop]);
 
@@ -59,7 +61,7 @@ export function InlineTunerCard({ ref }: { ref?: Ref<InlineTunerCardRef> }) {
           <Text className="text-[30px] font-semibold tracking-[-0.5px] text-ink">
             {hasReading ? (
               <>
-                {note.name}
+                {nameOf(note.midi)}
                 <Text className="text-[17px] font-medium text-ink-muted">{note.octave}</Text>
                 <Text className="font-mono text-[13px] text-accent">
                   {' · '}

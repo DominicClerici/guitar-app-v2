@@ -1,13 +1,13 @@
-import type { Ref } from 'react';
+import { useMemo, type Ref } from 'react';
 import { Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { SelectableChips, type ChipItem } from '@/components/SelectableChip';
 import { Segmented } from '@/components/Segmented';
 import { Sheet, type SheetRef } from '@/components/Sheet';
-import { toAccidentalGlyphs } from '@/lib/accidentals';
+import { chromaticName, toAccidentalGlyphs, type AccidentalSide } from '@/lib/accidentals';
 import { DEFAULT_ROAM_EVERY, type KeyPolicy, type TrainerConfig } from '@/lib/ear-training';
-import { notesSharp } from '@/lib/theory';
+import { useAccidentalSide } from '@/lib/preferences';
 
 import { DegreeCircle } from './DegreeCircle';
 
@@ -33,6 +33,8 @@ interface Props {
  */
 export function TrainerConfigSheet({ ref, config, onDegrees, onKeyPolicy }: Props) {
   const insets = useSafeAreaInsets();
+  const side = useAccidentalSide(TRAINER_FALLBACK);
+  const tonics = useMemo(() => tonicChips(side), [side]);
   const fixed = config.keyPolicy.mode === 'fixed';
   // The key to return to when switching back from roaming.
   const heldTonic = config.keyPolicy.mode === 'fixed' ? config.keyPolicy.tonicPc : 0;
@@ -97,7 +99,7 @@ export function TrainerConfigSheet({ ref, config, onDegrees, onKeyPolicy }: Prop
 
         {config.keyPolicy.mode === 'fixed' ? (
           <SelectableChips
-            items={TONICS}
+            items={tonics}
             value={String(config.keyPolicy.tonicPc)}
             onChange={(id) => onKeyPolicy({ mode: 'fixed', tonicPc: Number(id) })}
             size="xs"
@@ -138,9 +140,21 @@ function SegmentText({ text, selected }: { text: string; selected: boolean }) {
   );
 }
 
+/**
+ * How the drone's twelve homes are spelled with nothing to spell them against — sharps, which is
+ * what this chip row has always shown and how the chromatic ladder is counted going up. Any of the
+ * twelve is as good a home as any other here, so the spelling is a free choice and the user's wins.
+ */
+export const TRAINER_FALLBACK: AccidentalSide = 'sharp';
+
 /** The twelve keys the drone can be held in, keyed by pitch class. */
-const TONICS: ChipItem[] = notesSharp.map((name, pc) => ({
-  id: String(pc),
-  label: toAccidentalGlyphs(name),
-  accessibilityLabel: `Key of ${name}`,
-}));
+function tonicChips(side: AccidentalSide): ChipItem[] {
+  return Array.from({ length: 12 }, (_, pc) => {
+    const name = chromaticName(pc, side);
+    return {
+      id: String(pc),
+      label: toAccidentalGlyphs(name),
+      accessibilityLabel: `Key of ${name}`,
+    };
+  });
+}

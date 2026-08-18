@@ -1,8 +1,6 @@
+import { chromaticName, type AccidentalSide } from '@/lib/accidentals';
 import type { ChordResult } from '@/lib/chord-analysis';
 import { noteToSemitone } from '@/lib/theory';
-
-import { ACCIDENTAL } from './spelling';
-import { chromaticName } from './tuning';
 
 const ROOT_LABEL = 'R';
 
@@ -15,7 +13,10 @@ const ROOT_LABEL = 'R';
  * dot always resolves; the chromatic fallback covers positions the reading
  * doesn't reach.
  */
-export function degreeForPitchClassFrom(reading: ChordResult | undefined): (pc: number) => string {
+export function degreeForPitchClassFrom(
+  reading: ChordResult | undefined,
+  side: AccidentalSide,
+): (pc: number) => string {
   const map = new Map<number, string>();
 
   if (reading) {
@@ -28,5 +29,5 @@ export function degreeForPitchClassFrom(reading: ChordResult | undefined): (pc: 
     map.set(noteToSemitone(tones.root), ROOT_LABEL);
   }
 
-  return (pc: number) => map.get(pc) ?? chromaticName(pc, ACCIDENTAL);
+  return (pc: number) => map.get(pc) ?? chromaticName(pc, side);
 }

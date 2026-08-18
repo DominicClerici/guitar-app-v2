@@ -20,10 +20,12 @@ import {
   emptyProgress,
   liveTargets,
   nextRoundIndex,
+  NOTE_PLAY_FALLBACK,
   noteLabel,
   observeFrame,
   roundComplete,
 } from '@/lib/note-play';
+import { useAccidentalSide } from '@/lib/preferences';
 import { useToken } from '@/lib/tokens';
 
 import { ActivityIntro } from '../ActivityIntro';
@@ -77,6 +79,8 @@ export function NotePlayRunner({
   onDone,
 }: NotePlayRunnerProps) {
   const insets = useSafeAreaInsets();
+  // The pitch it heard, named with nothing around it to letter it — the user's choice stands.
+  const side = useAccidentalSide(NOTE_PLAY_FALLBACK);
   const accent = useToken('--accent', '#5ec8c2');
 
   const rounds = runnableRounds(activity.rounds);
@@ -258,7 +262,7 @@ export function NotePlayRunner({
           <View className="mt-[18px] h-[18px] items-center justify-center">
             {heard === null ? null : (
               <Text className="font-mono text-[11px] tracking-[1.5px] text-ink-muted">
-                heard {toAccidentalGlyphs(noteLabel(heard))}
+                heard {toAccidentalGlyphs(noteLabel(heard, side))}
               </Text>
             )}
           </View>

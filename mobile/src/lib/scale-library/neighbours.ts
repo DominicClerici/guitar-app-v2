@@ -45,15 +45,21 @@ const ROOTS_BY_PITCH_CLASS = ((): RootName[][] => {
  * The spelling of `pitchClass` this scale reads best in. B♭ Lydian and A♯ Lydian
  * are the same seven pitches, but one of them contains a D♯♯ — so the choice is
  * made by whichever spelling carries the least accidental baggage.
+ *
+ * `prefer` is consulted only where the baggage is equal, which for a symmetric type it can be:
+ * F♯ major and G♭ major are six accidentals each and neither reads better than the other. That is
+ * the one spelling here nobody has decided, so it is the one a caller — and behind it, a user's
+ * accidental setting — is allowed to decide. Letting it in any earlier would put back the double
+ * accidentals the weight exists to keep out.
  */
-export function preferredRoot(pitchClass: number, type: ScaleType): RootName {
+export function preferredRoot(pitchClass: number, type: ScaleType, prefer?: string): RootName {
   const candidates = ROOTS_BY_PITCH_CLASS[pitchClass];
   let best = candidates[0];
   let bestWeight = Number.POSITIVE_INFINITY;
 
   for (const candidate of candidates) {
     const weight = accidentalWeight(spellScale(candidate, type));
-    if (weight < bestWeight) {
+    if (weight < bestWeight || (weight === bestWeight && candidate === prefer)) {
       best = candidate;
       bestWeight = weight;
     }

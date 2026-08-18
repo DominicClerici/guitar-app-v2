@@ -11,7 +11,7 @@ import Svg, { Circle } from 'react-native-svg';
 
 import { AnimatedView } from '@/components/AnimatedView';
 import { centsTextClass } from '@/features/tuner/tunerColors';
-import type { NoteInfo } from '@/features/tuner';
+import { useNoteName, type NoteInfo } from '@/features/tuner';
 import { useToken } from '@/lib/tokens';
 
 import { RECORD_MS } from './useSampleCapture';
@@ -42,6 +42,7 @@ interface Props {
  * begins and ends purely on the state change.
  */
 export function CaptureDial({ recording, takeId, note, onPitch }: Props) {
+  const nameOf = useNoteName();
   const accent = useToken('--accent', '#5ec8c2');
   const line = useToken('--line-soft', '#23262d');
 
@@ -118,7 +119,7 @@ export function CaptureDial({ recording, takeId, note, onPitch }: Props) {
               note && onPitch ? 'text-ink' : 'text-ink-faint'
             }`}
           >
-            {note ? note.name : EM_DASH}
+            {note ? nameOf(note.midi) : EM_DASH}
           </Text>
           {note ? (
             <Text className="mb-[14px] ml-[2px] text-[18px] font-medium text-ink-muted">

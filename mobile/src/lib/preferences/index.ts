@@ -1,1 +1,8 @@
-export { usePreferences, usePreferenceWriter, type PreferenceWriter } from './usePreferences';
+export { PreferencesProvider } from './provider';
+export {
+  useAccidentalSide,
+  usePreference,
+  usePreferences,
+  usePreferenceWriter,
+  type PreferenceWriter,
+} from './usePreferences';

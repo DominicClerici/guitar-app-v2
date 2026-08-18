@@ -5,8 +5,12 @@ import {
   type AccidentalPreference,
 } from '@guitar/shared';
 
-import { toAccidentalGlyphs } from '@/lib/accidentals';
-import { notesFlat, notesSharp } from '@/lib/theory';
+import {
+  accidentalSide,
+  noteName,
+  toAccidentalGlyphs,
+  type AccidentalSide,
+} from '@/lib/accidentals';
 
 /**
  * Reading and writing the stored tuning, as the settings show it.
@@ -47,17 +51,16 @@ export function tuningWithString(
 }
 
 /**
- * How a pitch is spelled, as a note name with no octave on it.
+ * What `auto` means for a tuning: flats.
  *
- * `auto` defers to the key a passage is in, and a tuning has no key — so it falls to flats rather
- * than to sharps, because a lowered string is named for the lowering: a guitar is tuned to E flat
- * standard, never to D sharp standard.
+ * A tuning has no key to defer to, and a lowered string is named for the lowering — a guitar is
+ * tuned to E flat standard, never to D sharp standard.
  */
-export function noteNameOf(pitch: number, accidentals: AccidentalPreference): string {
-  const pitchClass = ((pitch % 12) + 12) % 12;
-  const name = accidentals === 'sharp' ? notesSharp[pitchClass] : notesFlat[pitchClass];
+export const TUNING_FALLBACK: AccidentalSide = 'flat';
 
-  return toAccidentalGlyphs(name);
+/** How a pitch is spelled, as a note name with no octave on it. */
+export function noteNameOf(pitch: number, accidentals: AccidentalPreference): string {
+  return toAccidentalGlyphs(noteName(pitch, accidentalSide(accidentals, TUNING_FALLBACK)));
 }
 
 /** The whole tuning as one line — what the settings row shows without opening anything. */

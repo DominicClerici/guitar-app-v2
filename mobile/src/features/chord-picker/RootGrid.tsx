@@ -1,7 +1,8 @@
+import { useMemo } from 'react';
 import { View } from 'react-native';
 
 import { SelectableChip } from '@/components/SelectableChip';
-import { toAccidentalGlyphs } from '@/lib/accidentals';
+import { chromaticName, toAccidentalGlyphs, type AccidentalSide } from '@/lib/accidentals';
 import type { RootName } from '@/lib/chord-library';
 
 /**
@@ -9,27 +10,18 @@ import type { RootName } from '@/lib/chord-library';
  * accidental and the rail on the chord-shapes screen offers both, because there
  * the spelling changes what the chord is called. A drone only sounds the pitch,
  * so a second chip for the same key is a second way to press the same button —
- * sharps stand for the pair.
+ * one side stands for the pair, and which side is the user's to say, because
+ * nothing here is in a key that would decide it for them.
+ *
+ * Both sides of every pair are `RootName`s the library can spell, so the cast holds either way.
  */
-const ROOTS: readonly RootName[] = [
-  'C',
-  'C#',
-  'D',
-  'D#',
-  'E',
-  'F',
-  'F#',
-  'G',
-  'G#',
-  'A',
-  'A#',
-  'B',
-];
-
-const ROWS = [ROOTS.slice(0, 6), ROOTS.slice(6)];
+function rootsOn(side: AccidentalSide): RootName[] {
+  return Array.from({ length: 12 }, (_, pc) => chromaticName(pc, side) as RootName);
+}
 
 interface Props {
   root: RootName;
+  side: AccidentalSide;
   onChange: (root: RootName) => void;
 }
 
@@ -38,10 +30,15 @@ interface Props {
  * key is on screen at once and none of them moves, which is what a set this
  * small should be — you reach for A without finding it first.
  */
-export function RootGrid({ root, onChange }: Props) {
+export function RootGrid({ root, side, onChange }: Props) {
+  const rows = useMemo(() => {
+    const roots = rootsOn(side);
+    return [roots.slice(0, 6), roots.slice(6)];
+  }, [side]);
+
   return (
     <View className="gap-[6px]">
-      {ROWS.map((row, index) => (
+      {rows.map((row, index) => (
         <View key={index} className="flex-row gap-[6px]">
           {row.map((name) => (
             <SelectableChip

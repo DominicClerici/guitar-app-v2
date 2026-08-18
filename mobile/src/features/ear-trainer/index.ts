@@ -1,5 +1,9 @@
 export { DegreeCircle, type DegreeMark } from './DegreeCircle';
-export { TrainerConfigSheet, type TrainerConfigSheetRef } from './TrainerConfigSheet';
+export {
+  TRAINER_FALLBACK,
+  TrainerConfigSheet,
+  type TrainerConfigSheetRef,
+} from './TrainerConfigSheet';
 export {
   useTrainer,
   type TrainerPhase,

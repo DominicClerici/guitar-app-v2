@@ -25,7 +25,14 @@ import {
   useSampleCapture,
   type PipState,
 } from '@/features/intonation';
-import { IN_TUNE_CENTS, TunerScale, useTunerSession } from '@/features/tuner';
+import {
+  IN_TUNE_CENTS,
+  TUNER_FALLBACK,
+  TunerScale,
+  useNoteName,
+  useTunerSession,
+} from '@/features/tuner';
+import { useAccidentalSide } from '@/lib/preferences';
 import { centsTextClass } from '@/features/tuner/tunerColors';
 
 const EM_DASH = '—';
@@ -242,6 +249,8 @@ function TunePhase({
   centsSV,
   presenceSV,
 }: TuneProps) {
+  const nameOf = useNoteName();
+
   return (
     <View className="flex-1">
       <ScrollView
@@ -260,7 +269,7 @@ function TunePhase({
         <View className="mt-[20px] items-center rounded-[13px] border border-x-line-soft border-t-edge-top border-b-edge-bottom bg-surface px-[18px] pb-[18px] pt-[20px]">
           <View className="flex-row items-end">
             <Text className="text-[68px] font-semibold leading-[74px] tracking-[-2.5px] text-ink">
-              {note ? note.name : EM_DASH}
+              {note ? nameOf(note.midi) : EM_DASH}
             </Text>
             {note ? (
               <Text className="mb-[16px] ml-[3px] text-[19px] font-medium text-ink-muted">
@@ -321,6 +330,9 @@ interface MeasureProps {
 }
 
 function MeasurePhase({ insets, railStates, session, capture, note }: MeasureProps) {
+  // Only the "heard X" line takes this: the note it names is whatever was plucked, with no key or
+  // chord around it to letter it — see `useNoteName`.
+  const side = useAccidentalSide(TUNER_FALLBACK);
   const { string, stage, taken } = session;
   const recording = capture.state === 'recording';
   const onPitch = note !== null && note.midi === string.targetMidi;
@@ -328,7 +340,7 @@ function MeasurePhase({ insets, railStates, session, capture, note }: MeasurePro
   const problem = capture.problem;
   const message = problem
     ? problem.kind === 'wrong-note'
-      ? misfireMessage(problem.midi, string, stage)
+      ? misfireMessage(problem.midi, string, stage, side)
       : 'That faded before the three seconds were up. Give it a firmer pluck and let it ring.'
     : null;
 

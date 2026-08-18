@@ -10,7 +10,9 @@ import {
 } from 'react';
 
 import { useChordBuilder, type InitialVoicing } from '@/features/chord-detection/useChordBuilder';
+import { chromaticName, type AccidentalSide } from '@/lib/accidentals';
 import { buildChord, type RootName } from '@/lib/chord-library';
+import { useAccidentalSide } from '@/lib/preferences';
 import { noteToSemitone } from '@/lib/theory';
 
 import {
@@ -84,6 +86,8 @@ export interface DroneHandoff extends InitialVoicing {
 export type UseDroneResult = DroneSnapshot & {
   mode: DroneMode;
   root: RootName;
+  /** Which way the root grid should spell its twelve, so the two cannot disagree. */
+  side: AccidentalSide;
   quality: string;
   octave: number;
   selection: DroneSelection;
@@ -112,13 +116,26 @@ export type UseDroneResult = DroneSnapshot & {
  * It is read once, into the initial state rather than into an effect, so the neck
  * and the chord it sounds are right on the first render.
  */
+/**
+ * How the drone spells a black key with nothing chosen — sharps, which is what its root grid has
+ * always shown and how the chromatic run is counted going up.
+ */
+export const DRONE_FALLBACK: AccidentalSide = 'sharp';
+
 export function useDrone(handoff?: DroneHandoff): UseDroneResult {
   const snapshot = useSyncExternalStore(subscribe, getSnapshot, getSnapshot);
 
   const [mode, setMode] = useState<DroneMode>(handoff ? 'neck' : 'chords');
-  const [root, setRoot] = useState<RootName>('C');
+  // Held as a pitch class and spelled on the way out: a drone sounds a pitch, and no key or chord
+  // stands over it to letter that pitch, so how it is written is the user's call and re-reads the
+  // moment they change it. See `RootGrid`, which offers the twelve on the same side.
+  const [rootPc, setRootPc] = useState(0);
   const [quality, setQuality] = useState<string>(SINGLE_NOTE);
   const [octave, setOctave] = useState(0);
+
+  const side = useAccidentalSide(DRONE_FALLBACK);
+  const root = chromaticName(rootPc, side) as RootName;
+  const setRoot = useCallback((name: RootName) => setRootPc(noteToSemitone(name)), []);
 
   const handedOver = useRef(handoff !== undefined);
   const pendingStart = useRef(handoff?.autoStart === true);
@@ -134,7 +151,7 @@ export function useDrone(handoff?: DroneHandoff): UseDroneResult {
 
   const fromCatalogue = useMemo<DroneSelection>(() => {
     if (quality === SINGLE_NOTE) {
-      const pitches = shiftOctave(notePitches(noteToSemitone(root)), octave);
+      const pitches = shiftOctave(notePitches(rootPc), octave);
       return { pitches, rootMidi: pitches[0], title: root, notes: [root], rootIndex: 0 };
     }
 
@@ -151,7 +168,7 @@ export function useDrone(handoff?: DroneHandoff): UseDroneResult {
       notes: tones.map((tone) => tone.note),
       rootIndex: 0,
     };
-  }, [root, quality, octave]);
+  }, [root, rootPc, quality, octave]);
 
   const fromNeck = useMemo<DroneSelection>(() => {
     if (placed.length === 0) return NOTHING;
@@ -210,6 +227,7 @@ export function useDrone(handoff?: DroneHandoff): UseDroneResult {
     ...snapshot,
     mode,
     root,
+    side,
     quality,
     octave,
     selection,

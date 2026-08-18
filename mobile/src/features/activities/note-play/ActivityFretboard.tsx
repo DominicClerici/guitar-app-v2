@@ -2,7 +2,8 @@ import { Text, View } from 'react-native';
 
 import { toAccidentalGlyphs } from '@/lib/accidentals';
 import type { ActivityMode, FretPosition, FretWindow } from '@/lib/content';
-import { targetLabel } from '@/lib/note-play';
+import { NOTE_PLAY_FALLBACK, targetLabel } from '@/lib/note-play';
+import { useAccidentalSide } from '@/lib/preferences';
 import {
   DOUBLE_INLAY_FRET,
   SINGLE_INLAY_FRETS,
@@ -99,6 +100,9 @@ export function ActivityFretboard({ board, targets, hits, mode, nextIndex }: Pro
     targets.map((target, index) => [`${stringIndexFromWire(target.string)}-${target.fret}`, index]),
   );
 
+  // A drill names a fret with nothing around it to letter it, so the user's choice stands.
+  const side = useAccidentalSide(NOTE_PLAY_FALLBACK);
+
   const markerFor = (index: number | undefined): Marker => {
     if (index === undefined) return 'none';
     if (hits.has(index)) return 'hit';
@@ -129,7 +133,9 @@ export function ActivityFretboard({ board, targets, hits, mode, nextIndex }: Pro
                   gauge={STRING_GAUGE_CLASS[row]}
                   density={density}
                   marker={markerFor(index)}
-                  label={index === undefined ? '' : toAccidentalGlyphs(targetLabel(targets[index]))}
+                  label={
+                    index === undefined ? '' : toAccidentalGlyphs(targetLabel(targets[index], side))
+                  }
                   position={`string ${wireStringFromIndex(row)}, ${
                     fret === 0 ? 'open' : `fret ${fret}`
                   }`}

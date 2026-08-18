@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useMemo, useReducer, useState } from 'react';
 
-import { ACCIDENTAL } from '@/features/chord-detection/spelling';
+import { DETECTOR_FALLBACK } from '@/features/chord-detection/spelling';
 import { analyzeChord } from '@/lib/chord-analysis';
 import type { ChordResult, FretboardNote } from '@/lib/chord-analysis';
 import { accidentalSideFor, estimateKey, extractFeature, romanLabelsFor } from '@/lib/key-analysis';
 import type { KeyEstimate, ProgressionChord, RomanLabel } from '@/lib/key-analysis';
+import { useAccidentalSide } from '@/lib/preferences';
 import { scalePlanFor } from '@/lib/scale-analysis';
 import type { ScalePlan } from '@/lib/scale-analysis';
 import { noteToSemitone } from '@/lib/theory';
@@ -110,9 +111,15 @@ export function useKeyDetection() {
     cachedProgression = state.chords;
   }, [state.chords]);
 
+  // Everything below hands this to the engines as their *tie-break*. A key's own signature decides
+  // the side it spells on — F major is B flat whichever way this is set — and the preference is
+  // reached only where the signature has nothing to say: C major and A minor, which have no
+  // accidentals of their own, and the two keys that tie (F♯/G♭ major, D♯/E♭ minor).
+  const preferred = useAccidentalSide(DETECTOR_FALLBACK);
+
   const estimate: KeyEstimate = useMemo(
-    () => estimateKey(state.chords, ACCIDENTAL),
-    [state.chords],
+    () => estimateKey(state.chords, preferred),
+    [state.chords, preferred],
   );
 
   // Which candidate the readout is showing. A stale index would point at a
@@ -134,8 +141,8 @@ export function useKeyDetection() {
    */
   const chords: DisplayChord[] = useMemo(() => {
     const side = displayedKey
-      ? accidentalSideFor(displayedKey.tonicPc, displayedKey.mode, ACCIDENTAL)
-      : ACCIDENTAL;
+      ? accidentalSideFor(displayedKey.tonicPc, displayedKey.mode, preferred)
+      : preferred;
     return state.chords.map((c, i) => {
       const readingIndex = Math.min(
         (displayedKey ? displayedKey.assignment[i] : undefined) ?? c.pinned ?? 0,
@@ -151,7 +158,7 @@ export function useKeyDetection() {
         analysis?.chordNames[0];
       return { ...c, name: named?.name ?? '—', readingIndex };
     });
-  }, [state.chords, displayedKey]);
+  }, [state.chords, displayedKey, preferred]);
 
   const labels: RomanLabel[] = useMemo(
     () => (displayedKey ? romanLabelsFor(state.chords, displayedKey) : []),
@@ -161,8 +168,8 @@ export function useKeyDetection() {
   // The scale plan tracks the displayed key the same way the labels do, so
   // picking a runner-up key re-plans what to play over the progression.
   const scalePlan: ScalePlan | null = useMemo(
-    () => (displayedKey ? scalePlanFor(state.chords, displayedKey, ACCIDENTAL) : null),
-    [state.chords, displayedKey],
+    () => (displayedKey ? scalePlanFor(state.chords, displayedKey, preferred) : null),
+    [state.chords, displayedKey, preferred],
   );
 
   const add = useCallback((chord: ProgressionChord) => dispatch({ type: 'add', chord }), []);

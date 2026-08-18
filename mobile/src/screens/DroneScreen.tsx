@@ -139,7 +139,7 @@ export function DroneScreen() {
             extraGroup={NOTE_GROUP}
             onPress={() => catalogue.current?.present()}
           />
-          <RootGrid root={drone.root} onChange={drone.setRoot} />
+          <RootGrid root={drone.root} side={drone.side} onChange={drone.setRoot} />
         </View>
       )}
 

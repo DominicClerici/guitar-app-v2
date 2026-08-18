@@ -4,7 +4,7 @@ import {
   type FretWindow,
   type NotePlayRound,
 } from '@/lib/content';
-import { notesSharp } from '@/lib/theory';
+import { pitchName, type AccidentalSide } from '@/lib/accidentals';
 
 // Every decision a note-play round makes, with no React and no microphone in sight.
 //
@@ -163,15 +163,26 @@ export function nextRoundIndex(index: number, roundCount: number): number | null
   return next < roundCount ? next : null;
 }
 
-/** A pitch as a learner reads it — "A3", "A#3". Sharps; the display layer glyphs them. */
-export function noteLabel(midi: number): string {
-  return `${notesSharp[((midi % 12) + 12) % 12]}${Math.floor(midi / 12) - 1}`;
+/**
+ * How a drill spells a black key when nothing has been chosen — sharps, which is how the neck is
+ * counted going up and how these rounds have always been written.
+ */
+export const NOTE_PLAY_FALLBACK: AccidentalSide = 'sharp';
+
+/**
+ * A pitch as a learner reads it — "A3", "A#3". ASCII; the display layer glyphs it.
+ *
+ * A drill names a fret with no key or chord around it, so which side a black key is written on is
+ * a genuinely open choice, and `side` is the user's answer to it (see `useAccidentalSide`).
+ */
+export function noteLabel(midi: number, side: AccidentalSide): string {
+  return pitchName(midi, side);
 }
 
 /**
  * What a target sounds, named. Safe from `midiForTarget`'s throw: a round whose target is off a
  * six-string neck never survives parsing, so nothing that reaches here can name one.
  */
-export function targetLabel(target: FretPosition): string {
-  return noteLabel(midiForTarget(target));
+export function targetLabel(target: FretPosition, side: AccidentalSide): string {
+  return noteLabel(midiForTarget(target), side);
 }

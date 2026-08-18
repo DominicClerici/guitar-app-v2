@@ -185,12 +185,17 @@ describe('nextRoundIndex', () => {
 
 describe('labels', () => {
   it('names a pitch the way a learner reads it', () => {
-    expect(noteLabel(64)).toBe('E4');
-    expect(noteLabel(58)).toBe('A#3');
+    expect(noteLabel(64, 'sharp')).toBe('E4');
+    expect(noteLabel(58, 'sharp')).toBe('A#3');
+  });
+
+  // A drill has no key to spell against, so a black key follows the reader's setting.
+  it('spells a black key on the side it is asked for', () => {
+    expect(noteLabel(58, 'flat')).toBe('Bb3');
   });
 
   it('names what a target sounds', () => {
-    expect(targetLabel(A3)).toBe('A3');
-    expect(targetLabel(G2)).toBe('G2');
+    expect(targetLabel(A3, 'sharp')).toBe('A3');
+    expect(targetLabel(G2, 'sharp')).toBe('G2');
   });
 });

@@ -9,6 +9,7 @@ export {
   liveTargets,
   matchingTarget,
   nextRoundIndex,
+  NOTE_PLAY_FALLBACK,
   noteLabel,
   observeFrame,
   roundComplete,

@@ -14,6 +14,7 @@ import { Button } from '@/components/Button';
 import { Sheet, type SheetRef } from '@/components/Sheet';
 
 import { IN_TUNE_CENTS } from './freqToNote';
+import { useNoteName } from './useNoteName';
 import { SeismographChart, SeismographFrame } from './SeismographChart';
 import { centsTextClass, useTunerColors } from './tunerColors';
 import { type TunerStatus } from './tunerEngine';
@@ -73,6 +74,7 @@ const SNAP_POINTS = ['92%'];
 
 function TunerSheetBody({ visible, onStart }: { visible: boolean; onStart: () => Promise<void> }) {
   const { status, note, frequency, centsSV, claritySV, presenceSV, frameSV } = useTuner();
+  const nameOf = useNoteName();
   const colors = useTunerColors();
   const { height: screenHeight } = useWindowDimensions();
 
@@ -117,7 +119,7 @@ function TunerSheetBody({ visible, onStart }: { visible: boolean; onStart: () =>
         <View className="mt-[12px] w-full">
           <AnimatedView className="flex-row items-end justify-center" style={noteOpacity}>
             <Text className="text-[110px] font-semibold leading-[118px] tracking-[-4px] text-ink">
-              {note ? note.name : '—'}
+              {note ? nameOf(note.midi) : '—'}
             </Text>
             {note ? (
               <Text className="mb-[26px] ml-[4px] text-[26px] font-medium text-ink-muted">

@@ -1,9 +1,11 @@
 import { useCallback, useMemo, useState } from 'react';
 
+import type { AccidentalSide } from '@/lib/accidentals';
 import { analyzeChord } from '@/lib/chord-analysis';
+import { useAccidentalSide } from '@/lib/preferences';
 import { noteToSemitone } from '@/lib/theory';
 
-import { ACCIDENTAL, nameForPitchClassFrom } from './spelling';
+import { DETECTOR_FALLBACK, nameForPitchClassFrom } from './spelling';
 import type { PlacedNote } from './useChordDetection';
 
 // The voicing and the chosen reading of it move together: fretting a note
@@ -21,8 +23,8 @@ const EMPTY: Board = { placed: [], selected: 0 };
  * accepted when the chord was put away, so it comes back showing that
  * interpretation rather than re-ranking to a different one.
  */
-function boardFor(placed: PlacedNote[], rootPc?: number): Board {
-  const readings = analyzeChord(placed, ACCIDENTAL)?.chordNames ?? [];
+function boardFor(placed: PlacedNote[], side: AccidentalSide, rootPc?: number): Board {
+  const readings = analyzeChord(placed, side)?.chordNames ?? [];
   const match =
     rootPc === undefined
       ? -1
@@ -49,8 +51,12 @@ export interface InitialVoicing {
  * the wrong chord.
  */
 export function useChordBuilder(initial?: InitialVoicing) {
+  // The engine's tie-break, not an override: it settles an F#/Gb root the accidental count leaves
+  // level, and nothing else. A shape that reads cleanest as Bb is still Bb under sharps.
+  const side = useAccidentalSide(DETECTOR_FALLBACK);
+
   const [board, setBoard] = useState<Board>(() =>
-    initial ? boardFor(initial.placed, initial.rootPitchClass) : EMPTY,
+    initial ? boardFor(initial.placed, side, initial.rootPitchClass) : EMPTY,
   );
 
   // A string sounds one note at a time, so fretting a string moves its note
@@ -73,19 +79,22 @@ export function useChordBuilder(initial?: InitialVoicing) {
   );
 
   /** Put a stored voicing back on the neck. */
-  const load = useCallback((voicing: PlacedNote[], rootPc?: number) => {
-    setBoard(boardFor(voicing, rootPc));
-  }, []);
+  const load = useCallback(
+    (voicing: PlacedNote[], rootPc?: number) => {
+      setBoard(boardFor(voicing, side, rootPc));
+    },
+    [side],
+  );
 
   const readings = useMemo(
-    () => analyzeChord(board.placed, ACCIDENTAL)?.chordNames ?? [],
-    [board.placed],
+    () => analyzeChord(board.placed, side)?.chordNames ?? [],
+    [board.placed, side],
   );
 
   const selectedIndex = Math.min(board.selected, Math.max(0, readings.length - 1));
   const chord = readings[selectedIndex];
   const rootPitchClass = chord ? noteToSemitone(chord.chordTones.root) : null;
-  const nameForPitchClass = useMemo(() => nameForPitchClassFrom(chord), [chord]);
+  const nameForPitchClass = useMemo(() => nameForPitchClassFrom(chord, side), [chord, side]);
 
   return {
     placed: board.placed,

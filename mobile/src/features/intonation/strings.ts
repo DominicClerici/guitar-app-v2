@@ -1,4 +1,4 @@
-import { midiToNoteName } from '@/features/tuner';
+import { pitchName, toAccidentalGlyphs, type AccidentalSide } from '@/lib/accidentals';
 
 export type Stage = 'harmonic' | 'fretted';
 
@@ -59,7 +59,12 @@ export function stageTitle(string: GuitarString, stage: Stage): string {
  * are the ones this test invites: sounding the open string instead of the note
  * an octave up, and catching the 5th-fret harmonic instead of the 12th.
  */
-export function misfireMessage(detectedMidi: number, string: GuitarString, stage: Stage): string {
+export function misfireMessage(
+  detectedMidi: number,
+  string: GuitarString,
+  stage: Stage,
+  side: AccidentalSide,
+): string {
   if (detectedMidi === string.openMidi) {
     return stage === 'harmonic'
       ? `That's the open ${string.label} string, an octave below the harmonic. Touch the string lightly right above the 12th fret wire rather than pressing it down.`
@@ -70,7 +75,7 @@ export function misfireMessage(detectedMidi: number, string: GuitarString, stage
     return `That's two octaves up — the 5th-fret harmonic. Move your finger to the 12th fret, halfway along the string.`;
   }
 
-  const heard = midiToNoteName(detectedMidi);
+  const heard = toAccidentalGlyphs(pitchName(detectedMidi, side));
   const where = stage === 'harmonic' ? 'the 12th-fret harmonic' : 'the 12th fret';
   return `Heard ${heard}. Make sure you're playing ${where} on the ${string.label} string.`;
 }

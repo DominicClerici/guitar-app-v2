@@ -1,73 +1,58 @@
 /**
- * Reading preferences from the device database (BACKEND_PLAN.md §6).
+ * Reading preferences (BACKEND_PLAN.md §6).
  *
- * `useLiveQuery` re-runs on any write to the underlying table, so a value pulled from another
- * device appears on screen without anything having to invalidate a cache. Reads never suspend and
- * never fail: an account with nothing stored — or a database whose migrations did not run — folds
- * to `DEFAULT_PREFERENCES`.
+ * The table is queried once, by `PreferencesProvider`; these hooks read what it published. That
+ * keeps a value pulled from another device appearing on screen without anything invalidating a
+ * cache, and costs one subscription rather than one per reader. Reads never suspend and never
+ * fail: before the first query answers — and after one that answers with nothing — what comes
+ * back is `DEFAULT_PREFERENCES`.
  *
- * What comes back is the preference *as it applies*, which for `reduceMotion` is not always what
- * is stored — see below.
+ * Read the narrowest hook that answers the question. `usePreferences` wakes its caller for any
+ * preference; the ones below wake it only for theirs.
  */
-import { userPreferences } from '@guitar/db/schema.sqlite';
-import {
-  foldPreferences,
-  type PreferenceEntry,
-  type PreferenceKey,
-  type Preferences,
-} from '@guitar/shared';
-import { eq } from 'drizzle-orm';
-import { useLiveQuery } from 'drizzle-orm/expo-sqlite';
-import { useCallback, useMemo } from 'react';
+import type { PreferenceEntry, PreferenceKey, Preferences } from '@guitar/shared';
+import { useCallback, useMemo, useSyncExternalStore } from 'react';
 
-import { db } from '@/lib/db';
+import { accidentalSide, type AccidentalSide } from '@/lib/accidentals';
 import { useSession } from '@/lib/auth';
 
+import { readPreferences, subscribePreferences } from './snapshot';
 import { resetPreference, setPreference } from './store';
-import { useSystemReduceMotion } from './system';
 
-/** No account owns this, so the query matches nothing before a session exists. */
+/** No account owns this, so the writers refuse before a session exists. */
 const NOBODY = '';
 
-function useUserId(): string {
-  const { data: session } = useSession();
-
-  return session?.user.id ?? NOBODY;
+/** The whole preference set. For a screen that shows all of them — the settings card. */
+export function usePreferences(): Preferences {
+  return useSyncExternalStore(subscribePreferences, readPreferences, readPreferences);
 }
 
 /**
- * The preferences this account is running under.
+ * One preference, and only that one.
  *
- * `reduceMotion` is the one value that is not simply read out of the table. Its stored default is
- * off, because both halves of sync have to agree on what an absent row means — but a phone with
- * Reduce Motion switched on has already answered this question, and making someone answer it again
- * in a settings screen they have to find first is not an accessibility setting, it is a quiz. So
- * while the row is absent, the device's own setting stands in for it.
- *
- * The moment something is chosen here the row exists, and from then on the choice wins on this
- * device and on every other — which is the whole reason nothing is written on the user's behalf.
- * A silent seeding write would carry one phone's system setting onto a second device that has its
- * own, and there would be no way left to tell the two apart.
+ * `useSyncExternalStore` compares what the selector returns, and every preference is a string, so
+ * a caller asking for `accidentalPreference` is not re-rendered by a change of theme.
  */
-export function usePreferences(): Preferences {
-  const userId = useUserId();
-  const systemReduceMotion = useSystemReduceMotion();
+export function usePreference<K extends PreferenceKey>(key: K): Preferences[K] {
+  const read = useCallback(() => readPreferences()[key], [key]);
 
-  const { data } = useLiveQuery(
-    db.select().from(userPreferences).where(eq(userPreferences.userId, userId)),
-    [userId],
-  );
+  return useSyncExternalStore(subscribePreferences, read, read);
+}
 
-  return useMemo(() => {
-    // Tombstoned rows are deletions this device has not pushed yet; the preference they name is
-    // back at its default, which is what leaving them out produces.
-    const live = data.filter((row) => row.deletedAt === null);
-    const preferences = foldPreferences(live);
-
-    if (live.some((row) => row.key === 'reduceMotion')) return preferences;
-
-    return { ...preferences, reduceMotion: systemReduceMotion ? 'on' : 'off' };
-  }, [data, systemReduceMotion]);
+/**
+ * Which way to spell a black key here, from what the user chose.
+ *
+ * `fallback` is what `auto` means on this surface — the spelling it would have used had there been
+ * no setting at all, which is not the same everywhere: a tuning falls to flats and a chromatic
+ * drill to sharps. State it at the call site, because the call site is the only thing that knows.
+ *
+ * This is for the places where the choice is genuinely open. Where the music has already answered
+ * — a key signature, a scale's letters, a chord's own root — the answer comes from the engine that
+ * knows it (`accidentalSideFor`, `spellScale`, the chord engine's accidental count) and this is at
+ * most the tie-break handed to it.
+ */
+export function useAccidentalSide(fallback: AccidentalSide): AccidentalSide {
+  return accidentalSide(usePreference('accidentalPreference'), fallback);
 }
 
 export interface PreferenceWriter {
@@ -103,7 +88,8 @@ function attempt(write: () => void): boolean {
  * session that makes an account exist is created at launch (§5), so this is a narrow window.
  */
 export function usePreferenceWriter(): PreferenceWriter {
-  const userId = useUserId();
+  const { data: session } = useSession();
+  const userId = session?.user.id ?? NOBODY;
 
   const set = useCallback(
     (entry: PreferenceEntry) => (userId ? attempt(() => setPreference(userId, entry)) : false),
