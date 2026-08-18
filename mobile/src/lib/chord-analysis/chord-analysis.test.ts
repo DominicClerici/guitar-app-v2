@@ -4,6 +4,7 @@ import { buildChord } from '../chord-library/build';
 import { CHORD_TYPES } from '../chord-library/catalog';
 import { ROOTS } from '../chord-library/roots';
 import { noteToSemitone, OPEN_PITCHES_MIDI } from '../theory';
+import { STANDARD } from '../tuning';
 
 import { analyzeChord } from './index';
 import type { FretboardNote } from './types';
@@ -42,7 +43,7 @@ function place(pitchClasses: number[]): FretboardNote[] | null {
 function namesOf(notes: string[]): string[] {
   const dots = place(notes.map(noteToSemitone));
   if (!dots) throw new Error(`too many notes to place: ${notes.join(' ')}`);
-  return analyzeChord(dots)?.chordNames.map((chord) => chord.name) ?? [];
+  return analyzeChord(STANDARD, dots)?.chordNames.map((chord) => chord.name) ?? [];
 }
 
 function nameOf(notes: string[]): string {
@@ -52,7 +53,7 @@ function nameOf(notes: string[]): string {
 describe('analyzeChord', () => {
   it('needs three notes', () => {
     expect(
-      analyzeChord([
+      analyzeChord(STANDARD, [
         { string: 5, fret: 3 },
         { string: 4, fret: 2 },
       ]),

@@ -15,8 +15,9 @@ export {
   instruction,
   misfireMessage,
   stageTitle,
+  guitarStrings,
   stringForOpenMidi,
-  STRINGS,
+  STRING_COUNT,
   type GuitarString,
   type Stage,
 } from './strings';

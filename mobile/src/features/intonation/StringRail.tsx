@@ -1,11 +1,11 @@
 import { Text, View } from 'react-native';
 
-import { STRINGS } from './strings';
+import { useGuitarStrings } from './useGuitarStrings';
 
 export type PipState = 'idle' | 'done' | 'active';
 
 interface Props {
-  /** State per string, in `STRINGS` order. */
+  /** State per string, thickest first — the order `useGuitarStrings` returns. */
   states: PipState[];
   caption?: string;
 }
@@ -28,10 +28,12 @@ const TEXT: Record<PipState, string> = {
  * stays put, so the run of the check reads as one continuous thing.
  */
 export function StringRail({ states, caption }: Props) {
+  const strings = useGuitarStrings();
+
   return (
     <View>
       <View className="flex-row gap-[7px]">
-        {STRINGS.map((string, i) => {
+        {strings.map((string, i) => {
           const state = states[i] ?? 'idle';
           return (
             <View

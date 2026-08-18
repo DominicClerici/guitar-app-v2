@@ -7,7 +7,8 @@ import {
   SEVERITY_TONE,
   TOLERANCE_CENTS,
 } from './intonationMath';
-import { STRINGS } from './strings';
+import { STRING_COUNT } from './strings';
+import { useGuitarStrings } from './useGuitarStrings';
 import { orderedResults, type Measurement } from './useIntonation';
 
 const MINUS = '−';
@@ -19,7 +20,8 @@ interface Props {
 
 /** Every string on one page, in rail order, worst offenders visible at a glance. */
 export function ResultsSummary({ results, scaleInches }: Props) {
-  const rows = orderedResults(results);
+  const strings = useGuitarStrings();
+  const rows = orderedResults(strings, results);
   const off = rows.filter((r) => r && Math.abs(r.cents) > TOLERANCE_CENTS).length;
 
   const headline =
@@ -38,9 +40,9 @@ export function ResultsSummary({ results, scaleInches }: Props) {
       </Text>
 
       <View className="mt-[18px] rounded-[13px] border border-x-line-soft border-t-edge-top border-b-edge-bottom bg-surface px-[16px]">
-        {STRINGS.map((string, i) => {
+        {strings.map((string, i) => {
           const measurement = rows[i];
-          const last = i === STRINGS.length - 1;
+          const last = i === STRING_COUNT - 1;
 
           if (!measurement) {
             return (

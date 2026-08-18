@@ -6,11 +6,11 @@
 // go and whether a hand can hold them. Pure string/number math — no React, no
 // native modules.
 //
-// Standard tuning only. Alternate tunings would touch nothing but the two
-// constants in @/lib/theory, but they would need tuning UI on every screen that
-// draws a neck, so they are deliberately out of scope.
+// The neck searched is the user's own: a shape is only the chord it is named
+// after on the tuning it was generated for, so `chordShapes` takes one.
 
 import type { Chord } from '../chord-library';
+import type { Tuning } from '../tuning';
 
 import { generateVoicings } from './generate';
 import { applyPins, groupByRegion, FEATURED_PER_REGION, type VoicingGroup } from './select';
@@ -37,14 +37,29 @@ export interface ChordShapes {
 // Generation is a few milliseconds, but a chord is re-read on every render while
 // the user scrolls, so the result is held rather than recomputed. The catalogue
 // is 510 chords; the cache cannot grow past that.
+//
+// It is emptied when the tuning changes rather than keyed by it. There is only ever one tuning in
+// force, so keying would grow the bound by a factor of however many the user had passed through
+// this session while every entry but the last was unreachable — and a stale shape here is the
+// quiet kind of wrong: a chart that looks right and is in the tuning the user has left.
 const cache = new Map<string, ChordShapes>();
+let cachedFor: string | null = null;
 
-export function chordShapes(chord: Chord): ChordShapes {
+export function chordShapes(tuning: Tuning, chord: Chord): ChordShapes {
+  if (cachedFor !== tuning.stored) {
+    cache.clear();
+    cachedFor = tuning.stored;
+  }
+
   const cached = cache.get(chord.symbol);
   if (cached) return cached;
 
-  const rooted = applyPins(chord, generateVoicings(chord));
-  const inversions = generateVoicings(chord, { inversions: true });
+  const generated = generateVoicings(tuning, chord);
+  // Pins are hand-authored standard-tuning charts (see `pins.ts`), matched by the shape they spell.
+  // On a retuned neck they name grips the generator no longer produces, so there is nothing to
+  // hoist and the scorer's own order stands — which is the order the pins were measured against.
+  const rooted = tuning.isStandard ? applyPins(chord, generated) : generated;
+  const inversions = generateVoicings(tuning, chord, { inversions: true });
 
   const shapes: ChordShapes = {
     featured: groupByRegion(rooted, FEATURED_PER_REGION),

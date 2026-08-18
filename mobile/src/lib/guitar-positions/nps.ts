@@ -10,7 +10,8 @@
 // squeezed. Better to page through six honest shapes than seven, one of which
 // lies about where the neck ends.
 
-import { FRET_COUNT, OPEN_PITCHES_MIDI, STRING_COUNT } from '@/lib/theory';
+import { FRET_COUNT, STRING_COUNT } from '@/lib/theory';
+import type { Tuning } from '@/lib/tuning';
 
 import { nextScalePitch, positionKey, stringPitches } from './neck';
 import type { Position } from './types';
@@ -19,11 +20,11 @@ const NOTES_PER_STRING = 3;
 /** Only a seven-note scale divides evenly into three-per-string shapes. */
 export const NPS_SCALE_SIZE = 7;
 
-export function npsPositions(pitchClasses: readonly number[]): Position[] {
+export function npsPositions(tuning: Tuning, pitchClasses: readonly number[]): Position[] {
   if (pitchClasses.length !== NPS_SCALE_SIZE) return [];
 
   const lowString = STRING_COUNT - 1;
-  const starts = stringPitches(pitchClasses, lowString).slice(0, NPS_SCALE_SIZE);
+  const starts = stringPitches(tuning, pitchClasses, lowString).slice(0, NPS_SCALE_SIZE);
 
   const found: Position[] = [];
 
@@ -35,7 +36,7 @@ export function npsPositions(pitchClasses: readonly number[]): Position[] {
 
     for (let string = lowString; string >= 0; string -= 1) {
       for (let note = 0; note < NOTES_PER_STRING; note += 1) {
-        const fret = pitch - OPEN_PITCHES_MIDI[string];
+        const fret = pitch - tuning.open[string];
         if (fret < 0 || fret > FRET_COUNT) return;
 
         keys.add(positionKey(string, fret));

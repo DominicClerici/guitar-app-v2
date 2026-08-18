@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
+import { STANDARD } from '../tuning';
+
 import { ROOTS } from '@/lib/chord-library';
 import { buildScale, SCALE_TYPES } from '@/lib/scale-library';
 import { FRET_COUNT, pitchClassAt } from '@/lib/theory';
@@ -25,7 +27,7 @@ describe('systemsFor', () => {
 
 describe('positionsFor', () => {
   it('lays C major CAGED out as the ladder a player moves up', () => {
-    const positions = positionsFor(buildScale('C', 'major'), 'caged');
+    const positions = positionsFor(STANDARD, buildScale('C', 'major'), 'caged');
     expect(positions.map((p) => `${p.label} ${p.from}-${p.to}`)).toEqual([
       'C form 0-4',
       'A form 2-6',
@@ -37,14 +39,14 @@ describe('positionsFor', () => {
   });
 
   it('starts A minor pentatonic box 1 at the fifth fret', () => {
-    const positions = positionsFor(buildScale('A', 'minor-pentatonic'), 'boxes');
+    const positions = positionsFor(STANDARD, buildScale('A', 'minor-pentatonic'), 'boxes');
     const box = positions.find((p) => p.label === 'Box 1' && p.from === 5);
     expect(box).toBeDefined();
     expect(box?.to).toBe(8);
   });
 
   it('puts three notes on every string in an nps shape', () => {
-    const positions = positionsFor(buildScale('C', 'major'), 'nps');
+    const positions = positionsFor(STANDARD, buildScale('C', 'major'), 'nps');
     expect(positions.length).toBeGreaterThan(0);
 
     for (const position of positions) {
@@ -67,7 +69,7 @@ describe('positionsFor', () => {
         const wanted = new Set(scale.pitchClasses);
 
         for (const system of systemsFor(scale)) {
-          for (const position of positionsFor(scale, system)) {
+          for (const position of positionsFor(STANDARD, scale, system)) {
             for (const key of position.keys) {
               const { string, fret } = parse(key);
               const where = `${root} ${type.id} ${system} ${position.label} ${key}`;
@@ -89,7 +91,7 @@ describe('positionsFor', () => {
         const scale = buildScale(root, type.id);
         for (const system of systemsFor(scale)) {
           expect(
-            positionsFor(scale, system).length,
+            positionsFor(STANDARD, scale, system).length,
             `${root} ${type.id} ${system}`,
           ).toBeGreaterThan(3);
         }
@@ -103,11 +105,11 @@ describe('positionsFor', () => {
         const scale = buildScale(root, type.id);
         const system = systemsFor(scale)[0];
         const covered = new Set<string>();
-        for (const position of positionsFor(scale, system)) {
+        for (const position of positionsFor(STANDARD, scale, system)) {
           for (const key of position.keys) covered.add(key);
         }
 
-        for (const key of scaleKeys(scale.pitchClasses)) {
+        for (const key of scaleKeys(STANDARD, scale.pitchClasses)) {
           expect(covered.has(key), `${root} ${type.id} ${system} misses ${key}`).toBe(true);
         }
       }
@@ -119,7 +121,7 @@ describe('positionsFor', () => {
       for (const type of SCALE_TYPES) {
         const scale = buildScale(root, type.id);
         for (const system of systemsFor(scale)) {
-          const positions = positionsFor(scale, system);
+          const positions = positionsFor(STANDARD, scale, system);
           expect(new Set(positions.map((p) => p.id)).size, `${root} ${type.id} ${system}`).toBe(
             positions.length,
           );

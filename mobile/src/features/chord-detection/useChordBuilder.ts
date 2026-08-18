@@ -2,7 +2,8 @@ import { useCallback, useMemo, useState } from 'react';
 
 import type { AccidentalSide } from '@/lib/accidentals';
 import { analyzeChord } from '@/lib/chord-analysis';
-import { useAccidentalSide } from '@/lib/preferences';
+import type { Tuning } from '@/lib/tuning';
+import { useAccidentalSide, useTuning } from '@/lib/preferences';
 import { noteToSemitone } from '@/lib/theory';
 
 import { DETECTOR_FALLBACK, nameForPitchClassFrom } from './spelling';
@@ -23,8 +24,13 @@ const EMPTY: Board = { placed: [], selected: 0 };
  * accepted when the chord was put away, so it comes back showing that
  * interpretation rather than re-ranking to a different one.
  */
-function boardFor(placed: PlacedNote[], side: AccidentalSide, rootPc?: number): Board {
-  const readings = analyzeChord(placed, side)?.chordNames ?? [];
+function boardFor(
+  tuning: Tuning,
+  placed: PlacedNote[],
+  side: AccidentalSide,
+  rootPc?: number,
+): Board {
+  const readings = analyzeChord(tuning, placed, side)?.chordNames ?? [];
   const match =
     rootPc === undefined
       ? -1
@@ -54,9 +60,10 @@ export function useChordBuilder(initial?: InitialVoicing) {
   // The engine's tie-break, not an override: it settles an F#/Gb root the accidental count leaves
   // level, and nothing else. A shape that reads cleanest as Bb is still Bb under sharps.
   const side = useAccidentalSide(DETECTOR_FALLBACK);
+  const tuning = useTuning();
 
   const [board, setBoard] = useState<Board>(() =>
-    initial ? boardFor(initial.placed, side, initial.rootPitchClass) : EMPTY,
+    initial ? boardFor(tuning, initial.placed, side, initial.rootPitchClass) : EMPTY,
   );
 
   // A string sounds one note at a time, so fretting a string moves its note
@@ -81,14 +88,14 @@ export function useChordBuilder(initial?: InitialVoicing) {
   /** Put a stored voicing back on the neck. */
   const load = useCallback(
     (voicing: PlacedNote[], rootPc?: number) => {
-      setBoard(boardFor(voicing, side, rootPc));
+      setBoard(boardFor(tuning, voicing, side, rootPc));
     },
-    [side],
+    [tuning, side],
   );
 
   const readings = useMemo(
-    () => analyzeChord(board.placed, side)?.chordNames ?? [],
-    [board.placed, side],
+    () => analyzeChord(tuning, board.placed, side)?.chordNames ?? [],
+    [tuning, board.placed, side],
   );
 
   const selectedIndex = Math.min(board.selected, Math.max(0, readings.length - 1));

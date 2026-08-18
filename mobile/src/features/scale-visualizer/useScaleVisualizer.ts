@@ -3,6 +3,7 @@ import { useCallback, useMemo, useState } from 'react';
 
 import type { RootName } from '@/lib/chord-library';
 import { positionsFor, systemsFor, type PositionSystem } from '@/lib/guitar-positions';
+import { useTuning } from '@/lib/preferences';
 import {
   accentPitchClass,
   buildScale,
@@ -10,7 +11,7 @@ import {
   relatedScales,
   type JewelHue,
 } from '@/lib/scale-library';
-import { midiAt } from '@/lib/theory';
+import { soundingMidi } from '@/lib/tuning';
 
 import { runThrough, usePlayScale } from './usePlayScale';
 
@@ -42,6 +43,7 @@ export function useScaleVisualizer(initialRoot: RootName = 'C', initialScale = '
   const [expanded, setExpanded] = useState(false);
 
   const player = usePlayScale();
+  const tuning = useTuning();
 
   const scale = useMemo(() => buildScale(root, scaleId), [root, scaleId]);
   const systems = useMemo(() => systemsFor(scale), [scale]);
@@ -49,7 +51,7 @@ export function useScaleVisualizer(initialRoot: RootName = 'C', initialScale = '
   // A five-note scale has no three-per-string shapes, so the preference is only a
   // preference — the system in force is always one the scale actually offers.
   const system = systems.includes(preferredSystem) ? preferredSystem : systems[0];
-  const positions = useMemo(() => positionsFor(scale, system), [scale, system]);
+  const positions = useMemo(() => positionsFor(tuning, scale, system), [tuning, scale, system]);
 
   // Clamped on read rather than corrected in an effect, so changing to a scale
   // with fewer boxes can never leave the board pointing at one that isn't there.
@@ -160,12 +162,12 @@ export function useScaleVisualizer(initialRoot: RootName = 'C', initialScale = '
     if (!target) return;
 
     if (!position) setPositionIndex(0);
-    player.play(runThrough(target));
-  }, [player, position, positions]);
+    player.play(runThrough(tuning, target));
+  }, [tuning, player, position, positions]);
 
   const soundAt = useCallback(
-    (string: number, fret: number) => player.sound(midiAt(string, fret)),
-    [player],
+    (string: number, fret: number) => player.sound(soundingMidi(tuning, string, fret)),
+    [tuning, player],
   );
 
   return {

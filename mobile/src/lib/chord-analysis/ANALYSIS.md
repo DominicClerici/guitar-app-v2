@@ -11,7 +11,8 @@ Import from the folder index; the shared primitives come from `@/lib/theory`:
 ```ts
 import { analyzeChord } from '@/lib/chord-analysis';
 import type { ChordAnalysis, ChordTones } from '@/lib/chord-analysis';
-import { noteToSemitone, OPEN_PITCHES } from '@/lib/theory';
+import { noteToSemitone } from '@/lib/theory';
+import { soundingPitchClass, type Tuning } from '@/lib/tuning';
 ```
 
 ## What it does (and doesn't)
@@ -29,13 +30,21 @@ import { noteToSemitone, OPEN_PITCHES } from '@/lib/theory';
 
 | Export                                                        | What it is                                                                                |
 | ------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| `analyzeChord(notes: FretboardNote[]): ChordAnalysis \| null` | The entry point. Returns `null` for fewer than 3 notes.                                   |
+| `analyzeChord(tuning: Tuning, notes: FretboardNote[]): ChordAnalysis \| null` | The entry point. Returns `null` for fewer than 3 notes.                    |
 | `EMPTY_CHORD_TONES`                                           | The blank `ChordTones` grid, for drawing the slot panel before a chord exists.            |
 | types                                                         | `ChordAnalysis`, `ChordResult`, `ChordTones`, `IntervalSlot`, `FretboardNote`, `Warning`. |
 
 The chromatic tables (`notesFlat`, `notesSharp`), `noteToSemitone`, and the
 tuning constants (`OPEN_PITCHES`, `OPEN_PITCHES_MIDI`) used to be re-exported
 here. They now live in `@/lib/theory` — import them from there.
+
+### The neck — `Tuning`
+
+`analyzeChord` takes the neck first because a `FretboardNote` is a *position*,
+not a pitch: the same three dots are E on a standard guitar and D on one with a
+dropped sixth. Get one from `useTuning()` (`@/lib/preferences`), which reads the
+user's setting; `STANDARD` from `@/lib/tuning` is the right argument only where
+the notes came from something authored in standard tuning.
 
 ### Input — `FretboardNote`
 
@@ -47,8 +56,8 @@ interface FretboardNote {
 ```
 
 The visual fretboard produces one `FretboardNote` per placed dot. String index
-runs **0 = high e … 5 = low E**. A given pitch class is `(OPEN_PITCHES[string] +
-fret) % 12`.
+runs **0 = high e … 5 = low E**. A given pitch class is
+`soundingPitchClass(tuning, string, fret)`.
 
 ### Output — `ChordAnalysis`
 
@@ -107,7 +116,7 @@ const notes: FretboardNote[] = [
   { string: 0, fret: 0 }, // E
 ];
 
-const analysis = analyzeChord(notes);
+const analysis = analyzeChord(tuning, notes);
 analysis?.chordNames[0].name; // "C/G"
 analysis?.chordNames.map((c) => c.name); // ["C/G", "Emb6/G", "G6sus"]
 analysis?.chordTones.root; // "C"

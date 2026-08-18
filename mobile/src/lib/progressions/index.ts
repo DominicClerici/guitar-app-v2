@@ -12,7 +12,7 @@
 
 import { buildChord, parseChordSymbol, type Chord } from '../chord-library';
 import { applyPins, generateVoicings, type Voicing } from '../guitar-voicings';
-import { midiAt } from '../theory';
+import { soundingMidi, STANDARD } from '../tuning';
 
 export interface ProgressionChord {
   /** The symbol as authored, so a caption can print what was written. */
@@ -35,7 +35,7 @@ export function strumMidis(voicing: Voicing): number[] {
 
   for (let string = voicing.frets.length - 1; string >= 0; string -= 1) {
     const fret = voicing.frets[string];
-    if (fret !== null) midis.push(midiAt(string, fret));
+    if (fret !== null) midis.push(soundingMidi(STANDARD, string, fret));
   }
 
   return midis;
@@ -47,6 +47,11 @@ export function strumMidis(voicing: Voicing): number[] {
  *
  * Dropping rather than throwing is deliberate: a `live` block renders inside an
  * article, and one bad symbol should cost that chord rather than the lesson.
+ *
+ * Standard tuning, deliberately, and the only place in the app that now says so out loud. This
+ * reads a progression written into an article, and the articles teach standard tuning — the pinned
+ * open shapes are what an author means by `Am F C G`, and the prose around them names the strings
+ * they are held on. Handing this the user's tuning would redraw a lesson's own diagram.
  */
 export function readProgression(symbols: readonly string[]): ProgressionChord[] {
   const found: ProgressionChord[] = [];
@@ -56,7 +61,7 @@ export function readProgression(symbols: readonly string[]): ProgressionChord[] 
     if (!parsed) continue;
 
     const chord = buildChord(parsed.root, parsed.type);
-    const voicing = applyPins(chord, generateVoicings(chord))[0];
+    const voicing = applyPins(chord, generateVoicings(STANDARD, chord))[0];
     if (!voicing) continue;
 
     found.push({ symbol, chord, voicing, midis: strumMidis(voicing) });

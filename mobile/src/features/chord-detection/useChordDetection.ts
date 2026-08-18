@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState } from 'react';
 
 import { analyzeChord, type FretboardNote } from '@/lib/chord-analysis';
-import { useAccidentalSide } from '@/lib/preferences';
+import { useAccidentalSide, useTuning } from '@/lib/preferences';
 import { noteToSemitone } from '@/lib/theory';
 
 import { DETECTOR_FALLBACK, nameForPitchClassFrom } from './spelling';
@@ -19,6 +19,7 @@ export function useChordDetection() {
   // The engine's tie-break, not an override: it decides an F#/Gb root the accidental count leaves
   // level, and nothing else. A shape that reads cleanest as Bb is still Bb under sharps.
   const side = useAccidentalSide(DETECTOR_FALLBACK);
+  const tuning = useTuning();
 
   // A string sounds one note at a time, so fretting a string moves its note
   // rather than adding a second one. Tapping a note again lifts it.
@@ -30,7 +31,10 @@ export function useChordDetection() {
     );
   }, []);
 
-  const chord = useMemo(() => analyzeChord(placed, side)?.chordNames[0], [placed, side]);
+  const chord = useMemo(
+    () => analyzeChord(tuning, placed, side)?.chordNames[0],
+    [tuning, placed, side],
+  );
   const rootPitchClass = chord ? noteToSemitone(chord.chordTones.root) : null;
   const nameForPitchClass = useMemo(() => nameForPitchClassFrom(chord, side), [chord, side]);
 

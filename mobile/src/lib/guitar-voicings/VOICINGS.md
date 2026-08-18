@@ -6,13 +6,16 @@ other half of the sentence `LIBRARY.md` starts — the chord library decides
 _which notes have to be there_, this decides _where they go and whether anyone
 can play them_.
 
-Pure string/number math — no React, no native modules. Standard tuning only.
+Pure string/number math — no React, no native modules. The neck is an argument:
+pass the user's `Tuning` (`useTuning()` from `@/lib/preferences`), or `STANDARD`
+from `@/lib/tuning` where the shapes belong to something authored in standard
+tuning.
 
 ```ts
 import { buildChord } from '@/lib/chord-library';
 import { chordShapes } from '@/lib/guitar-voicings';
 
-const shapes = chordShapes(buildChord('C', 'maj7'));
+const shapes = chordShapes(tuning, buildChord('C', 'maj7'));
 shapes.featured; // a couple per neck region — the default view
 shapes.all; // every root-position shape, grouped
 shapes.inversions; // the second pass: another chord tone in the bass
@@ -139,6 +142,11 @@ The list is short because the scorer does the work. Of fifteen candidate pins
 written from memory, fourteen turned out to be redundant once the weights were
 right; the script reports any that become redundant again.
 
+The charts are written in standard tuning, so `chordShapes` applies them only
+when the tuning is standard. On a retuned neck they name grips the generator no
+longer produces; leaving them on would be a no-op with a misleading name, and
+the scorer's own order — which is what the pins were measured against — stands.
+
 ## Verification
 
 There is no test runner in this project. `scripts/verify-guitar-voicings.ts`
@@ -159,8 +167,8 @@ check after changing the generator, the scorer, or anything in `@/lib/theory`.
 
 | Export                               | What it is                                                        |
 | ------------------------------------ | ----------------------------------------------------------------- |
-| `chordShapes(chord)`                 | The entry point. Featured, all, inversions, total. Memoised.      |
-| `generateVoicings(chord, options?)`  | The raw ranked list. `{ inversions: true }` runs the second pass. |
+| `chordShapes(tuning, chord)`         | The entry point. Featured, all, inversions, total. Memoised per tuning. |
+| `generateVoicings(tuning, chord, options?)` | The raw ranked list. `{ inversions: true }` runs the second pass. |
 | `groupByRegion(voicings, limit?)`    | Group in neck order, dropping empty regions.                      |
 | `chartFor` / `fretsFromChart`        | The `x 3 2 0 1 0` shorthand, both directions.                     |
 | `REGION_ORDER` / `REGION_LABELS`     | Browse order and display names.                                   |

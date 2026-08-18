@@ -16,9 +16,9 @@ import {
   ScaleLengthField,
   stageTitle,
   stringForOpenMidi,
+  STRING_COUNT,
   StringRail,
   StringResultCard,
-  STRINGS,
   TAKES,
   TOLERANCE_CENTS,
   useIntonation,
@@ -70,7 +70,7 @@ export function IntonationScreen() {
   // than from an effect — it is a pure function of the note currently being read,
   // and an effect would render the stale rail for a frame first.
   if (session.phase === 'tune' && note !== null && Math.abs(note.cents) < IN_TUNE_CENTS) {
-    const open = stringForOpenMidi(note.midi);
+    const open = stringForOpenMidi(session.strings, note.midi);
     if (open && !tuned.includes(open.id)) setTuned([...tuned, open.id]);
   }
 
@@ -91,7 +91,7 @@ export function IntonationScreen() {
   const denied = status === 'denied';
   const unavailable = status === 'unavailable';
 
-  const railStates: PipState[] = STRINGS.map((string, i) => {
+  const railStates: PipState[] = session.strings.map((string, i) => {
     if (session.phase === 'tune') return tuned.includes(string.id) ? 'done' : 'idle';
     if (i === session.index) return 'active';
     return session.results.some((r) => r.stringId === string.id) ? 'done' : 'idle';
@@ -102,7 +102,7 @@ export function IntonationScreen() {
       ? 'Results'
       : session.phase === 'tune'
         ? 'Intonation'
-        : `String ${session.index + 1} of ${STRINGS.length}`;
+        : `String ${session.index + 1} of ${STRING_COUNT}`;
 
   return (
     <View className="flex-1 bg-bg" style={{ paddingTop: Math.max(insets.top - 6, 0) }}>
@@ -297,9 +297,9 @@ function TunePhase({
           <StringRail
             states={railStates}
             caption={
-              tunedCount === STRINGS.length
+              tunedCount === STRING_COUNT
                 ? 'All six heard in tune'
-                : `${tunedCount} of ${STRINGS.length} heard in tune`
+                : `${tunedCount} of ${STRING_COUNT} heard in tune`
             }
           />
         </View>

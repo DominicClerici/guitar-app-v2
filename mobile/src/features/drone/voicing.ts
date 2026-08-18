@@ -1,6 +1,6 @@
 import type { PlacedNote } from '@/features/chord-detection/useChordDetection';
 import { essentialTones, type Chord, type ChordTone } from '@/lib/chord-library';
-import { OPEN_PITCHES_MIDI } from '@/lib/theory';
+import { soundingMidi, type Tuning } from '@/lib/tuning';
 
 /** Six notes is as many as a guitar holds, and as many as a chord needs to be itself. */
 export const MAX_VOICES = 6;
@@ -82,8 +82,8 @@ export function notePitches(rootPitchClass: number): number[] {
  * only the same note at double the level. The detuned layers inside each voice
  * already supply the beating a unison would have given.
  */
-export function neckPitches(placed: PlacedNote[]): number[] {
-  const pitches = placed.map((note) => OPEN_PITCHES_MIDI[note.string] + note.fret);
+export function neckPitches(tuning: Tuning, placed: PlacedNote[]): number[] {
+  const pitches = placed.map((note) => soundingMidi(tuning, note.string, note.fret));
   return [...new Set(pitches)].sort((a, b) => a - b);
 }
 

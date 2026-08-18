@@ -1,4 +1,5 @@
 import { pitchName, toAccidentalGlyphs, type AccidentalSide } from '@/lib/accidentals';
+import { stringLabels, type Tuning } from '@/lib/tuning';
 
 export type Stage = 'harmonic' | 'fretted';
 
@@ -17,29 +18,52 @@ export interface GuitarString {
   targetMidi: number;
 }
 
-function makeString(id: string, label: string, glyph: string, openMidi: number): GuitarString {
-  return { id, label, glyph, openMidi, targetMidi: openMidi + 12 };
-}
+/** How many strings there are, which is also what a rail and a summary count. */
+export const STRING_COUNT = 6;
+
+let cached: { tuning: Tuning; side: AccidentalSide; strings: GuitarString[] } | null = null;
 
 /**
- * Standard tuning, thickest first. The checker walks them in this order because
- * that is the order a saddle adjustment is usually worked through, and the low
- * strings are where intonation error is largest.
+ * The six strings as this checker walks them: **thickest first**, the reverse of the app's usual
+ * 0 = high e ordering. That is the order a saddle adjustment is worked through, and the low strings
+ * are where intonation error is largest.
+ *
+ * Names come off the user's own tuning rather than a table of standard ones, because this is the
+ * one screen whose entire subject is the strings actually on the guitar — an instruction to press
+ * "the low E string" is wrong the moment someone has dropped it, and wrong in the way that makes a
+ * reading impossible to take rather than merely mislabelled.
+ *
+ * Ids stay positional. A measurement belongs to a physical string, so retuning mid-session must
+ * not orphan the readings already taken by renaming what they were taken on.
  */
-export const STRINGS: GuitarString[] = [
-  makeString('low-e', 'low E', 'E', 40),
-  makeString('a', 'A', 'A', 45),
-  makeString('d', 'D', 'D', 50),
-  makeString('g', 'G', 'G', 55),
-  makeString('b', 'B', 'B', 59),
-  makeString('high-e', 'high e', 'e', 64),
-];
+export function guitarStrings(tuning: Tuning, side: AccidentalSide): GuitarString[] {
+  if (cached && cached.tuning === tuning && cached.side === side) return cached.strings;
 
-export const OPEN_MIDI = STRINGS.map((s) => s.openMidi);
+  // `stringLabels` runs high e first and already lowercases the thinnest string, which is the case
+  // convention this rail was drawing by hand.
+  const glyphs = [...stringLabels(tuning, side)].reverse();
+
+  const strings = glyphs.map((glyph, index) => {
+    const openMidi = tuning.open[STRING_COUNT - 1 - index];
+    // Only the outer two are qualified. In standard tuning that is exactly what tells the two E's
+    // apart, and on any other it still says which end of the neck to reach for.
+    const label =
+      index === 0 ? `low ${glyph}` : index === STRING_COUNT - 1 ? `high ${glyph}` : glyph;
+
+    return { id: `string-${STRING_COUNT - index}`, label, glyph, openMidi, targetMidi: openMidi + 12 };
+  });
+
+  cached = { tuning, side, strings };
+
+  return strings;
+}
 
 /** The string whose open note this pitch is, if it is one of the six. */
-export function stringForOpenMidi(midi: number): GuitarString | undefined {
-  return STRINGS.find((s) => s.openMidi === midi);
+export function stringForOpenMidi(
+  strings: readonly GuitarString[],
+  midi: number,
+): GuitarString | undefined {
+  return strings.find((s) => s.openMidi === midi);
 }
 
 export function instruction(string: GuitarString, stage: Stage): string {

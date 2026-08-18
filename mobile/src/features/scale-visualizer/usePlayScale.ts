@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import type { Position } from '@/lib/guitar-positions';
-import { midiAt } from '@/lib/theory';
+import { soundingMidi, type Tuning } from '@/lib/tuning';
 
 import { pluck, prepare, release } from './scalePluck';
 
@@ -20,12 +20,12 @@ const STEP_MS = 320;
  * a scale that sounds the same note twice in a row reads as a mistake, so pitch
  * decides both the order and what counts as a duplicate.
  */
-export function runThrough(position: Position): ScaleNote[] {
+export function runThrough(tuning: Tuning, position: Position): ScaleNote[] {
   const byPitch = new Map<number, ScaleNote>();
 
   for (const key of position.keys) {
     const [string, fret] = key.split('-').map(Number);
-    const midi = midiAt(string, fret);
+    const midi = soundingMidi(tuning, string, fret);
     if (!byPitch.has(midi)) byPitch.set(midi, { key, midi });
   }
 

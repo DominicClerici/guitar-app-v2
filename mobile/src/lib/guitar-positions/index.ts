@@ -11,6 +11,7 @@
 // Pure number math over @/lib/theory's neck. No React, no native modules.
 
 import { noteToPitchClass, type Scale } from '@/lib/scale-library';
+import type { Tuning } from '@/lib/tuning';
 
 import { NPS_SCALE_SIZE, npsPositions } from './nps';
 import type { Position, PositionSystem } from './types';
@@ -62,10 +63,14 @@ export const SYSTEM_LABELS: Record<PositionSystem, string> = {
   boxes: 'Boxes',
 };
 
-export function positionsFor(scale: Scale, system: PositionSystem): Position[] {
+export function positionsFor(
+  tuning: Tuning,
+  scale: Scale,
+  system: PositionSystem,
+): Position[] {
   const rootPc = noteToPitchClass(scale.root);
 
-  if (system === 'nps') return npsPositions(scale.pitchClasses);
-  if (system === 'boxes') return boxPositions(rootPc, scale.pitchClasses);
-  return cagedPositions(rootPc, scale.pitchClasses);
+  if (system === 'nps') return npsPositions(tuning, scale.pitchClasses);
+  if (system === 'boxes') return boxPositions(tuning, rootPc, scale.pitchClasses);
+  return cagedPositions(tuning, rootPc, scale.pitchClasses);
 }

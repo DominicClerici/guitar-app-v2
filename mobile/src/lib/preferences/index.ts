@@ -4,5 +4,6 @@ export {
   usePreference,
   usePreferences,
   usePreferenceWriter,
+  useTuning,
   type PreferenceWriter,
 } from './usePreferences';

@@ -2,9 +2,11 @@ import { Pressable, Text, View } from 'react-native';
 
 import { FadingHScroll } from '@/components/FadingHScroll';
 import { toAccidentalGlyphs } from '@/lib/accidentals';
+import { useTuning } from '@/lib/preferences';
 import { DOUBLE_INLAY_FRET, SINGLE_INLAY_FRETS, STRING_GAUGE_CLASS } from '@/lib/theory';
+import { soundingPitchClass } from '@/lib/tuning';
 
-import { FRET_COUNT, STRING_COUNT, pitchClassAt } from './tuning';
+import { FRET_COUNT, STRING_COUNT } from './tuning';
 import type { PlacedNote } from './useChordDetection';
 
 // Board geometry. Tailwind classes have to be static strings, so the numbers live
@@ -45,6 +47,10 @@ export function Fretboard({
   onToggle,
   veilToken,
 }: Props) {
+  // Read here rather than taken as a prop: four screens mount this board, and none of them has any
+  // other use for the tuning. The hook wakes it only when a string actually moves — the object is
+  // the same one until then — so the 96 cells below cost what they always did.
+  const tuning = useTuning();
   const placedKeys = new Set(placed.map((n) => `${n.string}-${n.fret}`));
 
   return (
@@ -65,7 +71,7 @@ export function Fretboard({
               </View>
 
               {FRETS.map((fret) => {
-                const pc = pitchClassAt(string, fret);
+                const pc = soundingPitchClass(tuning, string, fret);
                 return (
                   <Cell
                     key={fret}

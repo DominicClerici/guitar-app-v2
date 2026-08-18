@@ -20,6 +20,7 @@ import {
 import { MAX_SPAN } from '../src/lib/guitar-voicings/fingering';
 import { MUD_RULES } from '../src/lib/guitar-voicings/generate';
 import { PINNED_SHAPES } from '../src/lib/guitar-voicings/pins';
+import { STANDARD } from '../src/lib/tuning';
 import { degreeSemitones, midiAt, pitchClassAt, noteToSemitone } from '../src/lib/theory';
 
 const failures: string[] = [];
@@ -40,7 +41,7 @@ if (dumpIndex >= 0) {
   }
 
   const chord = buildChord(parsed.root, parsed.type);
-  const shapes = chordShapes(chord);
+  const shapes = chordShapes(STANDARD, chord);
 
   console.log(`\n${chord.symbol} — ${chord.type.name}`);
   console.log(chord.tones.map((t) => `${t.degree}:${t.note}`).join('  '));
@@ -86,8 +87,8 @@ for (const root of ROOTS) {
     const chord = buildChord(root, type);
     chordCount += 1;
 
-    const rooted = generateVoicings(chord);
-    const inversions = generateVoicings(chord, { inversions: true });
+    const rooted = generateVoicings(STANDARD, chord);
+    const inversions = generateVoicings(STANDARD, chord, { inversions: true });
     voicingCount += rooted.length + inversions.length;
 
     if (rooted.length === 0) chordsWithNoShapes.push(chord.symbol);
@@ -285,7 +286,7 @@ for (const key of Object.keys(PINNED_SHAPES)) {
     `pin "${key}": a pattern is not six entries of fret-or-x`,
   );
 
-  const generated = new Set(generateVoicings(chord).map((voicing) => voicing.id));
+  const generated = new Set(generateVoicings(STANDARD, chord).map((voicing) => voicing.id));
   for (const pattern of normalised) {
     check(
       generated.has(pattern),
@@ -294,7 +295,7 @@ for (const key of Object.keys(PINNED_SHAPES)) {
   }
 
   // A pin that is already what the generator ranks first is dead weight.
-  const first = generateVoicings(chord)[0];
+  const first = generateVoicings(STANDARD, chord)[0];
   if (first && normalised.length === 1 && first.id === normalised[0]) {
     console.log(`  note: pin ${pinKey(chord)} is redundant — the generator already ranks it first`);
   }

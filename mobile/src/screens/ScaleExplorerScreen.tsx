@@ -11,8 +11,9 @@ import { useKeyDetection, type DisplayChord } from '@/features/key-detection/use
 import { scaleLabel } from '@/features/scale-explorer/scaleLabel';
 import { pluck, prepare, ScaleNeck, type Cell } from '@/features/scale-visualizer';
 import { toAccidentalGlyphs } from '@/lib/accidentals';
+import { useTuning } from '@/lib/preferences';
 import type { ExceptionSpan, NoteDelta, ScalePlan } from '@/lib/scale-analysis';
-import { midiAt } from '@/lib/theory';
+import { soundingMidi } from '@/lib/tuning';
 
 type Lens = 'pentatonic' | 'scale' | 'blues';
 
@@ -46,6 +47,7 @@ function spanAt(plan: ScalePlan, index: number): ExceptionSpan | undefined {
 export function ScaleExplorerScreen() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
+  const tuning = useTuning();
 
   const { tonic, mode } = useLocalSearchParams<{ tonic?: string; mode?: string }>();
   const { chords, estimate, labels, scalePlan, displayedKey, keyChoice, setKeyChoice } =
@@ -175,7 +177,7 @@ export function ScaleExplorerScreen() {
             soundingKey={null}
             onPressNote={(string, fret) => {
               void prepare();
-              pluck(midiAt(string, fret));
+              pluck(soundingMidi(tuning, string, fret));
             }}
           />
         </View>

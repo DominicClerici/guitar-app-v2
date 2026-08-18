@@ -3,8 +3,10 @@ import { Pressable, Text, View } from 'react-native';
 import { FadingHScroll } from '@/components/FadingHScroll';
 import type { Position } from '@/lib/guitar-positions';
 import { positionKey } from '@/lib/guitar-positions';
+import { useTuning } from '@/lib/preferences';
 import type { JewelHue } from '@/lib/scale-library';
-import { FRET_COUNT, pitchClassAt, STRING_COUNT } from '@/lib/theory';
+import { FRET_COUNT, STRING_COUNT } from '@/lib/theory';
+import { soundingPitchClass } from '@/lib/tuning';
 
 import { ScaleDot } from './ScaleDot';
 import type { Cell } from './useScaleVisualizer';
@@ -52,6 +54,10 @@ interface Props {
  * and horizontally scrollable, and when a box is showing it scrolls itself to it.
  */
 export function ScaleNeck({ cells, hue, position, soundingKey, onPressNote, veilToken }: Props) {
+  // Read here rather than taken as a prop, for the reason the detector's board gives: three screens
+  // mount this and none of them wants the tuning for anything else. `cells` is keyed by pitch class
+  // and stays tuning-free — only the question of which pitch class a fret answers to moves.
+  const tuning = useTuning();
   const centerOnX = position ? (fretLeft(position.from) + fretRight(position.to)) / 2 : null;
 
   return (
@@ -77,7 +83,7 @@ export function ScaleNeck({ cells, hue, position, soundingKey, onPressNote, veil
 
               {FRETS.map((fret) => {
                 const key = positionKey(string, fret);
-                const cell = cells.get(pitchClassAt(string, fret));
+                const cell = cells.get(soundingPitchClass(tuning, string, fret));
 
                 return (
                   <NeckCell

@@ -2,6 +2,7 @@ import { useCallback, useMemo, useState } from 'react';
 
 import { buildChord, type RootName } from '@/lib/chord-library';
 import { chordShapes, groupByRegion } from '@/lib/guitar-voicings';
+import { useTuning } from '@/lib/preferences';
 
 /**
  * A chord being looked up, and how much of its neck is on show.
@@ -17,8 +18,10 @@ export function useChordShapes(initialRoot: RootName = 'C', initialQuality = 'ma
   const [showInversions, setShowInversions] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
+  const tuning = useTuning();
+
   const chord = useMemo(() => buildChord(root, quality), [root, quality]);
-  const shapes = useMemo(() => chordShapes(chord), [chord]);
+  const shapes = useMemo(() => chordShapes(tuning, chord), [tuning, chord]);
 
   const inversionGroups = useMemo(
     () => (showInversions ? groupByRegion(shapes.inversions) : []),

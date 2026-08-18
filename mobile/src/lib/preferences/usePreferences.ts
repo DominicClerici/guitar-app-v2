@@ -15,6 +15,7 @@ import { useCallback, useMemo, useSyncExternalStore } from 'react';
 
 import { accidentalSide, type AccidentalSide } from '@/lib/accidentals';
 import { useSession } from '@/lib/auth';
+import { tuningFor, type Tuning } from '@/lib/tuning';
 
 import { readPreferences, subscribePreferences } from './snapshot';
 import { resetPreference, setPreference } from './store';
@@ -53,6 +54,22 @@ export function usePreference<K extends PreferenceKey>(key: K): Preferences[K] {
  */
 export function useAccidentalSide(fallback: AccidentalSide): AccidentalSide {
   return accidentalSide(usePreference('accidentalPreference'), fallback);
+}
+
+/**
+ * The tuning in force, as a neck rather than as six comma-separated numbers.
+ *
+ * `tuningFor` memoises on the stored string, so this returns the *same* object until the user
+ * actually moves a string — which is the whole reason it is safe to hand to a `useMemo` dependency
+ * list or to compare with `===`. A hook that parsed on every read would hand back a new array each
+ * time and quietly invalidate every table derived from it, on every unrelated preference write.
+ */
+export function useTuning(): Tuning {
+  return useSyncExternalStore(subscribePreferences, readTuning, readTuning);
+}
+
+function readTuning(): Tuning {
+  return tuningFor(readPreferences().tuning);
 }
 
 export interface PreferenceWriter {

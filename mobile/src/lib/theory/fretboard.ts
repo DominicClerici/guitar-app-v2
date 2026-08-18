@@ -4,6 +4,22 @@
 // written the other way round, low E first, so anything that *prints* a voicing
 // reverses at the display boundary — see voicingChart and ChordDiagram. Nothing
 // upstream of those should.
+//
+// STANDARD TUNING, AND WHY THAT IS STILL A USEFUL ANSWER.
+//
+// The user has a tuning of their own, and what a fret *sounds* on it is
+// `soundingMidi` / `soundingPitchClass` in @/lib/tuning. These two are the other
+// question — what a fret sounds on the neck a lesson was written for — and the
+// callers left on them are the ones that mean it: the CAGED windows and the
+// triad ladders (both a consequence of standard tuning being all fourths but
+// the one G-B major third, per docs/pathways), the article diagrams built on
+// them, the progression shapes an author pinned, and the voicing engine's own
+// invariant script.
+//
+// So neither is a fallback for the other, and neither should grow an optional
+// tuning argument defaulting to the other's answer. Reach for these when the
+// music was authored in standard tuning; reach for @/lib/tuning when the
+// question is about the guitar in the user's hands.
 
 import { OPEN_PITCHES, OPEN_PITCHES_MIDI } from './constants';
 

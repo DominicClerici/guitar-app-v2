@@ -12,7 +12,8 @@
 // hold them is this module's.
 
 import { essentialTones, type Chord, type ChordTone } from '../chord-library';
-import { FRET_COUNT, midiAt, pitchClassAt, STRING_COUNT, type Degree } from '../theory';
+import { FRET_COUNT, STRING_COUNT, type Degree } from '../theory';
+import { soundingMidi, soundingPitchClass, type Tuning } from '../tuning';
 
 import { fingerFor, geometry, MAX_SPAN } from './fingering';
 import { chartFor } from './chart';
@@ -40,7 +41,14 @@ export const MUD_RULES = [
   { below: 57, minGap: 2 }, // under A3 — whole tones are fine, semitones are not
 ];
 
-export function generateVoicings(chord: Chord, options: VoicingOptions = {}): Voicing[] {
+export function generateVoicings(
+  // The neck to search. Which frets spell the chord, which string carries the bass and which
+  // shapes come out muddy are all answered off it, so a shape generated for the wrong one is a
+  // grip that does not sound like its name.
+  tuning: Tuning,
+  chord: Chord,
+  options: VoicingOptions = {},
+): Voicing[] {
   const maxFret = options.maxFret ?? FRET_COUNT;
   const wantInversions = options.inversions ?? false;
 
@@ -51,12 +59,12 @@ export function generateVoicings(chord: Chord, options: VoicingOptions = {}): Vo
   const found = new Map<string, Voicing>();
 
   for (let position = 0; position <= maxFret - WINDOW; position += 1) {
-    const candidates = candidatesFor(byPitchClass, position, maxFret);
+    const candidates = candidatesFor(tuning, byPitchClass, position, maxFret);
     const frets: (number | null)[] = new Array(STRING_COUNT).fill(null);
 
     const walk = (string: number) => {
       if (string < 0) {
-        const voicing = evaluate(chord, frets, position, minSounding, wantInversions);
+        const voicing = evaluate(tuning, chord, frets, position, minSounding, wantInversions);
         if (voicing) found.set(voicing.id, voicing);
         return;
       }
@@ -81,6 +89,7 @@ export function generateVoicings(chord: Chord, options: VoicingOptions = {}): Vo
  * "does this shape spell the chord" is answered before the search starts.
  */
 function candidatesFor(
+  tuning: Tuning,
   byPitchClass: Map<number, ChordTone>,
   position: number,
   maxFret: number,
@@ -88,7 +97,7 @@ function candidatesFor(
   return Array.from({ length: STRING_COUNT }, (_, string) => {
     const options: (number | null)[] = [null];
 
-    if (byPitchClass.has(pitchClassAt(string, 0))) options.push(0);
+    if (byPitchClass.has(soundingPitchClass(tuning, string, 0))) options.push(0);
 
     // Position 0 is the all-open shapes and nothing else; every fingered shape
     // belongs to the position named by its lowest finger.
@@ -97,7 +106,7 @@ function candidatesFor(
       position > 0 && fret <= Math.min(position + WINDOW, maxFret);
       fret += 1
     ) {
-      if (byPitchClass.has(pitchClassAt(string, fret))) options.push(fret);
+      if (byPitchClass.has(soundingPitchClass(tuning, string, fret))) options.push(fret);
     }
 
     return options;
@@ -105,6 +114,7 @@ function candidatesFor(
 }
 
 function evaluate(
+  tuning: Tuning,
   chord: Chord,
   frets: (number | null)[],
   position: number,
@@ -121,9 +131,11 @@ function evaluate(
   // the eighth fret sounds above an open A, so a shape can put its sixth in the
   // bass while the low E string is the one carrying the root.
   const bassString = sounding.reduce((lowest, string) =>
-    midiAt(string, frets[string]!) < midiAt(lowest, frets[lowest]!) ? string : lowest,
+    soundingMidi(tuning, string, frets[string]!) < soundingMidi(tuning, lowest, frets[lowest]!)
+      ? string
+      : lowest,
   );
-  const bass = toneAt(chord, bassString, frets[bassString]!);
+  const bass = toneAt(tuning, chord, bassString, frets[bassString]!);
   if (!bass) return null;
   if ((bass.degree === '1') === wantInversions) return null;
 
@@ -135,7 +147,9 @@ function evaluate(
   const interiorMutes = countInteriorMutes(frets, sounding);
   if (interiorMutes > 1) return null;
 
-  const tones = frets.map((fret, string) => (fret === null ? null : toneAt(chord, string, fret)));
+  const tones = frets.map((fret, string) =>
+    fret === null ? null : toneAt(tuning, chord, string, fret),
+  );
   if (tones.some((tone, index) => frets[index] !== null && !tone)) return null;
 
   const present = new Set<Degree>();
@@ -146,7 +160,7 @@ function evaluate(
   const required = essentialTones(chord, present.size);
   if (required.some((tone) => !present.has(tone.degree))) return null;
 
-  if (isMuddy(frets)) return null;
+  if (isMuddy(tuning, frets)) return null;
 
   const fingering = fingerFor(frets);
   if (!fingering) return null;
@@ -191,8 +205,8 @@ function evaluate(
   };
 }
 
-function toneAt(chord: Chord, string: number, fret: number): ChordTone | null {
-  const pitchClass = pitchClassAt(string, fret);
+function toneAt(tuning: Tuning, chord: Chord, string: number, fret: number): ChordTone | null {
+  const pitchClass = soundingPitchClass(tuning, string, fret);
   return chord.tones.find((tone) => tone.pitchClass === pitchClass) ?? null;
 }
 
@@ -206,10 +220,10 @@ function countInteriorMutes(frets: (number | null)[], sounding: number[]): numbe
 }
 
 /** Two voices too close together, too far down the neck. */
-function isMuddy(frets: (number | null)[]): boolean {
+function isMuddy(tuning: Tuning, frets: (number | null)[]): boolean {
   const pitches: number[] = [];
   frets.forEach((fret, string) => {
-    if (fret !== null) pitches.push(midiAt(string, fret));
+    if (fret !== null) pitches.push(soundingMidi(tuning, string, fret));
   });
   pitches.sort((a, b) => a - b);
 

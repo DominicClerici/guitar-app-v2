@@ -12,7 +12,7 @@ import {
 import { useChordBuilder, type InitialVoicing } from '@/features/chord-detection/useChordBuilder';
 import { chromaticName, type AccidentalSide } from '@/lib/accidentals';
 import { buildChord, type RootName } from '@/lib/chord-library';
-import { useAccidentalSide } from '@/lib/preferences';
+import { useAccidentalSide, useTuning } from '@/lib/preferences';
 import { noteToSemitone } from '@/lib/theory';
 
 import {
@@ -134,6 +134,7 @@ export function useDrone(handoff?: DroneHandoff): UseDroneResult {
   const [octave, setOctave] = useState(0);
 
   const side = useAccidentalSide(DRONE_FALLBACK);
+  const tuning = useTuning();
   const root = chromaticName(rootPc, side) as RootName;
   const setRoot = useCallback((name: RootName) => setRootPc(noteToSemitone(name)), []);
 
@@ -173,7 +174,7 @@ export function useDrone(handoff?: DroneHandoff): UseDroneResult {
   const fromNeck = useMemo<DroneSelection>(() => {
     if (placed.length === 0) return NOTHING;
 
-    const pitches = shiftOctave(neckPitches(placed), octave);
+    const pitches = shiftOctave(neckPitches(tuning, placed), octave);
     const notes = pitches.map((pitch) => nameForPitchClass(pitch % 12));
     const rootMidi = rootPitchFor(pitches, rootPitchClass);
 
@@ -186,7 +187,7 @@ export function useDrone(handoff?: DroneHandoff): UseDroneResult {
       notes,
       rootIndex: rootPitchClass === null ? -1 : pitches.indexOf(rootMidi),
     };
-  }, [placed, octave, nameForPitchClass, rootPitchClass, reading]);
+  }, [tuning, placed, octave, nameForPitchClass, rootPitchClass, reading]);
 
   const selection = mode === 'chords' ? fromCatalogue : fromNeck;
   const { pitches, rootMidi } = selection;

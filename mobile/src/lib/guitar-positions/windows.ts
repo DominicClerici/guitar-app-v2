@@ -11,7 +11,8 @@
 // whole neck, which is how a player actually moves: C form at the nut, A form at
 // 3, G form at 5, E form at 8, D form at 10.
 
-import { FRET_COUNT, OPEN_PITCHES } from '@/lib/theory';
+import { FRET_COUNT } from '@/lib/theory';
+import type { Tuning } from '@/lib/tuning';
 
 import { CAGED_FORM_OFFSETS } from './caged';
 import { scaleKeysInSpan } from './neck';
@@ -46,11 +47,15 @@ const MIN_SPAN = 3;
 const MIN_NOTES = 5;
 
 function windowPositions(
+  tuning: Tuning,
   windows: readonly Window[],
   rootPitchClass: number,
   pitchClasses: readonly number[],
 ): Position[] {
-  const base = (((rootPitchClass - OPEN_PITCHES[5]) % 12) + 12) % 12;
+  // Still the fret where the root sits on the sixth string — that is what the offsets are written
+  // against — but on a retuned sixth string that is a different fret, so the whole ladder slides
+  // with it rather than pointing at windows the root has left.
+  const base = (((rootPitchClass - tuning.openPitchClasses[5]) % 12) + 12) % 12;
 
   const found: Position[] = [];
   const seen = new Set<string>();
@@ -64,7 +69,7 @@ function windowPositions(
       const span = `${from}-${to}`;
       if (seen.has(span)) continue;
 
-      const keys = scaleKeysInSpan(pitchClasses, from, to);
+      const keys = scaleKeysInSpan(tuning, pitchClasses, from, to);
       if (keys.size < MIN_NOTES) continue;
 
       seen.add(span);
@@ -81,26 +86,37 @@ function windowPositions(
   // treating it as outside the shape.
   const first = found[0];
   const last = found[found.length - 1];
-  if (first) stretch(first, 0, first.to, pitchClasses);
-  if (last) stretch(last, last.from, FRET_COUNT, pitchClasses);
+  if (first) stretch(tuning, first, 0, first.to, pitchClasses);
+  if (last) stretch(tuning, last, last.from, FRET_COUNT, pitchClasses);
 
   return found;
 }
 
-function stretch(position: Position, from: number, to: number, pitchClasses: readonly number[]) {
+function stretch(
+  tuning: Tuning,
+  position: Position,
+  from: number,
+  to: number,
+  pitchClasses: readonly number[],
+) {
   if (from === position.from && to === position.to) return;
   position.from = from;
   position.to = to;
-  position.keys = scaleKeysInSpan(pitchClasses, from, to);
+  position.keys = scaleKeysInSpan(tuning, pitchClasses, from, to);
 }
 
 export function cagedPositions(
+  tuning: Tuning,
   rootPitchClass: number,
   pitchClasses: readonly number[],
 ): Position[] {
-  return windowPositions(CAGED_WINDOWS, rootPitchClass, pitchClasses);
+  return windowPositions(tuning, CAGED_WINDOWS, rootPitchClass, pitchClasses);
 }
 
-export function boxPositions(rootPitchClass: number, pitchClasses: readonly number[]): Position[] {
-  return windowPositions(PENTATONIC_WINDOWS, rootPitchClass, pitchClasses);
+export function boxPositions(
+  tuning: Tuning,
+  rootPitchClass: number,
+  pitchClasses: readonly number[],
+): Position[] {
+  return windowPositions(tuning, PENTATONIC_WINDOWS, rootPitchClass, pitchClasses);
 }

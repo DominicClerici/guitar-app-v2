@@ -13,21 +13,12 @@
 
 import { buildChordTones } from './adapter';
 import { chordSymbol, chordSymbolObjectToArray } from './chord-symbol';
-import { noteToSemitone, OPEN_PITCHES, OPEN_PITCHES_MIDI } from '../theory';
+import { soundingMidi, soundingPitchClass, type Tuning } from '../tuning';
+import { noteToSemitone } from '../theory';
 import { rankVariations } from './ranking';
 import type { ChordAnalysis, ChordResult, FretboardNote } from './types';
 import { createVariations } from './variations';
 import { chordWarnings } from './warnings';
-
-// Open-string octaves for standard tuning, indexed by string number
-// (0 = high e, 5 = low E). Standard tuning's lowest note is E2 (low E open).
-//   high e (string 0) open = E4
-//   B      (string 1) open = B3
-//   G      (string 2) open = G3
-//   D      (string 3) open = D3
-//   A      (string 4) open = A2
-//   low E  (string 5) open = E2
-const OPEN_OCTAVE = [4, 3, 3, 3, 2, 2] as const;
 
 const PC_NAMES_FLAT = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'] as const;
 
@@ -37,28 +28,30 @@ const PC_NAMES_FLAT = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb
 // break to the lower string index, matching findBass() in the voicing engine.
 // createVariations() treats sorted[0] as the bass-as-root candidate, so this
 // determines which interpretation becomes variations[0] / the primary name.
-function preSortByMidi(notes: FretboardNote[]): FretboardNote[] {
+function preSortByMidi(tuning: Tuning, notes: FretboardNote[]): FretboardNote[] {
   return [...notes].sort((a, b) => {
-    const midiA = OPEN_PITCHES_MIDI[a.string] + a.fret;
-    const midiB = OPEN_PITCHES_MIDI[b.string] + b.fret;
+    const midiA = soundingMidi(tuning, a.string, a.fret);
+    const midiB = soundingMidi(tuning, b.string, b.fret);
     if (midiA !== midiB) return midiA - midiB;
     return a.string - b.string;
   });
 }
 
-function noteWithOctave(note: FretboardNote): string {
-  // Compute the absolute pitch class. Open-string pitch class + fret offset,
-  // then take mod 12 to get the displayed pitch class. The octave shifts up
-  // each time we cross from B to C in the chromatic ladder.
-  const openPc = OPEN_PITCHES[note.string];
-  const baseOctave = OPEN_OCTAVE[note.string];
-  const totalSemitone = openPc + note.fret;
-  const octaveShift = Math.floor(totalSemitone / 12);
-  const pc = totalSemitone % 12;
-  return PC_NAMES_FLAT[pc] + (baseOctave + octaveShift);
+// The sounding pitch, written the way createVariations parses it. Both halves
+// come off the one MIDI number: a table of open-string octaves per string used
+// to sit here beside the pitch classes, which was a second statement of the
+// tuning that nothing would have flagged when the first one changed.
+function noteWithOctave(tuning: Tuning, note: FretboardNote): string {
+  const midi = soundingMidi(tuning, note.string, note.fret);
+
+  return PC_NAMES_FLAT[midi % 12] + (Math.floor(midi / 12) - 1);
 }
 
 export function analyzeChord(
+  // The neck the notes were played on. First, and required, because every pitch
+  // below is read off it — a default would let a caller forget and get a name
+  // that is right for a guitar the user is not holding.
+  tuning: Tuning,
   notes: FretboardNote[],
   // Tiebreaker for genuinely-enharmonic roots/notes (see createVariations).
   accidentalPreference: 'sharp' | 'flat' = 'flat',
@@ -68,12 +61,12 @@ export function analyzeChord(
 ): ChordAnalysis | null {
   if (notes.length < 3) return null;
 
-  const sorted = preSortByMidi(notes);
-  const noteStrings = sorted.map(noteWithOctave);
+  const sorted = preSortByMidi(tuning, notes);
+  const noteStrings = sorted.map((note) => noteWithOctave(tuning, note));
   const variations = createVariations(noteStrings, accidentalPreference, forceAccidental);
   if (variations.length === 0) return null;
 
-  const bassPitchClass = (OPEN_PITCHES[sorted[0].string] + sorted[0].fret) % 12;
+  const bassPitchClass = soundingPitchClass(tuning, sorted[0].string, sorted[0].fret);
   const ranked = rankVariations(variations, bassPitchClass);
 
   const chordNames: ChordResult[] = ranked.map((v, i) => {

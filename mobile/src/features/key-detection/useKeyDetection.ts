@@ -5,7 +5,7 @@ import { analyzeChord } from '@/lib/chord-analysis';
 import type { ChordResult, FretboardNote } from '@/lib/chord-analysis';
 import { accidentalSideFor, estimateKey, extractFeature, romanLabelsFor } from '@/lib/key-analysis';
 import type { KeyEstimate, ProgressionChord, RomanLabel } from '@/lib/key-analysis';
-import { useAccidentalSide } from '@/lib/preferences';
+import { useAccidentalSide, useTuning } from '@/lib/preferences';
 import { scalePlanFor } from '@/lib/scale-analysis';
 import type { ScalePlan } from '@/lib/scale-analysis';
 import { noteToSemitone } from '@/lib/theory';
@@ -117,6 +117,12 @@ export function useKeyDetection() {
   // accidentals of their own, and the two keys that tie (F♯/G♭ major, D♯/E♭ minor).
   const preferred = useAccidentalSide(DETECTOR_FALLBACK);
 
+  // A chip stores the voicing it was captured from — string and fret, not pitch — so its name is
+  // re-derived here against whatever neck is current. Retuning mid-session therefore renames the
+  // progression already on screen, which is the honest answer: those shapes are still the shapes
+  // the user's hand is making, and they no longer sound like what they used to.
+  const tuning = useTuning();
+
   const estimate: KeyEstimate = useMemo(
     () => estimateKey(state.chords, preferred),
     [state.chords, preferred],
@@ -149,7 +155,7 @@ export function useKeyDetection() {
         Math.max(0, c.readings.length - 1),
       );
       const rootPc = c.readings[readingIndex]?.rootPc;
-      const analysis = analyzeChord(c.voicing, side, displayedKey ? side : undefined);
+      const analysis = analyzeChord(tuning, c.voicing, side, displayedKey ? side : undefined);
       // Match by root rather than index: the re-analysis is the same ranked list
       // the readings were extracted from, but the root is the identity that
       // matters if the two ever disagree on order.
@@ -158,7 +164,7 @@ export function useKeyDetection() {
         analysis?.chordNames[0];
       return { ...c, name: named?.name ?? '—', readingIndex };
     });
-  }, [state.chords, displayedKey, preferred]);
+  }, [tuning, state.chords, displayedKey, preferred]);
 
   const labels: RomanLabel[] = useMemo(
     () => (displayedKey ? romanLabelsFor(state.chords, displayedKey) : []),
