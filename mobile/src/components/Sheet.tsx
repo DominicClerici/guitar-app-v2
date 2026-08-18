@@ -6,7 +6,9 @@ import {
 } from '@gorhom/bottom-sheet';
 import { useCallback, useImperativeHandle, useRef, type ReactNode, type Ref } from 'react';
 import { StyleSheet } from 'react-native';
+import { ReduceMotion } from 'react-native-reanimated';
 
+import { useReduceMotion } from '@/lib/preferences';
 import { useToken } from '@/lib/tokens';
 
 export type SheetRef = {
@@ -41,6 +43,13 @@ export function Sheet({
   const grabber = useToken('--ink-faint', '#62666e');
   const fixed = snapPoints !== undefined;
 
+  // The one piece of motion in the app that has to be told separately. The sheet library reads
+  // Reanimated's `useReducedMotion`, which reports the *device* setting as it was at launch and
+  // ignores the global config the root sets — so without this a sheet would keep springing open
+  // for someone who turned motion off in this app, and would refuse to for someone who turned it
+  // on in iOS and off here.
+  const reduceMotion = useReduceMotion();
+
   useImperativeHandle(
     ref,
     () => ({
@@ -67,6 +76,7 @@ export function Sheet({
       // wins where one is given, otherwise the body measures itself.
       enableDynamicSizing={!fixed}
       enablePanDownToClose
+      overrideReduceMotion={reduceMotion ? ReduceMotion.Always : ReduceMotion.Never}
       backdropComponent={backdrop}
       // These reach views the library owns, so there is no className equivalent.
       backgroundStyle={{ backgroundColor: bg }}

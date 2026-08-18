@@ -10,6 +10,7 @@ import {
 } from 'react-native-reanimated';
 
 import { AnimatedView } from '@/components/AnimatedView';
+import { ALWAYS_ANIMATE } from '@/lib/motion';
 
 import {
   CENTS_STOPS,
@@ -29,7 +30,10 @@ const CENTER = 12;
 // constants: at 2*sqrt(stiffness*mass) = 24.5 this sits at 1.02, a hair overdamped, so
 // the needle never overshoots and read a hair sharp before settling back. Keep it just
 // above 1.0 if you retune — the extra stiffness buys speed, the ratio buys the manner.
-const SPRING = { damping: 25, stiffness: 500, mass: 0.3 } as const;
+// Kept under reduce motion, unlike almost everything else. This spring is not decoration: it is
+// what turns a jittery per-frame pitch estimate into a needle you can read. Removing it does not
+// calm the needle down, it hands you the jitter raw.
+const SPRING = { damping: 25, stiffness: 500, mass: 0.3, ...ALWAYS_ANIMATE } as const;
 
 // Cents error at which the centre mark has fully gone dark again.
 const CENTER_LIT_CENTS = 5;

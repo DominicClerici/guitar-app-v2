@@ -18,6 +18,7 @@ import {
   subscribeStatus,
   type OnsetEvent,
 } from '@/lib/mic';
+import { ALWAYS_ANIMATE } from '@/lib/motion';
 
 import {
   CALIBRATION_BARS,
@@ -318,9 +319,13 @@ export function useRhythmDrill({
       // animation is what the purity rule forbids, and what would make it lie anyway.
       const untilDownbeat = Math.max(timing.anchorEpochMs - Date.now(), 0);
       progress.value = 0;
+      // Reduce motion cannot have this one, and not only the timing: `withDelay` drops its delay
+      // when motion is reduced, which would start the playhead at the count-in instead of at the
+      // downbeat. The line is the drill's clock — the whole exercise is read against where it is.
       progress.value = withDelay(
         untilDownbeat,
-        withTiming(1, { duration: grid.patternMs, easing: Easing.linear }),
+        withTiming(1, { duration: grid.patternMs, easing: Easing.linear, ...ALWAYS_ANIMATE }),
+        ALWAYS_ANIMATE.reduceMotion,
       );
       // The previous pass stays on the grid through the count-in and is cleared at the downbeat,
       // not when this one was armed. That is the moment it stops being what you just played and

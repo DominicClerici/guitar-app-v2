@@ -1,4 +1,3 @@
-import * as Haptics from 'expo-haptics';
 import { Text, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import {
@@ -11,6 +10,7 @@ import {
 } from 'react-native-reanimated';
 
 import { AnimatedView } from '@/components/AnimatedView';
+import { haptics } from '@/lib/haptics';
 
 /**
  * The rhythm, played with a finger instead of a pick.
@@ -51,7 +51,7 @@ export function StrikePad({ onStrike, idle }: Props) {
 
   const strike = (at: number) => {
     onStrike(at);
-    void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    haptics.light();
   };
 
   const tap = Gesture.Tap()

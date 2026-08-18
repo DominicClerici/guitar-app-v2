@@ -12,6 +12,7 @@ import Svg, { Circle } from 'react-native-svg';
 import { AnimatedView } from '@/components/AnimatedView';
 import { centsTextClass } from '@/features/tuner/tunerColors';
 import { useNoteName, type NoteInfo } from '@/features/tuner';
+import { ALWAYS_ANIMATE } from '@/lib/motion';
 import { useToken } from '@/lib/tokens';
 
 import { RECORD_MS } from './useSampleCapture';
@@ -51,9 +52,11 @@ export function CaptureDial({ recording, takeId, note, onPitch }: Props) {
   const sweep = useAnimatedProps(
     () => ({
       strokeDashoffset: recording
-        ? withSequence(
-            withTiming(CIRCUMFERENCE, { duration: 0 }),
-            withTiming(0, { duration: RECORD_MS, easing: Easing.linear }),
+        ? // Both halves opt out of reduce motion: this ring is the take's countdown, and a sweep
+          // that completes instantly reports a three-second recording as already over.
+          withSequence(
+            withTiming(CIRCUMFERENCE, { duration: 0, ...ALWAYS_ANIMATE }),
+            withTiming(0, { duration: RECORD_MS, easing: Easing.linear, ...ALWAYS_ANIMATE }),
           )
         : withTiming(CIRCUMFERENCE, { duration: 240 }),
     }),

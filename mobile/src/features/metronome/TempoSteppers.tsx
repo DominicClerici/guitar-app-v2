@@ -1,4 +1,3 @@
-import * as Haptics from 'expo-haptics';
 import type { SFSymbol } from 'expo-symbols';
 import { useEffect, useRef } from 'react';
 import { Text, View } from 'react-native';
@@ -6,6 +5,7 @@ import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import { runOnJS } from 'react-native-reanimated';
 
 import { Button } from '@/components/Button';
+import { haptics } from '@/lib/haptics';
 
 import { uiNow } from './uiClock';
 
@@ -61,7 +61,7 @@ function Stepper({
   // hold is a run of them without the first one arriving late.
   const onPressIn = () => {
     onStep();
-    void Haptics.selectionAsync();
+    haptics.selection();
     delay.current = setTimeout(() => {
       repeat.current = setInterval(onStep, REPEAT_EVERY);
     }, REPEAT_DELAY);

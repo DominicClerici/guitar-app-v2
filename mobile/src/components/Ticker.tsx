@@ -1,8 +1,8 @@
-import * as Haptics from 'expo-haptics';
 import type { SFSymbol } from 'expo-symbols';
 import { useEffect, useRef, useState } from 'react';
 import { Pressable, Text, TextInput, View } from 'react-native';
 
+import { haptics } from '@/lib/haptics';
 import { clampTo, parseTyped, stepTo, type Range } from '@/lib/ticker';
 import { useToken } from '@/lib/tokens';
 
@@ -245,7 +245,7 @@ function Key({
       }
 
       current = next;
-      void Haptics.selectionAsync();
+      haptics.selection();
       onChange(next);
     };
 

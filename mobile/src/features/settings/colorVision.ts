@@ -1,6 +1,8 @@
 import type { ColorVision } from '@guitar/shared';
 
+import { chromaticName, toAccidentalGlyphs, type AccidentalSide } from '@/lib/accidentals';
 import type { HueRole } from '@/lib/color-vision';
+import { soundingPitchClass, type Tuning } from '@/lib/tuning';
 
 /**
  * The colour vision setting as the settings screen states it: what to call each mode, and what to
@@ -45,23 +47,53 @@ export interface PreviewNote {
 }
 
 /**
- * The shape the preview lights up: E minor pentatonic in the first three frets, one note per
- * string.
+ * The shape the preview lights up: on a standard neck, E minor pentatonic in the first three
+ * frets, one note per string.
  *
  * It is a real fingering rather than an arrangement of swatches, because that is the thing being
  * previewed — not whether four colours differ side by side, which any two do, but whether they
  * still differ at the size of a dot, spread across a neck, with a note name printed over them.
  *
- * All four hues appear, and both D's are left plain: the palette codes what a note *is* to the
- * scale, so the same note twice is the same colour twice, and the notes it has nothing to say
- * about stay out of the comparison entirely.
+ * The hues belong to the positions. What is being judged is a palette, and moving the dots about
+ * to keep the shape spelling one particular scale would change the picture under someone who only
+ * came here to compare colours — so a retune leaves the fingering exactly where it is and renames
+ * it, which is what the guitar itself does.
  */
-export const PREVIEW_NOTES: readonly PreviewNote[] = [
-  { string: 0, fret: 3, label: 'G', role: 'amber' },
-  { string: 1, fret: 3, label: 'D', role: null },
-  { string: 2, fret: 2, label: 'A', role: 'rose' },
-  { string: 3, fret: 0, label: 'D', role: null },
-  { string: 4, fret: 2, label: 'B', role: 'violet' },
-  // The root, and the only note the app fills in solid.
-  { string: 5, fret: 0, label: 'E', role: 'accent' },
+const PREVIEW_SHAPE: readonly { string: number; fret: number; role: HueRole | null }[] = [
+  { string: 0, fret: 3, role: 'amber' },
+  { string: 1, fret: 3, role: null },
+  { string: 2, fret: 2, role: 'rose' },
+  { string: 3, fret: 0, role: null },
+  { string: 4, fret: 2, role: 'violet' },
+  // The root on a standard neck, and the only note the app fills in solid.
+  { string: 5, fret: 0, role: 'accent' },
 ];
+
+let cached: { tuning: Tuning; side: AccidentalSide; notes: readonly PreviewNote[] } | null = null;
+
+/**
+ * The shape, named for the strings the user actually has.
+ *
+ * Only the labels move. On a standard neck this is the E minor pentatonic it has always been, and
+ * every note the palette codes is a different letter; drop the sixth string and that dot reads D,
+ * where a board that went on printing E would be teaching the wrong thing to sell a palette.
+ *
+ * Two dots can therefore end up sharing a letter and not a hue — the dropped sixth and the open
+ * fourth are both D. That is honest rather than sloppy: the hue is saying which of four colours
+ * this is, and on a neck that is no longer spelling one scale there is nothing left for it to mean
+ * about the note.
+ */
+export function previewNotes(tuning: Tuning, side: AccidentalSide): readonly PreviewNote[] {
+  if (cached && cached.tuning === tuning && cached.side === side) return cached.notes;
+
+  const notes = PREVIEW_SHAPE.map(({ string, fret, role }) => ({
+    string,
+    fret,
+    label: toAccidentalGlyphs(chromaticName(soundingPitchClass(tuning, string, fret), side)),
+    role,
+  }));
+
+  cached = { tuning, side, notes };
+
+  return notes;
+}

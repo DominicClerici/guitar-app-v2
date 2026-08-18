@@ -1,6 +1,7 @@
-import * as Haptics from 'expo-haptics';
 import { AudioContext, AudioManager, type GainNode } from 'react-native-audio-api';
 import { makeMutable } from 'react-native-reanimated';
+
+import { haptics } from '@/lib/haptics';
 
 import { DEFAULT_VOICE, renderClick, VOICES, type ClickVoice } from './clickVoices';
 import {
@@ -38,7 +39,6 @@ export interface MetronomeSnapshot {
   /** Clicks per beat. 1 is the beat alone. */
   perBeat: number;
   voiceId: string;
-  haptics: boolean;
 }
 
 // The beat currently sounding, or -1 when stopped. Read on the UI thread so the bar
@@ -57,7 +57,6 @@ let bpm = DEFAULT_BPM;
 let pattern: BeatAccent[] = defaultPattern(DEFAULT_BEATS);
 let perBeat = SUBDIVISIONS[0].perBeat;
 let voice: ClickVoice = DEFAULT_VOICE;
-let haptics = true;
 
 // The grid, as a segment: `anchorTime` is when step 0 of the segment sounds and
 // `stepsScheduled` counts what has been handed to the audio thread since. Positions
@@ -85,7 +84,6 @@ let snapshot: MetronomeSnapshot = {
   pattern,
   perBeat,
   voiceId: voice.id,
-  haptics,
 };
 
 export function getSnapshot(): MetronomeSnapshot {
@@ -190,13 +188,8 @@ function drain(now: number) {
   beatSV.value = last.beat;
   tickSV.value = tickSV.value + 1;
 
-  if (haptics && last.accent !== 'silent') {
-    void Haptics.impactAsync(
-      last.accent === 'accent'
-        ? Haptics.ImpactFeedbackStyle.Medium
-        : Haptics.ImpactFeedbackStyle.Light,
-    );
-  }
+  if (last.accent === 'accent') haptics.medium();
+  else if (last.accent !== 'silent') haptics.light();
 }
 
 async function begin() {
@@ -302,11 +295,6 @@ export function setVoiceId(id: string): void {
   emit({ voiceId: voice.id });
 }
 
-export function setHaptics(enabled: boolean): void {
-  haptics = enabled;
-  emit({ haptics });
-}
-
 /**
  * Puts the engine back to how it starts, at `nextBpm` if one is given. The state
  * outlives any one visit to the screen, so a tempo handed over from another tool
@@ -320,11 +308,10 @@ export function reset(nextBpm?: number): void {
   pattern = defaultPattern(DEFAULT_BEATS);
   perBeat = SUBDIVISIONS[0].perBeat;
   voice = DEFAULT_VOICE;
-  haptics = true;
   nextBeat = 0;
   nextSub = 0;
 
-  emit({ bpm, pattern, perBeat, voiceId: voice.id, haptics });
+  emit({ bpm, pattern, perBeat, voiceId: voice.id });
 }
 
 /** Stops and hands the audio session back. Called when the screen goes away. */

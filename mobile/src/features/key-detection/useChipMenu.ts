@@ -1,5 +1,6 @@
-import * as Haptics from 'expo-haptics';
 import { useState } from 'react';
+
+import { haptics } from '@/lib/haptics';
 
 import type { Rect } from './chipGeometry';
 
@@ -52,12 +53,12 @@ export function useChipMenu({ onSelect, onAnalyze, onDelete }: Actions) {
 
     setLatched(false);
     setFocused(-1);
-    void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    haptics.medium();
   }
 
   function focus(index: number) {
     setFocused(index);
-    if (index >= 0) void Haptics.selectionAsync();
+    if (index >= 0) haptics.selection();
   }
 
   function activate(index: number) {
@@ -69,12 +70,12 @@ export function useChipMenu({ onSelect, onAnalyze, onDelete }: Actions) {
     if (!item) return;
 
     if (item === 'delete') {
-      void Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
+      haptics.warning();
       onDelete(id);
       return;
     }
 
-    void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    haptics.light();
     if (item === 'select') onSelect(id);
     else onAnalyze(id);
   }

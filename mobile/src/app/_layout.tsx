@@ -4,6 +4,7 @@ import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { DarkTheme, Stack, ThemeProvider } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { ReducedMotionConfig, ReduceMotion } from 'react-native-reanimated';
 import { withUniwind } from 'uniwind';
 
 import { ToastHost } from '@/components/ToastHost';
@@ -11,10 +12,26 @@ import { CoverHost, CurtainHost, isCovered } from '@/features/curtain';
 import { ApiProvider } from '@/lib/api';
 import { useEnsureGuestSession } from '@/lib/auth';
 import { ContentProvider } from '@/lib/content-cache';
-import { PreferencesProvider } from '@/lib/preferences';
+import { PreferencesProvider, readPreferences, useReduceMotion } from '@/lib/preferences';
 import { SyncProvider } from '@/lib/sync';
 
 const GestureRoot = withUniwind(GestureHandlerRootView);
+
+/**
+ * How a push travels, when it travels at all.
+ *
+ * A fade rather than nothing: reduce motion asks for less movement, not for a screen to be
+ * replaced between one frame and the next with no sign that anything happened. Opacity is the
+ * conventional stand-in, and it leaves the change of screen legible.
+ *
+ * Read from the published snapshot rather than through a hook, for the reason the whole file reads
+ * things this way: these are evaluated as the navigator builds a screen, which is the push itself,
+ * and subscribing here would re-render the entire app to answer a question only asked at that one
+ * moment. What Reanimated needs is subscribed to separately, by `MotionConfig` below.
+ */
+function pushAnimation(): 'fade' | 'default' {
+  return readPreferences().reduceMotion === 'on' ? 'fade' : 'default';
+}
 
 /**
  * A screen the reader pages into rather than pushes.
@@ -27,7 +44,9 @@ const GestureRoot = withUniwind(GestureHandlerRootView);
 const pagedInto = ({ route }: { route: { params?: object } }) =>
   ({
     animation:
-      (route.params as { enter?: string } | undefined)?.enter === 'fade' ? 'none' : 'default',
+      (route.params as { enter?: string } | undefined)?.enter === 'fade'
+        ? 'none'
+        : pushAnimation(),
   }) as const;
 
 /**
@@ -45,7 +64,32 @@ const pagedInto = ({ route }: { route: { params?: object } }) =>
  * the navigator builds the screen, which is the push itself, and subscribing would re-render the
  * whole app twice for every sign-in to answer a question only ever asked at that one moment.
  */
-const overCover = () => ({ animation: isCovered() ? 'none' : 'default' }) as const;
+const overCover = () => ({ animation: isCovered() ? 'none' : pushAnimation() }) as const;
+
+/**
+ * Reduce motion, told to Reanimated once for the whole app.
+ *
+ * This is the entire implementation of the setting for everything Reanimated drives — every
+ * `withTiming`, `withSpring`, `withRepeat`, and every `entering`/`exiting`/`layout` prop, including
+ * the ones built in module-scope worklets that no hook could reach. Reanimated checks the flag
+ * where it constructs an animation, on the UI thread, so a reduced animation lands on its final
+ * value without a single component knowing it happened.
+ *
+ * What it does not touch is anything that is not an animation: a shared value written directly from
+ * a gesture, a scroll handler, an `interpolate`. So dragging, scrolling and every live reading —
+ * the tuner's needle colour, the seismograph's trace — carry on exactly as before, which is the
+ * point. Reduce motion is a request to stop decorating, not to stop responding.
+ *
+ * `Always`/`Never` rather than `System`: the stored choice has already taken the device's setting
+ * into account, and once someone has answered here their answer is the one that stands.
+ *
+ * A component of its own so that toggling this re-renders these four lines instead of the app.
+ */
+function MotionConfig() {
+  const reduceMotion = useReduceMotion();
+
+  return <ReducedMotionConfig mode={reduceMotion ? ReduceMotion.Always : ReduceMotion.Never} />;
+}
 
 export default function RootLayout() {
   // Nothing is rendered for this and nothing waits on it — the app is usable while it runs, and
@@ -61,6 +105,9 @@ export default function RootLayout() {
             it publishes is read from every tab — how a note is spelled, whether motion is reduced —
             and a query per reader would be a dozen subscriptions answering the same question. */}
         <PreferencesProvider>
+          {/* Renders nothing; it exists to hold the subscription, so that changing this
+              setting re-renders one leaf rather than the whole app under it. */}
+          <MotionConfig />
           {/* Alongside sync rather than inside it: content is public, so the catalogue refreshes
               whether or not a session exists yet (BACKEND_PLAN.md §8). */}
           <ContentProvider>
@@ -71,10 +118,11 @@ export default function RootLayout() {
                 <ThemeProvider value={DarkTheme}>
                   <StatusBar style="light" />
                   <Stack
-                    screenOptions={{
+                    screenOptions={() => ({
                       headerShown: false,
                       contentStyle: { backgroundColor: '#0c0d10' },
-                    }}
+                      animation: pushAnimation(),
+                    })}
                   >
                     <Stack.Screen name="quiz/[slug]" options={pagedInto} />
                     <Stack.Screen name="activity/[slug]" options={pagedInto} />

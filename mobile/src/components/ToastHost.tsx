@@ -1,10 +1,10 @@
-import * as Haptics from 'expo-haptics';
 import { useEffect } from 'react';
 import { Text, View } from 'react-native';
 import { FadeInUp, FadeOutUp } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { withUniwind } from 'uniwind';
 
+import { haptics } from '@/lib/haptics';
 import { toast, useCurrentToast, type ToastTone } from '@/lib/toast';
 import { useTokens } from '@/lib/tokens';
 
@@ -57,7 +57,7 @@ export function ToastHost() {
   // event rather than passing silently because the last toast was also an error.
   useEffect(() => {
     if (id === undefined || tone !== 'error') return;
-    void Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
+    haptics.error();
   }, [id, tone]);
 
   return (

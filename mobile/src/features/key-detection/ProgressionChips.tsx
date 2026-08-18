@@ -1,4 +1,3 @@
-import * as Haptics from 'expo-haptics';
 import { useEffect, useRef, useState, type ComponentType, type RefObject } from 'react';
 import { useWindowDimensions, View, type LayoutChangeEvent } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -19,6 +18,7 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import { AnimatedView } from '@/components/AnimatedView';
+import { haptics } from '@/lib/haptics';
 import type { RomanLabel } from '@/lib/key-analysis';
 
 import { Chip, ChipFace } from './ChipFace';
@@ -191,12 +191,12 @@ export function ProgressionChips({
     onDragging(true);
     // The card has served its purpose the moment the chip leaves the row.
     onDismissMenu();
-    void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    haptics.light();
   };
 
   const moveTo = (from: number, to: number) => {
     onReorder(from, to);
-    void Haptics.selectionAsync();
+    haptics.selection();
   };
 
   const endDrag = () => {

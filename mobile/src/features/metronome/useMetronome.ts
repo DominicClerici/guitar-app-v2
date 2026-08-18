@@ -9,7 +9,6 @@ import {
   release,
   reset,
   setBpm as engineSetBpm,
-  setHaptics,
   setPattern,
   setPerBeat,
   setVoiceId,
@@ -36,7 +35,6 @@ export type UseMetronomeResult = MetronomeSnapshot & {
   cycleBeat: (index: number) => void;
   setPerBeat: (perBeat: number) => void;
   setVoiceId: (id: string) => void;
-  setHaptics: (enabled: boolean) => void;
   tap: (at: number) => void;
 };
 
@@ -106,7 +104,6 @@ export function useMetronome(initialBpm?: number): UseMetronomeResult {
     cycleBeat,
     setPerBeat,
     setVoiceId,
-    setHaptics,
     tap: tapTempo.tap,
   };
 }

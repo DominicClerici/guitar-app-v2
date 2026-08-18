@@ -1,8 +1,8 @@
-import * as Haptics from 'expo-haptics';
 import { useCallback, useMemo, useState } from 'react';
 
 import type { RootName } from '@/lib/chord-library';
 import { positionsFor, systemsFor, type PositionSystem } from '@/lib/guitar-positions';
+import { haptics } from '@/lib/haptics';
 import { useTuning } from '@/lib/preferences';
 import {
   accentPitchClass,
@@ -121,7 +121,7 @@ export function useScaleVisualizer(initialRoot: RootName = 'C', initialScale = '
     (next: number | null) => {
       player.stop();
       setPositionIndex(next);
-      void Haptics.selectionAsync();
+      haptics.selection();
     },
     [player],
   );

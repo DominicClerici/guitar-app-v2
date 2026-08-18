@@ -1,7 +1,7 @@
-import * as Haptics from 'expo-haptics';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Easing, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
+import { haptics } from '@/lib/haptics';
 import { ARRIVE, ARRIVE_MS, TRAVEL } from '@/lib/motion';
 
 import type { OnboardingStep } from './steps';
@@ -217,7 +217,7 @@ export function useStepTransition<Leaving = never>({
       if (busy.current) return;
       busy.current = true;
       setMoving(true);
-      void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+      haptics.light();
 
       timers.current.forEach(clearTimeout);
       timers.current = [];

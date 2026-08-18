@@ -72,6 +72,21 @@ function readTuning(): Tuning {
   return tuningFor(readPreferences().tuning);
 }
 
+/**
+ * Whether motion should be reduced here.
+ *
+ * A boolean rather than the stored `'on' | 'off'`, because every caller is a condition. What is
+ * stored is not always what was chosen: while the row is absent this follows the device's own
+ * Reduce Motion setting, which the provider folds in before publishing (see `provider.tsx`).
+ *
+ * Almost nothing needs this. Reanimated is told once, at the root, and gates every animation in
+ * the app from the inside — see `ReducedMotionConfig` in `app/_layout.tsx`. This is for the motion
+ * Reanimated does not own: the navigator's screen transitions and the sheet library's own springs.
+ */
+export function useReduceMotion(): boolean {
+  return usePreference('reduceMotion') === 'on';
+}
+
 export interface PreferenceWriter {
   /** True once the value is stored on the device. False means nothing was written at all. */
   set: (entry: PreferenceEntry) => boolean;

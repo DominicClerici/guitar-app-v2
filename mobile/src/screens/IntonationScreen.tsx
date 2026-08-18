@@ -1,4 +1,3 @@
-import * as Haptics from 'expo-haptics';
 import { useRouter } from 'expo-router';
 import { SymbolView } from 'expo-symbols';
 import { useCallback, useEffect, useState } from 'react';
@@ -32,6 +31,7 @@ import {
   useNoteName,
   useTunerSession,
 } from '@/features/tuner';
+import { haptics } from '@/lib/haptics';
 import { useAccidentalSide } from '@/lib/preferences';
 import { centsTextClass } from '@/features/tuner/tunerColors';
 
@@ -76,7 +76,7 @@ export function IntonationScreen() {
 
   const onCapture = useCallback(
     (hz: number) => {
-      void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+      haptics.medium();
       commitSample(hz);
     },
     [commitSample],

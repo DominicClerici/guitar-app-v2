@@ -1,4 +1,3 @@
-import * as Haptics from 'expo-haptics';
 import { Text, useWindowDimensions, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import {
@@ -14,6 +13,7 @@ import {
 } from 'react-native-reanimated';
 
 import { AnimatedView } from '@/components/AnimatedView';
+import { haptics } from '@/lib/haptics';
 import { useToken } from '@/lib/tokens';
 
 /** How long a ring takes to travel out and fade. */
@@ -85,9 +85,8 @@ export function TapPad({ onTap }: Props) {
 
   const handleTap = (at: number) => {
     const fresh = onTap(at);
-    void Haptics.impactAsync(
-      fresh ? Haptics.ImpactFeedbackStyle.Medium : Haptics.ImpactFeedbackStyle.Light,
-    );
+    if (fresh) haptics.medium();
+    else haptics.light();
   };
 
   // `onBegin` rather than `onEnd`: the beat is where the finger lands, and waiting

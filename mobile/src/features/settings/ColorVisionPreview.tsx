@@ -4,9 +4,11 @@ import { useAnimatedStyle, withTiming } from 'react-native-reanimated';
 
 import { AnimatedView } from '@/components/AnimatedView';
 import { huePalette } from '@/lib/color-vision';
+import { useAccidentalSide, useTuning } from '@/lib/preferences';
 import { STRING_GAUGE_CLASS } from '@/lib/theory';
+import { TUNING_FALLBACK } from '@/lib/tuning';
 
-import { PREVIEW_FRETS, PREVIEW_NOTES } from './colorVision';
+import { PREVIEW_FRETS, previewNotes } from './colorVision';
 
 // Board geometry. Tailwind classes have to be static strings, so the numbers live only in the
 // classes below and have to move together:
@@ -17,8 +19,6 @@ import { PREVIEW_FRETS, PREVIEW_NOTES } from './colorVision';
 
 const FRETS = Array.from({ length: PREVIEW_FRETS }, (_, fret) => fret);
 const STRINGS = Array.from({ length: STRING_GAUGE_CLASS.length }, (_, string) => string);
-
-const NOTE_AT = new Map(PREVIEW_NOTES.map((note) => [`${note.string}-${note.fret}`, note]));
 
 /** Long enough to be seen as a change from the last palette, short enough not to be a wait. */
 const SWAP = { duration: 220 };
@@ -38,6 +38,11 @@ const colClass = (fret: number) => (fret === 0 ? 'w-[34px]' : 'w-[52px]');
  */
 export function ColorVisionPreview({ mode }: { mode: ColorVision }) {
   const palette = huePalette(mode);
+  // The dots stay where they are; what they are called follows the user's own strings. The
+  // spelling falls to flats where nothing settles it, for the reason a tuning does: a slackened
+  // string is E flat and never D sharp. `previewNotes` memoises on the pair.
+  const notes = previewNotes(useTuning(), useAccidentalSide(TUNING_FALLBACK));
+  const noteAt = new Map(notes.map((note) => [`${note.string}-${note.fret}`, note]));
 
   return (
     <View className="w-[242px] self-center">
@@ -49,7 +54,7 @@ export function ColorVisionPreview({ mode }: { mode: ColorVision }) {
           </View>
 
           {FRETS.map((fret) => {
-            const note = NOTE_AT.get(`${string}-${fret}`);
+            const note = noteAt.get(`${string}-${fret}`);
 
             return (
               <View

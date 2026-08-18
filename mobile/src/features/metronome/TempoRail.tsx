@@ -1,4 +1,3 @@
-import * as Haptics from 'expo-haptics';
 import { useState } from 'react';
 import { Text, View, type LayoutChangeEvent } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
@@ -12,6 +11,7 @@ import {
 import Svg, { Defs, LinearGradient, Rect, Stop } from 'react-native-svg';
 
 import { AnimatedView } from '@/components/AnimatedView';
+import { haptics } from '@/lib/haptics';
 import { useToken } from '@/lib/tokens';
 
 import { MAX_BPM, MIN_BPM } from './patterns';
@@ -37,7 +37,7 @@ const MAJORS = TICKS.filter((bpm) => bpm % MAJOR_EVERY === 0);
 const STRIP_WIDTH = (TICKS.length - 1) * PX_PER_BPM;
 
 function detent() {
-  void Haptics.selectionAsync();
+  haptics.selection();
 }
 
 interface Props {

@@ -11,12 +11,15 @@ import {
 } from 'react-native-reanimated';
 
 import { AnimatedView } from '@/components/AnimatedView';
+import { ALWAYS_ANIMATE } from '@/lib/motion';
 import { useToken } from '@/lib/tokens';
 
 import type { BeatAccent } from './patterns';
 
-const STRIKE = { duration: 40 };
-const RELEASE = { duration: 300, easing: Easing.out(Easing.quad) };
+// Reduce motion does not reach these: the flash *is* the metronome's visual beat, and one that
+// lands on its final value instantly is a pip that never lights at all.
+const STRIKE = { duration: 40, ...ALWAYS_ANIMATE };
+const RELEASE = { duration: 300, easing: Easing.out(Easing.quad), ...ALWAYS_ANIMATE };
 
 interface Props {
   pattern: BeatAccent[];

@@ -1,4 +1,3 @@
-import * as Haptics from 'expo-haptics';
 import { useState, type ReactNode } from 'react';
 import { Pressable, Text, View, type LayoutChangeEvent } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
@@ -12,6 +11,7 @@ import {
 
 import { SquircleShape } from '@modules/expo-squircle-view';
 
+import { haptics } from '@/lib/haptics';
 import { centreOf, pillFrame, slotAt, slotsIn } from '@/lib/pill-slide';
 import { APPLE_SMOOTHING } from '@/lib/squircle';
 import { useTokens } from '@/lib/tokens';
@@ -215,7 +215,7 @@ export function PillSelector({
   /** Arriving somewhere new mid-drag: felt, lit, and reported if it is wanted now. */
   const land = (index: number) => {
     setHovered(index);
-    void Haptics.selectionAsync();
+    haptics.selection();
     if (commit === 'live') onChange(options[index].id);
   };
 
@@ -304,7 +304,12 @@ export function PillSelector({
         {options.map((option, index) => (
           <Pressable
             key={option.id}
-            onPress={() => onChange(option.id)}
+            // The drag path knocks as it crosses into a slot, so the tap has to knock as well:
+            // the two are the same choice, and only one of them being felt reads as a fault.
+            onPress={() => {
+              haptics.selection();
+              onChange(option.id);
+            }}
             accessibilityRole="button"
             accessibilityState={{ selected: index === selected }}
             accessibilityLabel={

@@ -1,4 +1,3 @@
-import * as Haptics from 'expo-haptics';
 import { useEffect } from 'react';
 import { BackHandler, Text } from 'react-native';
 import {
@@ -12,6 +11,7 @@ import {
 
 import { AnimatedView } from '@/components/AnimatedView';
 import { WindowOverlay } from '@/components/WindowOverlay';
+import { haptics } from '@/lib/haptics';
 import { ARRIVE, TRAVEL } from '@/lib/motion';
 
 import { CurtainMark } from './CurtainMark';
@@ -81,8 +81,8 @@ function Curtain({ playing }: { playing: Playing }) {
   const leaving = plan.reverse;
 
   useEffect(() => {
-    if (leaving) void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    else void Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+    if (leaving) haptics.medium();
+    else haptics.success();
   }, [leaving]);
 
   // Swallowed for the same reason the touches are: the screen under this one is either half
