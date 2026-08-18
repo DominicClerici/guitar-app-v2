@@ -18,7 +18,7 @@ import { useSession } from '@/lib/auth';
 import { useDatabaseMigrations } from '@/lib/db';
 
 import { adoptUser } from './adopt';
-import { requestSync, setSyncTarget } from './engine';
+import { setSyncTarget, syncNow } from './engine';
 
 export function SyncProvider({ children }: { children: ReactNode }) {
   const { ready } = useDatabaseMigrations();
@@ -41,14 +41,18 @@ export function SyncProvider({ children }: { children: ReactNode }) {
     // Rows move before anything is sent, so the push that follows sends them under the id that now
     // owns them. Whether they move at all depends on who held them before — see `adoptUser`.
     adoptUser({ userId, isAnonymous });
-    requestSync(0);
+    syncNow();
 
+    // Both of these are news about the thing a backoff would be waiting on, so they sync at once
+    // and clear it rather than queueing behind it — see `syncNow`. Returning to the app is also
+    // when the periodic pull matters most: its timer keeps running in the background, but the two
+    // minutes it measures say nothing about how long the app was away.
     const foreground = AppState.addEventListener('change', (state) => {
-      if (state === 'active') requestSync(0);
+      if (state === 'active') syncNow();
     });
 
     const network = addNetworkStateListener(({ isConnected }) => {
-      if (isConnected) requestSync(0);
+      if (isConnected) syncNow();
     });
 
     return () => {

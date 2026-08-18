@@ -6,6 +6,14 @@
  * device is offline more often than the sync layer is broken, and the triggers in `provider.tsx`
  * are what bring it back.
  *
+ * Two schedules run against that. A failed run retries on a widening backoff (`retry.ts`) and, if
+ * it never gets through, says so once — a device that has been holding a write for ten minutes is
+ * not "offline-first", it is silently wrong, and the user is the only one who can do anything
+ * about it. Separately, a pull goes out every two minutes regardless of what this device has
+ * written, because a change made on another device otherwise waits for something to happen here.
+ * The two schedules give way to each other rather than interleaving: the periodic pull stands
+ * aside for a push, and nothing is pushed while a pull is in flight.
+ *
  * No table is named anywhere below. Both halves walk `DEVICE_SYNC_TABLE_LIST`, because the failure
  * mode of naming them is silent — a table left out of the push loop is simply never sent, and
  * nothing reports it.
@@ -37,8 +45,10 @@ import {
   writeSyncCursor,
   type Writer,
 } from '@/lib/db/rows';
+import { toast } from '@/lib/toast';
 
 import { needsFullResync } from './reconcile';
+import { nextRetry } from './retry';
 import type { DeviceSyncTable, LocalSyncRow } from './spec';
 import { DEVICE_SYNC_TABLE_LIST } from './tables';
 
@@ -50,10 +60,58 @@ interface SyncTarget {
 /** How long a local write waits for its neighbours before a push goes out. */
 const PUSH_DEBOUNCE_MS = 1500;
 
+/**
+ * How often the device asks the server what it has not seen, while the app is open.
+ *
+ * Nothing else pulls on its own: a device with no local writes and no foreground or network event
+ * would otherwise sit on whatever it last saw, so a change made on another device would not arrive
+ * until this one was reopened.
+ */
+const PULL_INTERVAL_MS = 120_000;
+
+/**
+ * How long a due pull waits after the push it stood aside for.
+ *
+ * A pull that lands the instant a push returns reads a server that is still settling: the push
+ * response has already been applied here, so the page it would fetch is mostly this device's own
+ * rows coming back. The gap also lets the writes that usually follow one another — a quiz attempt
+ * and the progress row it moves — finish arriving before the pull takes its turn.
+ */
+const PULL_AFTER_PUSH_GRACE_MS = 2_000;
+
+/** What the user is told once a run has failed every time the schedule allows. */
+const SYNC_FAILED_MESSAGE = 'Something went wrong syncing your data';
+
 let target: SyncTarget | null = null;
 let running = false;
 let queued = false;
 let timer: ReturnType<typeof setTimeout> | null = null;
+
+/**
+ * When the pending run is due, and whether it is a retry.
+ *
+ * A request only moves the timer earlier, so the debounce still collapses a burst of writes into
+ * one run. A retry is the exception in both directions: it replaces whatever was pending, and
+ * nothing ordinary pulls it forward — otherwise a screen writing a preference per keystroke would
+ * ask the server again every 1.5s for as long as the device was offline, which is the thing the
+ * backoff exists to stop. What does override it is `syncNow`, because the events that call it are
+ * exactly the ones the backoff was waiting for.
+ */
+let timerDueAt = 0;
+let timerIsRetry = false;
+
+/** Consecutive failed runs that have already been retried, and what a retry is measured against. */
+let retried = 0;
+
+/**
+ * The periodic pull's timer, and whether one came due while a push had the engine.
+ *
+ * Separate from `timer` because the two are answering different questions — "has this device
+ * written anything lately" and "how long since it last heard from the server" — and a pull that
+ * reset the push debounce would delay writes rather than accompany them.
+ */
+let pullTimer: ReturnType<typeof setTimeout> | null = null;
+let pullDue = false;
 
 /**
  * Which account the engine is currently pointed at, counted rather than named.
@@ -68,10 +126,22 @@ let targetGeneration = 0;
  * Points the engine at a signed-in user, or parks it. Called by the provider as the session
  * changes; a null target makes every trigger a no-op rather than something to guard at each call
  * site.
+ *
+ * Every schedule is dropped here, including the backoff and the periodic pull. They were counted
+ * and timed for an account that no longer owns this database, and a retry surviving a sign-out
+ * would report the previous session's failure to whoever is holding the phone now. `running` is
+ * deliberately left alone: a run really is in flight, and `stale` is what stops it.
  */
 export function setSyncTarget(next: SyncTarget | null): void {
   target = next;
   targetGeneration += 1;
+
+  clearTimer();
+  clearPullTimer();
+  queued = false;
+  retried = 0;
+
+  if (next) schedulePull(PULL_INTERVAL_MS);
 }
 
 /**
@@ -91,38 +161,113 @@ function stale(generation: number): boolean {
   return generation !== targetGeneration;
 }
 
+function clearTimer(): void {
+  if (!timer) return;
+
+  clearTimeout(timer);
+  timer = null;
+  timerIsRetry = false;
+}
+
+function clearPullTimer(): void {
+  if (pullTimer) clearTimeout(pullTimer);
+
+  pullTimer = null;
+  pullDue = false;
+}
+
+/** Arms the run timer, unless something sooner or more authoritative is already pending. */
+function schedule(delayMs: number, retry: boolean): void {
+  const dueAt = Date.now() + delayMs;
+
+  if (timer) {
+    if (!retry && (timerIsRetry || dueAt >= timerDueAt)) return;
+    clearTimer();
+  }
+
+  timerDueAt = dueAt;
+  timerIsRetry = retry;
+  timer = setTimeout(() => {
+    timer = null;
+    timerIsRetry = false;
+    void runSync('sync');
+  }, delayMs);
+}
+
 /**
  * Asks for a sync soon. Repeated calls collapse into one run, and a call made while a run is in
  * flight schedules exactly one more after it — so a screen that writes a preference per keystroke
  * costs one round trip, not one per keystroke.
  */
 export function requestSync(delayMs: number = PUSH_DEBOUNCE_MS): void {
-  if (timer) return;
+  schedule(delayMs, false);
+}
 
-  timer = setTimeout(() => {
-    timer = null;
-    void runSync();
+/**
+ * Syncs now, and forgets that anything has been failing.
+ *
+ * For the three moments that are not a local write — opening the app, returning to it, and the
+ * network coming back. Each is new information about the thing the backoff is waiting on, so
+ * serving out the rest of a minute-long delay would just be the app ignoring what it was told.
+ */
+export function syncNow(): void {
+  retried = 0;
+  clearTimer();
+  schedule(0, false);
+}
+
+/**
+ * Arms the periodic pull.
+ *
+ * A pull that comes due behind a push does not overtake it. Pushing first is what makes the pull
+ * worth making — the server's answer then includes what this device just sent, merged against
+ * whatever else arrived — and the two crossing would have this device apply a page that was
+ * assembled before its own writes landed. A pending push counts as much as one in flight: the
+ * debounce means a write from half a second ago is a push that has not been sent yet, and pulling
+ * in front of it would put the round trips in the wrong order for the sake of a rounding error on
+ * the two minutes.
+ */
+function schedulePull(delayMs: number): void {
+  clearPullTimer();
+
+  pullTimer = setTimeout(() => {
+    pullTimer = null;
+
+    if (running || timer) {
+      pullDue = true;
+      return;
+    }
+
+    void runSync('pull');
   }, delayMs);
 }
 
 /**
- * Runs one half of a sync, and swallows whatever it throws.
+ * Runs one half of a sync, and reports whether it got there.
  *
- * Being unable to reach the server is the normal case, not a bug, and there is no screen to report
- * it to: local writes are already saved and the next trigger retries. What matters is that the
- * failure stops at the half that caused it.
+ * Being unable to reach the server is the normal case, not a bug: local writes are already saved,
+ * and a run that failed is a run to repeat rather than an error to raise. What matters is that the
+ * failure stops at the half that caused it, and that the caller can still tell the halves apart —
+ * a pull that succeeded next to a push that did not still means this device has heard from the
+ * server, which is what the periodic pull is timed from.
  */
-async function attempt<T>(half: string, run: () => Promise<T>): Promise<T | undefined> {
+async function attempt<T>(
+  half: string,
+  run: () => Promise<T>,
+): Promise<{ ok: true; value: T } | { ok: false }> {
   try {
-    return await run();
+    return { ok: true, value: await run() };
   } catch (error) {
-    if (__DEV__) console.warn(`!!!! [sync] !!!! ${half} failed`, error);
+    if (__DEV__) console.warn(`[sync] ${half} failed`, error);
 
-    return undefined;
+    return { ok: false };
   }
 }
 
-async function runSync(): Promise<void> {
+/** A full run, or the pull alone — which is all the periodic timer is asking for. */
+type RunMode = 'sync' | 'pull';
+
+async function runSync(mode: RunMode): Promise<void> {
   const active = target;
   if (!active) return;
 
@@ -134,27 +279,76 @@ async function runSync(): Promise<void> {
   const generation = targetGeneration;
   running = true;
 
+  let reached = true;
+  let pulled = false;
+
   try {
     // The two directions share a run, not a fate. A row the server refuses outright — a validation
     // failure, not a lost connection — is refused again on every retry, so a single push wrapped
     // together with the pull would stop this device receiving anything from the server for as long
     // as that row sits unsent. Pulling is what eventually settles such a row anyway: the winning
     // version arriving from another device replaces it.
-    const truncated = await attempt('push', () => push(active, generation));
-    await attempt('pull', () => pull(active, generation));
+    if (mode === 'sync') {
+      const pushed = await attempt('push', () => push(active, generation));
 
-    // A push that filled a table's ceiling left rows behind, and nothing else is going to ask for
-    // them: `queued` is otherwise set only by a trigger that happened to land mid-run, so the
-    // remainder would wait on an unrelated foreground or network event.
-    if (truncated) queued = true;
+      if (!pushed.ok) reached = false;
+      // A push that filled a table's ceiling left rows behind, and nothing else is going to ask for
+      // them: `queued` is otherwise set only by a trigger that happened to land mid-run, so the
+      // remainder would wait on an unrelated foreground or network event.
+      else if (pushed.value) queued = true;
+    }
+
+    const page = await attempt('pull', () => pull(active, generation));
+
+    if (page.ok) pulled = true;
+    else reached = false;
   } finally {
     running = false;
 
-    if (queued) {
-      queued = false;
-      requestSync(0);
+    // A run whose account was replaced underneath it settles nothing. `setSyncTarget` has already
+    // dropped every schedule and reset the count, and the outcome being carried here belongs to
+    // the account that just went away.
+    if (!stale(generation)) settle(reached, pulled);
+  }
+}
+
+/**
+ * What the run just finished asks for next: another attempt, a report, or nothing.
+ *
+ * Both halves feed one count. A user has no way to act on which direction failed, and a device
+ * that cannot reach the server fails both — counting them apart would only mean waiting through
+ * two schedules and being told twice.
+ */
+function settle(reached: boolean, pulled: boolean): void {
+  if (reached) {
+    retried = 0;
+  } else {
+    const decision = nextRetry(retried);
+
+    if (decision.kind === 'retry') {
+      schedule(decision.delayMs, true);
+      retried += 1;
+    } else {
+      // Giving up is giving up on *this* chain, not on syncing. The count goes back to zero so the
+      // next write, foreground or reconnect gets a full schedule of its own rather than one
+      // attempt and another toast.
+      retried = 0;
+      toast.error(SYNC_FAILED_MESSAGE);
     }
   }
+
+  if (queued) {
+    queued = false;
+    requestSync(0);
+  }
+
+  // The two minutes are measured from the last page that landed, not from the last timer that
+  // fired, so a run triggered by a write also postpones the periodic pull it just did the work of.
+  // The final branch is what keeps the period alive through an outage: the timer that started this
+  // run is spent, and a failed pull would otherwise be the last one of the session.
+  if (pulled) schedulePull(PULL_INTERVAL_MS);
+  else if (pullDue) schedulePull(PULL_AFTER_PUSH_GRACE_MS);
+  else if (!pullTimer) schedulePull(PULL_INTERVAL_MS);
 }
 
 /**
