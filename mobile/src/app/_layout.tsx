@@ -17,7 +17,7 @@ import { ColorVisionConfig } from '@/lib/color-vision';
 import { ContentProvider } from '@/lib/content-cache';
 import { PreferencesProvider, readPreferences, useReduceMotion } from '@/lib/preferences';
 import { SyncProvider } from '@/lib/sync';
-import { setThemeSurface, ThemeConfig, ThemeSwitchHost, themeBackground } from '@/lib/theme';
+import { ThemeConfig, ThemeSwitchHost, themeBackground } from '@/lib/theme';
 
 const GestureRoot = withUniwind(GestureHandlerRootView);
 
@@ -48,9 +48,7 @@ function pushAnimation(): 'fade' | 'default' {
 const pagedInto = ({ route }: { route: { params?: object } }) =>
   ({
     animation:
-      (route.params as { enter?: string } | undefined)?.enter === 'fade'
-        ? 'none'
-        : pushAnimation(),
+      (route.params as { enter?: string } | undefined)?.enter === 'fade' ? 'none' : pushAnimation(),
   }) as const;
 
 /**
@@ -145,12 +143,10 @@ export default function RootLayout() {
               whether or not a session exists yet (BACKEND_PLAN.md §8). */}
           <ContentProvider>
             <GestureRoot className="flex-1">
-              {/* The frame a change of appearance photographs, and so the line between the app and
-                  the overlays above it: everything the navigator draws is inside this, and the
-                  toasts, the curtain and the switch itself are outside it. An overlay is above the
-                  app rather than part of the screen being changed, and photographing one would
-                  leave it hanging in the frozen frame after it had gone (see `lib/theme/switch`). */}
-              <View ref={setThemeSurface} className="flex-1">
+              {/* The line between the app and the overlays above it: everything the navigator
+                  draws is inside this, and the toasts, the curtain and the appearance switch are
+                  outside it, because an overlay talks over the app rather than being part of it. */}
+              <View className="flex-1">
                 {/* Outside the navigator so a sheet's backdrop covers the tab bar too,
                 rather than being clipped to the screen that presented it. */}
                 <BottomSheetModalProvider>

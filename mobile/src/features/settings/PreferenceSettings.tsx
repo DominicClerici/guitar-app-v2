@@ -3,7 +3,7 @@ import { View } from 'react-native';
 
 import type { PillOption } from '@/components/PillSelector';
 import { usePreferences } from '@/lib/preferences';
-import { beginThemeSwitch } from '@/lib/theme';
+import { beginThemeSwitch, prepareThemeSwitch } from '@/lib/theme';
 
 import { ActionRow } from './ActionRow';
 import { ColorVisionSheet, type ColorVisionSheetRef } from './ColorVisionSheet';
@@ -82,6 +82,7 @@ export function PreferenceSettings() {
           stored={preferences.theme}
           options={THEME_OPTIONS}
           onChoose={beginThemeSwitch}
+          onTouch={prepareThemeSwitch}
         />
       </SettingsSection>
 

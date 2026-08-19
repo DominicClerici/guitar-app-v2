@@ -21,6 +21,12 @@ interface Props {
    * changed it. A row that has nothing to draw leaves this out.
    */
   onChoose?: (id: string, at: { x: number; y: number }) => void;
+  /**
+   * Told that the row has been touched, before anything has been chosen or written. Paired with
+   * `onChoose` by the one row that draws its change: it lets the drawing get its slowest step under
+   * way during the press. A press that comes to nothing simply never reaches `onChoose`.
+   */
+  onTouch?: () => void;
 }
 
 /**
@@ -36,7 +42,7 @@ interface Props {
  * row's `name` and its `options` safe to state separately at the call site: a pairing that does not
  * exist is refused here rather than stored as a value nothing can read back.
  */
-export function PreferenceRow({ label, name, stored, options, onChoose }: Props) {
+export function PreferenceRow({ label, name, stored, options, onChoose, onTouch }: Props) {
   const { set } = usePreferenceWriter();
   const [pending, setPending] = useState<Pending<string> | null>(null);
 
@@ -75,6 +81,7 @@ export function PreferenceRow({ label, name, stored, options, onChoose }: Props)
         options={options}
         value={shownChoice(stored, pending)}
         onChange={choose}
+        onTouch={onTouch}
         commit="release"
         label={label}
         className="w-[188px]"

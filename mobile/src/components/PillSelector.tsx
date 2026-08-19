@@ -87,6 +87,14 @@ interface Props {
    */
   onChange: (id: string, at: { x: number; y: number }) => void;
   /**
+   * Told that a finger has gone down somewhere on the row, before it is known which option — if
+   * any — is being chosen. For a row whose choice sets something slow enough in motion that it is
+   * worth starting during the press rather than after it (see `lib/theme`); every other row leaves
+   * it out. It may be called and come to nothing, so it must be safe to call on a press that ends
+   * in a scroll or a change of mind.
+   */
+  onTouch?: () => void;
+  /**
    * Whether a drag reports each option it crosses onto, or only the one it is
    * let go over. Live is for a setting you want to hear or see as you sweep
    * across it; release is for one that costs something to apply.
@@ -121,6 +129,7 @@ export function PillSelector({
   options,
   value,
   onChange,
+  onTouch,
   commit = 'live',
   label,
   className = '',
@@ -311,6 +320,9 @@ export function PillSelector({
             key={option.id}
             // The drag path knocks as it crosses into a slot, so the tap has to knock as well:
             // the two are the same choice, and only one of them being felt reads as a fault.
+            // Before the choice rather than with it: what this starts does not depend on which
+            // option wins, and starting it here spends the press on it instead of the moment after.
+            onPressIn={onTouch}
             onPress={(event) => {
               haptics.selection();
               const { pageX, pageY } = event.nativeEvent;
