@@ -20,7 +20,7 @@ const Surface = withUniwind(Canvas);
 const Masked = withUniwind(MaskedView);
 
 /** How long the hole takes to clear the furthest corner of the screen. */
-const REVEAL_MS = 1000;
+const REVEAL_MS = 500;
 
 /**
  * How wide the hole is when it starts, in points.
@@ -28,7 +28,7 @@ const REVEAL_MS = 1000;
  * A fingertip, and square: a press has not picked a direction yet, and starting on the screen's own
  * proportions would have the shape arrive already knowing where it was going.
  */
-const SEED = 0;
+const SEED = 100;
 
 /** The rounding of the hole's corners, at the moment it is exactly the size of the screen. */
 const CORNER = 56;
@@ -55,7 +55,8 @@ const SETTLED = 0;
  * same family — those spend so much of the distance in the first few frames that the shape is past
  * the edges before the fade has visibly started.
  */
-const PACE = Easing.bezier(0.33, 1, 0.68, 1);
+// const PACE = Easing.bezier(0.33, 1, 0.68, 1);
+const PACE = Easing.bezier(0.5, 1, 0.89, 1);
 
 /** A frame's grace after the hole lands, so the last of it is drawn before any of it is taken. */
 const TAIL_MS = 32;

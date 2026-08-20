@@ -256,20 +256,32 @@ export function setDroneMidi(midi: number): void {
   drone = buildDrone(midi, at, SWAP_ATTACK);
 }
 
+export interface ToneOptions {
+  /**
+   * Seconds to wait before the strike, scheduled against the audio clock rather
+   * than a `setTimeout` — which is what lets a run of tones stay evenly spaced
+   * however busy the JS thread is.
+   */
+  delay?: number;
+  /** How long the tone rings, in seconds. Short strikes read as separate notes. */
+  decay?: number;
+}
+
 /**
- * Sounds one tone over the drone — a question, a tap on the circle, or a
- * feedback comparison. All three are the same voice on purpose: comparing two
- * degrees is only fair when the only difference is the degree.
+ * Sounds one tone over the drone — a question, a tap on the circle, a feedback
+ * comparison, or one strike of a graded session's orientation run. All of them
+ * are the same voice on purpose: comparing two degrees is only fair when the
+ * only difference is the degree.
  */
-export function playTone(midi: number): void {
+export function playTone(midi: number, opts: ToneOptions = {}): void {
   const context = ensureContext();
   const out = master;
   const room = reverb;
   if (!out || !room) return;
 
-  const at = context.currentTime + LEAD_IN;
+  const at = context.currentTime + LEAD_IN + Math.max(0, opts.delay ?? 0);
   const frequency = equalFrequency(midi);
-  const end = at + TONE_DECAY;
+  const end = at + (opts.decay ?? TONE_DECAY);
 
   const env = context.createGain();
   env.gain.setValueAtTime(0, at);

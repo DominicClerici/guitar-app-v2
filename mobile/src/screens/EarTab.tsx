@@ -3,10 +3,17 @@ import { Pressable, ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Face } from '@/components/Face';
+import { PathwayHero } from '@/features/ear-trainer';
+import { useLearnerId, useProgress } from '@/lib/learning';
 
-// The ear tab: functional ear training against a drone. One mode for now —
-// Free Play — laid out as a list so the curated paths, stats and the rest of
-// the progression system land here as further cards without rework.
+// The ear tab: functional ear training against a drone, as a route through it
+// and a room to wander in.
+//
+// The pathway comes first because it is the one thing a learner who does not
+// already know functional ear training can act on — seventeen graded sessions,
+// each adding a degree to the last. Free Play sits below it, unchanged and
+// fully open: the sandbox stays useful to the people most able to use it, and
+// coupling it to pathway progress would only take that away.
 
 /**
  * The ground and what moves over it: a held drone bar, then scattered tones.
@@ -23,9 +30,23 @@ function Emblem() {
   );
 }
 
+function Rule({ label }: { label: string }) {
+  return (
+    <View className="flex-row items-center gap-[12px]">
+      <Text className="font-mono text-[10px] font-semibold uppercase tracking-[2.5px] text-ink-faint">
+        {label}
+      </Text>
+      <View className="h-px flex-1 bg-line-soft" />
+    </View>
+  );
+}
+
 export function EarTab() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
+
+  const userId = useLearnerId();
+  const progress = useProgress(userId);
 
   return (
     <View className="flex-1 bg-bg">
@@ -34,11 +55,18 @@ export function EarTab() {
         contentContainerClassName="pt-[20px] px-[18px]"
         contentContainerStyle={{ paddingBottom: insets.bottom + 96 }}
       >
-        <View className="flex-row items-center gap-[12px]">
-          <Text className="font-mono text-[10px] font-semibold uppercase tracking-[2.5px] text-ink-faint">
-            Train
-          </Text>
-          <View className="h-px flex-1 bg-line-soft" />
+        <Rule label="Train" />
+
+        <View className="mt-[14px]">
+          <PathwayHero
+            progress={progress}
+            onOpenSession={(id) => router.push({ pathname: '/ear-session/[id]', params: { id } })}
+            onOpenPathway={() => router.push('/ear-pathway')}
+          />
+        </View>
+
+        <View className="mt-[26px]">
+          <Rule label="Explore" />
         </View>
 
         <Pressable

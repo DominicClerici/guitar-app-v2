@@ -2,6 +2,7 @@ import { SymbolView } from 'expo-symbols';
 import { Pressable, Text, View } from 'react-native';
 
 import { Face } from '@/components/Face';
+import { StepMarker, stepStateFor } from '@/components/StepMarker';
 import type { CurriculumChapter, CurriculumSection, RenderSection } from '@/lib/content';
 import {
   chapterProgress,
@@ -39,58 +40,6 @@ function strapFor(section: CurriculumSection): string {
   return parts.join(' · ').toUpperCase();
 }
 
-/**
- * Where a row sits in the sequence. `next` is the one the Continue button opens — never an
- * optional row, which is the whole point of optional: it is not on the path.
- */
-type MarkerState = 'complete' | 'next' | 'todo' | 'muted';
-
-function markerFor({
-  complete,
-  next,
-  muted,
-}: {
-  complete: boolean;
-  next: boolean;
-  muted: boolean;
-}): MarkerState {
-  if (complete) return 'complete';
-  if (muted) return 'muted';
-  return next ? 'next' : 'todo';
-}
-
-/**
- * The dot down the left of every row, carrying the three answers a learner scans for: done, here,
- * still to do. Done is the accent settled back a step — it has been earned and no longer needs the
- * eye — while the one place to go next wears the accent at full strength.
- */
-function Marker({ state }: { state: MarkerState }) {
-  const onAccent = useToken('--on-accent', '#04211f');
-
-  if (state === 'complete') {
-    return (
-      <View className="h-[18px] w-[18px] items-center justify-center rounded-full bg-accent-muted">
-        <SymbolView name="checkmark" size={9} weight="bold" tintColor={onAccent} />
-      </View>
-    );
-  }
-
-  const ring =
-    state === 'next' ? 'border-accent' : state === 'muted' ? 'border-line' : 'border-accent-line';
-  const pip =
-    state === 'next'
-      ? 'bg-accent h-2 w-2'
-      : state === 'muted'
-        ? 'bg-line h-1.5 w-1.5'
-        : 'bg-accent-line h-1.5 w-1.5';
-
-  return (
-    <View className={`h-[18px] w-[18px] items-center justify-center rounded-full border ${ring}`}>
-      <View className={`rounded-full ${pip}`} />
-    </View>
-  );
-}
-
 function SectionRow({
   section,
   complete,
@@ -107,7 +56,7 @@ function SectionRow({
   if (section.kind === 'unknown') {
     return (
       <View className="flex-row items-center gap-[12px] border-t border-t-line-soft py-[13px] opacity-60">
-        <Marker state="muted" />
+        <StepMarker state="muted" />
         <View className="flex-1">
           <Text className="text-[14px] font-medium tracking-[-0.2px] text-ink-muted">
             Something new
@@ -129,7 +78,7 @@ function SectionRow({
       accessibilityLabel={`Open ${section.title}`}
       className="flex-row items-center gap-[12px] border-t border-t-line-soft py-[13px] active:opacity-55"
     >
-      <Marker state={markerFor({ complete, next, muted: section.optional === true })} />
+      <StepMarker state={stepStateFor({ complete, next, muted: section.optional === true })} />
       <View className="flex-1">
         <Text className="text-[14px] font-medium tracking-[-0.2px] text-ink">{section.title}</Text>
         {strap ? (
@@ -176,7 +125,7 @@ function CheckpointRow({
       }`}
     >
       <Face name={locked ? 'key' : 'accent'} radius={10} />
-      <Marker state={markerFor({ complete: passed, next, muted: locked })} />
+      <StepMarker state={stepStateFor({ complete: passed, next, muted: locked })} />
       <View className="flex-1">
         <View className="flex-row items-center justify-between gap-[10px]">
           <Text className="font-mono text-[9px] uppercase tracking-[2px] text-ink-faint">
