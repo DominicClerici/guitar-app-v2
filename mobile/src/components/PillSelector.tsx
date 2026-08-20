@@ -7,6 +7,7 @@ import {
   useDerivedValue,
   useSharedValue,
   withTiming,
+  type SharedValue,
 } from 'react-native-reanimated';
 
 import { SquircleShape } from '@modules/expo-squircle-view';
@@ -139,7 +140,6 @@ export function PillSelector({
   label,
   className = '',
 }: Props) {
-  const [wash, line] = useTokens(TINTS);
   const [tray, setTray] = useState(0);
   const [labels, setLabels] = useState<Record<string, number>>({});
   /** The option the pill is over mid-drag, which is not yet the one that is set. */
@@ -161,14 +161,15 @@ export function PillSelector({
     TRAY_PAD,
   );
 
-  // The two numbers the worklets below need, read out here: the compiler's
+  // The two numbers the pill's worklets need, read out here: the compiler's
   // immutability analysis freezes a shared value indexed through a captured
   // object, and plain arrays of numbers are what these actually want.
   const widths = slots.map((slot) => slot.width);
   const centres = slots.map(centreOf);
 
-  // Nothing to draw until every label has been measured: a pill sized from a
-  // half-measured tray would animate out of the wrong place on the first frame.
+  // Nothing to draw until the tray and every label have been measured — and no
+  // pill until then either, which is what keeps it from sliding into place on the
+  // frame it appears (see `Pill`).
   const measured = inner > 0 && options.every((option) => labels[option.id] !== undefined);
 
   const dragging = useSharedValue(false);
@@ -178,58 +179,6 @@ export function PillSelector({
   const grab = useSharedValue(0);
   /** The slot the pill is over, so each crossing is reported exactly once. */
   const over = useSharedValue(selected);
-
-  /** Present while something is chosen, and while a finger is choosing. */
-  const shown = useDerivedValue(() => withTiming(selected >= 0 || dragging.value ? 1 : 0, SLIDE));
-
-  /**
-   * Width and position, derived rather than driven: under the finger the pill
-   * tracks it, and the rest of the time each eases to whatever is now selected.
-   * Letting go therefore lands the pill — and unwinds the squeeze — for free, and
-   * a value set from anywhere else is followed by the same 150ms expression.
-   */
-  const width = useDerivedValue(() => {
-    // A drag that has not crossed onto anything yet — which is every drag begun
-    // with nothing chosen — is still the width of wherever the pill is resting.
-    const index = dragging.value && over.value >= 0 ? over.value : resting;
-    return withTiming(widths[index] ?? MIN_SLOT, SLIDE);
-  });
-
-  const centre = useDerivedValue(() => {
-    if (!dragging.value) return withTiming(centres[resting] ?? TRAY_PAD, SLIDE);
-    // Past the limit the squeeze has nothing left to say, so the reach is not
-    // followed any further — which is also what keeps the landing 150ms from
-    // wherever the finger let go rather than most of them spent flying back.
-    return Math.max(
-      TRAY_PAD - SQUEEZE_LIMIT,
-      Math.min(TRAY_PAD + inner + SQUEEZE_LIMIT, held.value),
-    );
-  });
-
-  const pill = useAnimatedStyle(() => {
-    const frame = pillFrame({
-      centre: centre.value,
-      width: width.value,
-      height: PILL_HEIGHT,
-      from: TRAY_PAD,
-      to: TRAY_PAD + inner,
-      travel: SQUEEZE_TRAVEL,
-      squeezeX: SQUEEZE_X,
-      squeezeY: SQUEEZE_Y,
-    });
-
-    return {
-      width: frame.width,
-      height: frame.height,
-      opacity: shown.value,
-      transform: [
-        { translateX: frame.left },
-        // The height it gains is taken evenly out of the tray's gutter, so a
-        // squeezed pill grows into the tray rather than through it.
-        { translateY: (PILL_HEIGHT - frame.height) / 2 },
-      ],
-    };
-  });
 
   /** Arriving somewhere new mid-drag: felt, lit, and reported if it is wanted now. */
   const land = (index: number, x: number, y: number) => {
@@ -319,19 +268,17 @@ export function PillSelector({
           ))}
         </View>
 
-        {/* Native shape rather than a `Face`: it repaints its path on every
-            layout pass, so the corners stay true squircles through a resize
-            instead of stretching or blinking a frame behind. */}
         {measured ? (
-          <AnimatedView className="pointer-events-none absolute left-0 top-[3px]" style={pill}>
-            <SquircleShape
-              radii={PILL_RADII}
-              smoothing={APPLE_SMOOTHING}
-              fill={wash ?? WASH}
-              stroke={line ?? LINE}
-              strokeWidth={HAIRLINE}
-            />
-          </AnimatedView>
+          <Pill
+            widths={widths}
+            centres={centres}
+            inner={inner}
+            resting={resting}
+            selected={selected}
+            dragging={dragging}
+            held={held}
+            over={over}
+          />
         ) : null}
 
         {options.map((option, index) => (
@@ -362,6 +309,99 @@ export function PillSelector({
         ))}
       </View>
     </GestureDetector>
+  );
+}
+
+interface PillProps {
+  /** Each option's slot, as the plain numbers a worklet can index. */
+  widths: number[];
+  centres: number[];
+  /** The run the pill travels along, inside the tray's gutter. */
+  inner: number;
+  resting: number;
+  selected: number;
+  dragging: SharedValue<boolean>;
+  held: SharedValue<number>;
+  over: SharedValue<number>;
+}
+
+/**
+ * The pill, and only ever mounted onto a row that has already been measured —
+ * which is what has it arrive in place rather than travel there. A derived value
+ * answers its first expression outright and eases every one after it, so a pill
+ * born knowing the slot it belongs in simply is in it; the same hooks kept alive
+ * through the measuring would have been seeded against the left wall at a made-up
+ * width, and the real numbers landing would have been a 150ms slide out of a place
+ * the pill was never meant to have been.
+ */
+function Pill({ widths, centres, inner, resting, selected, dragging, held, over }: PillProps) {
+  const [wash, line] = useTokens(TINTS);
+
+  /** Present while something is chosen, and while a finger is choosing. */
+  const shown = useDerivedValue(() => withTiming(selected >= 0 || dragging.value ? 1 : 0, SLIDE));
+
+  /**
+   * Width and position, derived rather than driven: under the finger the pill
+   * tracks it, and the rest of the time each eases to whatever is now selected.
+   * Letting go therefore lands the pill — and unwinds the squeeze — for free, and
+   * a value set from anywhere else is followed by the same 150ms expression.
+   */
+  const width = useDerivedValue(() => {
+    // A drag that has not crossed onto anything yet — which is every drag begun
+    // with nothing chosen — is still the width of wherever the pill is resting.
+    const index = dragging.value && over.value >= 0 ? over.value : resting;
+    return withTiming(widths[index] ?? MIN_SLOT, SLIDE);
+  });
+
+  const centre = useDerivedValue(() => {
+    if (!dragging.value) return withTiming(centres[resting] ?? TRAY_PAD, SLIDE);
+    // Past the limit the squeeze has nothing left to say, so the reach is not
+    // followed any further — which is also what keeps the landing 150ms from
+    // wherever the finger let go rather than most of them spent flying back.
+    return Math.max(
+      TRAY_PAD - SQUEEZE_LIMIT,
+      Math.min(TRAY_PAD + inner + SQUEEZE_LIMIT, held.value),
+    );
+  });
+
+  const style = useAnimatedStyle(() => {
+    const frame = pillFrame({
+      centre: centre.value,
+      width: width.value,
+      height: PILL_HEIGHT,
+      from: TRAY_PAD,
+      to: TRAY_PAD + inner,
+      travel: SQUEEZE_TRAVEL,
+      squeezeX: SQUEEZE_X,
+      squeezeY: SQUEEZE_Y,
+    });
+
+    return {
+      width: frame.width,
+      height: frame.height,
+      opacity: shown.value,
+      transform: [
+        { translateX: frame.left },
+        // The height it gains is taken evenly out of the tray's gutter, so a
+        // squeezed pill grows into the tray rather than through it.
+        { translateY: (PILL_HEIGHT - frame.height) / 2 },
+      ],
+    };
+  });
+
+  // Native shape rather than a `Face`: it repaints its path on every layout pass,
+  // so the corners stay true squircles through a resize instead of stretching or
+  // blinking a frame behind.
+  return (
+    <AnimatedView className="pointer-events-none absolute left-0 top-[3px]" style={style}>
+      <SquircleShape
+        radii={PILL_RADII}
+        smoothing={APPLE_SMOOTHING}
+        fill={wash ?? WASH}
+        stroke={line ?? LINE}
+        strokeWidth={HAIRLINE}
+      />
+    </AnimatedView>
   );
 }
 
