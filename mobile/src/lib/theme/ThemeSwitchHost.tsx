@@ -1,22 +1,23 @@
-import {
-  BlurMask,
-  Canvas,
-  Group,
-  Image as Picture,
-  RoundedRect,
-  Skia,
-} from '@shopify/react-native-skia';
-import { useEffect } from 'react';
-import { BackHandler, useWindowDimensions, View } from 'react-native';
+import MaskedView from '@react-native-masked-view/masked-view';
+import { BlurMask, Canvas, Fill, Group, RoundedRect, Skia } from '@shopify/react-native-skia';
+import { useEffect, type ReactNode } from 'react';
+import { BackHandler, useWindowDimensions } from 'react-native';
 import { Easing, useDerivedValue, useSharedValue, withTiming } from 'react-native-reanimated';
-import { withUniwind } from 'uniwind';
+import { ScopedTheme, withUniwind, type ThemeName } from 'uniwind';
 
 import { WindowOverlay } from '@/components/WindowOverlay';
 
 import { revealBleed, revealFrame, type Point } from './reveal';
-import { themeFrozen, themeRevealed, useThemeReveal, useThemeWarming, type Reveal } from './switch';
+import {
+  themeFrozen,
+  themeRevealed,
+  useFrozenPalette,
+  useThemeReveal,
+  type Reveal,
+} from './switch';
 
 const Surface = withUniwind(Canvas);
+const Masked = withUniwind(MaskedView);
 
 /** How long the hole takes to clear the furthest corner of the screen. */
 const REVEAL_MS = 1000;
@@ -35,14 +36,14 @@ const CORNER = 56;
 /**
  * How much of the old screen is still there when the hole lands.
  *
- * The photograph thins as the hole opens, so what is outside it is not the old appearance held
- * perfectly still until the edge sweeps it away — it is already halfway to the new one by the time
- * the edge arrives. That gives the whole screen something to do for the whole animation, and leaves
- * the shape reading as the leading edge of a change rather than as the change itself.
+ * The copy thins as the hole opens, so what is outside it is not the old appearance held perfectly
+ * still until the edge sweeps it away — it is already halfway to the new one by the time the edge
+ * arrives. That gives the whole screen something to do for the whole animation, and leaves the
+ * shape reading as the leading edge of a change rather than as the change itself.
  *
- * Half rather than none, because a photograph that reached nothing would be a plain cross-fade with
- * a shape drawn on it, and the shape would stop meaning anything. It never gets seen at exactly
- * this value either: by the time the fade lands, the hole has covered the screen.
+ * Half rather than none, because a copy that reached nothing would be a plain cross-fade with a
+ * shape drawn on it, and the shape would stop meaning anything. It never gets seen at exactly this
+ * value either: by the time the fade lands, the hole has covered the screen.
  */
 const SETTLED = 0;
 
@@ -62,9 +63,9 @@ const TAIL_MS = 32;
 /**
  * How soft the hole's edge is: the blur's sigma, in points.
  *
- * A normal blur reaches about two sigma each way, so the photograph fades out across a band of
- * roughly four times this — near enough what the circle's radial gradient used to do, and now
- * following an outline rather than a radius.
+ * A normal blur reaches about two sigma each way, so the copy fades out across a band of roughly
+ * four times this — near enough what the circle's radial gradient used to do, and now following an
+ * outline rather than a radius.
  */
 const FEATHER = 8;
 
@@ -75,17 +76,18 @@ const BLEED = revealBleed(CORNER, FEATHER) * -0.1;
 const NOWHERE: Point = { x: 0, y: 0 };
 
 /**
- * Runs once the frame after next.
+ * Runs `first` on the next frame and `then` on the one after it.
  *
- * The image arrives already made, but made is not drawn: Skia decodes lazily, on its own thread, the
- * first time something asks to paint it. What happens the instant it lands is the whole app
- * repainting into another palette, so two frames of a photograph nobody can tell from the screen it
- * covers is a cheaper mistake than one frame of the change being seen.
+ * The copy is mounted and laid out long before this — it went up with the press — but the frame it
+ * is finally shown on is not a frame anything can be done in. So the cover goes up on one frame and
+ * the theme goes on the next, which is the difference between the app changing underneath something
+ * and the app changing underneath nothing.
  */
-function whenDrawn(run: () => void): () => void {
+function acrossFrames(first: () => void, then: () => void): () => void {
   let inner = 0;
   const outer = requestAnimationFrame(() => {
-    inner = requestAnimationFrame(run);
+    first();
+    inner = requestAnimationFrame(then);
   });
 
   return () => {
@@ -98,35 +100,46 @@ function whenDrawn(run: () => void): () => void {
  * Where a change of appearance plays. Mounted once, by the root layout.
  *
  * In a window overlay so that it is above a route the navigator presents as a modal, and below the
- * toasts and the curtain rather than over them — what it holds up is a photograph, and one of those
- * talking over the app should still be able to talk over a photograph of it.
+ * toasts and the curtain rather than over them — what it holds up is a still copy of the screen,
+ * and one of those talking over the app should still be able to talk over a copy of it.
  *
- * The stage goes up on the press and comes down when the switch ends, rather than arriving with the
- * photograph. Creating a canvas is creating a native view and a drawing surface, which measurement
- * found sitting squarely between the photograph being ready and the theme going on — so it happens
- * while the finger is still down, alongside the capture, and the choice arrives to a canvas that
- * already exists.
+ * The stage goes up on the press and comes down when the switch ends. Rendering a screen's worth of
+ * components is the slowest step in a switch and it does not depend on which appearance is chosen,
+ * so it happens while the finger is still down and the choice arrives to a copy that already
+ * exists — laid out, measured, and drawn with nothing showing of it.
+ *
+ * `screen` is that copy: the app's own components, given to this from the root layout rather than
+ * reached for from here, so that nothing under `lib/` has to know what the app's screens are.
  */
-export function ThemeSwitchHost() {
+export function ThemeSwitchHost({ screen }: { screen: ReactNode }) {
+  const palette = useFrozenPalette();
   const reveal = useThemeReveal();
-  const warming = useThemeWarming();
 
-  return <WindowOverlay>{warming || reveal ? <Stage reveal={reveal} /> : null}</WindowOverlay>;
+  return (
+    <WindowOverlay>
+      {palette ? (
+        <Stage palette={palette} reveal={reveal}>
+          {screen}
+        </Stage>
+      ) : null}
+    </WindowOverlay>
+  );
 }
 
 /**
- * The canvas, and the old screen on it once there is one, with a soft-edged hole in the shape of
+ * The copy of the screen, pinned to the palette being left, with a soft-edged hole in the shape of
  * the phone opening out of the point that was pressed.
  *
- * Drawn by Skia rather than by anything React Native composes itself, and that is the whole design
- * rather than a preference. What is wanted is the photograph *minus* a shape, and subtracting one
- * thing from another is a blend mode — `dstOut`, which keeps the destination in proportion to what
- * the source does not cover. React Native has no such blend, and `react-native-svg`'s `Mask` has it
- * only on the CPU: it allocates two full-screen bitmaps per frame, walks every pixel to turn
- * luminance into alpha, and blits the result three more times, all on the UI thread. Skia does the
- * same subtraction on the GPU as two draws.
+ * The hole is cut by Skia through a mask, and that is the whole design rather than a preference.
+ * What is wanted is the copy *minus* a shape, and subtracting one thing from another is a blend
+ * mode — `dstOut`, which keeps the destination in proportion to what the source does not cover.
+ * React Native has no such blend: `mixBlendMode` carries the CSS blend modes, and `destination-out`
+ * is a compositing operator rather than one of them. So the subtraction is done where it can be —
+ * on a canvas of its own, in one draw — and the result is handed to `MaskedView` as an alpha mask
+ * for the copy. On iOS that is `UIView.maskView`, which is the compositor's own masking rather than
+ * anything walked pixel by pixel.
  *
- * The hole is a rectangle drawn afresh each frame rather than one shape under a moving matrix, and
+ * The shape is a rectangle drawn afresh each frame rather than one shape under a moving matrix, and
  * that is what lets it be square on the press and screen-shaped when it lands: a rectangle asked
  * for those numbers has true round corners at every moment, where the same outline reached by
  * scaling one axis would have oval ones. It costs four sums and a rounded rect per frame, all on
@@ -138,11 +151,19 @@ export function ThemeSwitchHost() {
  * by a reconciler of Skia's own, and whether it runs effects on the same terms React does is not
  * something this should be built on. What goes inside the canvas is elements and nothing else.
  *
- * One number moves, and it is not React's. The photograph and the layer are fixed and the draws
- * never change, so a frame is a rectangle worked out from a single eased value on the UI thread —
- * there is no render in the whole animation and no JavaScript in the loop.
+ * Two numbers move, and neither is React's. The copy is still and the draws never change, so a
+ * frame is a rectangle worked out from a single eased value on the UI thread — there is no render
+ * in the whole animation and no JavaScript in the loop.
  */
-function Stage({ reveal }: { reveal: Reveal | null }) {
+function Stage({
+  palette,
+  reveal,
+  children,
+}: {
+  palette: ThemeName;
+  reveal: Reveal | null;
+  children: ReactNode;
+}) {
   const { width, height } = useWindowDimensions();
 
   const id = reveal?.id ?? 0;
@@ -152,20 +173,31 @@ function Stage({ reveal }: { reveal: Reveal | null }) {
   const screen = { width, height };
 
   const progress = useSharedValue(0);
+  // Whether the copy is showing at all. Zero for as long as the stage is only warming: the finger
+  // is still on the control underneath, and a press that answers with somebody else's copy of the
+  // control is a press that does not answer.
+  const cover = useSharedValue(0);
 
+  // Raised, then opened, in the one effect — this stage outlives no reveal but does precede one, so
+  // it has to go from showing nothing to showing everything by hand. Both in the same place because
+  // a shared value written from two effects is a shared value with two owners, which the compiler
+  // refuses and is right to.
   useEffect(() => {
-    if (!reveal || opening) return;
-    return whenDrawn(() => themeFrozen(id));
-  }, [id, opening, reveal]);
+    if (!reveal) {
+      cover.value = 0;
+      return;
+    }
 
-  // Shut, then opened, in the one effect — this stage outlives any one reveal, so the hole the last
-  // switch left wide has to be closed again by hand where a mounting component would have arrived
-  // with it closed. Both in the same place because a shared value written from two effects is a
-  // shared value with two owners, which the compiler refuses and is right to.
-  //
-  // Closed is where it waits until the theme is actually on underneath. It is a hole the size of a
-  // fingertip over an identical screen, so waiting there is invisible — where opening it onto a
-  // screen that has not repainted yet would be a hole showing the old palette through the old one.
+    if (opening) return;
+
+    return acrossFrames(
+      () => {
+        cover.value = 1;
+      },
+      () => themeFrozen(id),
+    );
+  }, [cover, id, opening, reveal]);
+
   useEffect(() => {
     if (!opening) {
       progress.value = 0;
@@ -178,9 +210,10 @@ function Stage({ reveal }: { reveal: Reveal | null }) {
     return () => clearTimeout(done);
   }, [id, opening, progress]);
 
-  // Swallowed for the same reason the touches are: what is under this is a screen mid-change, and
-  // on Android a press would otherwise pop a route nobody can see. Only once there is something to
-  // look at — while the stage is empty the press that raised it is still going on.
+  // The one thing still swallowed, and the only one that has to be: a touch during the reveal lands
+  // on the real screen, already in its new appearance, and is answered properly — but a hardware
+  // back press is not a touch on anything, and popping a route out from under a copy of the screen
+  // it was pushed from is the one gesture the app cannot make good on.
   const locked = reveal !== null;
 
   useEffect(() => {
@@ -199,58 +232,50 @@ function Stage({ reveal }: { reveal: Reveal | null }) {
     return Skia.RRectXY(Skia.XYWHRect(frame.x, frame.y, frame.width, frame.height), round, round);
   });
 
-  // The photograph and the shape are the same movement, so the fade comes off the same eased clock
-  // rather than a second animation told to match it.
-  const held = useDerivedValue(() => 1 - (1 - SETTLED) * progress.value);
+  // The copy and the shape are the same movement, so the fade comes off the same eased clock rather
+  // than a second animation told to match it.
+  const held = useDerivedValue(() => cover.value * (1 - (1 - SETTLED) * progress.value));
 
   // Capped against the shape's own width, so the first frames are a soft dot rather than something
   // blurred so far past its own size that there is no middle left of it.
   const feather = useDerivedValue(() => Math.min(FEATHER, hole.value.rect.width / 4));
 
   return (
-    <>
-      {/* Deaf to touches of its own. While the stage is empty the finger that raised it is still
-          on the control underneath, and once there is a photograph the view below takes everything
-          anyway. */}
-      <Surface className="pointer-events-none absolute inset-0">
-        {reveal ? (
-          // The blend is against this layer rather than against the canvas, so what the shape
-          // subtracts from is the photograph and nothing else. One offscreen texture for the whole
-          // animation, which the GPU holds anyway.
+    <Masked
+      className="absolute inset-0"
+      // Deaf to touches, which is the whole of the difference this makes: what is under it is the
+      // real screen in its final state, so every press, scroll and swipe goes straight through to
+      // the app that is going to answer for them anyway.
+      pointerEvents="none"
+      // And unreadable, for the same reason it is untouchable. There is one settings screen; this
+      // is a picture of it drawn out of components, and a screen reader offered both would find two.
+      accessibilityElementsHidden
+      importantForAccessibility="no-hide-descendants"
+      maskElement={
+        <Surface className="absolute inset-0">
+          {/* The blend is against this layer rather than against the canvas, so what the shape
+              subtracts from is the covering and nothing else. One offscreen texture for the whole
+              animation, which the GPU holds anyway. */}
           <Group layer>
-            {/* The thinning belongs to the image and not to the group around it: a group's opacity
-                in Skia is handed down to each child's paint rather than applied to the result, so
+            {/* Black only because a mask is read for its alpha and never for its colour. The
+                thinning belongs to this fill and not to the group around it: a group's opacity in
+                Skia is handed down to each child's paint rather than applied to the result, so
                 putting it above would have dimmed the hole too — and a shape drawn at half alpha in
-                `dstOut` takes only half the photograph, which is something you can see through
-                rather than a hole. */}
-            <Picture
-              image={reveal.before}
-              x={0}
-              y={0}
-              width={width}
-              height={height}
-              fit="fill"
-              opacity={held}
-            />
+                `dstOut` takes only half the covering, which is something you can see through rather
+                than a hole. */}
+            <Fill color="black" opacity={held} />
             <RoundedRect rect={hole} blendMode="dstOut">
               <BlurMask blur={feather} style="normal" />
             </RoundedRect>
           </Group>
-        ) : null}
-      </Surface>
-
-      {/* Takes every touch for as long as there is a photograph up, which is the whole of the lock:
-          nothing below can be pressed, scrolled or swiped, so no route travels and no tab changes
-          while the screen the gesture was aimed at is a photograph of somewhere the app has already
-          left. After the canvas, and so above it — a hit test has to land on something even where
-          the picture has been cut away. */}
-      {locked ? (
-        <View
-          className="absolute inset-0"
-          accessibilityElementsHidden
-          importantForAccessibility="no-hide-descendants"
-        />
-      ) : null}
-    </>
+        </Surface>
+      }
+    >
+      {/* Pinned to the palette the app is leaving. Everything under here resolves its classes and
+          its tokens through uniwind's context rather than its global theme, so the copy stays as it
+          was while the app underneath repaints — one context, reaching exactly as far as the app's
+          own `@theme inline` bridge does, which is every class and every `useToken` in it. */}
+      <ScopedTheme theme={palette}>{children}</ScopedTheme>
+    </Masked>
   );
 }

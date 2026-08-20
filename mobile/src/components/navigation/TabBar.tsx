@@ -1,7 +1,8 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Pressable, View, type LayoutChangeEvent } from 'react-native';
 import Animated, {
   interpolateColor,
+  runOnUI,
   scrollTo,
   useAnimatedReaction,
   useAnimatedRef,
@@ -11,6 +12,8 @@ import Animated, {
   type SharedValue,
 } from 'react-native-reanimated';
 import { useCSSVariable } from 'uniwind';
+
+import { tabBarScroll } from '@/lib/theme/frozen';
 
 import { TABS } from './tabs';
 
@@ -29,6 +32,13 @@ interface TabBarProps {
   tapFrom: SharedValue<number>;
   tapTo: SharedValue<number>;
   tapProgress: SharedValue<number>;
+  /**
+   * Set only on the still copy a change of appearance holds up, to the offset the live bar was
+   * left at (see `lib/theme/frozen`). A copy mounts with none of the scrolling the original did,
+   * and a bar showing the first tabs over a screen that is on the last one is the one part of the
+   * copy nobody could miss.
+   */
+  stillAt?: number;
 }
 
 interface TabLabelProps {
@@ -111,6 +121,7 @@ export function TabBar({
   tapFrom,
   tapTo,
   tapProgress,
+  stillAt,
 }: TabBarProps) {
   const scrollRef = useAnimatedRef<Animated.ScrollView>();
   const layouts = useRef<({ x: number; width: number } | undefined)[]>([]);
@@ -154,7 +165,24 @@ export function TabBar({
 
   const onScroll = useAnimatedScrollHandler((event) => {
     contentOffset.value = event.contentOffset.x;
+
+    // Published for the still copy of the screen to start from. From here rather than from a drag
+    // handler because the bar is moved by a transition at least as often as by a finger, and both
+    // report through this one.
+    if (stillAt === undefined) tabBarScroll.value = event.contentOffset.x;
   });
+
+  // Put back where the live bar was, on the copy that is standing in for it. After measurement
+  // rather than as an initial `contentOffset`, because until the labels have been laid out there is
+  // no content to scroll and the offset would be clamped away to nothing; `measure` publishing the
+  // trailing space is the moment there is.
+  useEffect(() => {
+    if (stillAt === undefined) return;
+
+    runOnUI(() => {
+      scrollTo(scrollRef, stillAt, 0, false);
+    })();
+  }, [scrollRef, stillAt, trailingSpace]);
 
   // While a change is in flight the bar is ours: every frame it lands at
   // lerp(where the user had it, anchored target, how far the change has

@@ -7,7 +7,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Avatar } from '@/components/Avatar';
 import { initials } from '@/features/account';
 import { InlineChordDetector, type InlineChordDetectorRef } from '@/features/chord-detection';
-import { LearningHero, LearningHeroEmpty } from '@/features/learning';
+import { LearningHero } from '@/features/learning';
 import { startOnboarding } from '@/features/onboarding';
 import { TunerSheet, type TunerSheetRef } from '@/features/tuner';
 import { InlineTunerCard, type InlineTunerCardRef } from '@/features/tuner/InlineTunerCard';
@@ -155,9 +155,10 @@ export function HomeTab() {
           />
         </View>
 
-        {/* hero — learning progress, unenclosed and sitting on the background */}
-        <View className="mt-[28px]">
-          {hero ? (
+        {/* hero — learning progress, unenclosed and sitting on the background. With no
+            pathway there is nothing to show, and the space collapses with it. */}
+        {hero ? (
+          <View className="mt-[28px]">
             <LearningHero
               meta={hero.meta}
               pathway={hero.pathway}
@@ -168,10 +169,8 @@ export function HomeTab() {
               }}
               onOpen={() => router.push(pathwayHref(hero.meta.slug))}
             />
-          ) : (
-            <LearningHeroEmpty />
-          )}
-        </View>
+          </View>
+        ) : null}
 
         {/* signature — tuner scale */}
         <View className="mt-[38px]">

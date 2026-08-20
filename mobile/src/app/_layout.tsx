@@ -9,6 +9,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { ReducedMotionConfig, ReduceMotion } from 'react-native-reanimated';
 import { withUniwind } from 'uniwind';
 
+import { FrozenScreen } from '@/components/navigation/FrozenScreen';
 import { ToastHost } from '@/components/ToastHost';
 import { CoverHost, CurtainHost, isCovered } from '@/features/curtain';
 import { ApiProvider } from '@/lib/api';
@@ -173,10 +174,14 @@ export default function RootLayout() {
                 <CoverHost />
               </View>
               {/* Above the app and below the two overlays that talk over it. A toast on screen
-                while the appearance changes is not in the photograph — nothing outside the frame
-                above is — so it has to stay drawn over the switch rather than be hidden by it and
-                come back afterwards. */}
-              <ThemeSwitchHost />
+                while the appearance changes is not in the copy — nothing outside the frame above
+                is — so it has to stay drawn over the switch rather than be hidden by it and come
+                back afterwards.
+
+                What it holds still is handed to it rather than reached for: the switch lives under
+                `lib/`, and which screen a change of appearance is watched from is the app's own
+                business (see `lib/theme/switch`). */}
+              <ThemeSwitchHost screen={<FrozenScreen />} />
               {/* Last, and outside the sheet provider, so on Android — where a modal
                 route is an ordinary fragment — it is already above both. */}
               <ToastHost />

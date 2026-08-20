@@ -6,61 +6,56 @@
  * hang an animation on, and animating a thousand components towards a thousand new values would be
  * the slowest possible way to arrive at a result the eye reads as a flash.
  *
- * So the screen is photographed instead, and the new one is opened up through the photograph:
+ * So a second copy of the screen is held over the app in the palette being left, and the new one is
+ * opened up through it:
  *
- *   1. the frame the user is looking at is captured and laid over the app,
+ *   1. a still copy of what the user is looking at is mounted, pinned to the old palette, and laid
+ *      over the app,
  *   2. the theme is applied underneath it, where the re-render cannot be seen, and
- *   3. a circular hole is opened in the photograph from the control that was pressed, growing
- *      until there is no photograph left.
+ *   3. a soft-edged hole is opened in the copy from the control that was pressed, growing until
+ *      there is no copy left.
  *
- * What the hole shows is the live app rather than a second photograph of it, and that is the whole
- * reason it is a hole. React Native cannot cut one — there is no `destination-out` among its blend
- * modes — but Skia can, and cutting needs one capture where two stacked layers need two. The screen
- * revealed is therefore the real one, already repainted, so an interruption leaves nothing stale
- * behind and there is no second shutter in the middle of the gesture. `ThemeSwitchHost` holds the
- * drawing of it, and why it is drawn there rather than composed out of views.
+ * The copy is components rather than a photograph, and that is the whole of the design here.
+ * uniwind resolves a class through React context, so `ScopedTheme` can pin a subtree to the palette
+ * the app is leaving while everything around it moves on — which means what is held up is the app's
+ * own components, rendered once, rather than a screenful of pixels taken off the glass. What that
+ * saves is not subtle: no snapshot of the view hierarchy on the main thread, no JPEG to encode and
+ * decode, no full-screen texture to hold, and no step that can simply fail on a device too slow or
+ * too full to take a picture. `components/navigation/FrozenScreen` is the copy; `frozen.ts` is the
+ * little of the screen React does not already know how to render again.
  *
- * The photograph is of the whole window rather than of a view, and that is not a simplification.
- * Capturing a *view* means handing the platform a react tag to look up among the views it has
- * mounted, and under the new architecture that lookup goes out through the legacy interop and comes
- * back empty here — the capture fails with a tag that names nothing. The window needs no lookup at
- * all. What it costs is that anything else in a window overlay is in the photograph too; since the
- * live one is still drawn directly over its own frozen copy, the two coincide and nothing shows.
- * Skia's own `makeImageFromView` is the same trap wearing different clothes — it resolves the tag
- * through `RCTUIManager` and calls `RCTFatal` when it comes back empty, so here it would not fail,
- * it would crash.
+ * It buys one more thing, which is the reason to prefer it even where the picture was cheap. The
+ * theme goes on at the *start*, under a copy of the screen as it was, so the app underneath is
+ * already in its final state for the whole of the reveal: every touch during it lands on the real
+ * screen, in the right palette and the right place, and nothing has to be locked out. A photograph
+ * could never allow that — what it held up was a screen the app had already left, so anything the
+ * user did to it would have been aimed at somewhere that no longer existed.
  *
- * The shutter opens before the choice does. Photographing the screen costs more than everything
- * else in the sequence put together — a snapshot of the whole view hierarchy, a JPEG encode of a
- * screenful of pixels, and a file to put it in — and none of it depends on *which* appearance is
- * picked. So `prepareThemeSwitch` takes the picture when the finger goes down and `beginThemeSwitch`
- * collects it: the waiting happens during the press rather than after it.
+ * `ThemeSwitchHost` holds the drawing of it, and why the hole is cut by Skia through a mask rather
+ * than composed out of views.
+ *
+ * The stage goes up before the choice does. Mounting the copy is the slowest step left here — a
+ * screen's worth of components rendered, measured and laid out — and none of it depends on *which*
+ * appearance is picked. So `prepareThemeSwitch` raises it when the finger goes down and
+ * `beginThemeSwitch` finds it already standing: the waiting happens during the press rather than
+ * after it.
  *
  * Outside the tree for the reason the curtain is (`features/curtain`): what starts a switch is a
  * row on the settings screen, and that screen is one of the things about to be replaced.
  *
- * Every path through here ends with the theme applied. A capture that fails, a photograph that
- * never loads, a device that cannot do this at all — each of them falls back to putting the theme
- * on plainly, which is the behaviour the app had before any of this existed.
+ * Every path through here ends with the theme applied. A palette that turns out not to change, a
+ * switch overtaken by a value from another device, a device asked to spare the user motion — each
+ * of them falls back to putting the theme on plainly, which is the behaviour the app had before any
+ * of this existed.
  */
 import { DEFAULT_PREFERENCES, themePreference, type ThemePreference } from '@guitar/shared';
-import { Skia, type SkImage } from '@shopify/react-native-skia';
 import { useSyncExternalStore } from 'react';
-import { captureScreen, releaseCapture } from 'react-native-view-shot';
-import { Uniwind } from 'uniwind';
+import { Uniwind, type ThemeName } from 'uniwind';
 
 import { readPreferences } from '@/lib/preferences';
 
 import { applyTheme } from './apply';
 import type { Point } from './reveal';
-
-/**
- * JPEG rather than PNG, and this is the difference between a switch that starts when you press it
- * and one that starts a moment later: encoding a screenful of pixels losslessly costs more than
- * the whole rest of the sequence. Nothing here is looked at for longer than half a second, at its
- * own size, over the identical live screen.
- */
-const SHOT = { format: 'jpg', quality: 0.92, result: 'tmpfile' } as const;
 
 /**
  * Frames to let pass between applying the theme and opening the hole. The re-render it sets off is
@@ -73,47 +68,10 @@ const SETTLE_FRAMES = 3;
  * The point past which something has gone wrong and the theme is put on plainly.
  *
  * Longer than the sequence can legitimately take, because it is not a deadline: everything here is
- * driven by a capture returning or a photograph loading, and this exists for the case where one of
- * them never does. The screen is held until it fires, so it must not be reached in normal use.
+ * driven by frames going by, and this exists for the case where they stop. The old screen is held
+ * up until it fires, so it must not be reached in normal use.
  */
 const GIVE_UP_MS = 4000;
-
-/**
- * How long a photograph taken ahead of the choice stays usable.
- *
- * Long enough to cover a press — down, across, up — and short enough that a press somebody thought
- * better of cannot leave a picture of a screen that has since scrolled sitting ready to be held up
- * as though it were current. Past this it is thrown away and the switch takes its own, which is
- * what it did before any of this existed.
- */
-const FRESH_MS = 1200;
-
-/**
- * Photographs the screen and hands back something Skia can draw, with nothing left behind.
- *
- * Three steps that used to be spread across the press, the mount and the first frame: the native
- * capture, reading the file it wrote back into memory, and wrapping those bytes as an image. Run
- * together here so that all three can happen before the choice is made rather than after it.
- *
- * The file is deleted as soon as its contents are in memory. What gets drawn is the bytes — the
- * image holds them — so the file has no reader from that moment on, and a temp file outliving the
- * moment it was needed is only something else to get wrong.
- */
-async function photograph(): Promise<SkImage> {
-  const path = await captureScreen(SHOT);
-
-  try {
-    // `captureScreen` answers with a bare filesystem path, and Skia reads a source as a URI.
-    const data = await Skia.Data.fromURI(path.startsWith('file://') ? path : `file://${path}`);
-    const image = Skia.Image.MakeImageFromEncoded(data);
-
-    if (!image) throw new Error('the bytes are not an image Skia can read');
-
-    return image;
-  } finally {
-    releaseCapture(path);
-  }
-}
 
 /**
  * Why the appearance changed without a reveal, said out loud in development.
@@ -134,10 +92,10 @@ function declined(reason: string): void {
 /**
  * Where the wait between the press and the first frame of the reveal went, in development.
  *
- * Spans rather than a total, because four separate things are slow here and none of them is fixed
- * the same way: photographing the screen, decoding that photograph back into a texture, applying
- * the theme — which re-renders every component in the app — and the frames deliberately let past so
- * that neither of the last two is caught happening. Which one dominates decides what is worth
+ * Spans rather than a total, because three separate things are slow here and none of them is fixed
+ * the same way: getting the copy of the screen on to the glass, applying the theme — which
+ * re-renders every component in the app, the copy included — and the frames deliberately let past
+ * so that neither of the last two is caught happening. Which one dominates decides what is worth
  * attacking, and it is not something to guess at from the far side of a device.
  */
 const spans: string[] = [];
@@ -170,28 +128,28 @@ export interface Reveal {
   id: number;
   /** Where on screen the choice was made, and so where the hole opens from. */
   origin: Point;
-  /** The screen as it was, ready to draw, held from the moment it exists until the reveal ends. */
-  before: SkImage;
   /** The theme is on and the screen behind has settled: there is now something to reveal. */
   opening: boolean;
 }
 
 let current: Reveal | null = null;
+/**
+ * The palette the copy is pinned to while the stage is up, and the flag for it being up at all.
+ *
+ * Read at the press, which is the last moment it means what it says: from `themeFrozen` onwards the
+ * app underneath is in the other palette and this is the only record of the one being left.
+ */
+let stage: ThemeName | null = null;
 /** What the switch on screen is heading for, and the flag for one being in flight at all. */
 let target: ThemePreference | null = null;
 /** What was last handed to uniwind. Its own starting state is adaptive, which is `system`. */
 let applied: ThemePreference = DEFAULT_PREFERENCES.theme;
 let expiry: ReturnType<typeof setTimeout> | null = null;
 let nextId = 1;
-/** A photograph taken before the choice was made, and the clock that throws it away unclaimed. */
-let ahead: { shot: Promise<SkImage>; expiry: ReturnType<typeof setTimeout> } | null = null;
-/** Whether the stage is up: a canvas mounted and empty, waiting for something to draw on it. */
-let warming = false;
 
 const listeners = new Set<() => void>();
 
-function commit(next: Reveal | null): void {
-  current = next;
+function notify(): void {
   for (const listener of listeners) listener();
 }
 
@@ -207,27 +165,28 @@ function revealing(): Reveal | null {
   return current;
 }
 
+function staging(): ThemeName | null {
+  return stage;
+}
+
 /**
- * Raises or lowers the stage.
+ * Raises or lowers the stage, which is the copy of the screen mounted and ready but not yet
+ * covering anything.
  *
- * Mounting a canvas means creating a native view and a drawing surface for it, and measurement put
- * that on the critical path: it was happening after the choice, between the photograph arriving and
- * the theme going on. It does not depend on the choice either, so it goes where the capture went —
- * up when the finger lands, down when the switch ends or the press comes to nothing.
+ * Rendering a screen's worth of components is the one genuinely slow thing left in a switch, and it
+ * does not depend on the choice, so it happens where the capture used to: up when the finger lands,
+ * down when the switch ends or the press comes to nothing. While it is up the copy is drawn with
+ * nothing showing of it at all, so the press underneath is still the user's own screen answering.
  */
-function warm(on: boolean): void {
-  if (warming === on) return;
+function raise(theme: ThemeName | null): void {
+  if (stage === theme) return;
 
-  warming = on;
-  for (const listener of listeners) listener();
+  stage = theme;
+  notify();
 }
 
-function staging(): boolean {
-  return warming;
-}
-
-/** Whether to hold a canvas ready. Only `ThemeSwitchHost` should need this. */
-export function useThemeWarming(): boolean {
+/** The palette the copy is held in, or `null` for no stage. Only `ThemeSwitchHost` needs this. */
+export function useFrozenPalette(): ThemeName | null {
   return useSyncExternalStore(subscribe, staging, staging);
 }
 
@@ -258,6 +217,19 @@ function afterFrames(frames: number, each?: () => void): Promise<void> {
   });
 }
 
+/** Takes down whatever is on screen and forgets the flight. */
+function clear(): void {
+  if (expiry) {
+    clearTimeout(expiry);
+    expiry = null;
+  }
+
+  target = null;
+  current = null;
+  stage = null;
+  notify();
+}
+
 /** Puts the theme on with nothing covering the screen — every fallback here ends in this. */
 function settle(preference: ThemePreference): void {
   clear();
@@ -265,75 +237,23 @@ function settle(preference: ThemePreference): void {
   applyTheme(preference);
 }
 
-/**
- * Takes down whatever is on screen and forgets the flight.
- *
- * The photograph is let go last and on purpose. The image is still mounted at this point, so it is
- * taken down first and freed afterwards — doing it the other way round would hand a drawing its own
- * disposal and rely on the frame having already gone out.
- */
-function clear(): void {
-  if (expiry) {
-    clearTimeout(expiry);
-    expiry = null;
-  }
-
-  const gone = current;
-  target = null;
-  warm(false);
-
-  if (!gone) return;
-
-  commit(null);
-  gone.before.dispose();
-}
-
-/** Throws away a photograph taken for a choice that never came, or that came too late for it. */
-function forget(): void {
-  const stale = ahead;
-  ahead = null;
-
-  if (!stale) return;
-
-  clearTimeout(stale.expiry);
-  warm(false);
-  void stale.shot.then(
-    (image) => image.dispose(),
-    () => {},
-  );
-}
-
-/** The photograph taken during the press if there is one still current, or a fresh one. */
-function claim(): Promise<SkImage> {
-  const taken = ahead;
-
-  if (!taken) return photograph();
-
-  ahead = null;
-  clearTimeout(taken.expiry);
-
-  return taken.shot;
+function commit(next: Reveal): void {
+  current = next;
+  notify();
 }
 
 /**
  * A finger has gone down on the appearance control — the earliest the app can know that a switch is
- * probably coming, and so the earliest the shutter can open.
+ * probably coming, and so the earliest the copy can start being built.
  *
- * Safe to call on any press, including the ones that come to nothing: an unclaimed photograph
- * throws itself away after `FRESH_MS`, and a switch that finds none waiting takes its own.
+ * Safe to call on any press, including the ones that come to nothing: the stage comes down again
+ * when the switch ends, and a switch that finds no stage standing raises its own.
  */
 export function prepareThemeSwitch(): void {
-  if (target !== null || ahead !== null) return;
+  if (target !== null || stage !== null) return;
   if (readPreferences().reduceMotion === 'on') return;
 
-  const shot = photograph();
-
-  // Answered here as well as where it is claimed, so a photograph nobody ends up asking for cannot
-  // surface as an unhandled rejection a second after the press it belonged to.
-  shot.catch(() => {});
-
-  ahead = { shot, expiry: setTimeout(forget, FRESH_MS) };
-  warm(true);
+  raise(Uniwind.currentTheme);
 }
 
 /**
@@ -370,34 +290,20 @@ export function beginThemeSwitch(value: string, origin: Point): void {
     return;
   }
 
+  // Standing already in every ordinary case — the row reports the press, and the press is what
+  // raised it. Raised here as well for the paths that reach a choice without one, and for the rare
+  // stage that went up against a palette the device has since changed out from under.
+  raise(Uniwind.currentTheme);
+
   target = next;
   startTiming();
-
-  const prepared = ahead !== null;
 
   expiry = setTimeout(() => {
     declined('it never finished');
     settle(next);
   }, GIVE_UP_MS);
 
-  claim().then(
-    (before) => {
-      timing(prepared ? 'photograph (taken during the press)' : 'photograph');
-
-      // Superseded while the shutter was open — by the watchdog, or by a value arriving from
-      // another device. The photograph is of a screen nobody is waiting on any more.
-      if (target !== next) {
-        before.dispose();
-        return;
-      }
-
-      commit({ id: nextId++, origin, before, opening: false });
-    },
-    (error) => {
-      declined(`the screen could not be photographed: ${String(error)}`);
-      settle(next);
-    },
-  );
+  commit({ id: nextId++, origin, opening: false });
 }
 
 /**
@@ -406,15 +312,16 @@ export function beginThemeSwitch(value: string, origin: Point): void {
  * Every change that is not somebody pressing the control comes through here — the first read at
  * launch, a value pulled from another device, a switch that declined to animate — and each of them
  * is applied on the spot. What it must not do is act on the change a switch is already carrying:
- * doing so would apply the theme under the photograph *before* the photograph went up, and the
+ * doing so would apply the theme under the copy *before* the copy was covering anything, and the
  * switch would then find nothing left to reveal.
  */
 export function requestTheme(preference: ThemePreference): void {
   if (target === preference) return;
 
   // A different value while one is in flight — two devices disagreeing, which the newer write
-  // settles. The switch is abandoned rather than finished: what it photographed is no longer where
-  // the app is going.
+  // settles, or somebody pressing a second option through the reveal now that they can. The switch
+  // is abandoned rather than finished: the screen it is holding up is no longer where the app is
+  // going.
   if (target !== null) {
     settle(preference);
     return;
@@ -425,13 +332,13 @@ export function requestTheme(preference: ThemePreference): void {
 }
 
 /**
- * The photograph is on the glass: the app underneath is now unobservable, so this is where the
- * theme goes on and, once the screen behind has caught up, where the hole starts opening.
+ * The copy is on the glass: the app underneath is now unobservable, so this is where the theme goes
+ * on and, once the screen behind has caught up, where the hole starts opening.
  */
 export function themeFrozen(id: number): void {
   if (current?.id !== id || target === null) return;
 
-  timing('drawn');
+  timing('covered');
 
   const was = Uniwind.currentTheme;
   const next = target;
@@ -442,7 +349,7 @@ export function themeFrozen(id: number): void {
 
   // `System` chosen on a phone already showing that palette, which is a real thing to press and
   // not a mistake — the setting changed, the appearance did not. There is nothing to reveal, and
-  // the photograph is identical to what is under it, so it can go without anything being seen.
+  // the copy is identical to what is under it, so it can go without anything being seen.
   if (Uniwind.currentTheme === was) {
     declined(`'${next}' resolves to the '${was}' palette that was already on`);
     clear();
@@ -465,7 +372,7 @@ export function themeFrozen(id: number): void {
   });
 }
 
-/** The hole has covered the screen: there is no photograph left to hold up. */
+/** The hole has covered the screen: there is no copy left to hold up. */
 export function themeRevealed(id: number): void {
   if (current?.id !== id) return;
   clear();
