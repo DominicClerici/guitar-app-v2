@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { useSharedValue } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { settingsScroll, tabBarScroll } from '@/lib/theme/frozen';
+import { useStill } from '@/lib/theme/frozen';
 import { SettingsTab } from '@/screens/SettingsTab';
 
 import { TabBar } from './TabBar';
@@ -47,6 +47,11 @@ const noop = () => {};
 export function FrozenScreen() {
   const insets = useSafeAreaInsets();
 
+  // Subscribed to rather than read once, because this copy can outlive the press that built it —
+  // see `lib/theme/frozen`. Every press reads the two offsets again, and a copy already standing is
+  // moved to them rather than rebuilt: the expensive half of it is right and stays right.
+  const still = useStill();
+
   // The bar reads its position out of these, and at rest they say one thing: the tab we are on,
   // with no swipe and no tap under way. Fresh values rather than the live screen's, because what
   // they describe is a screen that has stopped.
@@ -66,11 +71,11 @@ export function FrozenScreen() {
           tapFrom={tapFrom}
           tapTo={tapTo}
           tapProgress={tapProgress}
-          stillAt={tabBarScroll.value}
+          stillAt={still.tabBar}
         />
 
         <View className="flex-1 overflow-hidden">
-          <SettingsTab stillAt={settingsScroll.value} />
+          <SettingsTab stillAt={still.settings} />
         </View>
       </View>
     </BottomSheetModalProvider>

@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Pressable, View, type LayoutChangeEvent } from 'react-native';
 import Animated, {
   interpolateColor,
@@ -192,6 +192,21 @@ export function TabBar({
             scrollTo(scrollRef, stillAt, 0, false);
           })();
         };
+
+  // The other way round, and the other half of the same job: not the content arriving under a
+  // fixed offset, but the offset moving under content that arrived long ago. A copy is built by the
+  // press and taken down by the switch, so one built by a press that came to nothing stands until
+  // the next press — by which time the live bar may have been scrolled, or swiped clean across, and
+  // the number this is holding is where it used to be. Every press publishes it afresh
+  // (`lib/theme/frozen`), and this is where the copy hears about it. Nothing is measured or mounted
+  // by then, so the scroll lands exactly where it is sent.
+  useEffect(() => {
+    if (stillAt === undefined) return;
+
+    runOnUI(() => {
+      scrollTo(scrollRef, stillAt, 0, false);
+    })();
+  }, [scrollRef, stillAt]);
 
   // While a change is in flight the bar is ours: every frame it lands at
   // lerp(where the user had it, anchored target, how far the change has

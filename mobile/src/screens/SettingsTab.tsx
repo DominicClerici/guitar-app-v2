@@ -1,5 +1,5 @@
 import { useRouter } from 'expo-router';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import {
   ActivityIndicator,
   ScrollView,
@@ -49,6 +49,16 @@ export function SettingsTab({ stillAt }: Props = {}) {
   const remember = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     settingsScroll.value = event.nativeEvent.contentOffset.y;
   };
+
+  // The copy stands from the press that built it until the switch that takes it down, so a press
+  // that came to nothing leaves one holding an offset the list has since been scrolled away from.
+  // Every press publishes where it has got to (`lib/theme/frozen`) and the copy follows it here —
+  // laid out already, so unlike the restore below this cannot be clamped short.
+  useEffect(() => {
+    if (stillAt === undefined) return;
+
+    scroller.current?.scrollTo({ y: stillAt, animated: false });
+  }, [stillAt]);
 
   // The first read comes off the device keychain, so this is brief — but rendering the pitch
   // during it would sell an account to someone who already has one. Only the first: every read

@@ -55,6 +55,7 @@ import { Uniwind, type ThemeName } from 'uniwind';
 import { readPreferences } from '@/lib/preferences';
 
 import { applyTheme } from './apply';
+import { takeStill } from './frozen';
 import type { Point } from './reveal';
 
 /**
@@ -248,11 +249,20 @@ function commit(next: Reveal): void {
  *
  * Safe to call on any press, including the ones that come to nothing: the stage comes down again
  * when the switch ends, and a switch that finds no stage standing raises its own.
+ *
+ * A press that comes to nothing does leave it standing until the next switch, though, and the copy
+ * has one part that cannot keep up on its own — how far the two scrolling things have been scrolled
+ * (`frozen.ts`). So every press reads those afresh, whether or not it is the press that raised the
+ * stage: a copy built three taps and a swipe ago is right about everything else, and would be
+ * holding up a tab bar left where it was three taps ago.
  */
 export function prepareThemeSwitch(): void {
-  if (target !== null || stage !== null) return;
+  // The one stage not to touch is one already in use: from `themeFrozen` on it is what is covering
+  // the screen, and where the screen has got to since is not something to put on to a copy of it.
+  if (target !== null) return;
   if (readPreferences().reduceMotion === 'on') return;
 
+  takeStill();
   raise(Uniwind.currentTheme);
 }
 
@@ -302,6 +312,12 @@ export function beginThemeSwitch(value: string, origin: Point): void {
     declined('it never finished');
     settle(next);
   }, GIVE_UP_MS);
+
+  // And once more with the choice made, which is the last instant the answer is still about the
+  // screen the user is looking at rather than about a copy of it. Ordinarily this reads what the
+  // press read a moment ago and says nothing; what it is here for is the bar that was still gliding
+  // into place from a tab tapped just before, and had not finished when the press landed.
+  takeStill();
 
   commit({ id: nextId++, origin, opening: false });
 }
