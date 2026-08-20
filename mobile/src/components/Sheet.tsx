@@ -3,12 +3,16 @@ import {
   BottomSheetModal,
   BottomSheetView,
   type BottomSheetBackdropProps,
+  type BottomSheetBackgroundProps,
 } from '@gorhom/bottom-sheet';
 import { useCallback, useImperativeHandle, useRef, type ReactNode, type Ref } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { ReduceMotion } from 'react-native-reanimated';
 
+import { SquircleShape } from '@modules/expo-squircle-view';
+
 import { useReduceMotion } from '@/lib/preferences';
+import { APPLE_SMOOTHING } from '@/lib/squircle';
 import { useToken } from '@/lib/tokens';
 
 export type SheetRef = {
@@ -28,12 +32,15 @@ export type SheetRef = {
 export function Sheet({
   ref,
   snapPoints,
+  radius = SHEET_RADIUS,
   onVisibleChange,
   onDismiss,
   children,
 }: {
   ref?: Ref<SheetRef>;
   snapPoints?: (string | number)[];
+  /** The top corners, for the rare sheet that wants a softer or squarer edge. */
+  radius?: number;
   onVisibleChange?: (visible: boolean) => void;
   onDismiss?: () => void;
   children: ReactNode;
@@ -68,6 +75,29 @@ export function Sheet({
     [],
   );
 
+  // The sheet's own surface, so its top corners are the Apple curve every other
+  // face in the app wears rather than the library's quarter circle. The shape is
+  // native and stretches to the container, so it is right on the first frame and
+  // through a drag — the container moves under a fixed height rather than growing.
+  const background = useCallback(
+    ({ style }: BottomSheetBackgroundProps) => (
+      <View
+        pointerEvents="none"
+        accessible
+        accessibilityRole="adjustable"
+        accessibilityLabel="Bottom Sheet"
+        style={style}
+      >
+        <SquircleShape
+          radii={{ topLeft: radius, topRight: radius, bottomRight: 0, bottomLeft: 0 }}
+          smoothing={APPLE_SMOOTHING}
+          fill={bg}
+        />
+      </View>
+    ),
+    [bg, radius],
+  );
+
   return (
     <BottomSheetModal
       ref={modal}
@@ -78,8 +108,8 @@ export function Sheet({
       enablePanDownToClose
       overrideReduceMotion={reduceMotion ? ReduceMotion.Always : ReduceMotion.Never}
       backdropComponent={backdrop}
-      // These reach views the library owns, so there is no className equivalent.
-      backgroundStyle={{ backgroundColor: bg }}
+      backgroundComponent={background}
+      // This reaches a view the library owns, so there is no className equivalent.
       handleIndicatorStyle={{ backgroundColor: grabber }}
       onChange={(index) => onVisibleChange?.(index >= 0)}
       onDismiss={onDismiss}
@@ -88,6 +118,9 @@ export function Sheet({
     </BottomSheetModal>
   );
 }
+
+/** Wide enough for the corner to read as a curve at sheet scale. */
+const SHEET_RADIUS = 34;
 
 const styles = StyleSheet.create({
   // `BottomSheetView` positions itself absolutely with only top/left/right, so `flex: 1`
