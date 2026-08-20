@@ -1,5 +1,5 @@
 {
-  "name": "guitar-app-v2",
+  "name": "guitar-app",
   "version": "1.0.0",
   "private": true,
   "packageManager": "pnpm@11.5.2",
@@ -17,6 +17,6 @@
     "format": "prettier --write ."
   },
   "devDependencies": {
-    "prettier": "^3.6.2"
+    "prettier": "^3.9.6"
   }
 }

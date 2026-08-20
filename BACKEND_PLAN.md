@@ -352,7 +352,7 @@ The existing pnpm workspace stays; the mobile app now lives at `mobile/` (rename
 fresh `pod install` / `expo prebuild` after the rename).
 
 ```
-guitar-app-v2/
+guitar-app/
   mobile/                    # renamed from guitar-mobile-expo/
     drizzle/                 # device SQLite migrations, generated from packages/db, bundled by Metro
   packages/
