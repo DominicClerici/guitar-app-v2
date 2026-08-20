@@ -114,6 +114,11 @@ interface Props {
  * it past either end and it squeezes up against the wall, which is how it says
  * there is nothing further along without stopping dead under the finger.
  *
+ * A row of exactly two options is a switch: tapping the one the pill is already
+ * on throws it to the other, so the control answers a tap anywhere on it rather
+ * than only on the half you are not using. Longer rows do not do this — tapping
+ * the chosen option there leaves it chosen.
+ *
  * Give it its width from the call site. The options divide what it is handed
  * equally, each of them a target across its whole share, and the pill fills the
  * share it is on — so the gutter around it is the same on all four sides
@@ -238,6 +243,20 @@ export function PillSelector({
     if (commit === 'release') onChange(options[index].id, { x, y });
   };
 
+  /**
+   * A tap. A row of two is a switch — tapping the lit half throws it to the
+   * other, so the whole control answers wherever it is touched. A longer row is
+   * not: there the options are places rather than states, and a tap on the one
+   * already chosen means what it says. A drag never does this either, since
+   * letting go of the pill where you found it has to be a way of changing your
+   * mind.
+   */
+  const choose = (index: number, x: number, y: number) => {
+    haptics.selection();
+    const target = options.length === 2 && index === selected ? 1 - index : index;
+    onChange(options[target].id, { x, y });
+  };
+
   const pan = Gesture.Pan()
     .activeOffsetX([-PAN_SLOP, PAN_SLOP])
     .onStart((event) => {
@@ -324,9 +343,8 @@ export function PillSelector({
             // option wins, and starting it here spends the press on it instead of the moment after.
             onPressIn={onTouch}
             onPress={(event) => {
-              haptics.selection();
               const { pageX, pageY } = event.nativeEvent;
-              onChange(option.id, { x: pageX, y: pageY });
+              choose(index, pageX, pageY);
             }}
             accessibilityRole="button"
             accessibilityState={{ selected: index === selected }}

@@ -1,5 +1,4 @@
 import { expoClient } from '@better-auth/expo/client';
-import type { BetterAuthClientPlugin } from 'better-auth';
 import {
   anonymousClient,
   emailOTPClient,
@@ -20,6 +19,18 @@ export const RESET_PASSWORD_LINK = `${APP_SCHEME}://reset-password`;
 /** Where the verification email sends the user back to — the app's root, with nothing to do. */
 export const VERIFY_EMAIL_LINK = `${APP_SCHEME}://`;
 
+const expoPlugin = expoClient({
+  scheme: APP_SCHEME,
+  // The module itself, rather than the two methods this once needed. The plugin reads and writes
+  // the cookie on both a synchronous and an asynchronous path — `getCookie`, the session cache and
+  // every outgoing auth request take the async one — and a storage object missing half of them does
+  // not fail at the boundary but at the call, as `undefined is not a function` from inside a promise
+  // nothing awaits. `ExpoClientStorage` is a `Pick` of this module, so handing over the whole thing
+  // is what keeps the set from drifting again.
+  storage: SecureStore,
+  storagePrefix: 'guitar',
+});
+
 /**
  * Better Auth client (BACKEND_PLAN.md §5).
  *
@@ -27,34 +38,6 @@ export const VERIFY_EMAIL_LINK = `${APP_SCHEME}://`;
  * `getCookie()` for the tRPC client to attach. The client holds its own reactive session store, so
  * nothing here needs a React provider — `useSession` works from any component.
  */
-type PluginActions = NonNullable<BetterAuthClientPlugin['getActions']>;
-
-/**
- * The Expo plugin, with only its `getActions` signature restated.
- *
- * The plugin declares that parameter's `$fetch` more narrowly than `BetterAuthClientPlugin` does,
- * so under `strictFunctionTypes` it fails to satisfy the very interface it is built for. Swapping
- * in the interface's own parameter types fixes that while keeping the precise return type, which is
- * what `getCookie()` is inferred from. Restated rather than intersected with the whole interface:
- * that drags in an optional `$InferServerPlugin`, and the session type inferred through it collapses
- * to `never`. The runtime object is untouched either way — this is a declaration mismatch only.
- */
-type ExpoPlugin = Omit<ReturnType<typeof expoClient>, 'getActions'> & {
-  getActions: (
-    ...args: Parameters<PluginActions>
-  ) => ReturnType<ReturnType<typeof expoClient>['getActions']>;
-};
-
-const expoPlugin = expoClient({
-  scheme: APP_SCHEME,
-  // Synchronous by design: the plugin reads the cookie during request setup and cannot await.
-  storage: {
-    getItem: (key) => SecureStore.getItem(key),
-    setItem: (key, value) => SecureStore.setItem(key, value),
-  },
-  storagePrefix: 'guitar',
-}) as ExpoPlugin;
-
 export const authClient = createAuthClient({
   baseURL: resolveApiBaseUrl(),
   basePath: '/api/auth',

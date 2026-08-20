@@ -65,12 +65,44 @@ function separateProviderName(profile: { name?: string; picture?: string; image?
   };
 }
 
+/** What `increment` remembers so a counter expires a fixed time after it was first created. */
+interface CounterMeta {
+  expiresAt: number;
+}
+
 function kvSecondaryStorage(kv: KVNamespace): SecondaryStorage {
   return {
     get: (key) => kv.get(key),
     set: (key, value, ttl) =>
       kv.put(key, value, ttl ? { expirationTtl: Math.max(ttl, KV_MIN_TTL_SECONDS) } : undefined),
     delete: (key) => kv.delete(key),
+    // Better Auth asks for this to be atomic; KV has no read-modify-write, so it is a read and a
+    // delete. What it is used for is one-time values — an OTP is consumed here — and the race it
+    // loses is two requests redeeming the same code at once, which is a race the code's own attempt
+    // counter is what actually bounds.
+    getAndDelete: async (key) => {
+      const value = await kv.get(key);
+      if (value !== null) await kv.delete(key);
+
+      return value;
+    },
+    // Likewise not atomic, and likewise the closest KV offers. The deadline is carried in the
+    // entry's metadata rather than left to `expirationTtl`, which every write would otherwise push
+    // out: rate limiting wants a window measured from the first request, and one that restarted on
+    // every subsequent one would hold a hammering client out indefinitely instead of for `ttl`.
+    increment: async (key, ttl) => {
+      const { value, metadata } = await kv.getWithMetadata<CounterMeta>(key);
+      const stored = Number(value);
+      const next = (Number.isFinite(stored) ? stored : 0) + 1;
+      const expiresAt = metadata?.expiresAt ?? Date.now() + ttl * 1000;
+
+      await kv.put(key, String(next), {
+        expirationTtl: Math.max(Math.ceil((expiresAt - Date.now()) / 1000), KV_MIN_TTL_SECONDS),
+        metadata: { expiresAt } satisfies CounterMeta,
+      });
+
+      return next;
+    },
   };
 }
 
