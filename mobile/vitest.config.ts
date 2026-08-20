@@ -10,6 +10,10 @@ import { defineConfig } from 'vitest/config';
 // calibration are arithmetic over numbers a device collected, and they are the only
 // place its correctness can be pinned down, since neither audio nor a microphone can
 // be exercised in a test run.
+//
+// A component can own one for the same reason — the pager's repaint order is which
+// pages to bring to a new palette and when, which is arithmetic over indices and is
+// answerable without a device.
 export default defineConfig({
   resolve: {
     alias: {
@@ -17,6 +21,10 @@ export default defineConfig({
     },
   },
   test: {
-    include: ['src/lib/**/*.test.ts', 'src/features/**/*.test.ts'],
+    include: [
+      'src/lib/**/*.test.ts',
+      'src/features/**/*.test.ts',
+      'src/components/**/*.test.ts',
+    ],
   },
 });

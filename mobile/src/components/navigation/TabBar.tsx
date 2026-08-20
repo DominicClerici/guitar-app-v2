@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Pressable, View, type LayoutChangeEvent } from 'react-native';
 import Animated, {
   interpolateColor,
@@ -172,17 +172,26 @@ export function TabBar({
     if (stillAt === undefined) tabBarScroll.value = event.contentOffset.x;
   });
 
-  // Put back where the live bar was, on the copy that is standing in for it. After measurement
-  // rather than as an initial `contentOffset`, because until the labels have been laid out there is
-  // no content to scroll and the offset would be clamped away to nothing; `measure` publishing the
-  // trailing space is the moment there is.
-  useEffect(() => {
-    if (stillAt === undefined) return;
-
-    runOnUI(() => {
-      scrollTo(scrollRef, stillAt, 0, false);
-    })();
-  }, [scrollRef, stillAt, trailingSpace]);
+  // Put back where the live bar was, on the copy that is standing in for it.
+  //
+  // Driven by the content's own size rather than by anything that merely correlates with it. The
+  // labels are measured and the trailing spacer mounted after this bar first renders, and a scroll
+  // issued before the content is that wide does not wait — it is clamped to whatever fits at that
+  // instant and stays there. Asking again once the spacer is in React's tree is not enough either,
+  // because the scroll goes to the UI thread and can arrive before the mounting does; that race is
+  // what left the copy showing the first tabs over a screen that was on the last one.
+  //
+  // `onContentSizeChange` is the event that cannot be early: it reports a size the content already
+  // has. It fires for each step of the measuring, and the restore is idempotent, so the last one
+  // lands on the full width. `SettingsTab` puts its own list back the same way.
+  const restore =
+    stillAt === undefined
+      ? undefined
+      : () => {
+          runOnUI(() => {
+            scrollTo(scrollRef, stillAt, 0, false);
+          })();
+        };
 
   // While a change is in flight the bar is ours: every frame it lands at
   // lerp(where the user had it, anchored target, how far the change has
@@ -246,6 +255,7 @@ export function TabBar({
       showsHorizontalScrollIndicator={false}
       onScroll={onScroll}
       scrollEventThrottle={16}
+      onContentSizeChange={restore}
       onLayout={(event) => {
         viewport.current = event.nativeEvent.layout.width;
         measure();
