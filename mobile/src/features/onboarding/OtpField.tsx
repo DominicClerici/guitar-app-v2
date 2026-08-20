@@ -2,6 +2,8 @@ import { OTP_LENGTH } from '@guitar/shared';
 import { useRef, useState } from 'react';
 import { Pressable, Text, TextInput, View } from 'react-native';
 
+import type { Paint } from '@/components/buttonFace';
+import { Face } from '@/components/Face';
 import { useToken } from '@/lib/tokens';
 
 /**
@@ -55,19 +57,17 @@ export function OtpField({
         const digit = value[index];
         const here = focused && index === Math.min(value.length, OTP_LENGTH - 1);
 
-        const edge = error
-          ? 'border-rose'
+        const edge: Paint = error
+          ? '--rose'
           : here
-            ? 'border-accent-line'
+            ? '--accent-line'
             : digit
-              ? 'border-line'
-              : 'border-line-soft';
+              ? '--line'
+              : '--line-soft';
 
         return (
-          <View
-            key={index}
-            className={`h-[54px] flex-1 items-center justify-center rounded-[12px] border bg-tray ${edge}`}
-          >
+          <View key={index} className="h-[54px] flex-1 items-center justify-center">
+            <Face fill="--tray" stroke={edge} radius={12} />
             {digit ? (
               <Text
                 className={`text-[22px] font-semibold tracking-[-0.4px] ${

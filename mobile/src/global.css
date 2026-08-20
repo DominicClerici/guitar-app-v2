@@ -37,8 +37,6 @@
       --surface: #181a1f; /* default card face */
       --surface-glass: rgba(24, 26, 31, 0.5); /* --surface at half weight, over a blur */
       --surface-raised: #20232a; /* raised chips / ghost buttons */
-      --edge-top: rgba(255, 255, 255, 0.06); /* bevel highlight */
-      --edge-bottom: rgba(0, 0, 0, 0.52); /* bevel shadow */
       --accent-edge: rgba(255, 255, 255, 0.16); /* lit hairline on a filled accent control */
       --line: #2a2e36; /* hairline */
       --line-soft: #23262d; /* softer hairline / side borders */
@@ -78,13 +76,6 @@
        lightest and the lines are darker than all of them, tray included. A line placed
        between two grounds instead of past them disappears against one of them.
 
-       The bevel is the same gradient read the other way. Dark lifts a face by putting
-       white along its top edge and black under its bottom one, straddling the fill.
-       Nothing is lighter than a near-white card, so light cannot straddle: it starts
-       the edge nearly invisible at the top, lets it settle into the side hairline, and
-       gathers it into a firm shadow underneath. Faint above, firm below — a face lit
-       from the same place, drawn with the only ink available.
-
        The hues all darken, and that is not a stylistic choice. `--amber` as authored in
        the dark half reads at 1.9:1 on a white card, which is not a colour so much as a
        rumour of one; every hue here clears 4.5:1 on the card face, and the four of them
@@ -103,8 +94,6 @@
       --surface: #f8f6f3; /* default card face */
       --surface-glass: rgba(248, 246, 243, 0.62); /* --surface at half weight, over a blur */
       --surface-raised: #fffefc; /* raised chips / ghost buttons */
-      --edge-top: rgba(29, 31, 36, 0.05); /* bevel highlight — nearly nothing, on purpose */
-      --edge-bottom: rgba(29, 31, 36, 0.22); /* bevel shadow */
       --accent-edge: rgba(255, 255, 255, 0.07); /* lit hairline on a filled accent control */
       --line: #ccc9c2; /* hairline */
       --line-soft: #d9d6cf; /* softer hairline / side borders */
@@ -153,8 +142,6 @@
   --color-surface: var(--surface);
   --color-surface-glass: var(--surface-glass);
   --color-surface-raised: var(--surface-raised);
-  --color-edge-top: var(--edge-top);
-  --color-edge-bottom: var(--edge-bottom);
   --color-line: var(--line);
   --color-line-soft: var(--line-soft);
   --color-scrim: var(--scrim);

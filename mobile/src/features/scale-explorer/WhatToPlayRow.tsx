@@ -1,6 +1,7 @@
 import { SymbolView } from 'expo-symbols';
 import { Pressable, Text, View } from 'react-native';
 
+import { Face } from '@/components/Face';
 import type { ScalePlan } from '@/lib/scale-analysis';
 import { useToken } from '@/lib/tokens';
 
@@ -34,8 +35,9 @@ export function WhatToPlayRow({ plan, onPress }: Props) {
       onPress={onPress}
       accessibilityRole="button"
       accessibilityLabel={`What to play: ${scaleLabel(headline)}, ${detail}. Opens the scale explorer.`}
-      className="mt-[8px] flex-row items-center justify-between rounded-[13px] border border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface px-[16px] py-[12px] active:opacity-70"
+      className="mt-[8px] flex-row items-center justify-between px-[16px] py-[12px] active:opacity-70"
     >
+      <Face name="card" radius={13} />
       <View className="min-w-0 flex-1 pr-[10px]">
         <Text className="font-mono text-[10px] font-semibold uppercase tracking-[2.5px] text-ink-faint">
           What to play

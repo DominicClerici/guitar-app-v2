@@ -1,5 +1,7 @@
 import { Text, View } from 'react-native';
 
+import { Face } from '@/components/Face';
+
 import {
   directionFor,
   saddleTravelMm,
@@ -39,7 +41,8 @@ export function ResultsSummary({ results, scaleInches }: Props) {
         After moving a saddle, retune the open string and run the check again.
       </Text>
 
-      <View className="mt-[18px] rounded-[13px] border border-x-line-soft border-t-edge-top border-b-edge-bottom bg-surface px-[16px]">
+      <View className="mt-[18px] px-[16px]">
+        <Face name="card" radius={13} />
         {strings.map((string, i) => {
           const measurement = rows[i];
           const last = i === STRING_COUNT - 1;

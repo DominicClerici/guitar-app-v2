@@ -18,6 +18,12 @@ class ExpoSquircleViewModule : Module() {
             Prop("squircleStrokeWidth") { view: ExpoSquircleView, width: Float ->
                 view.setStrokeWidth(width)
             }
+            Prop("squircleStrokeDash") { view: ExpoSquircleView, dash: List<Float> ->
+                view.setStrokeDash(dash)
+            }
+            Prop("squircleClip") { view: ExpoSquircleView, clip: Boolean ->
+                view.setClipsContent(clip)
+            }
             Prop("squircleSmoothing") { view: ExpoSquircleView, smoothing: Float ->
                 view.setSmoothing(smoothing)
             }

@@ -1,6 +1,8 @@
 import { useImperativeHandle, type Ref } from 'react';
 import { Linking, Pressable, Text, View } from 'react-native';
 
+import { Face } from '@/components/Face';
+
 import { IN_TUNE_CENTS } from './freqToNote';
 import { useNoteName } from './useNoteName';
 import { centsTextClass } from './tunerColors';
@@ -54,8 +56,10 @@ export function InlineTunerCard({ ref }: { ref?: Ref<InlineTunerCardRef> }) {
       disabled={status === 'unavailable'}
       accessibilityRole="button"
       accessibilityLabel={accessibilityLabel(status)}
-      className="rounded-[13px] border border-x-line-soft border-t-edge-top border-b-edge-bottom bg-surface p-[20px]"
+      className="p-[20px]"
     >
+      <Face name="card" radius={13} />
+
       <View className={live ? undefined : 'opacity-45'}>
         <View className="flex-row items-baseline justify-between">
           <Text className="text-[30px] font-semibold tracking-[-0.5px] text-ink">

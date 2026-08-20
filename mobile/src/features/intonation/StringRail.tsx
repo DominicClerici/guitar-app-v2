@@ -1,5 +1,8 @@
 import { Text, View } from 'react-native';
 
+import type { Paint } from '@/components/buttonFace';
+import { Face } from '@/components/Face';
+
 import { useGuitarStrings } from './useGuitarStrings';
 
 export type PipState = 'idle' | 'done' | 'active';
@@ -10,10 +13,10 @@ interface Props {
   caption?: string;
 }
 
-const FACE: Record<PipState, string> = {
-  idle: 'border-line-soft bg-surface',
-  done: 'border-accent-line bg-accent-wash',
-  active: 'border-accent bg-accent',
+const FACE: Record<PipState, { fill: Paint; stroke: Paint }> = {
+  idle: { fill: '--surface', stroke: '--line-soft' },
+  done: { fill: '--accent-wash', stroke: '--accent-line' },
+  active: { fill: '--accent', stroke: '--accent' },
 };
 
 const TEXT: Record<PipState, string> = {
@@ -39,8 +42,9 @@ export function StringRail({ states, caption }: Props) {
             <View
               key={string.id}
               accessibilityLabel={`${string.label} string ${state}`}
-              className={`h-[34px] flex-1 items-center justify-center rounded-[9px] border ${FACE[state]}`}
+              className="h-[34px] flex-1 items-center justify-center"
             >
+              <Face {...FACE[state]} radius={9} />
               <Text className={`text-[13px] font-semibold tracking-[-0.2px] ${TEXT[state]}`}>
                 {string.glyph}
               </Text>

@@ -4,6 +4,7 @@ import { Pressable, ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { BackLink } from '@/components/BackLink';
+import { Face } from '@/components/Face';
 import { FadingHScroll } from '@/components/FadingHScroll';
 import { Segmented, type Segment } from '@/components/Segmented';
 import { ChipFace } from '@/features/key-detection/ChipFace';
@@ -150,7 +151,8 @@ export function ScaleExplorerScreen() {
         contentContainerStyle={{ paddingBottom: insets.bottom + 32 }}
       >
         <View className="px-[18px] pt-[2px]">
-          <View className="rounded-[13px] border border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface p-[16px]">
+          <View className="p-[16px]">
+            <Face name="card" radius={13} />
             <Text className="font-mono text-[10px] font-semibold uppercase tracking-[2.5px] text-ink-faint">
               Play over this progression
             </Text>

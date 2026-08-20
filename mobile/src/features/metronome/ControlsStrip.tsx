@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { Text, View } from 'react-native';
 
+import { Face } from '@/components/Face';
 import { PillSelector, type PillOption } from '@/components/PillSelector';
 import { Ticker } from '@/components/Ticker';
 
@@ -35,7 +36,8 @@ interface Props {
 /** Everything that shapes the click, one setting to a line. */
 export function ControlsStrip({ beats, perBeat, voiceId, onBeats, onPerBeat, onVoice }: Props) {
   return (
-    <View className="rounded-[13px] border border-x-line-soft border-t-edge-top border-b-edge-bottom bg-surface px-[16px]">
+    <View className="px-[16px]">
+      <Face name="card" radius={13} />
       <Row label="Subdivision">
         <PillSelector
           options={SUBDIVISION_OPTIONS}

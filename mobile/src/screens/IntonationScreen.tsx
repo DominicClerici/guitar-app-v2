@@ -6,6 +6,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { BackLink } from '@/components/BackLink';
 import { Button } from '@/components/Button';
+import { Face } from '@/components/Face';
 import {
   CaptureDial,
   DEFAULT_SCALE_INCHES,
@@ -266,7 +267,8 @@ function TunePhase({
           the pips are just a reminder of where you got to.
         </Text>
 
-        <View className="mt-[20px] items-center rounded-[13px] border border-x-line-soft border-t-edge-top border-b-edge-bottom bg-surface px-[18px] pb-[18px] pt-[20px]">
+        <View className="mt-[20px] items-center px-[18px] pb-[18px] pt-[20px]">
+          <Face name="card" radius={13} />
           <View className="flex-row items-end">
             <Text className="text-[68px] font-semibold leading-[74px] tracking-[-2.5px] text-ink">
               {note ? nameOf(note.midi) : EM_DASH}

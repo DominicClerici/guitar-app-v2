@@ -3,6 +3,7 @@ import { Text, View } from 'react-native';
 import { z } from 'zod';
 
 import { Button } from '@/components/Button';
+import { Face } from '@/components/Face';
 import { now, pluck, prepare, release } from '@/features/scale-visualizer';
 import { toAccidentalGlyphs } from '@/lib/accidentals';
 import { chartFor } from '@/lib/guitar-voicings';
@@ -91,7 +92,8 @@ export function ProgressionPlayer({ chords, bpm, caption }: ProgressionPlayerPro
   const playing = at !== null;
 
   return (
-    <View className="mt-[18px] rounded-[13px] border border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface p-[14px]">
+    <View className="mt-[18px] p-[14px]">
+      <Face name="card" radius={13} />
       <View className="flex-row items-center justify-between">
         <View className="flex-1 pr-[10px]">
           <Text className="text-[14px] font-medium tracking-[-0.2px] text-ink">
@@ -140,15 +142,14 @@ function strum(entry: ProgressionChord) {
  * block rather than a chord sequencer, so it is on the face of the chip.
  */
 function ChordChip({ entry, sounding }: { entry: ProgressionChord; sounding: boolean }) {
-  const face = sounding
-    ? 'border-accent bg-accent-wash'
-    : 'border-line-soft bg-surface-raised';
-
   return (
-    <View className={`rounded-[9px] border px-[10px] py-[6px] ${face}`}>
-      <Text
-        className={`text-[13px] font-semibold ${sounding ? 'text-accent' : 'text-ink'}`}
-      >
+    <View className="px-[10px] py-[6px]">
+      <Face
+        fill={sounding ? '--accent-wash' : '--surface-raised'}
+        stroke={sounding ? '--accent' : '--line-soft'}
+        radius={9}
+      />
+      <Text className={`text-[13px] font-semibold ${sounding ? 'text-accent' : 'text-ink'}`}>
         {toAccidentalGlyphs(entry.symbol)}
       </Text>
       <Text className="mt-[1px] font-mono text-[9px] tracking-[0.5px] text-ink-faint">

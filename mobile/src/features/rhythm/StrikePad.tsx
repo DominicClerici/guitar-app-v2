@@ -10,6 +10,7 @@ import {
 } from 'react-native-reanimated';
 
 import { AnimatedView } from '@/components/AnimatedView';
+import { Face } from '@/components/Face';
 import { haptics } from '@/lib/haptics';
 
 /**
@@ -78,10 +79,8 @@ export function StrikePad({ onStrike, idle }: Props) {
         accessibilityLabel="Tap the rhythm"
         className="flex-1 items-center justify-center px-[18px]"
       >
-        <AnimatedView
-          className="h-full w-full items-center justify-center rounded-[18px] border border-accent-line bg-accent-wash"
-          style={face}
-        >
+        <AnimatedView className="h-full w-full items-center justify-center" style={face}>
+          <Face name="accent" radius={18} />
           <Text className="font-mono text-[13px] uppercase tracking-[6px] text-accent">Tap</Text>
           {idle ? (
             <Text className="mt-[10px] font-mono text-[9.5px] uppercase tracking-[1.5px] text-ink-faint">

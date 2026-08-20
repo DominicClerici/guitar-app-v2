@@ -1,5 +1,7 @@
 import { Text, View } from 'react-native';
 
+import { Face } from '@/components/Face';
+
 import {
   directionFor,
   saddleTravelMm,
@@ -40,7 +42,8 @@ export function StringResultCard({ string, measurement, scaleInches }: Props) {
 
   return (
     <View>
-      <View className="items-center rounded-[13px] border border-x-line-soft border-t-edge-top border-b-edge-bottom bg-surface px-[18px] pb-[20px] pt-[22px]">
+      <View className="items-center px-[18px] pb-[20px] pt-[22px]">
+        <Face name="card" radius={13} />
         <Text className="font-mono text-[9.5px] uppercase tracking-[2.5px] text-ink-faint">
           {string.label} string
         </Text>
@@ -77,7 +80,8 @@ export function StringResultCard({ string, measurement, scaleInches }: Props) {
         )}
       </View>
 
-      <View className="mt-[12px] rounded-[13px] border border-line-soft bg-tray px-[16px] py-[8px]">
+      <View className="mt-[12px] px-[16px] py-[8px]">
+        <Face name="tray" radius={13} />
         <Row label="Harmonic" value={`${measurement.harmonicHz.toFixed(2)} Hz`} />
         <View className="h-px bg-line-soft" />
         <Row label="12th fret" value={`${measurement.frettedHz.toFixed(2)} Hz`} />

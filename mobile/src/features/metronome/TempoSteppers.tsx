@@ -5,6 +5,7 @@ import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import { runOnJS } from 'react-native-reanimated';
 
 import { Button } from '@/components/Button';
+import { Face } from '@/components/Face';
 import { haptics } from '@/lib/haptics';
 
 import { uiNow } from './uiClock';
@@ -96,8 +97,9 @@ function TapButton({ onTap, taps }: { onTap: (at: number) => void; taps: number 
       <View
         accessibilityRole="button"
         accessibilityLabel="Tap the tempo"
-        className="h-[46px] flex-1 items-center justify-center rounded-[10px] border border-accent-line bg-accent-wash active:opacity-70"
+        className="h-[46px] flex-1 items-center justify-center active:opacity-70"
       >
+        <Face name="accent" radius={10} />
         <Text className="font-mono text-[11px] uppercase tracking-[4px] text-accent">
           {taps > 1 ? `Tap · ${taps}` : 'Tap'}
         </Text>

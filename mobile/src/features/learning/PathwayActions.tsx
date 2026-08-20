@@ -2,6 +2,7 @@ import { SymbolView } from 'expo-symbols';
 import { Text, View } from 'react-native';
 
 import { Button } from '@/components/Button';
+import { Face } from '@/components/Face';
 import { MAX_ACTIVE_PATHWAYS } from '@/lib/learning';
 import { useToken } from '@/lib/tokens';
 
@@ -35,8 +36,6 @@ const DOCKED_TRAILING = { topLeft: 10, bottomLeft: 10, topRight: 25, bottomRight
 const DOCKED_LEADING = { topLeft: 25, bottomLeft: 25, topRight: 10, bottomRight: 10 };
 
 export function PathwayActions({ action, onMenu, docked = false }: Props) {
-  const trailing = docked ? 'rounded-l-[10px] rounded-r-full' : 'rounded-[10px]';
-
   // `box-none` so the gap between the two buttons is not a lid over the page: docked, everything
   // but the buttons themselves has to fall through to the scroll view behind.
   return (
@@ -67,15 +66,15 @@ export function PathwayActions({ action, onMenu, docked = false }: Props) {
           Start pathway
         </Button>
       ) : action.kind === 'complete' ? (
-        <View
-          className={`h-[50px] flex-1 flex-row items-center justify-center border border-accent-line bg-accent-wash ${trailing}`}
-        >
+        <View className="h-[50px] flex-1 flex-row items-center justify-center">
+          <Face name="accent" radius={docked ? DOCKED_TRAILING : 10} />
           <Text className="font-mono text-[10px] font-semibold uppercase tracking-[2px] text-accent">
             Pathway complete
           </Text>
         </View>
       ) : (
-        <View className="flex-1 rounded-[10px] border border-line-soft bg-surface-raised px-[14px] py-[13px]">
+        <View className="flex-1 px-[14px] py-[13px]">
+          <Face name="key" radius={10} />
           <Text className="text-[12.5px] leading-[18px] text-ink-muted">
             You already have {MAX_ACTIVE_PATHWAYS} pathways on the go. Drop one to start this —
             nothing you have finished is lost either way.

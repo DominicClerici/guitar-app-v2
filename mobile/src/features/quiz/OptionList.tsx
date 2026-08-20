@@ -1,6 +1,8 @@
 import { SymbolView } from 'expo-symbols';
 import { Pressable, View } from 'react-native';
 
+import type { Paint } from '@/components/buttonFace';
+import { Face } from '@/components/Face';
 import { RichText } from '@/features/articles/RichText';
 import type { QuizOption } from '@/lib/content';
 import { useToken } from '@/lib/tokens';
@@ -66,14 +68,14 @@ function OptionRow({
 }) {
   const verdict = checked ? (correct ? 'right' : picked ? 'wrong' : 'idle') : 'idle';
 
-  const face =
+  const face: { fill: Paint; stroke: Paint } =
     verdict === 'right'
-      ? 'border-accent-line bg-accent-wash'
+      ? { fill: '--accent-wash', stroke: '--accent-line' }
       : verdict === 'wrong'
-        ? 'border-rose bg-rose-wash'
+        ? { fill: '--rose-wash', stroke: '--rose' }
         : picked
-          ? 'border-accent-line bg-surface-raised'
-          : 'border-line-soft bg-surface';
+          ? { fill: '--surface-raised', stroke: '--accent-line' }
+          : { fill: '--surface', stroke: '--line-soft' };
 
   const text =
     verdict === 'right' ? 'text-ink' : verdict === 'wrong' ? 'text-ink' : 'text-ink-muted';
@@ -85,10 +87,11 @@ function OptionRow({
       accessibilityRole={multi ? 'checkbox' : 'radio'}
       accessibilityState={{ checked: picked, disabled: checked }}
       accessibilityLabel={option.spans.map((span) => span.text).join('')}
-      className={`flex-row items-start gap-[11px] rounded-[12px] border px-[14px] py-[12px] ${face} ${
+      className={`flex-row items-start gap-[11px] px-[14px] py-[12px] ${
         checked ? '' : 'active:opacity-70'
       }`}
     >
+      <Face {...face} radius={12} />
       <Indicator picked={picked} verdict={verdict} multi={multi} />
       <RichText spans={option.spans} className={`flex-1 text-[14px] leading-[20px] ${text}`} />
     </Pressable>
@@ -110,11 +113,14 @@ function Indicator({
   const rose = useToken('--rose', '#e0788f');
   const accent = useToken('--accent', '#5ec8c2');
 
-  const shape = multi ? 'rounded-[7px]' : 'rounded-full';
+  // Half the 20px box is as far as a corner can go, which is how one asks to be a circle.
+  const shape = multi ? 7 : 10;
+  const box = 'mt-[1px] h-[20px] w-[20px] items-center justify-center';
 
   if (verdict === 'right') {
     return (
-      <View className={`mt-[1px] h-[20px] w-[20px] items-center justify-center bg-accent ${shape}`}>
+      <View className={box}>
+        <Face fill="--accent" radius={shape} />
         <SymbolView name="checkmark" size={11} weight="bold" tintColor={onAccent} />
       </View>
     );
@@ -122,20 +128,20 @@ function Indicator({
 
   if (verdict === 'wrong') {
     return (
-      <View
-        className={`mt-[1px] h-[20px] w-[20px] items-center justify-center border border-rose ${shape}`}
-      >
+      <View className={box}>
+        <Face stroke="--rose" radius={shape} />
         <SymbolView name="xmark" size={10} weight="bold" tintColor={rose} />
       </View>
     );
   }
 
   return (
-    <View
-      className={`mt-[1px] h-[20px] w-[20px] items-center justify-center border ${shape} ${
-        picked ? 'border-accent bg-accent-wash' : 'border-line'
-      }`}
-    >
+    <View className={box}>
+      <Face
+        fill={picked ? '--accent-wash' : 'transparent'}
+        stroke={picked ? '--accent' : '--line'}
+        radius={shape}
+      />
       {picked ? (
         <SymbolView
           name={multi ? 'checkmark' : 'circle.fill'}

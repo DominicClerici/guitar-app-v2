@@ -2,6 +2,8 @@ import { View, type LayoutChangeEvent } from 'react-native';
 import { useAnimatedStyle, useSharedValue, type SharedValue } from 'react-native-reanimated';
 
 import { AnimatedView } from '@/components/AnimatedView';
+import { SquircleView } from '@/components/Squircle';
+import { useToken } from '@/lib/tokens';
 
 import type { RoundResult, Verdict } from './rhythmGrading';
 import { barsOf, describePattern, type GridSlot, type RhythmGrid } from './rhythmGrid';
@@ -98,6 +100,7 @@ function BarRow({
   // Owned here rather than passed in: the row is the only thing that knows how wide it ended
   // up, and both the playhead and the marks are positioned as a fraction of it.
   const width = useSharedValue(0);
+  const surface = useToken('--surface', '#181a1f');
 
   const playhead = useAnimatedStyle(() => {
     const local = progress.value * grid.bars - bar;
@@ -113,7 +116,7 @@ function BarRow({
 
   return (
     <View className="mt-[10px]" onLayout={onLayout}>
-      <View className="h-[38px] flex-row items-center overflow-hidden rounded-[8px] bg-surface">
+      <SquircleView radius={8} fill={surface} clip className="h-[38px] flex-row items-center">
         {slots.map((slot) => (
           <View
             key={slot.index}
@@ -128,7 +131,7 @@ function BarRow({
         ))}
 
         <AnimatedView className="absolute left-0 top-0 h-full w-[2px] bg-accent" style={playhead} />
-      </View>
+      </SquircleView>
 
       <View className="h-[14px] pt-[3px]">
         {marks.map((mark) => {

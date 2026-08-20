@@ -5,6 +5,7 @@ import { Pressable, ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Avatar } from '@/components/Avatar';
+import { Face } from '@/components/Face';
 import { initials } from '@/features/account';
 import { InlineChordDetector, type InlineChordDetectorRef } from '@/features/chord-detection';
 import { LearningHero } from '@/features/learning';
@@ -71,7 +72,8 @@ function PlayCard({ icon, title, subtitle }: (typeof PLAY)[number]) {
   const accent = useToken('--accent', '#5ec8c2');
 
   return (
-    <Pressable className="flex-row items-center gap-[16px] rounded-[13px] border border-t-edge-top border-x-line-soft border-b-edge-bottom p-[16px] bg-surface">
+    <Pressable className="flex-row items-center gap-[16px] p-[16px]">
+      <Face name="card" radius={13} />
       <View className="flex-1">
         <Text className="text-[15.5px] font-semibold tracking-[-0.2px] text-ink">{title}</Text>
         <Text className="mt-[4px] text-[12.5px] leading-[17px] text-ink-muted">{subtitle}</Text>

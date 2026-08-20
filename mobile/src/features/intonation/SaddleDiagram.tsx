@@ -1,6 +1,7 @@
 import { SymbolView } from 'expo-symbols';
 import { Text, View } from 'react-native';
 
+import { Face } from '@/components/Face';
 import { useToken } from '@/lib/tokens';
 
 import type { Direction } from './intonationMath';
@@ -23,7 +24,8 @@ export function SaddleDiagram({ direction }: Props) {
   const tint = moving ? accent : faint;
 
   return (
-    <View className="rounded-[12px] border border-line-soft bg-tray px-[16px] py-[14px]">
+    <View className="px-[16px] py-[14px]">
+      <Face name="tray" radius={12} />
       <View className="flex-row items-center">
         <View className="items-center">
           <View className="h-[26px] w-[3px] rounded-full bg-ink-faint" />

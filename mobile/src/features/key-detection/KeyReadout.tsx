@@ -1,5 +1,6 @@
 import { Pressable, Text, View } from 'react-native';
 
+import { Face } from '@/components/Face';
 import type { KeyEstimate } from '@/lib/key-analysis';
 
 import { keyStrength } from './keyStrength';
@@ -51,7 +52,8 @@ interface Props {
 export function KeyReadout({ estimate, keyChoice, onSelectKey }: Props) {
   if (estimate.status === 'insufficient' || !estimate.best) {
     return (
-      <View className="rounded-[13px] border border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface p-[16px]">
+      <View className="p-[16px]">
+        <Face name="card" radius={13} />
         <Text className="font-mono text-[10px] font-semibold uppercase tracking-[2.5px] text-ink-faint">
           Detected key
         </Text>
@@ -74,7 +76,8 @@ export function KeyReadout({ estimate, keyChoice, onSelectKey }: Props) {
   const displayedFraction = keyChoice === 0 ? fraction : 1 - fraction;
 
   return (
-    <View className="rounded-[13px] border border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface p-[16px]">
+    <View className="p-[16px]">
+      <Face name="card" radius={13} />
       <View className="flex-row items-center justify-between">
         <Text className="font-mono text-[10px] font-semibold uppercase tracking-[2.5px] text-ink-faint">
           Detected key
@@ -111,12 +114,9 @@ export function KeyReadout({ estimate, keyChoice, onSelectKey }: Props) {
                   accessibilityRole="button"
                   accessibilityState={{ selected }}
                   accessibilityLabel={candidate.name}
-                  className={`flex-1 rounded-[10px] border px-[12px] py-[11px] active:opacity-70 ${
-                    selected
-                      ? 'border-accent-line bg-accent-wash'
-                      : 'border-line-soft bg-surface-raised'
-                  }`}
+                  className="flex-1 px-[12px] py-[11px] active:opacity-70"
                 >
+                  <Face name={selected ? 'accent' : 'key'} radius={10} />
                   <Text
                     className={`text-[14px] font-semibold tracking-[-0.2px] ${
                       selected ? 'text-ink' : 'text-ink-muted'

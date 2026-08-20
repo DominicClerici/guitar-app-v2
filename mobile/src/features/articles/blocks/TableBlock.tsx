@@ -1,6 +1,8 @@
 import { View } from 'react-native';
 
+import { SquircleView } from '@/components/Squircle';
 import type { Span, TableBlock as TableBlockData } from '@/lib/content';
+import { useToken } from '@/lib/tokens';
 
 import { RichText } from '../RichText';
 
@@ -20,8 +22,10 @@ function Row({ cells, className }: { cells: Span[][]; className: string }) {
 }
 
 export function TableBlock({ block }: { block: TableBlockData }) {
+  const lineSoft = useToken('--line-soft', '#23262d');
+
   return (
-    <View className="mt-[18px] overflow-hidden rounded-[13px] border border-line-soft">
+    <SquircleView radius={13} stroke={lineSoft} strokeWidth={1} clip className="mt-[18px]">
       {block.header ? (
         <View className="bg-surface">
           <Row
@@ -35,6 +39,6 @@ export function TableBlock({ block }: { block: TableBlockData }) {
           <Row cells={row} className="text-[13px] leading-[19px] text-ink-muted" />
         </View>
       ))}
-    </View>
+    </SquircleView>
   );
 }

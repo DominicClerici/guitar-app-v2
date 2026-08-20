@@ -9,6 +9,7 @@ import {
 } from 'react-native-reanimated';
 
 import { AnimatedView } from '@/components/AnimatedView';
+import { Face } from '@/components/Face';
 import { toAccidentalGlyphs } from '@/lib/accidentals';
 import type { RomanLabel } from '@/lib/key-analysis';
 import { useToken } from '@/lib/tokens';
@@ -112,11 +113,9 @@ export function Chip({
             reordering={dragging}
             active={active}
           />
-          <AnimatedView
-            pointerEvents="none"
-            className="absolute inset-0 rounded-[11px] border border-accent-line bg-accent-wash"
-            style={ringStyle}
-          />
+          <AnimatedView pointerEvents="none" className="absolute inset-0" style={ringStyle}>
+            <Face name="accent" radius={11} />
+          </AnimatedView>
         </Pressable>
       </AnimatedView>
     </AnimatedView>
@@ -137,15 +136,12 @@ export function ChipFace({ chord, label, position, reordering, active }: FacePro
   const faint = useToken('--ink-faint', '#62666e');
 
   return (
-    <View
-      className={`items-center rounded-[11px] border px-[13px] py-[8px] ${
-        active
-          ? 'border-accent-line bg-accent-wash'
-          : reordering
-            ? 'border-line bg-surface-raised'
-            : 'border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface'
-      }`}
-    >
+    <View className="items-center px-[13px] py-[8px]">
+      <Face
+        fill={active ? '--accent-wash' : reordering ? '--surface-raised' : '--surface'}
+        stroke={active ? '--accent-line' : reordering ? '--line' : '--line-soft'}
+        radius={11}
+      />
       <View className="flex-row items-center gap-[4px]">
         {/* The engine names every unpinned chord in whatever reading best serves
             the displayed key; the pin marks the one chord it may not touch. */}

@@ -2,6 +2,8 @@ import { useRouter } from 'expo-router';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { Face } from '@/components/Face';
+
 // The ear tab: functional ear training against a drone. One mode for now —
 // Free Play — laid out as a list so the curated paths, stats and the rest of
 // the progression system land here as further cards without rework.
@@ -43,8 +45,9 @@ export function EarTab() {
           onPress={() => router.push('/ear-trainer')}
           accessibilityRole="button"
           accessibilityLabel="Open Free Play"
-          className="mt-[14px] rounded-[13px] border border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface p-[16px] active:opacity-70"
+          className="mt-[14px] p-[16px] active:opacity-70"
         >
+          <Face name="card" radius={13} />
           <Emblem />
           <Text className="mt-[18px] text-[16px] font-semibold tracking-[-0.2px] text-ink">
             Free Play

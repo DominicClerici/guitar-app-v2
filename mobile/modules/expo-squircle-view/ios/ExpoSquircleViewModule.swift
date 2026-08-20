@@ -14,6 +14,12 @@ public class ExpoSquircleViewModule: Module {
       Prop("squircleStrokeWidth") { (view: ExpoSquircleView, width: Double) in
         view.setStrokeWidth(CGFloat(width))
       }
+      Prop("squircleStrokeDash") { (view: ExpoSquircleView, dash: [Double]) in
+        view.setStrokeDash(dash.map { CGFloat($0) })
+      }
+      Prop("squircleClip") { (view: ExpoSquircleView, clip: Bool) in
+        view.clipsContent = clip
+      }
       Prop("squircleSmoothing") { (view: ExpoSquircleView, smoothing: Double) in
         view.cornerSmoothing = CGFloat(smoothing)
       }

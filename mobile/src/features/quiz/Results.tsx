@@ -4,6 +4,7 @@ import { ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Button } from '@/components/Button';
+import { Face } from '@/components/Face';
 import { gradableQuestions, type QuizDocument } from '@/lib/content';
 import { isCorrect, type AnswerSheet, type QuizScore } from '@/lib/quiz';
 import { useTokens } from '@/lib/tokens';
@@ -185,10 +186,9 @@ export function Results({
                 <View
                   key={index}
                   accessibilityLabel={`Question ${index + 1} ${right ? 'correct' : 'incorrect'}`}
-                  className={`h-[34px] w-[34px] items-center justify-center rounded-[10px] border ${
-                    right ? 'border-accent-line bg-accent-wash' : 'border-rose bg-rose-wash'
-                  }`}
+                  className="h-[34px] w-[34px] items-center justify-center"
                 >
+                  <Face name={right ? 'accent' : 'alert'} radius={10} />
                   <Text
                     className={`font-mono text-[11px] font-semibold ${
                       right ? 'text-accent' : 'text-rose'

@@ -3,6 +3,7 @@ import { Text, View } from 'react-native';
 import { z } from 'zod';
 
 import { Button } from '@/components/Button';
+import { Face } from '@/components/Face';
 import { pluck, prepare, release } from '@/features/scale-visualizer';
 import { toAccidentalGlyphs } from '@/lib/accidentals';
 import { isRootName, type RootName } from '@/lib/chord-library';
@@ -81,7 +82,14 @@ const STRINGS = Array.from({ length: STRING_COUNT }, (_, string) => string);
 
 const positionKey = (string: number, fret: number) => `${string}-${fret}`;
 
-export function TriadShape({ root, quality, strings, inversion, minFret, caption }: TriadShapeProps) {
+export function TriadShape({
+  root,
+  quality,
+  strings,
+  inversion,
+  minFret,
+  caption,
+}: TriadShapeProps) {
   const [sounding, setSounding] = useState<string | null>(null);
   const [playing, setPlaying] = useState(false);
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -146,7 +154,8 @@ export function TriadShape({ root, quality, strings, inversion, minFret, caption
   const spoken = `${root} ${QUALITY_LABEL[quality]}`;
 
   return (
-    <View className="mt-[18px] rounded-[13px] border border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface p-[14px]">
+    <View className="mt-[18px] p-[14px]">
+      <Face name="card" radius={13} />
       <View className="flex-row items-center justify-between">
         <View className="flex-1 pr-[10px]">
           <Text className="text-[14px] font-medium tracking-[-0.2px] text-ink">

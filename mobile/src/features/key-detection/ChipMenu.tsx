@@ -6,6 +6,7 @@ import { Easing, FadeIn, FadeOut, withTiming } from 'react-native-reanimated';
 import { useUniwind, withUniwind } from 'uniwind';
 
 import { AnimatedView } from '@/components/AnimatedView';
+import { SquircleView } from '@/components/Squircle';
 import { toAccidentalGlyphs } from '@/lib/accidentals';
 import { useToken } from '@/lib/tokens';
 
@@ -98,6 +99,7 @@ export function ChipMenu({ anchor, focused, chordName, onActivate, onDismiss }: 
   // smear; `useUniwind` resolves `system` to the appearance actually in force and re-renders on
   // the crossing, and `expo-blur`'s tints happen to be named for the themes exactly.
   const { theme } = useUniwind();
+  const lineSoft = useToken('--line-soft', '#23262d');
 
   const frame = menuFrame(anchor, width, height, insets.bottom);
   const hole = {
@@ -143,7 +145,7 @@ export function ChipMenu({ anchor, focused, chordName, onActivate, onDismiss }: 
         className="absolute"
         style={{ left: frame.x, top: frame.y, width: frame.w }}
       >
-        <View className="overflow-hidden rounded-[13px] border border-t-edge-top border-x-line-soft border-b-edge-bottom">
+        <SquircleView radius={13} stroke={lineSoft} strokeWidth={1} clip>
           {/* The blur sits under the surface wash rather than replacing it: the wash
               is what keeps the labels readable over whatever the card lands on —
               usually the fretboard, which is busy. On Android the blur only runs on
@@ -165,7 +167,7 @@ export function ChipMenu({ anchor, focused, chordName, onActivate, onDismiss }: 
               />
             ))}
           </View>
-        </View>
+        </SquircleView>
       </AnimatedView>
     </View>
   );

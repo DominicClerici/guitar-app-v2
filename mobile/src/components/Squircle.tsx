@@ -1,23 +1,49 @@
-import { Pressable, type ColorValue, type PressableProps } from 'react-native';
+import type { ReactNode } from 'react';
+import {
+  Pressable,
+  View,
+  type ColorValue,
+  type PressableProps,
+  type StyleProp,
+  type ViewStyle,
+} from 'react-native';
+import { withUniwind } from 'uniwind';
 
-import { SquircleShape, type SquircleCorners } from '@modules/expo-squircle-view';
+import { SquircleBox, SquircleShape, type SquircleCorners } from '@modules/expo-squircle-view';
 
 import { APPLE_SMOOTHING } from '@/lib/squircle';
 
 /**
- * A pressable whose background is a squircle rather than a `border-radius`.
+ * The two ways app code puts a squircle on the screen: as the face of a control
+ * you press, and as the face of a box you do not.
  *
- * The shape is painted by a native layer sized to the button, so — unlike
- * `Face`, which has to measure itself in JavaScript before it can draw —
- * it is right on the first frame and stays right through a resize. That is the
- * whole reason to reach for it: on anything that appears, animates, or reflows,
- * the SVG face blinks and this does not.
+ * Both paint on a native layer sized to the view, so — unlike an SVG, which has
+ * to measure itself in JavaScript before it can draw — they are right on the
+ * first frame and stay right through a resize. Everything else composes as
+ * normal: layout, padding and press feedback stay on the element as utilities,
+ * and only the fill and the border move to props, since a native layer takes
+ * colours rather than classes.
  *
- * Everything else composes as normal. Layout, padding and press feedback stay on
- * the Pressable as utilities; only the fill and the border move to props, since
- * a native layer takes colours rather than classes — resolve them from tokens at
- * the call site with `useToken`, the way a `tintColor` already is.
+ * Where a surface wears one of the app's named faces — a card, a tray, a
+ * chosen chip — reach for `Face` instead; these two are for the colours that
+ * table does not have a name for.
  *
+ * One radius per corner is allowed, which a `rounded-full` cannot be talked
+ * into: a squircle corner reaches back along its edge, so each has to be drawn
+ * knowing its own. Anything past half the shorter side is clamped, which is how
+ * a corner asks to be a semicircle.
+ */
+interface Paint {
+  /** One number for all four corners, or the corners that differ. */
+  radius: number | Partial<SquircleCorners>;
+  /** How much of each corner is given over to easing curvature in and out. */
+  smoothing?: number;
+  fill?: ColorValue;
+  stroke?: ColorValue;
+  strokeWidth?: number;
+}
+
+/**
  * ```tsx
  * const accent = useToken('--accent', '#5ec8c2');
  *
@@ -30,20 +56,8 @@ import { APPLE_SMOOTHING } from '@/lib/squircle';
  *   <Text className="text-on-accent">Continue</Text>
  * </SquirclePressable>
  * ```
- *
- * One radius per corner is allowed, which a `rounded-full` cannot be talked into:
- * a squircle corner reaches back along its edge, so each has to be drawn knowing
- * its own. Anything past half the shorter side is clamped, which is how a corner
- * asks to be a semicircle.
  */
-export interface Props extends Omit<PressableProps, 'style' | 'children'> {
-  /** One number for all four corners, or the corners that differ. */
-  radius: number | Partial<SquircleCorners>;
-  /** How much of each corner is given over to easing curvature in and out. */
-  smoothing?: number;
-  fill?: ColorValue;
-  stroke?: ColorValue;
-  strokeWidth?: number;
+export interface Props extends Omit<PressableProps, 'style' | 'children'>, Paint {
   children?: PressableProps['children'];
 }
 
@@ -56,14 +70,12 @@ export function SquirclePressable({
   children,
   ...pressable
 }: Props) {
-  const radii = corners(radius);
-
   return (
     <Pressable {...pressable}>
       {(state) => (
         <>
           <SquircleShape
-            radii={radii}
+            radii={corners(radius)}
             smoothing={smoothing}
             fill={fill}
             stroke={stroke}
@@ -76,7 +88,59 @@ export function SquirclePressable({
   );
 }
 
-function corners(radius: number | Partial<SquircleCorners>): SquircleCorners {
+export interface ViewProps extends Paint {
+  /**
+   * Masks children to the corner — what `overflow-hidden` used to do, for a
+   * scroller or an image that runs to the edge. Off by default: it costs an
+   * offscreen layer, and a surface that only needs a background does not.
+   */
+  clip?: boolean;
+  /** Layout only — the fill and the hairline come from the paint props. */
+  className?: string;
+  /** For the one or two lengths that have to be computed rather than written. */
+  style?: StyleProp<ViewStyle>;
+  children?: ReactNode;
+}
+
+const ClippingBox = withUniwind(SquircleBox);
+
+/**
+ * ```tsx
+ * <SquircleView radius={13} fill={tray} clip className="h-[64px] flex-row">
+ *   {ticks}
+ * </SquircleView>
+ * ```
+ */
+export function SquircleView({
+  radius,
+  smoothing = APPLE_SMOOTHING,
+  fill,
+  stroke,
+  strokeWidth,
+  clip = false,
+  className,
+  style,
+  children,
+}: ViewProps) {
+  const shape = { radii: corners(radius), smoothing, fill, stroke, strokeWidth };
+
+  if (clip) {
+    return (
+      <ClippingBox className={className} style={style} {...shape}>
+        {children}
+      </ClippingBox>
+    );
+  }
+
+  return (
+    <View className={className} style={style}>
+      <SquircleShape {...shape} />
+      {children}
+    </View>
+  );
+}
+
+export function corners(radius: number | Partial<SquircleCorners>): SquircleCorners {
   if (typeof radius === 'number') {
     return { topLeft: radius, topRight: radius, bottomRight: radius, bottomLeft: radius };
   }

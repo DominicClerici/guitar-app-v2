@@ -3,6 +3,7 @@ import { Pressable, ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Button } from '@/components/Button';
+import { Face } from '@/components/Face';
 import type { ActivityMode } from '@/lib/content';
 
 // The card an activity opens on: what it is, how it works, and the one tap that starts it.
@@ -96,12 +97,9 @@ export function ActivityIntro({
                     accessibilityRole="button"
                     accessibilityLabel={`${MODE_LABEL[mode]} — ${MODE_HINT[mode]}`}
                     accessibilityState={{ selected }}
-                    className={`rounded-[11px] border px-[14px] py-[12px] active:opacity-70 ${
-                      selected
-                        ? 'border-accent-line bg-accent-wash'
-                        : 'border-x-line-soft border-t-edge-top border-b-edge-bottom bg-surface'
-                    }`}
+                    className="px-[14px] py-[12px] active:opacity-70"
                   >
+                    <Face name={selected ? 'accent' : 'card'} radius={11} />
                     <Text
                       className={`text-[14px] font-medium tracking-[-0.2px] ${
                         selected ? 'text-ink' : 'text-ink-muted'

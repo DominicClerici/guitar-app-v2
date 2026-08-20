@@ -1,6 +1,7 @@
 import { Pressable, Text, View } from 'react-native';
 
 import { Button } from '@/components/Button';
+import { Face } from '@/components/Face';
 import type { CurriculumPathway, PathwayMeta } from '@/lib/content';
 import { nextStep, pathwayProgress, stepTitle, type ProgressBySection } from '@/lib/learning';
 
@@ -32,8 +33,9 @@ export function ContinueCard({
       onPress={onOpen}
       accessibilityRole="button"
       accessibilityLabel={`Open ${meta.title}`}
-      className="rounded-[13px] border border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface p-[16px] active:opacity-70"
+      className="p-[16px] active:opacity-70"
     >
+      <Face name="card" radius={13} />
       <Text className="font-mono text-[9.5px] uppercase tracking-[2px] text-ink-faint">
         {meta.tags.join(' · ')}
       </Text>

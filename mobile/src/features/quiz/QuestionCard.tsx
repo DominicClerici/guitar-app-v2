@@ -1,6 +1,7 @@
 import { SymbolView } from 'expo-symbols';
 import { Text, View } from 'react-native';
 
+import { Face } from '@/components/Face';
 import { BlockView } from '@/features/articles/blocks/BlockView';
 import { RichText } from '@/features/articles/RichText';
 import type { RenderQuestion } from '@/lib/content';
@@ -147,11 +148,8 @@ function Feedback({ question, correct }: { question: RenderQuestion; correct: bo
 
   return (
     <View className="mt-[18px] px-[18px]">
-      <View
-        className={`rounded-[13px] border px-[14px] py-[13px] ${
-          correct ? 'border-accent-line bg-accent-wash' : 'border-rose bg-rose-wash'
-        }`}
-      >
+      <View className="px-[14px] py-[13px]">
+        <Face name={correct ? 'accent' : 'alert'} radius={13} />
         <View className="flex-row items-center gap-[8px]">
           <SymbolView
             name={correct ? 'checkmark.circle.fill' : 'xmark.circle.fill'}
@@ -182,7 +180,8 @@ function Feedback({ question, correct }: { question: RenderQuestion; correct: bo
 function SkippedCard() {
   return (
     <View className="px-[18px] pt-[14px]">
-      <View className="rounded-[13px] border border-dashed border-line px-[14px] py-[16px]">
+      <View className="px-[14px] py-[16px]">
+        <Face stroke="--line" dashed radius={13} />
         <Text className="text-[13.5px] font-medium tracking-[-0.2px] text-ink-muted">
           This question needs a newer version of the app
         </Text>

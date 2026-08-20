@@ -4,6 +4,7 @@ import { Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Button } from '@/components/Button';
+import { Face } from '@/components/Face';
 import { RichText } from '@/features/articles/RichText';
 import { subscribeFrames } from '@/features/tuner/tunerEngine';
 import { toAccidentalGlyphs } from '@/lib/accidentals';
@@ -187,7 +188,8 @@ export function NotePlayRunner({
         startLabel="Start listening"
         onStart={begin}
       >
-        <View className="gap-[9px] rounded-[12px] border border-x-line-soft border-t-edge-top border-b-edge-bottom bg-surface px-[14px] py-[13px]">
+        <View className="gap-[9px] px-[14px] py-[13px]">
+          <Face name="card" radius={12} />
           <Text className="text-[13px] leading-[19px] text-ink-muted">
             {rounds.length === 1 ? 'One round' : `${rounds.length} rounds`} of notes to find on the
             neck. Play one and it lights up.
@@ -329,7 +331,8 @@ function RoundDone({ label, tint, onDone }: { label: string; tint: string; onDon
 
 function Stat({ label, value }: { label: string; value: string }) {
   return (
-    <View className="flex-1 items-center rounded-[12px] border border-x-line-soft border-t-edge-top border-b-edge-bottom bg-surface px-[12px] py-[13px]">
+    <View className="flex-1 items-center px-[12px] py-[13px]">
+      <Face name="card" radius={12} />
       <Text className="font-mono text-[9.5px] uppercase tracking-[1.5px] text-ink-faint">
         {label}
       </Text>

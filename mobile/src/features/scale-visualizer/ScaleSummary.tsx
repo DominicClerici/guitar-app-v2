@@ -1,5 +1,7 @@
 import { Text, View } from 'react-native';
 
+import { Face } from '@/components/Face';
+
 import { toAccidentalGlyphs } from '@/lib/accidentals';
 import { stepFormula, type Scale } from '@/lib/scale-library';
 
@@ -15,7 +17,8 @@ export function ScaleSummary({ scale }: { scale: Scale }) {
   const steps = stepFormula(scale.type.semitones);
 
   return (
-    <View className="mx-[18px] rounded-[11px] border border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface px-[10px] py-[14px]">
+    <View className="mx-[18px] px-[10px] py-[14px]">
+      <Face name="card" radius={11} />
       <View className="flex-row">
         {scale.notes.map((note, slot) => {
           const degree = scale.type.degrees[slot];

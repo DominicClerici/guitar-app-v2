@@ -4,6 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import type { SharedValue } from 'react-native-reanimated';
 
 import { Button } from '@/components/Button';
+import { Face } from '@/components/Face';
 import { MicGate } from '@/components/MicGate';
 import { RichText } from '@/features/articles/RichText';
 import {
@@ -216,7 +217,8 @@ export function RhythmRunner({ document, activity, sectionId, userId, onDone }: 
         }}
         onDone={onDone}
       >
-        <View className="rounded-[13px] border border-x-line-soft border-t-edge-top border-b-edge-bottom bg-surface px-[16px] py-[14px]">
+        <View className="px-[16px] py-[14px]">
+          <Face name="card" radius={13} />
           <Text className="text-[13.5px] leading-[20px] text-ink-muted">
             {describeBias(run.bias)}
           </Text>

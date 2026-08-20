@@ -2,6 +2,7 @@ import { SymbolView } from 'expo-symbols';
 import { Pressable, Text, View } from 'react-native';
 
 import { Button } from '@/components/Button';
+import { Face } from '@/components/Face';
 import type { Position } from '@/lib/guitar-positions';
 import { useToken } from '@/lib/tokens';
 
@@ -34,7 +35,8 @@ export function NeckStrip({
 }: Props) {
   return (
     <View className="flex-row items-center gap-[8px] px-[18px]">
-      <View className="h-[50px] flex-1 flex-row items-center rounded-[10px] border border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface px-[2px]">
+      <View className="h-[50px] flex-1 flex-row items-center px-[2px]">
+        <Face name="card" radius={10} />
         <Step direction="left" onPress={() => onStep(-1)} />
 
         <Button

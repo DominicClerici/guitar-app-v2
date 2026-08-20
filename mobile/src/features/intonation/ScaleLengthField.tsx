@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Text, TextInput, View } from 'react-native';
 
+import { Face } from '@/components/Face';
 import { PillSelector, type PillOption } from '@/components/PillSelector';
 import { useToken } from '@/lib/tokens';
 
@@ -49,24 +50,28 @@ export function ScaleLengthField({ inches, onChange }: Props) {
   const preset = SCALE_PRESETS.find((entry) => Math.abs(entry.inches - inches) < SAME);
 
   return (
-    <View className="rounded-[13px] border border-x-line-soft border-t-edge-top border-b-edge-bottom bg-surface p-[16px]">
+    <View className="p-[16px]">
+      <Face name="card" radius={13} />
       <View className="flex-row items-center justify-between">
         <Text className="font-mono text-[9.5px] uppercase tracking-[2px] text-ink-faint">
           Scale length
         </Text>
         <View className="flex-row items-baseline gap-[4px]">
-          <TextInput
-            value={shown}
-            onChangeText={setDraft}
-            onBlur={commit}
-            onSubmitEditing={commit}
-            keyboardType="decimal-pad"
-            returnKeyType="done"
-            selectTextOnFocus
-            selectionColor={faint}
-            accessibilityLabel="Scale length in inches"
-            className="min-w-[54px] rounded-[8px] border border-line-soft bg-tray px-[8px] py-[4px] text-right font-mono text-[13px] text-ink"
-          />
+          <View className="min-w-[54px]">
+            <Face name="tray" radius={8} />
+            <TextInput
+              value={shown}
+              onChangeText={setDraft}
+              onBlur={commit}
+              onSubmitEditing={commit}
+              keyboardType="decimal-pad"
+              returnKeyType="done"
+              selectTextOnFocus
+              selectionColor={faint}
+              accessibilityLabel="Scale length in inches"
+              className="px-[8px] py-[4px] text-right font-mono text-[13px] text-ink"
+            />
+          </View>
           <Text className="font-mono text-[11px] text-ink-faint">in</Text>
         </View>
       </View>

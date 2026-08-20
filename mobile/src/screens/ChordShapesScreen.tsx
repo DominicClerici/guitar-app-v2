@@ -3,6 +3,7 @@ import { Pressable, ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { BackLink } from '@/components/BackLink';
+import { Face } from '@/components/Face';
 import { QualityPicker, RootRail } from '@/features/chord-picker';
 import { ChordHeading, RegionSection, useChordShapes } from '@/features/chord-shapes';
 import { useToken } from '@/lib/tokens';
@@ -91,8 +92,9 @@ function Disclosure({ label, caption, open, onPress }: DisclosureProps) {
       onPress={onPress}
       accessibilityRole="button"
       accessibilityState={{ expanded: open }}
-      className="flex-row items-center gap-[10px] rounded-[11px] border border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface px-[14px] py-[12px] active:opacity-70"
+      className="flex-row items-center gap-[10px] px-[14px] py-[12px] active:opacity-70"
     >
+      <Face name="card" radius={11} />
       <View className="flex-1">
         <Text className="text-[13px] font-medium tracking-[-0.1px] text-ink">{label}</Text>
         {caption ? (

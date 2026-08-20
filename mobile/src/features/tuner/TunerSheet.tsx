@@ -12,6 +12,8 @@ import { useAnimatedStyle } from 'react-native-reanimated';
 import { AnimatedView } from '@/components/AnimatedView';
 import { Button } from '@/components/Button';
 import { Sheet, type SheetRef } from '@/components/Sheet';
+import { SquircleView } from '@/components/Squircle';
+import { useToken } from '@/lib/tokens';
 
 import { IN_TUNE_CENTS } from './freqToNote';
 import { useNoteName } from './useNoteName';
@@ -76,6 +78,8 @@ function TunerSheetBody({ visible, onStart }: { visible: boolean; onStart: () =>
   const { status, note, frequency, centsSV, claritySV, presenceSV, frameSV } = useTuner();
   const nameOf = useNoteName();
   const colors = useTunerColors();
+  const tray = useToken('--tray', '#131418');
+  const lineSoft = useToken('--line-soft', '#23262d');
   const { height: screenHeight } = useWindowDimensions();
 
   // The 60-row chart drops frames if it mounts during the sheet's open animation, so it
@@ -144,8 +148,13 @@ function TunerSheetBody({ visible, onStart }: { visible: boolean; onStart: () =>
 
         {/* The chart draws inside the well's padding: onLayout measures the padded inner
             slot, so bars and guides never touch the border. */}
-        <View
-          className="mt-[24px] w-full flex-1 overflow-hidden rounded-[16px] border border-line-soft bg-tray p-[14px]"
+        <SquircleView
+          radius={16}
+          fill={tray}
+          stroke={lineSoft}
+          strokeWidth={1}
+          clip
+          className="mt-[24px] w-full flex-1 p-[14px]"
           style={{ maxHeight: screenHeight / 2 }}
         >
           <View className="flex-1" onLayout={onChartLayout}>
@@ -163,7 +172,7 @@ function TunerSheetBody({ visible, onStart }: { visible: boolean; onStart: () =>
               )
             ) : null}
           </View>
-        </View>
+        </SquircleView>
 
         {/* Capping the chart can leave slack below it; the pill takes it so it stays
             anchored to the bottom of the sheet rather than floating mid-air. */}

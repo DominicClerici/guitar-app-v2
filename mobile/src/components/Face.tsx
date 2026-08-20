@@ -1,47 +1,23 @@
-import { useId, useState } from 'react';
-import { View, type LayoutChangeEvent } from 'react-native';
-import Svg, { Defs, LinearGradient, Path, Stop } from 'react-native-svg';
+import { SquircleShape, type SquircleCorners } from '@modules/expo-squircle-view';
 
-import { mixColors, splitAlpha } from '@/lib/color';
-import { APPLE_SMOOTHING, squirclePath } from '@/lib/squircle';
-import { useTokens } from '@/lib/tokens';
+import { APPLE_SMOOTHING } from '@/lib/squircle';
 
-/** Matching the 1px hairline every Aurora face wears. */
+import { useFacePaint, type Paint } from './buttonFace';
+import { corners } from './Squircle';
+
+/** The 1px hairline every Aurora face wears. */
 const HAIRLINE = 1;
 
-/**
- * How far down the face the highlight takes to resolve into the side colour,
- * and the shadow to gather out of it. A quarter each leaves the middle half of
- * the edge flat, so the bevel still reads as lit above and shadowed below.
- */
-const BEVEL_RAMP = 0.25;
-
-/** Samples across one ramp — enough that the eased curve reads as a curve. */
-const RAMP_STEPS = 6;
-
-/** Fallbacks mirror `global.css`, for the moment before uniwind has resolved. */
-const PALETTE = {
-  '--surface': '#181a1f',
-  '--surface-raised': '#20232a',
-  '--tray': '#131418',
-  '--accent-wash': 'rgba(94, 200, 194, 0.12)',
-  '--accent-line': 'rgba(94, 200, 194, 0.5)',
-  '--line-soft': '#23262d',
-  '--edge-top': 'rgba(255, 255, 255, 0.06)',
-  '--edge-bottom': 'rgba(0, 0, 0, 0.52)',
-} as const;
-
-type Token = keyof typeof PALETTE;
-
-const TOKENS = Object.keys(PALETTE) as Token[];
+/** The runs a `dashed` hairline is drawn in — a placeholder's border, and nothing else. */
+const DASH = [4, 4];
 
 interface FaceSpec {
-  /** The background, or nothing at all for a face that paints only when chosen. */
-  fill?: Token;
-  /** A single-colour hairline. */
-  stroke?: Token;
-  /** Or a bevel, read top → sides → bottom down the edge. */
-  bevel?: [Token, Token, Token];
+  fill: Paint;
+  /**
+   * Every face declares one, `transparent` where it should not show, so the
+   * shape is drawn from the same props whatever it is wearing.
+   */
+  stroke: Paint;
 }
 
 /**
@@ -50,19 +26,20 @@ interface FaceSpec {
  * another — a surface names the face it wants rather than restating it.
  */
 const FACES = {
-  /** A lifted card or chip: lit along the top, shadowed under the bottom. */
+  /** A lifted card or chip, the most common surface in the app. */
   card: {
     fill: '--surface',
-    bevel: ['--edge-top', '--line-soft', '--edge-bottom'],
+    stroke: '--line-soft',
   },
-  /** The same bevel a step brighter — a key that sits on a tray rather than in it. */
+  /** The same a step brighter — a key that sits on a tray rather than in it. */
   key: {
     fill: '--surface-raised',
-    bevel: ['--edge-top', '--line-soft', '--edge-bottom'],
+    stroke: '--line-soft',
   },
   /** The lit half of a toggle: raised out of its housing, with no hairline of its own. */
   slab: {
     fill: '--surface-raised',
+    stroke: 'transparent',
   },
   /** A recessed tray that other things sit in. */
   tray: {
@@ -74,31 +51,38 @@ const FACES = {
     fill: '--accent-wash',
     stroke: '--accent-line',
   },
-  /** Present but not lifted — no bevel to catch the light. */
-  quiet: {
-    fill: '--surface',
-    stroke: '--line-soft',
+  /** Something went wrong. Nothing in Aurora is a filled red. */
+  alert: {
+    fill: '--rose-wash',
+    stroke: '--rose',
   },
   /** Nothing at all, for the unselected half of a toggle. */
-  bare: {},
+  bare: {
+    fill: 'transparent',
+    stroke: 'transparent',
+  },
 } satisfies Record<string, FaceSpec>;
 
 export type FaceName = keyof typeof FACES;
 
-interface Size {
-  width: number;
-  height: number;
-}
-
-interface GradientStop {
-  offset: number;
-  colour: string;
-}
+/**
+ * A named face, or the colours themselves for the surfaces the table has no
+ * name for — a chip lit solid accent, a hairline in the full-strength colour
+ * rather than the washed one. Reach for a name wherever there is one: that is
+ * what keeps a card on one screen the same card on another.
+ */
+type Props = {
+  radius: number | Partial<SquircleCorners>;
+  /** A broken hairline, for a surface standing in for content that is not there. */
+  dashed?: boolean;
+} & ({ name: FaceName } | Partial<FaceSpec>);
 
 /**
  * The background and hairline of one surface, drawn as Apple's continuous
  * corner rather than a `border-radius` quarter circle. Render it as the first
- * child of the box it is the face of, and leave the box itself unpainted:
+ * child of the box it is the face of, and leave the box itself unpainted — no
+ * `bg-*`, and no `border`, since the hairline is the shape's own stroke and
+ * takes no room in the layout:
  *
  * ```tsx
  * <View className="px-[16px]">
@@ -107,110 +91,34 @@ interface GradientStop {
  * </View>
  * ```
  *
- * The shape is sized from its own layout, so a surface keeps whatever intrinsic
- * width its content gives it — which also means it draws one frame late. On
- * anything that appears, animates or reflows, reach for `SquirclePressable`
- * instead: its native layer is right on the first frame, at the cost of the
- * bevel, since a shape layer strokes one colour.
- */
-export function Face({ name, radius }: { name: FaceName; radius: number }) {
-  const [size, setSize] = useState<Size | null>(null);
-  const values = useTokens(TOKENS);
-  const gradient = useId();
-
-  const spec: FaceSpec = FACES[name];
-  const hairline = Boolean(spec.bevel ?? spec.stroke);
-
-  const measure = (event: LayoutChangeEvent) => {
-    const { width, height } = event.nativeEvent.layout;
-    setSize((current) =>
-      current?.width === width && current?.height === height ? current : { width, height },
-    );
-  };
-
-  const colour = (token: Token) => values[TOKENS.indexOf(token)] ?? PALETTE[token];
-
-  // The lit top and the shadowed bottom each ease into the side colour, and the
-  // flat middle is what the two ramps leave between them.
-  const bevel = spec.bevel;
-  const stops: GradientStop[] = bevel
-    ? [
-        ...ramp(0, BEVEL_RAMP, colour(bevel[0]), colour(bevel[1])),
-        ...ramp(1 - BEVEL_RAMP, 1, colour(bevel[1]), colour(bevel[2])),
-      ]
-    : [];
-
-  // A `bare` face still measures, so the box it sits in can be given a real one
-  // — the selected half of a toggle — without waiting a frame to draw it.
-  return (
-    <View className="pointer-events-none absolute inset-0" onLayout={measure} accessible={false}>
-      {size && spec.fill ? (
-        <Svg width={size.width} height={size.height}>
-          {bevel ? (
-            <Defs>
-              <LinearGradient id={gradient} x1="0" y1="0" x2="0" y2="1">
-                {stops.map((entry) => {
-                  // A stop takes its alpha from `stopOpacity` only —
-                  // react-native-svg masks off whatever the colour carried — so
-                  // a translucent one has to arrive split, or the edge paints
-                  // as opaque white over black.
-                  const { color, opacity } = splitAlpha(entry.colour);
-                  return (
-                    <Stop
-                      key={entry.offset}
-                      offset={entry.offset}
-                      stopColor={color}
-                      stopOpacity={opacity}
-                    />
-                  );
-                })}
-              </LinearGradient>
-            </Defs>
-          ) : null}
-
-          {/* Background first, out to the box's own edge, then the hairline
-              inset by half its width so it lands just inside it, the way a CSS
-              border sits inside the box. */}
-          <Path
-            d={squirclePath({ ...size, radius, smoothing: APPLE_SMOOTHING })}
-            fill={colour(spec.fill)}
-          />
-          {hairline ? (
-            <Path
-              d={squirclePath({
-                width: size.width - HAIRLINE,
-                height: size.height - HAIRLINE,
-                radius: radius - HAIRLINE / 2,
-                smoothing: APPLE_SMOOTHING,
-                x: HAIRLINE / 2,
-                y: HAIRLINE / 2,
-              })}
-              fill="none"
-              stroke={bevel ? `url(#${gradient})` : colour(spec.stroke ?? '--line-soft')}
-              strokeWidth={HAIRLINE}
-            />
-          ) : null}
-        </Svg>
-      ) : null}
-    </View>
-  );
-}
-
-/**
- * Stops carrying one colour into another across a span of the gradient.
+ * A surface whose colours are not in the table names them instead:
  *
- * Sampled rather than left as a single linear leg because two stops put a
- * corner in the ramp at each end — the colour arrives at full rate and stops
- * dead — and the eye reads those corners as the edge of a band. Smoothstep is
- * flat at both ends, so the highlight leaves the top edge and settles into the
- * side colour without a seam at either turn.
+ * ```tsx
+ * <Face fill="--accent" radius={8} />
+ * ```
+ *
+ * The shape is painted by a native layer stretched over the box, so it is right
+ * on the first frame and stays right through a resize. Reach for `SquircleView`
+ * where the corner has to clip what is inside it, and for `SquirclePressable` —
+ * or `Button`, which is built on it — where it is a control rather than a
+ * surface.
  */
-function ramp(from: number, to: number, start: string, end: string): GradientStop[] {
-  return Array.from({ length: RAMP_STEPS + 1 }, (_, index) => {
-    const t = index / RAMP_STEPS;
-    return {
-      offset: Math.round((from + (to - from) * t) * 1e4) / 1e4,
-      colour: mixColors(start, end, t * t * (3 - 2 * t)),
-    };
-  });
+export function Face({ radius, dashed = false, ...props }: Props) {
+  const paint = useFacePaint();
+
+  const spec: FaceSpec =
+    'name' in props
+      ? FACES[props.name]
+      : { fill: props.fill ?? 'transparent', stroke: props.stroke ?? 'transparent' };
+
+  return (
+    <SquircleShape
+      radii={corners(radius)}
+      smoothing={APPLE_SMOOTHING}
+      fill={paint(spec.fill)}
+      stroke={paint(spec.stroke)}
+      strokeWidth={spec.stroke === 'transparent' ? 0 : HAIRLINE}
+      strokeDash={dashed ? DASH : undefined}
+    />
+  );
 }

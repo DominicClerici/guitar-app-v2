@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import { Text, View } from 'react-native';
 
 import { useFacePaint, type FaceSpec } from '@/components/buttonFace';
+import { Face } from '@/components/Face';
 import { SquirclePressable } from '@/components/Squircle';
 
 /**
@@ -51,7 +52,8 @@ export function OptionCard({ title, description, selected, mark, footer, onPress
   const paint = useFacePaint();
 
   const spec = selected ? SELECTED : RESTING;
-  const round = mark === 'one' ? 'rounded-full' : 'rounded-[6px]';
+  // Half the 20px box is as far as a corner can go, which is how one asks to be a circle.
+  const round = mark === 'one' ? 10 : 6;
 
   return (
     <SquirclePressable
@@ -67,18 +69,21 @@ export function OptionCard({ title, description, selected, mark, footer, onPress
       className={`flex-row items-start gap-[12px] px-[15px] py-[13px] ${spec.press}`}
     >
       <View className="flex-1">
-        <Text className={`text-[15.5px] font-semibold tracking-[-0.2px] ${spec.text}`}>{title}</Text>
+        <Text className={`text-[15.5px] font-semibold tracking-[-0.2px] ${spec.text}`}>
+          {title}
+        </Text>
         <Text className="mt-[3px] text-[13px] leading-[18px] text-ink-muted">{description}</Text>
         {footer}
       </View>
 
       {/* Nudged down to sit on the title's own line rather than the card's centre, which drifts as
           the description wraps. */}
-      <View
-        className={`mt-[2px] h-[20px] w-[20px] items-center justify-center border ${round} ${
-          selected ? 'border-accent bg-accent' : 'border-line bg-transparent'
-        }`}
-      >
+      <View className="mt-[2px] h-[20px] w-[20px] items-center justify-center">
+        <Face
+          fill={selected ? '--accent' : 'transparent'}
+          stroke={selected ? '--accent' : '--line'}
+          radius={round}
+        />
         {selected ? (
           <SymbolView name="checkmark" size={11} weight="bold" tintColor={paint('--on-accent')} />
         ) : null}

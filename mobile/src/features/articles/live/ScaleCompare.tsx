@@ -3,6 +3,7 @@ import { Pressable, Text, View } from 'react-native';
 import { z } from 'zod';
 
 import { Button } from '@/components/Button';
+import { Face } from '@/components/Face';
 import { pluck, prepare, release } from '@/features/scale-visualizer';
 import { toAccidentalGlyphs } from '@/lib/accidentals';
 import { isRootName, type RootName } from '@/lib/chord-library';
@@ -154,13 +155,16 @@ export function ScaleCompare({ root, scales: scaleIds, drone }: ScaleCompareProp
  */
 function DroneBar({ root, hold }: { root: string; hold: DroneHold }) {
   return (
-    <View className="flex-row items-center justify-between rounded-[13px] border border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface-raised px-[14px] py-[10px]">
+    <View className="flex-row items-center justify-between px-[14px] py-[10px]">
+      <Face name="key" radius={13} />
       <View className="flex-1 pr-[10px]">
         <Text className="text-[13px] font-medium tracking-[-0.2px] text-ink">
           {`Hold ${toAccidentalGlyphs(root)} underneath`}
         </Text>
         <Text className="mt-[2px] text-[11px] leading-[15px] text-ink-faint">
-          {hold.holding ? 'Tap any tone to hear it against home' : 'The tones need a home to lean on'}
+          {hold.holding
+            ? 'Tap any tone to hear it against home'
+            : 'The tones need a home to lean on'}
         </Text>
       </View>
       <Button
@@ -197,7 +201,8 @@ function ScaleCard({
   const name = `${toAccidentalGlyphs(scale.root)} ${scale.type.name}`;
 
   return (
-    <View className="rounded-[13px] border border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface p-[14px]">
+    <View className="p-[14px]">
+      <Face name="card" radius={13} />
       <View className="flex-row items-center justify-between">
         <View className="flex-1 pr-[10px]">
           <Text className="text-[14px] font-medium tracking-[-0.2px] text-ink">{name}</Text>
@@ -226,14 +231,13 @@ function ScaleCard({
           return (
             <Pressable
               key={index}
-              className={`min-w-[36px] items-center rounded-[8px] px-[7px] py-[5px] ${
-                sounding ? 'bg-accent' : 'bg-surface-raised'
-              }`}
+              className="min-w-[36px] items-center px-[7px] py-[5px]"
               hitSlop={4}
               accessibilityRole="button"
               accessibilityLabel={`Sound ${note}, the ${scale.type.degrees[index]}`}
               onPress={() => onTone(scale.type.semitones[index])}
             >
+              <Face fill={sounding ? '--accent' : '--surface-raised'} radius={8} />
               <Text
                 className={`text-[13px] font-medium ${
                   sounding ? 'text-on-accent' : differs ? 'text-amber' : 'text-ink'

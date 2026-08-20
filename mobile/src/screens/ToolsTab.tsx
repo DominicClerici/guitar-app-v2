@@ -229,9 +229,9 @@ function CardTitle({ tool }: { tool: CardTool }) {
 }
 
 /**
- * A card face: the flat hairline and fill of a `quiet` surface, drawn as a
- * native squircle. No bevel — the emblem is the thing that should catch the
- * eye here, not the edge.
+ * A card face: the flat hairline and fill of a `card` surface, drawn as a
+ * native squircle. The emblem is the thing that should catch the eye here, not
+ * the edge.
  */
 function useCardFace() {
   const paint = useFacePaint();

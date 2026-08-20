@@ -1,6 +1,7 @@
 import { SymbolView } from 'expo-symbols';
 import { Pressable, Text, View } from 'react-native';
 
+import { Face } from '@/components/Face';
 import type { CurriculumChapter, CurriculumSection, RenderSection } from '@/lib/content';
 import {
   chapterProgress,
@@ -170,12 +171,11 @@ function CheckpointRow({
       accessibilityRole="button"
       accessibilityState={{ disabled: locked }}
       accessibilityLabel={`Chapter quiz — ${name}${passed ? ', passed' : ''}`}
-      className={`mt-[12px] flex-row items-center gap-[12px] rounded-[10px] border px-[13px] py-[12px] ${
-        locked
-          ? 'border-line-soft bg-surface-raised opacity-55'
-          : 'border-accent-line bg-accent-wash active:opacity-70'
+      className={`mt-[12px] flex-row items-center gap-[12px] px-[13px] py-[12px] ${
+        locked ? 'opacity-55' : 'active:opacity-70'
       }`}
     >
+      <Face name={locked ? 'key' : 'accent'} radius={10} />
       <Marker state={markerFor({ complete: passed, next, muted: locked })} />
       <View className="flex-1">
         <View className="flex-row items-center justify-between gap-[10px]">
@@ -248,11 +248,8 @@ export function ChapterCard({
       : `${tally.completed} of ${tally.total} done`;
 
   return (
-    <View
-      className={`rounded-[13px] border border-t-edge-top border-x-line-soft border-b-edge-bottom p-[15px] ${
-        status === 'open' ? 'bg-surface' : 'bg-tray'
-      }`}
-    >
+    <View className="p-[15px]">
+      <Face name={status === 'open' ? 'card' : 'tray'} radius={13} />
       <Pressable
         onPress={locked ? undefined : onToggle}
         disabled={locked}

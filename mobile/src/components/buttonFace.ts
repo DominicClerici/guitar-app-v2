@@ -4,11 +4,11 @@ import { useTokens } from '@/lib/tokens';
  * The tables every button-shaped control paints from: what a face is made of,
  * and how big the boxes come.
  *
- * They live here rather than in `Button` because three components now wear the
- * same faces — `Button`, `ArmedButton` and `SelectableChip` — and a size scale
- * that drifted between them would be worse than no scale at all. Each of them
- * still owns its own variant table; what is shared is the vocabulary those
- * tables are written in.
+ * They live here rather than in `Button` because every rounded thing in the app
+ * paints from them — `Button`, `ArmedButton`, `SelectableChip` and `Face` — and a
+ * size scale that drifted between them would be worse than no scale at all. Each
+ * of them still owns its own variant table; what is shared is the vocabulary
+ * those tables are written in.
  */
 
 /** Fallbacks mirror `global.css`, for the moment before uniwind has resolved. */
@@ -21,6 +21,8 @@ export const PALETTE = {
   '--bg': '#0c0d10',
   '--surface': '#181a1f',
   '--surface-raised': '#20232a',
+  '--tray': '#131418',
+  '--line': '#2a2e36',
   '--line-soft': '#23262d',
   '--ink': '#eef0f4',
   '--ink-muted': '#9aa0aa',

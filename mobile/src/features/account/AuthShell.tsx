@@ -2,6 +2,8 @@ import type { ReactNode } from 'react';
 import { KeyboardAvoidingView, Platform, ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { Face } from '@/components/Face';
+
 interface Props {
   title: string;
   blurb: string;
@@ -43,7 +45,8 @@ export function FormError({ message }: { message: string | null }) {
   if (!message) return null;
 
   return (
-    <View className="rounded-[10px] border border-rose bg-rose-wash px-[12px] py-[10px]">
+    <View className="px-[12px] py-[10px]">
+      <Face name="alert" radius={10} />
       <Text className="text-[13px] leading-[18px] text-rose">{message}</Text>
     </View>
   );

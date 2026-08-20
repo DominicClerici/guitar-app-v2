@@ -1,5 +1,6 @@
 import { Pressable, Text, View } from 'react-native';
 
+import { Face } from '@/components/Face';
 import { toAccidentalGlyphs } from '@/lib/accidentals';
 import type { Voicing } from '@/lib/guitar-voicings';
 
@@ -25,12 +26,9 @@ export function VoicingCard({ voicing, selected, onPress }: Props) {
       accessibilityRole="button"
       accessibilityState={{ selected }}
       accessibilityLabel={`${voicing.slashSymbol ?? 'Shape'} ${voicing.id}, ${voicing.difficulty}`}
-      className={`items-center rounded-[11px] border px-[6px] pb-[8px] pt-[9px] active:opacity-70 ${
-        selected
-          ? 'border-accent-line bg-accent-wash'
-          : 'border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface'
-      }`}
+      className="items-center px-[6px] pb-[8px] pt-[9px] active:opacity-70"
     >
+      <Face name={selected ? 'accent' : 'card'} radius={11} />
       <ChordDiagram voicing={voicing} />
 
       <Text className="mt-[7px] font-mono text-[9px] tracking-[0.5px] text-ink-muted">
@@ -56,7 +54,8 @@ export function VoicingDetail({ voicing }: { voicing: Voicing }) {
   const strings = voicing.frets.map((_, index) => index).reverse();
 
   return (
-    <View className="flex-row gap-[16px] rounded-[13px] border border-accent-line bg-accent-wash p-[14px]">
+    <View className="flex-row gap-[16px] p-[14px]">
+      <Face name="accent" radius={13} />
       <ChordDiagram voicing={voicing} size="detail" />
 
       <View className="flex-1">

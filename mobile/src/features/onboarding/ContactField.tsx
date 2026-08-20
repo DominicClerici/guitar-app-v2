@@ -1,6 +1,8 @@
 import { useState, type Ref } from 'react';
 import { Text, TextInput, View } from 'react-native';
 
+import type { Paint } from '@/components/buttonFace';
+import { Face } from '@/components/Face';
 import { useToken } from '@/lib/tokens';
 
 import { formatNational, nationalDigits, sanitizeDialCode } from './phone';
@@ -43,12 +45,13 @@ export function ContactField({
   const faint = useToken('--ink-faint', '#62666e');
   const accent = useToken('--accent', '#5ec8c2');
 
-  const hairline = error ? 'border-rose' : focused ? 'border-accent-line' : 'border-line-soft';
+  const hairline: Paint = error ? '--rose' : focused ? '--accent-line' : '--line-soft';
   const phone = channel === 'phone';
 
   return (
     <View>
-      <View className={`flex-row items-center rounded-[12px] border bg-tray ${hairline}`}>
+      <View className="flex-row items-center">
+        <Face fill="--tray" stroke={hairline} radius={12} />
         {phone ? (
           <>
             {/* Sized to its content rather than given a share of the row: a `+1` and a `+358`

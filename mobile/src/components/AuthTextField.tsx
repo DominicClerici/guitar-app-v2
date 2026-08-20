@@ -4,6 +4,9 @@ import { Pressable, Text, TextInput, View, type TextInputProps } from 'react-nat
 
 import { useToken } from '@/lib/tokens';
 
+import type { Paint } from './buttonFace';
+import { Face } from './Face';
+
 interface Props extends Omit<TextInputProps, 'className' | 'style' | 'secureTextEntry'> {
   label: string;
   /** Shown under the field in rose, and reddens the hairline. */
@@ -19,13 +22,20 @@ interface Props extends Omit<TextInputProps, 'className' | 'style' | 'secureText
 }
 
 /** A labelled field on the Aurora tray face: hairline goes accent on focus, rose on error. */
-export function AuthTextField({ label, error, secure = false, sheet = false, ref, ...input }: Props) {
+export function AuthTextField({
+  label,
+  error,
+  secure = false,
+  sheet = false,
+  ref,
+  ...input
+}: Props) {
   const faint = useToken('--ink-faint', '#62666e');
   const accent = useToken('--accent', '#5ec8c2');
   const [focused, setFocused] = useState(false);
   const [revealed, setRevealed] = useState(false);
 
-  const hairline = error ? 'border-rose' : focused ? 'border-accent-line' : 'border-line-soft';
+  const hairline: Paint = error ? '--rose' : focused ? '--accent-line' : '--line-soft';
   // Fixed for the life of a field — nothing moves in or out of a sheet — so this never remounts.
   // The cast is a declaration mismatch only: the sheet's input is a `TextInput` that has told the
   // sheet about itself, but it declares its own ref as possibly `undefined`, which no `TextInput`
@@ -40,7 +50,8 @@ export function AuthTextField({ label, error, secure = false, sheet = false, ref
         {label}
       </Text>
 
-      <View className={`flex-row items-center rounded-[10px] border bg-tray px-[12px] ${hairline}`}>
+      <View className="flex-row items-center px-[12px]">
+        <Face fill="--tray" stroke={hairline} radius={10} />
         <Input
           ref={ref}
           {...input}

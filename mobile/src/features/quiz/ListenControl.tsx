@@ -2,6 +2,7 @@ import { SymbolView } from 'expo-symbols';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 
+import { Face } from '@/components/Face';
 import { claimPlayback, releasePlayback } from '@/features/articles/playbackBus';
 import { pluck, prepare, release } from '@/features/scale-visualizer';
 import type { AudioSpec } from '@/lib/content';
@@ -80,8 +81,9 @@ export function ListenControl({ audio }: { audio: AudioSpec }) {
       onPress={playing ? stop : play}
       accessibilityRole="button"
       accessibilityLabel={playing ? 'Stop playback' : label}
-      className="mt-[16px] flex-row items-center gap-[12px] rounded-[13px] border border-t-edge-top border-x-line-soft border-b-edge-bottom bg-surface px-[14px] py-[13px] active:opacity-70"
+      className="mt-[16px] flex-row items-center gap-[12px] px-[14px] py-[13px] active:opacity-70"
     >
+      <Face name="card" radius={13} />
       <View className="h-[34px] w-[34px] items-center justify-center rounded-full bg-accent">
         <SymbolView
           name={playing ? 'stop.fill' : 'play.fill'}

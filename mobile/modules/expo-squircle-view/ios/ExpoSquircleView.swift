@@ -2,24 +2,33 @@ import ExpoModulesCore
 import UIKit
 
 /**
- A squircle painted on a shape layer. The view carries no content of its own — it
- is stretched behind whatever it is meant to be the background of, so the fill
- and the stroke land on the native layer rather than on a measured SVG.
+ A squircle painted on shape layers. The view normally carries no content of its
+ own — it is stretched behind whatever it is meant to be the background of, so
+ the fill and the stroke land on native layers rather than on a measured SVG.
+
+ With `clipsContent` it becomes a container instead: children lay out inside it
+ and are masked to the shape, which is the only way to give a corner that has to
+ clip — a scroller, an image, a row of ticks — the same curve as its neighbours.
 
  The stroke is inset by half its width, the way a CSS border sits inside the box,
  so a bordered squircle occupies exactly the frame it was given.
  */
 class ExpoSquircleView: ExpoView {
-  private let shape = CAShapeLayer()
+  private let fill = CAShapeLayer()
+  private let stroke = CAShapeLayer()
+  private let clip = CAShapeLayer()
 
   var radii = SquircleRadii() { didSet { setNeedsLayout() } }
   var cornerSmoothing: CGFloat = 0 { didSet { setNeedsLayout() } }
+  var clipsContent = false { didSet { setNeedsLayout() } }
 
   required init(appContext: AppContext? = nil) {
     super.init(appContext: appContext)
-    shape.fillColor = UIColor.clear.cgColor
-    shape.strokeColor = UIColor.clear.cgColor
-    layer.addSublayer(shape)
+    for shape in [fill, stroke] {
+      shape.fillColor = UIColor.clear.cgColor
+      shape.strokeColor = UIColor.clear.cgColor
+      layer.addSublayer(shape)
+    }
   }
 
   required init?(coder: NSCoder) {
@@ -31,36 +40,66 @@ class ExpoSquircleView: ExpoView {
 
     // Implicit animations would trail the shape behind a resize by a quarter
     // second, which reads as the background lagging its own view.
-    CATransaction.begin()
-    CATransaction.setDisableActions(true)
-    shape.frame = bounds
-    shape.path = squirclePath()
-    CATransaction.commit()
+    withoutAnimation {
+      let outline = path(inset: 0)
+
+      fill.frame = bounds
+      fill.path = outline
+
+      stroke.frame = bounds
+      stroke.path = stroke.lineWidth > 0 ? path(inset: stroke.lineWidth / 2) : outline
+
+      clip.frame = bounds
+      clip.path = outline
+      layer.mask = clipsContent ? clip : nil
+    }
+
+    raiseStroke()
   }
 
-  private func squirclePath() -> CGPath {
-    let inset = shape.lineWidth / 2
-    let path = SquirclePath.create(
-      width: bounds.width - shape.lineWidth,
-      height: bounds.height - shape.lineWidth,
+  /// A child arrives as a subview, so its layer lands above the ones added here.
+  override func didAddSubview(_ subview: UIView) {
+    super.didAddSubview(subview)
+    raiseStroke()
+  }
+
+  /// The hairline belongs over whatever the view is clipping, not under it.
+  private func raiseStroke() {
+    guard clipsContent, layer.sublayers?.last !== stroke else { return }
+    withoutAnimation { layer.addSublayer(stroke) }
+  }
+
+  private func path(inset: CGFloat) -> CGPath {
+    let shape = SquirclePath.create(
+      width: bounds.width - inset * 2,
+      height: bounds.height - inset * 2,
       radii: inset > 0 ? radii.inset(by: inset) : radii,
       smoothing: cornerSmoothing
     )
 
+    guard inset > 0 else { return shape }
+
     var shift = CGAffineTransform(translationX: inset, y: inset)
-    return path.copy(using: &shift) ?? path
+    return shape.copy(using: &shift) ?? shape
   }
 
   func setFillColor(_ color: UIColor) {
-    withoutAnimation { shape.fillColor = color.cgColor }
+    withoutAnimation { fill.fillColor = color.cgColor }
   }
 
   func setStrokeColor(_ color: UIColor) {
-    withoutAnimation { shape.strokeColor = color.cgColor }
+    withoutAnimation { stroke.strokeColor = color.cgColor }
+  }
+
+  /// Lengths of the drawn and undrawn runs, or nothing at all for a solid line.
+  func setStrokeDash(_ pattern: [CGFloat]) {
+    withoutAnimation {
+      stroke.lineDashPattern = pattern.isEmpty ? nil : pattern.map { NSNumber(value: Double($0)) }
+    }
   }
 
   func setStrokeWidth(_ width: CGFloat) {
-    withoutAnimation { shape.lineWidth = width }
+    withoutAnimation { stroke.lineWidth = width }
     setNeedsLayout()
   }
 

@@ -12,10 +12,8 @@ import { SquirclePressable } from './Squircle';
  * (`variant`), how big it is (`size`), and which of the two label typographies
  * it wears (`text`).
  *
- * The face is a native squircle rather than a `border-radius`, which is what
- * costs the bevel: that layer strokes one colour, and a bevel is a lit top
- * easing into a shadowed bottom. So a button is now a flat fill and a single
- * hairline, and the sense of lift comes from the fill alone.
+ * The face is a native squircle rather than a `border-radius`: a flat fill and a
+ * single hairline, with the sense of lift coming from the fill alone.
  *
  * ```tsx
  * <Button variant="primary" size="lg" icon="play.fill" onPress={go}>

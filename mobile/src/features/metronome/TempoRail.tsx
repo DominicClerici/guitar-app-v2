@@ -11,6 +11,7 @@ import {
 import Svg, { Defs, LinearGradient, Rect, Stop } from 'react-native-svg';
 
 import { AnimatedView } from '@/components/AnimatedView';
+import { SquircleView } from '@/components/Squircle';
 import { haptics } from '@/lib/haptics';
 import { useToken } from '@/lib/tokens';
 
@@ -52,6 +53,7 @@ interface Props {
  */
 export function TempoRail({ bpm, onChange }: Props) {
   const tray = useToken('--tray', '#131418');
+  const lineSoft = useToken('--line-soft', '#23262d');
   const [width, setWidth] = useState(0);
   const center = width / 2;
 
@@ -116,32 +118,41 @@ export function TempoRail({ bpm, onChange }: Props) {
         accessibilityRole="adjustable"
         accessibilityLabel="Tempo"
         accessibilityValue={{ min: MIN_BPM, max: MAX_BPM, now: bpm }}
-        className="h-[64px] overflow-hidden rounded-[11px] border border-t-edge-top border-x-line-soft border-b-edge-bottom bg-tray"
+        className="h-[64px]"
       >
-        <AnimatedView
-          className="absolute inset-y-0 left-0 flex-row items-start pt-[12px]"
-          style={[{ width: STRIP_WIDTH + 1 }, stripStyle]}
+        <SquircleView
+          radius={11}
+          fill={tray}
+          stroke={lineSoft}
+          strokeWidth={1}
+          clip
+          className="absolute inset-0"
         >
-          {TICKS.map((tick) => (
-            <View
-              key={tick}
-              className={`w-px ${
-                tick % MAJOR_EVERY === 0 ? 'h-[20px] bg-ink-faint' : 'h-[10px] bg-line'
-              }`}
-              style={{ marginRight: PX_PER_BPM - 1 }}
-            />
-          ))}
+          <AnimatedView
+            className="absolute inset-y-0 left-0 flex-row items-start pt-[12px]"
+            style={[{ width: STRIP_WIDTH + 1 }, stripStyle]}
+          >
+            {TICKS.map((tick) => (
+              <View
+                key={tick}
+                className={`w-px ${
+                  tick % MAJOR_EVERY === 0 ? 'h-[20px] bg-ink-faint' : 'h-[10px] bg-line'
+                }`}
+                style={{ marginRight: PX_PER_BPM - 1 }}
+              />
+            ))}
 
-          {MAJORS.map((tick) => (
-            <Text
-              key={tick}
-              className="absolute top-[26px] w-[30px] text-center font-mono text-[9.5px] tracking-[0.5px] text-ink-faint"
-              style={{ left: (tick - MIN_BPM) * PX_PER_BPM - 15 }}
-            >
-              {tick}
-            </Text>
-          ))}
-        </AnimatedView>
+            {MAJORS.map((tick) => (
+              <Text
+                key={tick}
+                className="absolute top-[26px] w-[30px] text-center font-mono text-[9.5px] tracking-[0.5px] text-ink-faint"
+                style={{ left: (tick - MIN_BPM) * PX_PER_BPM - 15 }}
+              >
+                {tick}
+              </Text>
+            ))}
+          </AnimatedView>
+        </SquircleView>
 
         <Fade tray={tray} side="left" />
         <Fade tray={tray} side="right" />

@@ -36,7 +36,7 @@ export function NoteRow({ selection, hint }: Props) {
 function NoteChip({ note, isRoot }: { note: string; isRoot: boolean }) {
   return (
     <View className="h-[24px] justify-center px-[8px]">
-      <Face name={isRoot ? 'accent' : 'quiet'} radius={7} />
+      <Face name={isRoot ? 'accent' : 'card'} radius={7} />
       <Text
         className={`font-mono text-[11px] tracking-[0.5px] ${
           isRoot ? 'text-accent' : 'text-ink-muted'
