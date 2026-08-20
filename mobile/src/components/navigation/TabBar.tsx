@@ -1,8 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Pressable, View, type LayoutChangeEvent } from 'react-native';
 import Animated, {
   interpolateColor,
-  runOnUI,
   scrollTo,
   useAnimatedReaction,
   useAnimatedRef,
@@ -172,41 +171,30 @@ export function TabBar({
     if (stillAt === undefined) tabBarScroll.value = event.contentOffset.x;
   });
 
-  // Put back where the live bar was, on the copy that is standing in for it.
+  // Where the live bar had been scrolled to, put on the copy as a shift of its content rather than
+  // as a scroll of its own.
   //
-  // Driven by the content's own size rather than by anything that merely correlates with it. The
-  // labels are measured and the trailing spacer mounted after this bar first renders, and a scroll
-  // issued before the content is that wide does not wait — it is clamped to whatever fits at that
-  // instant and stays there. Asking again once the spacer is in React's tree is not enough either,
-  // because the scroll goes to the UI thread and can arrive before the mounting does; that race is
-  // what left the copy showing the first tabs over a screen that was on the last one.
+  // Scrolling it was the obvious way and is the way that cannot be made to work. `scrollTo` is a
+  // command handed to the scroll view on the UI thread, and the scroll view clamps it to whatever
+  // its content is wide at that instant, keeps no memory of what was asked for, and reports nothing
+  // back. Meanwhile the only moment the copy has to ask from — `onContentSizeChange` — is the
+  // content's own `onLayout`, a shadow-tree event delivered to JavaScript, while the width it
+  // reports reaches the scroll view itself in a mount on the main thread. Nothing orders those two.
+  // When the command gets there first it lands against content still narrower than the offset, is
+  // clamped short in silence, and stays there for the life of the copy: one shot, no correction,
+  // and a bar standing a long way to the left of the one it is standing in for. When the mount gets
+  // there first everything is fine, which is the worse half — the same press on the same screen
+  // running the same code comes out either way, and goes on coming out that way until something
+  // else disturbs the timing.
   //
-  // `onContentSizeChange` is the event that cannot be early: it reports a size the content already
-  // has. It fires for each step of the measuring, and the restore is idempotent, so the last one
-  // lands on the full width. `SettingsTab` puts its own list back the same way.
-  const restore =
-    stillAt === undefined
-      ? undefined
-      : () => {
-          runOnUI(() => {
-            scrollTo(scrollRef, stillAt, 0, false);
-          })();
-        };
-
-  // The other way round, and the other half of the same job: not the content arriving under a
-  // fixed offset, but the offset moving under content that arrived long ago. A copy is built by the
-  // press and taken down by the switch, so one built by a press that came to nothing stands until
-  // the next press — by which time the live bar may have been scrolled, or swiped clean across, and
-  // the number this is holding is where it used to be. Every press publishes it afresh
-  // (`lib/theme/frozen`), and this is where the copy hears about it. Nothing is measured or mounted
-  // by then, so the scroll lands exactly where it is sent.
-  useEffect(() => {
-    if (stillAt === undefined) return;
-
-    runOnUI(() => {
-      scrollTo(scrollRef, stillAt, 0, false);
-    })();
-  }, [scrollRef, stillAt]);
+  // A copy is a picture, though, and a picture has no need of a scroll position — it needs its
+  // content drawn somewhere. Shifted rather than scrolled, the position is a style: settled in the
+  // same layout as everything else the copy renders, and unable to arrive before or after it. The
+  // bar clips to its bounds as any scroll view does, so what is left showing is what the live one
+  // was showing. It is the trade the copy already makes everywhere else — the parts React owns are
+  // the parts that come out right — and it is why these two numbers were worth carrying here at
+  // all. `SettingsTab` holds its list the same way.
+  const shifted = stillAt === undefined ? undefined : { transform: [{ translateX: -stillAt }] };
 
   // While a change is in flight the bar is ours: every frame it lands at
   // lerp(where the user had it, anchored target, how far the change has
@@ -270,7 +258,7 @@ export function TabBar({
       showsHorizontalScrollIndicator={false}
       onScroll={onScroll}
       scrollEventThrottle={16}
-      onContentSizeChange={restore}
+      contentContainerStyle={shifted}
       onLayout={(event) => {
         viewport.current = event.nativeEvent.layout.width;
         measure();

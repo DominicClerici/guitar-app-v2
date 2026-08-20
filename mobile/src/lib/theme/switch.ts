@@ -118,12 +118,6 @@ function timing(span: string): void {
   marked = now;
 }
 
-function reportTiming(): void {
-  if (!__DEV__ || began === 0) return;
-
-  console.log(`[theme] ${spans.join(' · ')} — ${Date.now() - began}ms before the circle moved`);
-}
-
 export interface Reveal {
   /** Distinguishes one switch from the next, so a second replaces rather than resumes the first. */
   id: number;
@@ -383,7 +377,6 @@ export function themeFrozen(id: number): void {
     const frozen = current;
     if (frozen?.id !== id) return;
 
-    reportTiming();
     commit({ ...frozen, opening: true });
   });
 }

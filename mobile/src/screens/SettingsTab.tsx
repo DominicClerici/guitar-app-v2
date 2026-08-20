@@ -1,5 +1,4 @@
 import { useRouter } from 'expo-router';
-import { useEffect, useRef } from 'react';
 import {
   ActivityIndicator,
   ScrollView,
@@ -39,7 +38,6 @@ export function SettingsTab({ stillAt }: Props = {}) {
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const faint = useToken('--ink-faint', '#62666e');
-  const scroller = useRef<ScrollView>(null);
   const still = stillAt !== undefined;
 
   // Only ever asked for at the start of a change of appearance, which is a press — and a press
@@ -49,16 +47,6 @@ export function SettingsTab({ stillAt }: Props = {}) {
   const remember = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     settingsScroll.value = event.nativeEvent.contentOffset.y;
   };
-
-  // The copy stands from the press that built it until the switch that takes it down, so a press
-  // that came to nothing leaves one holding an offset the list has since been scrolled away from.
-  // Every press publishes where it has got to (`lib/theme/frozen`) and the copy follows it here —
-  // laid out already, so unlike the restore below this cannot be clamped short.
-  useEffect(() => {
-    if (stillAt === undefined) return;
-
-    scroller.current?.scrollTo({ y: stillAt, animated: false });
-  }, [stillAt]);
 
   // The first read comes off the device keychain, so this is brief — but rendering the pitch
   // during it would sell an account to someone who already has one. Only the first: every read
@@ -79,21 +67,21 @@ export function SettingsTab({ stillAt }: Props = {}) {
 
   return (
     <ScrollView
-      ref={scroller}
       className="flex-1 bg-bg"
       showsVerticalScrollIndicator={false}
       contentContainerClassName="grow pt-[24px]"
-      contentContainerStyle={{ paddingBottom: insets.bottom + 96 }}
+      contentContainerStyle={{
+        paddingBottom: insets.bottom + 96,
+        // Held where the live list was, on the copy standing in for it — as a shift of the content
+        // rather than a scroll of the view. `TabBar` carries the whole of why: a scroll is a
+        // command clamped against a content size that reaches the view on another thread, and the
+        // copy has one chance at it and no way of knowing it was cut short. A shift is a style, and
+        // is laid out with everything else here.
+        ...(stillAt === undefined ? null : { transform: [{ translateY: -stillAt }] }),
+      }}
       scrollEnabled={!still}
       onScrollEndDrag={still ? undefined : remember}
       onMomentumScrollEnd={still ? undefined : remember}
-      // Put back where the live list was, on the copy standing in for it. Once the content has been
-      // measured rather than as an initial `contentOffset`: before that there is nothing to scroll
-      // through and the offset would be clamped to the top, which is exactly the mistake being
-      // avoided.
-      onContentSizeChange={
-        still ? () => scroller.current?.scrollTo({ y: stillAt, animated: false }) : undefined
-      }
     >
       {account ? (
         <View className="px-[18px]">
